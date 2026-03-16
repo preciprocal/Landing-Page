@@ -1,152 +1,18 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValue,
-  useMotionTemplate,
-  MotionValue,
-} from "framer-motion";
-import {
-  ArrowRight,
-  Sparkles,
-  Zap,
-  ShieldCheck,
-  TrendingUp,
-  Menu,
-  X,
-  Play,
-} from "lucide-react";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 
-// --- Utils ---
-function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-
-// --- Magnetic Button Component ---
-const MagneticButton = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  const ref = useRef<HTMLButtonElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    const { left, top, width, height } =
-      ref.current?.getBoundingClientRect() ?? {
-        left: 0,
-        top: 0,
-        width: 0,
-        height: 0,
-      };
-    const center = { x: left + width / 2, y: top + height / 2 };
-    x.set((clientX - center.x) * 0.15);
-    y.set((clientY - center.y) * 0.15);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.button
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ x, y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={cn("relative overflow-hidden group", className)}
-    >
-      {children}
-    </motion.button>
-  );
-};
-
-// --- Scrollytelling Text Component ---
-const ScrollRevealText = ({ text }: { text: string }) => {
-  const container = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: container,
-    offset: ["start 0.9", "start 0.25"],
-  });
-
-  const words = text.split(" ");
-
-  return (
-    <p
-      ref={container}
-      className="flex flex-wrap gap-x-3 text-4xl md:text-6xl font-bold leading-tight max-w-4xl mx-auto"
-    >
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + 1 / words.length;
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
-
-        return (
-          <motion.span
-            key={i}
-            style={{ opacity }}
-            className="transition-colors duration-300"
-          >
-            {word}
-          </motion.span>
-        );
-      })}
-    </p>
-  );
-};
-
-// --- 3D Card Component ---
-const ParallaxCard = ({ title, desc, icon: Icon, index }: any) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay: index * 0.2 }}
-      className="relative h-[400px] w-full rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-md group"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80 z-10" />
-
-      {/* Background Animation */}
-      <div className="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-500">
-        <div
-          className={cn(
-            "absolute w-[300px] h-[300px] rounded-full blur-[100px] -top-20 -right-20",
-            index === 0
-              ? "bg-indigo-500"
-              : index === 1
-                ? "bg-purple-500"
-                : "bg-pink-500",
-          )}
-        />
-      </div>
-
-      <div className="relative z-20 h-full flex flex-col justify-end p-8">
-        <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 backdrop-blur-md border border-white/20 group-hover:scale-110 transition-transform duration-300">
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-        <h3 className="text-3xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-slate-300 text-lg leading-relaxed">{desc}</p>
-      </div>
-    </motion.div>
-  );
-};
-
-// --- Main Landing Page ---
+// Import your newly split components
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ScrollRevealText } from "@/components/ui/ScrollRevealText";
+import { DashboardShowcase } from "@/components/sections/DashboardShowcase";
+import { BentoFeatureGrid } from "@/components/sections/BentoFeatureGrid";
+import { AppFeaturesDetails } from "@/components/sections/AppFeaturesDetails";
+import { FAQSection } from "@/components/sections/FAQSection";
+import { Footer } from "@/components/sections/Footer";
 
 export default function EtherealLanding() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -186,7 +52,10 @@ export default function EtherealLanding() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative pt-40 pb-20 px-6 perspective-1000">
+      <div
+        ref={targetRef}
+        className="relative pt-40 pb-20 px-6 perspective-1000"
+      >
         <div className="max-w-5xl mx-auto text-center z-10 relative">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -199,8 +68,7 @@ export default function EtherealLanding() {
           </motion.div>
 
           <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/40">
-            Career <br />
-            Velocity.
+            Career <br /> Velocity.
           </h1>
 
           <p className="text-xl md:text-2xl text-slate-400 max-w-2xl mx-auto mb-16 leading-relaxed">
@@ -222,10 +90,7 @@ export default function EtherealLanding() {
           className="mt-24 max-w-6xl mx-auto rounded-xl border border-white/10 bg-[#0A0A0A] shadow-2xl relative overflow-hidden aspect-[16/9]"
         >
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500" />
-
-          {/* UI Mockup - Chat Interface */}
           <div className="flex h-full">
-            {/* Sidebar */}
             <div className="w-64 border-r border-white/5 bg-[#050505] p-6 hidden md:block">
               <div className="space-y-4">
                 <div className="h-2 w-20 bg-white/10 rounded" />
@@ -236,12 +101,8 @@ export default function EtherealLanding() {
                 <div className="h-8 w-full bg-white/5 rounded-lg" />
               </div>
             </div>
-
-            {/* Main Content */}
             <div className="flex-1 p-8 relative">
               <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 pointer-events-none" />
-
-              {/* Chat Bubble 1 */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -253,8 +114,6 @@ export default function EtherealLanding() {
                   Bit.ly. How would you handle 100M daily active users?
                 </p>
               </motion.div>
-
-              {/* Chat Bubble 2 (User) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -266,8 +125,6 @@ export default function EtherealLanding() {
                   100:1 read-heavy...
                 </p>
               </motion.div>
-
-              {/* AI Analysis Overlay */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -300,46 +157,47 @@ export default function EtherealLanding() {
         </motion.div>
       </div>
 
+      <BentoFeatureGrid />
+      <AppFeaturesDetails />
+
+      {/* The Dashboard Showcase */}
+      <section className="relative z-10 py-16 px-4 sm:px-6 bg-[#030303]">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Your Command Center
+            </h2>
+            <p className="text-lg text-slate-400">
+              A unified interface to manage interviews, resumes, and progress.
+            </p>
+          </div>
+          <div className="relative mx-auto perspective-1000">
+            <motion.div
+              whileHover={{ rotateX: 2, rotateY: -2 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            >
+              <DashboardShowcase />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Scrollytelling Section */}
-      <section className="min-h-screen flex items-center justify-center py-24 bg-black relative z-10">
+      <section className="min-h-[80vh] flex items-center justify-center py-24 bg-black relative z-10 border-y border-white/5">
         <div className="px-6 text-center">
           <ScrollRevealText text="Most candidates memorize answers. You will learn to think. Our AI analyzes your micro-expressions, voice tonality, and structural logic in real-time." />
         </div>
       </section>
 
-      {/* Feature Showcase */}
-      <section ref={targetRef} className="py-32 px-6 bg-[#050505]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ParallaxCard
-            index={0}
-            icon={Zap}
-            title="Hyper-Realistic Simulations"
-            desc="Engineered to mimic the pressure of a real interview. No pauses, no mercy, just pure preparation."
-          />
-          <ParallaxCard
-            index={1}
-            icon={ShieldCheck}
-            title="Resume Fortification"
-            desc="We don't just 'check' your resume. We reconstruct it to pass the most aggressive ATS filters."
-          />
-          <ParallaxCard
-            index={2}
-            icon={TrendingUp}
-            title="Compensation Intelligence"
-            desc="Access real-time salary data to negotiate with the leverage of a senior executive."
-          />
-        </div>
-      </section>
+      <FAQSection />
 
       {/* Final CTA */}
-      <section className="h-screen flex flex-col items-center justify-center relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" />
+      <section className="py-32 flex flex-col items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" />
         </div>
-
         <div className="relative z-10 text-center px-6">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8">
+          <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
             Ready to take command?
           </h2>
           <Link href="/signup">
@@ -349,6 +207,8 @@ export default function EtherealLanding() {
           </Link>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
