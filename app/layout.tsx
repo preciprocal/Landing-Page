@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd, FAQJsonLd } from "@/components/JsonLd";
-import "./globals.css";
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -69,11 +69,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/logo.png" sizes="any" />
         <link rel="icon" href="/logo.png" type="image/png" />
         <link rel="apple-touch-icon" href="/logo.png" />
+
+        {/* Google Analytics 4 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJVD3DYG25" />
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XJVD3DYG25');
+        `}} />
         <OrganizationJsonLd />
         <SoftwareAppJsonLd />
         <FAQJsonLd />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }
