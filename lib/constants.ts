@@ -223,6 +223,10 @@ export const STATS = [
 export const UNIVERSITY_LOGOS = [
   "Stanford", "MIT", "Harvard", "Berkeley", "Columbia",
   "NYU", "Georgia Tech", "UT Austin", "Carnegie Mellon", "Michigan",
+  "Yale", "Princeton", "Cornell", "UCLA", "UPenn",
+  "Duke", "Northwestern", "Caltech", "Brown", "USC",
+  "Purdue", "Virginia Tech", "Illinois", "UW Madison", "Ohio State",
+  "Boston University", "Rice", "Northeastern", "Emory", "Vanderbilt",
 ];
 
 export const FOOTER_COLUMNS = [
