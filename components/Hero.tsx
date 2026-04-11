@@ -23,7 +23,7 @@ function RotatingWord() {
   return (
     <span className="inline-block transition-all duration-400" style={{
       opacity: show ? 1 : 0, transform: show ? "translateY(0)" : "translateY(10px)",
-      filter: show ? "blur(0px)" : "blur(4px)",
+      filter: show ? "blur(0px)" : "blur(4px)", paddingBottom: "0.15em",
       backgroundImage: "linear-gradient(135deg, #818cf8, #c084fc, #818cf8)",
       backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
     }}>
