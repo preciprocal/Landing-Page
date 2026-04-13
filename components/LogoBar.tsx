@@ -12,10 +12,25 @@ export default function LogoBar() {
       <div className="relative overflow-hidden">
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#050810] to-transparent z-10 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#050810] to-transparent z-10 pointer-events-none" />
-        <div className="flex w-max animate-scroll-logos">
-          {doubled.map((name, i) => (<span key={i} className="text-base font-semibold text-slate-600 whitespace-nowrap px-8">{name}</span>))}
+        <div className="flex w-max animate-scroll-logos-slow">
+          {doubled.map((name, i) => (
+            <span key={i} className="text-base font-semibold text-slate-600 whitespace-nowrap px-8">{name}</span>
+          ))}
         </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes scroll-logos-slow {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-logos-slow {
+          animation: scroll-logos-slow 60s linear infinite;
+        }
+        .animate-scroll-logos-slow:hover {
+          animation-play-state: paused;
+        }
+      `}} />
     </motion.div>
   );
 }

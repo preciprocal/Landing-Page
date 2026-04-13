@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@/components/Icons";
 import { APP_URL } from "@/lib/constants";
+import { MagneticHover } from "@/components/LandingAnimations";
 
 export default function FinalCTA() {
   return (
@@ -50,12 +51,17 @@ export default function FinalCTA() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
           className="flex flex-col items-center">
-          <a href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-lg transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] group">
-            Start Preparing — It&apos;s Free
-            <ArrowRightIcon className="transition-transform group-hover:translate-x-1" />
-          </a>
-          <p className="text-[12px] text-slate-600 mt-3">Free plan available · No credit card · Cancel anytime</p>
+          <MagneticHover>
+            <a href={`${APP_URL}/sign-up`}
+              className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-lg transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] group">
+              Start Preparing — It&apos;s Free
+              <ArrowRightIcon className="transition-transform group-hover:translate-x-1" />
+            </a>
+          </MagneticHover>
+          <p className="text-[12px] text-slate-600 mt-3">
+            Free plan available · No credit card · Cancel anytime ·{" "}
+            <a href="/faq" className="text-indigo-400/60 hover:text-indigo-400 transition-colors">FAQ</a>
+          </p>
         </motion.div>
       </div>
     </section>

@@ -34,7 +34,7 @@ function RotatingWord() {
 
 export default function Hero() {
   return (
-    <div className="relative overflow-hidden bg-[#050810] pt-28 pb-10 antialiased bg-grid">
+    <div className="relative overflow-hidden bg-[#050810] pt-28 pb-16 antialiased bg-grid">
       <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#818cf8" />
       <Spotlight className="-top-40 right-0 md:right-60 md:-top-20" fill="#6366f1" />
       <div className="absolute inset-0 w-full h-full bg-[#050810]" style={{
@@ -43,7 +43,7 @@ export default function Hero() {
       }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8">
             <SparkIcon className="text-indigo-300" />
@@ -74,7 +74,7 @@ export default function Hero() {
             </a>
             <a href="#features"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent text-slate-200 border border-white/[0.12] rounded-xl font-medium transition-all hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-0.5">
-              Watch It In Action
+              See All Features
             </a>
           </motion.div>
 
@@ -95,8 +95,9 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.3 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-[700px] mx-auto">
+        {/* Stats */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.0 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14 max-w-[700px] mx-auto">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-2xl font-extrabold text-white tracking-tight">

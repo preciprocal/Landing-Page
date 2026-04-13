@@ -1,116 +1,93 @@
+import { FAQS } from "@/lib/constants";
+
 export function OrganizationJsonLd() {
-  const data = {
+  const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Preciprocal",
     url: "https://preciprocal.com",
-    logo: "https://preciprocal.com/icon.svg",
+    logo: "https://preciprocal.com/logo.png",
     sameAs: [
       "https://twitter.com/preciprocal",
       "https://linkedin.com/company/preciprocal",
       "https://github.com/preciprocal",
     ],
-    description:
-      "AI-powered job search operating system with mock interviews, resume analysis, cover letter generation, study planning, and job tracking.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "support@preciprocal.com",
+      contactType: "customer support",
+      availableLanguage: "English",
+    },
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );
 }
 
 export function SoftwareAppJsonLd() {
-  const data = {
+  const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Preciprocal",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     url: "https://preciprocal.com",
+    description:
+      "AI-powered job search operating system with mock interviews, resume analysis, cover letter generation, study planning, and job tracking.",
     offers: [
       {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
-        name: "Free Plan",
+        name: "Free",
+        description: "5 resume analyses, 3 mock interviews, 5 cover letters per month",
       },
       {
         "@type": "Offer",
-        price: "19",
+        price: "9.99",
         priceCurrency: "USD",
-        name: "Pro Plan",
-        billingIncrement: 1,
-        unitCode: "MON",
+        name: "Pro",
+        description: "20 resume analyses, 30 mock interviews, unlimited cover letters, full analytics",
       },
       {
         "@type": "Offer",
-        price: "39",
+        price: "24.99",
         priceCurrency: "USD",
-        name: "Premium Plan",
-        billingIncrement: 1,
-        unitCode: "MON",
+        name: "Premium",
+        description: "Unlimited everything, company-specific prep, priority support",
       },
     ],
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.9",
-      ratingCount: "1250",
+      ratingCount: "2500",
       bestRating: "5",
+      worstRating: "1",
     },
-    featureList: [
-      "AI Mock Interviews",
-      "Resume ATS Analysis",
-      "Cover Letter Generator",
-      "Study Planner",
-      "Job Tracker with Kanban",
-      "Chrome Extension for LinkedIn",
-    ],
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );
 }
 
 export function FAQJsonLd() {
-  const faqs = [
-    {
-      question: "What is Preciprocal?",
-      answer:
-        "Preciprocal is an AI-powered job search operating system that helps you prepare for interviews, optimize your resume, generate cover letters, create study plans, and track job applications — all in one platform.",
-    },
-    {
-      question: "Is Preciprocal free to use?",
-      answer:
-        "Yes! Preciprocal offers a free plan with 10 mock interviews and 5 resume analyses per month. Pro and Premium plans offer expanded limits and advanced features.",
-    },
-    {
-      question: "How does the AI mock interview work?",
-      answer:
-        "Our AI simulates real interview panels with multiple interviewers including technical leads, HR managers, and hiring managers. Each interviewer has different priorities and asks follow-up questions based on your actual answers, delivered via voice.",
-    },
-    {
-      question: "Does Preciprocal offer student discounts?",
-      answer:
-        "Yes! University students can get up to 50% off Pro and Premium plans by verifying with their .edu email address.",
-    },
-  ];
-
-  const data = {
+  const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: FAQS.map((faq) => ({
       "@type": "Question",
-      name: faq.question,
+      name: faq.q,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer,
+        text: faq.a,
       },
     })),
   };
@@ -118,7 +95,7 @@ export function FAQJsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );
 }

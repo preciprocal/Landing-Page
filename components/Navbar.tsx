@@ -11,7 +11,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <FloatingNavbar>
+    <FloatingNavbar style={{ top: "var(--banner-h, 0px)" }}>
       <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[72px] px-6">
         <Link href="/" className="flex items-center gap-2.5 group">
           <Image
