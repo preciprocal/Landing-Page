@@ -86,7 +86,7 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
               </div>
               <div>
                 <p className="text-[13px] font-bold text-white">Arjun Patel</p>
-                <p className="text-[10px] text-slate-500">MS Computer Science, Boston University · 347 applications · 0 offers · 90 days left on OPT</p>
+                <p className="text-[10px] text-slate-500">MS Computer Science, Boston University · 347 applications · 0 offers · 90 days on OPT</p>
               </div>
             </motion.div>
           )}
@@ -97,7 +97,7 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
           {showThought && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-4 ml-13">
               <div className="inline-block px-4 py-2 rounded-2xl rounded-bl-sm bg-white/[0.04] border border-white/[0.06]">
-                <p className="text-[12px] text-slate-300 italic">&ldquo;This is it. Data Scientist at Meta. My dream role. But my resume got rejected 347 times… maybe I need to try something different.&rdquo;</p>
+                <p className="text-[12px] text-slate-300 italic">&ldquo;Data Scientist at Meta. 347 rejections so far. Time to try a different approach.&rdquo;</p>
               </div>
             </motion.div>
           )}
@@ -176,7 +176,7 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
                           transition={{ delay: 0.5 }}
                           className="mt-2 text-[10px] text-indigo-400 flex items-center gap-1"
                         >
-                          <MousePointer2 className="w-3 h-3" /> Click to start Arjun&apos;s journey
+                          <MousePointer2 className="w-3 h-3" /> Click to begin
                         </motion.p>
                       )}
                     </div>
@@ -279,7 +279,7 @@ function NarrationCard({ chapter, chapterNum, total, onAction }: {
 
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
                 className="mt-3 text-[10px] text-slate-600 flex items-center justify-center gap-1">
-                <MousePointer2 className="w-3 h-3" /> Click to see what happens next
+                <MousePointer2 className="w-3 h-3" /> Click to continue
               </motion.p>
             </motion.div>
           )}
@@ -299,13 +299,13 @@ const CHAPTERS: Chapter[] = [
     title: "Fix His Resume",
     icon: FileText,
     gradient: "from-purple-600 to-indigo-600",
-    narration: "347 applications with this exact resume. Zero callbacks. Before applying to Meta, Arjun needs to know what's costing him interviews. Time to scan it.",
-    ctaLabel: "Scan Arjun's Resume",
+    narration: "347 applications with the same resume. Zero callbacks. Before applying, Arjun needs to know what's holding him back.",
+    ctaLabel: "Scan Resume",
     ctaIcon: Upload,
     completedLabel: "Resume scored 75/100",
     stepDurations: [800, 1800, 1800, 1800, 1800, 1800, 1200],
     waitForUser: true,
-    waitMessage: "Try clicking Apply Change on the fixes, then continue when ready",
+    waitMessage: "Try applying the fixes, then continue",
     render: (step) => <ResumeExamplePreview step={step} />,
   },
   {
@@ -313,13 +313,13 @@ const CHAPTERS: Chapter[] = [
     title: "Write the Cover Letter",
     icon: Pen,
     gradient: "from-blue-600 to-cyan-600",
-    narration: "75/100 — three critical issues found. AI flagged weak verbs, missing summary, and no metrics on two bullets. But the Meta listing needs a cover letter. Not the generic one he's been copy-pasting.",
-    ctaLabel: "Generate Cover Letter for Meta",
+    narration: "75/100. Weak verbs, missing summary, no metrics. But Meta needs a cover letter. Not the generic one he's been reusing.",
+    ctaLabel: "Generate Cover Letter",
     ctaIcon: Wand2,
     completedLabel: "Meta cover letter done",
     stepDurations: [1500, 1200, 1500, 2500],
     waitForUser: true,
-    waitMessage: "Click Generate to create the cover letter, then read it and continue",
+    waitMessage: "Review the cover letter, then continue",
     render: (step) => <CoverLetterExamplePreview step={step} />,
   },
   {
@@ -327,27 +327,27 @@ const CHAPTERS: Chapter[] = [
     title: "Fix LinkedIn & Send Outreach",
     icon: Sparkles,
     gradient: "from-violet-600 to-purple-600",
-    narration: "Cover letter ready. But Arjun's LinkedIn says 'Aspiring Data Scientist | Open to Work' — that's why no recruiter has messaged him. He also needs warm intros at companies on his list.",
-    ctaLabel: "Optimise His LinkedIn",
+    narration: "Cover letter ready. But his LinkedIn reads 'Aspiring Data Scientist | Open to Work.' No recruiter will reach out to that. He also needs warm intros.",
+    ctaLabel: "Optimize LinkedIn",
     ctaIcon: Sparkles,
-    completedLabel: "LinkedIn 42→84, emails sent",
+    completedLabel: "LinkedIn 42 to 84, emails sent",
     stepDurations: [1800, 1500, 3500, 2800, 1500, 3500],
     waitForUser: true,
-    waitMessage: "Explore the LinkedIn results and cold emails, then continue",
+    waitMessage: "Explore the results, then continue",
     render: (step) => <CareerToolsExamplePreview step={step} />,
   },
   {
     id: "job-tracker",
-    title: "Track the Meta Application",
+    title: "Track the Application",
     icon: Briefcase,
     gradient: "from-amber-600 to-orange-600",
-    narration: "LinkedIn fixed, outreach emails sent. Now Arjun adds Meta to his job tracker — no more spreadsheet chaos. AI will find the right people inside Meta to contact.",
-    ctaLabel: "Add Meta to Tracker",
+    narration: "LinkedIn fixed, outreach sent. Now Arjun adds Meta to his tracker. AI finds the right contacts inside Meta.",
+    ctaLabel: "Add to Tracker",
     ctaIcon: Search,
     completedLabel: "Meta tracked, 3 contacts found",
     stepDurations: [2000, 1000, 1800, 2200, 2200, 2200, 4500, 2800],
     waitForUser: true,
-    waitMessage: "Try clicking Find Contacts on any card, then continue",
+    waitMessage: "Try finding contacts, then continue",
     render: (step) => <JobTrackerExamplePreview step={step} />,
   },
   {
@@ -355,13 +355,13 @@ const CHAPTERS: Chapter[] = [
     title: "Prepare for the Interview",
     icon: Calendar,
     gradient: "from-emerald-600 to-teal-600",
-    narration: "It worked — Meta replied. Technical interview for Data Scientist, Product Analytics. Two weeks out. Arjun hasn't touched LeetCode in months. He needs a real plan, not random grinding.",
-    ctaLabel: "Build a Study Plan",
+    narration: "Meta replied. Technical interview in two weeks. Arjun hasn't touched LeetCode in months. He needs a structured plan.",
+    ctaLabel: "Build Study Plan",
     ctaIcon: Target,
-    completedLabel: "7-day Meta prep ready",
+    completedLabel: "7-day prep ready",
     stepDurations: [1800, 1500, 3200, 3500, 3500, 5000, 5500, 2000],
     waitForUser: true,
-    waitMessage: "Browse the study plan, try the AI coach or quiz, then continue",
+    waitMessage: "Browse the plan and try the AI coach, then continue",
     render: (step) => <PlannerExamplePreview step={step} />,
   },
   {
@@ -369,27 +369,27 @@ const CHAPTERS: Chapter[] = [
     title: "Practice the Interview",
     icon: Video,
     gradient: "from-rose-600 to-pink-600",
-    narration: "Day 7. Tomorrow is Meta. One last mock — not a chatbot, a full 4-person panel. HR, tech lead, developer. The system design trade-off question he's afraid of.",
+    narration: "Day 7. Interview is tomorrow. One last mock. Full panel: HR, tech lead, developer. The system design question he dreads.",
     ctaLabel: "Start Mock Interview",
     ctaIcon: Play,
     completedLabel: "Mock done, 78/100",
     stepDurations: [2000, 1800, 1800, 4000, 4000, 2200, 3500],
     waitForUser: true,
-    waitMessage: "Click Join Interview to start the mock, then explore the feedback report",
+    waitMessage: "Join the interview and explore the feedback, then continue",
     render: (step) => <InterviewExamplePreview step={step} />,
   },
   {
     id: "debrief",
-    title: "Debrief & See the Result",
+    title: "Debrief & Result",
     icon: BookOpen,
     gradient: "from-violet-600 to-indigo-600",
-    narration: "Mock done — stumbled on system design, but now he knows the gap. After his real Meta screen, he logs it. AI spots the pattern. Three weeks after that 2 AM night — Meta sends the email.",
-    ctaLabel: "See the Final Result",
+    narration: "Mock done. He knows the gap now. After his real Meta screen, he logs it. AI spots the pattern. Three weeks later, the email arrives.",
+    ctaLabel: "See the Result",
     ctaIcon: BookOpen,
-    completedLabel: "$165K Meta offer!",
+    completedLabel: "$165K offer",
     stepDurations: [4000, 1800, 3500, 3500, 1800, 4000],
     waitForUser: true,
-    waitMessage: "Explore the journal entries, stats, and AI analysis, then continue",
+    waitMessage: "Explore the journal and analysis, then continue",
     render: (step) => <DebriefExamplePreview step={step} />,
   },
 ];
@@ -473,10 +473,10 @@ export default function HeroProductDemo() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center mb-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
-            Can you help Arjun get hired at Meta?
+            See Preciprocal in action
           </h2>
           <p className="text-[14px] text-slate-400 max-w-lg mx-auto">
-            International student. 347 rejections. 90 days on his visa. He just found his dream job. You have every tool. Let&apos;s see.
+            Follow Arjun from 347 rejections to a Meta offer. Every tool, one candidate, real results.
           </p>
         </motion.div>
 
@@ -555,12 +555,12 @@ export default function HeroProductDemo() {
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
                       <p className="text-[11px] text-indigo-400 font-semibold uppercase tracking-widest mb-2">Interactive Demo</p>
-                      <h3 className="text-[22px] font-extrabold text-white mb-3 leading-tight">Can you get Arjun hired?</h3>
+                      <h3 className="text-[22px] font-extrabold text-white mb-3 leading-tight">Follow Arjun&apos;s job search</h3>
                       <p className="text-[13px] text-slate-400 leading-relaxed mb-2">
-                        Arjun Patel — MS in CS from Boston University. Internships at Datadog, Wayfair, Cognizant. But 347 applications and 0 offers. His OPT visa gives him 90 days.
+                        MS in CS, Boston University. Internships at Datadog, Wayfair, Cognizant. 347 applications, zero offers. 90 days left on his OPT visa.
                       </p>
                       <p className="text-[13px] text-slate-500 leading-relaxed mb-6">
-                        He just found his dream job on LinkedIn. You have every tool in Preciprocal. Think you can turn this around?
+                        He just found his dream role on LinkedIn. Watch how Preciprocal changes the outcome.
                       </p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
@@ -569,11 +569,11 @@ export default function HeroProductDemo() {
                           className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-[14px] font-semibold text-white
                             bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
                             hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer">
-                          Show Me the Job Listing
+                          View the Job Listing
                           <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                         </button>
                       </PulseHighlight>
-                      <p className="mt-3 text-[10px] text-slate-600">You control every step · ~3 minutes</p>
+                      <p className="mt-3 text-[10px] text-slate-600">Interactive walkthrough · ~3 min</p>
                     </motion.div>
                   </div>
                 </motion.div>
@@ -638,15 +638,16 @@ export default function HeroProductDemo() {
                     <motion.p initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: "spring", damping: 12 }} className="text-[48px] mb-4">🎉</motion.p>
                     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                      <h3 className="text-[22px] font-extrabold text-white mb-2">You did it. Arjun got the offer.</h3>
-                      <p className="text-[15px] text-slate-400 mb-1">$165K Data Scientist at Meta. 347 rejections → 3 interviews → 1 offer.</p>
-                      <p className="text-[13px] text-indigo-300/60 italic mb-6">Now imagine doing this for yourself.</p>
+                      <h3 className="text-[22px] font-extrabold text-white mb-2">Arjun got the offer.</h3>
+                      <p className="text-[15px] text-slate-400 mb-1">$165K Data Scientist at Meta.</p>
+                      <p className="text-[13px] text-slate-500 mb-1">347 rejections. 3 interviews. 1 offer.</p>
+                      <p className="text-[13px] text-indigo-300/60 mb-6">Your turn.</p>
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
                       className="flex items-center justify-center gap-3">
                       <a href="https://app.preciprocal.com/sign-up"
                         className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-all">
-                        Your Turn <ChevronRight className="w-4 h-4" />
+                        Get Started <ChevronRight className="w-4 h-4" />
                       </a>
                       <button onClick={replay}
                         className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-medium bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:bg-white/[0.08] transition-all cursor-pointer">

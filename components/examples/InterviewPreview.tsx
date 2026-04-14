@@ -14,11 +14,11 @@ import { FadeIn, ScoreRing, AnimatedBar, TypingText } from '@/lib/primitives';
 
 const PANEL = [
   { id: 'hr',   name: 'Rachel Kim',    initials: 'RK', role: 'HR Manager',               gradient: 'from-pink-500 to-rose-600',     exp: '8+ years',  isLead: false },
-  { id: 'lead', name: 'Marcus Rivera', initials: 'MR', role: 'ML Engineering Lead',             gradient: 'from-blue-500 to-indigo-600',   exp: '12+ years', isLead: true  },
-  { id: 'jr',   name: 'Emma Collins',  initials: 'EC', role: 'Junior Data Scientist', gradient: 'from-green-500 to-emerald-600', exp: '2 years',   isLead: false },
+  { id: 'lead', name: 'Marcus Rivera', initials: 'MR', role: 'Staff Data Scientist',             gradient: 'from-blue-500 to-indigo-600',   exp: '12+ years', isLead: true  },
+  { id: 'jr',   name: 'Emma Collins',  initials: 'EC', role: 'Data Scientist II', gradient: 'from-green-500 to-emerald-600', exp: '2 years',   isLead: false },
 ];
 
-const TECH_STACK = ['React', 'TypeScript', 'Next.js', 'TailwindCSS', 'GraphQL'];
+const TECH_STACK = ['Python', 'SQL', 'A/B Testing', 'Machine Learning', 'Spark'];
 
 const CATEGORIES = [
   { name: 'Communication Skills',  score: 82, color: '#10b981' },
@@ -30,8 +30,8 @@ const CATEGORIES = [
 
 const STRENGTHS = [
   'Clear, structured communication using the STAR method throughout responses',
-  'Strong React and component architecture knowledge with real-world examples',
-  'Demonstrated leadership and initiative in cross-team collaboration projects',
+  'Strong statistical reasoning and experimentation design with real-world examples',
+  'Demonstrated leadership and initiative in cross-functional data projects',
 ];
 
 const IMPROVEMENTS = [
@@ -267,24 +267,24 @@ function LiveInterview({ step }: { step: number }) {
 
   const transcripts: Record<string, string[]> = {
     lead: [
-      "Tell me about a time you optimized a React application's performance. What tools did you use?",
-      "How would you architect a micro-data science system for a large e-commerce platform?",
-      "Describe your experience with GraphQL. How does it compare to REST in your workflow?",
-      "What's your approach to managing state in a large-scale React application?",
+      "Walk me through how you'd design an A/B test to measure the impact of a new News Feed ranking algorithm.",
+      "How would you build a recommendation system for Facebook Marketplace at Meta's scale?",
+      "Describe a situation where you had to choose between statistical rigor and shipping speed. What trade-offs did you make?",
+      "What's your approach to detecting and handling Simpson's Paradox in experiment analysis?",
     ],
     hr: [
-      "Tell me about a challenging team conflict you resolved. What was your approach?",
+      "Tell me about a time you had to communicate complex analytical findings to a non-technical stakeholder.",
       "How do you handle tight deadlines when priorities shift mid-sprint?",
     ],
     jr: [
-      "What's your process for reviewing a junior developer's pull request?",
-      "How do you decide between building a custom component vs using a library?",
+      "How do you decide between using a simple logistic regression versus a more complex model like XGBoost?",
+      "What's your process for validating that a metric is actually measuring what you think it's measuring?",
     ],
     you: [
       "At Datadog, I built a real-time anomaly detection pipeline processing 2M events/sec. We reduced false alert rates by 40% using ensemble methods and statistical process control.",
-      "I'd propose a module federation approach with shared design tokens, independent deployments per team, and a thin shell app handling routing and auth.",
-      "I migrated our REST endpoints to GraphQL which reduced over-fetching by 60%. The trade-off was added complexity in caching, which we solved with Apollo Client.",
-      "I've used a combination of React Context for global state and Zustand for feature-level stores — it keeps things modular without prop drilling.",
+      "I'd start with collaborative filtering as a baseline, then layer in content-based features. At Meta's scale, I'd use a two-tower architecture with approximate nearest neighbors for retrieval, then a ranking model for final ordering.",
+      "In my last role I designed an experimentation framework that reduced analysis time from 2 weeks to 3 days. The key trade-off was accepting sequential testing with alpha-spending functions instead of waiting for fixed-horizon results.",
+      "I'd segment the data by the confounding variable and check whether the aggregated trend reverses at the segment level. At Wayfair, I caught a Simpson's Paradox in our pricing experiment by splitting results across device type.",
     ],
   };
 
@@ -456,7 +456,7 @@ function FeedbackReport() {
               <ScoreRing score={total} size={72} color="#10b981" delay={300} />
               <span className="mt-2 inline-block px-2.5 py-0.5 bg-emerald-500/10 border border-emerald-500/20 rounded text-[10px] text-emerald-400 font-semibold">Good</span>
               <p className="text-[10px] text-slate-500 mt-1">Data Scientist</p>
-              <p className="text-[9px] text-slate-600">technical Interview</p>
+              <p className="text-[9px] text-slate-600">Technical Interview</p>
             </div>
             <div className="flex-1 grid grid-cols-3 gap-2">
               {[

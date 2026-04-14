@@ -625,7 +625,7 @@ function AiCoachView() {
               </div>
               <div>
                 <p className="text-[10px] font-bold text-white">AI Interview Coach</p>
-                <p className="text-[8px] text-slate-500">Powered by Gemini 2.0 Flash</p>
+                <p className="text-[8px] text-slate-500">AI-powered interview prep</p>
               </div>
               <div className="ml-auto flex items-center gap-1">
                 <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
@@ -986,7 +986,7 @@ function InteractiveView() {
             <div className="flex flex-col h-full">
               <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg mb-2 flex items-center gap-2">
                 <div className="w-7 h-7 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0"><Sparkles className="w-3.5 h-3.5 text-white" /></div>
-                <div><p className="text-[10px] font-bold text-white">AI Interview Coach</p><p className="text-[8px] text-slate-500">Powered by Gemini 2.0 Flash</p></div>
+                <div><p className="text-[10px] font-bold text-white">AI Interview Coach</p><p className="text-[8px] text-slate-500">AI-powered interview prep</p></div>
                 <div className="ml-auto flex items-center gap-1"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" /><span className="text-[8px] text-emerald-400">Online</span></div>
               </div>
               <div className="flex-1 space-y-2 mb-2">

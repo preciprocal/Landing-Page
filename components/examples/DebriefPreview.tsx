@@ -108,9 +108,9 @@ function LoadingCard({ message, sub }: { message: string; sub: string }) {
 
 const MOCK_ENTRIES = [
   { company: 'Meta', role: 'Data Scientist', stage: 'System Design', outcome: 'Moved Forward', outcomeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20', date: 'Mar 18, 2026', duration: '60m', score: 82, before: '🤩', after: '😎', difficulty: 4, questions: ['Design a recommendation system for 2B users', 'How would you handle data skew in A/B tests?', 'Walk me through feature store design at scale'], well: 'Nailed the ML pipeline architecture and experimentation platform design. Interviewer was nodding along.', poorly: 'Got hand-wavy on the feature store consistency model. Should have discussed eventual vs strong consistency trade-offs.', surprises: 'They asked about my experience with event-driven architectures — wasn\'t expecting that for a system design round.', followUp: 'Study causal inference methods and feature store architectures before final round.' },
-  { company: 'Stripe', role: 'Data Scientist', stage: 'Technical', outcome: 'Rejected', outcomeColor: 'text-red-400 bg-red-400/10 border-red-400/20', date: 'Mar 10, 2026', duration: '45m', score: 55, before: '😟', after: '😓', difficulty: 5, questions: ['Implement LRU cache from scratch', 'Optimize for O(1) operations'], well: 'Got the basic implementation right and identified the doubly-linked list approach.', poorly: 'Ran out of time on the follow-up optimization. Panicked and forgot to discuss trade-offs.', surprises: 'The follow-up was harder than expected — they wanted multi-threaded LRU cache.', followUp: 'Practice timed coding problems. Work on staying calm under pressure.' },
-  { company: 'Meta', role: 'Data Scientist', stage: 'Behavioral', outcome: 'Moved Forward', outcomeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20', date: 'Mar 5, 2026', duration: '45m', score: 75, before: '😐', after: '😎', difficulty: 3, questions: ['Tell me about a time you disagreed with a teammate', 'Describe a project that failed'], well: 'STAR format was smooth. Great examples from the payment pipeline project.', poorly: 'Could have been more concise on the failure story — rambled a bit.', surprises: 'They seemed more interested in the failure story than the success one.', followUp: 'Prepare a tighter 2-minute version of each STAR story.' },
-  { company: 'Amazon', role: 'Data Scientist', stage: 'Phone Screen', outcome: 'Pending', outcomeColor: 'text-amber-400 bg-amber-400/10 border-amber-400/20', date: 'Mar 1, 2026', duration: '30m', score: 70, before: '😐', after: '😐', difficulty: 2, questions: ['Why Amazon?', 'Walk me through your most impactful project'], well: 'Good energy, showed genuine interest in recommendation systems at scale.', poorly: 'Could have quantified impact better — said "improved performance" instead of giving numbers.', surprises: 'Very casual vibe — felt more like a conversation than an interview.', followUp: 'Prepare 3 impact metrics for every project on resume.' },
+  { company: 'Stripe', role: 'Data Scientist', stage: 'Technical', outcome: 'Rejected', outcomeColor: 'text-red-400 bg-red-400/10 border-red-400/20', date: 'Mar 10, 2026', duration: '45m', score: 55, before: '😟', after: '😓', difficulty: 5, questions: ['Write a SQL query to detect fraudulent transaction patterns', 'Implement a streaming anomaly detector in Python'], well: 'Got the SQL query right and identified the right statistical approach for anomaly detection.', poorly: 'Ran out of time on the Python implementation. Panicked and forgot to discuss trade-offs between precision and recall.', surprises: 'The follow-up was harder than expected — they wanted real-time streaming with windowed aggregations.', followUp: 'Practice timed coding problems. Work on staying calm under pressure.' },
+  { company: 'Meta', role: 'Data Scientist', stage: 'Behavioral', outcome: 'Moved Forward', outcomeColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20', date: 'Mar 5, 2026', duration: '45m', score: 75, before: '😐', after: '😎', difficulty: 3, questions: ['Tell me about a time you disagreed with a teammate', 'Describe a project that failed'], well: 'STAR format was smooth. Great examples from the anomaly detection pipeline project at Datadog.', poorly: 'Could have been more concise on the failure story — rambled a bit.', surprises: 'They seemed more interested in the failure story than the success one.', followUp: 'Prepare a tighter 2-minute version of each STAR story.' },
+  { company: 'Amazon', role: 'Data Scientist', stage: 'Phone Screen', outcome: 'Pending', outcomeColor: 'text-amber-400 bg-amber-400/10 border-amber-400/20', date: 'Mar 1, 2026', duration: '30m', score: 70, before: '😐', after: '😐', difficulty: 2, questions: ['Why Amazon?', 'Walk me through your most impactful data science project'], well: 'Good energy, showed genuine interest in recommendation systems at scale.', poorly: 'Could have quantified impact better — said "improved performance" instead of giving numbers.', surprises: 'Very casual vibe — felt more like a conversation than an interview.', followUp: 'Prepare 3 impact metrics for every project on resume.' },
 ];
 
 // ─── Phase 1: Log Form ────────────────────────────────────────────────────────
@@ -140,13 +140,13 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
               <div>
                 <p className="text-[8px] text-slate-500 mb-0.5">Company *</p>
                 <div className="px-2.5 py-2 bg-white/[0.03] border border-white/[0.06] rounded-lg">
-                  <TypingText text="Stripe" speed={50} delay={400} className="text-[10px] text-white" />
+                  <TypingText text="Meta" speed={50} delay={400} className="text-[10px] text-white" />
                 </div>
               </div>
               <div>
                 <p className="text-[8px] text-slate-500 mb-0.5">Job Title *</p>
                 <div className="px-2.5 py-2 bg-white/[0.03] border border-white/[0.06] rounded-lg">
-                  <TypingText text="Senior SWE" speed={40} delay={800} className="text-[10px] text-white" />
+                  <TypingText text="Data Scientist" speed={40} delay={800} className="text-[10px] text-white" />
                 </div>
               </div>
             </div>
@@ -157,7 +157,7 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
             <div className="grid grid-cols-3 gap-1.5">
               <div>
                 <p className="text-[8px] text-slate-500 mb-0.5">Stage</p>
-                <div className="px-2.5 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-lg text-[9px] text-white">System Design</div>
+                <div className="px-2.5 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-lg text-[9px] text-white">Technical Screen</div>
               </div>
               <div>
                 <p className="text-[8px] text-slate-500 mb-0.5">Outcome</p>
@@ -210,9 +210,9 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
           <FadeIn delay={2400}>
             <div className="grid grid-cols-2 gap-1.5">
               <div>
-                <p className="text-[8px] text-slate-500 mb-1">Self Score: <span className="text-white font-bold">82%</span></p>
+                <p className="text-[8px] text-slate-500 mb-1">Self Score: <span className="text-white font-bold">78%</span></p>
                 <div className="h-1 bg-white/[0.06] rounded-full overflow-hidden">
-                  <div className="h-full bg-emerald-500 rounded-full" style={{ width: '82%' }} />
+                  <div className="h-full bg-emerald-500 rounded-full" style={{ width: '78%' }} />
                 </div>
               </div>
               <div>
@@ -231,7 +231,7 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
             <div>
               <p className="text-[8px] text-slate-500 mb-1">Questions They Asked</p>
               <div className="space-y-1">
-                {['Design a recommendation system for 2B users', 'How would you handle data skew in A/B tests?'].map((q, i) => (
+                {['Walk me through how you\'d design an A/B test for News Feed ranking', 'How do you handle Simpson\'s Paradox in experiment analysis?'].map((q, i) => (
                   <div key={i} className="px-2.5 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-lg">
                     <TypingText text={q} speed={15} delay={3000 + i * 800} className="text-[8px] text-slate-300" />
                   </div>
@@ -246,13 +246,13 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
               <div>
                 <p className="text-[8px] text-emerald-400 mb-0.5">What went well?</p>
                 <div className="px-2 py-1.5 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-lg h-[32px] overflow-hidden">
-                  <TypingText text="Nailed the ML pipeline architecture and experimentation platform design." speed={10} delay={4600} className="text-[7px] text-slate-300 leading-snug" />
+                  <TypingText text="Strong on experimentation design and causal inference reasoning." speed={10} delay={4600} className="text-[7px] text-slate-300 leading-snug" />
                 </div>
               </div>
               <div>
                 <p className="text-[8px] text-red-400 mb-0.5">What went poorly?</p>
                 <div className="px-2 py-1.5 bg-red-500/[0.06] border border-red-500/15 rounded-lg h-[32px] overflow-hidden">
-                  <TypingText text="Got hand-wavy on database sharding strategy." speed={10} delay={5200} className="text-[7px] text-slate-300 leading-snug" />
+                  <TypingText text="Stumbled on ML system design for recommendation systems." speed={10} delay={5200} className="text-[7px] text-slate-300 leading-snug" />
                 </div>
               </div>
             </div>
@@ -393,7 +393,7 @@ function StatsPhase() {
               { label: 'Amazon — Phone Screen', value: 70 },
               { label: 'Meta — Behavioral', value: 75 },
               { label: 'Stripe — Technical', value: 55 },
-              { label: 'Stripe — System Design', value: 82 },
+              { label: 'Meta — System Design', value: 82 },
             ].map((s, i) => (
               <MiniProgressBar key={i} label={s.label} value={s.value} />
             ))}
@@ -491,7 +491,7 @@ function AIAnalysisPhase() {
             <div className="flex-1">
               <div className="p-2 bg-white/[0.03] border border-white/[0.07] rounded-lg">
                 <p className="text-[7px] text-slate-600 uppercase tracking-widest font-semibold mb-1">Coach&apos;s Verdict</p>
-                <p className="text-[9px] text-white leading-relaxed italic">&ldquo;You have strong system design instincts but crumble under time pressure. Fix the panic response and you&apos;re clearing final rounds.&rdquo;</p>
+                <p className="text-[9px] text-white leading-relaxed italic">&ldquo;Strong experimentation instincts but you freeze under timed pressure. Fix the panic response and you&apos;re clearing final rounds at Meta.&rdquo;</p>
               </div>
             </div>
           </div>
@@ -507,8 +507,8 @@ function AIAnalysisPhase() {
           </div>
           <div className="space-y-1.5">
             {[
-              { area: 'System Architecture', evidence: 'Nailed high-level design at Meta, strong Meta behavioral stories', leverage: 'Lead with architecture in every interview — it\'s your differentiator.' },
-              { area: 'Storytelling (STAR)', evidence: 'Smooth behavioral at Meta, good project narratives', leverage: 'Prepare 5 polished stories that each showcase a different skill.' },
+              { area: 'Experimentation & A/B Testing', evidence: 'Strong causal reasoning at Meta, solid experiment design across interviews', leverage: 'Lead with experimentation depth in every interview — it\'s your differentiator.' },
+              { area: 'Storytelling (STAR)', evidence: 'Smooth behavioral at Meta, compelling Datadog pipeline narrative', leverage: 'Prepare 5 polished stories that each showcase a different skill.' },
             ].map((s, i) => (
               <div key={i} className="p-2 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-lg">
                 <p className="text-[9px] font-semibold text-emerald-300 mb-0.5">{s.area}</p>
@@ -532,7 +532,7 @@ function AIAnalysisPhase() {
           </div>
           <div className="space-y-1.5">
             {[
-              { area: 'Time Management Under Pressure', severity: 'severe', freq: '2×', example: 'Ran out of time at Stripe, got hand-wavy at Stripe when pressed', fix: 'Practice 25-min timed problems daily. Use a visible timer in mock interviews.' },
+              { area: 'Time Management Under Pressure', severity: 'severe', freq: '2×', example: 'Ran out of time at Stripe, got hand-wavy on feature store at Meta when pressed', fix: 'Practice 25-min timed problems daily. Use a visible timer in mock interviews.' },
               { area: 'Quantifying Impact', severity: 'moderate', freq: '2×', example: 'Said "improved performance" at Amazon without numbers', fix: 'Create an impact cheat sheet: every project gets 3 specific metrics.' },
             ].map((w, i) => (
               <div key={i} className={`p-2 rounded-lg border ${w.severity === 'severe' ? 'bg-red-500/[0.08] border-red-500/20' : 'bg-orange-500/[0.08] border-orange-500/20'}`}>
@@ -573,7 +573,7 @@ function AIAnalysisPhase() {
           </div>
           <div className="p-2 bg-amber-500/[0.06] border border-amber-500/15 rounded-lg">
             <p className="text-[7px] text-amber-400 uppercase font-semibold mb-0.5 flex items-center gap-0.5"><Flame className="w-2 h-2" /> Bottleneck</p>
-            <p className="text-[7px] text-slate-300">You pass earlier rounds but crumble in timed coding. This is the single biggest thing killing your pipeline.</p>
+            <p className="text-[7px] text-slate-300">You pass earlier rounds but freeze in timed technical screens. This is the single biggest thing blocking your Meta offer.</p>
           </div>
         </MiniCard>
       </FadeIn>
@@ -593,7 +593,7 @@ function AIAnalysisPhase() {
             </div>
           </div>
           <div className="space-y-1 mb-2">
-            {['Solve 3 LeetCode mediums daily with 25-min timer', 'Practice "thinking out loud" during each problem', 'Record one mock interview and review the tape'].map((a, i) => (
+            {['Solve 3 SQL + Python DS problems daily with 25-min timer', 'Practice "thinking out loud" during each problem', 'Record one mock interview and review the tape'].map((a, i) => (
               <div key={i} className="flex items-start gap-1.5">
                 <div className="w-3 h-3 border border-white/[0.12] rounded flex-shrink-0 mt-0.5" />
                 <p className="text-[7px] text-slate-300 leading-relaxed">{a}</p>
@@ -659,14 +659,6 @@ export function DebriefExamplePreview({ step }: { step: number }) {
   const [autoMode, setAutoMode] = useState(true);
 
   // ── Auto-play driven by external `step` prop ──
-  // serviceConfig steps:
-  //   0 → "Logging interview details…"   → form
-  //   1 → "Saving to journal…"           → form-loading
-  //   2 → "Journal entries loaded!"      → journal
-  //   3 → "Calculating stats…"           → stats
-  //   4 → "Running AI analysis…"         → ai-loading
-  //   5 → "AI insights ready!"           → ai
-  //   6+ → interactive
   useEffect(() => {
     if (!autoMode) return;
     if (step <= 0) setPhase('form');
@@ -725,7 +717,7 @@ export function DebriefExamplePreview({ step }: { step: number }) {
     case 'ai-loading':
       return (
         <div className="flex items-center justify-center" style={{ minHeight: 520 }}>
-          <LoadingCard message="Analysing your interview history…" sub="Identifying patterns across 4 entries — brutally honest, no sugarcoating" />
+          <LoadingCard message="Analysing your interview history…" sub="Identifying patterns across 4 entries" />
         </div>
       );
     case 'ai':
