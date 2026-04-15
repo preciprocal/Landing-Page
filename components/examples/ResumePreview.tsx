@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Briefcase, Star, Loader2 } from 'lucide-react';
+import { Briefcase, Star, Loader2, FileText, ChevronDown, ChevronUp, X } from 'lucide-react';
 import { FadeIn } from '@/lib/primitives';
 import { ResumeAnalysisTab } from './ResumeAnalysisTab';
 import { ResumeBenchmarkTab } from './ResumeBenchmarkTab';
@@ -64,7 +64,7 @@ function TabBar({
   }, [activeTab, tabs]);
 
   return (
-    <div ref={containerRef} className="relative flex gap-0.5 p-0.5 bg-white/[0.03] border border-white/[0.06] rounded-lg">
+    <div ref={containerRef} className="relative flex gap-0.5 p-0.5 bg-white/[0.03] border border-white/[0.06] rounded-lg overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
       <div
         className="absolute top-0.5 bottom-0.5 rounded bg-gradient-to-r from-purple-600 to-indigo-600 z-0"
         style={{ left: indicator.left, width: indicator.width, transition: 'left 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s cubic-bezier(0.4,0,0.2,1)' }}
@@ -78,7 +78,7 @@ function TabBar({
         );
         return (
           <button key={tab.id} data-tab-btn onClick={() => { if (!locked && isComplete) onTabChange(tab.id); }}
-            className={`relative z-10 flex-1 py-1 text-center text-[8px] font-medium rounded transition-colors duration-200 ${
+            className={`relative z-10 flex-1 py-1 text-center text-[8px] sm:text-[8px] font-medium rounded transition-colors duration-200 whitespace-nowrap px-1.5 sm:px-0 ${
               locked && !isActive ? 'cursor-not-allowed opacity-40' :
               isComplete ? 'cursor-pointer' : 'cursor-default'
             } ${isActive ? 'text-white' : isComplete ? 'text-slate-500 hover:text-slate-300' : 'text-slate-600'
@@ -95,7 +95,6 @@ function TabBar({
 // ─── Resume line with highlight ───────────────────────────────────────────────
 
 function ResumeLine({ text, highlight, appliedFixes, className = '' }: { text: string; highlight: string | null; appliedFixes?: Map<string, string>; className?: string }) {
-  // Check if this line was fixed — swap display text
   const fixEntry = appliedFixes && Array.from(appliedFixes.entries()).find(([original]) =>
     text.includes(original.slice(0, 30)) || original.includes(text.slice(0, 30))
   );
@@ -117,7 +116,7 @@ function ResumeLine({ text, highlight, appliedFixes, className = '' }: { text: s
 
 // ─── Resume panel (supports highlight) ────────────────────────────────────────
 
-function ResumePanel({ highlight, appliedFixes }: { highlight: string | null; appliedFixes?: Map<string, string> }) {
+function ResumePanel({ highlight, appliedFixes, className = '' }: { highlight: string | null; appliedFixes?: Map<string, string>; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -135,14 +134,13 @@ function ResumePanel({ highlight, appliedFixes }: { highlight: string | null; ap
   const af = appliedFixes;
 
   return (
-    <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl h-full p-2 flex flex-col">
+    <div className={`bg-white/[0.03] border border-white/[0.06] rounded-xl h-full p-2 flex flex-col ${className}`}>
       <FadeIn delay={0} className="flex-1 min-h-0 flex flex-col">
-        <div ref={ref} className="bg-white rounded-lg p-4 text-[7.5px] text-gray-700 leading-[1.5] text-left overflow-y-auto flex-1" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.1) transparent' }}>
-          <p className="text-center text-[12px] font-bold text-gray-900 uppercase tracking-wider">Arjun Patel</p>
-          <p className="text-center text-[7px] text-gray-500 mt-0.5">
+        <div ref={ref} className="bg-white rounded-lg p-3 sm:p-4 text-[7.5px] text-gray-700 leading-[1.5] text-left overflow-y-auto flex-1" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(0,0,0,0.1) transparent' }}>
+          <p className="text-center text-[11px] sm:text-[12px] font-bold text-gray-900 uppercase tracking-wider">Arjun Patel</p>
+          <p className="text-center text-[6.5px] sm:text-[7px] text-gray-500 mt-0.5">
             <span className="text-blue-600">arjun.patel@email.com</span> | +1 (617) 234-5678 | Boston, MA | <span className="text-blue-600">LinkedIn</span> | <span className="text-blue-600">GitHub</span> | <span className="text-blue-600">Portfolio</span>
           </p>
-          {/* Dynamic Professional Summary — appears when Quick Win #1 is applied */}
           {af?.has('N/A — Missing section') && (
             <div className="mt-2 mb-1">
               <p className="font-bold text-[8px] text-gray-900 uppercase border-b border-gray-300 pb-0.5 mb-1">Professional Summary</p>
@@ -195,12 +193,28 @@ function ResumePanel({ highlight, appliedFixes }: { highlight: string | null; ap
   );
 }
 
+// ─── Mobile resume drawer toggle ──────────────────────────────────────────────
+
+function MobileResumeToggle({ isOpen, onToggle }: { isOpen: boolean; onToggle: () => void }) {
+  return (
+    <button
+      onClick={onToggle}
+      className="flex sm:hidden items-center gap-2 w-full px-3 py-2 mb-2 bg-white/[0.03] border border-white/[0.06] rounded-lg text-[10px] font-medium text-slate-300 cursor-pointer hover:bg-white/[0.05] transition-colors"
+    >
+      <FileText className="w-3.5 h-3.5 text-indigo-400" />
+      <span className="flex-1 text-left">{isOpen ? 'Hide Resume' : 'View Resume'}</span>
+      {isOpen ? <ChevronUp className="w-3.5 h-3.5 text-slate-500" /> : <ChevronDown className="w-3.5 h-3.5 text-slate-500" />}
+    </button>
+  );
+}
+
 // ─── Main Preview ─────────────────────────────────────────────────────────────
 
 export function ResumeExamplePreview({ step, initialTab }: { step: number; initialTab?: 'analysis' | 'benchmark' | 'recruiter' | 'intel' | 'writer' }) {
   const [activeTab, setActiveTab] = useState<ResumeTab>(initialTab || 'analysis');
   const [highlightText, setHighlightText] = useState<string | null>(null);
   const [appliedFixes, setAppliedFixes] = useState<Map<string, string>>(new Map());
+  const [mobileResumeOpen, setMobileResumeOpen] = useState(false);
   const isComplete = step >= 7;
   const isReady = step >= 1;
   const isLocked = !!initialTab;
@@ -222,6 +236,13 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
     if (!isWriter) setHighlightText(null);
   }, [isWriter]);
 
+  // On writer tab highlight, auto-open resume on mobile
+  useEffect(() => {
+    if (highlightText && window.innerWidth < 640) {
+      setMobileResumeOpen(true);
+    }
+  }, [highlightText]);
+
   const onHighlight = useCallback((text: string | null) => {
     setHighlightText(text);
   }, []);
@@ -239,22 +260,33 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
   ];
 
   return (
-    <div className="flex gap-4" style={{ minHeight: 500 }}>
-      {/* ── Left: Resume (always visible, supports highlights) ── */}
-      <div className="w-[42%] flex-shrink-0">
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ minHeight: 500 }}>
+
+      {/* ── Desktop: Resume panel always visible ── */}
+      <div className="hidden sm:block w-[42%] flex-shrink-0">
         <ResumePanel highlight={highlightText} appliedFixes={appliedFixes} />
+      </div>
+
+      {/* ── Mobile: Toggle + collapsible resume ── */}
+      <div className="sm:hidden">
+        <MobileResumeToggle isOpen={mobileResumeOpen} onToggle={() => setMobileResumeOpen(p => !p)} />
+        {mobileResumeOpen && (
+          <div className="mb-3 max-h-[280px]">
+            <ResumePanel highlight={highlightText} appliedFixes={appliedFixes} className="max-h-[280px]" />
+          </div>
+        )}
       </div>
 
       {/* ── Right: Header + tabs + content ── */}
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={200}>
           <div className="mb-2 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <p className="text-[11px] font-bold text-white leading-tight">Arjun_Patel_Resume_2026.pdf</p>
-              <span className="px-1.5 py-0.5 bg-white/[0.04] border border-white/[0.06] rounded text-[8px] text-slate-400 flex items-center gap-1">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="text-[10px] sm:text-[11px] font-bold text-white leading-tight">Arjun_Patel_Resume_2026.pdf</p>
+              <span className="px-1.5 py-0.5 bg-white/[0.04] border border-white/[0.06] rounded text-[7px] sm:text-[8px] text-slate-400 flex items-center gap-1">
                 <Briefcase className="w-2 h-2" /> Business Analyst
               </span>
-              <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[8px] text-amber-400 flex items-center gap-1">
+              <span className="px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[7px] sm:text-[8px] text-amber-400 flex items-center gap-1">
                 <Star className="w-2 h-2" /> 75/100
               </span>
             </div>
@@ -267,7 +299,7 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
 
         {isComplete && (
           <FadeIn delay={200}>
-            <p className="text-[8px] text-indigo-400 text-center my-1.5 flex-shrink-0 font-medium">
+            <p className="text-[7px] sm:text-[8px] text-indigo-400 text-center my-1.5 flex-shrink-0 font-medium">
               {isWriter
                 ? '✨ Click a fix to expand → Click Apply Change to update the resume'
                 : isLocked

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
   FileText, Video, Pen, Calendar, Briefcase, Sparkles, BookOpen,
   ChevronRight, RotateCcw, User, Upload, Wand2, Search,
@@ -16,6 +16,162 @@ import { PlannerExamplePreview } from "@/components/examples/PlannerPreview";
 import { CareerToolsExamplePreview } from "@/components/examples/CareerToolsPreview";
 import { DebriefExamplePreview } from "@/components/examples/DebriefPreview";
 import { JobTrackerExamplePreview } from "@/components/examples/JobTrackerPreview";
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ACETERNITY-INSPIRED ANIMATIONS (pure framer-motion + CSS)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// --- Sparkles Field: floating particles behind hero/narration screens ---
+function SparklesField({ count = 28, className = "" }: { count?: number; className?: string }) {
+  const particles = useMemo(() =>
+    Array.from({ length: count }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      duration: Math.random() * 4 + 3,
+      delay: Math.random() * 3,
+      opacity: Math.random() * 0.4 + 0.1,
+    })),
+  [count]);
+
+  return (
+    <div className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}>
+      {particles.map(p => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-full bg-indigo-400"
+          style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size }}
+          animate={{
+            opacity: [0, p.opacity, 0],
+            scale: [0.5, 1.2, 0.5],
+            y: [0, -20, 0],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+// --- Text Generate Effect: words appear one by one with blur ---
+function TextGenerate({ text, className = "", delay = 0 }: { text: string; className?: string; delay?: number }) {
+  const words = text.split(" ");
+  return (
+    <span className={className}>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, filter: "blur(8px)", y: 4 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+          transition={{ duration: 0.35, delay: delay + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+          className="inline-block mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
+// --- Spotlight: mouse-following gradient glow on the container ---
+function Spotlight({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 150, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 150, damping: 20 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  }, [mouseX, mouseY]);
+
+  const background = useTransform(
+    [springX, springY],
+    ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, rgba(99,102,241,0.06), transparent 60%)`
+  );
+
+  return (
+    <motion.div
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className={`relative ${className}`}
+      style={{ background }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// --- Border Beam: spinning gradient masked to the 1px edge ---
+function BorderBeam() {
+  return (
+    <div className="absolute -inset-[1px] rounded-2xl pointer-events-none z-10 overflow-hidden">
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 75%, rgba(99,102,241,0.5) 85%, rgba(139,92,246,0.4) 90%, transparent 100%)",
+          animation: "beamSpin 4s linear infinite",
+        }}
+      />
+      {/* Inner mask — punches out the center so only the 1px edge shows */}
+      <div className="absolute inset-[1px] rounded-[15px] bg-[#0a0f1e]" />
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes beamSpin { to { transform: rotate(360deg); } }
+      `}} />
+    </div>
+  );
+}
+
+// --- Meteor Lines: subtle diagonal shooting lines for narration ---
+function MeteorLines({ count = 5 }: { count?: number }) {
+  const meteors = useMemo(() =>
+    Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 4,
+      duration: Math.random() * 1.5 + 1,
+      width: Math.random() * 60 + 40,
+    })),
+  [count]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {meteors.map(m => (
+        <motion.div
+          key={m.id}
+          className="absolute h-[1px] rounded-full"
+          style={{
+            left: `${m.left}%`,
+            top: "-2px",
+            width: m.width,
+            background: "linear-gradient(90deg, transparent 0%, rgba(139,92,246,0.3) 50%, transparent 100%)",
+            transform: "rotate(35deg)",
+          }}
+          animate={{
+            y: [0, 600],
+            x: [0, 300],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: m.duration,
+            delay: m.delay,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // LINKEDIN ICON (custom SVG)
@@ -33,7 +189,7 @@ function LinkedInIcon({ className = "" }: { className?: string }) {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// PULSING HIGHLIGHT WRAPPER — wraps buttons user needs to click
+// PULSING HIGHLIGHT WRAPPER
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function PulseHighlight({ children, active, className = "" }: {
@@ -42,7 +198,6 @@ function PulseHighlight({ children, active, className = "" }: {
   if (!active) return <div className={className}>{children}</div>;
   return (
     <div className={`relative inline-block ${className}`}>
-      {/* Outer glow — matches JobTracker highlight */}
       <div className="absolute -inset-1.5 rounded-2xl bg-purple-500/[0.08] blur-lg pointer-events-none" />
       <div className="absolute -inset-0.5 rounded-xl border border-purple-500/40 shadow-[0_0_20px_rgba(139,92,246,0.15)] pointer-events-none animate-pulse" />
       <div className="relative">{children}</div>
@@ -73,11 +228,11 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
-      className="flex items-center justify-center"
+      className="flex items-center justify-center relative"
       style={{ minHeight: 480 }}
     >
-      <div className="max-w-2xl w-full px-4">
-        {/* Arjun intro */}
+      <SparklesField count={16} />
+      <div className="max-w-2xl w-full px-4 relative z-10">
         <AnimatePresence>
           {showArjun && (
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-5">
@@ -92,7 +247,6 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
           )}
         </AnimatePresence>
 
-        {/* Thought bubble */}
         <AnimatePresence>
           {showThought && (
             <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mb-4 ml-13">
@@ -103,23 +257,19 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
           )}
         </AnimatePresence>
 
-        {/* LinkedIn Job Card */}
         <AnimatePresence>
           {showListing && (
             <motion.div initial={{ opacity: 0, y: 20, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ type: "spring", damping: 20 }}>
               <div className="bg-[#0d1526]/90 border border-white/[0.08] rounded-2xl overflow-hidden">
-                {/* LinkedIn header bar */}
                 <div className="flex items-center gap-2 px-4 py-2 border-b border-white/[0.06] bg-blue-500/[0.04]">
                   <LinkedInIcon className="w-4 h-4 text-blue-400" />
                   <span className="text-[10px] text-blue-400 font-semibold">LinkedIn · Jobs</span>
                   <span className="ml-auto text-[9px] text-slate-600">linkedin.com/jobs</span>
                 </div>
 
-                {/* Job listing */}
                 <div className="p-5">
                   <div className="flex items-start gap-4">
-                    {/* Meta logo */}
                     <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                       <span className="text-[20px] font-extrabold text-white">M</span>
                     </div>
@@ -129,18 +279,10 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
                       <p className="text-[13px] text-blue-400 font-medium mb-2">Meta</p>
 
                       <div className="flex items-center gap-3 flex-wrap mb-3">
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                          <MapPin className="w-3 h-3" /> Menlo Park, CA
-                        </span>
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                          <Building2 className="w-3 h-3" /> On-site
-                        </span>
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                          <DollarSign className="w-3 h-3" /> $160K – $200K
-                        </span>
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400">
-                          <Clock className="w-3 h-3" /> Posted 4 days ago
-                        </span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><MapPin className="w-3 h-3" /> Menlo Park, CA</span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><Building2 className="w-3 h-3" /> On-site</span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><DollarSign className="w-3 h-3" /> $160K – $200K</span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><Clock className="w-3 h-3" /> Posted 4 days ago</span>
                       </div>
 
                       <p className="text-[11px] text-slate-500 leading-relaxed mb-4">
@@ -170,12 +312,8 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
                       </div>
 
                       {highlightApply && (
-                        <motion.p
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 0.5 }}
-                          className="mt-2 text-[10px] text-indigo-400 flex items-center gap-1"
-                        >
+                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+                          className="mt-2 text-[10px] text-indigo-400 flex items-center gap-1">
                           <MousePointer2 className="w-3 h-3" /> Click to begin
                         </motion.p>
                       )}
@@ -205,8 +343,8 @@ interface Chapter {
   ctaIcon: React.ElementType;
   completedLabel: string;
   stepDurations: number[];
-  waitForUser?: boolean; // If true, show "Continue" button instead of auto-advancing
-  waitMessage?: string;  // Message shown next to Continue button
+  waitForUser?: boolean;
+  waitMessage?: string;
   render: (step: number) => React.ReactNode;
 }
 
@@ -233,14 +371,23 @@ function NarrationCard({ chapter, chapterNum, total, onAction }: {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.98 }}
       className="flex items-center justify-center relative" style={{ minHeight: 460 }}>
+
+      <MeteorLines count={4} />
+      <SparklesField count={12} />
+
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full blur-[80px] opacity-15 bg-gradient-to-br ${chapter.gradient}`} />
 
-      <div className="relative max-w-lg text-center px-6">
+      <div className="relative max-w-lg text-center px-6 z-10">
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
           className="flex items-center justify-center gap-2.5 mb-6">
-          <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${chapter.gradient} flex items-center justify-center shadow-lg`}>
+          <motion.div
+            className={`w-9 h-9 rounded-xl bg-gradient-to-br ${chapter.gradient} flex items-center justify-center shadow-lg`}
+            initial={{ scale: 0, rotate: -90 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", damping: 12, delay: 0.2 }}
+          >
             <Icon className="w-4 h-4 text-white" />
-          </div>
+          </motion.div>
           <div className="text-left">
             <p className="text-[9px] text-slate-600 uppercase tracking-widest font-semibold">Step {chapterNum} of {total}</p>
             <p className="text-[15px] font-bold text-white leading-tight">{chapter.title}</p>
@@ -410,13 +557,10 @@ export default function HeroProductDemo() {
   const isStoryComplete = activeChapter === CHAPTERS.length - 1 && isChapterComplete;
   const isWaiting = isChapterComplete && chapter.waitForUser;
 
-  // Demo step advancement
   useEffect(() => {
     if (phase !== "demo") return;
     if (step >= totalSteps) {
-      // Chapter complete — if waitForUser, don't auto-advance (user clicks Continue)
       if (chapter.waitForUser) return;
-
       timerRef.current = setTimeout(() => {
         if (activeChapter < CHAPTERS.length - 1) {
           setActiveChapter(prev => prev + 1);
@@ -436,7 +580,6 @@ export default function HeroProductDemo() {
   const handleApplyFromListing = useCallback(() => { setPhase("narration"); setActiveChapter(0); setStep(0); }, []);
   const handleStartDemo = useCallback(() => { setPhase("demo"); setStep(0); }, []);
 
-  // User clicks "Continue" after interacting with a waitForUser chapter
   const handleContinueFromWait = useCallback(() => {
     if (activeChapter < CHAPTERS.length - 1) {
       setActiveChapter(prev => prev + 1);
@@ -459,7 +602,6 @@ export default function HeroProductDemo() {
     setStep(0);
   }, []);
 
-  // Progress
   const totalAllSteps = CHAPTERS.reduce((sum, c) => sum + c.stepDurations.length, 0);
   const completedSteps = CHAPTERS.slice(0, activeChapter).reduce((sum, c) => sum + c.stepDurations.length, 0)
     + (phase === "demo" || phase === "complete" ? Math.min(step, totalSteps) : 0);
@@ -469,18 +611,18 @@ export default function HeroProductDemo() {
     <section className="relative pb-20">
       <div className="max-w-5xl mx-auto px-6">
 
-        {/* Header */}
+        {/* Header — TextGenerate effect */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center mb-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
-            See Preciprocal in action
+            <TextGenerate text="See Preciprocal in action" delay={0.1} />
           </h2>
           <p className="text-[14px] text-slate-400 max-w-lg mx-auto">
-            Follow Arjun from 347 rejections to a Meta offer. Every tool, one candidate, real results.
+            <TextGenerate text="Follow Arjun from 347 rejections to a Meta offer. Every tool, one candidate, real results." delay={0.6} />
           </p>
         </motion.div>
 
-        {/* Progress + pills (only after listing) */}
+        {/* Progress + pills */}
         {phase !== "intro" && phase !== "listing" && (
           <div className="mb-4">
             <div className="h-[3px] bg-white/[0.06] rounded-full overflow-hidden mb-3">
@@ -496,22 +638,26 @@ export default function HeroProductDemo() {
                 const isActive = activeChapter === i;
                 const isDone = i < activeChapter || (i === activeChapter && (isChapterComplete || phase === "complete"));
                 return (
-                  <button key={ch.id} onClick={() => jumpToChapter(i)}
+                  <motion.button key={ch.id} onClick={() => jumpToChapter(i)}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.97 }}
                     className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[9px] font-semibold whitespace-nowrap transition-all duration-300 cursor-pointer border ${
                       isActive ? `bg-gradient-to-r ${ch.gradient} text-white border-transparent shadow-lg`
                       : isDone ? "bg-emerald-500/[0.06] border-emerald-500/15 text-emerald-400"
                       : "bg-white/[0.015] border-white/[0.05] text-slate-600 hover:text-slate-300"
                     }`}>
                     {isDone && !isActive
-                      ? <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>
+                      ? <motion.svg initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", damping: 10 }}
+                          className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></motion.svg>
                       : <ChIcon className="w-2.5 h-2.5" />}
                     <span className="hidden sm:inline">{isDone && !isActive ? ch.completedLabel : ch.title}</span>
                     <span className="sm:hidden">{i + 1}</span>
-                  </button>
+                  </motion.button>
                 );
               })}
               {phase === "complete" && (
-                <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={replay}
+                <motion.button initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.06 }} onClick={replay}
                   className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[9px] font-semibold whitespace-nowrap bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 cursor-pointer">
                   <RotateCcw className="w-2.5 h-2.5" /> Replay
                 </motion.button>
@@ -520,7 +666,7 @@ export default function HeroProductDemo() {
           </div>
         )}
 
-        {/* Context bar during demo */}
+        {/* Context bar during demo — animated step dots */}
         {phase === "demo" && (
           <motion.div key={`ctx-${activeChapter}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-3 mb-3 px-4 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl">
@@ -530,137 +676,154 @@ export default function HeroProductDemo() {
             <span className="text-[10px] font-bold text-white flex-1">{chapter.title}</span>
             <div className="flex gap-0.5 flex-shrink-0">
               {chapter.stepDurations.map((_, i) => (
-                <div key={i} className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                  i < step ? "bg-emerald-400" : i === step ? "bg-indigo-400 animate-pulse" : "bg-white/[0.08]"
-                }`} />
+                <motion.div key={i}
+                  animate={{
+                    backgroundColor: i < step ? "rgb(52, 211, 153)" : i === step ? "rgb(129, 140, 248)" : "rgba(255,255,255,0.08)",
+                    scale: i === step ? [1, 1.3, 1] : 1,
+                  }}
+                  transition={{ duration: 0.3, ...(i === step ? { scale: { repeat: Infinity, duration: 1 } } : {}) }}
+                  className="w-1.5 h-1.5 rounded-full"
+                />
               ))}
             </div>
           </motion.div>
         )}
 
-        {/* Content */}
-        <div className="rounded-2xl bg-[#0a0f1e]/90 border border-white/[0.06] overflow-hidden relative backdrop-blur-sm">
-          <div className="relative" style={{ minHeight: 480 }}>
-            <AnimatePresence mode="wait">
+        {/* Content — Spotlight mouse-follow + BorderBeam */}
+        <Spotlight className="rounded-2xl">
+          <div className="rounded-2xl bg-[#0a0f1e]/90 border border-white/[0.06] overflow-hidden relative backdrop-blur-sm">
+            <BorderBeam />
+            <div className="relative z-20" style={{ minHeight: 480 }}>
+              <AnimatePresence mode="wait">
 
-              {/* Intro */}
-              {phase === "intro" && (
-                <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.98 }}
-                  className="flex items-center justify-center" style={{ minHeight: 480 }}>
-                  <div className="max-w-md text-center px-6">
-                    <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.2, type: "spring", damping: 15 }}
-                      className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/20">
-                      <span className="text-[22px] font-bold text-white">A</span>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                      <p className="text-[11px] text-indigo-400 font-semibold uppercase tracking-widest mb-2">Interactive Demo</p>
-                      <h3 className="text-[22px] font-extrabold text-white mb-3 leading-tight">Follow Arjun&apos;s job search</h3>
-                      <p className="text-[13px] text-slate-400 leading-relaxed mb-2">
-                        MS in CS, Boston University. Internships at Datadog, Wayfair, Cognizant. 347 applications, zero offers. 90 days left on his OPT visa.
-                      </p>
-                      <p className="text-[13px] text-slate-500 leading-relaxed mb-6">
-                        He just found his dream role on LinkedIn. Watch how Preciprocal changes the outcome.
-                      </p>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
-                      <PulseHighlight active={true}>
-                        <button onClick={handleBeginStory}
-                          className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-[14px] font-semibold text-white
-                            bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
-                            hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer">
-                          View the Job Listing
-                          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                        </button>
-                      </PulseHighlight>
-                      <p className="mt-3 text-[10px] text-slate-600">Interactive walkthrough · ~3 min</p>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* LinkedIn listing */}
-              {phase === "listing" && (
-                <LinkedInJobListing key="listing" onApply={handleApplyFromListing} />
-              )}
-
-              {/* Narration */}
-              {phase === "narration" && (
-                <NarrationCard key={`narr-${activeChapter}`} chapter={chapter} chapterNum={activeChapter + 1}
-                  total={CHAPTERS.length} onAction={handleStartDemo} />
-              )}
-
-              {/* Demo */}
-              {phase === "demo" && (
-                <motion.div key={`demo-${chapter.id}`} initial={{ opacity: 0, scale: 0.99 }}
-                  animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="p-4">
-                  {chapter.render(step)}
-
-                  {/* Continue bar — shows when waitForUser chapter completes */}
-                  <AnimatePresence>
-                    {isWaiting && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 12 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5, type: "spring", damping: 20 }}
-                        className="mt-4 p-3 bg-purple-500/[0.06] border border-purple-500/20 rounded-xl flex items-center justify-between"
-                      >
-                        <div className="flex items-center gap-2">
-                          <MousePointer2 className="w-3.5 h-3.5 text-purple-400" />
-                          <p className="text-[11px] text-slate-300">
-                            {chapter.waitMessage || "Explore the results, then continue"}
-                          </p>
-                        </div>
+                {/* Intro */}
+                {phase === "intro" && (
+                  <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.98 }}
+                    className="flex items-center justify-center relative" style={{ minHeight: 480 }}>
+                    <SparklesField count={24} />
+                    <div className="max-w-md text-center px-6 relative z-10">
+                      <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, type: "spring", damping: 15 }}
+                        className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/20">
+                        <span className="text-[22px] font-bold text-white">A</span>
+                      </motion.div>
+                      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
+                        <p className="text-[11px] text-indigo-400 font-semibold uppercase tracking-widest mb-2">Interactive Demo</p>
+                        <h3 className="text-[22px] font-extrabold text-white mb-3 leading-tight">
+                          <TextGenerate text="Follow Arjun's job search" delay={0.5} />
+                        </h3>
+                        <p className="text-[13px] text-slate-400 leading-relaxed mb-2">
+                          MS in CS, Boston University. Internships at Datadog, Wayfair, Cognizant. 347 applications, zero offers. 90 days left on his OPT visa.
+                        </p>
+                        <p className="text-[13px] text-slate-500 leading-relaxed mb-6">
+                          He just found his dream role on LinkedIn. Watch how Preciprocal changes the outcome.
+                        </p>
+                      </motion.div>
+                      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}>
                         <PulseHighlight active={true}>
-                          <button
-                            onClick={handleContinueFromWait}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-semibold text-white
-                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)]
-                              hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:-translate-y-0.5
-                              transition-all duration-300 cursor-pointer"
-                          >
-                            Continue <ChevronRight className="w-3 h-3" />
+                          <button onClick={handleBeginStory}
+                            className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-[14px] font-semibold text-white
+                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
+                              hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer">
+                            View the Job Listing
+                            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                           </button>
                         </PulseHighlight>
+                        <p className="mt-3 text-[10px] text-slate-600">Interactive walkthrough · ~3 min</p>
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              )}
+                    </div>
+                  </motion.div>
+                )}
 
-              {/* Complete */}
-              {phase === "complete" && (
-                <motion.div key="complete" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  className="flex items-center justify-center" style={{ minHeight: 480 }}>
-                  <div className="max-w-lg text-center px-6">
-                    <motion.p initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", damping: 12 }} className="text-[48px] mb-4">🎉</motion.p>
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                      <h3 className="text-[22px] font-extrabold text-white mb-2">Arjun got the offer.</h3>
-                      <p className="text-[15px] text-slate-400 mb-1">$165K Data Scientist at Meta.</p>
-                      <p className="text-[13px] text-slate-500 mb-1">347 rejections. 3 interviews. 1 offer.</p>
-                      <p className="text-[13px] text-indigo-300/60 mb-6">Your turn.</p>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-                      className="flex items-center justify-center gap-3">
-                      <a href="https://app.preciprocal.com/sign-up"
-                        className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-all">
-                        Get Started <ChevronRight className="w-4 h-4" />
-                      </a>
-                      <button onClick={replay}
-                        className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-medium bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:bg-white/[0.08] transition-all cursor-pointer">
-                        <RotateCcw className="w-3.5 h-3.5" /> Watch Again
-                      </button>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
+                {/* LinkedIn listing */}
+                {phase === "listing" && (
+                  <LinkedInJobListing key="listing" onApply={handleApplyFromListing} />
+                )}
 
-            </AnimatePresence>
+                {/* Narration */}
+                {phase === "narration" && (
+                  <NarrationCard key={`narr-${activeChapter}`} chapter={chapter} chapterNum={activeChapter + 1}
+                    total={CHAPTERS.length} onAction={handleStartDemo} />
+                )}
+
+                {/* Demo */}
+                {phase === "demo" && (
+                  <motion.div key={`demo-${chapter.id}`} initial={{ opacity: 0, scale: 0.99 }}
+                    animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="p-4">
+                    {chapter.render(step)}
+
+                    <AnimatePresence>
+                      {isWaiting && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 12 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5, type: "spring", damping: 20 }}
+                          className="mt-4 p-3 bg-purple-500/[0.06] border border-purple-500/20 rounded-xl flex items-center justify-between"
+                        >
+                          <div className="flex items-center gap-2">
+                            <MousePointer2 className="w-3.5 h-3.5 text-purple-400" />
+                            <p className="text-[11px] text-slate-300">
+                              {chapter.waitMessage || "Explore the results, then continue"}
+                            </p>
+                          </div>
+                          <PulseHighlight active={true}>
+                            <button
+                              onClick={handleContinueFromWait}
+                              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-semibold text-white
+                                bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)]
+                                hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:-translate-y-0.5
+                                transition-all duration-300 cursor-pointer"
+                            >
+                              Continue <ChevronRight className="w-3 h-3" />
+                            </button>
+                          </PulseHighlight>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                )}
+
+                {/* Complete */}
+                {phase === "complete" && (
+                  <motion.div key="complete" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                    className="flex items-center justify-center relative" style={{ minHeight: 480 }}>
+                    <SparklesField count={40} />
+                    <div className="max-w-lg text-center px-6 relative z-10">
+                      <motion.p initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: "spring", damping: 12 }} className="text-[48px] mb-4">🎉</motion.p>
+                      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+                        <h3 className="text-[22px] font-extrabold text-white mb-2">
+                          <TextGenerate text="Arjun got the offer." delay={0.4} />
+                        </h3>
+                        <p className="text-[15px] text-slate-400 mb-1">$165K Data Scientist at Meta.</p>
+                        <p className="text-[13px] text-slate-500 mb-1">347 rejections. 3 interviews. 1 offer.</p>
+                        <p className="text-[13px] text-indigo-300/60 mb-6">Your turn.</p>
+                      </motion.div>
+                      <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+                        className="flex items-center justify-center gap-3">
+                        <motion.a href="https://app.preciprocal.com/sign-up"
+                          whileHover={{ scale: 1.04, y: -2 }}
+                          whileTap={{ scale: 0.97 }}
+                          className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-[0_8px_30px_rgba(99,102,241,0.25)] hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-shadow">
+                          Get Started <ChevronRight className="w-4 h-4" />
+                        </motion.a>
+                        <motion.button onClick={replay}
+                          whileHover={{ scale: 1.04 }}
+                          whileTap={{ scale: 0.97 }}
+                          className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-[13px] font-medium bg-white/[0.04] border border-white/[0.08] text-slate-300 hover:bg-white/[0.08] transition-all cursor-pointer">
+                          <RotateCcw className="w-3.5 h-3.5" /> Watch Again
+                        </motion.button>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
+
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        </Spotlight>
 
         {/* Ambient glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-indigo-500/[0.03] rounded-full blur-[100px] pointer-events-none -z-10" />

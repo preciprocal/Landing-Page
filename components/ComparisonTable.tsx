@@ -12,7 +12,7 @@ import {
   FloatingDots,
 } from "@/components/LandingAnimations";
 
-const features = [
+const features: string[] = [
   "ATS Resume Scoring",
   "Candidate Benchmarking",
   "Recruiter Eye Simulation",
@@ -24,17 +24,21 @@ const features = [
   "Cold Outreach Generator",
   "Job Tracker + Contact Finder",
   "Chrome Extension",
+  "One Upload, Tailored Per Job",
   "Price (monthly)",
 ];
 
-const competitors = [
-  { name: "Preciprocal", highlight: true, values: [true, true, true, true, true, true, true, true, true, true, true, "$9.99"] },
-  { name: "Resumeworded", highlight: false, values: [true, false, false, false, false, false, false, true, false, false, false, "$49+"] },
-  { name: "Jobright", highlight: false, values: [false, false, false, false, false, false, true, false, false, true, true, "$29+"] },
-  { name: "Final Round AI", highlight: false, values: [true, false, false, false, true, false, true, false, false, false, true, "$99+"] },
-  { name: "Jobscan", highlight: false, values: [true, false, false, false, false, false, false, true, false, false, true, "$49.95"] },
-  { name: "Interviewing.io", highlight: false, values: [false, false, false, false, true, false, false, false, false, false, false, "$100+"] },
-] as const;
+type CellValue = boolean | string;
+
+const competitors: { name: string; highlight: boolean; values: CellValue[] }[] = [
+  //                                ATS   Bench  Recruiter IntIntel Mock  Planner CoverL  LinkedIn Cold   Tracker Chrome  1Upload Price
+  { name: "Preciprocal",      highlight: true,  values: [true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  "$9.99"] },
+  { name: "Resumeworded",     highlight: false, values: [true,  false, false, false, false, false, false, true,  false, false, false, false, "$49+"] },
+  { name: "Jobright",         highlight: false, values: [false, false, false, false, false, false, true,  false, false, true,  true,  false, "$29+"] },
+  { name: "Final Round AI",   highlight: false, values: [true,  false, false, false, true,  false, true,  false, false, false, true,  false, "$99+"] },
+  { name: "Jobscan",          highlight: false, values: [true,  false, false, false, false, false, false, true,  false, false, true,  false, "$49.95"] },
+  { name: "Interviewing.io",  highlight: false, values: [false, false, false, false, true,  false, false, false, false, false, false, false, "$100+"] },
+];
 
 function CellCheck({ active, highlight }: { active: boolean; highlight: boolean }) {
   if (!active) {
@@ -60,7 +64,6 @@ function CellCheck({ active, highlight }: { active: boolean; highlight: boolean 
 }
 
 export default function ComparisonTable() {
-  // Track when stagger animation is done so we can enable horizontal scroll
   const [animDone, setAnimDone] = useState(false);
 
   return (
@@ -86,7 +89,6 @@ export default function ComparisonTable() {
             className="rounded-2xl border border-white/[0.06] bg-[#0a0f1e]/80 overflow-hidden"
             spotlightColor="rgba(99,102,241,0.06)"
           >
-            {/* overflow-hidden during animation, overflow-x-auto after */}
             <div className={animDone ? "overflow-x-auto" : "overflow-hidden"}
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
               <style dangerouslySetInnerHTML={{ __html: `
@@ -117,7 +119,7 @@ export default function ComparisonTable() {
                   ))}
                 </div>
 
-                {/* Feature rows — stagger in, then enable scroll */}
+                {/* Feature rows */}
                 <StaggerChildren onAnimationComplete={() => setAnimDone(true)}>
                   {features.map((feat, fi) => (
                     <StaggerItem key={feat}>
@@ -159,7 +161,7 @@ export default function ComparisonTable() {
                          bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500
                          shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
             >
-              Get all 11 features for $9.99
+              Get all 12 features for $9.99
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </MagneticHover>
