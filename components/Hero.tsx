@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-import Counter from "@/components/Counter";
-import { APP_URL, STATS } from "@/lib/constants";
-import { ArrowRightIcon, SparkIcon } from "@/components/Icons";
+import { APP_URL } from "@/lib/constants";
+import { ArrowRightIcon } from "@/components/Icons";
 import { Spotlight } from "./ui/SpotLight";
 
 const words = ["dream job", "FAANG offer", "career break", "next chapter", "big promotion"];
@@ -47,12 +46,6 @@ export default function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-3xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8">
-            <SparkIcon className="text-indigo-300" />
-            <span className="text-[13px] font-medium text-indigo-300">Trusted by 25,000+ job seekers</span>
-          </motion.div>
-
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.12] mb-5 px-2 sm:px-0">
             Stop applying into the void.
@@ -98,18 +91,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.0 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-14 max-w-[700px] mx-auto px-2 sm:px-0">
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                <Counter end={stat.value} suffix={stat.suffix} isDecimal={"isDecimal" in stat && !!stat.isDecimal} />
-              </div>
-              <div className="text-[11px] sm:text-[12px] text-slate-500 mt-1 font-medium">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </div>
   );

@@ -17,9 +17,9 @@ export default function Navbar() {
           <Image
             src="/logo.png"
             alt="Preciprocal"
-            width={36}
-            height={36}
-            className="w-9 h-9 rounded-[10px] transition-transform group-hover:scale-105"
+            width={44}
+            height={56}
+            className="w-auto h-11 object-contain transition-transform group-hover:scale-105"
           />
           <span className="text-xl font-bold text-white tracking-tight">Preciprocal</span>
         </Link>

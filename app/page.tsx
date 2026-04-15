@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
-import LogoBar from "@/components/LogoBar";
-import SocialProofStrip from "@/components/SocialProofStrip";
+// import LogoBar from "@/components/LogoBar";          // TODO: restore when university signups are verified
+// import SocialProofStrip from "@/components/SocialProofStrip"; // TODO: restore when real usage metrics are available
 import ProblemSection from "@/components/ProblemSection";
 import BentoFeatures from "@/components/BentoFeatures";
 import HowItWorks from "@/components/HowItWorks";
 import ComparisonTable from "@/components/ComparisonTable";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials"; // TODO: restore when real user reviews are collected
 import Pricing from "@/components/Pricing";
 import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -59,11 +59,11 @@ export default function Home() {
         {/* 1b. Product demo — feels like part of hero, full height */}
         <HeroProductDemo />
 
-        {/* 2. Trust — University logos */}
-        <LogoBar />
+        {/* 2. Trust — University logos (hidden until real signups verified) */}
+        {/* <LogoBar /> */}
 
-        {/* 3. Proof — Hard numbers early (moved up from after ComparisonTable) */}
-        <SocialProofStrip />
+        {/* 3. Proof — Hard numbers (hidden until real usage metrics available) */}
+        {/* <SocialProofStrip /> */}
 
         {/* 4. Problem — Hit the pain point */}
         <ProblemSection />
@@ -77,8 +77,8 @@ export default function Home() {
         {/* 7. Differentiation — Competitor comparison */}
         <ComparisonTable />
 
-        {/* 8. Social proof — Testimonials */}
-        <Testimonials />
+        {/* 8. Social proof — Testimonials (hidden until real reviews collected) */}
+        {/* <Testimonials /> */}
 
         {/* 9. Pricing */}
         <Pricing />
