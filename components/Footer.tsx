@@ -24,7 +24,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-            <img src="/logo.png" alt="Preciprocal" className="w-auto h-10 object-contain" />
+            <img src="/logo.png" alt="Preciprocal" className="w-8 h-8 rounded-lg" />
               <span className="text-lg font-bold text-white">Preciprocal</span>
             </div>
             <p className="text-sm text-slate-500 leading-relaxed max-w-[280px]">
