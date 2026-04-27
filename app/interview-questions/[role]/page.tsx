@@ -95,7 +95,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
         <div className="space-y-6">
           {questions.map((qa, i) => (
             <article key={i} className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.08)" }}>
-              <h3 style={{ color: "#ffffff" }} className="font-semibold text-base px-6 py-4 border-b" style2={{ borderColor: "rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.04)" }}>
+              <h3 style={{ color: "#ffffff", borderBottom: "1px solid rgba(255,255,255,0.06)", background: "rgba(255,255,255,0.04)" }} className="font-semibold text-base px-6 py-4">
                 Q{i + 1}. {qa.question}
               </h3>
               <div className="px-6 py-5">
@@ -132,3 +132,4 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
     </div>
   );
 }
+
