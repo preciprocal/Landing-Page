@@ -1,25 +1,60 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { useRef, useEffect, useCallback } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export function Spotlight({ className, fill = "white" }: { className?: string; fill?: string }) {
+export function Spotlight({
+  className = "",
+  fill = "#818cf8",
+  followMouse = true,
+}: {
+  className?: string;
+  fill?: string;
+  followMouse?: boolean;
+}) {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 40, damping: 20 });
+  const y = useSpring(rawY, { stiffness: 40, damping: 20 });
+
+  const handleMouseMove = useCallback(
+    (e: MouseEvent) => {
+      if (!followMouse || !svgRef.current) return;
+      const rect = svgRef.current.closest("section, div")?.getBoundingClientRect();
+      if (!rect) return;
+      rawX.set(((e.clientX - rect.left) / rect.width - 0.5) * 60);
+      rawY.set(((e.clientY - rect.top) / rect.height - 0.5) * 40);
+    },
+    [followMouse, rawX, rawY]
+  );
+
+  useEffect(() => {
+    if (!followMouse) return;
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [followMouse, handleMouseMove]);
+
+  // Unique gradient ID per instance to avoid SVG defs conflicts when multiple spotlights are on the same page
+  const gradientId = `spotlight-${fill.replace("#", "")}`;
+
   return (
-    <svg
-      className={cn("pointer-events-none absolute z-[1] h-[169%] w-[138%] animate-spotlight opacity-0 lg:w-[84%]", className)}
+    <motion.svg
+      ref={svgRef}
+      style={{ x, y }}
+      className={`pointer-events-none absolute z-[1] ${className}`}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 3787 2842"
+      viewBox="0 0 600 600"
       fill="none"
     >
-      <g filter="url(#filter)">
-        <ellipse cx="1924.71" cy="273.501" rx="1924.71" ry="273.501" transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)" fill={fill} fillOpacity="0.21" />
-      </g>
       <defs>
-        <filter id="filter" x="0.860352" y="0.838989" width="3785.16" height="2840.26" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-          <feFlood floodOpacity="0" result="BackgroundImageFix" />
-          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-          <feGaussianBlur stdDeviation="151" result="effect1_foregroundBlur" />
-        </filter>
+        <radialGradient id={gradientId} cx="50%" cy="0%" r="70%" fx="50%" fy="0%">
+          <stop offset="0%"   stopColor={fill} stopOpacity="0.28" />
+          <stop offset="40%"  stopColor={fill} stopOpacity="0.08" />
+          <stop offset="100%" stopColor={fill} stopOpacity="0" />
+        </radialGradient>
       </defs>
-    </svg>
+      <ellipse cx="300" cy="0" rx="300" ry="420" fill={`url(#${gradientId})`} />
+    </motion.svg>
   );
 }

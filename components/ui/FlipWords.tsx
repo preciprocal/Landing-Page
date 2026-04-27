@@ -22,7 +22,7 @@ export function FlipWords({
   }, [words.length, duration]);
 
   return (
-    <span className={`inline-block relative ${className || ""}`}>
+    <span className="inline-block relative pb-2" style={{ overflow: "visible" }}>
       <AnimatePresence mode="wait">
         <motion.span
           key={words[index]}
@@ -30,7 +30,7 @@ export function FlipWords({
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="inline-block"
+          className={`inline-block pb-2 ${className || ""}`}
         >
           {words[index]}
         </motion.span>

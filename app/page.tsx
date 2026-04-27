@@ -1,14 +1,28 @@
+/**
+ * app/page.tsx — Landing page (root route)
+ *
+ * SEO changes from original:
+ *   • Added WebSiteJsonLd (enables Google Sitelinks Search Box)
+ *   • Richer keywords in metadata
+ *   • Stronger description (includes price + guarantee for CTR)
+ *   • All section-level aria-labels added for accessibility + crawlability
+ *
+ * NOTE: The Hero component already renders a <h1>. Every other section should
+ * use <h2> for its heading — see each component's internal markup.
+ */
+
 import type { Metadata } from "next";
+import { WebSiteJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
-// import LogoBar from "@/components/LogoBar";          // TODO: restore when university signups are verified
-// import SocialProofStrip from "@/components/SocialProofStrip"; // TODO: restore when real usage metrics are available
+import LogoBar from "@/components/LogoBar";
+import SocialProofStrip from "@/components/SocialProofStrip";
 import ProblemSection from "@/components/ProblemSection";
 import BentoFeatures from "@/components/BentoFeatures";
 import HowItWorks from "@/components/HowItWorks";
 import ComparisonTable from "@/components/ComparisonTable";
-// import Testimonials from "@/components/Testimonials"; // TODO: restore when real user reviews are collected
+import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQSection from "@/components/FAQSection";
 import FinalCTA from "@/components/FinalCTA";
@@ -17,81 +31,115 @@ import ScrollToast from "@/components/ScrollToast";
 import HeroProductDemo from "@/components/HeroProductDemo";
 
 export const metadata: Metadata = {
+  // Page-level overrides (layout.tsx handles the base/template)
   title: "Preciprocal — AI-Powered Job Search Operating System",
+
+  // 155 chars — specific, keyword-rich, includes price/guarantee for CTR
   description:
-    "AI mock interviews, resume analysis with ATS scoring, cover letter generation, study planner, job tracker & contact finder. Built for students at $9.99/mo. 30-day money-back guarantee.",
+    "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking. $9.99/mo. 30-day money-back guarantee.",
+
   keywords: [
     "AI mock interview",
     "resume ATS scorer",
     "cover letter generator",
-    "job search tool",
-    "interview prep",
-    "career prep for students",
+    "job search tool for students",
+    "interview prep platform",
+    "career prep AI",
+    "ATS resume checker free",
+    "mock interview practice",
+    "job application tracker",
+    "FAANG interview prep",
     "preciprocal",
   ],
+
   openGraph: {
     title: "Preciprocal — Stop Applying Into the Void",
     description:
-      "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo.",
+      "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo. 30-day guarantee.",
     url: "https://preciprocal.com",
     siteName: "Preciprocal",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "https://preciprocal.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Preciprocal — AI Job Search Operating System",
+      },
+    ],
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Preciprocal — AI Job Search OS",
-    description: "AI mock interviews, ATS resume scoring, cover letters & more. $9.99/mo.",
-    images: ["https://preciprocal.com/og-image.png"],
+    description:
+      "AI mock interviews, ATS resume scoring, cover letters, study plans & job tracking. $9.99/mo.",
+    images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal" }],
   },
-  alternates: { canonical: "https://preciprocal.com" },
+
+  alternates: {
+    canonical: "https://preciprocal.com",
+  },
 };
 
 export default function Home() {
   return (
     <>
+      {/* WebSiteJsonLd enables Sitelinks Search Box in Google */}
+      <WebSiteJsonLd />
+
       <StickyBanner />
       <Navbar />
+
       <main>
-        {/* 1. Hook — Emotional headline */}
+        {/* 1. Hero — contains the single <h1> for this page */}
         <Hero />
 
-        {/* 1b. Product demo — feels like part of hero, full height */}
+        {/* 1b. Product demo — visually part of hero */}
         <HeroProductDemo />
 
-        {/* 2. Trust — University logos (hidden until real signups verified) */}
-        {/* <LogoBar /> */}
+        
 
-        {/* 3. Proof — Hard numbers (hidden until real usage metrics available) */}
-        {/* <SocialProofStrip /> */}
+        {/* 4. Problem — pain point */}
+        <section aria-label="The job search problem">
+          <ProblemSection />
+        </section>
 
-        {/* 4. Problem — Hit the pain point */}
-        <ProblemSection />
-
-        {/* 5. Solution — Bento grid with live demos */}
-        <BentoFeatures />
+        {/* 5. Solution — bento feature grid */}
+        <section id="features" aria-label="Product features">
+          <BentoFeatures />
+        </section>
 
         {/* 6. Process — 3 steps */}
-        <HowItWorks />
+        <section id="how-it-works" aria-label="How Preciprocal works">
+          <HowItWorks />
+        </section>
 
-        {/* 7. Differentiation — Competitor comparison */}
-        <ComparisonTable />
+        {/* 7. Differentiation — comparison table */}
+        <section aria-label="Competitor comparison">
+          <ComparisonTable />
+        </section>
 
-        {/* 8. Social proof — Testimonials (hidden until real reviews collected) */}
-        {/* <Testimonials /> */}
-
+      
         {/* 9. Pricing */}
-        <Pricing />
+        <section id="pricing" aria-label="Pricing plans">
+          <Pricing />
+        </section>
 
-        {/* 10. Objections — FAQ */}
-        <FAQSection />
+        {/* 10. FAQ */}
+        <section aria-label="Frequently asked questions">
+          <FAQSection />
+        </section>
 
-        {/* 11. Close */}
-        <FinalCTA />
+        {/* 11. Final CTA */}
+        <section aria-label="Get started">
+          <FinalCTA />
+        </section>
       </main>
+
       <Footer />
 
-      {/* Scroll-triggered toast for .edu users — appears after 20s */}
+      {/* Scroll-triggered toast for .edu users — fires after 20s */}
       <ScrollToast />
     </>
   );

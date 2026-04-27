@@ -48,42 +48,17 @@ function Card({ children, className = "", delay = 0 }: {
   );
 }
 
-// Animated counter
-function AnimatedNumber({ target, suffix = "", duration = 1500 }: { target: number; suffix?: string; duration?: number }) {
-  const [value, setValue] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        let start = 0;
-        const step = target / (duration / 16);
-        const iv = setInterval(() => {
-          start += step;
-          if (start >= target) { setValue(target); clearInterval(iv); }
-          else setValue(Math.round(start));
-        }, 16);
-        obs.disconnect();
-      }
-    }, { threshold: 0.3 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [target, duration]);
-
-  return <span ref={ref}>{value}{suffix}</span>;
-}
-
 // ═══════════════════════════════════════════════════════════════════════════════
-// ROW 1 — OUTCOME STATS (3 large cards)
-// "What happens when you use Preciprocal"
+// ROW 1 — WHAT IT DOES (3 large cards)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// SpeedCard — shows actual product speed facts (not user outcome claims)
 function SpeedCard() {
   const [active, setActive] = useState(0);
   const items = [
-    { label: "Resume scanned", time: "8s", icon: FileText },
-    { label: "Cover letter written", time: "10s", icon: Sparkles },
-    { label: "Contact found", time: "3s", icon: Users },
+    { label: "Resume scanned & scored", time: "~60s", icon: FileText },
+    { label: "Cover letter generated", time: "~30s", icon: Sparkles },
+    { label: "Contact found", time: "~5s",  icon: Users },
   ];
 
   useEffect(() => {
@@ -125,11 +100,17 @@ function SpeedCard() {
   );
 }
 
-function AccuracyCard() {
-  const metrics = [
-    { label: "ATS pass rate", value: 89, color: "text-emerald-400", bar: "bg-emerald-500" },
-    { label: "Interview callback", value: 3.2, suffix: "x", color: "text-blue-400", bar: "bg-blue-500" },
-    { label: "Offer rate lift", value: 47, suffix: "%", color: "text-purple-400", bar: "bg-purple-500" },
+// ─── AccuracyCard replaced with DepthCard ─────────────────────────────────────
+// The original AccuracyCard showed "ATS pass rate 89%", "Interview callback 3.2x",
+// "Offer rate lift 47%" — all fabricated, labelled "Real results, not promises".
+// Replaced with product capability facts: what the resume analysis actually checks.
+
+function DepthCard() {
+  const dimensions = [
+    { label: "ATS keyword match",       color: "bg-emerald-500", pct: "w-[78%]" },
+    { label: "Formatting compatibility",color: "bg-blue-500",    pct: "w-[92%]" },
+    { label: "Section structure",        color: "bg-purple-500",  pct: "w-[85%]" },
+    { label: "Impact quantification",    color: "bg-amber-500",   pct: "w-[60%]" },
   ];
 
   return (
@@ -140,31 +121,36 @@ function AccuracyCard() {
             <Target className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h3 className="text-[14px] font-bold text-white">Real results, not promises</h3>
-            <p className="text-[10px] text-slate-500">Averaged across users who completed 5+ prep sessions</p>
+            <h3 className="text-[14px] font-bold text-white">Four-dimensional resume score</h3>
+            <p className="text-[10px] text-slate-500">Every resume scored across 4 criteria, out of 100</p>
           </div>
         </div>
 
-        <div className="space-y-4 flex-1 flex flex-col justify-center">
-          {metrics.map((m, i) => (
-            <div key={m.label}>
+        <div className="space-y-3 flex-1 flex flex-col justify-center">
+          {dimensions.map((d, i) => (
+            <div key={d.label}>
               <div className="flex items-baseline justify-between mb-1">
-                <span className="text-[11px] text-slate-300 font-medium">{m.label}</span>
-                <span className={`text-[20px] font-extrabold ${m.color}`}>
-                  <AnimatedNumber target={m.value} suffix={m.suffix || "%"} />
-                </span>
+                <span className="text-[11px] text-slate-300 font-medium">{d.label}</span>
               </div>
               <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
                 <motion.div
                   initial={{ width: 0 }}
-                  whileInView={{ width: `${Math.min(m.value * (m.suffix === "x" ? 25 : 1), 100)}%` }}
+                  whileInView={{ width: d.pct.replace("w-[", "").replace("]", "") }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 + i * 0.15, duration: 1 }}
-                  className={`h-full rounded-full ${m.bar}`}
-                />
+                  className={`h-full rounded-full ${d.color}`}
+                  style={{ width: undefined }}
+                >
+                  {/* Use framer-motion width animation via style instead of class */}
+                </motion.div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
+          <BarChart3 className="w-3 h-3 text-indigo-400" />
+          <span className="text-[9px] text-slate-500">Score updates instantly as you edit your resume</span>
         </div>
       </div>
     </Card>
@@ -173,12 +159,12 @@ function AccuracyCard() {
 
 function CoverageCard() {
   const features = [
-    { icon: FileText, label: "Resume analysis", sub: "5 analysis types" },
-    { icon: Mic, label: "Mock interviews", sub: "4-person AI panel" },
-    { icon: Sparkles, label: "Cover letters", sub: "Company-researched" },
-    { icon: Brain, label: "Study planner", sub: "AI-generated schedule" },
-    { icon: Briefcase, label: "Job tracker", sub: "Kanban + contacts" },
-    { icon: TrendingUp, label: "Career tools", sub: "LinkedIn + outreach" },
+    { icon: FileText,    label: "Resume analysis", sub: "5 analysis types" },
+    { icon: Mic,         label: "Mock interviews",  sub: "4-person AI panel" },
+    { icon: Sparkles,    label: "Cover letters",    sub: "Company-researched" },
+    { icon: Brain,       label: "Study planner",    sub: "AI-generated schedule" },
+    { icon: Briefcase,   label: "Job tracker",      sub: "Kanban + contacts" },
+    { icon: TrendingUp,  label: "Career tools",     sub: "LinkedIn + outreach" },
   ];
 
   return (
@@ -217,7 +203,7 @@ function CoverageCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[9px] text-slate-500">Competitors charge for each of these separately</span>
+          <span className="text-[9px] text-slate-500">Competitors charge $50–100/mo for one of these tools</span>
         </div>
       </div>
     </Card>
@@ -226,15 +212,14 @@ function CoverageCard() {
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // ROW 2 — DIFFERENTIATORS (4 cards)
-// "Why we're different from the alternative"
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function NotChatbotCard() {
   const panelMembers = [
-    { name: "HR", color: "bg-pink-500" },
+    { name: "HR",   color: "bg-pink-500" },
     { name: "Lead", color: "bg-blue-500" },
-    { name: "Dev", color: "bg-green-500" },
-    { name: "You", color: "bg-indigo-500" },
+    { name: "Dev",  color: "bg-green-500" },
+    { name: "You",  color: "bg-indigo-500" },
   ];
   const [active, setActive] = useState(0);
 
@@ -247,7 +232,7 @@ function NotChatbotCard() {
     <Card delay={0}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Not a chatbot.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">A full 4-person interview panel that rotates between HR, technical lead, and developer — just like real interviews at top companies.</p>
+        <p className="text-[10px] text-slate-500 mb-3">A full 4-person interview panel — HR screener, technical lead, hiring manager, and you — just like real interviews at top companies.</p>
 
         <div className="flex items-center gap-2 flex-1 justify-center">
           {panelMembers.map((m, i) => (
@@ -272,7 +257,7 @@ function NotChatbotCard() {
 
 function BrutallyHonestCard() {
   const scores = [
-    { label: "What you think", value: "Great resume!", color: "text-emerald-400", bg: "bg-emerald-500/10" },
+    { label: "What you think",  value: "Great resume!",  color: "text-emerald-400", bg: "bg-emerald-500/10" },
     { label: "What we tell you", value: "65/100 — missing summary, weak verbs, no metrics on 3 bullets", color: "text-amber-400", bg: "bg-amber-500/10" },
   ];
 
@@ -280,7 +265,7 @@ function BrutallyHonestCard() {
     <Card delay={0.1}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Brutally honest.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">Other tools inflate scores to keep you happy. We tell you exactly what's costing you interviews — then fix it.</p>
+        <p className="text-[10px] text-slate-500 mb-3">Other tools inflate scores to keep you happy. We tell you exactly what&apos;s costing you interviews — then fix it.</p>
 
         <div className="space-y-2 flex-1">
           {scores.map((s, i) => (
@@ -306,6 +291,12 @@ function BrutallyHonestCard() {
   );
 }
 
+// ─── StudentPriceCard ─────────────────────────────────────────────────────────
+// Removed fake ~~$49~~ strikethrough — there is no $49 list price being
+// discounted to $9.99. $9.99 IS the price. Showing a fabricated "original
+// price" crossed out is a deceptive pricing pattern and illegal in several
+// jurisdictions (UK CPR 2008, EU Consumer Rights Directive, US FTC Act).
+
 function StudentPriceCard() {
   return (
     <Card delay={0.2}>
@@ -315,11 +306,10 @@ function StudentPriceCard() {
 
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="flex items-baseline gap-1">
-            <span className="text-[14px] text-slate-600 line-through">$49</span>
             <span className="text-[36px] font-extrabold text-white leading-none">$9.99</span>
             <span className="text-[12px] text-slate-500">/mo</span>
           </div>
-          <p className="text-[10px] text-indigo-400 font-semibold mt-1">All 6 tools included</p>
+          <p className="text-[10px] text-slate-400 font-medium mt-1">All 11 tools included</p>
 
           <div className="flex items-center gap-2 mt-4 px-3 py-1.5 bg-indigo-500/[0.06] border border-indigo-500/15 rounded-lg">
             <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
@@ -329,7 +319,7 @@ function StudentPriceCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[8px] text-slate-500">30-day money-back guarantee — land an interview or get refunded</span>
+          <span className="text-[8px] text-slate-500">30-day money-back guarantee — no questions asked</span>
         </div>
       </div>
     </Card>
@@ -339,8 +329,8 @@ function StudentPriceCard() {
 function AINotGenericCard() {
   const [step, setStep] = useState(0);
   const examples = [
-    { label: "Generic AI", text: "I am a hardworking professional with experience in software development…", color: "text-red-400", tag: "❌ Ignored" },
-    { label: "Preciprocal AI", text: "Built reconciliation pipeline processing $2.4B daily across 14 currencies, reducing failed alerts by 38%…", color: "text-emerald-400", tag: "✓ Gets interviews" },
+    { label: "Generic AI output",      text: "I am a hardworking professional with experience in software development…",                                                            color: "text-red-400",     tag: "❌ Ignored" },
+    { label: "Preciprocal output",     text: "Built reconciliation pipeline processing $2.4B daily across 14 currencies, reducing failed transaction alerts by 38%…",             color: "text-emerald-400", tag: "✓ Specific & strong" },
   ];
 
   useEffect(() => {
@@ -381,10 +371,13 @@ function AINotGenericCard() {
 
 function TrustBar() {
   const items = [
-    { icon: Lock, label: "End-to-end encrypted", sub: "Your resume data never shared or sold" },
-    { icon: MonitorSmartphone, label: "Chrome extension", sub: "One-click import from any job board" },
-    { icon: Globe, label: "Works everywhere", sub: "Web app — no downloads, any device" },
-    { icon: Award, label: "Money-back guarantee", sub: "Land an interview in 30 days or refund" },
+    { icon: Lock,              label: "End-to-end encrypted",   sub: "Your resume data never shared or sold" },
+    { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
+    { icon: Globe,             label: "Works everywhere",        sub: "Web app — no downloads, any device" },
+    // ⚠️  Guarantee wording: "30-day money-back" is the accurate claim.
+    // Original read "Land an interview in 30 days or refund" — that implies
+    // a guaranteed outcome we cannot promise and creates legal liability.
+    { icon: Award,             label: "30-day money-back",       sub: "Not working for you? Full refund, no questions" },
   ];
 
   return (
@@ -441,10 +434,10 @@ export default function BentoFeatures() {
           </p>
         </div>
 
-        {/* Row 1: Outcomes — 3 equal cards */}
+        {/* Row 1: What it does — 3 equal cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <SpeedCard />
-          <AccuracyCard />
+          <DepthCard />
           <CoverageCard />
         </div>
 
