@@ -184,6 +184,52 @@ export function WebSiteJsonLd() {
   );
 }
 
+// ─── NEW: WebPageJsonLd ────────────────────────────────────────────────────────
+// Explicitly links all homepage schemas together into a single entity graph.
+// This tells Google: "this URL is a WebPage, it's part of this WebSite,
+// it's about this Organization, and its primary image is the OG image."
+// Improves Knowledge Panel eligibility and rich result completeness.
+export function WebPageJsonLd() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://preciprocal.com/#webpage",
+    url: "https://preciprocal.com",
+    name: "Preciprocal — AI-Powered Job Search Operating System",
+    description:
+      "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking.",
+    isPartOf: {
+      "@id": "https://preciprocal.com/#website",
+    },
+    about: {
+      "@id": "https://preciprocal.com/#organization",
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      "@id": "https://preciprocal.com/#primaryimage",
+      url: "https://preciprocal.com/og-image.png",
+      width: 1200,
+      height: 630,
+    },
+    datePublished: "2026-01-20",
+    dateModified: "2026-04-27",
+    inLanguage: "en-US",
+    potentialAction: [
+      {
+        "@type": "ReadAction",
+        target: ["https://preciprocal.com"],
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 interface BreadcrumbItem { name: string; url: string; }
 
 export function BreadcrumbJsonLd({ items }: { items: BreadcrumbItem[] }) {

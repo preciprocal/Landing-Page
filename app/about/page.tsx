@@ -2,7 +2,13 @@
 
 /**
  * app/about/page.tsx
- * Self-contained About page. No separate component needed.
+ *
+ * SEO improvements over original:
+ *   • PersonJsonLd for founder — signals E-E-A-T (real human behind the product)
+ *   • BreadcrumbJsonLd — helps Google understand site hierarchy
+ *   • Founder section with name + role (crawlable, not just a face)
+ *   • aria-labels on every section for accessibility + crawlability
+ *   • Metadata lives in app/about/metadata.ts (separate file, "use client" constraint)
  */
 
 import Link from "next/link";
@@ -18,6 +24,56 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { APP_URL } from "@/lib/constants";
+
+// ─── Structured data ──────────────────────────────────────────────────────────
+// Inline because this is a client component and we can't import server JsonLd helpers
+function AboutJsonLd() {
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://preciprocal.com/about#founder",
+    name: "Yash Harale",
+    jobTitle: "Founder",
+    worksFor: { "@id": "https://preciprocal.com/#organization" },
+    url: "https://preciprocal.com/about",
+    sameAs: [
+      "https://linkedin.com/company/preciprocal",
+      "https://twitter.com/preciprocal",
+    ],
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://preciprocal.com" },
+      { "@type": "ListItem", position: 2, name: "About", item: "https://preciprocal.com/about" },
+    ],
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://preciprocal.com/about#webpage",
+    url: "https://preciprocal.com/about",
+    name: "About Preciprocal — Our Story, Mission & Values",
+    description:
+      "Preciprocal started as one frustrated student's side project after 200+ job applications. Here's the story of why we built it, what we believe, and where we're going.",
+    isPartOf: { "@id": "https://preciprocal.com/#website" },
+    about: { "@id": "https://preciprocal.com/#organization" },
+    inLanguage: "en-US",
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
+    </>
+  );
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const VALUES = [
   {
@@ -73,16 +129,35 @@ const MILESTONES = [
   },
 ];
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#050810]">
+      <AboutJsonLd />
       <Navbar />
 
       <main className="relative overflow-hidden">
         <FloatingDots count={25} />
 
+        {/* ── Breadcrumb nav (crawlable) ── */}
+        <nav
+          aria-label="Breadcrumb"
+          className="max-w-3xl mx-auto px-6 pt-28 pb-0"
+        >
+          <ol className="flex items-center gap-2 text-xs text-slate-500">
+            <li>
+              <Link href="/" className="hover:text-slate-300 transition-colors">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">›</li>
+            <li className="text-slate-400">About</li>
+          </ol>
+        </nav>
+
         {/* ── Hero ── */}
-        <section className="relative pt-32 pb-20 px-6">
+        <section aria-label="About Preciprocal" className="relative pt-10 pb-20 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-slate-400 font-medium mb-6">
@@ -93,7 +168,7 @@ export default function AboutPage() {
                 <span className="text-gradient">wish existed</span>
               </h1>
               <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                Preciprocal started as a frustrated student's side project. It became
+                Preciprocal started as a frustrated student&apos;s side project. It became
                 something bigger when we realized the frustration was universal.
               </p>
             </RevealOnScroll>
@@ -101,13 +176,13 @@ export default function AboutPage() {
         </section>
 
         {/* ── Origin story ── */}
-        <section className="relative py-16 px-6">
+        <section aria-label="Our origin story" className="relative py-16 px-6">
           <div className="max-w-3xl mx-auto">
             <GlowDivider />
             <div className="mt-16 space-y-6 text-slate-400 text-base leading-relaxed">
               <RevealOnScroll>
                 <p className="text-xl text-white font-medium leading-relaxed">
-                  The job search is broken — and everyone pretends it's not.
+                  The job search is broken — and everyone pretends it&apos;s not.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={0.1}>
@@ -121,7 +196,7 @@ export default function AboutPage() {
                 <p>
                   Our founder went through this. 200+ applications. Automated rejections
                   from companies that never even saw the resume. Interviews that went
-                  "really well" and never called back. The whole process felt like
+                  &quot;really well&quot; and never called back. The whole process felt like
                   shouting into a void.
                 </p>
               </RevealOnScroll>
@@ -144,8 +219,48 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* ── Founder ── */}
+        <section aria-label="Founder" className="relative py-16 px-6">
+          <div className="max-w-3xl mx-auto">
+            <RevealOnScroll className="mb-10">
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                Who&apos;s behind it
+              </h2>
+            </RevealOnScroll>
+            <RevealOnScroll delay={0.1}>
+              <SpotlightCard
+                className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 p-7"
+                spotlightColor="rgba(99,102,241,0.05)"
+              >
+                <div className="flex items-start gap-5">
+                  {/* Avatar placeholder — swap src for a real photo */}
+                  <div
+                    className="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center text-lg font-bold text-white"
+                    style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)" }}
+                    aria-label="Yash Harale"
+                  >
+                    YH
+                  </div>
+                  <div>
+                    {/* Name + role are crawlable text — important for E-E-A-T */}
+                    <p className="text-white font-bold text-[15px]">Yash Harale</p>
+                    <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+                      Founder
+                    </p>
+                    <p className="text-slate-400 text-sm leading-relaxed">
+                      Applied to 200+ jobs, reverse-engineered why most failed, and built
+                      Preciprocal to give every student the same unfair advantage that
+                      expensive career coaches give to a lucky few.
+                    </p>
+                  </div>
+                </div>
+              </SpotlightCard>
+            </RevealOnScroll>
+          </div>
+        </section>
+
         {/* ── Timeline ── */}
-        <section className="relative py-20 px-6">
+        <section aria-label="Company timeline" className="relative py-20 px-6">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
@@ -182,14 +297,14 @@ export default function AboutPage() {
         </section>
 
         {/* ── Values ── */}
-        <section className="relative py-20 px-6">
+        <section aria-label="Our values" className="relative py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <RevealOnScroll className="mb-12 text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
                 What we believe
               </h2>
               <p className="text-slate-500 text-sm max-w-lg mx-auto">
-                These aren't wall-poster values. They're decisions that show up in
+                These aren&apos;t wall-poster values. They&apos;re decisions that show up in
                 how we price, build, and talk to users.
               </p>
             </RevealOnScroll>
@@ -216,7 +331,7 @@ export default function AboutPage() {
         </section>
 
         {/* ── Mission statement ── */}
-        <section className="relative py-20 px-6">
+        <section aria-label="Our mission" className="relative py-20 px-6">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll>
               <SpotlightCard
@@ -227,12 +342,12 @@ export default function AboutPage() {
                   Our mission
                 </p>
                 <p className="text-2xl sm:text-3xl font-extrabold text-white leading-tight mb-6">
-                  "Make expert-level career preparation accessible to every student,
-                  regardless of where they went to school or who they know."
+                  &ldquo;Make expert-level career preparation accessible to every student,
+                  regardless of where they went to school or who they know.&rdquo;
                 </p>
                 <p className="text-slate-400 text-sm">
-                  The students who land the best jobs often aren't the most qualified —
-                  they're the best prepared. We're here to fix that.
+                  The students who land the best jobs often aren&apos;t the most qualified —
+                  they&apos;re the best prepared. We&apos;re here to fix that.
                 </p>
               </SpotlightCard>
             </RevealOnScroll>
@@ -240,14 +355,14 @@ export default function AboutPage() {
         </section>
 
         {/* ── CTA ── */}
-        <section className="relative py-20 px-6">
+        <section aria-label="Contact and get started" className="relative py-20 px-6">
           <div className="max-w-xl mx-auto text-center">
             <RevealOnScroll>
               <h2 className="text-2xl font-extrabold text-white mb-4">
                 Have a question or want to talk?
               </h2>
               <p className="text-slate-400 text-sm mb-8">
-                We're a small team and we actually read every email. Whether it's
+                We&apos;re a small team and we actually read every email. Whether it&apos;s
                 feedback, a bug report, or just to say hi — reach out.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">

@@ -589,22 +589,1188 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
-  { slug: "how-to-pass-ats-resume-screening",     title: "How to Pass ATS Resume Screening in 2026 (Complete Guide)",           description: "Most resumes are rejected before a human sees them. Here's exactly how ATS systems work, why they reject qualified candidates, and the 10 fixes that get you past the filter.",                                            category: "Resume",          readTime: "8 min read",  publishedAt: "2026-01-15", featured: true,  content: `## What is ATS and why does it matter?\n\nAn Applicant Tracking System (ATS) is software companies use to receive, sort, and filter job applications before a recruiter ever sees them. If your resume doesn't pass the automated screen, no human reads it — regardless of your qualifications.\n\n## Why good resumes fail ATS\n\nThe most counterintuitive truth: a beautifully designed resume often scores worse than a plain text one. Multi-column layouts, tables, text boxes, graphics, and custom fonts all break ATS parsers.\n\nThe five most common ATS rejection reasons:\n\n**Missing keywords** — mirror the exact language from the job posting.\n\n**Non-standard section headers** — use "Work Experience" not "Professional History."\n\n**Text in headers/footers** — most ATS systems can't read content outside the main body.\n\n**Tables and text boxes** — these render as blank space or are skipped entirely.\n\n**Wrong file format** — unless requested, submit .docx not PDF.\n\n## The 10 fixes that move your score\n\n**Fix 1: Use a single-column layout.** No multi-column formatting, no graphics.\n\n**Fix 2: Mirror job description language exactly.** "Agile methodology" not "agile process."\n\n**Fix 3: Add a Skills section.** List the exact tools from the job description near the top.\n\n**Fix 4: Use standard section headers.** Work Experience, Education, Skills, Certifications.\n\n**Fix 5: Move contact info to the main body.** Not in a document header.\n\n**Fix 6: Remove tables and text boxes.** Reformat as plain text.\n\n**Fix 7: Spell out acronyms once.** "Search Engine Optimization (SEO)" then just "SEO."\n\n**Fix 8: Quantify everything.** "Managed a team of 8" beats "Managed a team."\n\n**Fix 9: Tailor for every application.** One resume for all jobs is the biggest mistake.\n\n**Fix 10: Check your score first.** Use Preciprocal's free ATS checker before submitting.\n\n## What ATS can't evaluate\n\nPassing ATS is the floor, not the ceiling. A score above 75 gets your resume to a human. Now you need to survive the 6-second recruiter scan — clear structure, strong verbs, and quantified impact.` },
-  { slug: "software-engineer-interview-prep-guide", title: "The Complete Software Engineer Interview Prep Guide (2026)",          description: "A systematic 8-week study plan for SWE interviews — data structures, algorithms, system design, behavioral, and company-specific prep.",                                                                                   category: "Interview Prep",  readTime: "12 min read", publishedAt: "2026-01-22", featured: true,  content: `## The honest truth about SWE interview prep\n\nMost engineers prepare wrong. They grind 300 random LeetCode problems, then panic when the actual interview asks something slightly different. The problem isn't the problems — it's the lack of a system.\n\n## Week 1–2: Data structures and core algorithms\n\n**Arrays and two pointers:** Practice Two Sum, Best Time to Buy Stock, Longest Substring Without Repeating Characters, Container With Most Water.\n\n**Hash maps and sets:** Group Anagrams, Top K Frequent Elements, Valid Anagram.\n\n**Linked lists:** Reverse Linked List, Merge Two Sorted Lists, Linked List Cycle, LRU Cache.\n\n**Stacks and queues:** Valid Parentheses, Daily Temperatures, Min Stack.\n\n## Week 3–4: Trees and graphs\n\n**Binary trees:** Traversals (recursive + iterative), Maximum Depth, Validate BST, Level Order Traversal, Serialize/Deserialize.\n\n**Graphs:** BFS for shortest path, DFS for connectivity. Number of Islands, Clone Graph, Course Schedule, Pacific Atlantic Water Flow.\n\n## Week 5: Dynamic programming\n\nMaster five patterns: 1D DP, 2D DP, knapsack, interval DP, string DP. Practice: Climbing Stairs, Coin Change, Longest Common Subsequence, Word Break, House Robber, Edit Distance.\n\n## Week 6: System design\n\nThe framework: clarify requirements, estimate scale, design high-level architecture, deep-dive critical components, discuss trade-offs. Practice: URL shortener, Twitter feed, YouTube, WhatsApp, Uber.\n\n## Week 7: Behavioral prep\n\nPrepare 7 STAR stories: project you led, conflict with a teammate, a failure, decision with incomplete info, influence without authority, technical decision you defended, greatest accomplishment.\n\n## Week 8: Company-specific prep and mock interviews\n\nResearch the company's engineering blog and recent conference talks. Do at least 3 full mock interviews — with voice, under time pressure, with behavioral questions. Think out loud. Always.` },
-  { slug: "how-to-answer-tell-me-about-yourself", title: "How to Answer 'Tell Me About Yourself' (With Examples for 2026)",    description: "The most common interview question, and the most mishandled. A proven framework plus 3 word-for-word example answers for tech, business, and entry-level roles.",                                                         category: "Behavioral",      readTime: "6 min read",  publishedAt: "2026-02-03",          content: `## Why this question trips people up\n\nMost candidates either recite their resume chronologically or give vague generalities like "I'm a hard worker." Neither works. This question is an opportunity — the one moment you fully control the narrative.\n\n## The Present-Past-Future framework\n\n**Present** (1-2 sentences): current role, scope, what you're working on.\n\n**Past** (2-3 sentences): the highlights that explain why you're good at what you do. Not a full history — only what's relevant.\n\n**Future** (2-3 sentences): why this role, at this company, right now. Name something specific.\n\nTarget: 90 seconds to 2 minutes total.\n\n## Example 1: Software engineer (3 years)\n\n"Right now I'm a software engineer at a Series B fintech working on payments infrastructure — I've spent the last year building the reconciliation pipeline that processes $2 billion in transactions daily. Before that I was the second engineer at a startup, which meant I touched everything from APIs to on-call response. I'm most proud of reducing our failed transaction rate by 38% by redesigning our idempotency key system. I'm looking at Stripe because the reliability engineering challenges here — particularly what I read about your deterministic simulation testing — are exactly what I want to be solving next."\n\n## Example 2: New graduate\n\n"I'm finishing my CS degree at Georgia Tech in May, focused on machine learning and distributed systems. Last summer at Capital One I built a feature extraction pipeline that improved fraud detection precision by 8 points — it went to production before I left. Before that I built an open-source neural network visualization tool that got ~400 GitHub stars. I'm excited about this role because your team is working on real-time ML inference at scale, which is exactly the direction I want to go deep in."\n\n## What makes these answers work\n\nSpecific scope. Numbers. A future that names something real about the company. No words like "passionate" or "hardworking."` },
-  { slug: "star-method-behavioral-interviews",    title: "The STAR Method: How to Answer Every Behavioral Interview Question (2026)", description: "Situation, Task, Action, Result — the framework behind every great behavioral answer. Includes 15 question-to-story mappings.",                                                                                       category: "Behavioral",      readTime: "10 min read", publishedAt: "2026-02-10",          content: `## What STAR is and why it works\n\nSTAR: Situation, Task, Action, Result. It works because behavioral interviews seek evidence, not assertions. "I'm good at conflict resolution" tells the interviewer nothing. A specific story with a clear action and quantified result gives them the evidence they need.\n\n## How to build each section\n\n**Situation (2–3 sentences):** just enough context. Don't over-explain.\n\n**Task (1–2 sentences):** YOUR specific responsibility — not the team's.\n\n**Action (3–5 sentences):** the most important part. What did YOU specifically do? Say "I" not "we."\n\n**Result (2–3 sentences):** what happened? Quantify. Close with what you learned or what you'd do differently.\n\n## The 7 stories to prepare\n\n**Story 1 — Leadership/initiative:** ownership beyond your job description.\n\n**Story 2 — Conflict/disagreement:** disagreed with manager or teammate and how you handled it.\n\n**Story 3 — Failure/mistake:** something that went wrong and what you changed.\n\n**Story 4 — Ambiguity:** decision made with incomplete information.\n\n**Story 5 — Influence without authority:** getting results when you didn't have direct control.\n\n**Story 6 — Technical decision:** meaningful decision you made and defended.\n\n**Story 7 — Greatest accomplishment:** your strongest story, fully quantified.\n\n## 15 questions mapped to stories\n\nTell me about a time you took initiative → Story 1\nDescribe a time you led a project → Story 1\nTell me about a disagreement with your manager → Story 2\nTell me about your biggest failure → Story 3\nHow do you handle ambiguity? → Story 4\nTell me about influencing without authority → Story 5\nDescribe a difficult technical decision → Story 6\nWhat's your greatest accomplishment? → Story 7\n\n## The most common STAR mistakes\n\n**Too much situation:** three minutes of context, thirty seconds of action. Flip it.\n\n**Using "we" throughout:** the interviewer is evaluating you.\n\n**No numbers in the result:** "The project was a success" is weak. "We reduced complaints by 22%" is strong.\n\n**Not practicing out loud:** STAR answers that sound crisp in your head sound stilted when spoken. Target 2–3 minutes per answer.` },
-  { slug: "system-design-interview-tips",         title: "System Design Interview Tips: How to Think Like a Senior Engineer (2026)", description: "The framework top candidates use to tackle any system design question — from clarifying requirements to drawing the final architecture.",                                                                          category: "Technical",       readTime: "14 min read", publishedAt: "2026-02-17",          content: `## Why system design interviews are different\n\nCoding interviews have right answers. System design interviews don't. There are only trade-offs, and the interviewer is evaluating how clearly you reason about them.\n\n## The 6-step framework\n\n**Step 1 — Clarify requirements (5 min):** Never start drawing. Ask: Who are the users? What's the core use case? What are non-functional requirements (availability, latency, consistency)? Write them on the board.\n\n**Step 2 — Estimate scale (3 min):** Users, requests/second, read/write ratio, storage. These numbers drive architectural choices.\n\n**Step 3 — Define the API (3 min):** What endpoints? What do they take and return? Forces precision before design.\n\n**Step 4 — High-level design (10 min):** Draw major components: clients, load balancer, app servers, database(s), cache, CDN, message queue. Don't go deep yet.\n\n**Step 5 — Deep dive (15 min):** The interviewer steers you. Common deep-dives: database schema, cache invalidation, scaling the write path, handling failures.\n\n**Step 6 — Failure and edge cases (5 min):** What happens when a server dies? Database unreachable? Traffic spike?\n\n## 5 worked examples\n\n**URL shortener:** Write path — base62 ID generator → key-value store (Redis cache + DB). Read path — Redis lookup → DB fallback → redirect. Scale: cache hit rate is critical (reads >> writes).\n\n**Twitter timeline:** Fan-out on write (push to follower timelines at write time) vs fan-out on read. Twitter uses a hybrid: fan-out on write for most users, fan-out on read for celebrities with millions of followers.\n\n**WhatsApp messaging:** Exactly-once delivery via message queue per recipient. Key challenge: ordering guarantees. Use sequence numbers per conversation.\n\n**YouTube:** Separate write and read paths. Upload: video → blob storage → transcoding queue → CDN. Stream: manifest file → CDN chunks. Video data is immutable — perfect for caching.\n\n**Autocomplete:** Trie data structure. At Google's scale: pre-compute popular queries, distribute by geographic region, separate ranking layer weighted by location and query frequency.\n\n## What interviewers want to see\n\nDrive the conversation. Know where the hard parts are. Make trade-offs out loud. "We could do X, but that would mean Y. Given the scale requirements, I'd choose Z because..." — that sentence is the whole interview.` },
-  { slug: "how-to-negotiate-salary-offer",        title: "How to Negotiate Your Salary Offer in 2026 (Scripts That Work)",      description: "Most offers have room to negotiate. Here are the exact scripts, timing strategies, and tactics that can meaningfully increase your total compensation.",                                                             category: "Career Strategy", readTime: "9 min read",  publishedAt: "2026-02-24",          content: `## The negotiation most people skip\n\nMost job seekers accept the first offer. Starting salary anchors every future raise and offer for years. Negotiating is expected — most recruiters have a range and the first offer is rarely the top of it.\n\n## Before you negotiate: know your numbers\n\nResearch Levels.fyi (tech), Glassdoor, LinkedIn Salary, and Blind. Have a target (what you want) and a walk-away (what you need for the move to make sense). Understand total compensation: base, equity, signing bonus, benefits, flexibility.\n\n## The timing\n\nDon't negotiate during the interview process. If asked for salary expectations early, deflect: "I'd love to learn more about the full scope of the role first — I'm confident we can find a number that works for both sides."\n\nWhen you receive a written offer, take 24–48 hours. Use the time to prepare.\n\n## The counter: exact scripts\n\n**By email:** "Thank you — I'm genuinely excited about the role. After reviewing the details, I was hoping we could discuss the base salary. Based on my research and experience, I was targeting closer to $[target]. Is there flexibility there?"\n\n**By phone:** "I appreciate the offer and I'm very interested. I've done some research on the market rate, and I was hoping to land closer to $[target]. Is that something we could work toward?"\n\n**When they say no to base:** "I understand. Would there be flexibility on the signing bonus or equity? Even a small increase would help bridge the gap."\n\n**With a competing offer:** "I want to be transparent — I have another offer at $[X]. I'm more excited about this role, which is why I'm bringing this to you first. Is there any way to get closer?"\n\n## What can be negotiated\n\n**Base salary:** most impactful and most common.\n\n**Signing bonus:** one-time cost, often easier to move.\n\n**Equity:** especially at pre-IPO companies.\n\n**Start date:** giving proper notice protects your reputation.\n\n**Title:** matters for future negotiations.\n\n**Remote flexibility:** if hybrid, sometimes you can reduce in-office days.` },
-  { slug: "google-interview-process-explained",   title: "The Google Interview Process Explained (2026)",                        description: "Everything you need to know about Google's hiring process — from the recruiter screen to the hiring committee vote.",                                                                                             category: "Company Guides",  readTime: "11 min read", publishedAt: "2026-03-03",          content: `## How Google evaluates candidates\n\nGoogle assesses on four dimensions: General Cognitive Ability, Leadership, Googleyness (culture fit), and Role-Related Knowledge. Pedigree doesn't predict performance here — a state school graduate who interviews well is evaluated identically to a Stanford PhD.\n\n## The process, step by step\n\n**Stage 1 — Recruiter screen (30 min):** Background and interest. Be warm, clear, and express genuine enthusiasm for Google specifically.\n\n**Stage 2 — Technical phone screen (45–60 min):** One or two LeetCode-style problems, usually medium. Talk through your thinking — don't code silently.\n\n**Stage 3 — Onsite (4–5 rounds, 45 min each):** Two coding rounds (medium to hard), one system design round (L4+), one or two Googleyness/behavioral rounds using STAR.\n\n**Stage 4 — Hiring committee:** 4–5 engineers who weren't in your interviews review your full packet and vote. This means every round matters — one weak round can sink you.\n\n**Stage 5 — Team matching (some levels):** After committee approval, you meet potential teams.\n\n## How to prepare\n\n**Coding:** 75–100 LeetCode problems, focused on trees, graphs, DP, string manipulation. Prioritize mediums.\n\n**System design:** 8–10 practice systems using the 6-step framework. Google-scale: search autocomplete, YouTube, Google Maps, Gmail, Google Docs collaborative editing.\n\n**Googleyness:** Show intellectual humility, changed your mind based on data, sought out feedback, supported teammates without personal benefit.\n\n## The thing most candidates underestimate\n\nGoogle's bar is set by committee, not individual interviewers. Consistency across rounds matters more than crushing one round. If behavioral questions are your weakness, fix that before the onsite — your coding won't compensate.` },
-  { slug: "amazon-leadership-principles-interview", title: "How to Answer Amazon Leadership Principles Questions (All 16) — 2026", description: "Amazon's 16 Leadership Principles drive every interview. Here's what each one means, what interviewers look for, and answer frameworks.",                                                                          category: "Company Guides",  readTime: "15 min read", publishedAt: "2026-03-10",          content: `## Why the LPs matter more than you think\n\nAt Amazon, the Leadership Principles are the actual hiring rubric. Every interviewer is assigned specific LPs to probe. Every hiring decision is made against them. The Bar Raiser uses LPs as their primary framework.\n\n## The 5 most-probed LPs\n\n**Customer Obsession:** Show a concrete example of identifying what customers really needed (not just what they asked for) and prioritizing their outcome over an easier path. Weak: "I always try to put the customer first." Strong: specific situation with quantified result.\n\n**Ownership:** Evidence you treated the company's resources as your own and took on problems outside your formal scope.\n\n**Bias for Action:** Calculated risk-taking — launch with 70% information rather than waiting for 100%. Show you identified which decisions were reversible vs. not.\n\n**Dive Deep:** You discovered a critical problem by looking at raw data or talking directly to customers, and that insight changed a decision.\n\n**Disagree and Commit:** Two things in the same story: (1) you pushed back on a decision you disagreed with, and (2) once the decision was made, you executed with full commitment.\n\n## The remaining 11 LPs\n\n**Invent and Simplify:** Simplify a complex process — simpler outcomes show more skill.\n\n**Are Right, A Lot:** Judgment was validated; show you sought diverse input before deciding.\n\n**Learn and Be Curious:** Something significant you taught yourself recently.\n\n**Hire and Develop the Best:** Help teammates grow or raise the team's bar.\n\n**Insist on the Highest Standards:** Held a quality bar higher than strictly required.\n\n**Think Big:** Proposed something that changed trajectory, not just incremental optimization.\n\n**Frugality:** Accomplished more with fewer resources.\n\n**Earn Trust:** Admitting a mistake, or giving difficult feedback to a peer.\n\n**Deliver Results:** Your clearest example of measurable impact. Numbers required.\n\n**Strive to Be Earth's Best Employer** and **Success and Scale Bring Broad Responsibility:** For managers and senior leaders.\n\n## Practical prep\n\nPrepare one strong STAR story for every LP — all 16. Practice saying "I" not "we." Have depth behind every story: know your numbers, the outcome, and what you'd do differently.` },
-  { slug: "leetcode-study-plan-4-weeks",           title: "The 4-Week LeetCode Study Plan That Gets You Hired (2026)",            description: "Stop grinding random problems. This structured 4-week plan covers the patterns that appear in the vast majority of FAANG interviews.",                                                                            category: "Technical",       readTime: "7 min read",  publishedAt: "2026-03-17",          content: `## The problem with random grinding\n\nMost engineers solve 150 problems but can't reliably solve a medium they haven't seen. The goal isn't memorization — it's pattern recognition. See a problem, identify the pattern, apply the template.\n\n## Week 1: Arrays, strings, hash maps\n\n**Two pointers (days 1-2):** Reduces O(n²) problems to O(n). Practice: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water.\n\n**Sliding window (days 3-4):** For subarray/substring problems with a constraint. Practice: Longest Substring Without Repeating Characters, Minimum Window Substring.\n\n**Hash maps (day 5):** O(1) lookup. Practice: Group Anagrams, Top K Frequent Elements.\n\nDaily target: 4–5 problems. Understand the pattern, don't just get the solution.\n\n## Week 2: Trees and graphs\n\n**Binary trees (days 1-2):** Recursive + iterative traversals. Practice: Max Depth, Invert Binary Tree, Diameter, Level Order Traversal, Lowest Common Ancestor.\n\n**Graphs (days 4-5):** BFS for shortest path, DFS for connectivity. Practice: Number of Islands, Course Schedule, Word Ladder.\n\n## Week 3: Dynamic programming and binary search\n\n**1D DP (days 1-2):** Climbing Stairs, House Robber, Coin Change, LIS.\n\n**2D DP (days 3-4):** Unique Paths, LCS, Edit Distance.\n\n**Binary search (day 5):** Binary search on the answer. Practice: Find Minimum in Rotated Array, Koko Eating Bananas.\n\n## Week 4: Stacks, heaps, mock interviews\n\n**Stacks (days 1-2):** Monotonic stack. Daily Temperatures, Largest Rectangle in Histogram.\n\n**Heaps (day 3):** K-th largest problems. Merge K Sorted Lists, Task Scheduler.\n\n**Full mock interviews (days 4-7):** Set a timer. Code while talking out loud. Analyze complexity. Do at least 4 full mocks.\n\n## The rules that make this work\n\nSolve every problem twice (48 hours apart). Time-box struggle to 15 minutes. Do the mocks out loud — coding silently is a different skill.` },
-  { slug: "resume-keywords-that-get-past-ats",     title: "Resume Keywords That Get Past ATS in 2026 (By Role)",                 description: "The exact keywords ATS systems look for in software engineering, data science, product management, and 6 other roles — with examples of how to use them naturally.",                                              category: "Resume",          readTime: "8 min read",  publishedAt: "2026-03-24",          content: `## How ATS keyword matching works\n\nModern ATS platforms use semantic matching and contextual analysis. But the core principle holds: if your resume doesn't contain the language the job description uses, your score suffers. The solution isn't keyword stuffing — it's ensuring relevant concepts appear naturally in context.\n\n## Software Engineer\n\nCore keywords: Python, JavaScript, TypeScript, Java, Go, SQL, REST API, GraphQL, microservices, distributed systems, CI/CD, Docker, Kubernetes, AWS/GCP/Azure, system design, agile, TDD.\n\nAction verbs: architected, built, optimized, reduced, scaled, migrated, deployed, shipped.\n\nPattern: "Architected and deployed [system] using [tech], reducing [metric] by [X]%."\n\n## Data Scientist\n\nCore keywords: Python, R, SQL, machine learning, statistical modeling, A/B testing, hypothesis testing, regression, neural networks, feature engineering, Pandas, scikit-learn, TensorFlow, PyTorch, Spark.\n\nDifferentiating keywords (signal depth): production ML, MLOps, model deployment, causal inference, Bayesian methods.\n\n## Product Manager\n\nCore keywords: product roadmap, user research, A/B testing, KPIs, OKRs, stakeholder management, cross-functional, agile, go-to-market, user stories, backlog prioritization, data-driven, DAU, MAU, NPS.\n\nTrap: listing responsibilities not outcomes. "Managed the roadmap" vs. "Prioritized and shipped 4 features that grew DAU by 18% in Q3."\n\n## Financial Analyst\n\nCore keywords: financial modeling, DCF, EBITDA, LBO, comparable companies, Excel, PowerPoint, variance analysis, budget, forecast, P&L, balance sheet, cash flow, GAAP, Bloomberg.\n\n## Marketing Manager\n\nCore keywords: go-to-market, demand generation, content marketing, SEO, SEM, paid social, email marketing, CRM, HubSpot, Salesforce, analytics, Google Analytics, attribution, funnel, conversion rate.\n\n## HR Manager\n\nCore keywords: talent acquisition, HRIS, Workday, performance management, compensation benchmarking, employee relations, DEI, onboarding, workforce planning, compliance, FLSA, FMLA.\n\n## How to use these keywords naturally\n\nPasting a keyword list at the bottom is detectable and suspicious. Put keywords inside bullets describing what you did with them: "Reduced customer churn by 18% through a data-driven segmentation model using Python and scikit-learn."\n\nRun your resume through Preciprocal's ATS checker after updating — see exactly which keywords are present, which are missing, and your overall match score before you submit.` },
+ 
+  // ── RESUME ────────────────────────────────────────────────────────────────
+ 
+  {
+    slug: "how-to-pass-ats-resume-screening",
+    title: "How to Pass ATS Resume Screening in 2026 (Complete Guide)",
+    description: "Most resumes are rejected before a human sees them. Here's exactly how ATS systems work, why they reject qualified candidates, and the 10 fixes that get you past the filter.",
+    category: "Resume",
+    readTime: "10 min read",
+    publishedAt: "2026-01-15",
+    updatedAt: "2026-04-27",
+    featured: true,
+    content: `## What is ATS and why does it matter in 2026?
+ 
+An Applicant Tracking System (ATS) is software that companies use to receive, sort, and filter job applications before a recruiter ever sees them. Over 98% of Fortune 500 companies use ATS software, and studies suggest that 75% of resumes are rejected before a human reviews them. If your resume doesn't pass the automated screen, it doesn't matter how qualified you are — your application simply disappears.
+ 
+The most widely used ATS platforms in 2026 are Workday, Greenhouse, Lever, iCIMS, Taleo, and BambooHR. Each has slightly different parsing behavior, but the same core rules apply across all of them.
+ 
+## Why well-written resumes still fail ATS
+ 
+The most counterintuitive truth about ATS: a beautifully designed resume often scores lower than a plain, boring one. Multi-column layouts, tables, text boxes, graphics, headers and footers, and custom fonts all confuse ATS parsers. The system reads your resume as raw text — if that text is scrambled by formatting, your qualifications never register.
+ 
+The five most common reasons qualified candidates get auto-rejected:
+ 
+**Missing keywords** — ATS systems match your resume against the job description. If you say "team lead" and the job description says "team leadership," you may not match. Mirror the exact language from the posting.
+ 
+**Non-standard section headers** — "Professional History" or "Where I've Worked" confuse parsers. Use "Work Experience," "Education," "Skills," and "Certifications."
+ 
+**Text in headers/footers** — Most ATS systems cannot parse content outside the main document body. Your name and contact info in a header may be completely invisible.
+ 
+**Tables and text boxes** — These render as blank space or get skipped entirely. Anything inside a table or text box disappears in many systems.
+ 
+**Wrong file format** — Unless the job posting specifically requests PDF, submit .docx. PDFs can confuse older ATS systems, especially if they contain embedded fonts or complex layouts.
+ 
+## The 10 fixes that move your ATS score
+ 
+**Fix 1: Use a single-column layout.** Delete columns, sidebars, and any graphic elements. Your resume should look plain — that's a feature, not a bug.
+ 
+**Fix 2: Mirror job description language exactly.** Read the job posting three times. Identify the exact phrases they use for skills, tools, and responsibilities. Use those exact words. "Agile methodology" not "agile process."
+ 
+**Fix 3: Add a dedicated Skills section near the top.** List the exact tools, technologies, and competencies from the job description. ATS systems heavily weight skills sections.
+ 
+**Fix 4: Use standard section headers.** Work Experience, Education, Skills, Certifications, Projects. Nothing creative.
+ 
+**Fix 5: Move all contact info into the main body.** Name, phone, email, LinkedIn URL — not in a header or footer. Put them at the top of the document body.
+ 
+**Fix 6: Remove all tables and text boxes.** Reformat as plain bullet points and paragraphs.
+ 
+**Fix 7: Spell out acronyms once, then use the acronym.** "Search Engine Optimization (SEO)" on first use, then just "SEO." Some ATS systems search for one but not the other.
+ 
+**Fix 8: Quantify every bullet point you can.** "Managed a team of 8 engineers" beats "Managed a team." Numbers make your bullets both ATS-readable and more compelling to humans.
+ 
+**Fix 9: Tailor for every application — every single one.** One resume for all jobs is the most common mistake. 20 tailored applications outperform 200 generic ones consistently.
+ 
+**Fix 10: Check your score before submitting.** Use Preciprocal's free ATS checker to see exactly which keywords you're missing and what's dragging your score down — before the application goes in.
+ 
+## What an ATS score above 75 means
+ 
+Passing ATS is the floor, not the ceiling. A score above 75 gets your resume to a human reviewer. Now you have roughly 6 seconds to survive the recruiter scan — clear structure, strong action verbs, and quantified impact bullets are what keep them reading.
+ 
+The goal is a resume that both passes the machine and impresses the person. Preciprocal scores your resume on both dimensions simultaneously — ATS compatibility and human readability — so you're not optimizing for one at the expense of the other.`
+  },
+ 
+  {
+    slug: "resume-keywords-that-get-past-ats",
+    title: "Resume Keywords That Get Past ATS in 2026 (By Role)",
+    description: "The exact keywords ATS systems look for in software engineering, data science, product management, finance, and 5 other roles — with examples of how to use them naturally.",
+    category: "Resume",
+    readTime: "9 min read",
+    publishedAt: "2026-03-24",
+    updatedAt: "2026-04-27",
+    content: `## How ATS keyword matching works in 2026
+ 
+Modern ATS platforms use a combination of exact-match and semantic matching. Workday and Greenhouse use semantic analysis that understands synonyms — so "engineered" and "built" may both match "developed." But older systems like Taleo still rely heavily on exact string matching. The safest strategy: use the exact language from the job description wherever possible, and don't rely on synonyms to carry you.
+ 
+The other thing most candidates don't know: ATS systems weight keywords differently by location. A keyword in your job title or a recent role headline counts more than the same keyword buried in a bullet point from five years ago. Front-load your most important terms.
+ 
+## Software Engineer keywords
+ 
+**Core technical keywords:** Python, JavaScript, TypeScript, Java, Go, Rust, SQL, REST API, GraphQL, microservices, distributed systems, CI/CD, Docker, Kubernetes, AWS, GCP, Azure, system design, agile, TDD, code review.
+ 
+**Action verbs that ATS and humans both reward:** architected, engineered, built, optimized, reduced, scaled, migrated, deployed, shipped, refactored, automated.
+ 
+**Bullet pattern that works:** "Architected and deployed [system] using [tech stack], reducing [metric] by [X]% and supporting [scale]."
+ 
+**Example:** "Architected and deployed a real-time event processing pipeline using Kafka and Python, reducing data latency from 8 minutes to 12 seconds and supporting 2M daily active users."
+ 
+## Data Scientist keywords
+ 
+**Core keywords:** Python, R, SQL, machine learning, statistical modeling, A/B testing, hypothesis testing, regression, classification, neural networks, feature engineering, Pandas, NumPy, scikit-learn, TensorFlow, PyTorch, Spark, data pipeline.
+ 
+**Depth signals that differentiate candidates:** production ML, MLOps, model deployment, causal inference, Bayesian methods, experiment design, model monitoring.
+ 
+**Bullet pattern:** "Built [model type] using [tools] to [outcome], improving [metric] by [X]% with [dataset scale]."
+ 
+## Product Manager keywords
+ 
+**Core keywords:** product roadmap, user research, A/B testing, KPIs, OKRs, stakeholder management, cross-functional, agile, go-to-market, user stories, backlog prioritization, data-driven, DAU, MAU, NPS, retention, churn.
+ 
+**The PM keyword trap:** listing responsibilities not outcomes. "Managed the roadmap" is a responsibility. "Prioritized and shipped 4 features that grew DAU by 18% in Q3" is an outcome. ATS scores keywords — but humans score impact. You need both.
+ 
+## Financial Analyst keywords
+ 
+**Core keywords:** financial modeling, DCF analysis, EBITDA, LBO, comparable company analysis, Excel, PowerPoint, variance analysis, budget, forecast, P&L, balance sheet, cash flow, GAAP, IFRS, Bloomberg, FactSet, capital markets.
+ 
+**For investment banking specifically:** add M&A, debt financing, equity research, pitch deck, deal execution, due diligence, valuation.
+ 
+## Marketing Manager keywords
+ 
+**Core keywords:** go-to-market, demand generation, content marketing, SEO, SEM, paid social, email marketing, CRM, HubSpot, Salesforce, Google Analytics, attribution, conversion rate, CAC, LTV, funnel optimization, brand strategy.
+ 
+**Performance marketing depth signals:** ROAS, CPL, CTR, MQL, SQL, pipeline, ABM, growth hacking.
+ 
+## HR Manager keywords
+ 
+**Core keywords:** talent acquisition, HRIS, Workday, performance management, compensation benchmarking, employee relations, DEI, onboarding, workforce planning, compliance, FLSA, FMLA, succession planning, engagement survey.
+ 
+## Operations Manager keywords
+ 
+**Core keywords:** process improvement, operational efficiency, KPIs, SLAs, cross-functional coordination, vendor management, budget management, Six Sigma, Lean, project management, Jira, Asana, stakeholder alignment.
+ 
+## How to use keywords naturally — not stuff them
+ 
+Keyword stuffing (repeating terms unnaturally or hiding keywords in white text) is both unethical and detectable. Modern ATS systems can flag stuffing, and any recruiter who reads your resume will immediately notice something is wrong.
+ 
+The right approach: put keywords inside bullets that describe real work you did with them. "Reduced customer churn by 18% by building a data-driven segmentation model using Python and scikit-learn" uses four keywords naturally in a compelling, quantified statement.
+ 
+Run your resume through Preciprocal's free ATS checker after each revision. It shows exactly which keywords from the job description are present, which are missing, and how your overall match score moves — so you're optimizing with real data, not guesswork.`
+  },
+ 
+  {
+    slug: "how-to-write-a-resume-with-no-experience",
+    title: "How to Write a Resume With No Experience in 2026 (Complete Guide)",
+    description: "No work experience doesn't mean no resume. Here's exactly how to build a compelling resume from internships, projects, coursework, and volunteer work — and still get interviews.",
+    category: "Resume",
+    readTime: "9 min read",
+    publishedAt: "2026-04-07",
+    featured: true,
+    content: `## The mindset shift: you have more than you think
+ 
+"No experience" almost never means zero experience — it means no full-time professional experience. That's a very different thing. Internships, class projects, freelance work, volunteer roles, open-source contributions, part-time jobs, research, and extracurriculars all count. The goal is to present what you have in the most compelling way possible, structured exactly as professional experience would be.
+ 
+Recruiters hiring entry-level candidates know you don't have a 10-year track record. They're evaluating potential, learning speed, initiative, and whether you've done anything relevant — no matter how small.
+ 
+## The right resume structure when you have no experience
+ 
+**Section order for entry-level candidates:**
+ 
+1. Contact information (name, phone, email, LinkedIn, GitHub if relevant)
+2. Summary (2–3 lines — optional but effective)
+3. Education (put this first, unlike experienced candidates)
+4. Skills
+5. Projects (treat these like work experience)
+6. Experience (internships, part-time, volunteer, research)
+7. Certifications / Awards / Activities
+ 
+Move Education to the top because it's your strongest credential right now. As you gain professional experience, it moves back down.
+ 
+## How to write about projects like work experience
+ 
+Projects are the most underutilized section on entry-level resumes. Treat every significant project — academic, personal, or open-source — exactly like a job entry. Give it a title, the technologies used, a date range, and bullet points describing what you built and what impact it had.
+ 
+**Weak project entry:**
+"E-commerce website — built a website using React and Node.js"
+ 
+**Strong project entry:**
+"Full-Stack E-Commerce Platform | React, Node.js, PostgreSQL | Jan 2026 – Mar 2026
+- Built a full-stack marketplace with user authentication, product search, and Stripe payment processing
+- Reduced page load time by 40% through lazy loading and image optimization
+- Deployed on AWS EC2 with a CI/CD pipeline using GitHub Actions"
+ 
+The second version reads like a job. Same project, completely different impression.
+ 
+## Turning internships and part-time jobs into strong bullets
+ 
+Even unrelated experience can demonstrate transferable skills. The key is leading with the skill, not the task.
+ 
+**Weak:** "Helped customers at the front desk and answered phones"
+**Strong:** "Handled 50+ daily customer inquiries, resolving complaints with a documented 94% satisfaction rate"
+ 
+**Weak:** "Worked on a team to organize events"
+**Strong:** "Coordinated logistics for 3 campus events attended by 400+ students, managing vendor relationships and a $2,000 budget"
+ 
+Always ask: what was the scope? What was the result? What skill does this demonstrate?
+ 
+## Writing a strong entry-level resume summary
+ 
+Two or three sentences at the top of your resume can set the frame before a recruiter reads a single bullet. For entry-level candidates, the formula is:
+ 
+[Current status] + [relevant skills/focus] + [what you're looking for and why]
+ 
+**Example for CS graduate:**
+"Computer Science graduate from the University of Michigan with a focus on machine learning and backend development. Built 4 full-stack projects and completed a data engineering internship at a Series A startup. Seeking a software engineering role where I can apply my experience in Python and distributed systems to real-world scale problems."
+ 
+## The ATS problem for entry-level resumes
+ 
+Entry-level resumes fail ATS at a higher rate than experienced resumes because they contain fewer keywords. The fix is the same: read the job description carefully, identify the keywords they use for skills and tools, and make sure those exact terms appear in your Skills section and project bullets.
+ 
+Use Preciprocal's free ATS checker to score your resume against any job description before you apply — it shows you exactly which keywords to add and where.`
+  },
+ 
+  {
+    slug: "resume-summary-examples-2026",
+    title: "Resume Summary Examples That Actually Work in 2026 (By Role)",
+    description: "The resume summary is the first thing recruiters read. Here are 12 word-for-word examples for software engineers, product managers, analysts, and more — plus the formula behind each one.",
+    category: "Resume",
+    readTime: "7 min read",
+    publishedAt: "2026-04-14",
+    content: `## Why most resume summaries are useless
+ 
+Open any resume database and you'll see the same summaries repeated thousands of times: "Results-driven professional with 5+ years of experience seeking a challenging role where I can leverage my skills..." These summaries add zero information. A recruiter learns nothing about you from them.
+ 
+A strong resume summary does three things in two to three sentences: establishes your professional identity, names your strongest credentials, and signals why this role makes sense for you. It's not a generic description — it's a specific pitch.
+ 
+## The formula
+ 
+[Job title / professional identity] + [years of experience or strongest credential] + [1–2 specific achievements or skills] + [what you're looking for next]
+ 
+Keep it to 2–3 sentences. Under 60 words. No buzzwords like "passionate," "results-driven," or "team player."
+ 
+## Software Engineer — 3 years experience
+ 
+"Software engineer with 3 years building distributed backend systems in Python and Go at a Series B fintech. Reduced API latency by 60% through service decomposition and led migration of monolithic architecture to microservices serving 1.2M daily users. Looking for a senior engineering role focused on platform reliability at scale."
+ 
+## Software Engineer — New Graduate
+ 
+"CS graduate from Georgia Tech specializing in distributed systems and machine learning. Built a real-time fraud detection system (Python, Kafka) as a capstone project and completed two software engineering internships. Seeking an entry-level SWE role to build production-scale systems alongside experienced engineers."
+ 
+## Product Manager — 4 years experience
+ 
+"Product manager with 4 years shipping B2B SaaS at a growth-stage startup, responsible for a product line generating $8M ARR. Led 0-to-1 launch of an analytics dashboard that became the team's highest NPS feature. Looking for a senior PM role at a company building developer tools or data infrastructure."
+ 
+## Data Analyst — 2 years experience
+ 
+"Data analyst with 2 years at a retail e-commerce company, specializing in customer behavior analysis and A/B testing. Built automated reporting pipelines in SQL and Python that reduced weekly reporting time from 6 hours to 20 minutes. Seeking a role where I can move from analysis into data science and predictive modeling."
+ 
+## Marketing Manager — 5 years experience
+ 
+"Marketing manager with 5 years in B2B SaaS demand generation, responsible for campaigns driving $3M in pipeline annually. Grew organic traffic 4x through content and SEO over 18 months. Looking for a head of marketing role at a Series A or B company scaling from product-market fit to growth."
+ 
+## Financial Analyst — Investment Banking
+ 
+"Investment banking analyst with 2 years in the M&A group at a mid-market advisory firm, having worked on 11 closed transactions totaling $2.4B in deal value. Proficient in LBO modeling, DCF analysis, and comparable company analysis. Targeting a buyside role in private equity or growth equity."
+ 
+## UX Designer — 3 years experience
+ 
+"UX designer with 3 years designing mobile-first consumer apps, having shipped features to 500K+ users at a Series C startup. Reduced onboarding drop-off by 35% through user research and A/B-tested redesign. Looking for a product design role at a company where design is treated as a core business function."
+ 
+## Operations Manager — 6 years experience
+ 
+"Operations manager with 6 years driving process improvements in logistics and supply chain. Implemented a warehouse management system that cut order processing time by 28% and reduced picking errors by 41%. Seeking a director of operations role at a high-growth e-commerce or marketplace company."
+ 
+## What makes each of these work
+ 
+Every example above contains a specific number, a real credential, and a clear direction for what comes next. None of them use adjectives like "passionate" or "motivated." They read like the first sentence of a conversation a recruiter wants to continue.
+ 
+Write your summary last, after you've finished all your bullets — you'll know better what your strongest points are.`
+  },
+ 
+  // ── INTERVIEW PREP ────────────────────────────────────────────────────────
+ 
+  {
+    slug: "software-engineer-interview-prep-guide",
+    title: "The Complete Software Engineer Interview Prep Guide (2026)",
+    description: "A systematic 8-week study plan for SWE interviews — data structures, algorithms, system design, behavioral, and company-specific prep that actually gets offers.",
+    category: "Interview Prep",
+    readTime: "14 min read",
+    publishedAt: "2026-01-22",
+    updatedAt: "2026-04-27",
+    featured: true,
+    content: `## The honest truth about software engineering interview prep
+ 
+Most engineers prepare wrong. They grind 300 random LeetCode problems, then panic when the actual interview asks something they haven't seen before. The problem isn't the problems — it's the absence of a system. Random grinding builds a library of solutions you've memorized. Systematic prep builds pattern recognition — the ability to see a new problem and know immediately which approach to apply.
+ 
+This 8-week guide is for engineers targeting FAANG, top-tier startups, and competitive mid-market companies. If you have less than 8 weeks, compress it — but keep the structure. The sequence matters.
+ 
+## Week 1–2: Data structures and core algorithms
+ 
+Start with the foundations. Every interview problem is a variation of a pattern you should already own.
+ 
+**Arrays and two pointers (3 days):** The two-pointer pattern reduces O(n²) brute-force solutions to O(n). Master it with: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water, Move Zeroes. Understand when to use same-direction vs. opposite-direction pointers.
+ 
+**Sliding window (2 days):** For subarray and substring problems with a constraint — "longest," "minimum," "maximum" with a condition. Practice: Longest Substring Without Repeating Characters, Minimum Window Substring, Fruit Into Baskets.
+ 
+**Hash maps and sets (2 days):** O(1) lookup transforms many O(n²) problems to O(n). Practice: Group Anagrams, Top K Frequent Elements, Valid Anagram, Longest Consecutive Sequence.
+ 
+**Linked lists (2 days):** Reverse Linked List, Merge Two Sorted Lists, Linked List Cycle, LRU Cache, Reorder List. The slow/fast pointer pattern for cycle detection is a fundamental technique.
+ 
+**Stacks and queues (1 day):** Valid Parentheses, Daily Temperatures, Min Stack, Evaluate Reverse Polish Notation.
+ 
+## Week 3–4: Trees and graphs
+ 
+**Binary trees (3 days):** Master all traversals — recursive and iterative. Practice: Maximum Depth, Validate BST, Level Order Traversal (BFS), Lowest Common Ancestor, Serialize and Deserialize Binary Tree. The recursive tree pattern (solve left, solve right, combine) applies to dozens of problems.
+ 
+**Binary search trees (1 day):** Kth Smallest in BST, Convert Sorted Array to BST.
+ 
+**Graphs (3 days):** BFS for shortest path and level-by-level traversal. DFS for connectivity, cycle detection, and pathfinding. Practice: Number of Islands, Clone Graph, Course Schedule I and II, Word Ladder, Pacific Atlantic Water Flow, Number of Connected Components.
+ 
+**Heaps and priority queues (1 day):** Top K Frequent Elements (again, from heap angle), Merge K Sorted Lists, Find Median from Data Stream, Task Scheduler.
+ 
+## Week 5: Dynamic programming
+ 
+DP is the most feared topic — and the most pattern-heavy. The key insight: identify whether it's a DP problem (optimal substructure + overlapping subproblems), then find the state definition.
+ 
+**1D DP (2 days):** Climbing Stairs, House Robber I and II, Coin Change, Jump Game, Longest Increasing Subsequence.
+ 
+**2D DP (2 days):** Unique Paths, Minimum Path Sum, Longest Common Subsequence, Edit Distance.
+ 
+**String DP (1 day):** Word Break, Palindromic Substrings, Longest Palindromic Substring.
+ 
+## Week 6: System design
+ 
+System design interviews are evaluated differently from coding rounds. There's no correct answer — there are only well-reasoned trade-offs. The interview is a conversation, not a test.
+ 
+**The 6-step framework:** (1) Clarify requirements — functional and non-functional. (2) Estimate scale — users, RPS, storage, read/write ratio. (3) Define the API — what endpoints, inputs, outputs. (4) Draw high-level design — clients, load balancers, app servers, database, cache, CDN. (5) Deep dive — the interviewer will steer you; common topics are database schema, caching strategy, scaling the write path, message queues. (6) Failure and edge cases — what breaks under load?
+ 
+**Practice these 6 systems:** URL shortener, Twitter/Instagram feed, YouTube, WhatsApp/messaging app, Uber (ride matching), Google search autocomplete. Each one teaches a different architectural pattern.
+ 
+## Week 7: Behavioral prep
+ 
+Behavioral interviews are the most underprepared part of engineering interviews. Engineers assume coding will compensate. It won't — especially at FAANG, where behavioral rounds are formal and separately scored.
+ 
+Prepare 7 STAR stories (Situation, Task, Action, Result):
+1. A project you led end-to-end
+2. A technical disagreement with a teammate or manager
+3. Your biggest technical failure
+4. A decision you made under ambiguity or incomplete information
+5. A time you influenced a decision without formal authority
+6. A technical decision you made and had to defend
+7. Your strongest accomplishment — fully quantified
+ 
+Practice each story out loud. Target 2 minutes. Say "I" not "we."
+ 
+## Week 8: Company-specific prep and mock interviews
+ 
+Research your target company's engineering blog, conference talks, and recent open-source releases. Understand their tech stack and scale. For Google, understand the 4 evaluation dimensions. For Amazon, know all 16 Leadership Principles by name. For Meta, understand their engineering culture and how they think about product impact.
+ 
+Do at least 4 full mock interviews — voice-based, under time pressure, with behavioral questions mixed in. Coding silently at your keyboard is a completely different skill from coding while explaining your thinking to another person. Practice the right skill.
+ 
+Preciprocal's AI mock interview panel simulates a multi-round onsite with an HR screener, technical interviewer, and hiring manager simultaneously — scored across communication, technical depth, and problem-solving structure.`
+  },
+ 
+  {
+    slug: "how-to-answer-tell-me-about-yourself",
+    title: "How to Answer 'Tell Me About Yourself' in 2026 (With Word-for-Word Examples)",
+    description: "The most common interview question — and the most mishandled. A proven framework plus 4 word-for-word example answers for tech, business, finance, and entry-level roles.",
+    category: "Behavioral",
+    readTime: "7 min read",
+    publishedAt: "2026-02-03",
+    updatedAt: "2026-04-27",
+    content: `## Why this question trips up even experienced candidates
+ 
+"Tell me about yourself" feels open-ended, which makes most people either recite their resume chronologically or default to vague generalities like "I'm a hard worker who's passionate about technology." Neither approach works.
+ 
+This question is the one moment in an interview where you fully control the narrative. The interviewer isn't asking for your life story — they're giving you a warm-up pitch. They want to know if you're articulate, self-aware, and if your background is relevant to what they need. A strong answer sets the tone for the entire interview.
+ 
+## The Present-Past-Future framework
+ 
+The most reliable framework for answering this question:
+ 
+**Present (1–2 sentences):** Current role, scope, what you're actively working on. If you're a student, current status and focus area.
+ 
+**Past (2–3 sentences):** The two or three highlights that explain why you're good at what you do. Not a full chronological history — only what's relevant to this role.
+ 
+**Future (2–3 sentences):** Why this role, at this company, right now. Name something specific about the company, team, or problem that genuinely interests you.
+ 
+Target length: 90 seconds to 2 minutes. Practice it until it sounds natural, not rehearsed.
+ 
+## Example 1: Software Engineer (3 years experience)
+ 
+"Right now I'm a software engineer at a Series B fintech where I work on payments infrastructure — specifically the reconciliation pipeline that processes about $2 billion in transactions daily. Before that I was the second engineer at an early-stage startup, which meant I touched everything from API design to on-call response.
+ 
+The thing I'm most proud of is reducing our failed transaction rate by 38% by redesigning our idempotency key system — that was a six-week project I led end-to-end.
+ 
+I'm here because I want to work on reliability at a company that's actually at Google-scale. What I read about your deterministic simulation testing on the engineering blog is exactly the kind of problem I want to be solving — I've been thinking about those failure mode challenges for a while now."
+ 
+## Example 2: New Graduate (CS)
+ 
+"I'm finishing my CS degree at Georgia Tech in May, focused on machine learning and distributed systems. Last summer I interned at Capital One, where I built a feature extraction pipeline that improved fraud detection precision by 8 percentage points — it went to production before I left the internship.
+ 
+Before that I built an open-source neural network visualization tool that picked up about 400 GitHub stars, which I wasn't expecting. I learned more debugging that project at 2am than in any single class.
+ 
+I'm excited about this role because your team is working on real-time ML inference at scale, and that intersection of systems engineering and ML is exactly the direction I want to go deep in. The paper your team published on model serving latency was genuinely what put you on my shortlist."
+ 
+## Example 3: Product Manager (5 years)
+ 
+"I'm currently a senior PM at a B2B SaaS company where I own our analytics and reporting product line — about $12M ARR and a team of 8 engineers. I came up through a product analyst role, which means I'm unusually comfortable in the data layer, which has been a real advantage when working with engineering.
+ 
+The launch I'm most proud of is a self-serve dashboard we shipped 18 months ago that became our highest NPS feature and reduced support tickets by 30% in the first quarter. It also directly contributed to our net revenue retention moving from 108% to 119%.
+ 
+I'm here because you're building developer infrastructure, and I've been trying to get closer to that space for two years. The fact that your PM team works embedded in engineering — I read the article your CPO wrote about that — is specifically what made me reach out."
+ 
+## Example 4: Finance (Investment Banking Analyst)
+ 
+"I just finished two years as an M&A analyst in the technology group at Jefferies, where I worked on 9 closed transactions. About half were software deals, which is the space I want to stay in.
+ 
+The deal I learned the most from was a $600M SaaS acquisition where I built most of the financial model and got to sit in on management presentations. I got very good at holding up under pressure in a room.
+ 
+I'm targeting the buyside because I want to be on the side of the table making investment decisions rather than executing processes. The opportunity here to be more active in sourcing, and the fund's focus on vertical SaaS, is exactly where I think I can add the most value."
+ 
+## What every strong answer has in common
+ 
+All four examples contain a specific number, a named accomplishment, and a future section that references something real and specific about the company. None of them use adjectives like "passionate," "results-driven," or "hardworking." They let the content speak.
+ 
+Practice your answer out loud at least five times before the interview. The goal is to sound like you're telling a story to a friend, not reciting a prepared speech.`
+  },
+ 
+  {
+    slug: "star-method-behavioral-interviews",
+    title: "The STAR Method: How to Answer Every Behavioral Interview Question (2026)",
+    description: "Situation, Task, Action, Result — the framework behind every great behavioral answer. Includes 15 question-to-story mappings and the 5 most common STAR mistakes to avoid.",
+    category: "Behavioral",
+    readTime: "11 min read",
+    publishedAt: "2026-02-10",
+    updatedAt: "2026-04-27",
+    content: `## What STAR is and why behavioral interviews exist
+ 
+STAR: Situation, Task, Action, Result. Behavioral interviews are based on the premise that past behavior is the best predictor of future behavior. Interviewers aren't asking hypotheticals — they want evidence from your actual experience.
+ 
+"I'm good at conflict resolution" tells the interviewer nothing. It's an assertion anyone can make. A specific story with a real conflict, a clear action you took, and a measurable result gives them the evidence they need to believe you.
+ 
+STAR works because it forces you to be specific. It also gives interviewers a consistent framework for comparing candidates — which is why every major company, from Google to McKinsey to Goldman Sachs, uses behavioral interviews as a formal part of their process.
+ 
+## How to build each STAR section
+ 
+**Situation (2–3 sentences):** Set the scene with just enough context for the interviewer to understand the stakes. Don't over-explain the background — candidates who spend 3 minutes on situation and 30 seconds on action have their STAR inverted.
+ 
+**Task (1–2 sentences):** Your specific responsibility in the situation. Distinguish between what the team was doing and what YOU specifically were accountable for.
+ 
+**Action (3–5 sentences):** The most important section. This is where most candidates are too vague. Go deep on what YOU specifically did — the decisions you made, how you approached the problem, why you chose one path over another. Say "I" not "we."
+ 
+**Result (2–3 sentences):** What happened? Quantify wherever possible. Close with what you learned or what you'd do differently — this shows self-awareness, which is a distinct signal interviewers look for.
+ 
+## The 7 core stories to prepare
+ 
+Prepare one strong STAR story for each of these categories. Most behavioral questions map to one of them.
+ 
+**Story 1 — Leadership and ownership:** A time you took initiative or ownership beyond your formal responsibilities. The story should show you identified a problem, decided to own it without being asked, and drove it to resolution.
+ 
+**Story 2 — Conflict or disagreement:** A time you disagreed with a manager, teammate, or stakeholder. Shows your ability to handle tension professionally, advocate for your position, and maintain relationships. Key: show you pushed back with data, not emotion.
+ 
+**Story 3 — Failure or mistake:** Something that went wrong and what you changed as a result. This is not a trick question. Interviewers who ask this are specifically evaluating self-awareness and learning agility. The worst answer is claiming you've never failed.
+ 
+**Story 4 — Ambiguity:** A time you had to make a meaningful decision without complete information. Shows judgment, comfort with uncertainty, and how you de-risk decisions.
+ 
+**Story 5 — Influence without authority:** Getting meaningful results when you didn't have direct control. A cross-functional project, convincing a team that didn't report to you, or changing a process you didn't own.
+ 
+**Story 6 — Technical decision:** A significant technical or analytical decision you made and defended. Shows the depth and quality of your judgment in your domain.
+ 
+**Story 7 — Greatest accomplishment:** Your best story, fully quantified. This is the story you should be most excited to tell and most practiced in delivering.
+ 
+## 15 questions mapped to your 7 stories
+ 
+- "Tell me about a time you took initiative" → Story 1
+- "Describe a time you led a project" → Story 1
+- "Tell me about a disagreement with your manager" → Story 2
+- "Describe a time you had to push back on a stakeholder" → Story 2
+- "Tell me about your biggest failure" → Story 3
+- "Describe a mistake you made and what you learned" → Story 3
+- "How do you handle ambiguity?" → Story 4
+- "Tell me about a time you made a decision with incomplete information" → Story 4
+- "Tell me about influencing without authority" → Story 5
+- "How do you work with teams that don't report to you?" → Story 5
+- "Describe a difficult technical decision" → Story 6
+- "Tell me about a time you disagreed with a technical direction" → Story 6
+- "What's your greatest accomplishment?" → Story 7
+- "Tell me about the project you're most proud of" → Story 7
+- "Why should we hire you?" → Story 7 + elements of Stories 1 and 6
+ 
+## The 5 most common STAR mistakes
+ 
+**Mistake 1: Too much Situation.** Three minutes of context, thirty seconds of action. The ratio should be roughly reversed. If your story has more than 3 sentences of background, cut it.
+ 
+**Mistake 2: Using "we" throughout the Action.** The interviewer is evaluating you, not your team. Replace every "we" with what you specifically did. "We built the feature" becomes "I designed the API and owned the backend implementation while coordinating with two frontend engineers."
+ 
+**Mistake 3: No numbers in the Result.** "The project was a success" is meaningless. "We reduced complaints by 22%, and the fix shipped before the quarterly deadline" is evidence. If you don't have a number, estimate one — "roughly 30% improvement in processing time" is better than nothing.
+ 
+**Mistake 4: Not practicing out loud.** Stories that seem crisp in your head sound fragmented and over-long when spoken. Practice each story at full voice until you can deliver it in 2–3 minutes smoothly.
+ 
+**Mistake 5: Picking stories where you weren't the key actor.** If your story is really about what your team did and you were a supporting player, find a different story. The interviewer needs to be able to evaluate your individual contribution.
+ 
+## Using Preciprocal to practice STAR
+ 
+Preciprocal's AI mock interview panel asks real behavioral questions and gives you scored feedback on your STAR structure — specifically whether your Action section had enough depth, whether your Result was quantified, and whether your answer was the right length. It's the fastest way to identify which of your 7 stories need work before the real interview.`
+  },
+ 
+  // ── TECHNICAL ─────────────────────────────────────────────────────────────
+ 
+  {
+    slug: "system-design-interview-tips",
+    title: "System Design Interview Tips: How to Think Like a Senior Engineer (2026)",
+    description: "The 6-step framework top candidates use to tackle any system design question — from clarifying requirements to drawing the final architecture. Includes 5 fully worked examples.",
+    category: "Technical",
+    readTime: "15 min read",
+    publishedAt: "2026-02-17",
+    updatedAt: "2026-04-27",
+    content: `## Why system design interviews are different from everything else
+ 
+Coding interviews have right answers. System design interviews don't. There are only trade-offs — and the interviewer is evaluating how clearly you reason about them, not whether you arrive at the "correct" architecture.
+ 
+This changes how you should approach the interview. The goal is not to draw the perfect diagram. The goal is to demonstrate that you understand the problem deeply, can break it into components systematically, and can make explicit, well-reasoned trade-offs at each decision point.
+ 
+Senior engineers who struggle with system design interviews usually have the technical knowledge — they just don't have a framework for structuring the conversation. That's what this guide gives you.
+ 
+## The 6-step framework
+ 
+**Step 1 — Clarify requirements (5 minutes)**
+ 
+Never start drawing. The single most common mistake in system design interviews is jumping to architecture before understanding the problem. Spend the first 5 minutes asking:
+ 
+- Who are the users? What's the core use case?
+- What are the non-functional requirements? (availability, latency, consistency, durability)
+- Are there any constraints I should know about? (budget, existing infrastructure, compliance)
+- What does success look like? (SLA targets, performance benchmarks)
+ 
+Write these down on the whiteboard or virtual canvas. This does two things: it shows the interviewer you approach problems methodically, and it prevents you from designing the wrong system.
+ 
+**Step 2 — Estimate scale (3 minutes)**
+ 
+The numbers drive the architecture. A system serving 10,000 users needs completely different solutions than one serving 100 million. Estimate:
+ 
+- Daily Active Users (DAU) and Monthly Active Users (MAU)
+- Requests per second (read and write separately)
+- Read/write ratio
+- Data storage requirements (per user, total, growth rate)
+- Bandwidth requirements
+ 
+These estimates don't need to be precise — they need to be in the right order of magnitude. "We're looking at roughly 10,000 requests/second at peak" is enough to justify architectural decisions.
+ 
+**Step 3 — Define the API (3 minutes)**
+ 
+Before drawing any boxes, define the interface. What endpoints does the system expose? What do they take as input and return as output?
+ 
+This forces precision. If you can't define the API, you don't yet understand the system well enough to design it. It also surfaces edge cases early — what does the endpoint return when there's an error? When there's no data?
+ 
+**Step 4 — High-level design (10 minutes)**
+ 
+Now draw the major components: client, load balancer, API servers, databases, cache, CDN, message queues. Don't go deep yet — this is the 30,000-foot view.
+ 
+Identify the critical paths: the write path (how data gets into the system) and the read path (how data gets out). Mark the component that will be the bottleneck at scale.
+ 
+**Step 5 — Deep dive (15 minutes)**
+ 
+The interviewer will steer you to the parts they care about most. Common deep-dive areas:
+ 
+- Database schema design and indexing strategy
+- Caching strategy: what to cache, cache invalidation, consistency
+- Scaling the write path under high load
+- Message queue design for async processing
+- Handling failures: what happens when a server goes down?
+ 
+Drive this section. Don't wait to be asked — propose the most interesting trade-off in the design and explain how you'd address it.
+ 
+**Step 6 — Failure and edge cases (5 minutes)**
+ 
+Walk through failure scenarios: server crash, database unavailable, network partition, traffic spike 10x normal. What degrades gracefully? What fails hard? What do you add to handle each case (circuit breakers, retry logic, backpressure, rate limiting)?
+ 
+## 5 worked examples
+ 
+**URL shortener:**
+Write path — base62-encode a unique ID (counter or UUID), store short→long mapping in a key-value store (Redis for speed + database for durability). Read path — check Redis cache first, fall back to database, return 301 redirect. Key trade-off: 301 (permanent, browser-caches) vs. 302 (temporary, you see all traffic) redirect.
+ 
+**Twitter/Instagram feed:**
+Two approaches — fan-out on write (push to followers' feeds at write time, fast reads, expensive writes for users with many followers) vs. fan-out on read (compute feed at read time, expensive reads, simple writes). Twitter uses a hybrid: fan-out on write for most users, fan-out on read for celebrities with millions of followers.
+ 
+**YouTube:**
+Separate write (upload) and read (stream) paths entirely. Upload: video → blob storage → transcoding queue → multiple resolutions → CDN. Stream: manifest file from CDN → chunked video delivery. Video data is immutable — ideal for aggressive CDN caching. Metadata (views, likes) is mutable — store in a database with eventual consistency acceptable.
+ 
+**WhatsApp messaging:**
+Exactly-once delivery is the core challenge. Message queue per recipient device. Sequence numbers per conversation to guarantee ordering. Offline delivery: store messages until device comes online, then push. End-to-end encryption: keys never leave devices.
+ 
+**Google search autocomplete:**
+Trie data structure for prefix lookup. At Google's scale: pre-compute top-K completions per prefix offline, store in a distributed cache. Separate ranking layer weighted by query frequency, location, and recency. Update suggestions asynchronously — don't recompute on every query.
+ 
+## What interviewers want to see (and almost never get)
+ 
+They want you to drive the conversation. To know where the hard parts are before they ask. To say: "The most interesting trade-off here is X vs. Y. Given our availability requirement of 99.99%, I'd choose X even though it adds latency, because..." — that sentence structure is the whole interview.
+ 
+Most candidates wait to be led. The candidates who get offers lead.`
+  },
+ 
+  {
+    slug: "leetcode-study-plan-4-weeks",
+    title: "The 4-Week LeetCode Study Plan That Gets You Hired (2026)",
+    description: "Stop grinding random problems. This structured 4-week plan covers the exact patterns that appear in the vast majority of FAANG and top startup interviews — with daily targets.",
+    category: "Technical",
+    readTime: "8 min read",
+    publishedAt: "2026-03-17",
+    updatedAt: "2026-04-27",
+    content: `## The problem with random grinding
+ 
+Ask any engineer who has failed a FAANG loop despite solving 250 LeetCode problems: it's entirely possible to grind hundreds of problems and still be unable to reliably solve a medium you haven't seen before. The issue isn't effort — it's approach.
+ 
+Random grinding builds a library of solutions you've memorized. Structured prep builds pattern recognition — the ability to look at a new problem you've never seen and immediately recognize which of a dozen patterns it belongs to, then apply the appropriate template.
+ 
+This 4-week plan is built around that principle. The goal isn't to have seen the problem before. The goal is to recognize the shape of the problem.
+ 
+## Rules before you start
+ 
+**Rule 1:** Solve every problem twice — once now, once 48 hours later without looking at your previous solution. Retention requires repetition.
+ 
+**Rule 2:** Time-box your struggle. Spend 15–20 minutes genuinely trying before you look at a solution. Less than that and you don't build problem-solving instincts. More than that and you're wasting time.
+ 
+**Rule 3:** Practice out loud. Coding silently at your keyboard is a fundamentally different skill from coding while explaining your approach. Start narrating your thinking from day one.
+ 
+**Rule 4:** Track patterns, not problems. After each problem, write one sentence: "This was a [pattern] problem. The signal was [X]."
+ 
+## Week 1: Arrays, strings, and hash maps
+ 
+**Days 1–2: Two pointers**
+ 
+The two-pointer pattern reduces O(n²) brute-force solutions to O(n) by using two indices moving through an array in coordinated ways. Two categories: same-direction (sliding window variation) and opposite-direction (converging pointers).
+ 
+Problems: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water, Move Zeroes, Valid Palindrome.
+ 
+Signal: "Find pair/triplet," "sorted array," "from both ends."
+ 
+**Days 3–4: Sliding window**
+ 
+For subarray and substring problems with a constraint. The window expands to include elements and shrinks when the constraint is violated.
+ 
+Problems: Longest Substring Without Repeating Characters, Minimum Window Substring, Longest Subarray With K Ones, Fruit Into Baskets, Permutation in String.
+ 
+Signal: "Longest/shortest subarray/substring with [condition]."
+ 
+**Day 5: Hash maps**
+ 
+O(1) lookup transforms many O(n²) problems. When you see "find duplicates," "count frequencies," or "check membership quickly" — hash map.
+ 
+Problems: Group Anagrams, Top K Frequent Elements, Longest Consecutive Sequence, Subarray Sum Equals K.
+ 
+**Daily target:** 4–5 problems. Understand the pattern, not just the solution.
+ 
+## Week 2: Trees and graphs
+ 
+**Days 1–2: Binary trees**
+ 
+Master both recursive and iterative traversals before anything else. The recursive pattern (solve left subtree, solve right subtree, combine results) applies to a remarkable number of tree problems.
+ 
+Problems: Maximum Depth, Invert Binary Tree, Diameter of Binary Tree, Level Order Traversal (BFS), Lowest Common Ancestor, Validate BST, Symmetric Tree, Path Sum.
+ 
+**Day 3: Binary search trees**
+ 
+Problems: Kth Smallest Element in BST, Convert Sorted Array to BST, Delete Node in BST.
+ 
+**Days 4–5: Graphs**
+ 
+BFS for shortest path and level-by-level traversal. DFS for connectivity, cycle detection, and exploring all paths.
+ 
+Problems: Number of Islands, Clone Graph, Course Schedule I and II (topological sort), Word Ladder (BFS), Pacific Atlantic Water Flow, Number of Connected Components, Accounts Merge (Union-Find).
+ 
+## Week 3: Dynamic programming and binary search
+ 
+**Days 1–2: 1D dynamic programming**
+ 
+DP problems have two properties: optimal substructure (optimal solution built from optimal sub-solutions) and overlapping subproblems (same sub-problems computed repeatedly). When you see these, reach for DP.
+ 
+Problems: Climbing Stairs, House Robber I and II, Coin Change, Jump Game, Longest Increasing Subsequence, Word Break.
+ 
+**Days 3–4: 2D dynamic programming**
+ 
+Problems: Unique Paths, Minimum Path Sum, Longest Common Subsequence, Edit Distance, 0/1 Knapsack.
+ 
+**Day 5: Binary search**
+ 
+Beyond searching sorted arrays — binary search on the answer. When you can frame "find the minimum X such that [condition]" or "find the maximum X such that [condition]," you can binary search even when there's no explicit sorted array.
+ 
+Problems: Find Minimum in Rotated Sorted Array, Search in Rotated Sorted Array, Koko Eating Bananas, Capacity to Ship Packages, Find Peak Element.
+ 
+## Week 4: Stacks, heaps, and mock interviews
+ 
+**Days 1–2: Stacks and monotonic stacks**
+ 
+The monotonic stack maintains a stack where elements are always in increasing (or decreasing) order. It solves "next greater/smaller element" problems in O(n).
+ 
+Problems: Valid Parentheses, Daily Temperatures, Largest Rectangle in Histogram, Trapping Rain Water (stack approach), Next Greater Element.
+ 
+**Day 3: Heaps and priority queues**
+ 
+Use a min-heap for "K smallest" problems, a max-heap for "K largest." Use a heap whenever you need repeated min/max extraction from a dynamic set.
+ 
+Problems: Top K Frequent Elements (heap approach), Merge K Sorted Lists, K Closest Points to Origin, Task Scheduler, Find Median from Data Stream.
+ 
+**Days 4–7: Full mock interviews**
+ 
+Set a 45-minute timer. Pick two problems you haven't seen. Solve them while talking out loud, explaining your approach, complexity, and any alternatives. Then pick 3 behavioral questions and answer them using STAR.
+ 
+Do at least 4 full mocks this week. Preciprocal's AI mock interview simulates a real technical interview with an interviewer who asks follow-up questions and scores your communication alongside your solution quality.
+ 
+## The uncomfortable truth about prep time
+ 
+Four weeks of structured prep beats twelve weeks of random grinding. But four weeks of structured prep requires genuine focus — 2–3 hours per day minimum. If you can't commit to that, extend the timeline and maintain the structure. The structure is the point.`
+  },
+ 
+  // ── BEHAVIORAL ───────────────────────────────────────────────────────────
+ 
+  {
+    slug: "how-to-prepare-for-behavioral-interview",
+    title: "How to Prepare for a Behavioral Interview in 2026 (Complete Guide)",
+    description: "Behavioral interviews trip up even strong candidates. Here's the systematic prep process — story bank, practice method, and company-specific tips — that gets consistent offers.",
+    category: "Behavioral",
+    readTime: "10 min read",
+    publishedAt: "2026-04-21",
+    featured: true,
+    content: `## Why behavioral interviews catch people off guard
+ 
+Technical candidates assume their coding skills will carry them. Non-technical candidates wing it and hope their personality comes through. Neither approach produces consistent results.
+ 
+Behavioral interviews are a skill, and like every skill, they respond to deliberate practice. The candidates who consistently perform well in behavioral rounds aren't necessarily more interesting or experienced — they're more prepared. They've thought carefully about their experiences, identified the best stories to tell, structured them with a clear framework, and practiced delivering them until they sound natural.
+ 
+This guide gives you that system.
+ 
+## Step 1: Build your story bank
+ 
+Before any specific preparation, you need raw material. Set aside 90 minutes and write down every significant professional experience you can think of — projects you led, problems you solved, conflicts you navigated, failures you learned from, accomplishments you're proud of, decisions that were hard to make.
+ 
+Don't filter yet. Just list everything. Aim for 20–30 experiences across your career or academic history.
+ 
+Then tag each experience by category:
+- Leadership / ownership
+- Conflict / disagreement
+- Failure / mistake
+- Ambiguity / uncertainty
+- Influence without authority
+- Technical or analytical decision
+- Accomplishment / impact
+ 
+Most strong experiences can serve multiple categories depending on how you tell them. A project you led that also involved a conflict with a stakeholder can answer questions about leadership OR conflict. That's called a "flexible story" — and having 3–4 of them is more valuable than having 10 single-use stories.
+ 
+## Step 2: Select your best 7 stories
+ 
+From your bank, select the strongest story for each category. Evaluate on three criteria:
+ 
+**Impact:** Does the story have measurable results? The stronger the numbers, the more compelling.
+ 
+**Your role:** Are you clearly the main actor? Or are you a supporting player in someone else's story?
+ 
+**Relevance:** Does it connect to the kind of work you'll do in the target role?
+ 
+These 7 stories will answer the vast majority of behavioral questions you'll ever face.
+ 
+## Step 3: Structure each story using STAR
+ 
+For each of your 7 stories, write out the full STAR structure:
+ 
+**Situation:** 2–3 sentences of context. What was the setting? What were the stakes?
+ 
+**Task:** 1–2 sentences on YOUR specific responsibility. Not the team's objective — your role.
+ 
+**Action:** 4–6 sentences on what YOU specifically did. This is the most important section. Be concrete about the decisions you made, the approach you chose, and why. Use "I" not "we."
+ 
+**Result:** 2–3 sentences on what happened, ideally with numbers. Include what you learned or would do differently.
+ 
+## Step 4: Calibrate length and delivery
+ 
+The target for a behavioral answer is 2–3 minutes. Less than 90 seconds and you're probably not being concrete enough. More than 4 minutes and you're losing the interviewer.
+ 
+Practice each story out loud — not in your head, not by reading your notes, but fully spoken out loud, as if you're in the interview. Record yourself and listen back. The most common issues:
+ 
+- Too much Situation (fix: cut background ruthlessly)
+- Not enough Action detail (fix: add one more sentence about what you specifically decided)
+- Vague Result (fix: add a number, even an estimate)
+- Sounds scripted (fix: practice until you can tell the story 5 different ways from the same notes)
+ 
+## Step 5: Company-specific preparation
+ 
+Different companies emphasize different behavioral dimensions. Preparing without knowing the company's framework is like preparing for a test without knowing the subject.
+ 
+**Amazon:** All behavioral questions map explicitly to their 16 Leadership Principles. Every interviewer is assigned specific LPs to probe. Prepare a distinct STAR story for each of the 16. The most commonly probed: Customer Obsession, Ownership, Bias for Action, Dive Deep, and Disagree and Commit.
+ 
+**Google:** Evaluates on Leadership, Cognitive Ability, Googleyness (culture fit), and Role Knowledge. Googleyness questions look for intellectual humility, curiosity, comfort in ambiguity, and evidence you've supported teammates without personal benefit.
+ 
+**Meta:** Prioritizes impact and speed. Stories about moving fast, iterating based on data, and making bold bets resonate. Be ready for "Tell me about a time you shipped something that failed" — Meta values learning from failure over avoiding it.
+ 
+**McKinsey / consulting:** Structure and communication quality are evaluated as carefully as the content. A structured STAR answer that clearly delineates situation from action matters as much as the substance.
+ 
+## The practice schedule
+ 
+**Week 1:** Write story bank and select 7 stories. Write full STAR structure for each.
+ 
+**Week 2:** Practice each story out loud once per day. Record 2–3 and listen back.
+ 
+**Week 3:** Do 3 full mock behavioral interviews (30–40 minutes each, multiple questions). Get feedback on structure, length, and whether your stories are compelling.
+ 
+**Week before interview:** Do one full mock focused specifically on the target company's behavioral framework.
+ 
+Preciprocal's behavioral mock interviews include real follow-up questions — interviewers dig into your stories with "why did you choose that approach?" and "what would you do differently?" — which is exactly what real interviewers do. Being able to go deeper on any story is as important as the story itself.`
+  },
+ 
+  // ── CAREER STRATEGY ───────────────────────────────────────────────────────
+ 
+  {
+    slug: "how-to-negotiate-salary-offer",
+    title: "How to Negotiate Your Salary Offer in 2026 (Scripts That Work)",
+    description: "Most offers have room to negotiate. Here are the exact scripts, timing strategies, and tactics that can meaningfully increase your total compensation — without risking the offer.",
+    category: "Career Strategy",
+    readTime: "10 min read",
+    publishedAt: "2026-02-24",
+    updatedAt: "2026-04-27",
+    content: `## The negotiation most people skip — and what it costs them
+ 
+Roughly 60% of job seekers accept the first offer without negotiating. This is one of the most expensive decisions in a career, and it compounds over time. Starting salary anchors every future raise, bonus, and offer for years. A $5,000 increase negotiated at 25 is worth over $100,000 over a decade when you account for raises and compounding.
+ 
+Negotiating is expected. Most companies have a budget range for every position — the first offer is rarely the top of that range. A recruiter who makes an offer isn't surprised or offended when you negotiate. They budget for it.
+ 
+## Step 1: Research before you respond
+ 
+Never negotiate from intuition. Before you respond to any offer, spend time building a clear picture of the market:
+ 
+**Levels.fyi** for tech roles — the most accurate source for total compensation at technology companies, including base, equity, and bonus data by level and company.
+ 
+**Glassdoor and LinkedIn Salary** for non-tech and broader role data.
+ 
+**Blind** for anonymous peer data at specific companies.
+ 
+**Your network** — talking to people at the same company or in the same role is the most accurate data source you'll have.
+ 
+Know two numbers before you pick up the phone: your target (what you'd be delighted to get) and your walk-away (the minimum that makes this move worthwhile for you). Write them down.
+ 
+## Step 2: Understand total compensation
+ 
+Base salary is the most visible number, but it's not always the most important one. Total compensation includes:
+ 
+- Base salary
+- Annual bonus (and whether it's guaranteed or performance-based)
+- Equity (RSUs vested over 4 years, stock options, or ESOP)
+- Signing bonus
+- Benefits (health insurance value, 401k match, parental leave)
+- Remote/flexibility (worth real money in commute time and costs)
+- Title (affects future negotiations and external perception)
+ 
+At some tech companies, equity can be 30–50% of total compensation. Negotiating a 5% higher base while leaving equity on the table might be the wrong optimization.
+ 
+## Step 3: Timing — when to negotiate
+ 
+Do not negotiate during the interview process. If you're asked for salary expectations in early rounds, deflect gracefully:
+ 
+"I'd love to learn more about the full scope of the role before we discuss numbers — I'm confident we can find something that works for both sides once I have a better picture."
+ 
+When you receive a written offer, take 24–48 hours before responding. This is both professional and practical — you need time to evaluate the full package, do your research, and formulate your counter. A recruiter who pressures you to decide in hours is unusual; it's reasonable to ask for a day or two.
+ 
+## Step 4: The counter — exact scripts
+ 
+**By email (recommended for first response):**
+ 
+"Thank you so much — I'm genuinely excited about this role and the team. After reviewing the offer, I was hoping we could discuss the base salary. Based on my research on the market rate for this role and my experience with [specific relevant experience], I was targeting something closer to $[target]. Is there flexibility there?"
+ 
+**By phone:**
+ 
+"I appreciate the offer, and I want to be clear that I'm very interested in this role. I've done some research on the market, and I was hoping to land closer to $[target]. Is that something we could work toward?"
+ 
+**When they say no to base:**
+ 
+"I completely understand. Would there be any flexibility on the signing bonus or equity? Even closing part of that gap would be meaningful."
+ 
+**When you have a competing offer:**
+ 
+"I want to be transparent with you — I do have another offer I'm considering at $[X]. I'm more excited about this opportunity, which is why I'm bringing this to you first rather than just accepting the other. Is there any way to get closer to that number?"
+ 
+**When you want everything:**
+ 
+Don't ask for everything at once. Counter on base first. If they can't move on base, pivot to signing bonus, then equity. Asking for all three simultaneously signals inexperience.
+ 
+## What else can be negotiated
+ 
+**Signing bonus:** One-time cost to the company, often easier to move than base because it doesn't affect comp structure permanently. If they can't move base, always ask about signing.
+ 
+**Equity:** More complex to negotiate, but often where the most value is at growth-stage companies. Ask for the current 409A valuation and the strike price if they're offering options.
+ 
+**Start date:** Giving proper notice to your current employer protects your professional reputation. Asking for 4 weeks instead of 2 is reasonable and usually accommodated.
+ 
+**Title:** Matters for your external perception, future negotiations, and LinkedIn. If they can't move on comp, a title bump costs them nothing.
+ 
+**Remote flexibility:** If the role is hybrid, ask whether you can reduce required in-office days. This has real value.
+ 
+## The one rule that covers everything
+ 
+You cannot lose an offer by negotiating professionally. Companies do not rescind offers because a candidate countered once, politely, by email. The risk of negotiating is essentially zero. The cost of not negotiating is real and permanent.
+ 
+Ask once. Be specific. Be professional. Then stop — don't continue negotiating after they've given their best number.`
+  },
+ 
+  {
+    slug: "how-to-write-cover-letter-2026",
+    title: "How to Write a Cover Letter That Gets Read in 2026 (With Examples)",
+    description: "Most cover letters are ignored. Here's the format, framework, and word-for-word examples that make recruiters stop and read — for tech, business, and entry-level roles.",
+    category: "Career Strategy",
+    readTime: "9 min read",
+    publishedAt: "2026-04-28",
+    featured: true,
+    content: `## Do cover letters still matter in 2026?
+ 
+Yes — but differently than most people think. Most cover letters are ignored because they're generic. When a cover letter is specific, well-written, and actually addresses the company and role, it gets read. And when it gets read, it works.
+ 
+The bar is so low — most candidates submit generic letters or none at all — that a genuinely good cover letter is a meaningful differentiator, especially for competitive roles and companies that care about communication skills.
+ 
+The goal is not to summarize your resume. The recruiter can read your resume. The goal is to give them one compelling reason to interview you that the resume alone doesn't provide.
+ 
+## The format
+ 
+Keep it to one page. Three to four short paragraphs. Total length: 250–350 words. Use the same header as your resume (name, contact info). Address it to the hiring manager by name if you can find it — LinkedIn, the company website, or the job posting usually reveals it.
+ 
+**Paragraph 1 — The hook:** One or two sentences. State the role you're applying for and lead with your strongest relevant credential or a specific reason this company interests you. Do not start with "I am writing to express my interest in..." — every other letter starts this way.
+ 
+**Paragraph 2 — Your strongest proof:** Two to three sentences on the most relevant accomplishment from your background. Quantify it. Connect it explicitly to what the job posting says they need.
+ 
+**Paragraph 3 — Why this company specifically:** One to two sentences on something real and specific about the company — a recent launch, a public blog post, a product direction, a mission statement. This paragraph is what separates your letter from every generic one in the pile.
+ 
+**Paragraph 4 — The close:** One sentence expressing enthusiasm and asking for the conversation. "I'd love the chance to discuss how my experience with [X] could contribute to [Y] — I'm happy to make time at your convenience."
+ 
+## Example 1: Software Engineer at Stripe
+ 
+"I'm applying for the software engineering role on Stripe's payments infrastructure team. For the past two years I've built the reconciliation and settlement pipeline at a Series B fintech that processes $1.8B in monthly transaction volume — which means I've spent most of my career solving exactly the reliability and correctness problems that define payments infrastructure work.
+ 
+In my current role, I reduced failed transaction rates by 38% by redesigning our idempotency key system — a project I led end-to-end from design review through production monitoring. I also migrated our core settlement service from a monolith to an event-driven architecture, which improved processing throughput by 4x.
+ 
+What draws me specifically to Stripe is the deterministic simulation testing work your infrastructure team published last year. Building systems that can be reliably tested at that level of fidelity is the kind of engineering problem I find genuinely interesting — and it's clear Stripe is thinking about correctness in ways that most companies aren't.
+ 
+I'd love the chance to talk about how my experience could contribute to the team."
+ 
+## Example 2: Product Manager at Figma
+ 
+"I'm applying for the senior product manager role on Figma's enterprise team. I've spent the last three years as a PM at a B2B SaaS company owning a product line generating $12M ARR, with a focus on making complex workflows feel simple for non-technical users — which maps directly to the challenge of bringing collaborative design to enterprise teams.
+ 
+My most relevant work: I led a 0-to-1 redesign of our reporting and analytics experience that reduced the time-to-first-insight from 45 minutes to under 5, increased feature adoption by 60%, and became the highest-NPS feature in our product. The core insight driving that work was that most "power users" had simply learned to work around our complexity — not that they needed the complexity.
+ 
+I've used Figma daily for three years, and the thing I find most interesting about the enterprise direction is the governance and permissions work — specifically how you make those constraints feel like features rather than friction. That's a product problem I'd enjoy working on.
+ 
+I'd be glad to share more detail about my background and what I'd bring to this role."
+ 
+## Example 3: Entry-level Marketing Analyst
+ 
+"I'm applying for the marketing analyst role at HubSpot. I'm finishing my marketing degree at Boston University in May, and I've spent the last year focused specifically on the intersection of content strategy and SEO that this role centers on.
+ 
+Last semester I managed the content and SEO strategy for a student-run e-commerce project that grew organic traffic from 400 to 6,200 monthly visitors over 6 months through systematic keyword research, on-page optimization, and content calendar execution. I also completed HubSpot's Content Marketing and SEO certifications — yes, I know that might seem like a cliché for a HubSpot application, but I've actually used both frameworks in practice.
+ 
+What drew me to HubSpot specifically is your inbound marketing philosophy. I've been following the HubSpot blog since sophomore year — the content you produce is genuinely the highest-quality marketing education available for free anywhere. Working on the team that produces that content would be a real privilege.
+ 
+I'd love to connect and share more about my work."
+ 
+## The fastest way to write a great cover letter
+ 
+The hardest part of a cover letter is the company-specific paragraph. Most candidates either skip it entirely or write something generic ("I've always admired your company's innovative approach...").
+ 
+Preciprocal's cover letter generator researches the company in real-time, analyzes the job description, and writes the specific paragraph for you based on your resume — including real company details that make the letter feel personal. It's the part that takes most people the longest and produces the most generic output when done manually.`
+  },
+ 
+  // ── COMPANY GUIDES ────────────────────────────────────────────────────────
+ 
+  {
+    slug: "google-interview-process-explained",
+    title: "The Google Interview Process Explained in Full (2026)",
+    description: "Everything you need to know about Google's hiring process — from the recruiter screen to the hiring committee vote — and how to prepare for each stage.",
+    category: "Company Guides",
+    readTime: "12 min read",
+    publishedAt: "2026-03-03",
+    updatedAt: "2026-04-27",
+    content: `## How Google actually evaluates candidates
+ 
+Google assesses candidates on four dimensions, and they're explicit about this:
+ 
+**General Cognitive Ability (GCA):** How you think through problems. Demonstrated through coding and system design — but they're evaluating reasoning, not just correctness. "How did you approach this?" matters as much as "Did you get the right answer?"
+ 
+**Leadership:** Evidence you've taken initiative, influenced outcomes, and driven results beyond your formal scope. Evaluated in behavioral rounds using structured STAR questions.
+ 
+**Googleyness:** A catch-all for culture and character — intellectual humility, genuine curiosity, comfort in ambiguity, and evidence that you've supported teammates without personal benefit. Harder to prepare for specifically, but visible in how you talk about past experiences.
+ 
+**Role-Related Knowledge (RRK):** Domain-specific expertise for the specific role. For SWEs, this is primarily coding and system design. For PMs, it's product sense and analytical thinking. For data scientists, it's statistics, SQL, and ML.
+ 
+One thing that surprises candidates: pedigree carries almost no weight in Google's process. A state school graduate who interviews well is evaluated identically to a Stanford PhD. The process is designed to measure demonstrated ability, not credentials.
+ 
+## The process, step by step
+ 
+**Stage 1 — Recruiter screen (30 minutes)**
+ 
+A conversation about your background, interest in Google, and availability. The recruiter is checking for communication clarity, genuine enthusiasm (they can tell the difference), and basic fit with the role. Be warm, specific about why you want to work at Google — "great company, smart people" is not specific — and clear about your experience.
+ 
+**Stage 2 — Technical phone screen (45–60 minutes)**
+ 
+One or two LeetCode-style problems, usually medium difficulty. The key behavior difference here: talk through your thinking out loud. Google interviewers are evaluating your problem-solving process, not just whether you arrive at the solution. A candidate who thinks clearly and communicates well while arriving at a good-enough solution often outperforms a candidate who codes the optimal solution silently.
+ 
+Start with a brute-force approach, state the complexity, and then optimize. Don't code in silence.
+ 
+**Stage 3 — Onsite interviews (4–5 rounds, 45 minutes each)**
+ 
+The onsite is typically:
+- 2 coding rounds (medium to hard — graphs, DP, trees, string manipulation)
+- 1 system design round (L4+ / 3+ years experience)
+- 1–2 Googleyness/behavioral rounds
+ 
+Each round is scored independently by the interviewer. You don't know how previous rounds went, and interviewers aren't told either. Treat every round as a fresh start.
+ 
+**Stage 4 — Hiring committee review**
+ 
+This is Google's most distinctive process. A group of 4–5 engineers who were NOT in your interviews review your complete packet — all interviewer feedback, your resume, your work samples if provided — and vote on whether to extend an offer.
+ 
+This means two things: (1) one weak round can sink you even if all other rounds were strong, because the committee sees everything, and (2) your packet needs to make sense on paper, not just in person. Write clearly in any documents or take-home work. Your interviewer's written summary of your performance will be read by people who never met you.
+ 
+**Stage 5 — Team matching (L4+)**
+ 
+After committee approval, you meet potential teams. This is less of a hurdle than previous stages — you've been approved by the committee. The matching process can take weeks, especially if you have specific team preferences.
+ 
+## How to prepare for Google specifically
+ 
+**Coding:** 75–100 curated LeetCode problems is the right target, not 300 random ones. Focus on trees, graphs, dynamic programming, and string manipulation. Prioritize mediums — Google's phone screen is almost always medium difficulty.
+ 
+**System design:** 8–10 practice systems using a consistent framework. Google-scale systems to practice: search autocomplete, YouTube, Google Maps, Gmail, Google Docs (real-time collaborative editing), Google Analytics.
+ 
+**Googleyness:** Prepare stories that show intellectual humility — times you changed your mind based on evidence, sought feedback proactively, or supported a teammate's idea over your own. Avoid stories where you were simply right and everyone else was wrong.
+ 
+## The most common mistake Google candidates make
+ 
+Most candidates underestimate behavioral prep and over-prepare on LeetCode. The reality: Google's onsite has 1–2 behavioral rounds that are evaluated with the same rigor as coding rounds. A candidate who crushes every coding round but stumbles through behavioral questions will fail the hiring committee review.
+ 
+Prepare your behavioral stories with the same care as your LeetCode patterns. Practice them out loud. Get scored on structure and depth. Preciprocal's mock interviews simulate the Google behavioral format specifically, with follow-up questions that mirror what Google interviewers actually ask.`
+  },
+ 
+  {
+    slug: "amazon-leadership-principles-interview",
+    title: "How to Answer All 16 Amazon Leadership Principles Questions (2026)",
+    description: "Amazon's 16 Leadership Principles are the actual hiring rubric — every interview question maps to one. Here's what each principle means, what interviewers look for, and frameworks for answering.",
+    category: "Company Guides",
+    readTime: "16 min read",
+    publishedAt: "2026-03-10",
+    updatedAt: "2026-04-27",
+    content: `## Why the Leadership Principles matter more than anything else at Amazon
+ 
+At Amazon, the Leadership Principles aren't values on a poster. They're the hiring rubric. Every interviewer is assigned specific LPs to probe in their round. Every hiring decision is made against them. The Bar Raiser — a specially designated interviewer present at every loop — uses LPs as their primary framework for evaluating candidates.
+ 
+This means the single most important thing you can do to prepare for an Amazon interview is to prepare one strong STAR story for every LP. Not a vague familiarity — a specific, quantified, practiced story you can tell under pressure.
+ 
+## The 5 most-probed LPs (prioritize these first)
+ 
+**1. Customer Obsession**
+ 
+What they're looking for: evidence you identified what customers truly needed — often distinct from what they asked for — and prioritized their outcome even when it was inconvenient or difficult.
+ 
+Weak signal: "I always try to put the customer first." This is an assertion anyone can make.
+ 
+Strong signal: A specific situation where customer data or direct customer contact revealed a need you hadn't anticipated, and you changed course to address it with a quantified result.
+ 
+Watch out for: defining "customer" too narrowly. Your internal stakeholders are also your customers at Amazon.
+ 
+**2. Ownership**
+ 
+What they're looking for: you treated the company's problem as your problem, even when it wasn't in your job description. Evidence you didn't say "that's not my team's responsibility."
+ 
+Key: the ownership story needs a concrete action, not just a statement of responsibility. What did you do? What did you decide? What were the results?
+ 
+**3. Bias for Action**
+ 
+What they're looking for: calculated risk-taking. You launched with 70% confidence instead of waiting for 100%. You identified which decisions were reversible vs. irreversible and moved faster on reversible ones.
+ 
+This LP explicitly values speed over perfection on low-stakes decisions. Your story should demonstrate judgment about WHEN to move fast — not just that you moved fast.
+ 
+**4. Dive Deep**
+ 
+What they're looking for: you discovered something important by looking at the raw data, talking directly to customers, or going beyond the surface of a problem — and that discovery changed a decision.
+ 
+The story structure Amazon loves: "Everyone thought X. I looked at [specific data/evidence]. It revealed Y. We changed our approach and achieved Z."
+ 
+**5. Disagree and Commit**
+ 
+This LP requires two things in the same story, which is what makes it hard: (1) you genuinely pushed back on a decision you disagreed with, using data and reasoning to make your case, AND (2) once the decision was made (possibly against your recommendation), you executed with full commitment and didn't undermine it.
+ 
+The mistake: telling a story where you disagreed and then turned out to be right, without demonstrating the "commit" part. Or worse, a story where you just did what you were told.
+ 
+## The remaining 11 LPs
+ 
+**Invent and Simplify:** You created something new OR simplified an existing process significantly. Simpler solutions demonstrate more skill. "We simplified our deployment process from 12 steps to 3, reducing deployment time from 2 hours to 8 minutes."
+ 
+**Are Right, A Lot:** Your judgment was validated. Critical: show you sought diverse input and considered opposing views before deciding. Being "right" without a process for being right is not the story they want.
+ 
+**Learn and Be Curious:** Something significant you taught yourself recently and applied. Should feel genuinely interesting to you — forced enthusiasm is visible.
+ 
+**Hire and Develop the Best:** You actively helped a teammate grow, raised the bar on a hiring decision, or mentored someone who then exceeded expectations.
+ 
+**Insist on the Highest Standards:** You held a quality bar higher than strictly required, even when it slowed things down. The best stories here have a concrete moment where you said "this isn't good enough yet" and what you did instead.
+ 
+**Think Big:** You proposed something that changed trajectory — not incremental optimization, but a different direction. Show the reasoning behind the vision, not just the vision itself.
+ 
+**Frugality:** You accomplished more with fewer resources. The frugality LP isn't about cutting corners — it's about finding ingenious solutions within constraints.
+ 
+**Earn Trust:** Two types of stories work here: (1) you admitted a mistake publicly and rebuilt trust through transparency, or (2) you gave difficult feedback to a peer or manager directly and respectfully.
+ 
+**Deliver Results:** Your clearest example of measurable impact. Numbers are not optional here — they're the point. If you don't have numbers, estimate them and say you're estimating.
+ 
+**Strive to Be Earth's Best Employer** (added in 2021): Usually probed for managers and senior individual contributors. How have you created an environment where people can do their best work? Shows up as questions about psychological safety, inclusion, and team culture.
+ 
+**Success and Scale Bring Broad Responsibility** (added in 2021): Primarily for senior leaders. How have you thought about the broader societal impact of your work?
+ 
+## Practical prep system
+ 
+**Week 1:** Write one STAR story for each LP. Focus on stories with quantified results.
+ 
+**Week 2:** Practice each story out loud. Identify which stories are weak (no numbers, you weren't the key actor, result was vague) and replace them.
+ 
+**Week 3:** Do two full mock behavioral interviews, Amazon-format. Practice going deeper when the interviewer asks follow-ups.
+ 
+**Day before:** Review your 16 stories once. Don't cram new material.
+ 
+The most important rule: practice saying "I" not "we." Amazon interviewers will probe relentlessly if they can't distinguish your contribution from your team's.`
+  },
+ 
+  {
+    slug: "how-to-follow-up-after-interview",
+    title: "How to Follow Up After a Job Interview in 2026 (With Templates)",
+    description: "Most candidates either don't follow up or follow up wrong. Here's exactly when to send a thank-you note, what to say, and how to check in without being annoying.",
+    category: "Career Strategy",
+    readTime: "7 min read",
+    publishedAt: "2026-04-28",
+    content: `## Does following up actually matter?
+ 
+Yes — but not for the reason most people think. A follow-up note won't save a weak interview performance, and it won't be the deciding factor in a competitive process with strong candidates. What it does is reinforce a positive impression, demonstrate professionalism, and occasionally provide a small but real differentiator when candidates are close.
+ 
+More importantly: most candidates don't do it, or do it poorly. A well-written, specific thank-you note is memorable precisely because it's rare.
+ 
+## The thank-you note: when and how
+ 
+Send a thank-you email within 24 hours of the interview — ideally within a few hours. Not a text message. Not a LinkedIn message. An email to each person who interviewed you separately, if you have their addresses.
+ 
+**What makes a thank-you note work:**
+ 
+It's specific to the conversation. Reference something you actually discussed — a problem, an idea, a question they asked. Generic thank-you notes ("Thank you for your time, I enjoyed learning about the role") add nothing. Specific ones show you were paying attention.
+ 
+It reinforces your candidacy. One sentence connecting something from the conversation to your qualifications.
+ 
+It's short. Three to five sentences maximum. This is not a second cover letter.
+ 
+## Thank-you note template (adapt, don't copy)
+ 
+Subject: Thank you — [Your Name] / [Role Name] interview
+ 
+"Hi [Name],
+ 
+Thank you for taking the time to speak with me today about the [role] position. I especially enjoyed our conversation about [specific topic discussed] — it confirmed for me that the [challenge/problem/direction] is exactly the kind of work I want to be doing.
+ 
+The point you made about [something specific] resonated — I've been thinking about [brief relevant thought].
+ 
+I'm very interested in the role and would welcome the chance to continue the conversation. Please let me know if there's anything else I can provide."
+ 
+## Example: Software Engineer at Stripe
+ 
+"Hi Sarah,
+ 
+Thank you for taking the time today — I really enjoyed the conversation about Stripe's approach to idempotency and how you handle distributed failures at that scale.
+ 
+The question you raised about how I'd approach consistency in a multi-region deployment got me thinking more after our call — I'd handle it differently than I described, using a single-writer architecture per region with async replication, and I'd be happy to walk through that reasoning if it's useful.
+ 
+I'm genuinely excited about this role and the team. Looking forward to hearing from you."
+ 
+## When there's no response: how to check in without being annoying
+ 
+If you were given a timeline and that date has passed, it's completely appropriate to follow up once.
+ 
+"Hi [Name], I wanted to follow up on my interview for the [role] position. I know you mentioned a decision by [date] — I'm still very interested and would love to hear where things stand when you have a chance."
+ 
+If you weren't given a timeline, wait one week after the interview before following up.
+ 
+After two follow-ups with no response, stop. Continued follow-up beyond that point crosses from professional persistence into pressure, which works against you.
+ 
+## What not to do
+ 
+Don't ask "how did I do?" in a follow-up — it puts the interviewer in an awkward position and seems needy.
+ 
+Don't send identical notes to multiple interviewers — if they compare, it looks lazy.
+ 
+Don't follow up with the recruiter AND the hiring manager separately on the same day — it creates confusion and signals anxiety.
+ 
+Don't send a LinkedIn connection request immediately after the interview unless you had a particularly warm conversation where they invited it.
+ 
+## Using Preciprocal's interview debrief journal
+ 
+After the interview, before you write your thank-you note, spend 10 minutes in Preciprocal's debrief journal recording what you remember — questions asked, how you answered, what landed, what didn't. This serves two purposes: it gives you the material for a specific, compelling thank-you note, and it builds a record you can use to improve for future interviews.`
+  },
+ 
 ];
-
+ 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
 }
-
+ 
 export const ALL_BLOG_SLUGS = BLOG_POSTS.map((p) => p.slug);
 
 // ═══════════════════════════════════════════════════════════════════════════

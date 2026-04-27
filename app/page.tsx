@@ -3,6 +3,7 @@
  *
  * SEO changes from original:
  *   • Added WebSiteJsonLd (enables Google Sitelinks Search Box)
+ *   • Added WebPageJsonLd (links all schemas together — entity graph)
  *   • Richer keywords in metadata
  *   • Stronger description (includes price + guarantee for CTR)
  *   • All section-level aria-labels added for accessibility + crawlability
@@ -12,7 +13,7 @@
  */
 
 import type { Metadata } from "next";
-import { WebSiteJsonLd } from "@/components/JsonLd";
+import { WebSiteJsonLd, WebPageJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
@@ -85,8 +86,14 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* WebSiteJsonLd enables Sitelinks Search Box in Google */}
+      {/* WebSiteJsonLd — enables Sitelinks Search Box in Google */}
       <WebSiteJsonLd />
+
+      {/* WebPageJsonLd — links all schemas into a connected entity graph.
+          Tells Google this URL is a WebPage → part of this WebSite →
+          about this Organization → primary image is the OG image.
+          Improves Knowledge Panel eligibility and rich result completeness. */}
+      <WebPageJsonLd />
 
       <StickyBanner />
       <Navbar />
