@@ -43,20 +43,11 @@ function formatDate(iso: string) {
 function renderInline(text: string): React.ReactNode[] {
   return text.split(/(\*\*[^*]+\*\*)/).map((part, j) =>
     part.startsWith("**") && part.endsWith("**")
-      ? <strong key={j} style={{ color: "#e2e8f0" }} className="font-semibold">{part.slice(2, -2)}</strong>
+      ? <strong key={j} style={{ color: "#e2e8f0", fontWeight: 600 }} className="font-semibold">{part.slice(2, -2)}</strong>
       : part
   );
 }
 
-/**
- * Renders markdown-lite content:
- * - ## Heading  → <h2>
- * - ### Heading → <h3>
- * - **bold**    → <strong>
- * - - item      → <ul><li>
- * - 1. item     → <ol><li>
- * - blank lines → paragraph breaks
- */
 function renderContent(content: string) {
   const blocks = content.split(/\n\n+/).map((b) => b.trim()).filter(Boolean);
   const output: React.ReactNode[] = [];
@@ -64,20 +55,18 @@ function renderContent(content: string) {
   for (let i = 0; i < blocks.length; i++) {
     const block = blocks[i];
 
-    // ## H2
     if (block.startsWith("## ")) {
       output.push(
-        <h2 key={i} style={{ color: "#ffffff" }} className="text-xl sm:text-2xl font-bold mt-12 mb-4 leading-snug">
+        <h2 key={i} style={{ color: "#ffffff", fontWeight: 700 }} className="text-xl sm:text-2xl font-bold mt-12 mb-4 leading-snug">
           {renderInline(block.replace(/^## /, ""))}
         </h2>
       );
       continue;
     }
 
-    // ### H3
     if (block.startsWith("### ")) {
       output.push(
-        <h3 key={i} style={{ color: "#e2e8f0" }} className="text-lg font-semibold mt-8 mb-3 leading-snug">
+        <h3 key={i} style={{ color: "#e2e8f0", fontWeight: 600 }} className="text-lg font-semibold mt-8 mb-3 leading-snug">
           {renderInline(block.replace(/^### /, ""))}
         </h3>
       );
@@ -86,12 +75,11 @@ function renderContent(content: string) {
 
     const lines = block.split("\n").map((l) => l.trim());
 
-    // Unordered list
     if (lines.every((l) => /^[-*] /.test(l))) {
       output.push(
         <ul key={i} className="my-5 space-y-2.5 pl-5" style={{ listStyleType: "disc" }}>
           {lines.map((l, j) => (
-            <li key={j} style={{ color: "#94a3b8" }} className="leading-relaxed text-base pl-1">
+            <li key={j} style={{ color: "#94a3b8", fontWeight: 400 }} className="leading-relaxed text-base">
               {renderInline(l.replace(/^[-*] /, ""))}
             </li>
           ))}
@@ -100,12 +88,11 @@ function renderContent(content: string) {
       continue;
     }
 
-    // Ordered list
     if (lines.every((l) => /^\d+\. /.test(l))) {
       output.push(
         <ol key={i} className="my-5 space-y-2.5 pl-5" style={{ listStyleType: "decimal" }}>
           {lines.map((l, j) => (
-            <li key={j} style={{ color: "#94a3b8" }} className="leading-relaxed text-base pl-1">
+            <li key={j} style={{ color: "#94a3b8", fontWeight: 400 }} className="leading-relaxed text-base">
               {renderInline(l.replace(/^\d+\. /, ""))}
             </li>
           ))}
@@ -114,9 +101,8 @@ function renderContent(content: string) {
       continue;
     }
 
-    // Paragraph
     output.push(
-      <p key={i} style={{ color: "#94a3b8" }} className="leading-relaxed my-5 text-base">
+      <p key={i} style={{ color: "#94a3b8", fontWeight: 400 }} className="leading-relaxed my-5 text-base font-normal">
         {renderInline(block.split("\n").join(" "))}
       </p>
     );
@@ -176,15 +162,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </h1>
 
             <div className="flex items-center gap-4 mb-10" style={{ color: "#64748b" }}>
-              <span className="text-sm">Preciprocal Team</span>
+              <span className="text-sm font-normal">Preciprocal Team</span>
               <span>·</span>
-              <time dateTime={post.publishedAt} className="text-sm">{formatDate(post.publishedAt)}</time>
+              <time dateTime={post.publishedAt} className="text-sm font-normal">{formatDate(post.publishedAt)}</time>
               <span>·</span>
-              <span className="text-sm">{post.readTime}</span>
+              <span className="text-sm font-normal">{post.readTime}</span>
             </div>
 
             <p
-              className="text-lg leading-relaxed mb-10"
+              className="text-lg leading-relaxed mb-10 font-normal"
               style={{ color: "#94a3b8", borderLeft: "2px solid rgba(99,102,241,0.4)", paddingLeft: "1.25rem" }}
             >
               {post.description}
@@ -192,8 +178,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             <div className="mb-10 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
 
-            {/* Article — capped at readable line length */}
-            <article className="max-w-[680px]">
+            {/* Article — explicit font-normal to prevent h1 weight bleeding */}
+            <article className="max-w-[680px] font-normal">
               {renderContent(post.content)}
             </article>
 
@@ -207,7 +193,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               }}
             >
               <h2 style={{ color: "#ffffff" }} className="font-bold text-lg mb-2">Put this into practice</h2>
-              <p style={{ color: "#94a3b8" }} className="text-sm mb-4 leading-relaxed">
+              <p style={{ color: "#94a3b8" }} className="text-sm mb-4 leading-relaxed font-normal">
                 Reading about interviews is the first step. The second step is doing them. Preciprocal&apos;s AI mock
                 interviews simulate the real thing — voice-based, multi-round, scored across 5 dimensions.
               </p>
@@ -237,7 +223,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               }}
             >
               <h3 style={{ color: "#ffffff" }} className="font-bold text-sm mb-2">Practice what you read</h3>
-              <p style={{ color: "#94a3b8" }} className="text-xs leading-relaxed mb-4">
+              <p style={{ color: "#94a3b8" }} className="text-xs leading-relaxed mb-4 font-normal">
                 AI mock interviews, resume scoring, cover letters, and job tracking — all in one place. $9.99/mo.
               </p>
               <a
@@ -266,7 +252,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       >
                         {p.title}
                       </p>
-                      <p style={{ color: "#475569" }} className="text-[11px] mt-1">{p.readTime}</p>
+                      <p style={{ color: "#475569" }} className="text-[11px] mt-1 font-normal">{p.readTime}</p>
                     </Link>
                   ))}
                 </div>
