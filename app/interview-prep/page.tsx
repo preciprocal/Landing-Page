@@ -12,7 +12,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { COMPANIES } from "@/app/sitemap";
+import { ALL_COMPANIES } from "@/lib/constants";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
@@ -66,7 +66,7 @@ const DIFFICULTY_COLOR: Record<string, string> = {
 export default function InterviewPrepIndexPage() {
   const grouped = TIERS.map((tier) => ({
     tier,
-    companies: COMPANIES.filter((c) => COMPANY_DISPLAY[c]?.tier === tier),
+    companies: ALL_COMPANIES.filter((c) => COMPANY_DISPLAY[c]?.tier === tier),
   })).filter((g) => g.companies.length > 0);
 
   return (

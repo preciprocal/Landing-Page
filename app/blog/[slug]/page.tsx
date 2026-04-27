@@ -3,6 +3,8 @@
  *
  * All post data (BLOG_POSTS, getBlogPost, ALL_BLOG_SLUGS) lives in lib/constants.ts.
  * This file is pure rendering logic only.
+ *
+ * Fix: Next.js 15 requires params to be typed as Promise<{slug: string}>
  */
 
 import type { Metadata } from "next";
@@ -17,7 +19,7 @@ export async function generateStaticParams() {
   return ALL_BLOG_SLUGS.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) return {};
@@ -60,7 +62,7 @@ function renderContent(content: string) {
   });
 }
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) notFound();
