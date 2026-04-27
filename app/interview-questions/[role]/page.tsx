@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   return ALL_ROLES.map((role) => ({ role }));
 }
 
-export async function generateMetadata({ params }: { params: { role: string } }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ role: string }> }): Promise<Metadata> {
   const { role } = await params;
   if (!ALL_ROLES.includes(role as any)) return {};
   const meta = getRoleMeta(role);
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: { role: string } })
   };
 }
 
-export default async function RoleInterviewPage({ params }: { params: { role: string } }) {
+export default async function RoleInterviewPage({ params }: { params: Promise<{ role: string }> }) {
   const { role } = await params;
   if (!ALL_ROLES.includes(role as any)) notFound();
 
