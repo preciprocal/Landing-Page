@@ -6,6 +6,7 @@ import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -85,8 +86,8 @@ export const metadata: Metadata = {
   },
 
   verification: {
-  google: "Gx5JSJmIhdKsJydR1agYdbj3-GZw5Cm5Js3K16sbgbU",
-},
+    google: "Gx5JSJmIhdKsJydR1agYdbj3-GZw5Cm5Js3K16sbgbU",
+  },
 
   alternates: {
     canonical: "https://preciprocal.com",
@@ -125,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SoftwareAppJsonLd />
         <FAQJsonLd />
       </head>
-      <body className="font-sans">
+      <body className="font-sans font-normal">
         {children}
         {/* Cookie consent banner — renders client-side only, no SSR flash */}
         <CookieBanner />
