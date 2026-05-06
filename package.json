@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0",
     "lucide-react": "^1.7.0",
@@ -31,9 +32,7 @@
     "typescript": "^5.7.0"
   },
   "overrides": {
-    "framer-motion": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    }
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

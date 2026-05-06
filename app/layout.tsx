@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd, FAQJsonLd } from "@/components/JsonLd";
 import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -130,6 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         {/* Cookie consent banner — renders client-side only, no SSR flash */}
         <CookieBanner />
+        <Analytics/>
       </body>
     </html>
   );
