@@ -141,11 +141,11 @@ function ResumePanel({ highlight, appliedFixes, className = '' }: { highlight: s
           <p className="text-center text-[6.5px] sm:text-[7px] text-gray-500 mt-0.5">
             <span className="text-blue-600">arjun.patel@email.com</span> | +1 (617) 234-5678 | Boston, MA | <span className="text-blue-600">LinkedIn</span> | <span className="text-blue-600">GitHub</span> | <span className="text-blue-600">Portfolio</span>
           </p>
-          {af?.has('N/A — Missing section') && (
+          {af?.has('N/A: Missing section') && (
             <div className="mt-2 mb-1">
               <p className="font-bold text-[8px] text-gray-900 uppercase border-b border-gray-300 pb-0.5 mb-1">Professional Summary</p>
               <p className="text-[7px] text-emerald-800 bg-emerald-100 rounded px-1 py-0.5 leading-relaxed">
-                {af.get('N/A — Missing section')}
+                {af.get('N/A: Missing section')}
               </p>
             </div>
           )}
@@ -154,25 +154,25 @@ function ResumePanel({ highlight, appliedFixes, className = '' }: { highlight: s
           <p className="text-gray-600 italic text-[7px]">Master of Science in Computer Science</p>
           <p className="text-gray-500 text-[6.5px]">Relevant Courses: Machine Learning, Distributed Systems, Cloud Computing, NLP, Software Engineering</p>
           <p className="font-bold text-[8px] text-gray-900 uppercase border-b border-gray-300 pb-0.5 mt-2.5 mb-1">Professional Experience</p>
-          <div className="flex justify-between mt-1"><span className="font-semibold text-gray-800 text-[7.5px]">Datadog — Software Engineer Co-op</span><span className="text-gray-500 text-[6.5px]">Jan 2025 – Aug 2025</span></div>
+          <div className="flex justify-between mt-1"><span className="font-semibold text-gray-800 text-[7.5px]">Datadog, Software Engineer Co-op</span><span className="text-gray-500 text-[6.5px]">Jan 2025 – Aug 2025</span></div>
           <div className="ml-1.5 space-y-0.5 text-[7px] text-gray-600 mt-0.5">
             <ResumeLine highlight={hl} appliedFixes={af} text="• Designed and deployed Kubernetes-based microservices architecture, reducing deployment time by 3x and achieving 99.8% uptime" />
             <ResumeLine highlight={hl} appliedFixes={af} text="• Built real-time data pipeline processing 2M+ events/sec using Kafka and Spark Streaming, reducing alert latency by 40%" />
             <ResumeLine highlight={hl} appliedFixes={af} text="• Built automated testing suite covering 85% of codebase, catching 30% more regression bugs before production release" />
           </div>
-          <div className="flex justify-between mt-1.5"><span className="font-semibold text-gray-800 text-[7.5px]">Wayfair — Data Engineering Intern</span><span className="text-gray-500 text-[6.5px]">May 2024 – Aug 2024</span></div>
+          <div className="flex justify-between mt-1.5"><span className="font-semibold text-gray-800 text-[7.5px]">Wayfair, Data Engineering Intern</span><span className="text-gray-500 text-[6.5px]">May 2024 – Aug 2024</span></div>
           <div className="ml-1.5 space-y-0.5 text-[7px] text-gray-600 mt-0.5">
             <ResumeLine highlight={hl} appliedFixes={af} text="• Developed an automated ETL pipeline with Apache Airflow and Spark, processing 500GB+ of daily data" />
             <ResumeLine highlight={hl} appliedFixes={af} text="• Created a customer segmentation model analyzing 8M+ user profiles, driving a 22% lift in targeted recommendations" />
           </div>
-          <div className="flex justify-between mt-1.5"><span className="font-semibold text-gray-800 text-[7.5px]">Cognizant — Software Developer</span><span className="text-gray-500 text-[6.5px]">Jul 2022 – Jul 2024</span></div>
+          <div className="flex justify-between mt-1.5"><span className="font-semibold text-gray-800 text-[7.5px]">Cognizant, Software Developer</span><span className="text-gray-500 text-[6.5px]">Jul 2022 – Jul 2024</span></div>
           <div className="ml-1.5 space-y-0.5 text-[7px] text-gray-600 mt-0.5">
             <ResumeLine highlight={hl} appliedFixes={af} text="• Developed REST APIs in Java/Spring Boot serving 50K+ daily requests for an insurance claims platform" />
           </div>
           <p className="font-bold text-[8px] text-gray-900 uppercase border-b border-gray-300 pb-0.5 mt-2.5 mb-1">Projects</p>
           <div className="ml-1.5 space-y-0.5 text-[7px] text-gray-600">
-            <ResumeLine highlight={hl} appliedFixes={af} text="• SmartHire AI — ML-powered resume screening tool using BERT and GPT-4, processing 1,000+ applications with 92% accuracy" />
-            <ResumeLine highlight={hl} appliedFixes={af} text="• FinTrack — Real-time portfolio tracker with React, WebSocket, and Plaid API for 500+ active users" />
+            <ResumeLine highlight={hl} appliedFixes={af} text="• SmartHire AI: ML-powered resume screening tool using BERT and GPT-4, processing 1,000+ applications with 92% accuracy" />
+            <ResumeLine highlight={hl} appliedFixes={af} text="• FinTrack: Real-time portfolio tracker with React, WebSocket, and Plaid API for 500+ active users" />
           </div>
           <p className="font-bold text-[8px] text-gray-900 uppercase border-b border-gray-300 pb-0.5 mt-2.5 mb-1">Technical Skills</p>
           <div className="text-[7px] text-gray-600 space-y-0.5">

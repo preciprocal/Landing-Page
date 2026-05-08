@@ -58,10 +58,10 @@ const QUIZ_QUESTIONS = [
     explanation: 'Since p=0.03 < α=0.05, we reject the null hypothesis. The result is statistically significant at the 5% level. However, always check practical significance too.' },
   { q: 'What happens to required sample size when you halve the minimum detectable effect (MDE)?',
     options: ['Halves', 'Doubles', 'Quadruples', 'Stays the same'], correct: 2,
-    explanation: 'Sample size is inversely proportional to MDE². Halving MDE means you need 4x the sample. This is why detecting small effects requires massive experiments — exactly what Meta deals with at 2B+ users.' },
+    explanation: 'Sample size is inversely proportional to MDE². Halving MDE means you need 4x the sample. This is why detecting small effects requires massive experiments, exactly what Meta deals with at 2B+ users.' },
   { q: 'A metric improves for both iOS and Android users separately, but drops overall. This is called:',
     options: ['Selection bias', 'Simpson\'s Paradox', 'Survivorship bias', 'P-hacking'], correct: 1,
-    wrongExplanation: 'Selection bias is about non-random sampling. Simpson\'s Paradox occurs when a trend in subgroups reverses in the aggregate — often due to a lurking confounding variable like unequal group sizes.',
+    wrongExplanation: 'Selection bias is about non-random sampling. Simpson\'s Paradox occurs when a trend in subgroups reverses in the aggregate, often due to a lurking confounding variable like unequal group sizes.',
     explanation: 'Simpson\'s Paradox: a trend in subgroups reverses when combined. Common in A/B tests when traffic allocation differs across segments. Always check segment-level results at Meta.' },
 ];
 
@@ -297,7 +297,7 @@ function Sidebar({ checkedCount }: { checkedCount: number }) {
         <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-lg">
           <div className="flex items-center gap-1.5 mb-2">
             <Sparkles className="w-3 h-3 text-indigo-400" />
-            <span className="text-[9px] font-semibold text-indigo-400 uppercase tracking-widest">Today — Day 3</span>
+            <span className="text-[9px] font-semibold text-indigo-400 uppercase tracking-widest">Today, Day 3</span>
           </div>
           <p className="text-[10px] font-semibold text-white mb-0.5">A/B Testing & Experimentation</p>
           <p className="text-[8px] text-slate-500 mb-2">2.5h · {checkedCount}/7 tasks</p>
@@ -534,7 +534,7 @@ function AnalyticsView() {
               <div className="h-1.5 bg-white/[0.05] rounded-full overflow-hidden mb-1.5">
                 <div className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full" style={{ width: '47%' }} />
               </div>
-              <p className="text-[8px] text-slate-500">Building up — complete Day 3 and start system design to reach &quot;Almost Ready&quot;.</p>
+              <p className="text-[8px] text-slate-500">Building up: complete Day 3 and start system design to reach &quot;Almost Ready&quot;.</p>
             </div>
           </FadeIn>
 
@@ -571,11 +571,11 @@ function AnalyticsView() {
 // ─── Phase 5: AI Coach Chat ───────────────────────────────────────────────────
 
 const FULL_CHAT = [
-  { role: 'assistant' as const, text: "👋 Hi! I'm your AI interview coach. I see you're prepping for Data Scientist at Meta. You're on Day 3 — A/B Testing & Experimentation. What can I help with?" },
+  { role: 'assistant' as const, text: "👋 Hi! I'm your AI interview coach. I see you're prepping for Data Scientist at Meta. You're on Day 3: A/B Testing & Experimentation. What can I help with?" },
   { role: 'user' as const, text: "How do I calculate sample size for an A/B test?" },
   { role: 'assistant' as const, text: "Great question! Here's the framework:\n\n**You need 4 things:**\n1. **Baseline conversion rate** (e.g. 10%)\n2. **Minimum Detectable Effect** (e.g. 2% relative lift)\n3. **Significance level α** (usually 0.05)\n4. **Power 1-β** (usually 0.80)\n\nFormula: n = (Z_α/2 + Z_β)² × 2p(1-p) / δ²\n\nAt Meta's scale with billions of users, even tiny effects need huge samples. They'll ask you to reason about practical vs statistical significance." },
   { role: 'user' as const, text: "What if my A/B test shows the metric improved for both segments separately but dropped overall?" },
-  { role: 'assistant' as const, text: "That's **Simpson's Paradox**! 🎯 One of Meta's favorite interview questions.\n\n**Example:** Treatment helps both iOS (+2%) and Android (+1%), but overall metric drops. Why? Because treatment shifted traffic — more users were on the lower-performing platform.\n\n**Key insight:** Always check for confounding variables and segment-level results. At Meta, this comes up constantly with unequal traffic across countries, platforms, or user cohorts.\n\nWant me to give you a practice case?" },
+  { role: 'assistant' as const, text: "That's **Simpson's Paradox**! 🎯 One of Meta's favorite interview questions.\n\n**Example:** Treatment helps both iOS (+2%) and Android (+1%), but overall metric drops. Why? Because treatment shifted traffic, more users were on the lower-performing platform.\n\n**Key insight:** Always check for confounding variables and segment-level results. At Meta, this comes up constantly with unequal traffic across countries, platforms, or user cohorts.\n\nWant me to give you a practice case?" },
   { role: 'user' as const, text: "Yes! Give me a case study to practice" },
   { role: 'assistant' as const, text: "Here's a Meta-style case:\n\n**Scenario:** You launched a new News Feed ranking algorithm. Overall engagement dropped 3%, but engagement per session increased 5%. The PM wants to ship it. What do you do?\n\n**Think about:** What metric matters more? Could session count have dropped? Is this a novelty effect? How would you set up a holdout group?\n\nTake 5 minutes to structure your answer, then I'll walk through the ideal response. 🚀" },
 ];
@@ -977,7 +977,7 @@ function InteractiveView() {
                   <span className="ml-auto text-[14px] font-bold text-indigo-400">47</span>
                 </div>
                 <div className="h-1.5 bg-white/[0.05] rounded-full overflow-hidden mb-1.5"><div className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full" style={{ width: '47%' }} /></div>
-                <p className="text-[8px] text-slate-500">Building up — complete Day 3 and start system design to reach &quot;Almost Ready&quot;.</p>
+                <p className="text-[8px] text-slate-500">Building up: complete Day 3 and start system design to reach &quot;Almost Ready&quot;.</p>
               </div>
             </div>
           )}
@@ -1050,7 +1050,7 @@ function InteractiveView() {
                     <div className={`mt-2 p-2 rounded-lg text-[8px] leading-relaxed ${isCorrect ? 'bg-emerald-500/[0.06] border border-emerald-500/20 text-emerald-300' : 'bg-red-500/[0.06] border border-red-500/20'}`}>
                       {!isCorrect && (
                         <>
-                          <p className="text-red-300 mb-1"><span className="font-semibold">Your answer:</span> {q.options[userAnswer]} — {(q as { wrongExplanation?: string }).wrongExplanation || 'This is not correct.'}</p>
+                          <p className="text-red-300 mb-1"><span className="font-semibold">Your answer:</span> {q.options[userAnswer]}: {(q as { wrongExplanation?: string }).wrongExplanation || 'This is not correct.'}</p>
                           <p className="text-emerald-300 mb-1"><span className="font-semibold">Correct:</span> {q.options[q.correct]}</p>
                         </>
                       )}

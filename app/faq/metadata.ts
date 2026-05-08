@@ -15,9 +15,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ — Preciprocal",
+  title: "FAQ | Preciprocal",
   description:
-    "Answers to every question about Preciprocal — pricing, free plan, mock interview setup, ATS scoring, cover letter generation, data privacy, and cancellation.",
+    "Answers to every question about Preciprocal: pricing, free plan, mock interview setup, ATS scoring, cover letter generation, data privacy, and cancellation.",
   keywords: [
     "preciprocal faq",
     "AI interview prep questions",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: "https://preciprocal.com/faq",
   },
   openGraph: {
-    title: "Frequently Asked Questions — Preciprocal",
+    title: "Frequently Asked Questions | Preciprocal",
     description:
       "Answers to every question about pricing, features, data privacy, and getting started with Preciprocal.",
     url: "https://preciprocal.com/faq",

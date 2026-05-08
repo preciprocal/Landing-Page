@@ -35,7 +35,7 @@ const STRENGTHS = [
 ];
 
 const IMPROVEMENTS = [
-  { text: 'Study ML system design — recommendation systems, experimentation platforms, feature stores', priority: 'High' },
+  { text: 'Study ML system design: recommendation systems, experimentation platforms, feature stores', priority: 'High' },
   { text: 'Add more quantified metrics and measurable outcomes to behavioral examples', priority: 'Medium' },
   { text: 'Practice articulating trade-offs in technical decisions more clearly', priority: 'Medium' },
 ];
@@ -392,7 +392,7 @@ function LiveInterview({ step }: { step: number }) {
             <div className="flex items-center gap-1.5 mb-0.5">
               <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
               <span className="text-[7px] text-slate-400 font-medium">
-                Live Transcript {speakerId && speakerId !== 'you' ? `— ${participants.find(p => p.id === speakerId)?.name}` : speakerId === 'you' ? '— Arjun Patel' : ''}
+                Live Transcript {speakerId && speakerId !== 'you' ? `: ${participants.find(p => p.id === speakerId)?.name}` : speakerId === 'you' ? ': Arjun Patel' : ''}
               </span>
             </div>
             <p className="text-[9px] text-white leading-relaxed">{currentTranscript}</p>

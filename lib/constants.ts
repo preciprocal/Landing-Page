@@ -1,23 +1,23 @@
-// ═══════════════════════════════════════════════════════════════════════════
-// lib/constants.ts  —  SINGLE SOURCE OF TRUTH
+// =============================================================================
+// lib/constants.ts  -  SINGLE SOURCE OF TRUTH
 //
 // Sections:
 //   1. SITE CONFIG
 //   2. NAVIGATION
 //   3. FEATURES / STEPS / PLANS / STATS / UI
 //   4. TESTIMONIALS
-//   5. ROLE INTERVIEW DATA  (meta + Q&As — ALL roles, not just tech)
+//   5. ROLE INTERVIEW DATA  (meta + Q&As - ALL roles, not just tech)
 //   6. COMPANY PREP DATA
 //   7. BLOG POSTS
 //   8. FAQ DATA
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 
-// ─── 1. SITE CONFIG ──────────────────────────────────────────────────────────
+// --- 1. SITE CONFIG ----------------------------------------------------------
 
 export const APP_URL  = "https://app.preciprocal.com";
 export const SITE_URL = "https://preciprocal.com";
 
-// ─── 2. NAVIGATION ───────────────────────────────────────────────────────────
+// --- 2. NAVIGATION -----------------------------------------------------------
 
 export const NAV_LINKS = [
   { label: "Features",     href: "/#features" },
@@ -49,13 +49,10 @@ export const FOOTER_COLUMNS = [
   {
     title: "Resources",
     links: [
-      { label: "Resume Tips",           href: "/resume-tips" },
-      { label: "Cover Letter Examples", href: "/cover-letter-examples" },
-      { label: "Salary Guide 2026",     href: "/salary-guide" },
-      { label: "Blog",                  href: "/blog" },
-      { label: "FAQ",                   href: "/faq" },
-      { label: "Privacy Policy",        href: "/privacy" },
-      { label: "Terms",                 href: "/terms" },
+      { label: "Blog",           href: "/blog" },
+      { label: "FAQ",            href: "/faq" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms",          href: "/terms" },
     ],
   },
   {
@@ -68,21 +65,21 @@ export const FOOTER_COLUMNS = [
   },
 ] as const;
 
-// ─── 3. FEATURES / STEPS / PLANS / STATS / UI ────────────────────────────────
+// --- 3. FEATURES / STEPS / PLANS / STATS / UI --------------------------------
 
 export const FEATURES = [
-  { id: "interviews",   title: "AI Mock Interviews",      icon: "mic"      as const, gradient: "from-indigo-500 to-purple-500", description: "Practice with a panel of AI interviewers who push back, ask follow-ups, and score you like a real hiring committee — so you walk in calm, not clueless." },
-  { id: "resume",       title: "Resume Analyser",         icon: "file"     as const, gradient: "from-blue-500 to-cyan-500",    description: "See your resume through a recruiter's eyes — ATS score, 6-second scan simulation, and line-by-line rewrites that turn vague bullets into quantified impact." },
-  { id: "cover-letter", title: "Cover Letter Generator",  icon: "pen"      as const, gradient: "from-purple-500 to-pink-500",  description: "Stop staring at a blank page. Our AI researches the company, matches your experience to the role, and writes a letter that sounds like you — not a robot." },
+  { id: "interviews",   title: "AI Mock Interviews",      icon: "mic"      as const, gradient: "from-indigo-500 to-purple-500", description: "Practice with a panel of AI interviewers who push back, ask follow-ups, and score you like a real hiring committee, so you walk in calm, not clueless." },
+  { id: "resume",       title: "Resume Analyser",         icon: "file"     as const, gradient: "from-blue-500 to-cyan-500",    description: "See your resume through a recruiter's eyes: ATS score, 6-second scan simulation, and line-by-line rewrites that turn vague bullets into quantified impact." },
+  { id: "cover-letter", title: "Cover Letter Generator",  icon: "pen"      as const, gradient: "from-purple-500 to-pink-500",  description: "Stop staring at a blank page. Our AI researches the company, matches your experience to the role, and writes a letter that sounds like you, not a robot." },
   { id: "planner",      title: "Study Planner",           icon: "calendar" as const, gradient: "from-emerald-500 to-cyan-500", description: "Get a personalised day-by-day prep schedule that adapts when life happens. Miss a day? It rebalances. Fall behind? It reprioritises. No guilt, just progress." },
-  { id: "tracker",      title: "Job Tracker",             icon: "kanban"   as const, gradient: "from-amber-500 to-red-500",    description: "Replace the spreadsheet you hate. Kanban pipeline, automatic status tracking, contact finder, and AI-written outreach emails — all from one dashboard." },
-  { id: "extension",    title: "Chrome Extension",        icon: "chrome"   as const, gradient: "from-indigo-500 to-blue-500",  description: "See a job on LinkedIn? One click imports it to your tracker, generates a tailored cover letter, and queues up interview prep — before you even close the tab." },
+  { id: "tracker",      title: "Job Tracker",             icon: "kanban"   as const, gradient: "from-amber-500 to-red-500",    description: "Replace the spreadsheet you hate. Kanban pipeline, automatic status tracking, contact finder, and AI-written outreach emails, all from one dashboard." },
+  { id: "extension",    title: "Chrome Extension",        icon: "chrome"   as const, gradient: "from-indigo-500 to-blue-500",  description: "See a job on LinkedIn? One click imports it to your tracker, generates a tailored cover letter, and queues up interview prep, before you even close the tab." },
 ] as const;
 
 export const STEPS = [
-  { number: "01", title: "Upload Your Resume",                description: "Drop your resume and watch our AI tear it apart (lovingly). You'll see exactly what ATS systems see, what recruiters skip, and what's costing you callbacks — with fixes you can apply in one click." },
-  { number: "02", title: "Practice Until It's Muscle Memory", description: "Run voice-based mock interviews with AI panelists who actually challenge you. Get scored on communication, technical depth, and structure — not just right/wrong answers. The nerves disappear when you've done it 20 times." },
-  { number: "03", title: "Apply Smarter, Not Harder",          description: "Generate tailored cover letters in seconds. Track every application on a Kanban board. Find hiring contacts with real emails. Send personalised outreach that gets replies — not silence." },
+  { number: "01", title: "Upload Your Resume",                description: "Drop your resume and watch our AI tear it apart (lovingly). You'll see exactly what ATS systems see, what recruiters skip, and what's costing you callbacks, with fixes you can apply in one click." },
+  { number: "02", title: "Practice Until It's Muscle Memory", description: "Run voice-based mock interviews with AI panelists who actually challenge you. Get scored on communication, technical depth, and structure, not just right/wrong answers. The nerves disappear when you've done it 20 times." },
+  { number: "03", title: "Apply Smarter, Not Harder",          description: "Generate tailored cover letters in seconds. Track every application on a Kanban board. Find hiring contacts with real emails. Send personalised outreach that gets replies, not silence." },
 ] as const;
 
 export const PLANS = [
@@ -95,7 +92,7 @@ export const PLANS = [
 export const STATS = [
   { value: "11",     label: "Career tools in one platform" },
   { value: "150+",   label: "Interview types covered" },
-  { value: "$9.99",  label: "Per month — no hidden fees" },
+  { value: "$9.99",  label: "Per month, no hidden fees" },
   { value: "30-day", label: "Money-back guarantee" },
 ] as const;
 
@@ -106,14 +103,14 @@ export const UNIVERSITY_LOGOS = [
   "UW Madison","Ohio State","Boston University","Rice","Northeastern","Emory","Vanderbilt",
 ];
 
-// ─── 4. TESTIMONIALS ─────────────────────────────────────────────────────────
-// ⚠️  Leave empty until you have verified real-user quotes (FTC 16 CFR Part 255).
+// --- 4. TESTIMONIALS ---------------------------------------------------------
+// Leave empty until you have verified real-user quotes (FTC 16 CFR Part 255).
 
 export const TESTIMONIALS: { name: string; role: string; text: string; avatar: string }[] = [];
 
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 // 5. ROLE INTERVIEW DATA
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 
 export type RoleSlug =
   // Engineering
@@ -149,7 +146,6 @@ export interface RoleDisplay {
   icon: string;
 }
 
-// What shows on the index page grid
 export const ROLE_DISPLAY: Record<string, RoleDisplay> = {
   // Engineering
   "software-engineer":          { name: "Software Engineer",           category: "Engineering",         icon: "💻" },
@@ -221,67 +217,67 @@ export interface RoleMeta {
 }
 
 export const ROLE_META: Record<string, RoleMeta> = {
-  // ── Engineering ──────────────────────────────────────────────────────────
-  "software-engineer":          { title: "Software Engineer Interview Questions (2026) — Preciprocal",           h1: "Software Engineer Interview Questions & Answers (2026)",           description: "Top 30 software engineer interview questions covering data structures, algorithms, system design, and behavioral questions.",                               salaryRange: "$120,000 – $220,000", topCompanies: ["Google","Amazon","Meta","Microsoft","Apple","Stripe"],       relatedRoles: ["frontend-developer","backend-developer","full-stack-developer"] },
-  "frontend-developer":         { title: "Frontend Developer Interview Questions (2026) — Preciprocal",          h1: "Frontend Developer Interview Questions & Answers (2026)",          description: "Top 30 frontend interview questions on JavaScript, React, CSS, performance, accessibility, and UI system design.",                                         salaryRange: "$100,000 – $190,000", topCompanies: ["Google","Meta","Airbnb","Shopify","Stripe","Figma"],         relatedRoles: ["software-engineer","full-stack-developer","ux-designer"] },
-  "backend-developer":          { title: "Backend Developer Interview Questions (2026) — Preciprocal",           h1: "Backend Developer Interview Questions & Answers (2026)",           description: "Top 30 backend developer interview questions on APIs, databases, distributed systems, and performance optimization.",                                       salaryRange: "$110,000 – $200,000", topCompanies: ["Google","Amazon","Stripe","Uber","LinkedIn","Databricks"],   relatedRoles: ["software-engineer","full-stack-developer","site-reliability-engineer"] },
-  "full-stack-developer":       { title: "Full-Stack Developer Interview Questions (2026) — Preciprocal",        h1: "Full-Stack Developer Interview Questions & Answers (2026)",        description: "Top 30 full-stack developer interview questions covering frontend, backend, databases, and deployment.",                                                  salaryRange: "$105,000 – $195,000", topCompanies: ["Shopify","Atlassian","Stripe","GitHub","Vercel","Linear"],   relatedRoles: ["frontend-developer","backend-developer","software-engineer"] },
-  "ios-developer":              { title: "iOS Developer Interview Questions (2026) — Preciprocal",               h1: "iOS Developer Interview Questions & Answers (2026)",               description: "Top 30 iOS developer interview questions on Swift, UIKit, SwiftUI, Xcode, performance, and App Store best practices.",                                   salaryRange: "$110,000 – $195,000", topCompanies: ["Apple","Spotify","Airbnb","Uber","Lyft","Robinhood"],        relatedRoles: ["android-developer","software-engineer","full-stack-developer"] },
-  "android-developer":          { title: "Android Developer Interview Questions (2026) — Preciprocal",           h1: "Android Developer Interview Questions & Answers (2026)",           description: "Top 30 Android developer interview questions on Kotlin, Jetpack Compose, Android architecture, and Play Store submission.",                               salaryRange: "$105,000 – $190,000", topCompanies: ["Google","Samsung","Spotify","Airbnb","Uber","Meta"],         relatedRoles: ["ios-developer","software-engineer","full-stack-developer"] },
-  "machine-learning-engineer":  { title: "Machine Learning Engineer Interview Questions (2026) — Preciprocal",   h1: "Machine Learning Engineer Interview Questions & Answers (2026)",   description: "Top 30 ML engineer interview questions on model deployment, MLOps, deep learning, feature engineering, and production systems.",                         salaryRange: "$140,000 – $280,000", topCompanies: ["Google","OpenAI","Anthropic","Meta","DeepMind","NVIDIA"],    relatedRoles: ["data-scientist","data-engineer","software-engineer"] },
-  "devops-engineer":            { title: "DevOps Engineer Interview Questions (2026) — Preciprocal",             h1: "DevOps Engineer Interview Questions & Answers (2026)",             description: "Top 30 DevOps interview questions on CI/CD, Kubernetes, Docker, cloud infrastructure, monitoring, and SRE practices.",                                  salaryRange: "$120,000 – $210,000", topCompanies: ["Google","Amazon","Microsoft","HashiCorp","Datadog","Cloudflare"], relatedRoles: ["site-reliability-engineer","cloud-engineer","backend-developer"] },
-  "cloud-engineer":             { title: "Cloud Engineer Interview Questions (2026) — Preciprocal",              h1: "Cloud Engineer Interview Questions & Answers (2026)",              description: "Top 30 cloud engineer interview questions on AWS, Azure, GCP, infrastructure as code, and cloud architecture patterns.",                                  salaryRange: "$115,000 – $205,000", topCompanies: ["Amazon","Microsoft","Google","Oracle","Accenture","Deloitte"], relatedRoles: ["devops-engineer","solutions-architect","site-reliability-engineer"] },
-  "site-reliability-engineer":  { title: "Site Reliability Engineer Interview Questions (2026) — Preciprocal",   h1: "Site Reliability Engineer (SRE) Interview Questions & Answers (2026)", description: "Top 30 SRE interview questions on reliability, incident management, SLOs/SLAs, on-call practices, and production systems.",                             salaryRange: "$130,000 – $230,000", topCompanies: ["Google","Facebook","Netflix","LinkedIn","Uber","Cloudflare"], relatedRoles: ["devops-engineer","cloud-engineer","backend-developer"] },
-  "cybersecurity-analyst":      { title: "Cybersecurity Analyst Interview Questions (2026) — Preciprocal",       h1: "Cybersecurity Analyst Interview Questions & Answers (2026)",       description: "Top 30 cybersecurity interview questions covering threat analysis, penetration testing, incident response, and security frameworks.",                      salaryRange: "$90,000 – $170,000",  topCompanies: ["CrowdStrike","Palo Alto Networks","Microsoft","Amazon","IBM","Deloitte"], relatedRoles: ["cloud-engineer","it-manager","compliance-analyst"] },
-  "data-engineer":              { title: "Data Engineer Interview Questions (2026) — Preciprocal",               h1: "Data Engineer Interview Questions & Answers (2026)",               description: "Top 30 data engineer interview questions on pipelines, Spark, Kafka, SQL, data modeling, and cloud data warehouses.",                                    salaryRange: "$115,000 – $200,000", topCompanies: ["Databricks","Snowflake","Airbnb","Uber","LinkedIn","Spotify"], relatedRoles: ["data-scientist","data-analyst","machine-learning-engineer"] },
-  // ── Data & Analytics ─────────────────────────────────────────────────────
-  "data-scientist":             { title: "Data Scientist Interview Questions (2026) — Preciprocal",              h1: "Data Scientist Interview Questions & Answers (2026)",              description: "Top 30 data scientist interview questions covering statistics, ML, Python, SQL, A/B testing, and case studies.",                                           salaryRange: "$110,000 – $200,000", topCompanies: ["Google","Meta","Netflix","Airbnb","Uber","Spotify"],         relatedRoles: ["machine-learning-engineer","data-analyst","data-engineer"] },
-  "data-analyst":               { title: "Data Analyst Interview Questions (2026) — Preciprocal",               h1: "Data Analyst Interview Questions & Answers (2026)",                description: "Top 30 data analyst interview questions on SQL, Python, statistics, data visualization, and business metrics.",                                          salaryRange: "$70,000 – $140,000",  topCompanies: ["Google","Amazon","Meta","Airbnb","Spotify","Netflix"],       relatedRoles: ["data-scientist","business-analyst","data-engineer"] },
-  // ── Product & Design ─────────────────────────────────────────────────────
-  "product-manager":            { title: "Product Manager Interview Questions (2026) — Preciprocal",             h1: "Product Manager Interview Questions & Answers (2026)",             description: "Top 30 PM interview questions with frameworks and example answers on product sense, metrics, estimation, strategy, and behavioral questions.",             salaryRange: "$130,000 – $250,000", topCompanies: ["Google","Meta","Amazon","Microsoft","Airbnb","Spotify"],     relatedRoles: ["technical-program-manager","ux-designer","data-analyst"] },
-  "ux-designer":                { title: "UX Designer Interview Questions (2026) — Preciprocal",                 h1: "UX Designer Interview Questions & Answers (2026)",                 description: "Top 30 UX designer interview questions on design process, research methods, prototyping, portfolio reviews, and stakeholder management.",                 salaryRange: "$90,000 – $170,000",  topCompanies: ["Google","Apple","Figma","Airbnb","Shopify","Meta"],          relatedRoles: ["product-manager","frontend-developer","solutions-architect"] },
-  "technical-program-manager":  { title: "Technical Program Manager Interview Questions (2026) — Preciprocal",  h1: "Technical Program Manager Interview Questions & Answers (2026)",  description: "Top 30 TPM interview questions on cross-functional execution, program planning, risk management, and technical stakeholder alignment.",                  salaryRange: "$140,000 – $240,000", topCompanies: ["Google","Amazon","Microsoft","Meta","Apple","LinkedIn"],      relatedRoles: ["product-manager","project-manager","solutions-architect"] },
-  // ── Architecture & IT ────────────────────────────────────────────────────
-  "solutions-architect":        { title: "Solutions Architect Interview Questions (2026) — Preciprocal",        h1: "Solutions Architect Interview Questions & Answers (2026)",         description: "Top 30 solutions architect interview questions on cloud architecture, system design, technical sales, and enterprise integration patterns.",              salaryRange: "$130,000 – $230,000", topCompanies: ["Amazon","Microsoft","Google","Salesforce","Oracle","IBM"],   relatedRoles: ["cloud-engineer","technical-program-manager","devops-engineer"] },
-  "it-manager":                 { title: "IT Manager Interview Questions (2026) — Preciprocal",                 h1: "IT Manager Interview Questions & Answers (2026)",                  description: "Top 30 IT manager interview questions on infrastructure management, team leadership, vendor negotiation, budgeting, and IT strategy.",                   salaryRange: "$85,000 – $155,000",  topCompanies: ["IBM","Accenture","Deloitte","Microsoft","Google","Amazon"],  relatedRoles: ["solutions-architect","cybersecurity-analyst","cloud-engineer"] },
-  // ── Business & Operations ────────────────────────────────────────────────
-  "business-analyst":           { title: "Business Analyst Interview Questions (2026) — Preciprocal",           h1: "Business Analyst Interview Questions & Answers (2026)",            description: "Top 30 business analyst interview questions on requirements gathering, process mapping, stakeholder management, SQL, and data visualization.",             salaryRange: "$75,000 – $140,000",  topCompanies: ["McKinsey","Deloitte","Accenture","IBM","Salesforce","JPMorgan"], relatedRoles: ["data-analyst","project-manager","product-manager"] },
-  "project-manager":            { title: "Project Manager Interview Questions (2026) — Preciprocal",            h1: "Project Manager Interview Questions & Answers (2026)",             description: "Top 30 project manager interview questions on Agile, Scrum, stakeholder management, risk, scope, and PMP certification topics.",                         salaryRange: "$85,000 – $160,000",  topCompanies: ["Google","Amazon","Microsoft","Salesforce","IBM","Accenture"], relatedRoles: ["technical-program-manager","product-manager","business-analyst"] },
-  "operations-manager":         { title: "Operations Manager Interview Questions (2026) — Preciprocal",         h1: "Operations Manager Interview Questions & Answers (2026)",          description: "Top 30 operations manager interview questions on process improvement, team leadership, KPI management, and cross-functional execution.",                  salaryRange: "$80,000 – $150,000",  topCompanies: ["Amazon","Google","Apple","Target","Walmart","Goldman Sachs"], relatedRoles: ["project-manager","business-analyst","supply-chain-analyst"] },
-  "supply-chain-analyst":       { title: "Supply Chain Analyst Interview Questions (2026) — Preciprocal",       h1: "Supply Chain Analyst Interview Questions & Answers (2026)",        description: "Top 30 supply chain interview questions on logistics, demand forecasting, inventory management, procurement, and ERP systems.",                          salaryRange: "$65,000 – $130,000",  topCompanies: ["Amazon","Apple","Walmart","Target","McKinsey","Deloitte"],   relatedRoles: ["operations-manager","business-analyst","financial-analyst"] },
-  "management-consultant":      { title: "Management Consultant Interview Questions (2026) — Preciprocal",      h1: "Management Consultant Interview Questions & Answers (2026)",       description: "Top 30 consulting interview questions — case frameworks, market sizing, profitability analysis, and behavioral questions for McKinsey, BCG, and Bain.",    salaryRange: "$90,000 – $200,000",  topCompanies: ["McKinsey","BCG","Bain","Deloitte","Accenture","Oliver Wyman"], relatedRoles: ["business-analyst","financial-analyst","project-manager"] },
-  // ── Finance & Accounting ─────────────────────────────────────────────────
-  "financial-analyst":          { title: "Financial Analyst Interview Questions (2026) — Preciprocal",          h1: "Financial Analyst Interview Questions & Answers (2026)",           description: "Top 30 financial analyst interview questions on financial modeling, DCF valuation, Excel, accounting, and financial statement analysis.",                 salaryRange: "$70,000 – $140,000",  topCompanies: ["Goldman Sachs","JPMorgan","Morgan Stanley","BlackRock","Fidelity","Deloitte"], relatedRoles: ["investment-banker","fp-and-a-analyst","business-analyst"] },
-  "investment-banker":          { title: "Investment Banking Interview Questions (2026) — Preciprocal",         h1: "Investment Banking Interview Questions & Answers (2026)",          description: "Top 30 investment banking interview questions — technical (LBO, DCF, M&A), behaviorals, and market questions for bulge bracket and boutique banks.",       salaryRange: "$110,000 – $250,000", topCompanies: ["Goldman Sachs","Morgan Stanley","JPMorgan","Lazard","Evercore","Jefferies"], relatedRoles: ["financial-analyst","management-consultant","fp-and-a-analyst"] },
-  "accounting-manager":         { title: "Accounting Manager Interview Questions (2026) — Preciprocal",         h1: "Accounting Manager Interview Questions & Answers (2026)",          description: "Top 30 accounting manager interview questions on GAAP, month-end close, financial reporting, internal controls, and team management.",                   salaryRange: "$80,000 – $140,000",  topCompanies: ["Deloitte","PwC","KPMG","EY","Amazon","Google"],              relatedRoles: ["financial-analyst","fp-and-a-analyst","business-analyst"] },
-  "fp-and-a-analyst":           { title: "FP&A Analyst Interview Questions (2026) — Preciprocal",               h1: "FP&A Analyst Interview Questions & Answers (2026)",                description: "Top 30 FP&A interview questions on budgeting, forecasting, variance analysis, financial modeling, and business partnering.",                             salaryRange: "$80,000 – $150,000",  topCompanies: ["Google","Amazon","Meta","Apple","Goldman Sachs","Salesforce"], relatedRoles: ["financial-analyst","accounting-manager","business-analyst"] },
-  // ── Sales & Marketing ────────────────────────────────────────────────────
-  "marketing-manager":          { title: "Marketing Manager Interview Questions (2026) — Preciprocal",          h1: "Marketing Manager Interview Questions & Answers (2026)",           description: "Top 30 marketing manager interview questions on strategy, campaign management, analytics, brand positioning, and cross-functional collaboration.",         salaryRange: "$80,000 – $160,000",  topCompanies: ["Google","Meta","HubSpot","Salesforce","Amazon","Apple"],     relatedRoles: ["digital-marketing-specialist","brand-manager","product-manager"] },
-  "digital-marketing-specialist":{ title: "Digital Marketing Interview Questions (2026) — Preciprocal",         h1: "Digital Marketing Specialist Interview Questions & Answers (2026)", description: "Top 30 digital marketing interview questions on SEO, SEM, paid social, email marketing, analytics, and conversion optimization.",                       salaryRange: "$60,000 – $120,000",  topCompanies: ["Google","Meta","HubSpot","Salesforce","Shopify","Adobe"],    relatedRoles: ["marketing-manager","growth-hacker","brand-manager"] },
-  "sales-manager":              { title: "Sales Manager Interview Questions (2026) — Preciprocal",              h1: "Sales Manager Interview Questions & Answers (2026)",               description: "Top 30 sales manager interview questions on pipeline management, quota attainment, team coaching, CRM, and enterprise sales strategy.",                  salaryRange: "$90,000 – $180,000",  topCompanies: ["Salesforce","HubSpot","Microsoft","Oracle","SAP","Workday"], relatedRoles: ["account-executive","marketing-manager","business-analyst"] },
-  "account-executive":          { title: "Account Executive Interview Questions (2026) — Preciprocal",          h1: "Account Executive Interview Questions & Answers (2026)",           description: "Top 30 AE interview questions on B2B sales methodology, discovery calls, objection handling, negotiation, and closing enterprise deals.",                salaryRange: "$80,000 – $200,000",  topCompanies: ["Salesforce","HubSpot","Stripe","Snowflake","Databricks","Figma"], relatedRoles: ["sales-manager","marketing-manager","growth-hacker"] },
-  "growth-hacker":              { title: "Growth Marketer Interview Questions (2026) — Preciprocal",            h1: "Growth Marketer Interview Questions & Answers (2026)",             description: "Top 30 growth marketer interview questions on acquisition funnels, A/B testing, viral loops, retention, and data-driven experimentation.",                salaryRange: "$80,000 – $160,000",  topCompanies: ["Airbnb","Dropbox","Spotify","Slack","HubSpot","Intercom"],   relatedRoles: ["marketing-manager","digital-marketing-specialist","product-manager"] },
-  "brand-manager":              { title: "Brand Manager Interview Questions (2026) — Preciprocal",              h1: "Brand Manager Interview Questions & Answers (2026)",               description: "Top 30 brand manager interview questions on brand strategy, consumer insights, go-to-market planning, budget management, and creative execution.",        salaryRange: "$75,000 – $145,000",  topCompanies: ["P&G","Unilever","Nike","Apple","Google","LVMH"],             relatedRoles: ["marketing-manager","digital-marketing-specialist","product-manager"] },
-  // ── People & HR ──────────────────────────────────────────────────────────
-  "hr-manager":                 { title: "HR Manager Interview Questions (2026) — Preciprocal",                 h1: "HR Manager Interview Questions & Answers (2026)",                  description: "Top 30 HR manager interview questions on employee relations, performance management, talent development, compliance, and HR strategy.",                   salaryRange: "$75,000 – $140,000",  topCompanies: ["Google","Amazon","Microsoft","IBM","Deloitte","Accenture"],  relatedRoles: ["recruiter","talent-acquisition-specialist","operations-manager"] },
-  "recruiter":                  { title: "Recruiter Interview Questions (2026) — Preciprocal",                  h1: "Recruiter Interview Questions & Answers (2026)",                   description: "Top 30 recruiter interview questions on sourcing strategies, candidate assessment, ATS tools, offer negotiation, and employer branding.",                 salaryRange: "$55,000 – $110,000",  topCompanies: ["LinkedIn","Google","Amazon","Korn Ferry","Spencer Stuart","Heidrick & Struggles"], relatedRoles: ["hr-manager","talent-acquisition-specialist","account-executive"] },
-  "talent-acquisition-specialist":{ title: "Talent Acquisition Specialist Interview Questions (2026) — Preciprocal", h1: "Talent Acquisition Specialist Interview Questions & Answers (2026)", description: "Top 30 talent acquisition interview questions on full-cycle recruiting, pipeline building, diversity hiring, and candidate experience.",             salaryRange: "$60,000 – $115,000",  topCompanies: ["Google","Amazon","Microsoft","Meta","Salesforce","Stripe"], relatedRoles: ["recruiter","hr-manager","operations-manager"] },
-  // ── Healthcare ───────────────────────────────────────────────────────────
-  "healthcare-administrator":   { title: "Healthcare Administrator Interview Questions (2026) — Preciprocal",   h1: "Healthcare Administrator Interview Questions & Answers (2026)",   description: "Top 30 healthcare administrator interview questions on hospital operations, regulatory compliance, healthcare finance, and patient experience.",           salaryRange: "$75,000 – $150,000",  topCompanies: ["Mayo Clinic","Kaiser Permanente","HCA Healthcare","CVS Health","UnitedHealth","Optum"], relatedRoles: ["operations-manager","business-analyst","compliance-analyst"] },
-  "clinical-data-analyst":      { title: "Clinical Data Analyst Interview Questions (2026) — Preciprocal",      h1: "Clinical Data Analyst Interview Questions & Answers (2026)",       description: "Top 30 clinical data analyst interview questions on healthcare data, SQL, EHR systems, HIPAA compliance, and biostatistics.",                             salaryRange: "$70,000 – $130,000",  topCompanies: ["Optum","Epic","Cerner","Johnson & Johnson","Pfizer","Roche"], relatedRoles: ["data-analyst","healthcare-administrator","compliance-analyst"] },
-  // ── Legal ────────────────────────────────────────────────────────────────
-  "paralegal":                  { title: "Paralegal Interview Questions (2026) — Preciprocal",                  h1: "Paralegal Interview Questions & Answers (2026)",                   description: "Top 30 paralegal interview questions on legal research, case management, document drafting, discovery, and working with attorneys.",                      salaryRange: "$50,000 – $90,000",   topCompanies: ["Skadden","Latham & Watkins","Kirkland & Ellis","Davis Polk","Sullivan & Cromwell","Cravath"], relatedRoles: ["compliance-analyst","business-analyst","project-manager"] },
-  "compliance-analyst":         { title: "Compliance Analyst Interview Questions (2026) — Preciprocal",         h1: "Compliance Analyst Interview Questions & Answers (2026)",          description: "Top 30 compliance analyst interview questions on regulatory frameworks (SOX, GDPR, HIPAA), risk assessment, internal controls, and audit processes.",     salaryRange: "$65,000 – $120,000",  topCompanies: ["JPMorgan","Goldman Sachs","Bank of America","Deloitte","KPMG","PwC"], relatedRoles: ["legal-counsel","it-manager","cybersecurity-analyst"] as RoleSlug[] },
+  // Engineering
+  "software-engineer":          { title: "Software Engineer Interview Questions (2026) | Preciprocal",           h1: "Software Engineer Interview Questions & Answers (2026)",           description: "Top 30 software engineer interview questions covering data structures, algorithms, system design, and behavioral questions.",                               salaryRange: "$120,000 - $220,000", topCompanies: ["Google","Amazon","Meta","Microsoft","Apple","Stripe"],       relatedRoles: ["frontend-developer","backend-developer","full-stack-developer"] },
+  "frontend-developer":         { title: "Frontend Developer Interview Questions (2026) | Preciprocal",          h1: "Frontend Developer Interview Questions & Answers (2026)",          description: "Top 30 frontend interview questions on JavaScript, React, CSS, performance, accessibility, and UI system design.",                                         salaryRange: "$100,000 - $190,000", topCompanies: ["Google","Meta","Airbnb","Shopify","Stripe","Figma"],         relatedRoles: ["software-engineer","full-stack-developer","ux-designer"] },
+  "backend-developer":          { title: "Backend Developer Interview Questions (2026) | Preciprocal",           h1: "Backend Developer Interview Questions & Answers (2026)",           description: "Top 30 backend developer interview questions on APIs, databases, distributed systems, and performance optimization.",                                       salaryRange: "$110,000 - $200,000", topCompanies: ["Google","Amazon","Stripe","Uber","LinkedIn","Databricks"],   relatedRoles: ["software-engineer","full-stack-developer","site-reliability-engineer"] },
+  "full-stack-developer":       { title: "Full-Stack Developer Interview Questions (2026) | Preciprocal",        h1: "Full-Stack Developer Interview Questions & Answers (2026)",        description: "Top 30 full-stack developer interview questions covering frontend, backend, databases, and deployment.",                                                  salaryRange: "$105,000 - $195,000", topCompanies: ["Shopify","Atlassian","Stripe","GitHub","Vercel","Linear"],   relatedRoles: ["frontend-developer","backend-developer","software-engineer"] },
+  "ios-developer":              { title: "iOS Developer Interview Questions (2026) | Preciprocal",               h1: "iOS Developer Interview Questions & Answers (2026)",               description: "Top 30 iOS developer interview questions on Swift, UIKit, SwiftUI, Xcode, performance, and App Store best practices.",                                   salaryRange: "$110,000 - $195,000", topCompanies: ["Apple","Spotify","Airbnb","Uber","Lyft","Robinhood"],        relatedRoles: ["android-developer","software-engineer","full-stack-developer"] },
+  "android-developer":          { title: "Android Developer Interview Questions (2026) | Preciprocal",           h1: "Android Developer Interview Questions & Answers (2026)",           description: "Top 30 Android developer interview questions on Kotlin, Jetpack Compose, Android architecture, and Play Store submission.",                               salaryRange: "$105,000 - $190,000", topCompanies: ["Google","Samsung","Spotify","Airbnb","Uber","Meta"],         relatedRoles: ["ios-developer","software-engineer","full-stack-developer"] },
+  "machine-learning-engineer":  { title: "Machine Learning Engineer Interview Questions (2026) | Preciprocal",   h1: "Machine Learning Engineer Interview Questions & Answers (2026)",   description: "Top 30 ML engineer interview questions on model deployment, MLOps, deep learning, feature engineering, and production systems.",                         salaryRange: "$140,000 - $280,000", topCompanies: ["Google","OpenAI","Anthropic","Meta","DeepMind","NVIDIA"],    relatedRoles: ["data-scientist","data-engineer","software-engineer"] },
+  "devops-engineer":            { title: "DevOps Engineer Interview Questions (2026) | Preciprocal",             h1: "DevOps Engineer Interview Questions & Answers (2026)",             description: "Top 30 DevOps interview questions on CI/CD, Kubernetes, Docker, cloud infrastructure, monitoring, and SRE practices.",                                  salaryRange: "$120,000 - $210,000", topCompanies: ["Google","Amazon","Microsoft","HashiCorp","Datadog","Cloudflare"], relatedRoles: ["site-reliability-engineer","cloud-engineer","backend-developer"] },
+  "cloud-engineer":             { title: "Cloud Engineer Interview Questions (2026) | Preciprocal",              h1: "Cloud Engineer Interview Questions & Answers (2026)",              description: "Top 30 cloud engineer interview questions on AWS, Azure, GCP, infrastructure as code, and cloud architecture patterns.",                                  salaryRange: "$115,000 - $205,000", topCompanies: ["Amazon","Microsoft","Google","Oracle","Accenture","Deloitte"], relatedRoles: ["devops-engineer","solutions-architect","site-reliability-engineer"] },
+  "site-reliability-engineer":  { title: "Site Reliability Engineer Interview Questions (2026) | Preciprocal",   h1: "Site Reliability Engineer (SRE) Interview Questions & Answers (2026)", description: "Top 30 SRE interview questions on reliability, incident management, SLOs/SLAs, on-call practices, and production systems.",                             salaryRange: "$130,000 - $230,000", topCompanies: ["Google","Facebook","Netflix","LinkedIn","Uber","Cloudflare"], relatedRoles: ["devops-engineer","cloud-engineer","backend-developer"] },
+  "cybersecurity-analyst":      { title: "Cybersecurity Analyst Interview Questions (2026) | Preciprocal",       h1: "Cybersecurity Analyst Interview Questions & Answers (2026)",       description: "Top 30 cybersecurity interview questions covering threat analysis, penetration testing, incident response, and security frameworks.",                      salaryRange: "$90,000 - $170,000",  topCompanies: ["CrowdStrike","Palo Alto Networks","Microsoft","Amazon","IBM","Deloitte"], relatedRoles: ["cloud-engineer","it-manager","compliance-analyst"] },
+  "data-engineer":              { title: "Data Engineer Interview Questions (2026) | Preciprocal",               h1: "Data Engineer Interview Questions & Answers (2026)",               description: "Top 30 data engineer interview questions on pipelines, Spark, Kafka, SQL, data modeling, and cloud data warehouses.",                                    salaryRange: "$115,000 - $200,000", topCompanies: ["Databricks","Snowflake","Airbnb","Uber","LinkedIn","Spotify"], relatedRoles: ["data-scientist","data-analyst","machine-learning-engineer"] },
+  // Data & Analytics
+  "data-scientist":             { title: "Data Scientist Interview Questions (2026) | Preciprocal",              h1: "Data Scientist Interview Questions & Answers (2026)",              description: "Top 30 data scientist interview questions covering statistics, ML, Python, SQL, A/B testing, and case studies.",                                           salaryRange: "$110,000 - $200,000", topCompanies: ["Google","Meta","Netflix","Airbnb","Uber","Spotify"],         relatedRoles: ["machine-learning-engineer","data-analyst","data-engineer"] },
+  "data-analyst":               { title: "Data Analyst Interview Questions (2026) | Preciprocal",               h1: "Data Analyst Interview Questions & Answers (2026)",                description: "Top 30 data analyst interview questions on SQL, Python, statistics, data visualization, and business metrics.",                                          salaryRange: "$70,000 - $140,000",  topCompanies: ["Google","Amazon","Meta","Airbnb","Spotify","Netflix"],       relatedRoles: ["data-scientist","business-analyst","data-engineer"] },
+  // Product & Design
+  "product-manager":            { title: "Product Manager Interview Questions (2026) | Preciprocal",             h1: "Product Manager Interview Questions & Answers (2026)",             description: "Top 30 PM interview questions with frameworks and example answers on product sense, metrics, estimation, strategy, and behavioral questions.",             salaryRange: "$130,000 - $250,000", topCompanies: ["Google","Meta","Amazon","Microsoft","Airbnb","Spotify"],     relatedRoles: ["technical-program-manager","ux-designer","data-analyst"] },
+  "ux-designer":                { title: "UX Designer Interview Questions (2026) | Preciprocal",                 h1: "UX Designer Interview Questions & Answers (2026)",                 description: "Top 30 UX designer interview questions on design process, research methods, prototyping, portfolio reviews, and stakeholder management.",                 salaryRange: "$90,000 - $170,000",  topCompanies: ["Google","Apple","Figma","Airbnb","Shopify","Meta"],          relatedRoles: ["product-manager","frontend-developer","solutions-architect"] },
+  "technical-program-manager":  { title: "Technical Program Manager Interview Questions (2026) | Preciprocal",  h1: "Technical Program Manager Interview Questions & Answers (2026)",  description: "Top 30 TPM interview questions on cross-functional execution, program planning, risk management, and technical stakeholder alignment.",                  salaryRange: "$140,000 - $240,000", topCompanies: ["Google","Amazon","Microsoft","Meta","Apple","LinkedIn"],      relatedRoles: ["product-manager","project-manager","solutions-architect"] },
+  // Architecture & IT
+  "solutions-architect":        { title: "Solutions Architect Interview Questions (2026) | Preciprocal",        h1: "Solutions Architect Interview Questions & Answers (2026)",         description: "Top 30 solutions architect interview questions on cloud architecture, system design, technical sales, and enterprise integration patterns.",              salaryRange: "$130,000 - $230,000", topCompanies: ["Amazon","Microsoft","Google","Salesforce","Oracle","IBM"],   relatedRoles: ["cloud-engineer","technical-program-manager","devops-engineer"] },
+  "it-manager":                 { title: "IT Manager Interview Questions (2026) | Preciprocal",                 h1: "IT Manager Interview Questions & Answers (2026)",                  description: "Top 30 IT manager interview questions on infrastructure management, team leadership, vendor negotiation, budgeting, and IT strategy.",                   salaryRange: "$85,000 - $155,000",  topCompanies: ["IBM","Accenture","Deloitte","Microsoft","Google","Amazon"],  relatedRoles: ["solutions-architect","cybersecurity-analyst","cloud-engineer"] },
+  // Business & Operations
+  "business-analyst":           { title: "Business Analyst Interview Questions (2026) | Preciprocal",           h1: "Business Analyst Interview Questions & Answers (2026)",            description: "Top 30 business analyst interview questions on requirements gathering, process mapping, stakeholder management, SQL, and data visualization.",             salaryRange: "$75,000 - $140,000",  topCompanies: ["McKinsey","Deloitte","Accenture","IBM","Salesforce","JPMorgan"], relatedRoles: ["data-analyst","project-manager","product-manager"] },
+  "project-manager":            { title: "Project Manager Interview Questions (2026) | Preciprocal",            h1: "Project Manager Interview Questions & Answers (2026)",             description: "Top 30 project manager interview questions on Agile, Scrum, stakeholder management, risk, scope, and PMP certification topics.",                         salaryRange: "$85,000 - $160,000",  topCompanies: ["Google","Amazon","Microsoft","Salesforce","IBM","Accenture"], relatedRoles: ["technical-program-manager","product-manager","business-analyst"] },
+  "operations-manager":         { title: "Operations Manager Interview Questions (2026) | Preciprocal",         h1: "Operations Manager Interview Questions & Answers (2026)",          description: "Top 30 operations manager interview questions on process improvement, team leadership, KPI management, and cross-functional execution.",                  salaryRange: "$80,000 - $150,000",  topCompanies: ["Amazon","Google","Apple","Target","Walmart","Goldman Sachs"], relatedRoles: ["project-manager","business-analyst","supply-chain-analyst"] },
+  "supply-chain-analyst":       { title: "Supply Chain Analyst Interview Questions (2026) | Preciprocal",       h1: "Supply Chain Analyst Interview Questions & Answers (2026)",        description: "Top 30 supply chain interview questions on logistics, demand forecasting, inventory management, procurement, and ERP systems.",                          salaryRange: "$65,000 - $130,000",  topCompanies: ["Amazon","Apple","Walmart","Target","McKinsey","Deloitte"],   relatedRoles: ["operations-manager","business-analyst","financial-analyst"] },
+  "management-consultant":      { title: "Management Consultant Interview Questions (2026) | Preciprocal",      h1: "Management Consultant Interview Questions & Answers (2026)",       description: "Top 30 consulting interview questions, case frameworks, market sizing, profitability analysis, and behavioral questions for McKinsey, BCG, and Bain.",    salaryRange: "$90,000 - $200,000",  topCompanies: ["McKinsey","BCG","Bain","Deloitte","Accenture","Oliver Wyman"], relatedRoles: ["business-analyst","financial-analyst","project-manager"] },
+  // Finance & Accounting
+  "financial-analyst":          { title: "Financial Analyst Interview Questions (2026) | Preciprocal",          h1: "Financial Analyst Interview Questions & Answers (2026)",           description: "Top 30 financial analyst interview questions on financial modeling, DCF valuation, Excel, accounting, and financial statement analysis.",                 salaryRange: "$70,000 - $140,000",  topCompanies: ["Goldman Sachs","JPMorgan","Morgan Stanley","BlackRock","Fidelity","Deloitte"], relatedRoles: ["investment-banker","fp-and-a-analyst","business-analyst"] },
+  "investment-banker":          { title: "Investment Banking Interview Questions (2026) | Preciprocal",         h1: "Investment Banking Interview Questions & Answers (2026)",          description: "Top 30 investment banking interview questions, technical (LBO, DCF, M&A), behaviorals, and market questions for bulge bracket and boutique banks.",       salaryRange: "$110,000 - $250,000", topCompanies: ["Goldman Sachs","Morgan Stanley","JPMorgan","Lazard","Evercore","Jefferies"], relatedRoles: ["financial-analyst","management-consultant","fp-and-a-analyst"] },
+  "accounting-manager":         { title: "Accounting Manager Interview Questions (2026) | Preciprocal",         h1: "Accounting Manager Interview Questions & Answers (2026)",          description: "Top 30 accounting manager interview questions on GAAP, month-end close, financial reporting, internal controls, and team management.",                   salaryRange: "$80,000 - $140,000",  topCompanies: ["Deloitte","PwC","KPMG","EY","Amazon","Google"],              relatedRoles: ["financial-analyst","fp-and-a-analyst","business-analyst"] },
+  "fp-and-a-analyst":           { title: "FP&A Analyst Interview Questions (2026) | Preciprocal",               h1: "FP&A Analyst Interview Questions & Answers (2026)",                description: "Top 30 FP&A interview questions on budgeting, forecasting, variance analysis, financial modeling, and business partnering.",                             salaryRange: "$80,000 - $150,000",  topCompanies: ["Google","Amazon","Meta","Apple","Goldman Sachs","Salesforce"], relatedRoles: ["financial-analyst","accounting-manager","business-analyst"] },
+  // Sales & Marketing
+  "marketing-manager":          { title: "Marketing Manager Interview Questions (2026) | Preciprocal",          h1: "Marketing Manager Interview Questions & Answers (2026)",           description: "Top 30 marketing manager interview questions on strategy, campaign management, analytics, brand positioning, and cross-functional collaboration.",         salaryRange: "$80,000 - $160,000",  topCompanies: ["Google","Meta","HubSpot","Salesforce","Amazon","Apple"],     relatedRoles: ["digital-marketing-specialist","brand-manager","product-manager"] },
+  "digital-marketing-specialist":{ title: "Digital Marketing Interview Questions (2026) | Preciprocal",         h1: "Digital Marketing Specialist Interview Questions & Answers (2026)", description: "Top 30 digital marketing interview questions on SEO, SEM, paid social, email marketing, analytics, and conversion optimization.",                       salaryRange: "$60,000 - $120,000",  topCompanies: ["Google","Meta","HubSpot","Salesforce","Shopify","Adobe"],    relatedRoles: ["marketing-manager","growth-hacker","brand-manager"] },
+  "sales-manager":              { title: "Sales Manager Interview Questions (2026) | Preciprocal",              h1: "Sales Manager Interview Questions & Answers (2026)",               description: "Top 30 sales manager interview questions on pipeline management, quota attainment, team coaching, CRM, and enterprise sales strategy.",                  salaryRange: "$90,000 - $180,000",  topCompanies: ["Salesforce","HubSpot","Microsoft","Oracle","SAP","Workday"], relatedRoles: ["account-executive","marketing-manager","business-analyst"] },
+  "account-executive":          { title: "Account Executive Interview Questions (2026) | Preciprocal",          h1: "Account Executive Interview Questions & Answers (2026)",           description: "Top 30 AE interview questions on B2B sales methodology, discovery calls, objection handling, negotiation, and closing enterprise deals.",                salaryRange: "$80,000 - $200,000",  topCompanies: ["Salesforce","HubSpot","Stripe","Snowflake","Databricks","Figma"], relatedRoles: ["sales-manager","marketing-manager","growth-hacker"] },
+  "growth-hacker":              { title: "Growth Marketer Interview Questions (2026) | Preciprocal",            h1: "Growth Marketer Interview Questions & Answers (2026)",             description: "Top 30 growth marketer interview questions on acquisition funnels, A/B testing, viral loops, retention, and data-driven experimentation.",                salaryRange: "$80,000 - $160,000",  topCompanies: ["Airbnb","Dropbox","Spotify","Slack","HubSpot","Intercom"],   relatedRoles: ["marketing-manager","digital-marketing-specialist","product-manager"] },
+  "brand-manager":              { title: "Brand Manager Interview Questions (2026) | Preciprocal",              h1: "Brand Manager Interview Questions & Answers (2026)",               description: "Top 30 brand manager interview questions on brand strategy, consumer insights, go-to-market planning, budget management, and creative execution.",        salaryRange: "$75,000 - $145,000",  topCompanies: ["P&G","Unilever","Nike","Apple","Google","LVMH"],             relatedRoles: ["marketing-manager","digital-marketing-specialist","product-manager"] },
+  // People & HR
+  "hr-manager":                 { title: "HR Manager Interview Questions (2026) | Preciprocal",                 h1: "HR Manager Interview Questions & Answers (2026)",                  description: "Top 30 HR manager interview questions on employee relations, performance management, talent development, compliance, and HR strategy.",                   salaryRange: "$75,000 - $140,000",  topCompanies: ["Google","Amazon","Microsoft","IBM","Deloitte","Accenture"],  relatedRoles: ["recruiter","talent-acquisition-specialist","operations-manager"] },
+  "recruiter":                  { title: "Recruiter Interview Questions (2026) | Preciprocal",                  h1: "Recruiter Interview Questions & Answers (2026)",                   description: "Top 30 recruiter interview questions on sourcing strategies, candidate assessment, ATS tools, offer negotiation, and employer branding.",                 salaryRange: "$55,000 - $110,000",  topCompanies: ["LinkedIn","Google","Amazon","Korn Ferry","Spencer Stuart","Heidrick & Struggles"], relatedRoles: ["hr-manager","talent-acquisition-specialist","account-executive"] },
+  "talent-acquisition-specialist":{ title: "Talent Acquisition Specialist Interview Questions (2026) | Preciprocal", h1: "Talent Acquisition Specialist Interview Questions & Answers (2026)", description: "Top 30 talent acquisition interview questions on full-cycle recruiting, pipeline building, diversity hiring, and candidate experience.",             salaryRange: "$60,000 - $115,000",  topCompanies: ["Google","Amazon","Microsoft","Meta","Salesforce","Stripe"], relatedRoles: ["recruiter","hr-manager","operations-manager"] },
+  // Healthcare
+  "healthcare-administrator":   { title: "Healthcare Administrator Interview Questions (2026) | Preciprocal",   h1: "Healthcare Administrator Interview Questions & Answers (2026)",   description: "Top 30 healthcare administrator interview questions on hospital operations, regulatory compliance, healthcare finance, and patient experience.",           salaryRange: "$75,000 - $150,000",  topCompanies: ["Mayo Clinic","Kaiser Permanente","HCA Healthcare","CVS Health","UnitedHealth","Optum"], relatedRoles: ["operations-manager","business-analyst","compliance-analyst"] },
+  "clinical-data-analyst":      { title: "Clinical Data Analyst Interview Questions (2026) | Preciprocal",      h1: "Clinical Data Analyst Interview Questions & Answers (2026)",       description: "Top 30 clinical data analyst interview questions on healthcare data, SQL, EHR systems, HIPAA compliance, and biostatistics.",                             salaryRange: "$70,000 - $130,000",  topCompanies: ["Optum","Epic","Cerner","Johnson & Johnson","Pfizer","Roche"], relatedRoles: ["data-analyst","healthcare-administrator","compliance-analyst"] },
+  // Legal
+  "paralegal":                  { title: "Paralegal Interview Questions (2026) | Preciprocal",                  h1: "Paralegal Interview Questions & Answers (2026)",                   description: "Top 30 paralegal interview questions on legal research, case management, document drafting, discovery, and working with attorneys.",                      salaryRange: "$50,000 - $90,000",   topCompanies: ["Skadden","Latham & Watkins","Kirkland & Ellis","Davis Polk","Sullivan & Cromwell","Cravath"], relatedRoles: ["compliance-analyst","business-analyst","project-manager"] },
+  "compliance-analyst":         { title: "Compliance Analyst Interview Questions (2026) | Preciprocal",         h1: "Compliance Analyst Interview Questions & Answers (2026)",          description: "Top 30 compliance analyst interview questions on regulatory frameworks (SOX, GDPR, HIPAA), risk assessment, internal controls, and audit processes.",     salaryRange: "$65,000 - $120,000",  topCompanies: ["JPMorgan","Goldman Sachs","Bank of America","Deloitte","KPMG","PwC"], relatedRoles: ["legal-counsel","it-manager","cybersecurity-analyst"] as RoleSlug[] },
 };
 
 export function getRoleMeta(slug: string): RoleMeta {
   if (ROLE_META[slug]) return ROLE_META[slug];
   const fmt = slug.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   return {
-    title: `${fmt} Interview Questions (2026) — Preciprocal`,
+    title: `${fmt} Interview Questions (2026) | Preciprocal`,
     h1: `${fmt} Interview Questions & Answers (2026)`,
     description: `Top interview questions for ${fmt.toLowerCase()} roles with detailed answers, salary benchmarks, and preparation tips for 2026.`,
-    salaryRange: "$60,000 – $130,000",
+    salaryRange: "$60,000 - $130,000",
     topCompanies: ["Top employers in this field"],
     relatedRoles: ["business-analyst","project-manager"],
   };
@@ -292,8 +288,8 @@ export type RoleQA = { question: string; answer: string };
 export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
   "software-engineer": [
     { question: "What is the difference between a process and a thread?",                     answer: "A process is an independent program with its own memory space. A thread is a unit of execution within a process that shares the process's memory. Processes are isolated; threads share heap memory but have their own stack. This makes threads faster to create and switch between, but requires synchronization to avoid race conditions." },
-    { question: "Explain the four pillars of object-oriented programming.",                   answer: "The four pillars are: (1) Encapsulation — bundling data and methods together and restricting direct access; (2) Abstraction — hiding implementation details and exposing only what's necessary; (3) Inheritance — allowing a class to derive properties from a parent class; (4) Polymorphism — the ability for objects of different types to be treated as the same type through a common interface." },
-    { question: "What is the time complexity of quicksort, and when does it degrade?",        answer: "Quicksort has average O(n log n) time complexity and worst-case O(n²) when the pivot is consistently the smallest or largest element — this typically happens on already-sorted input with a naive pivot selection. To mitigate this, use median-of-three pivot selection or random pivot. Space complexity is O(log n) for the recursive call stack." },
+    { question: "Explain the four pillars of object-oriented programming.",                   answer: "The four pillars are: (1) Encapsulation: bundling data and methods together and restricting direct access; (2) Abstraction, hiding implementation details and exposing only what's necessary; (3) Inheritance, allowing a class to derive properties from a parent class; (4) Polymorphism, the ability for objects of different types to be treated as the same type through a common interface." },
+    { question: "What is the time complexity of quicksort, and when does it degrade?",        answer: "Quicksort has average O(n log n) time complexity and worst-case O(n squared) when the pivot is consistently the smallest or largest element, this typically happens on already-sorted input with a naive pivot selection. To mitigate this, use median-of-three pivot selection or random pivot. Space complexity is O(log n) for the recursive call stack." },
     { question: "How does a hash map work internally?",                                       answer: "A hash map stores key-value pairs. When inserting, the key is run through a hash function that produces an integer index into an underlying array. If two keys hash to the same index (collision), common strategies are chaining (a linked list at each bucket) or open addressing (probing adjacent slots). Java's HashMap uses chaining and converts buckets to balanced trees (O(log n)) when they exceed 8 entries." },
     { question: "What is a deadlock and how do you prevent it?",                              answer: "A deadlock occurs when two or more threads are each waiting for a resource held by the other, creating a circular dependency. Prevention strategies: always acquire locks in a consistent global order, use lock timeouts, prefer lock-free data structures, or use a single resource manager." },
     { question: "Describe the CAP theorem.",                                                  answer: "CAP states that a distributed system can guarantee at most two of three properties: Consistency (every read returns the most recent write), Availability (every request receives a response), and Partition Tolerance. Since network partitions always occur in practice, real systems must choose between CP (e.g., HBase) or AP (e.g., Cassandra)." },
@@ -302,32 +298,32 @@ export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
     { question: "What is a REST API and what are its constraints?",                           answer: "REST is an architectural style with six constraints: client-server separation, statelessness, cacheability, uniform interface (standard HTTP methods + status codes), layered system, and optional code-on-demand. RESTful APIs use resources as URLs, HTTP verbs for actions, and typically communicate in JSON." },
     { question: "What are SOLID principles?",                                                 answer: "SOLID: Single Responsibility (one reason to change), Open/Closed (open for extension, closed for modification), Liskov Substitution (subtypes must be substitutable for their base type), Interface Segregation (prefer narrow interfaces), and Dependency Inversion (depend on abstractions, not concretions)." },
     { question: "How does garbage collection work in Java?",                                  answer: "Java's GC manages memory automatically using generational collection: short-lived objects go to Eden, surviving objects are promoted to Survivor then Old Gen. The GC identifies unreachable objects via reachability analysis from GC roots. Modern JVMs (G1, ZGC, Shenandoah) minimize stop-the-world pauses using concurrent collection." },
-    { question: "What is Big O notation and why does it matter?",                             answer: "Big O notation describes the upper bound of an algorithm's time or space growth relative to input size, ignoring constants. O(1) is constant, O(log n) logarithmic, O(n) linear, O(n²) quadratic. A O(n²) algorithm processing 1M records is a billion operations vs O(n log n)'s 20M — the difference between 10 seconds and 0.1 seconds." },
-    { question: "Describe the difference between synchronous and asynchronous programming.", answer: "Synchronous code executes line by line — each operation blocks until complete. Asynchronous code allows the program to continue while waiting for a long operation (I/O, network) to finish. Async patterns: callbacks, Promises, async/await (JavaScript), CompletableFuture (Java), asyncio (Python). Async is critical for I/O-bound tasks." },
+    { question: "What is Big O notation and why does it matter?",                             answer: "Big O notation describes the upper bound of an algorithm's time or space growth relative to input size, ignoring constants. O(1) is constant, O(log n) logarithmic, O(n) linear, O(n squared) quadratic. A O(n squared) algorithm processing 1M records is a billion operations vs O(n log n)'s 20M, the difference between 10 seconds and 0.1 seconds." },
+    { question: "Describe the difference between synchronous and asynchronous programming.", answer: "Synchronous code executes line by line; each operation blocks until complete. Asynchronous code allows the program to continue while waiting for a long operation (I/O, network) to finish. Async patterns: callbacks, Promises, async/await (JavaScript), CompletableFuture (Java), asyncio (Python). Async is critical for I/O-bound tasks." },
     { question: "How would you optimize a slow database query?",                              answer: "First, use EXPLAIN/EXPLAIN ANALYZE to understand the query plan. Common fixes: add indexes on WHERE/JOIN/ORDER BY columns; avoid SELECT *; rewrite subqueries as JOINs; use query caching; paginate with cursor-based pagination; consider materialized views for aggregations; partition large tables; review N+1 query patterns in ORM code." },
     { question: "Tell me about a time you dealt with a production outage.",                   answer: "Structure with STAR: Situation (system context and what broke), Task (your role), Action (triage, diagnosis, mitigation, fix), Result (time to recovery, lessons, post-mortem). Interviewers want to see: calm under pressure, systematic debugging, clear communication, and blameless post-mortems." },
   ],
 
   "frontend-developer": [
     { question: "What is the difference between `let`, `const`, and `var` in JavaScript?",   answer: "`var` is function-scoped and hoisted. `let` and `const` are block-scoped and not hoisted. `const` prevents reassignment but not mutation of objects/arrays. Best practice: always use `const` by default, `let` when you need to reassign, never `var`." },
-    { question: "Explain the JavaScript event loop.",                                         answer: "JavaScript is single-threaded. The event loop continuously checks the call stack — if it's empty, it moves tasks from the callback queue (or microtask queue for Promises) into the stack. Microtasks (Promises, queueMicrotask) run before macrotasks (setTimeout, setInterval). This allows async operations without blocking the main thread." },
+    { question: "Explain the JavaScript event loop.",                                         answer: "JavaScript is single-threaded. The event loop continuously checks the call stack; if it's empty, it moves tasks from the callback queue (or microtask queue for Promises) into the stack. Microtasks (Promises, queueMicrotask) run before macrotasks (setTimeout, setInterval). This allows async operations without blocking the main thread." },
     { question: "What is the virtual DOM and why does React use it?",                         answer: "The virtual DOM is an in-memory representation of the real DOM. When state changes, React re-renders the virtual DOM, diffs it against the previous version (reconciliation), and applies only the minimal set of real DOM changes. This batching approach is faster than direct DOM manipulation for most UI patterns." },
     { question: "What are React hooks and why were they introduced?",                         answer: "Hooks (useState, useEffect, useContext, etc.) let you use state and lifecycle features in functional components without writing classes. They were introduced in React 16.8 to solve problems with class components: confusing `this` binding, difficulty reusing stateful logic between components, and complex lifecycle methods." },
     { question: "How do you optimize the performance of a React application?",               answer: "Key strategies: React.memo to prevent unnecessary re-renders, useMemo/useCallback for expensive calculations and stable function references, code splitting with React.lazy and Suspense, virtualization for long lists (react-window), image optimization, avoiding anonymous functions in JSX, and profiling with React DevTools." },
-    { question: "Explain CSS specificity.",                                                   answer: "Specificity determines which CSS rule applies when multiple rules target the same element. It's calculated as (inline styles, IDs, classes/attributes/pseudo-classes, elements). Inline styles beat everything. IDs beat classes. Classes beat elements. Equal specificity = last rule wins. `!important` overrides all specificity." },
+    { question: "Explain CSS specificity.",                                                   answer: "Specificity determines which CSS rule applies when multiple rules target the same element. It's calculated as (inline styles, IDs, classes/attributes/pseudo-classes, elements). Inline styles beat everything. IDs beat classes. Classes beat elements. Equal specificity means last rule wins. `!important` overrides all specificity." },
     { question: "What is the difference between `==` and `===` in JavaScript?",              answer: "`==` performs type coercion before comparing (`'5' == 5` is true). `===` compares value AND type without coercion (`'5' === 5` is false). Always use `===` to avoid unexpected type coercion bugs. The only common exception: `x == null` checks for both `null` and `undefined`." },
-    { question: "What are Web Vitals and how do you improve them?",                           answer: "Core Web Vitals are Google's user experience metrics: LCP (Largest Contentful Paint — loading, target <2.5s), FID/INP (interaction responsiveness, target <200ms), CLS (Cumulative Layout Shift — visual stability, target <0.1). Improve LCP: optimize images, use CDN, preload critical resources. Reduce CLS: set explicit dimensions on images and embeds. Reduce INP: avoid long tasks, use web workers." },
+    { question: "What are Web Vitals and how do you improve them?",                           answer: "Core Web Vitals are Google's user experience metrics: LCP (Largest Contentful Paint, loading, target under 2.5s), FID/INP (interaction responsiveness, target under 200ms), CLS (Cumulative Layout Shift, visual stability, target under 0.1). Improve LCP: optimize images, use CDN, preload critical resources. Reduce CLS: set explicit dimensions on images and embeds. Reduce INP: avoid long tasks, use web workers." },
     { question: "What is accessibility (a11y) and how do you implement it?",                 answer: "Web accessibility ensures people with disabilities can use your app. Key practices: semantic HTML (use `<button>` not `<div onClick>`), ARIA labels for non-semantic elements, keyboard navigation (tabindex, focus management), sufficient color contrast (WCAG AA = 4.5:1), alt text on images, and testing with screen readers (NVDA, VoiceOver)." },
     { question: "Explain the difference between server-side rendering and client-side rendering.", answer: "CSR (React default): browser downloads a minimal HTML shell, then JavaScript renders everything client-side. Slow initial load, good for highly interactive apps. SSR (Next.js getServerSideProps): server renders full HTML on each request. Fast initial load, good for SEO. SSG: pages rendered at build time. ISR: SSG with revalidation. Choose based on data freshness requirements vs performance trade-offs." },
   ],
 
   "backend-developer": [
-    { question: "What is the difference between authentication and authorization?",           answer: "Authentication verifies who you are (login, JWT validation). Authorization verifies what you're allowed to do (role-based access, permissions). A common mistake is confusing them: a valid JWT proves identity but doesn't grant access — you still need to check if that identity has permission for the requested resource." },
+    { question: "What is the difference between authentication and authorization?",           answer: "Authentication verifies who you are (login, JWT validation). Authorization verifies what you're allowed to do (role-based access, permissions). A common mistake is confusing them: a valid JWT proves identity but doesn't grant access, you still need to check if that identity has permission for the requested resource." },
     { question: "Explain ACID properties in databases.",                                      answer: "ACID: Atomicity (a transaction completes fully or not at all), Consistency (transaction brings database from one valid state to another), Isolation (concurrent transactions don't interfere with each other), Durability (committed transactions survive system failures). These properties prevent data corruption in multi-user systems." },
-    { question: "What is N+1 query problem and how do you fix it?",                          answer: "N+1 occurs when you fetch N records then make 1 additional query per record — e.g., fetching 100 users then 100 separate queries for their posts. Fix with: SQL JOINs, eager loading (Eloquent's `with()`, Rails' `.includes()`), GraphQL DataLoader for batching, or denormalization. Always inspect your ORM's generated SQL in development." },
+    { question: "What is N+1 query problem and how do you fix it?",                          answer: "N+1 occurs when you fetch N records then make 1 additional query per record, e.g., fetching 100 users then 100 separate queries for their posts. Fix with: SQL JOINs, eager loading (Eloquent's `with()`, Rails' `.includes()`), GraphQL DataLoader for batching, or denormalization. Always inspect your ORM's generated SQL in development." },
     { question: "How do you design a RESTful API?",                                          answer: "Key principles: use nouns for resources (not verbs), use HTTP methods semantically (GET=read, POST=create, PUT/PATCH=update, DELETE=delete), return appropriate status codes (200, 201, 400, 401, 403, 404, 500), use versioning (/v1/), implement pagination, use consistent error response format, and document with OpenAPI/Swagger." },
     { question: "What is database indexing and when should you use it?",                      answer: "An index is a data structure that speeds up lookups at the cost of write performance and storage. Add indexes on: columns in WHERE clauses, JOIN conditions, ORDER BY/GROUP BY, foreign keys, and high-cardinality columns used in filters. Don't index low-cardinality columns (boolean), columns rarely queried, or tables with very high write rates relative to reads." },
-    { question: "What is caching and what are common caching strategies?",                   answer: "Caching stores computed results to avoid repeating expensive work. Strategies: Cache-Aside (app checks cache before DB, writes to cache on miss — most common), Write-Through (write to cache and DB simultaneously), Write-Behind (write to cache immediately, DB asynchronously), Read-Through (cache handles DB reads). Use Redis or Memcached. Key decisions: TTL, eviction policy (LRU/LFU), cache invalidation." },
+    { question: "What is caching and what are common caching strategies?",                   answer: "Caching stores computed results to avoid repeating expensive work. Strategies: Cache-Aside (app checks cache before DB, writes to cache on miss, most common), Write-Through (write to cache and DB simultaneously), Write-Behind (write to cache immediately, DB asynchronously), Read-Through (cache handles DB reads). Use Redis or Memcached. Key decisions: TTL, eviction policy (LRU/LFU), cache invalidation." },
     { question: "How do you handle database migrations in production?",                       answer: "Best practices: never deploy code and schema changes simultaneously (backward-compatible migrations first, then code, then cleanup); use expand-contract pattern for column renames; add NOT NULL columns with a default or in multiple steps; test migrations on a production-size snapshot; keep migrations idempotent; use tools like Flyway, Liquibase, or Rails migrations with version control." },
     { question: "What is a message queue and when would you use one?",                        answer: "A message queue (Kafka, RabbitMQ, SQS) decouples producers from consumers, enabling asynchronous processing. Use when: work is too slow for synchronous response (email sending, image processing), you need to absorb traffic spikes, multiple services need to react to the same event, or you need guaranteed delivery with retry logic. Trade-off: eventual consistency and increased system complexity." },
     { question: "Explain the difference between horizontal and vertical scaling.",           answer: "Vertical scaling adds more resources to an existing server (more CPU, RAM). Simple but has an upper limit and single point of failure. Horizontal scaling adds more servers. Requires load balancing, session management (stateless design or distributed sessions), and data consistency strategy. Most modern architectures scale horizontally using containerization (Docker/Kubernetes)." },
@@ -336,104 +332,104 @@ export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
 
   "data-scientist": [
     { question: "What is the difference between overfitting and underfitting?",               answer: "Overfitting: model learns training data too well including noise, performs poorly on new data (high variance). Underfitting: model too simple to capture the pattern (high bias). The bias-variance tradeoff: more complexity reduces bias but increases variance. Fix overfitting: regularization (L1/L2), dropout, early stopping, more data, cross-validation." },
-    { question: "Explain the Central Limit Theorem and why it matters.",                      answer: "The CLT states that the distribution of sample means approaches a normal distribution as sample size increases (n ≥ 30), regardless of the population distribution. It justifies using z-tests and t-tests on non-normal data, underpins A/B testing statistics, and means we can make inferences about populations from samples." },
-    { question: "How would you handle class imbalance in a classification problem?",          answer: "(1) Resampling — oversample minority (SMOTE) or undersample majority. (2) Class weights — class_weight='balanced' in sklearn. (3) Threshold tuning — move decision threshold below 0.5 to improve recall. (4) Right metric — use F1, precision-recall AUC, not accuracy. (5) BalancedRandomForest or EasyEnsemble." },
+    { question: "Explain the Central Limit Theorem and why it matters.",                      answer: "The CLT states that the distribution of sample means approaches a normal distribution as sample size increases (n >= 30), regardless of the population distribution. It justifies using z-tests and t-tests on non-normal data, underpins A/B testing statistics, and means we can make inferences about populations from samples." },
+    { question: "How would you handle class imbalance in a classification problem?",          answer: "(1) Resampling: oversample minority (SMOTE) or undersample majority. (2) Class weights: class_weight='balanced' in sklearn. (3) Threshold tuning, move decision threshold below 0.5 to improve recall. (4) Right metric, use F1, precision-recall AUC, not accuracy. (5) BalancedRandomForest or EasyEnsemble." },
     { question: "What is the difference between precision and recall?",                      answer: "Precision = TP/(TP+FP): of predicted positives, how many are correct? Recall = TP/(TP+FN): of actual positives, how many did you catch? There's a tradeoff. F1 = harmonic mean. Choose: maximize recall when false negatives are costly (cancer screening); maximize precision when false positives are costly (spam filtering)." },
     { question: "How do you design an A/B test?",                                            answer: "(1) Define hypothesis and primary metric. (2) Power analysis for sample size (80% power, 95% confidence, minimum detectable effect). (3) Random user assignment. (4) Run for a full business cycle. (5) Check for novelty effects and sample ratio mismatch. (6) Two-sided t-test or z-test. (7) Check guardrail metrics. (8) Decision requires statistical AND practical significance." },
-    { question: "What is gradient boosting and how does it differ from random forests?",      answer: "Random forests build trees independently and average predictions (bagging — reduces variance). Gradient boosting builds trees sequentially, each correcting residual errors of the previous (boosting — reduces bias). XGBoost/LightGBM are optimized implementations. Random forests: faster, less prone to overfitting. Gradient boosting: typically higher accuracy with tuning." },
+    { question: "What is gradient boosting and how does it differ from random forests?",      answer: "Random forests build trees independently and average predictions (bagging, reduces variance). Gradient boosting builds trees sequentially, each correcting residual errors of the previous (boosting, reduces bias). XGBoost/LightGBM are optimized implementations. Random forests: faster, less prone to overfitting. Gradient boosting: typically higher accuracy with tuning." },
     { question: "Write a SQL query to find the top 3 products by revenue in each category.", answer: "SELECT category, product, revenue FROM (SELECT category, product, SUM(amount) as revenue, RANK() OVER (PARTITION BY category ORDER BY SUM(amount) DESC) as rank FROM orders JOIN products USING(product_id) GROUP BY category, product) ranked WHERE rank <= 3. Key concept: RANK() window function with PARTITION BY." },
     { question: "How would you build a recommendation system from scratch?",                  answer: "(1) Collaborative filtering: find users with similar history (user-user or item-item CF), scalable with matrix factorization (ALS, SVD), cold-start problem with new users. (2) Content-based: recommend similar items based on features, no cold-start. (3) Hybrid: combine both. For production: candidate generation (FAISS for ANN) + ranking layer (LightGBM with context features)." },
-    { question: "What is p-hacking and how do you avoid it?",                                answer: "Running multiple statistical tests until one reaches p<0.05 by chance. With 20 tests at α=0.05, expect one false positive. Prevention: pre-register hypothesis; Bonferroni correction (divide α by number of tests); use false discovery rate (Benjamini-Hochberg); stop only at pre-calculated sample size; treat initial findings as hypothesis-generating only." },
+    { question: "What is p-hacking and how do you avoid it?",                                answer: "Running multiple statistical tests until one reaches p<0.05 by chance. With 20 tests at alpha=0.05, expect one false positive. Prevention: pre-register hypothesis; Bonferroni correction (divide alpha by number of tests); use false discovery rate (Benjamini-Hochberg); stop only at pre-calculated sample size; treat initial findings as hypothesis-generating only." },
     { question: "How would you explain a machine learning model to a non-technical stakeholder?", answer: "Start with output: 'This model predicts which users will cancel in the next 30 days.' Explain inputs and key drivers using SHAP values: 'Users inactive for 14+ days are 3x more likely to churn.' Avoid jargon. Acknowledge uncertainty: 'It's right about 85% of the time.' Focus on what decisions it enables and the cost of errors." },
   ],
 
   "product-manager": [
-    { question: "How would you prioritize a backlog with 50 feature requests?",               answer: "Use RICE (Reach, Impact, Confidence, Effort) or ICE scoring to quantify priority. First align with the current strategic goal — retention focus drops acquisition features. Group into themes, validate assumptions with quick stakeholder interviews, stack-rank the top 10 for the next sprint. Everything else goes into a quarterly review." },
-    { question: "How do you define and measure product success?",                             answer: "Define a North Star metric — the single number that best captures value delivery. Add input metrics that influence it and guardrail metrics that must not regress. Set targets with baseline data, run experiments, and review weekly. Example: North Star = jobs applied via platform; input = resume analyses completed; guardrail = cancellation rate." },
-    { question: "Tell me about a product you launched that failed. What did you learn?",      answer: "Structure: describe the hypothesis, what you built, what signals you missed (user research gaps? wrong metric? poor timing?), and most critically, what you changed about your process. Showing a process change — not just a lesson — is what separates strong PM answers. Interviewers want to see self-awareness and growth mindset." },
-    { question: "How do you decide between building a feature vs buying a solution?",         answer: "Evaluate: (1) Core competency — differentiating? Build. Commodity? Buy. (2) 3-year cost comparison including maintenance. (3) Time to market — buying is usually faster. (4) Control needs. (5) Data access — does the vendor get sensitive user data? Present trade-offs with explicit assumptions and a clear recommendation." },
-    { question: "How would you design a new feature for Spotify to increase podcast engagement?", answer: "Framework: (1) Clarify goals — time spent, completion rate, or new listeners? (2) Understand users — casual vs power vs commuters. (3) Identify pain points — discovery friction, no social layer. (4) Ideate — timestamped reactions, clip & share, AI episode summaries. (5) Prioritize by impact/effort. (6) Define success metrics before building." },
+    { question: "How would you prioritize a backlog with 50 feature requests?",               answer: "Use RICE (Reach, Impact, Confidence, Effort) or ICE scoring to quantify priority. First align with the current strategic goal, retention focus drops acquisition features. Group into themes, validate assumptions with quick stakeholder interviews, stack-rank the top 10 for the next sprint. Everything else goes into a quarterly review." },
+    { question: "How do you define and measure product success?",                             answer: "Define a North Star metric, the single number that best captures value delivery. Add input metrics that influence it and guardrail metrics that must not regress. Set targets with baseline data, run experiments, and review weekly. Example: North Star = jobs applied via platform; input = resume analyses completed; guardrail = cancellation rate." },
+    { question: "Tell me about a product you launched that failed. What did you learn?",      answer: "Structure: describe the hypothesis, what you built, what signals you missed (user research gaps? wrong metric? poor timing?), and most critically, what you changed about your process. Showing a process change, not just a lesson, is what separates strong PM answers. Interviewers want to see self-awareness and growth mindset." },
+    { question: "How do you decide between building a feature vs buying a solution?",         answer: "Evaluate: (1) Core competency: differentiating? Build. Commodity? Buy. (2) 3-year cost comparison including maintenance. (3) Time to market, buying is usually faster. (4) Control needs. (5) Data access, does the vendor get sensitive user data? Present trade-offs with explicit assumptions and a clear recommendation." },
+    { question: "How would you design a new feature for Spotify to increase podcast engagement?", answer: "Framework: (1) Clarify goals, time spent, completion rate, or new listeners? (2) Understand users, casual vs power vs commuters. (3) Identify pain points, discovery friction, no social layer. (4) Ideate, timestamped reactions, clip & share, AI episode summaries. (5) Prioritize by impact/effort. (6) Define success metrics before building." },
     { question: "What metrics would you use to measure a SaaS subscription product's health?", answer: "MRR/ARR, MRR growth rate, CAC, LTV, LTV:CAC ratio (target >3x), monthly revenue and logo churn, NPS/CSAT, activation rate (time to 'aha moment'), expansion MRR, payback period. Leading indicators: DAU/MAU ratio, feature adoption rate, support ticket trends." },
-    { question: "How do you work with engineers who push back on your timeline?",             answer: "Listen first — engineers have context you don't. If the pushback reveals complexity you missed, revise scope or timeline. If it's priority disagreement, walk through the business rationale. Treat timelines as negotiation: 'What can we ship in 2 weeks that gets us 80% of the value?' beats holding to an arbitrary date every time." },
-    { question: "How do you conduct user research on a tight deadline?",                      answer: "5-day sprint: Day 1 — write hypothesis and 5 core questions. Days 2-3 — run 5 user interviews (30 min each, via Calendly + Prolific or a Slack community). Day 4 — affinity mapping, identify top 3 patterns. Day 5 — present insights with direct quotes. Even 5 interviews reveal ~80% of usability issues. If only 1 day: use a 5-second test or Hotjar session recordings." },
+    { question: "How do you work with engineers who push back on your timeline?",             answer: "Listen first; engineers have context you don't. If the pushback reveals complexity you missed, revise scope or timeline. If it's priority disagreement, walk through the business rationale. Treat timelines as negotiation: 'What can we ship in 2 weeks that gets us 80% of the value?' beats holding to an arbitrary date every time." },
+    { question: "How do you conduct user research on a tight deadline?",                      answer: "5-day sprint: Day 1: write hypothesis and 5 core questions. Days 2-3: run 5 user interviews (30 min each, via Calendly + Prolific or a Slack community). Day 4, affinity mapping, identify top 3 patterns. Day 5, present insights with direct quotes. Even 5 interviews reveal ~80% of usability issues. If only 1 day: use a 5-second test or Hotjar session recordings." },
     { question: "What's the difference between a product roadmap and a backlog?",             answer: "Roadmap: strategic communication tool, outcome-oriented, for stakeholders, quarterly/annual. Shows themes, goals, and rough timing. Backlog: execution tool, a prioritized list of tasks and stories for the engineering team, sprint-level. Roadmaps change with strategy; backlogs change weekly." },
-    { question: "How do you handle a feature that engineering estimates will take 3 months but the business wants it in 1 month?", answer: "First, understand the business driver — is the timeline firm (contract, competitor launch) or a preference? Then explore with engineering: what's the 1-month version that delivers the core value? Can we ship a smaller scope now and iterate? Present leadership with: full feature in 3 months vs MVP in 1 month with specific capability gaps. Let them make an informed trade-off." },
+    { question: "How do you handle a feature that engineering estimates will take 3 months but the business wants it in 1 month?", answer: "First, understand the business driver: is the timeline firm (contract, competitor launch) or a preference? Then explore with engineering: what's the 1-month version that delivers the core value? Can we ship a smaller scope now and iterate? Present leadership with: full feature in 3 months vs MVP in 1 month with specific capability gaps. Let them make an informed trade-off." },
   ],
 
   "ux-designer": [
-    { question: "Walk me through your design process for a new product feature.",             answer: "My process: (1) Discovery — understand the problem space via user interviews, analytics review, competitive analysis. (2) Define — synthesize insights into a problem statement and user needs. (3) Ideate — sketch multiple divergent solutions before converging. (4) Prototype — build the minimum fidelity needed to test the key assumption. (5) Test — observe real users with the prototype. (6) Iterate — incorporate findings. Never skip discovery; most design failures start there." },
-    { question: "How do you handle design feedback from stakeholders that you disagree with?", answer: "Start by asking 'What problem are you trying to solve with this change?' — often the suggested change addresses a real concern but with the wrong solution. Present your design rationale with user data or research backing. If they still want their approach, propose testing both versions. The goal is to make the best decision for users, and sometimes stakeholders have context you don't." },
-    { question: "What is the difference between UX and UI design?",                          answer: "UX (User Experience) design focuses on the overall feel and flow of an experience — research, information architecture, user flows, and interaction design. UI (User Interface) design focuses on the visual layer — typography, color, spacing, component design. A product can have beautiful UI but terrible UX (confusing navigation, unclear information hierarchy). Strong products need both." },
-    { question: "How do you measure the success of a design?",                               answer: "Quantitative: task completion rate, time-on-task, error rate, conversion rate, and relevant product metrics (DAU, activation rate, feature adoption). Qualitative: usability test observations, user satisfaction scores (CSAT, SUS), and recurring themes in user feedback. Design success should always ladder back to a business metric — if the design change didn't move the metric, question whether it was the right problem." },
+    { question: "Walk me through your design process for a new product feature.",             answer: "My process: (1) Discovery: understand the problem space via user interviews, analytics review, competitive analysis. (2) Define, synthesize insights into a problem statement and user needs. (3) Ideate, sketch multiple divergent solutions before converging. (4) Prototype, build the minimum fidelity needed to test the key assumption. (5) Test, observe real users with the prototype. (6) Iterate, incorporate findings. Never skip discovery; most design failures start there." },
+    { question: "How do you handle design feedback from stakeholders that you disagree with?", answer: "Start by asking 'What problem are you trying to solve with this change?' Often the suggested change addresses a real concern but with the wrong solution. Present your design rationale with user data or research backing. If they still want their approach, propose testing both versions. The goal is to make the best decision for users, and sometimes stakeholders have context you don't." },
+    { question: "What is the difference between UX and UI design?",                          answer: "UX (User Experience) design focuses on the overall feel and flow of an experience: research, information architecture, user flows, and interaction design. UI (User Interface) design focuses on the visual layer, typography, color, spacing, component design. A product can have beautiful UI but terrible UX (confusing navigation, unclear information hierarchy). Strong products need both." },
+    { question: "How do you measure the success of a design?",                               answer: "Quantitative: task completion rate, time-on-task, error rate, conversion rate, and relevant product metrics (DAU, activation rate, feature adoption). Qualitative: usability test observations, user satisfaction scores (CSAT, SUS), and recurring themes in user feedback. Design success should always ladder back to a business metric, if the design change didn't move the metric, question whether it was the right problem." },
     { question: "Describe a time a user test changed your design significantly.",             answer: "Use STAR. The key insight interviewers want: that you run user tests early (not just at the end), that you approach them with genuine curiosity rather than confirmation bias, and that you're willing to kill your darlings when the evidence says to. The best answer shows a fundamental assumption that was wrong and how discovering it early saved significant engineering time." },
     { question: "How do you design for accessibility?",                                      answer: "Accessibility is built in from the start, not added at the end. Key practices: sufficient color contrast (WCAG AA = 4.5:1 for text), never rely solely on color to convey information, design clear focus states for keyboard navigation, provide text alternatives for non-text content, design with assistive technologies in mind (screen readers expect semantic HTML), and test with real users who have disabilities when possible." },
-    { question: "What is design systems and why do they matter?",                             answer: "A design system is a shared library of reusable components, patterns, and guidelines that ensure visual and interaction consistency across a product. It matters because: it speeds up design and development (don't redesign buttons), ensures consistency (users build mental models), reduces design debt, and enables teams to scale. Good design systems (Material Design, Polaris, Spectrum) document the 'why' behind decisions, not just the 'what.'" },
-    { question: "How do you conduct a usability test?",                                      answer: "Steps: (1) Define the task and hypothesis. (2) Recruit 5-8 participants who match your target user. (3) Write a script with tasks (not instructions — 'Buy a gift for your friend' not 'Click the Buy button'). (4) Facilitate — be quiet, observe, don't help unless they're completely stuck. (5) Take notes on where users hesitate, backtrack, or express confusion. (6) Synthesize patterns across sessions. Five users typically reveal 80% of major usability issues." },
+    { question: "What is a design system and why does it matter?",                            answer: "A design system is a shared library of reusable components, patterns, and guidelines that ensure visual and interaction consistency across a product. It matters because: it speeds up design and development (don't redesign buttons every time), ensures consistency (users build mental models), reduces design debt, and enables teams to scale. Good design systems (Material Design, Polaris, Spectrum) document the 'why' behind decisions, not just the 'what.'" },
+    { question: "How do you conduct a usability test?",                                      answer: "Steps: (1) Define the task and hypothesis. (2) Recruit 5-8 participants who match your target user. (3) Write a script with tasks (not instructions, 'Buy a gift for your friend' not 'Click the Buy button'). (4) Facilitate, be quiet, observe, don't help unless they're completely stuck. (5) Take notes on where users hesitate, backtrack, or express confusion. (6) Synthesize patterns across sessions. Five users typically reveal 80% of major usability issues." },
     { question: "What tools do you use in your design process?",                              answer: "The tools matter less than the process, but: Figma for UI design, prototyping, and design systems (industry standard). Miro or FigJam for research synthesis and journey mapping. Maze, UserTesting, or Lookback for unmoderated usability tests. Hotjar or FullStory for behavioral analytics. Notion or Confluence for documentation. The right answer shows you pick tools based on the job, not habit." },
-    { question: "How do you balance user needs with business requirements?",                  answer: "They're usually more aligned than they appear — a product that frustrates users will eventually hurt the business. When they genuinely conflict: quantify the trade-off (what's the revenue impact of this friction?), bring user data to the conversation, and look for third options that satisfy both. If a business constraint is truly non-negotiable, focus on mitigating the negative user impact rather than fighting the constraint." },
+    { question: "How do you balance user needs with business requirements?",                  answer: "They're usually more aligned than they appear; a product that frustrates users will eventually hurt the business. When they genuinely conflict: quantify the trade-off (what's the revenue impact of this friction?), bring user data to the conversation, and look for third options that satisfy both. If a business constraint is truly non-negotiable, focus on mitigating the negative user impact rather than fighting the constraint." },
   ],
 
   "business-analyst": [
     { question: "How do you gather and document business requirements?",                      answer: "Start with stakeholder interviews to understand the business problem, not the requested solution. Use techniques: structured interviews, workshops, process walkthroughs, and existing documentation review. Document in a Business Requirements Document (BRD) covering: business objectives, scope, stakeholder needs, current state vs desired state, constraints, and assumptions. Validate by walking through with stakeholders and resolving ambiguities before handing off to technical teams." },
     { question: "What is the difference between a business requirement and a functional requirement?", answer: "Business requirements describe what the business needs to achieve (goals, outcomes, KPIs): 'Reduce customer churn by 15%.' Functional requirements describe what a system must do to enable that: 'The system must send an automated re-engagement email when a user has not logged in for 30 days.' BRs come from business stakeholders; FRs come from BRs and are written for technical teams." },
     { question: "Describe a process improvement project you led.",                            answer: "Use STAR. Strong answers include: how you identified the inefficiency (data, observation, or stakeholder feedback), how you mapped the current state process, the root cause analysis methodology you used (fishbone, 5 Whys), what you recommended and why, how you managed change management, and the quantified result (time saved, cost reduced, error rate decreased)." },
-    { question: "How do you handle conflicting requirements from different stakeholders?",    answer: "First, ensure you deeply understand each stakeholder's underlying need — not just their stated requirement. Often conflicts dissolve when you find the common goal. If the conflict is genuine: facilitate a prioritization session using a framework (MoSCoW, RICE), escalate to a decision-maker with a clear recommendation and trade-off analysis, and document the decision rationale. Never silently choose one stakeholder's requirement over another." },
+    { question: "How do you handle conflicting requirements from different stakeholders?",    answer: "First, ensure you deeply understand each stakeholder's underlying need, not just their stated requirement. Often conflicts dissolve when you find the common goal. If the conflict is genuine: facilitate a prioritization session using a framework (MoSCoW, RICE), escalate to a decision-maker with a clear recommendation and trade-off analysis, and document the decision rationale. Never silently choose one stakeholder's requirement over another." },
     { question: "What SQL queries do you use most frequently as a BA?",                      answer: "Most common: SELECT with WHERE filters for data exploration; GROUP BY with aggregate functions (COUNT, SUM, AVG) for summary metrics; JOIN across multiple tables to combine datasets; CASE WHEN for conditional categorization; subqueries and CTEs for multi-step analysis; window functions (ROW_NUMBER, LAG) for time series analysis. Strong BAs can also write UPDATE/INSERT statements for data corrections with appropriate approvals." },
-    { question: "How do you prioritize requirements when everything is 'urgent'?",           answer: "Apply a framework: MoSCoW (Must Have, Should Have, Could Have, Won't Have) or impact vs effort matrix. Quantify wherever possible — what is the revenue, cost, or risk impact of each requirement? Facilitate a stakeholder workshop to force trade-off conversations (give each stakeholder a fixed number of 'votes'). Escalate conflicts to the right decision-maker with a clear recommendation rather than trying to satisfy everyone." },
-    { question: "Describe your experience with process mapping and the tools you use.",      answer: "Process mapping tools: Visio, Lucidchart, or Miro for flow diagrams; BPMN notation for more formal process documentation. I use swimlane diagrams to show handoffs between departments, value stream mapping to identify waste, and data flow diagrams for system analysis. The most important skill isn't the tool — it's facilitation: getting the people who do the work to articulate what they actually do (vs. what the procedure document says)." },
-    { question: "How do you ensure the solution you've defined actually solves the business problem?", answer: "Define acceptance criteria before development begins — specific, measurable conditions that must be true for the requirement to be met. Run UAT (User Acceptance Testing) with actual end users, not just IT testers. Define success metrics upfront and measure them post-implementation. Build in a post-go-live review period to assess whether business outcomes improved. The BA's job doesn't end at requirements sign-off." },
+    { question: "How do you prioritize requirements when everything is 'urgent'?",           answer: "Apply a framework: MoSCoW (Must Have, Should Have, Could Have, Won't Have) or impact vs effort matrix. Quantify wherever possible, what is the revenue, cost, or risk impact of each requirement? Facilitate a stakeholder workshop to force trade-off conversations (give each stakeholder a fixed number of 'votes'). Escalate conflicts to the right decision-maker with a clear recommendation rather than trying to satisfy everyone." },
+    { question: "Describe your experience with process mapping and the tools you use.",      answer: "Process mapping tools: Visio, Lucidchart, or Miro for flow diagrams; BPMN notation for more formal process documentation. I use swimlane diagrams to show handoffs between departments, value stream mapping to identify waste, and data flow diagrams for system analysis. The most important skill isn't the tool, it's facilitation: getting the people who do the work to articulate what they actually do (vs. what the procedure document says)." },
+    { question: "How do you ensure the solution you've defined actually solves the business problem?", answer: "Define acceptance criteria before development begins, specific, measurable conditions that must be true for the requirement to be met. Run UAT (User Acceptance Testing) with actual end users, not just IT testers. Define success metrics upfront and measure them post-implementation. Build in a post-go-live review period to assess whether business outcomes improved. The BA's job doesn't end at requirements sign-off." },
     { question: "What is the role of a BA in an Agile team?",                                answer: "In Agile, the BA role blends with the Product Owner. Responsibilities: translating business strategy into user stories with clear acceptance criteria, maintaining and prioritizing the product backlog, facilitating backlog refinement sessions, answering questions from developers during sprints, conducting sprint reviews to validate completed work meets requirements, and managing stakeholder communication. The key difference from waterfall: requirements evolve iteratively rather than being frozen upfront." },
-    { question: "Explain how you would perform a gap analysis.",                              answer: "Gap analysis compares current state to desired future state. Process: (1) Define the target state clearly — what does 'good' look like? (2) Document current state through observation, data analysis, and stakeholder interviews. (3) Identify gaps — where are the differences? Categorize by people (skills, headcount), process (workflows, policies), technology (systems, integrations), and data (availability, quality). (4) Prioritize gaps by impact. (5) Recommend initiatives to close each gap with estimated effort and benefit." },
+    { question: "Explain how you would perform a gap analysis.",                              answer: "Gap analysis compares current state to desired future state. Process: (1) Define the target state clearly, what does 'good' look like? (2) Document current state through observation, data analysis, and stakeholder interviews. (3) Identify gaps, where are the differences? Categorize by people (skills, headcount), process (workflows, policies), technology (systems, integrations), and data (availability, quality). (4) Prioritize gaps by impact. (5) Recommend initiatives to close each gap with estimated effort and benefit." },
   ],
 
   "financial-analyst": [
-    { question: "Walk me through a DCF analysis.",                                            answer: "A DCF (Discounted Cash Flow) analysis estimates intrinsic value by projecting future free cash flows and discounting them to present value using WACC. Steps: (1) Project revenue, EBIT margins, capex, and working capital changes for 5-10 years. (2) Calculate unlevered free cash flow (EBITDA - taxes - capex - ΔWC). (3) Estimate terminal value (Gordon Growth Model or exit multiple). (4) Discount all cash flows at WACC. (5) Add non-operating assets, subtract net debt to get equity value." },
+    { question: "Walk me through a DCF analysis.",                                            answer: "A DCF (Discounted Cash Flow) analysis estimates intrinsic value by projecting future free cash flows and discounting them to present value using WACC. Steps: (1) Project revenue, EBIT margins, capex, and working capital changes for 5-10 years. (2) Calculate unlevered free cash flow (EBITDA - taxes - capex - change in WC). (3) Estimate terminal value (Gordon Growth Model or exit multiple). (4) Discount all cash flows at WACC. (5) Add non-operating assets, subtract net debt to get equity value." },
     { question: "What is the difference between enterprise value and equity value?",          answer: "Enterprise Value (EV) = Equity Value + Net Debt + Minority Interest + Preferred Stock. EV represents the total value of the business independent of capital structure. Equity Value = what common shareholders own. Use EV for acquisition analysis and EV/EBITDA multiples (capital-structure neutral). Use Equity Value for P/E, P/B ratios. A company with the same EV can have vastly different equity values depending on leverage." },
     { question: "What are the three financial statements and how do they connect?",           answer: "Income Statement: revenue, expenses, net income over a period. Balance Sheet: assets, liabilities, equity at a point in time. Cash Flow Statement: cash inflows/outflows from operations, investing, financing. Connections: net income flows from IS to retained earnings on the BS; D&A added back on the CFS; capex reduces cash on CFS and increases PP&E on BS; changes in working capital (AR, AP, inventory) affect both BS and operating CFS." },
-    { question: "How do you build a financial model?",                                       answer: "Best practices: start with assumptions tab (clearly labeled, color-coded blue); build the IS top-down (revenue → gross profit → EBITDA → net income); build the BS (current/long-term assets and liabilities, equity); build the CFS linking to IS and BS; add valuation (DCF, comps). Model should balance: cash + BS assets = liabilities + equity. Always have a sanity check: does the output pass the 'sniff test'?" },
+    { question: "How do you build a financial model?",                                       answer: "Best practices: start with assumptions tab (clearly labeled, color-coded blue); build the IS top-down (revenue to gross profit to EBITDA to net income); build the BS (current/long-term assets and liabilities, equity); build the CFS linking to IS and BS; add valuation (DCF, comps). Model should balance: cash + BS assets = liabilities + equity. Always have a sanity check: does the output pass the 'sniff test'?" },
     { question: "Explain LBO analysis.",                                                     answer: "An LBO (Leveraged Buyout) model analyzes acquiring a company using significant debt. Structure: purchase price funded ~60-70% with debt, 30-40% equity. The company's cash flows service the debt. Returns are driven by: EBITDA growth, multiple expansion, and debt paydown. Key metrics: IRR (target 20-25% for PE), MOIC (target 2-3x), and exit multiple. Sensitivity analysis on entry/exit multiples and revenue growth is essential." },
     { question: "What is working capital and why does it matter?",                            answer: "Working capital = Current Assets - Current Liabilities. Net Working Capital (operating) = AR + Inventory - AP. Positive NWC means the business needs cash to fund operations. Increasing NWC consumes cash (e.g., fast-growing company with rising AR). In FCF analysis, increases in NWC are a cash outflow. Companies with negative NWC (like retailers that collect cash before paying suppliers) effectively have customers fund their operations." },
     { question: "How do you perform a comparable companies analysis?",                        answer: "Steps: (1) Select truly comparable peers (similar business model, size, geography, growth stage). (2) Spread financials: revenue, EBITDA, net income for LTM and next 2 fiscal years. (3) Calculate multiples: EV/Revenue, EV/EBITDA, EV/EBIT, P/E. (4) Apply median or selected multiple to subject company's metrics. Key pitfall: selecting comps that aren't truly comparable inflates or deflates the valuation." },
     { question: "What is the difference between GAAP and non-GAAP earnings?",                answer: "GAAP earnings follow strict accounting rules. Non-GAAP (or 'adjusted') earnings exclude items management considers one-time or non-cash: stock-based compensation, amortization of acquired intangibles, restructuring charges, M&A costs. Companies use non-GAAP to show 'operating performance.' Analysts use both: non-GAAP for trend analysis and valuation multiples; GAAP for absolute comparisons and accounting red flags." },
     { question: "Tell me about a time you found an error in a financial model.",              answer: "Use STAR. Strong answers demonstrate: methodical checking process (does the BS balance? does CFS tie to cash?), understanding of common error types (circular references, hardcoded numbers in formulas, wrong sign on CFS items, mixing LTM and forward periods), and the habit of building error-checking cells into models. Bonus: describe using Excel auditing tools (trace dependents/precedents) or building a model comparison tab." },
-    { question: "How do you evaluate whether a company's valuation is justified?",           answer: "Triangulate multiple methods: DCF (intrinsic value based on cash flow projections), comparable company multiples (what are similar businesses worth?), precedent transaction multiples (what have acquirers paid?). Compare across methods — if DCF shows $50 but comps show $80, understand why. Also consider qualitative factors: competitive moat, management quality, market tailwinds. A valuation is only as good as its assumptions." },
-    { question: "What causes a company's P/E ratio to be high or low?",                      answer: "P/E = Price / Earnings. High P/E: high expected growth (market paying for future earnings), low risk/high quality business, low interest rates (reduces discount rate). Low P/E: mature/slow-growing business, high risk or uncertainty, cyclical business near peak earnings, or genuine undervaluation. Always compare P/E to growth rate (PEG ratio) and to industry peers — a P/E of 30x is cheap for a 40% growth company and expensive for a 5% growth company." },
+    { question: "How do you evaluate whether a company's valuation is justified?",           answer: "Triangulate multiple methods: DCF (intrinsic value based on cash flow projections), comparable company multiples (what are similar businesses worth?), precedent transaction multiples (what have acquirers paid?). Compare across methods, if DCF shows $50 but comps show $80, understand why. Also consider qualitative factors: competitive moat, management quality, market tailwinds. A valuation is only as good as its assumptions." },
+    { question: "What causes a company's P/E ratio to be high or low?",                      answer: "P/E = Price / Earnings. High P/E: high expected growth (market paying for future earnings), low risk/high quality business, low interest rates (reduces discount rate). Low P/E: mature/slow-growing business, high risk or uncertainty, cyclical business near peak earnings, or genuine undervaluation. Always compare P/E to growth rate (PEG ratio) and to industry peers, a P/E of 30x is cheap for a 40% growth company and expensive for a 5% growth company." },
   ],
 
   "marketing-manager": [
-    { question: "How do you build a go-to-market strategy for a new product?",               answer: "Framework: (1) Define ICP (Ideal Customer Profile) — who specifically are we targeting and why? (2) Identify the core problem we solve and differentiated value proposition. (3) Choose channels based on where your ICP spends time and how they buy. (4) Develop messaging hierarchy — primary message, supporting proof points. (5) Set launch goals and success metrics. (6) Plan the launch sequence: pre-launch buzz, launch day, post-launch amplification. (7) Define feedback loops to iterate quickly." },
-    { question: "How do you measure the ROI of a marketing campaign?",                       answer: "Start by defining the objective: awareness, lead generation, or revenue? Match metrics to objective. For lead gen: CPL (cost per lead), MQL volume, lead-to-opportunity conversion rate. For revenue: customer acquisition cost (CAC), customer lifetime value (LTV), LTV:CAC ratio, and attributed revenue. Attribution is the hard part — use multi-touch attribution models (first touch, last touch, linear, time decay) and be explicit about the model's limitations." },
+    { question: "How do you build a go-to-market strategy for a new product?",               answer: "Framework: (1) Define ICP (Ideal Customer Profile), who specifically are we targeting and why? (2) Identify the core problem we solve and differentiated value proposition. (3) Choose channels based on where your ICP spends time and how they buy. (4) Develop messaging hierarchy, primary message, supporting proof points. (5) Set launch goals and success metrics. (6) Plan the launch sequence: pre-launch buzz, launch day, post-launch amplification. (7) Define feedback loops to iterate quickly." },
+    { question: "How do you measure the ROI of a marketing campaign?",                       answer: "Start by defining the objective: awareness, lead generation, or revenue? Match metrics to objective. For lead gen: CPL (cost per lead), MQL volume, lead-to-opportunity conversion rate. For revenue: customer acquisition cost (CAC), customer lifetime value (LTV), LTV:CAC ratio, and attributed revenue. Attribution is the hard part, use multi-touch attribution models (first touch, last touch, linear, time decay) and be explicit about the model's limitations." },
     { question: "Describe a successful marketing campaign you led.",                         answer: "Use STAR. Strong answers include: a clear strategic rationale (why this channel, why this message), how you identified the audience, the creative insight that made it work, how you measured it, and what you'd do differently. Quantified results are essential: reach, engagement, leads generated, revenue attributed, and comparison against benchmark or target." },
-    { question: "How do you approach building a marketing budget?",                          answer: "Start with business objectives: what revenue/growth targets does marketing need to support? Work backwards from CAC and LTV — if LTV is $1,000 and target CAC is $200, you can spend $200 per customer acquired. Allocate across channels based on historical performance data and strategic priorities. Reserve 10-15% for experimentation. Build in quarterly review cycles to reallocate based on performance." },
-    { question: "How do you align marketing with sales?",                                    answer: "The root of most marketing-sales misalignment is a different definition of a 'qualified lead.' Fix with: a shared MQL/SQL definition agreed by both teams; regular pipeline reviews together; SLA on lead response time; closed-loop reporting (marketing sees which leads actually closed); and shared revenue metrics, not just marketing-owned metrics like impressions. The best marketing leaders I've seen spend significant time in sales calls." },
+    { question: "How do you approach building a marketing budget?",                          answer: "Start with business objectives: what revenue/growth targets does marketing need to support? Work backwards from CAC and LTV, if LTV is $1,000 and target CAC is $200, you can spend $200 per customer acquired. Allocate across channels based on historical performance data and strategic priorities. Reserve 10-15% for experimentation. Build in quarterly review cycles to reallocate based on performance." },
+    { question: "How do you align marketing with sales?",                                    answer: "The root of most marketing-sales misalignment is a different definition of a 'qualified lead.' Fix with: a shared MQL/SQL definition agreed by both teams; regular pipeline reviews together; SLA on lead response time; closed-loop reporting (marketing sees which leads actually closed); and shared revenue metrics, not just marketing-owned metrics like impressions. The best marketing leaders spend significant time in sales calls." },
     { question: "What is content marketing and how do you measure its effectiveness?",       answer: "Content marketing creates valuable content to attract and retain customers rather than interrupt them with ads. Metrics: traffic (organic search growth, time on page), engagement (shares, comments, backlinks), lead generation (content-attributed MQLs, email subscribers), and revenue influence (pipeline touched by content). The challenge: content ROI is often long-tail and difficult to attribute directly. Use Google Search Console, GA4, and your CRM's attribution reporting." },
-    { question: "How do you build and maintain a brand?",                                    answer: "Brand = what people think and feel about you when you're not in the room. Building it: define your brand identity (purpose, values, personality, positioning) before designing anything visual. Create brand guidelines that translate identity into consistent tone, voice, and visual language. Maintain it: be consistent across all touchpoints, respond to brand crises quickly and authentically, track brand health metrics (brand awareness, sentiment, NPS), and involve the whole company — brand is not just a marketing function." },
+    { question: "How do you build and maintain a brand?",                                    answer: "Brand = what people think and feel about you when you're not in the room. Building it: define your brand identity (purpose, values, personality, positioning) before designing anything visual. Create brand guidelines that translate identity into consistent tone, voice, and visual language. Maintain it: be consistent across all touchpoints, respond to brand crises quickly and authentically, track brand health metrics (brand awareness, sentiment, NPS), and involve the whole company, brand is not just a marketing function." },
     { question: "What is product-led growth and how does marketing support it?",             answer: "PLG is a go-to-market strategy where the product itself drives user acquisition, expansion, and retention (Slack, Figma, Dropbox model). Marketing's role in PLG: top-of-funnel awareness to drive signups, onboarding optimization to activate users, product usage data to identify expansion signals, viral/referral loop design, and community building. PLG shifts marketing from demand generation to product amplification." },
     { question: "How do you approach customer segmentation?",                               answer: "Segment by variables that actually drive different behavior: firmographic (company size, industry, geography), behavioral (how they use the product, purchase frequency), psychographic (goals, values, challenges), and needs-based (what problem they're primarily trying to solve). The test of a useful segment: does it change what you do? If two segments receive the same message and offer, they're not meaningfully different segments." },
     { question: "Tell me about a campaign that failed. What did you learn?",                 answer: "Interviewers want to see intellectual honesty and learning orientation. Strong answers: describe what the hypothesis was, what signals you used to make the decision, what actually happened, what root cause analysis you did (was it the channel? the message? the audience? the timing?), and what you changed in your process. The failure itself matters less than your analysis of it." },
   ],
 
   "sales-manager": [
-    { question: "How do you build and manage a high-performing sales team?",                 answer: "Three pillars: hiring (look for coachability and competitiveness, not just past quota attainment — context matters), development (weekly 1:1s with deal coaching, not just status updates; structured ramping for new reps; clear career ladders), and accountability (transparent leaderboards, consistent metrics, honest performance conversations early rather than at the end of a quarter). The manager's job is to remove blockers and raise the floor, not just celebrate the ceiling." },
+    { question: "How do you build and manage a high-performing sales team?",                 answer: "Three pillars: hiring (look for coachability and competitiveness, not just past quota attainment, context matters), development (weekly 1:1s with deal coaching, not just status updates; structured ramping for new reps; clear career ladders), and accountability (transparent leaderboards, consistent metrics, honest performance conversations early rather than at the end of a quarter). The manager's job is to remove blockers and raise the floor, not just celebrate the ceiling." },
     { question: "How do you handle a rep who is consistently missing quota?",                answer: "First, diagnose before prescribing. Is it activity volume (not enough meetings/calls)? Conversion rate issue (getting meetings but not progressing deals)? Deal quality (pursuing wrong accounts)? Or external factors (bad territory, market change)? Then: create a specific improvement plan with measurable milestones at 30/60/90 days; increase coaching frequency; be honest about the timeline. If improvement doesn't materialize despite genuine support, manage them out fairly." },
     { question: "Describe your approach to forecasting.",                                    answer: "I use a bottoms-up approach: each rep submits their best-case, commit, and pipeline by account. I apply stage-based probability weights but override based on qualitative assessment (do I know this deal? Have I talked to the decision-maker?). I track forecast accuracy week-over-week and call out patterns (reps who consistently over-forecast, stages where deals consistently slip). The goal is not to always be right but to understand the variance when you're wrong." },
-    { question: "How do you develop a sales playbook?",                                     answer: "A sales playbook documents the repeatable process that closes deals. Components: ICP definition, discovery framework (questions that uncover pain and urgency), product positioning by persona, objection handling library, competitive battlecards, proof points and case studies by vertical, and the sequence of events from first contact to close. Build it by studying your best reps — what do they do differently? Then systematize it and train everyone to that standard." },
-    { question: "How do you handle a major deal that is stalling?",                          answer: "Diagnose the stall: is it internal (budget freeze, champion lost influence) or external (we haven't created enough urgency)? Then act: get a meeting with economic buyer (not just champion), requalify the deal (is there still a compelling event?), create a mutual action plan with dates, and offer a limited-time incentive if appropriate. If the deal is truly stuck, be honest about the timeline rather than carrying it indefinitely — stalled deals rot forecasts." },
-    { question: "What metrics do you track to manage your team's performance?",              answer: "Leading indicators: activity (calls/emails/meetings per rep), pipeline coverage (3x quota in pipe), new opportunities added per week. Lagging indicators: quota attainment, average deal size, sales cycle length, win rate. Diagnostic: lead-to-opportunity conversion, opportunity-to-close conversion by stage. The key is connecting leading to lagging: if pipeline coverage drops below 2.5x, you'll miss quota in 90 days — act now, not then." },
+    { question: "How do you develop a sales playbook?",                                     answer: "A sales playbook documents the repeatable process that closes deals. Components: ICP definition, discovery framework (questions that uncover pain and urgency), product positioning by persona, objection handling library, competitive battlecards, proof points and case studies by vertical, and the sequence of events from first contact to close. Build it by studying your best reps, what do they do differently? Then systematize it and train everyone to that standard." },
+    { question: "How do you handle a major deal that is stalling?",                          answer: "Diagnose the stall: is it internal (budget freeze, champion lost influence) or external (we haven't created enough urgency)? Then act: get a meeting with economic buyer (not just champion), requalify the deal (is there still a compelling event?), create a mutual action plan with dates, and offer a limited-time incentive if appropriate. If the deal is truly stuck, be honest about the timeline rather than carrying it indefinitely, stalled deals rot forecasts." },
+    { question: "What metrics do you track to manage your team's performance?",              answer: "Leading indicators: activity (calls/emails/meetings per rep), pipeline coverage (3x quota in pipe), new opportunities added per week. Lagging indicators: quota attainment, average deal size, sales cycle length, win rate. Diagnostic: lead-to-opportunity conversion, opportunity-to-close conversion by stage. The key is connecting leading to lagging: if pipeline coverage drops below 2.5x, you'll miss quota in 90 days, act now, not then." },
     { question: "How do you build relationships with key accounts?",                         answer: "Strategic account management: map the org (who are all the stakeholders, their priorities, and their influence?), create a success plan with the customer (agreed goals, milestones, metrics), executive alignment (your exec talks to their exec), regular business reviews (quarterly, not just when there's a problem), and proactive value delivery (bring insights or introductions before they ask). Key account churn almost always has warning signs 6+ months earlier." },
-    { question: "Tell me about your biggest sales win. What made it possible?",              answer: "Use STAR. The key elements: the strategic situation (competitive, complex, or previously stuck), your specific actions (not just 'built relationship' — what specifically?), how you orchestrated your team and resources, what made the difference, and the quantified result. The best answers demonstrate executive presence, creative problem-solving, and persistence — not just luck." },
-    { question: "How do you onboard and ramp new sales reps?",                               answer: "Effective onboarding: Week 1 — product, ICP, personas, competitive landscape, tools. Week 2 — sales process, methodology training, listening to calls. Week 3-4 — shadowing top reps, role-play discovery calls, taking over calls with manager support. Month 2 — carrying their own accounts with weekly deal coaching. Month 3 — full book with clear ramp quota targets. Track: time-to-first-deal and ramp-to-quota-attainment as the primary onboarding KPIs." },
-    { question: "What is your management philosophy?",                                       answer: "My philosophy centers on treating people as whole professionals: clear expectations (know exactly what success looks like), regular honest feedback (don't save it for reviews), removing friction (figure out what's slowing them down and fix it), and investing in development (where do they want to go, and how does this role get them there?). I believe in high standards with high support — the biggest failure in sales management is lowering the bar instead of raising the coaching." },
+    { question: "Tell me about your biggest sales win. What made it possible?",              answer: "Use STAR. The key elements: the strategic situation (competitive, complex, or previously stuck), your specific actions (not just 'built relationship', what specifically?), how you orchestrated your team and resources, what made the difference, and the quantified result. The best answers demonstrate executive presence, creative problem-solving, and persistence, not just luck." },
+    { question: "How do you onboard and ramp new sales reps?",                               answer: "Effective onboarding: Week 1: product, ICP, personas, competitive landscape, tools. Week 2, sales process, methodology training, listening to calls. Week 3-4, shadowing top reps, role-play discovery calls, taking over calls with manager support. Month 2, carrying their own accounts with weekly deal coaching. Month 3, full book with clear ramp quota targets. Track: time-to-first-deal and ramp-to-quota-attainment as the primary onboarding KPIs." },
+    { question: "What is your management philosophy?",                                       answer: "My philosophy centers on treating people as whole professionals: clear expectations (know exactly what success looks like), regular honest feedback (don't save it for reviews), removing friction (figure out what's slowing them down and fix it), and investing in development (where do they want to go, and how does this role get them there?). I believe in high standards with high support, the biggest failure in sales management is lowering the bar instead of raising the coaching." },
   ],
 
   "hr-manager": [
-    { question: "How do you handle a performance improvement plan (PIP)?",                   answer: "A PIP should be a genuine attempt to retain and develop the employee, not a paper trail for termination. Best practice: have the performance conversation before the PIP — the employee should never be surprised. The PIP should: specify measurable behaviors/outcomes expected, timeline with checkpoints, support and resources offered, and consequence if targets aren't met. Meet weekly during the PIP, document everything, and involve legal counsel for any termination." },
-    { question: "How do you approach compensation and total rewards?",                       answer: "Framework: (1) Market analysis — benchmark roles against industry data (Radford, Mercer, Glassdoor, Levels.fyi for tech). (2) Define your compensation philosophy — do you pay at 50th, 75th, or 90th percentile? (3) Build salary bands with range minimums, midpoints, and maximums. (4) Account for total rewards: base, bonus, equity, benefits, flexibility, and career development. (5) Audit for pay equity regularly — gender and ethnicity gaps don't always show in intent, they show in outcomes." },
-    { question: "How do you manage a situation where two employees are in conflict?",         answer: "First, meet with each party separately to understand their perspective without the other present. Listen without taking sides. Identify the actual issue (often it's a process gap, unclear roles, or communication style — not personal animosity). If appropriate, facilitate a structured conversation between them with agreed ground rules. Document what was discussed and agreed. If the conflict involves misconduct allegations, escalate to an investigation process. Prevention: clear role definitions and communication norms reduce most interpersonal conflicts." },
+    { question: "How do you handle a performance improvement plan (PIP)?",                   answer: "A PIP should be a genuine attempt to retain and develop the employee, not a paper trail for termination. Best practice: have the performance conversation before the PIP, the employee should never be surprised. The PIP should: specify measurable behaviors/outcomes expected, timeline with checkpoints, support and resources offered, and consequence if targets aren't met. Meet weekly during the PIP, document everything, and involve legal counsel for any termination." },
+    { question: "How do you approach compensation and total rewards?",                       answer: "Framework: (1) Market analysis: benchmark roles against industry data (Radford, Mercer, Glassdoor, Levels.fyi for tech). (2) Define your compensation philosophy, do you pay at 50th, 75th, or 90th percentile? (3) Build salary bands with range minimums, midpoints, and maximums. (4) Account for total rewards: base, bonus, equity, benefits, flexibility, and career development. (5) Audit for pay equity regularly, gender and ethnicity gaps don't always show in intent, they show in outcomes." },
+    { question: "How do you manage a situation where two employees are in conflict?",         answer: "First, meet with each party separately to understand their perspective without the other present. Listen without taking sides. Identify the actual issue (often it's a process gap, unclear roles, or communication style, not personal animosity). If appropriate, facilitate a structured conversation between them with agreed ground rules. Document what was discussed and agreed. If the conflict involves misconduct allegations, escalate to an investigation process. Prevention: clear role definitions and communication norms reduce most interpersonal conflicts." },
     { question: "How do you build a talent pipeline?",                                       answer: "Proactive talent acquisition: build relationships with potential candidates before you need them (LinkedIn, conferences, employee referrals), develop a strong employer brand (Glassdoor, LinkedIn Life, employee stories), create a structured internship-to-hire pipeline for early career talent, and identify internal talent for future roles with succession planning. Key metric: what % of roles are filled with internal candidates or pre-identified external candidates vs. reactive sourcing?" },
     { question: "How do you ensure diversity, equity, and inclusion in hiring?",              answer: "Systemic approach, not individual effort: blind resume review removes names/schools, diverse interview panels reduce individual bias, structured interviews with consistent questions allow fair comparison, train interviewers on bias (affinity bias, halo effect), broaden sourcing channels (HBCUs, minority professional associations, non-traditional backgrounds), and track metrics (application-to-interview, interview-to-offer rates by demographic) to identify where the funnel breaks. Representation is the outcome; inclusion is whether people feel they can be themselves once hired." },
-    { question: "Describe your experience with HR technology and HRIS systems.",              answer: "Common systems: Workday (enterprise HRIS), BambooHR/Rippling (SMB), Greenhouse/Lever/Workable (ATS), Lattice/Culture Amp (performance management), Deel/Remote (global payroll). Key questions HR should ask of any new system: does it reduce admin work for managers and employees? Does it give better data for decisions? What's the change management required for adoption? HR tech is only as good as the processes it automates — garbage in, garbage out." },
-    { question: "How do you design an effective onboarding program?",                        answer: "Onboarding starts before day one (send equipment, Slack access, day-one schedule). Structure: day one (culture, team context, role clarity), first week (meet key stakeholders, understand the business, set 30/60/90 goals), first month (deliverables, regular manager check-ins). Research shows the first 90 days determine long-term retention and performance. Most companies dramatically underinvest — preboarding, buddy programs, and structured check-ins at 30/60/90 days significantly improve outcomes." },
+    { question: "Describe your experience with HR technology and HRIS systems.",              answer: "Common systems: Workday (enterprise HRIS), BambooHR/Rippling (SMB), Greenhouse/Lever/Workable (ATS), Lattice/Culture Amp (performance management), Deel/Remote (global payroll). Key questions HR should ask of any new system: does it reduce admin work for managers and employees? Does it give better data for decisions? What's the change management required for adoption? HR tech is only as good as the processes it automates, garbage in, garbage out." },
+    { question: "How do you design an effective onboarding program?",                        answer: "Onboarding starts before day one (send equipment, Slack access, day-one schedule). Structure: day one (culture, team context, role clarity), first week (meet key stakeholders, understand the business, set 30/60/90 goals), first month (deliverables, regular manager check-ins). Research shows the first 90 days determine long-term retention and performance. Most companies dramatically underinvest, preboarding, buddy programs, and structured check-ins at 30/60/90 days significantly improve outcomes." },
     { question: "How do you measure employee engagement and what do you do with the data?",   answer: "Tools: annual engagement surveys (Gallup Q12, Culture Amp) for deep measurement, quarterly pulse surveys for trend tracking, always-on feedback tools (Leapsome, Lattice). Key metrics: engagement score, eNPS (would you recommend this company to a friend?), and verbatim feedback themes. What to do with data: share results transparently (employees stop participating if nothing changes), create action plans owned by managers (not just HR), track year-over-year trends, and correlate engagement with turnover and performance data." },
     { question: "How do you handle a complaint of workplace harassment?",                    answer: "Immediate steps: take every complaint seriously, reassure the complainant that retaliation won't be tolerated, document the initial conversation. Investigation: assign a neutral investigator (often HR + legal or an external party for senior-level complaints), interview all relevant parties separately, gather documentary evidence. Outcome: take corrective action proportional to findings, communicate outcome to the complainant (without violating the respondent's privacy), and document everything. Post-investigation: monitor for any retaliation, review policies if systemic issues are identified." },
     { question: "What is your approach to change management?",                               answer: "Kotter's 8-step model is a useful framework: create urgency, build a coalition, form a vision, communicate it widely, empower people to act, create short-term wins, maintain momentum, and anchor the change in culture. In practice: people resist change when they don't understand why or feel excluded from the process. Involve impacted employees in designing the change where possible. Over-communicate (people need to hear something 7 times before it sticks). Address the WIIFM ('what's in it for me?') explicitly." },
@@ -441,39 +437,39 @@ export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
 
   "management-consultant": [
     { question: "How would you structure a case for a client whose profits are declining?",   answer: "Profit = Revenue - Cost. Structure: (1) Revenue decline? Volume down (market shrinking or share loss?) or price down (pricing pressure or mix shift?). (2) Cost increase? COGS up (input costs, supplier issues?) or OPEX up (headcount, overhead?). (3) Gather data to test each branch. (4) Identify 2-3 root causes. (5) Quantify the impact of each. (6) Develop recommendations with implementation roadmap. Always clarify the scope: which product lines? Which geographies? What timeframe?" },
-    { question: "Walk me through a market sizing estimate for a product.",                   answer: "Two approaches — top-down and bottom-up. Top-down: start with the total addressable market (e.g., US population = 330M), apply filters to reach your target segment (adults who commute by car = ~130M), estimate penetration rate (10% would use this product) = 13M users × average revenue = market size. Bottom-up: estimate from unit economics upward. Always triangulate both and sense-check against publicly available data. Show your work and state your assumptions clearly." },
-    { question: "How do you communicate a recommendation to a skeptical client?",            answer: "Lead with the answer (top-down communication), not the analysis. State the recommendation in the first sentence. Support with 3 key reasons backed by data. Anticipate objections and address them proactively. If the client is skeptical, acknowledge their concern, show you've considered it in your analysis, and explain why you still reach the same conclusion. Never overwhelm with data — every slide should answer a specific question. The goal is to be convincing, not comprehensive." },
+    { question: "Walk me through a market sizing estimate for a product.",                   answer: "Two approaches: top-down and bottom-up. Top-down: start with the total addressable market (e.g., US population = 330M), apply filters to reach your target segment (adults who commute by car = ~130M), estimate penetration rate (10% would use this product) = 13M users x average revenue = market size. Bottom-up: estimate from unit economics upward. Always triangulate both and sense-check against publicly available data. Show your work and state your assumptions clearly." },
+    { question: "How do you communicate a recommendation to a skeptical client?",            answer: "Lead with the answer (top-down communication), not the analysis. State the recommendation in the first sentence. Support with 3 key reasons backed by data. Anticipate objections and address them proactively. If the client is skeptical, acknowledge their concern, show you've considered it in your analysis, and explain why you still reach the same conclusion. Never overwhelm with data, every slide should answer a specific question. The goal is to be convincing, not comprehensive." },
     { question: "Describe a situation where your analysis led to an unexpected conclusion.",  answer: "Consulting interviewers love this question because it tests intellectual honesty. Strong answer: a situation where your initial hypothesis was wrong, you noticed the signal in the data (rather than ignoring it), changed your framing, and ultimately delivered a better recommendation. Shows you follow the data, not your assumptions." },
-    { question: "How do you manage multiple workstreams and competing client priorities?",    answer: "Ruthless prioritization: not all workstreams are equal — which one is on the critical path to the deliverable? Proactive communication: flag timeline conflicts early, don't absorb them. Structured work planning: MECE workstream breakdown, owner assigned to each piece, clear milestones, daily team standup during crunch. With the client: weekly status updates, no surprises, escalate scope conflicts to the engagement manager before they become crises." },
+    { question: "How do you manage multiple workstreams and competing client priorities?",    answer: "Ruthless prioritization: not all workstreams are equal; which one is on the critical path to the deliverable? Proactive communication: flag timeline conflicts early, don't absorb them. Structured work planning: MECE workstream breakdown, owner assigned to each piece, clear milestones, daily team standup during crunch. With the client: weekly status updates, no surprises, escalate scope conflicts to the engagement manager before they become crises." },
     { question: "What is a framework you commonly use in consulting engagements?",           answer: "Frameworks are a starting point, not a destination. Common ones: MECE (Mutually Exclusive, Collectively Exhaustive) for issue tree structuring; 3Cs (Company, Customer, Competitor) for strategic analysis; 4Ps for marketing; Porter's Five Forces for industry analysis; McKinsey 7S for organizational change. The skill is knowing which framework fits the problem, not memorizing all frameworks. More importantly: adapting or abandoning the framework when the specific context demands it." },
-    { question: "How do you build trust with a client quickly?",                             answer: "Three things: competence (do what you say you'll do, be prepared, catch the details), candor (tell them what they need to hear, not what they want to hear — consultants who tell the truth even when it's uncomfortable build deep trust), and genuine interest (ask about their business, understand their incentives, remember what they've told you). Trust is built through small moments consistently, not one impressive presentation." },
-    { question: "Estimate the number of gas stations in the United States.",                 answer: "Approximately 150,000 gas stations in the US. Reasoning: US has ~280M registered vehicles. Average car needs to refuel once per week. One gas station serves ~1,000 fill-ups per day (10 pumps × 6 cars/hour × 16 operating hours). Weekly: 7,000 fill-ups. With ~280M cars filling up weekly, total fill-ups = 280M / 7 = 40M/day. Gas stations needed = 40M / 1,000 = 40,000. But adjust: many vehicles fill up less frequently, and actual data is ~145,000 — your estimate should be in the right order of magnitude." },
-    { question: "How do you handle a client who wants to implement a strategy you believe is wrong?", answer: "Your job is to give your best professional judgment, not to be agreeable. Present your analysis and recommendation clearly with supporting evidence. If they push back, explore their reasoning — sometimes they have context you don't (political constraints, relationship considerations). If after hearing their reasoning you still disagree, say so explicitly and document it. If they proceed against your advice, implement as excellently as you can while managing the risk. Know your line: there are some recommendations you wouldn't put your name on." },
+    { question: "How do you build trust with a client quickly?",                             answer: "Three things: competence (do what you say you'll do, be prepared, catch the details), candor (tell them what they need to hear, not what they want to hear, consultants who tell the truth even when it's uncomfortable build deep trust), and genuine interest (ask about their business, understand their incentives, remember what they've told you). Trust is built through small moments consistently, not one impressive presentation." },
+    { question: "Estimate the number of gas stations in the United States.",                 answer: "Approximately 150,000 gas stations in the US. Reasoning: US has ~280M registered vehicles. Average car needs to refuel once per week. One gas station serves ~1,000 fill-ups per day (10 pumps x 6 cars/hour x 16 operating hours). Weekly: 7,000 fill-ups. With ~280M cars filling up weekly, total fill-ups = 280M / 7 = 40M/day. Gas stations needed = 40M / 1,000 = 40,000. But adjust: many vehicles fill up less frequently, and actual data is ~145,000, your estimate should be in the right order of magnitude." },
+    { question: "How do you handle a client who wants to implement a strategy you believe is wrong?", answer: "Your job is to give your best professional judgment, not to be agreeable. Present your analysis and recommendation clearly with supporting evidence. If they push back, explore their reasoning, sometimes they have context you don't (political constraints, relationship considerations). If after hearing their reasoning you still disagree, say so explicitly and document it. If they proceed against your advice, implement as excellently as you can while managing the risk. Know your line: there are some recommendations you wouldn't put your name on." },
     { question: "What has been your most challenging project and how did you manage it?",     answer: "Structure: the challenge (ambiguous scope? difficult client? conflicting stakeholder interests? compressed timeline?), your specific actions, what you learned about consulting and about yourself, and the outcome. The best answers are honest about what went wrong and demonstrate that you've internalized the lesson. Consulting interviewers value self-awareness and growth over polished success stories." },
   ],
 
   "investment-banker": [
-    { question: "Walk me through a leveraged buyout (LBO) model.",                           answer: "An LBO model analyzes a PE firm's acquisition of a company using significant leverage. Steps: (1) Set up sources and uses (purchase price, financing structure). (2) Build the debt schedule (term loan, revolver, PIK — interest expense, principal paydown from FCF). (3) Project operating performance (revenue, EBITDA). (4) Calculate FCF to fund debt repayment. (5) At exit, calculate equity proceeds = Enterprise Value - remaining debt. (6) Calculate IRR and MOIC. Target: 20-25% IRR, 2-3x MOIC in 5 years." },
-    { question: "How do you value a company?",                                               answer: "Three primary methods: (1) DCF — intrinsic value based on projected free cash flows discounted at WACC plus terminal value. (2) Comparable companies (trading comps) — apply peer group multiples (EV/EBITDA, P/E) to subject company's metrics. (3) Precedent transactions (deal comps) — what have acquirers paid for similar companies? Then triangulate across methods. For M&A: also include a premiums paid analysis and LBO analysis (what can PE afford to pay?)." },
+    { question: "Walk me through a leveraged buyout (LBO) model.",                           answer: "An LBO model analyzes a PE firm's acquisition of a company using significant leverage. Steps: (1) Set up sources and uses (purchase price, financing structure). (2) Build the debt schedule (term loan, revolver, PIK, interest expense, principal paydown from FCF). (3) Project operating performance (revenue, EBITDA). (4) Calculate FCF to fund debt repayment. (5) At exit, calculate equity proceeds = Enterprise Value - remaining debt. (6) Calculate IRR and MOIC. Target: 20-25% IRR, 2-3x MOIC in 5 years." },
+    { question: "How do you value a company?",                                               answer: "Three primary methods: (1) DCF: intrinsic value based on projected free cash flows discounted at WACC plus terminal value. (2) Comparable companies (trading comps), apply peer group multiples (EV/EBITDA, P/E) to subject company's metrics. (3) Precedent transactions (deal comps), what have acquirers paid for similar companies? Then triangulate across methods. For M&A: also include a premiums paid analysis and LBO analysis (what can PE afford to pay?)." },
     { question: "Explain the difference between a merger and an acquisition.",               answer: "Merger: two companies combine to form a new entity (rare; typically equals). Acquisition: one company buys another (most common). Types: strategic acquisition (synergies with existing business), financial acquisition (PE buyout for returns), hostile takeover (without target board approval). From an accounting standpoint, most are acquisitions using purchase accounting, where acquired assets and liabilities are revalued to fair market value and goodwill = purchase price - fair value of net assets." },
-    { question: "What are synergies in M&A and how do you value them?",                      answer: "Synergies are value created by combining two companies that either entity couldn't achieve alone. Revenue synergies: cross-selling, new markets, pricing power (harder to achieve, typically discounted). Cost synergies: headcount reduction, facility consolidation, procurement savings (more reliable). Value synergies by estimating annual run-rate impact × tax-affected multiple, then discount for probability of achievement and timing. Buyers pay for synergies through the acquisition premium." },
+    { question: "What are synergies in M&A and how do you value them?",                      answer: "Synergies are value created by combining two companies that either entity couldn't achieve alone. Revenue synergies: cross-selling, new markets, pricing power (harder to achieve, typically discounted). Cost synergies: headcount reduction, facility consolidation, procurement savings (more reliable). Value synergies by estimating annual run-rate impact x tax-affected multiple, then discount for probability of achievement and timing. Buyers pay for synergies through the acquisition premium." },
     { question: "Walk me through the IPO process.",                                          answer: "Stages: (1) Preparation (12-18 months): financial audits, legal restructuring, corporate governance, selecting underwriters via beauty contest. (2) Registration: file S-1 with SEC (or F-1 for foreign issuers), SEC review and comment letters. (3) Roadshow (2 weeks): management presents to institutional investors in 2-3 cities per day, building the book. (4) Pricing: night before listing, bankers price based on demand. (5) Trading: first day on exchange. Underwriters support price with stabilization if needed." },
-    { question: "What is EBITDA and why is it used?",                                       answer: "EBITDA = Earnings Before Interest, Taxes, Depreciation, and Amortization. It approximates operating cash flow before capex and working capital. Used in investment banking because: it's capital-structure neutral (remove interest), geography/tax neutral (remove taxes), and removes non-cash charges (D&A). EV/EBITDA is the most common transaction multiple. Limitations: EBITDA ≠ cash flow (ignores capex, working capital), and it can be manipulated. Warren Buffett famously calls it a 'meaningless metric.'" },
+    { question: "What is EBITDA and why is it used?",                                       answer: "EBITDA = Earnings Before Interest, Taxes, Depreciation, and Amortization. It approximates operating cash flow before capex and working capital. Used in investment banking because: it's capital-structure neutral (remove interest), geography/tax neutral (remove taxes), and removes non-cash charges (D&A). EV/EBITDA is the most common transaction multiple. Limitations: EBITDA does not equal cash flow (ignores capex, working capital), and it can be manipulated." },
     { question: "How does the current interest rate environment affect M&A?",                answer: "Higher rates: increase cost of debt (LBO returns harder to achieve), raise the discount rate in DCFs (lower valuations), reduce PE deal volume, push buyers toward all-cash or all-stock deals, and may cause valuation expectation gaps between buyers and sellers. Lower rates: cheap leverage boosts PE activity, multiple expansion inflates valuations, and strategic acquirers access cheap acquisition financing. Current environment analysis: rising rates since 2022 have compressed deal volumes significantly from 2021 peaks." },
-    { question: "Tell me about a deal in the news that interests you.",                      answer: "Research a recent significant M&A deal before your interview. Structure your answer: (1) Deal overview (acquirer, target, price, structure). (2) Strategic rationale — why did the acquirer buy this? Synergies? Market share? Technology? Geographic expansion? (3) Valuation — is the premium reasonable? What multiple did they pay? (4) Your view — do you think this was a good deal and why? Interviewers are testing whether you read the news and can analyze transactions critically." },
-    { question: "How do you build relationships with clients in investment banking?",         answer: "IB client relationships are built over years. Early career: be the most prepared person in every meeting, follow up on every commitment same day, bring ideas proactively (not just when hired). Over time: become their trusted advisor by giving them honest advice even when it's not what they want to hear, understanding their business deeply enough to anticipate their needs, and staying in contact between mandates. The best client relationships survive deal outcomes — you maintain them even after a deal falls through." },
-    { question: "What is the role of investment banking in capital markets?",               answer: "Investment banks serve as intermediaries between companies that need capital and investors who have capital to deploy. Core functions: (1) Underwriting (IPOs, follow-on equity offerings, debt issuances) — bank takes risk by guaranteeing proceeds to the issuer. (2) M&A advisory — advise buyers and sellers on deal strategy, valuation, and execution. (3) Trading/market making — provide liquidity in securities. (4) Research — produce analysis for institutional investors. The bank's reputation for execution and relationships is its primary competitive advantage." },
+    { question: "Tell me about a deal in the news that interests you.",                      answer: "Research a recent significant M&A deal before your interview. Structure your answer: (1) Deal overview (acquirer, target, price, structure). (2) Strategic rationale, why did the acquirer buy this? Synergies? Market share? Technology? Geographic expansion? (3) Valuation, is the premium reasonable? What multiple did they pay? (4) Your view, do you think this was a good deal and why? Interviewers are testing whether you read the news and can analyze transactions critically." },
+    { question: "How do you build relationships with clients in investment banking?",         answer: "IB client relationships are built over years. Early career: be the most prepared person in every meeting, follow up on every commitment same day, bring ideas proactively (not just when hired). Over time: become their trusted advisor by giving them honest advice even when it's not what they want to hear, understanding their business deeply enough to anticipate their needs, and staying in contact between mandates. The best client relationships survive deal outcomes, you maintain them even after a deal falls through." },
+    { question: "What is the role of investment banking in capital markets?",               answer: "Investment banks serve as intermediaries between companies that need capital and investors who have capital to deploy. Core functions: (1) Underwriting (IPOs, follow-on equity offerings, debt issuances), bank takes risk by guaranteeing proceeds to the issuer. (2) M&A advisory, advise buyers and sellers on deal strategy, valuation, and execution. (3) Trading/market making, provide liquidity in securities. (4) Research, produce analysis for institutional investors. The bank's reputation for execution and relationships is its primary competitive advantage." },
   ],
 
   "account-executive": [
     { question: "Describe your sales methodology.",                                          answer: "I use a consultative, value-based approach rooted in frameworks like MEDDIC (Metrics, Economic Buyer, Decision Criteria, Decision Process, Identify Pain, Champion) or Challenger Sale. My process: multi-threaded discovery to understand business pain and quantify the cost of inaction; aligning our solution to their specific decision criteria; building a champion who can sell internally; creating urgency around a compelling event; and a mutual action plan with clear milestones. The goal is to be a trusted advisor, not a vendor." },
-    { question: "How do you handle objections like 'your price is too high'?",               answer: "Price objections are almost always value objections in disguise. My response: 'I hear you — let's figure out if this makes financial sense for you. What return would you need to see to make this investment worthwhile?' Then quantify the ROI using their own numbers. If the value is clear and they still push back: 'Help me understand what's making this feel expensive — is it the absolute number, or is it that we haven't fully justified the return?' Often there's a real budget constraint, a competing priority, or they haven't sold the value internally. Understand which problem you're actually solving." },
-    { question: "Walk me through how you manage your pipeline.",                             answer: "Weekly pipeline hygiene: every opportunity has a clear next step with a date. I stage deals based on objective evidence, not optimism — a prospect's verbal interest doesn't move a deal to 'proposal' without a confirmed meeting with the economic buyer. I track coverage ratio (should be 3-4x quota), average deal size, win rate, and sales cycle length. I do a weekly self-review to identify stalled deals and determine: is this real or should I remove it? A clean, accurate pipeline is more valuable than a large, inflated one." },
+    { question: "How do you handle objections like 'your price is too high'?",               answer: "Price objections are almost always value objections in disguise. My response: 'I hear you; let's figure out if this makes financial sense for you. What return would you need to see to make this investment worthwhile?' Then quantify the ROI using their own numbers. If the value is clear and they still push back: 'Help me understand what's making this feel expensive, is it the absolute number, or is it that we haven't fully justified the return?' Often there's a real budget constraint, a competing priority, or they haven't sold the value internally." },
+    { question: "Walk me through how you manage your pipeline.",                             answer: "Weekly pipeline hygiene: every opportunity has a clear next step with a date. I stage deals based on objective evidence, not optimism, a prospect's verbal interest doesn't move a deal to 'proposal' without a confirmed meeting with the economic buyer. I track coverage ratio (should be 3-4x quota), average deal size, win rate, and sales cycle length. I do a weekly self-review to identify stalled deals and determine: is this real or should I remove it? A clean, accurate pipeline is more valuable than a large, inflated one." },
     { question: "Describe your most complex enterprise sale.",                               answer: "Use STAR. Key elements: the multi-stakeholder environment (who were all the buyers and influencers?), your strategy for building consensus, how you managed a long sales cycle with uncertainty, the competitive dynamics, how you created urgency, and the quantified outcome. Strong answers demonstrate organizational navigation, executive presence, and creative problem-solving under pressure." },
-    { question: "How do you research and approach a new prospect?",                          answer: "Research before any outreach: company 10-K or investor presentations (what are their strategic priorities?), recent press releases and earnings calls (what's their current challenge?), LinkedIn (who are the relevant stakeholders, what's their background?), and mutual connections (who in my network knows them?). Outreach: personalize to their specific context — 'I saw your CFO mentioned margin expansion as a priority in your Q3 earnings call. Here's how we've helped similar companies...' Generic outreach goes straight to delete." },
+    { question: "How do you research and approach a new prospect?",                          answer: "Research before any outreach: company 10-K or investor presentations (what are their strategic priorities?), recent press releases and earnings calls (what's their current challenge?), LinkedIn (who are the relevant stakeholders, what's their background?), and mutual connections (who in my network knows them?). Outreach: personalize to their specific context, 'I saw your CFO mentioned margin expansion as a priority in your Q3 earnings call. Here's how we've helped similar companies...' Generic outreach goes straight to delete." },
     { question: "How do you build and maintain relationships with economic buyers?",         answer: "Access to the economic buyer is often the difference between winning and losing. Strategies: get introduced through your champion ('Would you be comfortable introducing me to your CFO for a 20-minute business conversation?'), frame the value of their time explicitly, prepare executive-level content focused on business outcomes not product features, send relevant insights between meetings (not just deal updates), and treat their time as scarce. Maintain post-close: quarterly business reviews turn economic buyers into long-term advocates." },
-    { question: "What do you do when a deal is stuck in legal/procurement for months?",     answer: "First, understand whether it's truly stuck or whether the business team has deprioritized it. Get your champion to escalate internally with urgency ('What happens to you if this doesn't close by Q3?'). Involve your own legal team proactively — don't just forward documents and wait. Propose a redlined document that addresses their likely objections. Offer executive-to-executive conversations to unblock escalated issues. And set a decision date: if neither side is moving, propose: 'Let's agree that if we can't resolve these issues by [date], we should pause and revisit in Q[X].'" },
-    { question: "How do you hit quota in a down market?",                                   answer: "Focus on what you can control: activity volume, quality of pipeline, and retention of existing customers. In a down market: existing customers are often more valuable than new logos (expansion revenue with lower CAC); adjust messaging to ROI and cost reduction rather than innovation; focus on the segments still buying (industries with tailwinds); qualify harder to protect your time (not every opportunity is worth pursuing). Be honest with your manager about what's working and what isn't — the forecast conversation is harder to have but necessary." },
+    { question: "What do you do when a deal is stuck in legal/procurement for months?",     answer: "First, understand whether it's truly stuck or whether the business team has deprioritized it. Get your champion to escalate internally with urgency ('What happens to you if this doesn't close by Q3?'). Involve your own legal team proactively, don't just forward documents and wait. Propose a redlined document that addresses their likely objections. Offer executive-to-executive conversations to unblock escalated issues. And set a decision date: if neither side is moving, propose: 'Let's agree that if we can't resolve these issues by [date], we should pause and revisit in Q[X].'" },
+    { question: "How do you hit quota in a down market?",                                   answer: "Focus on what you can control: activity volume, quality of pipeline, and retention of existing customers. In a down market: existing customers are often more valuable than new logos (expansion revenue with lower CAC); adjust messaging to ROI and cost reduction rather than innovation; focus on the segments still buying (industries with tailwinds); qualify harder to protect your time (not every opportunity is worth pursuing). Be honest with your manager about what's working and what isn't, the forecast conversation is harder to have but necessary." },
     { question: "Why sales?",                                                                answer: "The best answer is authentic, not rehearsed. Elements of a strong answer: you're genuinely motivated by problem-solving for clients (not just money), you thrive on the scorecard clarity and competitiveness, you find the craft of influence and communication intrinsically interesting, and you have a specific story about when you discovered you were good at it. Avoid: 'I love meeting people' (too generic) and 'unlimited earning potential' (sounds purely mercenary)." },
     { question: "Tell me about a deal you lost and what you learned.",                       answer: "Intellectual honesty and learning orientation matter here more than the outcome. Elements: describe the deal clearly, what you believed was your competitive advantage, what actually happened (lost to competition, no decision, champion left?), your honest assessment of what you could have done differently (better multi-threading? earlier executive access? different ROI framing?), and what you changed in your process. The best answer ends with evidence that you applied the lesson." },
   ],
@@ -481,13 +477,13 @@ export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
   "recruiter": [
     { question: "Describe your full-cycle recruiting process.",                              answer: "Full-cycle: intake meeting with hiring manager (agree on must-haves vs nice-to-haves, interview process, salary range, timeline); sourcing strategy (job boards, LinkedIn, internal referrals, targeted outreach); screening calls (30 min: background, motivations, basic qualifications, compensation alignment); coordinating interview process (scheduling, prep for candidates and interviewers); debrief facilitation (structured debrief, gather clear decisions); offer generation and negotiation; and post-hire follow-up (30-day check-in builds relationships and surfaces process improvements)." },
     { question: "How do you source passive candidates who aren't applying to your jobs?",    answer: "LinkedIn Recruiter is the primary tool. Effective approach: Boolean search to find specific profiles (title + skills + company), personalized InMail (reference something specific about their background, not a generic template), build a pipeline before you need it (keep warm leads from past conversations), leverage employee referrals systematically (make it easy for employees to refer and reward them), attend industry events and conferences, and build a strong employer brand so candidates come to you. Response rates are 3-5x higher for messages that reference specific career accomplishments." },
-    { question: "How do you assess cultural fit without introducing bias?",                  answer: "Reframe 'culture fit' as 'culture add' — does this person bring valuable perspectives and ways of working, even if different from current employees? Use structured behavioral questions tied to specific values ('Tell me about a time you navigated working with someone who had a very different working style'). Avoid: gut-feel judgments, 'would I have a beer with them?' assessments, and penalizing non-traditional backgrounds. Train interviewers on affinity bias and set clear criteria before the interview, not after." },
-    { question: "How do you manage a high-volume hiring push?",                              answer: "Scale through process design: standardized JDs across similar roles, automated screening with relevant (not generic) knockout questions, batch scheduling for initial screens (phone screen day = all candidates screened in one day), structured scorecards to enable faster and more consistent decisions, and clear SLAs with hiring managers. Priority: protect candidate experience at every stage — even in high volume, a bad candidate experience creates employer brand damage. Track: time-to-fill, funnel conversion at each stage, and offer acceptance rate." },
-    { question: "How do you handle a situation where a hiring manager has unrealistic expectations?", answer: "Bring data: pull market salary data, show the applicant pool for their requirements (or lack thereof), show how similar roles were filled in the past. Frame it as partnership: 'My job is to fill this role successfully — let me share what the market looks like so we can set realistic expectations.' If they insist on requirements that will make the role unfillable, document the conversation, set a timeline ('Let's try this for 30 days and reassess'), and revisit with data. Sometimes the role needs to be rewritten, a different comp band approved, or a different hire profile considered." },
-    { question: "What metrics do you track to evaluate your own recruiting performance?",    answer: "Input metrics: outreach volume, source mix, pipeline by stage. Efficiency metrics: time-to-fill, time-to-offer, candidate experience NPS. Quality metrics: offer acceptance rate, new hire 90-day retention, hiring manager satisfaction score, and 1-year performance rating of your hires. The best recruiters obsess over quality-of-hire, not just speed — a fast fill who leaves in 3 months is a failure, not a success." },
-    { question: "How do you build a strong relationship with hiring managers?",              answer: "Start every search with a deep intake: understand their team culture, past hiring successes and failures, and what specifically went wrong with the role being replaced. Set clear expectations on your process, timeline, and what you need from them (quick feedback, availability for interviews). Provide proactive updates even when there's nothing new ('The market for this role is tighter than expected — here's what I'm seeing and what I'm adjusting'). Be honest when a search is struggling, not just when it's succeeding. Your credibility is built on candor, not just placements." },
-    { question: "How do you think about diversity recruiting?",                              answer: "Diversity recruiting is a sourcing problem, a process problem, and a culture problem. You can't solve it with sourcing alone. Sourcing: expand channels to HBCUs, bootcamps, veteran programs, and women-in-tech organizations. Process: remove bias in screening (standardized questions, blind review where possible), ensure interview panels include diverse interviewers, structured decision-making. Culture: the best diverse candidates will evaluate your company on its culture and existing representation — talk to your ERGs, understand your retention data, and address what you find. If you hire diverse candidates into a non-inclusive culture, you're just increasing churn." },
-    { question: "Describe a difficult offer negotiation and how you handled it.",            answer: "Use STAR. Elements: the specific challenge (candidate counter-offering significantly, competing offer, or compensation band constraints), your strategy (understanding their true decision criteria — often it's not just money), how you communicated internally to find flexibility (signing bonus, title adjustment, start date), and the outcome. The key insight interviewers want: negotiation is about understanding what the candidate truly needs, not just trading numbers. Sometimes flexibility in one dimension (remote work, title, start date) unlocks a deal where comp flexibility doesn't exist." },
+    { question: "How do you assess cultural fit without introducing bias?",                  answer: "Reframe 'culture fit' as 'culture add': does this person bring valuable perspectives and ways of working, even if different from current employees? Use structured behavioral questions tied to specific values ('Tell me about a time you navigated working with someone who had a very different working style'). Avoid: gut-feel judgments, 'would I have a beer with them?' assessments, and penalizing non-traditional backgrounds. Train interviewers on affinity bias and set clear criteria before the interview, not after." },
+    { question: "How do you manage a high-volume hiring push?",                              answer: "Scale through process design: standardized JDs across similar roles, automated screening with relevant (not generic) knockout questions, batch scheduling for initial screens (phone screen day = all candidates screened in one day), structured scorecards to enable faster and more consistent decisions, and clear SLAs with hiring managers. Priority: protect candidate experience at every stage, even in high volume, a bad candidate experience creates employer brand damage. Track: time-to-fill, funnel conversion at each stage, and offer acceptance rate." },
+    { question: "How do you handle a situation where a hiring manager has unrealistic expectations?", answer: "Bring data: pull market salary data, show the applicant pool for their requirements (or lack thereof), show how similar roles were filled in the past. Frame it as partnership: 'My job is to fill this role successfully, let me share what the market looks like so we can set realistic expectations.' If they insist on requirements that will make the role unfillable, document the conversation, set a timeline ('Let's try this for 30 days and reassess'), and revisit with data. Sometimes the role needs to be rewritten, a different comp band approved, or a different hire profile considered." },
+    { question: "What metrics do you track to evaluate your own recruiting performance?",    answer: "Input metrics: outreach volume, source mix, pipeline by stage. Efficiency metrics: time-to-fill, time-to-offer, candidate experience NPS. Quality metrics: offer acceptance rate, new hire 90-day retention, hiring manager satisfaction score, and 1-year performance rating of your hires. The best recruiters obsess over quality-of-hire, not just speed, a fast fill who leaves in 3 months is a failure, not a success." },
+    { question: "How do you build a strong relationship with hiring managers?",              answer: "Start every search with a deep intake: understand their team culture, past hiring successes and failures, and what specifically went wrong with the role being replaced. Set clear expectations on your process, timeline, and what you need from them (quick feedback, availability for interviews). Provide proactive updates even when there's nothing new ('The market for this role is tighter than expected, here's what I'm seeing and what I'm adjusting'). Be honest when a search is struggling, not just when it's succeeding. Your credibility is built on candor, not just placements." },
+    { question: "How do you think about diversity recruiting?",                              answer: "Diversity recruiting is a sourcing problem, a process problem, and a culture problem. You can't solve it with sourcing alone. Sourcing: expand channels to HBCUs, bootcamps, veteran programs, and women-in-tech organizations. Process: remove bias in screening (standardized questions, blind review where possible), ensure interview panels include diverse interviewers, structured decision-making. Culture: the best diverse candidates will evaluate your company on its culture and existing representation, talk to your ERGs, understand your retention data, and address what you find. If you hire diverse candidates into a non-inclusive culture, you're just increasing churn." },
+    { question: "Describe a difficult offer negotiation and how you handled it.",            answer: "Use STAR. Elements: the specific challenge (candidate counter-offering significantly, competing offer, or compensation band constraints), your strategy (understanding their true decision criteria, often it's not just money), how you communicated internally to find flexibility (signing bonus, title adjustment, start date), and the outcome. The key insight interviewers want: negotiation is about understanding what the candidate truly needs, not just trading numbers. Sometimes flexibility in one dimension (remote work, title, start date) unlocks a deal where comp flexibility doesn't exist." },
     { question: "What's the difference between recruitment and talent acquisition?",        answer: "Recruitment is reactive: fill open roles. Talent acquisition is strategic: build a talent pipeline, employer brand, and hiring infrastructure that aligns with where the business is going 1-3 years from now. TA teams think about workforce planning (what roles will we need?), employer value proposition (why should great people join us?), and talent communities (relationships with future candidates before we have roles for them). In practice, both terms are often used interchangeably, but the distinction matters for how you structure the function." },
   ],
 };
@@ -501,16 +497,16 @@ export function getRoleQuestions(slug: string): RoleQA[] {
     { question: `What are the most important skills for a ${name}?`,                         answer: `The core skills depend on the company and context, but universally valued: strong domain expertise, clear communication, and the ability to scope problems and deliver results. Review the job description for the exact requirements, then demonstrate those skills with concrete examples from your experience.` },
     { question: `How should I prepare for a ${name} behavioral interview?`,                  answer: `Use the STAR method (Situation, Task, Action, Result) for every behavioral question. Prepare 5-7 strong stories covering: a project you led, a conflict you resolved, a failure you learned from, a time you showed initiative, and a time you influenced without authority. Quantify results wherever possible.` },
     { question: `What is the ${name} interview process typically like?`,                     answer: `Most organizations follow: (1) recruiter screen (20-30 min), (2) hiring manager screen (45 min, domain knowledge + culture fit), (3) panel/technical rounds (2-4 rounds, role-specific), (4) behavioral/leadership rounds (1-2 rounds), (5) offer. The whole process typically takes 3-6 weeks.` },
-    { question: `What salary should I expect as a ${name}?`,                                 answer: `Compensation varies significantly by company size, location, and experience level. Research current ranges on Glassdoor, LinkedIn Salary, and Levels.fyi. Always negotiate — most first offers have room. Know your walk-away number, anchor high, and negotiate base, bonus, and any other components as a package.` },
-    { question: `How do I stand out as a ${name} candidate?`,                               answer: `Beyond domain skills: (1) Show ownership — describe projects with impact, not just tasks. (2) Ask great questions — research the company's recent challenges. (3) Demonstrate learning — mention something you've taught yourself recently. (4) Quantify everything. (5) Send a thoughtful thank-you email referencing something specific from the conversation.` },
-    { question: `What are the biggest challenges facing ${name}s today?`,                    answer: `The landscape is always evolving. Broadly: rapid automation of routine tasks (requires shifting to higher-value work), increasing cross-functional expectations (specialists must now collaborate more broadly), and the shift to data-driven decision-making in every function. Staying current in your field requires continuous learning — follow industry publications, attend conferences, and build a professional network that helps you anticipate changes.` },
+    { question: `What salary should I expect as a ${name}?`,                                 answer: `Compensation varies significantly by company size, location, and experience level. Research current ranges on Glassdoor, LinkedIn Salary, and Levels.fyi. Always negotiate, most first offers have room. Know your walk-away number, anchor high, and negotiate base, bonus, and any other components as a package.` },
+    { question: `How do I stand out as a ${name} candidate?`,                               answer: `Beyond domain skills: (1) Show ownership, describe projects with impact, not just tasks. (2) Ask great questions, research the company's recent challenges. (3) Demonstrate learning, mention something you've taught yourself recently. (4) Quantify everything. (5) Send a thoughtful thank-you email referencing something specific from the conversation.` },
+    { question: `What are the biggest challenges facing ${name}s today?`,                    answer: `The landscape is always evolving. Broadly: rapid automation of routine tasks (requires shifting to higher-value work), increasing cross-functional expectations (specialists must now collaborate more broadly), and the shift to data-driven decision-making in every function. Staying current in your field requires continuous learning, follow industry publications, attend conferences, and build a professional network that helps you anticipate changes.` },
     { question: `How do you prioritize your work as a ${name}?`,                            answer: `I use a combination of impact and urgency to prioritize. Start by aligning with your manager on what matters most this week and this quarter. For day-to-day: tackle the highest-impact work when you have the most cognitive energy, batch similar tasks, and protect focused time from interruptions. When everything feels urgent, ask: what breaks if I don't do this today? That usually clarifies real vs. perceived urgency.` },
   ];
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 // 6. COMPANY PREP DATA
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 
 export type CompanySlug =
   | "google" | "amazon" | "meta" | "microsoft" | "apple"
@@ -541,16 +537,26 @@ export interface CompanyMeta {
 }
 
 export const COMPANY_META: Record<string, CompanyMeta> = {
-  google:    { displayName: "Google",    tier: "FAANG",    difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4–6 weeks",  title: "How to Prepare for a Google Interview (2026) — Preciprocal",    description: "Complete Google interview prep: process, coding expectations, system design, Googleyness, and hiring committee review.",                     overview: "Google evaluates candidates on four dimensions: General Cognitive Ability, Leadership, Googleyness (culture fit), and Role-Related Knowledge. Pedigree doesn't matter — a state school grad who interviews well is evaluated identically to a Stanford PhD.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45–60 min) — 1–2 LeetCode-medium problems","Onsite (4–5 rounds, 45 min each)","  → 2 coding rounds (algorithms, data structures)","  → 1 system design round (L4+)","  → 1–2 Googleyness / behavioral rounds","Hiring committee review — packet reviewed by 4–5 engineers","Team matching (L4 offers)","Offer (4–8 weeks total)"], culture: "Google values intellectual humility, comfort with ambiguity, collaboration over ego, and a bias toward action. Show curiosity: ask clarifying questions, think out loud, and engage genuinely with the interviewer's perspective.", topRoles: ["Software Engineer","Product Manager","Data Scientist","Technical Program Manager"], tips: ["Practice 100+ LeetCode medium/hard problems — trees, graphs, DP, string manipulation.","Prepare 6-8 STAR stories covering leadership, conflict, failure, and cross-functional collaboration.","For system design, practice YouTube, Google Search, Gmail, Maps — deep on trade-offs.","Think out loud. Reasoning process matters more than the perfect answer.","Never assume constraints — always clarify input sizes, edge cases, output format."], relatedCompanies: ["meta","microsoft","amazon"] },
-  amazon:    { displayName: "Amazon",    tier: "FAANG",    difficulty: "Hard",           avgRounds: 5, avgDuration: "2–4 weeks",  title: "How to Prepare for an Amazon Interview (2026) — Preciprocal",   description: "Complete Amazon interview prep: all 16 Leadership Principles, Bar Raiser explained, coding expectations, and STAR frameworks.",               overview: "Amazon's process is uniquely driven by their 16 Leadership Principles (LPs). Every question — even technical ones — ties back to an LP. The Bar Raiser is an interviewer from outside your team with veto power whose sole job is maintaining the hiring bar.",     interviewProcess: ["Online assessment (SWE only) — 2 coding questions, 90 min","Phone screen (45-60 min) — 1 coding + 2-3 LP behavioral questions","Virtual onsite (4-6 rounds, 60 min each)","  → 2-3 technical rounds (coding, system design for SDE II+)","  → 1 Bar Raiser round (deep LP + technical)","  → 1-2 LP behavioral rounds","Hiring manager debrief — same day","Offer (2–4 weeks total)"],                                       culture: "Amazon values Ownership above almost everything else. The LPs probed most often: Customer Obsession, Ownership, Bias for Action, Dive Deep, and Disagree and Commit. They love candidates who took initiative without being asked.",                             topRoles: ["Software Development Engineer","Product Manager","Solutions Architect","Data Engineer"],       tips: ["Prepare one strong STAR story for every one of the 16 Leadership Principles. Non-negotiable.","Speak in complete, structured sentences — Amazon interviewers explicitly take notes.","For 'disagreed with manager' — show you pushed back AND committed once the decision was made.","Coding is LeetCode medium: graph BFS/DFS, queues/stacks, string manipulation.","Have depth behind every story — know your numbers, outcome, and what you'd do differently."], relatedCompanies: ["google","microsoft","stripe"] },
-  meta:      { displayName: "Meta",      tier: "FAANG",    difficulty: "Very Hard",      avgRounds: 5, avgDuration: "3–6 weeks",  title: "How to Prepare for a Meta Interview (2026) — Preciprocal",      description: "Complete Meta interview prep: coding difficulty, social-scale system design, behavioral framework, and Meta's move-fast culture.",             overview: "Meta interviews are known for coding difficulty and scale-oriented system design (billions of users, petabyte-scale data, real-time communication). Their behavioral framework focuses on 'Impact' — how you moved metrics and influenced people.",              interviewProcess: ["Recruiter screen (15–30 min)","Technical phone screen (45–60 min) — 2 LeetCode problems","Virtual onsite (4–5 rounds)","  → 2 coding rounds (often harder than Google)","  → 1 system design round (social graph, news feed, distributed systems)","  → 1 behavioral round (impact, leadership, cross-functional)","Hiring committee vote","Offer (2–6 weeks)"],                                                             culture: "Meta's culture is 'Move fast, have impact.' They value engineers who ship. Behavioral questions probe cross-functional influence, handling ambiguity at scale, and resilience. They ask how you handle disagreements — show backbone combined with execution.", topRoles: ["Software Engineer","Research Scientist","Product Manager","Data Scientist"],                  tips: ["Meta coding is harder than average — practice LeetCode hard, especially graphs and DP.","System design: study Facebook News Feed, Instagram Stories, WhatsApp architecture, distributed caching.","Use specific metrics in behavioral answers: 'I improved DAU by 18% over 6 weeks.'","Know Meta's products deeply — 'What would you change about this product?' is common.","Meta values influence without authority. Prepare stories about rallying people around an idea."], relatedCompanies: ["google","amazon","netflix"] },
-  microsoft: { displayName: "Microsoft", tier: "FAANG",    difficulty: "Hard",           avgRounds: 5, avgDuration: "2–4 weeks",  title: "How to Prepare for a Microsoft Interview (2026) — Preciprocal", description: "Complete Microsoft interview prep: growth mindset culture, 'as appropriate' designee, technical expectations, and collaboration emphasis.",       overview: "Microsoft interviews are rigorous but more collaborative than Google or Meta. They use an 'as appropriate' (AA) designee who assesses the hiring bar. Microsoft emphasizes growth mindset (Carol Dweck's framework) — they want learners, not people with fixed skills.", interviewProcess: ["Recruiter screen (30 min)","Technical phone/Teams screen (45–60 min) — 1–2 coding problems","Onsite (4–5 rounds, 45–60 min each)","  → 2–3 coding rounds (algorithms, data structures)","  → 1 system design round (senior roles)","  → 1 'As Appropriate' round — final bar assessment","  → 1 behavioral / culture round","Debrief and decision (1–2 weeks post onsite)"],                                             culture: "Satya Nadella transformed Microsoft around 'growth mindset' — intelligence is not fixed, failure is a learning opportunity. Show intellectual curiosity, skill development track record, and resilience. Microsoft values inclusion and collaboration; 'brilliant jerks' are an explicit no.", topRoles: ["Software Engineer","Product Manager","Cloud Solutions Architect","Data Scientist"],           tips: ["Prepare 'growth mindset' stories — times you failed, what you learned, how you grew.","LeetCode medium: arrays, strings, trees, graphs.","System design focuses on cloud/Azure architectures.","Be collaborative in interviews — it's more of a dialogue than Google.","For PM roles, root every design decision in customer empathy."], relatedCompanies: ["google","amazon","salesforce"] },
-  apple:     { displayName: "Apple",     tier: "FAANG",    difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4–8 weeks",  title: "How to Prepare for an Apple Interview (2026) — Preciprocal",    description: "Complete Apple interview prep: team-specific process, craft culture, technical depth expectations, and what Apple actually looks for.",          overview: "Apple interviews are deeply technical and highly team-specific — there's no single Apple process. Universal: Apple values people who care intensely about quality, who have strong opinions about user experience, and who can execute with minimal guidance.",            interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min) — technical background","Multiple technical rounds (3-6, varies by team)","  → Coding rounds (algorithms, domain-specific)","  → Hardware/software design depending on role","  → Behavioral and culture rounds","Team fit calls — meeting potential teammates","Offer (4-8 weeks, varies significantly)"],                                                              culture: "Apple values craft above almost everything. 'Good enough' doesn't resonate here. They want people who sweat the details, have strong opinions about quality, and can execute without hand-holding. Secrecy is also core — expect questions about handling confidential information.", topRoles: ["Software Engineer","Hardware Engineer","Product Design Engineer","Data Scientist"],            tips: ["Interviews are team-specific — research the specific team, not just Apple generally.","Show attention to detail and passion for quality in every answer.","Prepare for domain-specific deep-dives.","Behavioral questions focus on high-quality decisions with incomplete information.","Show that technical decisions consider the end-user experience."], relatedCompanies: ["google","meta","microsoft"] },
-  stripe:    { displayName: "Stripe",    tier: "Top Tier", difficulty: "Very Hard",      avgRounds: 6, avgDuration: "4–6 weeks",  title: "How to Prepare for a Stripe Interview (2026) — Preciprocal",    description: "Complete Stripe interview prep: API design, payments domain, written communication, and Stripe's unusually thorough hiring bar.",                overview: "Stripe is known for one of the most thorough hiring processes in tech. They care deeply about writing clarity (document-heavy culture), systems thinking, API design, and reliability. Some roles include a written screen — a take-home document exercise.", interviewProcess: ["Recruiter screen (30 min)","Technical screen (60 min) — coding + system discussion","Written screen (some roles) — document you write and submit","Onsite (4–6 rounds)","  → 2 coding rounds (algorithms + practical problems)","  → 1–2 system design rounds (APIs, distributed payments)","  → 1 written communication round","  → 1 behavioral round","Hiring debrief (1–2 weeks post onsite)"],                                                culture: "Stripe values 'users first', rigorous thinking, clear writing, and extreme reliability consciousness — they move money, so correctness > speed. They want people who think about failure modes, build for edge cases, and write documentation others can follow a year later.", topRoles: ["Software Engineer","Product Manager","Solutions Engineer","Data Scientist"],                   tips: ["Study API design deeply — idempotency keys, versioning, error handling, REST best practices.","Write clearly. Stripe will judge your writing in emails, docs, and potentially a written screen.","Know payments fundamentals: card network flow, webhooks, idempotency, reconciliation.","Expect practical coding: 'implement a rate limiter' or 'design a retry mechanism.'","Show reliability thinking: what fails, how do we recover, what's the blast radius."],  relatedCompanies: ["amazon","airbnb","uber"] },
-  spotify:   { displayName: "Spotify",   tier: "Top Tier", difficulty: "Hard",           avgRounds: 4, avgDuration: "3–5 weeks",  title: "How to Prepare for a Spotify Interview (2026) — Preciprocal",   description: "Complete Spotify interview prep: Squad model culture, music domain knowledge, backend systems at scale, and data-driven product thinking.",      overview: "Spotify runs a 'Squad model' — autonomous cross-functional teams. Interviews reflect this: they value T-shaped skills (deep in one area, broad enough to collaborate across disciplines). Music domain knowledge helps but isn't required for most roles.",              interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Technical/role-specific rounds (2-3 rounds)","  → For engineers: coding + system design (audio streaming at scale)","  → For PMs: product sense + metrics cases","  → For data scientists: SQL + ML + statistics","Values/behavioral round","Offer (3–5 weeks)"],                                                                                               culture: "Spotify values autonomy with accountability (Squads), passion for music and culture, data-driven decision-making, and a 'fail fast, learn faster' mentality. They look for people who can work independently and influence without authority.", topRoles: ["Backend Engineer","Data Scientist","Product Manager","Machine Learning Engineer"],               tips: ["Understand Spotify's technical challenges: real-time audio streaming, recommendation systems at scale, multi-device sync.","Know their products deeply — playlist algorithms, podcast features, artist tools.","Show data literacy: every decision should connect to a metric.","Research their engineering blog (engineering.atspotify.com) before the interview.","Behavioral questions probe autonomy and self-direction."],                      relatedCompanies: ["netflix","airbnb","meta"] },
-  netflix:   { displayName: "Netflix",   tier: "Top Tier", difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4–6 weeks",  title: "How to Prepare for a Netflix Interview (2026) — Preciprocal",   description: "Complete Netflix interview prep: freedom & responsibility culture, top-of-market comp, no-policy policy, and what the 'keeper test' means for hiring.", overview: "Netflix has an unusual culture: high talent density, freedom & responsibility, and no traditional HR policies (no vacation policy, no performance improvement plans). They only retain 'adequate performers' — they mean it. This shapes interviews: they assess for exceptional, not just good.", interviewProcess: ["Recruiter screen (30 min) — values and background","Hiring manager screen (45 min)","Panel interviews (4-5 rounds, virtual)","  → Technical depth: coding + system design at streaming scale","  → Judgment and values: 'Would you be comfortable if Netflix shared your work publicly?'","  → Cross-functional collaboration scenarios","Reference checks (taken very seriously at Netflix)","Offer (4–6 weeks)"],                                                             culture: "Netflix's 'Freedom & Responsibility' culture means high autonomy and high accountability. They famously pay top of market and do the 'keeper test' — would your manager fight hard to keep you? They value judgment, impact, and self-sufficiency over rule-following.", topRoles: ["Senior Software Engineer","Product Manager","Data Scientist","Content Strategist"],            tips: ["Read the Netflix Culture Memo — it genuinely shapes their interviews.","Prepare examples of exercising judgment in ambiguous situations without asking for permission.","Netflix technical questions focus on high-availability distributed systems and CDN architecture.","They value candor: 'What's the most direct feedback you've given a manager?'","References are taken very seriously — give strong references or expect it to surface."],    relatedCompanies: ["spotify","meta","airbnb"] },
-  uber:      { displayName: "Uber",      tier: "Top Tier", difficulty: "Hard",           avgRounds: 5, avgDuration: "3–5 weeks",  title: "How to Prepare for an Uber Interview (2026) — Preciprocal",     description: "Complete Uber interview prep: marketplace systems, real-time dispatch at scale, data-heavy decision-making, and Uber's engineering culture.",    overview: "Uber operates complex real-time marketplace systems: matching riders and drivers, surge pricing, logistics optimization, and payments at global scale. Technical interviews often involve marketplace and geospatial systems. Data-driven decision making is core to the culture.",  interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45–60 min) — 1-2 coding problems","Onsite/virtual (4-5 rounds)","  → 2 coding rounds (algorithms — graphs/BFS are common)","  → 1 system design round (dispatch, surge, maps)","  → 1-2 behavioral rounds (Uber values, past impact)","Hiring decision (1-2 weeks post onsite)"],                                                              culture: "Uber values 'big bold bets', customer obsession, and resourcefulness. After significant culture changes post-2017, they've rebuilt around inclusion and humility alongside drive and execution. They value people who can navigate ambiguity and make data-backed decisions quickly.", topRoles: ["Software Engineer","Data Scientist","Product Manager","Operations Manager"],                  tips: ["Study real-time marketplace systems: matching algorithms, dynamic pricing, geospatial indexing.","Uber coding favors graph problems, BFS/DFS, and systems that process events at high throughput.","For PMs: understand two-sided marketplace metrics (supply utilization, demand conversion, surge sensitivity).","For data scientists: experimentation design in a marketplace context is key.","Show you can operate with autonomy and make decisions without complete information."],       relatedCompanies: ["airbnb","stripe","meta"] },
-  airbnb:    { displayName: "Airbnb",    tier: "Top Tier", difficulty: "Hard",           avgRounds: 5, avgDuration: "3–5 weeks",  title: "How to Prepare for an Airbnb Interview (2026) — Preciprocal",   description: "Complete Airbnb interview prep: trust & belonging culture, cross-functional emphasis, design sensibility, and technical expectations.",           overview: "Airbnb is known for strong culture fit emphasis — they genuinely believe in their 'belong anywhere' mission and hire for it. They also have high design sensibility across the company, not just design roles. Technical depth is expected alongside cultural alignment.",         interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Technical rounds (3-4)","  → 2 coding rounds (clean, readable code matters)","  → 1 system design or cross-functional design round","  → 1 'Core Values' round — extensive culture and values assessment","Offer (3–5 weeks)"],                                                                                          culture: "Airbnb's core values (Belong Anywhere, Champion the Mission, Be a Host) are taken seriously. They look for people who are mission-driven (not just job-seeking), who default to collaboration, and who bring care to everything they do — the 'host mindset.'" ,                    topRoles: ["Software Engineer","Product Manager","Data Scientist","UX Designer"],                         tips: ["Research Airbnb's mission and values deeply — they will come up in every behavioral question.","Code quality matters here: clear variable names, clean structure, not just working code.","For PMs and designers: show design sensibility even in technical discussions.","Prepare stories demonstrating the 'host mindset' — taking care of others, going beyond what's required.","Know Airbnb's marketplace challenges: trust & safety, two-sided demand/supply, international expansion."], relatedCompanies: ["uber","netflix","spotify"] },
+  google:     { displayName: "Google",     tier: "FAANG",     difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4-6 weeks",  title: "How to Prepare for a Google Interview (2026) | Preciprocal",     description: "Complete Google interview prep: process, coding expectations, system design, Googleyness, and hiring committee review.",                     overview: "Google evaluates candidates on four dimensions: General Cognitive Ability, Leadership, Googleyness (culture fit), and Role-Related Knowledge. Pedigree doesn't matter, a state school grad who interviews well is evaluated identically to a Stanford PhD.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min), 1-2 LeetCode-medium problems","Onsite (4-5 rounds, 45 min each)","  -> 2 coding rounds (algorithms, data structures)","  -> 1 system design round (L4+)","  -> 1-2 Googleyness / behavioral rounds","Hiring committee review, packet reviewed by 4-5 engineers","Team matching (L4 offers)","Offer (4-8 weeks total)"], culture: "Google values intellectual humility, comfort with ambiguity, collaboration over ego, and a bias toward action. Show curiosity: ask clarifying questions, think out loud, and engage genuinely with the interviewer's perspective.", topRoles: ["Software Engineer","Product Manager","Data Scientist","Technical Program Manager"], tips: ["Practice 100+ LeetCode medium/hard problems, trees, graphs, DP, string manipulation.","Prepare 6-8 STAR stories covering leadership, conflict, failure, and cross-functional collaboration.","For system design, practice YouTube, Google Search, Gmail, Maps, deep on trade-offs.","Think out loud. Reasoning process matters more than the perfect answer.","Never assume constraints, always clarify input sizes, edge cases, output format."], relatedCompanies: ["meta","microsoft","amazon"] },
+  amazon:     { displayName: "Amazon",     tier: "FAANG",     difficulty: "Hard",           avgRounds: 5, avgDuration: "2-4 weeks",  title: "How to Prepare for an Amazon Interview (2026) | Preciprocal",    description: "Complete Amazon interview prep: all 16 Leadership Principles, Bar Raiser explained, coding expectations, and STAR frameworks.",               overview: "Amazon's process is uniquely driven by their 16 Leadership Principles (LPs). Every question, even technical ones, ties back to an LP. The Bar Raiser is an interviewer from outside your team with veto power whose sole job is maintaining the hiring bar.",     interviewProcess: ["Online assessment (SWE only), 2 coding questions, 90 min","Phone screen (45-60 min), 1 coding + 2-3 LP behavioral questions","Virtual onsite (4-6 rounds, 60 min each)","  -> 2-3 technical rounds (coding, system design for SDE II+)","  -> 1 Bar Raiser round (deep LP + technical)","  -> 1-2 LP behavioral rounds","Hiring manager debrief, same day","Offer (2-4 weeks total)"],                                        culture: "Amazon values Ownership above almost everything else. The LPs probed most often: Customer Obsession, Ownership, Bias for Action, Dive Deep, and Disagree and Commit. They love candidates who took initiative without being asked.",                             topRoles: ["Software Development Engineer","Product Manager","Solutions Architect","Data Engineer"],       tips: ["Prepare one strong STAR story for every one of the 16 Leadership Principles. Non-negotiable.","Speak in complete, structured sentences, Amazon interviewers explicitly take notes.","For 'disagreed with manager', show you pushed back AND committed once the decision was made.","Coding is LeetCode medium: graph BFS/DFS, queues/stacks, string manipulation.","Have depth behind every story, know your numbers, outcome, and what you'd do differently."], relatedCompanies: ["google","microsoft","stripe"] },
+  meta:       { displayName: "Meta",       tier: "FAANG",     difficulty: "Very Hard",      avgRounds: 5, avgDuration: "3-6 weeks",  title: "How to Prepare for a Meta Interview (2026) | Preciprocal",       description: "Complete Meta interview prep: coding difficulty, social-scale system design, behavioral framework, and Meta's move-fast culture.",             overview: "Meta interviews are known for coding difficulty and scale-oriented system design (billions of users, petabyte-scale data, real-time communication). Their behavioral framework focuses on Impact, how you moved metrics and influenced people.",              interviewProcess: ["Recruiter screen (15-30 min)","Technical phone screen (45-60 min), 2 LeetCode problems","Virtual onsite (4-5 rounds)","  -> 2 coding rounds (often harder than Google)","  -> 1 system design round (social graph, news feed, distributed systems)","  -> 1 behavioral round (impact, leadership, cross-functional)","Hiring committee vote","Offer (2-6 weeks)"],                                                              culture: "Meta's culture is 'Move fast, have impact.' They value engineers who ship. Behavioral questions probe cross-functional influence, handling ambiguity at scale, and resilience. They ask how you handle disagreements, show backbone combined with execution.", topRoles: ["Software Engineer","Research Scientist","Product Manager","Data Scientist"],                  tips: ["Meta coding is harder than average, practice LeetCode hard, especially graphs and DP.","System design: study Facebook News Feed, Instagram Stories, WhatsApp architecture, distributed caching.","Use specific metrics in behavioral answers: 'I improved DAU by 18% over 6 weeks.'","Know Meta's products deeply, 'What would you change about this product?' is common.","Meta values influence without authority. Prepare stories about rallying people around an idea."], relatedCompanies: ["google","amazon","netflix"] },
+  microsoft:  { displayName: "Microsoft",  tier: "FAANG",     difficulty: "Hard",           avgRounds: 5, avgDuration: "2-4 weeks",  title: "How to Prepare for a Microsoft Interview (2026) | Preciprocal",  description: "Complete Microsoft interview prep: growth mindset culture, 'as appropriate' designee, technical expectations, and collaboration emphasis.",       overview: "Microsoft interviews are rigorous but more collaborative than Google or Meta. They use an 'as appropriate' (AA) designee who assesses the hiring bar. Microsoft emphasizes growth mindset (Carol Dweck's framework), they want learners, not people with fixed skills.", interviewProcess: ["Recruiter screen (30 min)","Technical phone/Teams screen (45-60 min), 1-2 coding problems","Onsite (4-5 rounds, 45-60 min each)","  -> 2-3 coding rounds (algorithms, data structures)","  -> 1 system design round (senior roles)","  -> 1 'As Appropriate' round, final bar assessment","  -> 1 behavioral / culture round","Debrief and decision (1-2 weeks post onsite)"],                                              culture: "Satya Nadella transformed Microsoft around 'growth mindset', intelligence is not fixed, failure is a learning opportunity. Show intellectual curiosity, skill development track record, and resilience. Microsoft values inclusion and collaboration; 'brilliant jerks' are an explicit no.", topRoles: ["Software Engineer","Product Manager","Cloud Solutions Architect","Data Scientist"],           tips: ["Prepare 'growth mindset' stories, times you failed, what you learned, how you grew.","LeetCode medium: arrays, strings, trees, graphs.","System design focuses on cloud/Azure architectures.","Be collaborative in interviews, it's more of a dialogue than Google.","For PM roles, root every design decision in customer empathy."], relatedCompanies: ["google","amazon","salesforce"] },
+  apple:      { displayName: "Apple",      tier: "FAANG",     difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4-8 weeks",  title: "How to Prepare for an Apple Interview (2026) | Preciprocal",     description: "Complete Apple interview prep: team-specific process, craft culture, technical depth expectations, and what Apple actually looks for.",          overview: "Apple interviews are deeply technical and highly team-specific, there's no single Apple process. Universal: Apple values people who care intensely about quality, who have strong opinions about user experience, and who can execute with minimal guidance.",            interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min), technical background","Multiple technical rounds (3-6, varies by team)","  -> Coding rounds (algorithms, domain-specific)","  -> Hardware/software design depending on role","  -> Behavioral and culture rounds","Team fit calls, meeting potential teammates","Offer (4-8 weeks, varies significantly)"],                                                               culture: "Apple values craft above almost everything. 'Good enough' doesn't resonate here. They want people who sweat the details, have strong opinions about quality, and can execute without hand-holding. Secrecy is also core, expect questions about handling confidential information.", topRoles: ["Software Engineer","Hardware Engineer","Product Design Engineer","Data Scientist"],            tips: ["Interviews are team-specific, research the specific team, not just Apple generally.","Show attention to detail and passion for quality in every answer.","Prepare for domain-specific deep-dives.","Behavioral questions focus on high-quality decisions with incomplete information.","Show that technical decisions consider the end-user experience."], relatedCompanies: ["google","meta","microsoft"] },
+  stripe:     { displayName: "Stripe",     tier: "Top Tier",  difficulty: "Very Hard",      avgRounds: 6, avgDuration: "4-6 weeks",  title: "How to Prepare for a Stripe Interview (2026) | Preciprocal",     description: "Complete Stripe interview prep: API design, payments domain, written communication, and Stripe's unusually thorough hiring bar.",                overview: "Stripe is known for one of the most thorough hiring processes in tech. They care deeply about writing clarity (document-heavy culture), systems thinking, API design, and reliability. Some roles include a written screen, a take-home document exercise.", interviewProcess: ["Recruiter screen (30 min)","Technical screen (60 min), coding + system discussion","Written screen (some roles), document you write and submit","Onsite (4-6 rounds)","  -> 2 coding rounds (algorithms + practical problems)","  -> 1-2 system design rounds (APIs, distributed payments)","  -> 1 written communication round","  -> 1 behavioral round","Hiring debrief (1-2 weeks post onsite)"],                                                 culture: "Stripe values 'users first', rigorous thinking, clear writing, and extreme reliability consciousness, they move money, so correctness over speed. They want people who think about failure modes, build for edge cases, and write documentation others can follow a year later.", topRoles: ["Software Engineer","Product Manager","Solutions Engineer","Data Scientist"],                   tips: ["Study API design deeply, idempotency keys, versioning, error handling, REST best practices.","Write clearly. Stripe will judge your writing in emails, docs, and potentially a written screen.","Know payments fundamentals: card network flow, webhooks, idempotency, reconciliation.","Expect practical coding: 'implement a rate limiter' or 'design a retry mechanism.'","Show reliability thinking: what fails, how do we recover, what's the blast radius."], relatedCompanies: ["amazon","airbnb","uber"] },
+  spotify:    { displayName: "Spotify",    tier: "Top Tier",  difficulty: "Hard",           avgRounds: 4, avgDuration: "3-5 weeks",  title: "How to Prepare for a Spotify Interview (2026) | Preciprocal",    description: "Complete Spotify interview prep: Squad model culture, music domain knowledge, backend systems at scale, and data-driven product thinking.",      overview: "Spotify runs a 'Squad model', autonomous cross-functional teams. Interviews reflect this: they value T-shaped skills (deep in one area, broad enough to collaborate across disciplines). Music domain knowledge helps but isn't required for most roles.",              interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Technical/role-specific rounds (2-3 rounds)","  -> For engineers: coding + system design (audio streaming at scale)","  -> For PMs: product sense + metrics cases","  -> For data scientists: SQL + ML + statistics","Values/behavioral round","Offer (3-5 weeks)"],                                                                                                culture: "Spotify values autonomy with accountability (Squads), passion for music and culture, data-driven decision-making, and a 'fail fast, learn faster' mentality. They look for people who can work independently and influence without authority.", topRoles: ["Backend Engineer","Data Scientist","Product Manager","Machine Learning Engineer"],               tips: ["Understand Spotify's technical challenges: real-time audio streaming, recommendation systems at scale, multi-device sync.","Know their products deeply, playlist algorithms, podcast features, artist tools.","Show data literacy: every decision should connect to a metric.","Research their engineering blog (engineering.atspotify.com) before the interview.","Behavioral questions probe autonomy and self-direction."], relatedCompanies: ["netflix","airbnb","meta"] },
+  netflix:    { displayName: "Netflix",    tier: "Top Tier",  difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4-6 weeks",  title: "How to Prepare for a Netflix Interview (2026) | Preciprocal",    description: "Complete Netflix interview prep: freedom and responsibility culture, top-of-market comp, no-policy policy, and what the keeper test means for hiring.", overview: "Netflix has an unusual culture: high talent density, freedom and responsibility, and no traditional HR policies (no vacation policy, no performance improvement plans). They only retain strong performers, they mean it. This shapes interviews: they assess for exceptional, not just good.", interviewProcess: ["Recruiter screen (30 min), values and background","Hiring manager screen (45 min)","Panel interviews (4-5 rounds, virtual)","  -> Technical depth: coding + system design at streaming scale","  -> Judgment and values: 'Would you be comfortable if Netflix shared your work publicly?'","  -> Cross-functional collaboration scenarios","Reference checks (taken very seriously at Netflix)","Offer (4-6 weeks)"],                                                              culture: "Netflix's Freedom and Responsibility culture means high autonomy and high accountability. They famously pay top of market and do the keeper test, would your manager fight hard to keep you? They value judgment, impact, and self-sufficiency over rule-following.", topRoles: ["Senior Software Engineer","Product Manager","Data Scientist","Content Strategist"],            tips: ["Read the Netflix Culture Memo, it genuinely shapes their interviews.","Prepare examples of exercising judgment in ambiguous situations without asking for permission.","Netflix technical questions focus on high-availability distributed systems and CDN architecture.","They value candor: 'What's the most direct feedback you've given a manager?'","References are taken very seriously, give strong references or expect it to surface."], relatedCompanies: ["spotify","meta","airbnb"] },
+  uber:       { displayName: "Uber",       tier: "Top Tier",  difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for an Uber Interview (2026) | Preciprocal",      description: "Complete Uber interview prep: marketplace systems, real-time dispatch at scale, data-heavy decision-making, and Uber's engineering culture.",    overview: "Uber operates complex real-time marketplace systems: matching riders and drivers, surge pricing, logistics optimization, and payments at global scale. Technical interviews often involve marketplace and geospatial systems. Data-driven decision making is core to the culture.",  interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min), 1-2 coding problems","Onsite/virtual (4-5 rounds)","  -> 2 coding rounds (algorithms, graphs/BFS are common)","  -> 1 system design round (dispatch, surge, maps)","  -> 1-2 behavioral rounds (Uber values, past impact)","Hiring decision (1-2 weeks post onsite)"],                                                               culture: "Uber values 'big bold bets', customer obsession, and resourcefulness. After significant culture changes post-2017, they've rebuilt around inclusion and humility alongside drive and execution. They value people who can navigate ambiguity and make data-backed decisions quickly.", topRoles: ["Software Engineer","Data Scientist","Product Manager","Operations Manager"],                  tips: ["Study real-time marketplace systems: matching algorithms, dynamic pricing, geospatial indexing.","Uber coding favors graph problems, BFS/DFS, and systems that process events at high throughput.","For PMs: understand two-sided marketplace metrics (supply utilization, demand conversion, surge sensitivity).","For data scientists: experimentation design in a marketplace context is key.","Show you can operate with autonomy and make decisions without complete information."], relatedCompanies: ["airbnb","stripe","meta"] },
+  airbnb:     { displayName: "Airbnb",     tier: "Top Tier",  difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for an Airbnb Interview (2026) | Preciprocal",    description: "Complete Airbnb interview prep: trust and belonging culture, cross-functional emphasis, design sensibility, and technical expectations.",           overview: "Airbnb is known for strong culture fit emphasis, they genuinely believe in their 'belong anywhere' mission and hire for it. They also have high design sensibility across the company, not just design roles. Technical depth is expected alongside cultural alignment.",         interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Technical rounds (3-4)","  -> 2 coding rounds (clean, readable code matters)","  -> 1 system design or cross-functional design round","  -> 1 'Core Values' round, extensive culture and values assessment","Offer (3-5 weeks)"],                                                                                           culture: "Airbnb's core values (Belong Anywhere, Champion the Mission, Be a Host) are taken seriously. They look for people who are mission-driven (not just job-seeking), who default to collaboration, and who bring care to everything they do, the host mindset.",                    topRoles: ["Software Engineer","Product Manager","Data Scientist","UX Designer"],                         tips: ["Research Airbnb's mission and values deeply, they will come up in every behavioral question.","Code quality matters here: clear variable names, clean structure, not just working code.","For PMs and designers: show design sensibility even in technical discussions.","Prepare stories demonstrating the host mindset, taking care of others, going beyond what's required.","Know Airbnb's marketplace challenges: trust & safety, two-sided demand/supply, international expansion."], relatedCompanies: ["uber","netflix","spotify"] },
+  linkedin:   { displayName: "LinkedIn",   tier: "Top Tier",  difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for a LinkedIn Interview (2026) | Preciprocal",   description: "Complete LinkedIn interview prep: product thinking, trust and safety focus, data-driven culture, and engineering expectations.",                   overview: "LinkedIn sits at the intersection of social networking and professional data at scale. Interviews reflect this: product roles heavily probe economic graph thinking and trust/safety, while engineering roles focus on large-scale data systems and relevance algorithms.", interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Technical screen (60 min)","Virtual onsite (4-5 rounds)","  -> 2 coding rounds (algorithms + data structures)","  -> 1 system design (feed ranking, search, notifications)","  -> 1-2 behavioral rounds (culture + impact)","Offer (3-5 weeks)"], culture: "LinkedIn values trust, growth mindset, and economic opportunity for all members. They prize people who think about product and user impact holistically. The culture is relatively collaborative compared to some FAANG companies.", topRoles: ["Software Engineer","Product Manager","Data Scientist","Sales Solutions"], tips: ["Study feed ranking systems and large-scale graph problems for engineering roles.","For PMs: think about professional network dynamics and the economic graph.","LinkedIn behavioral questions focus on cross-functional influence and measurable impact.","Know LinkedIn's key products deeply: Feed, Search, Recruiter, Learning, Sales Navigator.","Prepare for trust and safety questions regardless of role."], relatedCompanies: ["microsoft","salesforce","google"] },
+  salesforce: { displayName: "Salesforce", tier: "Enterprise", difficulty: "Medium",         avgRounds: 4, avgDuration: "2-4 weeks",  title: "How to Prepare for a Salesforce Interview (2026) | Preciprocal", description: "Complete Salesforce interview prep: Ohana culture, cloud CRM domain knowledge, and technical expectations for engineering and product roles.",    overview: "Salesforce pioneered cloud CRM and has a strong culture identity around their Ohana (family) values. Interviews are generally less algorithmically intense than pure-play tech companies, with heavier emphasis on cultural fit, customer success orientation, and product domain knowledge.", interviewProcess: ["Recruiter screen (30 min)","Hiring manager screen (45 min)","Panel interviews (3-4 rounds)","  -> Technical rounds (domain-specific, less LeetCode-heavy than FAANG)","  -> Behavioral rounds (Ohana values, customer focus)","  -> Case or product sense round (for PM/solution roles)","Offer (2-4 weeks)"], culture: "Salesforce Ohana culture emphasizes trust, customer success, equality, and giving back (1-1-1 model). They want people who are collaborative, customer-obsessed, and mission-driven. Cultural alignment is weighted more heavily here than at pure-play tech companies.", topRoles: ["Software Engineer","Product Manager","Solutions Engineer","Account Executive"], tips: ["Understand Salesforce's core products: Sales Cloud, Service Cloud, Marketing Cloud, Slack.","Ohana values will come up in behavioral questions, prepare stories around trust, giving back, and collaboration.","Technical interviews are more practical and domain-focused than algorithm-heavy.","For solution engineering roles: know Salesforce's ecosystem of integrations and customization options.","Show genuine customer success orientation, not just getting the sale but solving the problem."], relatedCompanies: ["microsoft","oracle","linkedin"] },
+  oracle:     { displayName: "Oracle",     tier: "Enterprise", difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for an Oracle Interview (2026) | Preciprocal",    description: "Complete Oracle interview prep: database and cloud infrastructure focus, enterprise sales culture, and technical depth expectations.",             overview: "Oracle is transitioning from legacy enterprise software to cloud infrastructure (OCI) and SaaS. Technical interviews are rigorous, especially for database and infrastructure roles. The culture is results-driven with a competitive edge.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min)","Onsite or virtual (4-5 rounds)","  -> Technical deep-dives (database internals, distributed systems, cloud)","  -> Coding rounds (algorithms, data structures)","  -> Behavioral rounds","Offer (3-5 weeks)"], culture: "Oracle has a competitive, performance-driven culture. They value technical depth, especially in database and cloud infrastructure. The shift to OCI has brought more startup energy alongside the traditional enterprise DNA.", topRoles: ["Software Engineer","Cloud Engineer","Database Administrator","Product Manager"], tips: ["Study database internals: indexing, query optimization, ACID transactions, distributed consensus.","For cloud roles: know OCI architecture and how it differs from AWS and Azure.","Oracle technical interviews often go very deep on fundamentals, expect follow-up questions.","Behavioral questions focus on delivering results under pressure.","Research Oracle's cloud strategy and where OCI competes with AWS/GCP/Azure."], relatedCompanies: ["salesforce","microsoft","amazon"] },
+  adobe:      { displayName: "Adobe",      tier: "Top Tier",  difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for an Adobe Interview (2026) | Preciprocal",     description: "Complete Adobe interview prep: creative cloud ecosystem, design-led culture, subscription business model, and technical expectations.",             overview: "Adobe's transition to Creative Cloud SaaS is one of tech's great business model pivots. Technical interviews reflect their dual identity: deep creative/design culture alongside rigorous engineering for cloud-scale document and media processing.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min)","Virtual onsite (4-5 rounds)","  -> 2 coding rounds (algorithms + practical problems)","  -> 1 system design (document processing, media pipelines, CDN)","  -> 1-2 behavioral rounds","Offer (3-5 weeks)"], culture: "Adobe values creativity, genuine curiosity, and the intersection of art and technology. They want people who appreciate design even in engineering roles. The culture is collaborative and relatively stable compared to hyper-growth startups.", topRoles: ["Software Engineer","Product Manager","Data Scientist","UX Designer"], tips: ["Understand Adobe's product ecosystem: Creative Cloud, Document Cloud, Experience Cloud.","System design questions often involve media processing, document formats, and CDN delivery.","Show genuine appreciation for design, understanding UX matters even for engineers.","Behavioral questions probe collaboration, creativity, and customer empathy.","Research Adobe's DX (Digital Experience) platform as it's a major growth area."], relatedCompanies: ["salesforce","microsoft","google"] },
+  nvidia:     { displayName: "NVIDIA",     tier: "AI Labs",   difficulty: "Very Hard",      avgRounds: 5, avgDuration: "4-6 weeks",  title: "How to Prepare for an NVIDIA Interview (2026) | Preciprocal",    description: "Complete NVIDIA interview prep: GPU architecture, CUDA programming, AI/ML infrastructure, and the technical depth NVIDIA expects.",                overview: "NVIDIA is the infrastructure layer of the AI era. Their interviews are among the most technically demanding in the industry, especially for hardware and systems roles. Deep knowledge of GPU architecture, parallel computing, and AI/ML systems is expected, not optional.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (60 min), deep technical","Virtual onsite (5-6 rounds)","  -> 2-3 deep technical rounds (GPU architecture, CUDA, systems)","  -> 1 coding round (algorithms + performance optimization)","  -> 1 system design (ML infrastructure, distributed training)","  -> 1 behavioral round","Offer (4-6 weeks)"], culture: "NVIDIA is intensely focused on technical excellence and moving at extraordinary speed. The AI boom has accelerated the culture significantly. They value deep expertise, performance obsession, and people who can operate at the intersection of hardware and software.", topRoles: ["Software Engineer","ML Engineer","Hardware Engineer","Solutions Architect"], tips: ["For engineering roles: know GPU architecture deeply (compute units, memory hierarchy, bandwidth).","CUDA programming and parallel computing fundamentals are expected for many roles.","AI/ML infrastructure knowledge (distributed training, inference optimization) is increasingly required.","Coding questions often include performance optimization, not just correctness.","Understand NVIDIA's stack: GPUs, CUDA, cuDNN, TensorRT, Triton, NeMo, and DGX systems."], relatedCompanies: ["google","meta","anthropic"] },
+  openai:     { displayName: "OpenAI",     tier: "AI Labs",   difficulty: "Extremely Hard", avgRounds: 6, avgDuration: "4-8 weeks",  title: "How to Prepare for an OpenAI Interview (2026) | Preciprocal",    description: "Complete OpenAI interview prep: AI safety mission, research engineering depth, and the unusually high technical bar for one of the most competitive companies in tech.", overview: "OpenAI has one of the most selective hiring processes in the industry. They hire for exceptional technical depth AND genuine alignment with their mission around safe, beneficial AI. Research engineers need strong ML foundations; product engineers need systems thinking at scale.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (60 min)","Take-home or coding assessment (some roles)","Virtual onsite (5-6 rounds)","  -> Research/technical deep-dives (ML theory, systems, coding)","  -> Mission and values alignment rounds","  -> Cross-functional collaboration scenarios","Offer (4-8 weeks)"], culture: "OpenAI's culture is mission-first: the belief that they are building one of the most transformative and potentially dangerous technologies in history shapes everything. They want people who take AI safety seriously, think rigorously, and can operate with enormous autonomy.", topRoles: ["Research Engineer","Software Engineer","Product Manager","Policy Researcher"], tips: ["Know transformer architecture, attention mechanisms, and large language model training deeply.","Be prepared to discuss AI safety and alignment, not as lip service but with genuine understanding.","Systems at scale: distributed training, inference optimization, and serving are core competencies.","OpenAI values research thinking even in product/engineering roles.","Read their published papers and safety research before the interview."], relatedCompanies: ["anthropic","google","meta"] },
+  anthropic:  { displayName: "Anthropic",  tier: "AI Labs",   difficulty: "Extremely Hard", avgRounds: 6, avgDuration: "4-8 weeks",  title: "How to Prepare for an Anthropic Interview (2026) | Preciprocal", description: "Complete Anthropic interview prep: AI safety focus, interpretability research, and what it takes to join one of the most mission-driven AI labs.",   overview: "Anthropic was founded with AI safety as the primary mission, not a secondary concern. This shapes interviews deeply: they want people who can rigorously reason about AI risk, not just build capable systems. Technical depth requirements are similar to OpenAI but with heavier emphasis on safety-conscious engineering.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (60 min)","Research or engineering assessment","Virtual onsite (5-6 rounds)","  -> Technical depth rounds (ML, systems, research)","  -> Safety and alignment reasoning rounds","  -> Collaboration and mission alignment","Offer (4-8 weeks)"], culture: "Anthropic's culture is serious, research-oriented, and deeply focused on the long-term trajectory of AI. They value intellectual honesty, careful reasoning about uncertainty, and genuine concern for societal impact. The culture is collaborative rather than competitive.", topRoles: ["Research Engineer","Software Engineer","Policy Researcher","Product Manager"], tips: ["Study interpretability research and constitutional AI, know Anthropic's published work.","Be prepared to reason carefully about AI safety tradeoffs, not just recite talking points.","ML fundamentals at depth: training dynamics, RLHF, constitutional AI, scaling laws.","Demonstrate intellectual honesty, Anthropic values people who reason carefully about what they don't know.","Show genuine mission alignment. Why safety specifically? What do you think the real risks are?"], relatedCompanies: ["openai","google","meta"] },
+  databricks: { displayName: "Databricks", tier: "Unicorn",   difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for a Databricks Interview (2026) | Preciprocal", description: "Complete Databricks interview prep: data lakehouse architecture, Apache Spark, the open data stack, and Databricks technical culture.",              overview: "Databricks created the data lakehouse concept and is the commercial home of Apache Spark. Their interviews expect solid data engineering and distributed systems knowledge. The culture is academic-meets-startup, driven by many Apache Spark creators.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min)","Virtual onsite (4-5 rounds)","  -> 2 coding rounds (algorithms + data systems problems)","  -> 1 system design (data pipelines, lakehouse architecture)","  -> 1 domain-specific round (Spark, Delta Lake, ML)","  -> 1 behavioral round","Offer (3-5 weeks)"], culture: "Databricks has a high technical bar and academic culture shaped by its Apache Spark origins. They value people who understand data infrastructure deeply, care about open source, and can think about data problems at scale. Fast-paced and engineering-led.", topRoles: ["Software Engineer","Data Engineer","Solutions Architect","Machine Learning Engineer"], tips: ["Know Apache Spark internals: RDDs, DataFrames, execution model, shuffle, and memory management.","Understand Delta Lake architecture: ACID transactions on data lakes, time travel, schema enforcement.","System design questions often involve data pipeline architectures and lakehouse patterns.","Be familiar with the broader open data stack: Delta, MLflow, Unity Catalog.","Coding rounds expect strong CS fundamentals plus data-aware thinking."], relatedCompanies: ["snowflake","google","amazon"] },
+  snowflake:  { displayName: "Snowflake",  tier: "Unicorn",   difficulty: "Hard",           avgRounds: 5, avgDuration: "3-5 weeks",  title: "How to Prepare for a Snowflake Interview (2026) | Preciprocal",  description: "Complete Snowflake interview prep: cloud data warehouse architecture, multi-cluster compute, data sharing, and what Snowflake looks for in candidates.", overview: "Snowflake pioneered the separation of storage and compute in cloud data warehousing and remains a market leader. Technical interviews emphasize cloud architecture, SQL optimization, and distributed query processing. The company has strong enterprise sales DNA alongside engineering depth.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min)","Virtual onsite (4-5 rounds)","  -> 2 coding rounds (algorithms + SQL-adjacent problems)","  -> 1 system design (data warehouse architecture, query processing)","  -> 1 behavioral round","  -> Sometimes a domain-specific round for senior roles","Offer (3-5 weeks)"], culture: "Snowflake has a performance-driven culture with strong emphasis on customer success and enterprise execution. They value people who move fast and deliver measurable customer outcomes.", topRoles: ["Software Engineer","Solutions Engineer","Data Engineer","Product Manager"], tips: ["Know Snowflake's architecture: virtual warehouses, storage layer, query processing, caching.","SQL optimization and query planning are common technical topics.","Understand multi-cloud data sharing and data marketplace concepts.","Behavioral questions often focus on customer impact and enterprise problem-solving.","Research Snowflake's competitive positioning against BigQuery, Databricks, and Redshift."], relatedCompanies: ["databricks","amazon","microsoft"] },
+  palantir:   { displayName: "Palantir",   tier: "Unicorn",   difficulty: "Very Hard",      avgRounds: 6, avgDuration: "4-6 weeks",  title: "How to Prepare for a Palantir Interview (2026) | Preciprocal",   description: "Complete Palantir interview prep: the Deployment Strategist role, Gotham and Foundry platforms, and the distinctive Palantir hiring process.",        overview: "Palantir has one of the most distinctive hiring processes in tech. They primarily hire 'Deployment Strategists' (forward-deployed engineers who work directly with customers) rather than traditional software engineers. The process tests both technical depth and the ability to communicate complex ideas to non-technical stakeholders.", interviewProcess: ["Recruiter screen (30 min)","Technical phone screen (45-60 min)","Karat or HackerRank coding assessment","Virtual onsite (5-6 rounds)","  -> Decomp round (problem decomposition and system design)","  -> Coding rounds (algorithms)","  -> Logic and math round","  -> Deployment/customer scenario round","Offer (4-6 weeks)"], culture: "Palantir has a mission-driven culture around using data to solve hard problems for governments and enterprises. They are selective and deliberate. The culture can be intense and is not for everyone.", topRoles: ["Forward Deployed Engineer","Software Engineer","Deployment Strategist","Product Manager"], tips: ["The Decomp round is unique to Palantir, practice breaking ambiguous problems into structured components.","Palantir values people who can explain technical concepts clearly to non-engineers.","Know Palantir's two main platforms: Gotham (government/defense) and Foundry (commercial).","Coding rounds are standard LeetCode medium, solid CS fundamentals are expected.","Be prepared to discuss your views on data ethics and the appropriate use of data analytics technology."], relatedCompanies: ["databricks","microsoft","google"] },
 };
 
 export function getCompanyMeta(slug: string): CompanyMeta | null {
@@ -562,7 +568,7 @@ export function getCompanyQuestions(slug: string): RoleQA[] {
   if (!meta) return [];
   const name = meta.displayName;
   return [
-    { question: `How hard is it to get a job at ${name}?`,              answer: `${name} is considered ${meta.difficulty.toLowerCase()} to interview at. Acceptance rates at top tech companies average 1-3%. The process takes ${meta.avgDuration}. Preparation depth is the key differentiator — candidates who practice systematically outperform those who rely on talent alone.` },
+    { question: `How hard is it to get a job at ${name}?`,              answer: `${name} is considered ${meta.difficulty.toLowerCase()} to interview at. Acceptance rates at top tech companies average 1-3%. The process takes ${meta.avgDuration}. Preparation depth is the key differentiator, candidates who practice systematically outperform those who rely on talent alone.` },
     { question: `How many interview rounds does ${name} have?`,         answer: `${name} typically runs ${meta.avgRounds} rounds: ${meta.interviewProcess.slice(0,3).join("; ")}. The total process takes ${meta.avgDuration}. Rounds can split over multiple days for in-person onsites or compress into a single day virtually.` },
     { question: `What coding questions does ${name} ask?`,              answer: `${name} typically asks LeetCode medium to hard difficulty problems. Focus areas: arrays and strings, binary trees and graphs, dynamic programming, and system design. The best preparation is solving 80-100 curated problems, focusing on pattern recognition rather than memorizing solutions.` },
     { question: `What behavioral questions does ${name} ask?`,          answer: `${name} asks behavioral questions tied to their culture. ${meta.culture.substring(0, 200)}... Prepare 6-8 STAR stories covering leadership, conflict, failure, cross-functional collaboration, and initiative. Quantify impact in every story.` },
@@ -572,9 +578,9 @@ export function getCompanyQuestions(slug: string): RoleQA[] {
   ];
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 // 7. BLOG POSTS
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 
 export interface BlogPost {
   slug: string;
@@ -589,1193 +595,214 @@ export interface BlogPost {
 }
 
 export const BLOG_POSTS: BlogPost[] = [
- 
-  // ── RESUME ────────────────────────────────────────────────────────────────
- 
-  {
-    slug: "how-to-pass-ats-resume-screening",
-    title: "How to Pass ATS Resume Screening in 2026 (Complete Guide)",
-    description: "Most resumes are rejected before a human sees them. Here's exactly how ATS systems work, why they reject qualified candidates, and the 10 fixes that get you past the filter.",
-    category: "Resume",
-    readTime: "10 min read",
-    publishedAt: "2026-01-15",
-    updatedAt: "2026-04-27",
-    featured: true,
-    content: `## What is ATS and why does it matter in 2026?
- 
-An Applicant Tracking System (ATS) is software that companies use to receive, sort, and filter job applications before a recruiter ever sees them. Over 98% of Fortune 500 companies use ATS software, and studies suggest that 75% of resumes are rejected before a human reviews them. If your resume doesn't pass the automated screen, it doesn't matter how qualified you are — your application simply disappears.
- 
-The most widely used ATS platforms in 2026 are Workday, Greenhouse, Lever, iCIMS, Taleo, and BambooHR. Each has slightly different parsing behavior, but the same core rules apply across all of them.
- 
-## Why well-written resumes still fail ATS
- 
-The most counterintuitive truth about ATS: a beautifully designed resume often scores lower than a plain, boring one. Multi-column layouts, tables, text boxes, graphics, headers and footers, and custom fonts all confuse ATS parsers. The system reads your resume as raw text — if that text is scrambled by formatting, your qualifications never register.
- 
-The five most common reasons qualified candidates get auto-rejected:
- 
-**Missing keywords** — ATS systems match your resume against the job description. If you say "team lead" and the job description says "team leadership," you may not match. Mirror the exact language from the posting.
- 
-**Non-standard section headers** — "Professional History" or "Where I've Worked" confuse parsers. Use "Work Experience," "Education," "Skills," and "Certifications."
- 
-**Text in headers/footers** — Most ATS systems cannot parse content outside the main document body. Your name and contact info in a header may be completely invisible.
- 
-**Tables and text boxes** — These render as blank space or get skipped entirely. Anything inside a table or text box disappears in many systems.
- 
-**Wrong file format** — Unless the job posting specifically requests PDF, submit .docx. PDFs can confuse older ATS systems, especially if they contain embedded fonts or complex layouts.
- 
-## The 10 fixes that move your ATS score
- 
-**Fix 1: Use a single-column layout.** Delete columns, sidebars, and any graphic elements. Your resume should look plain — that's a feature, not a bug.
- 
-**Fix 2: Mirror job description language exactly.** Read the job posting three times. Identify the exact phrases they use for skills, tools, and responsibilities. Use those exact words. "Agile methodology" not "agile process."
- 
-**Fix 3: Add a dedicated Skills section near the top.** List the exact tools, technologies, and competencies from the job description. ATS systems heavily weight skills sections.
- 
-**Fix 4: Use standard section headers.** Work Experience, Education, Skills, Certifications, Projects. Nothing creative.
- 
-**Fix 5: Move all contact info into the main body.** Name, phone, email, LinkedIn URL — not in a header or footer. Put them at the top of the document body.
- 
-**Fix 6: Remove all tables and text boxes.** Reformat as plain bullet points and paragraphs.
- 
-**Fix 7: Spell out acronyms once, then use the acronym.** "Search Engine Optimization (SEO)" on first use, then just "SEO." Some ATS systems search for one but not the other.
- 
-**Fix 8: Quantify every bullet point you can.** "Managed a team of 8 engineers" beats "Managed a team." Numbers make your bullets both ATS-readable and more compelling to humans.
- 
-**Fix 9: Tailor for every application — every single one.** One resume for all jobs is the most common mistake. 20 tailored applications outperform 200 generic ones consistently.
- 
-**Fix 10: Check your score before submitting.** Use Preciprocal's free ATS checker to see exactly which keywords you're missing and what's dragging your score down — before the application goes in.
- 
-## What an ATS score above 75 means
- 
-Passing ATS is the floor, not the ceiling. A score above 75 gets your resume to a human reviewer. Now you have roughly 6 seconds to survive the recruiter scan — clear structure, strong action verbs, and quantified impact bullets are what keep them reading.
- 
-The goal is a resume that both passes the machine and impresses the person. Preciprocal scores your resume on both dimensions simultaneously — ATS compatibility and human readability — so you're not optimizing for one at the expense of the other.`
-  },
- 
-  {
-    slug: "resume-keywords-that-get-past-ats",
-    title: "Resume Keywords That Get Past ATS in 2026 (By Role)",
-    description: "The exact keywords ATS systems look for in software engineering, data science, product management, finance, and 5 other roles — with examples of how to use them naturally.",
-    category: "Resume",
-    readTime: "9 min read",
-    publishedAt: "2026-03-24",
-    updatedAt: "2026-04-27",
-    content: `## How ATS keyword matching works in 2026
- 
-Modern ATS platforms use a combination of exact-match and semantic matching. Workday and Greenhouse use semantic analysis that understands synonyms — so "engineered" and "built" may both match "developed." But older systems like Taleo still rely heavily on exact string matching. The safest strategy: use the exact language from the job description wherever possible, and don't rely on synonyms to carry you.
- 
-The other thing most candidates don't know: ATS systems weight keywords differently by location. A keyword in your job title or a recent role headline counts more than the same keyword buried in a bullet point from five years ago. Front-load your most important terms.
- 
-## Software Engineer keywords
- 
-**Core technical keywords:** Python, JavaScript, TypeScript, Java, Go, Rust, SQL, REST API, GraphQL, microservices, distributed systems, CI/CD, Docker, Kubernetes, AWS, GCP, Azure, system design, agile, TDD, code review.
- 
-**Action verbs that ATS and humans both reward:** architected, engineered, built, optimized, reduced, scaled, migrated, deployed, shipped, refactored, automated.
- 
-**Bullet pattern that works:** "Architected and deployed [system] using [tech stack], reducing [metric] by [X]% and supporting [scale]."
- 
-**Example:** "Architected and deployed a real-time event processing pipeline using Kafka and Python, reducing data latency from 8 minutes to 12 seconds and supporting 2M daily active users."
- 
-## Data Scientist keywords
- 
-**Core keywords:** Python, R, SQL, machine learning, statistical modeling, A/B testing, hypothesis testing, regression, classification, neural networks, feature engineering, Pandas, NumPy, scikit-learn, TensorFlow, PyTorch, Spark, data pipeline.
- 
-**Depth signals that differentiate candidates:** production ML, MLOps, model deployment, causal inference, Bayesian methods, experiment design, model monitoring.
- 
-**Bullet pattern:** "Built [model type] using [tools] to [outcome], improving [metric] by [X]% with [dataset scale]."
- 
-## Product Manager keywords
- 
-**Core keywords:** product roadmap, user research, A/B testing, KPIs, OKRs, stakeholder management, cross-functional, agile, go-to-market, user stories, backlog prioritization, data-driven, DAU, MAU, NPS, retention, churn.
- 
-**The PM keyword trap:** listing responsibilities not outcomes. "Managed the roadmap" is a responsibility. "Prioritized and shipped 4 features that grew DAU by 18% in Q3" is an outcome. ATS scores keywords — but humans score impact. You need both.
- 
-## Financial Analyst keywords
- 
-**Core keywords:** financial modeling, DCF analysis, EBITDA, LBO, comparable company analysis, Excel, PowerPoint, variance analysis, budget, forecast, P&L, balance sheet, cash flow, GAAP, IFRS, Bloomberg, FactSet, capital markets.
- 
-**For investment banking specifically:** add M&A, debt financing, equity research, pitch deck, deal execution, due diligence, valuation.
- 
-## Marketing Manager keywords
- 
-**Core keywords:** go-to-market, demand generation, content marketing, SEO, SEM, paid social, email marketing, CRM, HubSpot, Salesforce, Google Analytics, attribution, conversion rate, CAC, LTV, funnel optimization, brand strategy.
- 
-**Performance marketing depth signals:** ROAS, CPL, CTR, MQL, SQL, pipeline, ABM, growth hacking.
- 
-## HR Manager keywords
- 
-**Core keywords:** talent acquisition, HRIS, Workday, performance management, compensation benchmarking, employee relations, DEI, onboarding, workforce planning, compliance, FLSA, FMLA, succession planning, engagement survey.
- 
-## Operations Manager keywords
- 
-**Core keywords:** process improvement, operational efficiency, KPIs, SLAs, cross-functional coordination, vendor management, budget management, Six Sigma, Lean, project management, Jira, Asana, stakeholder alignment.
- 
-## How to use keywords naturally — not stuff them
- 
-Keyword stuffing (repeating terms unnaturally or hiding keywords in white text) is both unethical and detectable. Modern ATS systems can flag stuffing, and any recruiter who reads your resume will immediately notice something is wrong.
- 
-The right approach: put keywords inside bullets that describe real work you did with them. "Reduced customer churn by 18% by building a data-driven segmentation model using Python and scikit-learn" uses four keywords naturally in a compelling, quantified statement.
- 
-Run your resume through Preciprocal's free ATS checker after each revision. It shows exactly which keywords from the job description are present, which are missing, and how your overall match score moves — so you're optimizing with real data, not guesswork.`
-  },
- 
-  {
-    slug: "how-to-write-a-resume-with-no-experience",
-    title: "How to Write a Resume With No Experience in 2026 (Complete Guide)",
-    description: "No work experience doesn't mean no resume. Here's exactly how to build a compelling resume from internships, projects, coursework, and volunteer work — and still get interviews.",
-    category: "Resume",
-    readTime: "9 min read",
-    publishedAt: "2026-04-07",
-    featured: true,
-    content: `## The mindset shift: you have more than you think
- 
-"No experience" almost never means zero experience — it means no full-time professional experience. That's a very different thing. Internships, class projects, freelance work, volunteer roles, open-source contributions, part-time jobs, research, and extracurriculars all count. The goal is to present what you have in the most compelling way possible, structured exactly as professional experience would be.
- 
-Recruiters hiring entry-level candidates know you don't have a 10-year track record. They're evaluating potential, learning speed, initiative, and whether you've done anything relevant — no matter how small.
- 
-## The right resume structure when you have no experience
- 
-**Section order for entry-level candidates:**
- 
-1. Contact information (name, phone, email, LinkedIn, GitHub if relevant)
-2. Summary (2–3 lines — optional but effective)
-3. Education (put this first, unlike experienced candidates)
-4. Skills
-5. Projects (treat these like work experience)
-6. Experience (internships, part-time, volunteer, research)
-7. Certifications / Awards / Activities
- 
-Move Education to the top because it's your strongest credential right now. As you gain professional experience, it moves back down.
- 
-## How to write about projects like work experience
- 
-Projects are the most underutilized section on entry-level resumes. Treat every significant project — academic, personal, or open-source — exactly like a job entry. Give it a title, the technologies used, a date range, and bullet points describing what you built and what impact it had.
- 
-**Weak project entry:**
-"E-commerce website — built a website using React and Node.js"
- 
-**Strong project entry:**
-"Full-Stack E-Commerce Platform | React, Node.js, PostgreSQL | Jan 2026 – Mar 2026
-- Built a full-stack marketplace with user authentication, product search, and Stripe payment processing
-- Reduced page load time by 40% through lazy loading and image optimization
-- Deployed on AWS EC2 with a CI/CD pipeline using GitHub Actions"
- 
-The second version reads like a job. Same project, completely different impression.
- 
-## Turning internships and part-time jobs into strong bullets
- 
-Even unrelated experience can demonstrate transferable skills. The key is leading with the skill, not the task.
- 
-**Weak:** "Helped customers at the front desk and answered phones"
-**Strong:** "Handled 50+ daily customer inquiries, resolving complaints with a documented 94% satisfaction rate"
- 
-**Weak:** "Worked on a team to organize events"
-**Strong:** "Coordinated logistics for 3 campus events attended by 400+ students, managing vendor relationships and a $2,000 budget"
- 
-Always ask: what was the scope? What was the result? What skill does this demonstrate?
- 
-## Writing a strong entry-level resume summary
- 
-Two or three sentences at the top of your resume can set the frame before a recruiter reads a single bullet. For entry-level candidates, the formula is:
- 
-[Current status] + [relevant skills/focus] + [what you're looking for and why]
- 
-**Example for CS graduate:**
-"Computer Science graduate from the University of Michigan with a focus on machine learning and backend development. Built 4 full-stack projects and completed a data engineering internship at a Series A startup. Seeking a software engineering role where I can apply my experience in Python and distributed systems to real-world scale problems."
- 
-## The ATS problem for entry-level resumes
- 
-Entry-level resumes fail ATS at a higher rate than experienced resumes because they contain fewer keywords. The fix is the same: read the job description carefully, identify the keywords they use for skills and tools, and make sure those exact terms appear in your Skills section and project bullets.
- 
-Use Preciprocal's free ATS checker to score your resume against any job description before you apply — it shows you exactly which keywords to add and where.`
-  },
- 
-  {
-    slug: "resume-summary-examples-2026",
-    title: "Resume Summary Examples That Actually Work in 2026 (By Role)",
-    description: "The resume summary is the first thing recruiters read. Here are 12 word-for-word examples for software engineers, product managers, analysts, and more — plus the formula behind each one.",
-    category: "Resume",
-    readTime: "7 min read",
-    publishedAt: "2026-04-14",
-    content: `## Why most resume summaries are useless
- 
-Open any resume database and you'll see the same summaries repeated thousands of times: "Results-driven professional with 5+ years of experience seeking a challenging role where I can leverage my skills..." These summaries add zero information. A recruiter learns nothing about you from them.
- 
-A strong resume summary does three things in two to three sentences: establishes your professional identity, names your strongest credentials, and signals why this role makes sense for you. It's not a generic description — it's a specific pitch.
- 
-## The formula
- 
-[Job title / professional identity] + [years of experience or strongest credential] + [1–2 specific achievements or skills] + [what you're looking for next]
- 
-Keep it to 2–3 sentences. Under 60 words. No buzzwords like "passionate," "results-driven," or "team player."
- 
-## Software Engineer — 3 years experience
- 
-"Software engineer with 3 years building distributed backend systems in Python and Go at a Series B fintech. Reduced API latency by 60% through service decomposition and led migration of monolithic architecture to microservices serving 1.2M daily users. Looking for a senior engineering role focused on platform reliability at scale."
- 
-## Software Engineer — New Graduate
- 
-"CS graduate from Georgia Tech specializing in distributed systems and machine learning. Built a real-time fraud detection system (Python, Kafka) as a capstone project and completed two software engineering internships. Seeking an entry-level SWE role to build production-scale systems alongside experienced engineers."
- 
-## Product Manager — 4 years experience
- 
-"Product manager with 4 years shipping B2B SaaS at a growth-stage startup, responsible for a product line generating $8M ARR. Led 0-to-1 launch of an analytics dashboard that became the team's highest NPS feature. Looking for a senior PM role at a company building developer tools or data infrastructure."
- 
-## Data Analyst — 2 years experience
- 
-"Data analyst with 2 years at a retail e-commerce company, specializing in customer behavior analysis and A/B testing. Built automated reporting pipelines in SQL and Python that reduced weekly reporting time from 6 hours to 20 minutes. Seeking a role where I can move from analysis into data science and predictive modeling."
- 
-## Marketing Manager — 5 years experience
- 
-"Marketing manager with 5 years in B2B SaaS demand generation, responsible for campaigns driving $3M in pipeline annually. Grew organic traffic 4x through content and SEO over 18 months. Looking for a head of marketing role at a Series A or B company scaling from product-market fit to growth."
- 
-## Financial Analyst — Investment Banking
- 
-"Investment banking analyst with 2 years in the M&A group at a mid-market advisory firm, having worked on 11 closed transactions totaling $2.4B in deal value. Proficient in LBO modeling, DCF analysis, and comparable company analysis. Targeting a buyside role in private equity or growth equity."
- 
-## UX Designer — 3 years experience
- 
-"UX designer with 3 years designing mobile-first consumer apps, having shipped features to 500K+ users at a Series C startup. Reduced onboarding drop-off by 35% through user research and A/B-tested redesign. Looking for a product design role at a company where design is treated as a core business function."
- 
-## Operations Manager — 6 years experience
- 
-"Operations manager with 6 years driving process improvements in logistics and supply chain. Implemented a warehouse management system that cut order processing time by 28% and reduced picking errors by 41%. Seeking a director of operations role at a high-growth e-commerce or marketplace company."
- 
-## What makes each of these work
- 
-Every example above contains a specific number, a real credential, and a clear direction for what comes next. None of them use adjectives like "passionate" or "motivated." They read like the first sentence of a conversation a recruiter wants to continue.
- 
-Write your summary last, after you've finished all your bullets — you'll know better what your strongest points are.`
-  },
- 
-  // ── INTERVIEW PREP ────────────────────────────────────────────────────────
- 
-  {
-    slug: "software-engineer-interview-prep-guide",
-    title: "The Complete Software Engineer Interview Prep Guide (2026)",
-    description: "A systematic 8-week study plan for SWE interviews — data structures, algorithms, system design, behavioral, and company-specific prep that actually gets offers.",
-    category: "Interview Prep",
-    readTime: "14 min read",
-    publishedAt: "2026-01-22",
-    updatedAt: "2026-04-27",
-    featured: true,
-    content: `## The honest truth about software engineering interview prep
- 
-Most engineers prepare wrong. They grind 300 random LeetCode problems, then panic when the actual interview asks something they haven't seen before. The problem isn't the problems — it's the absence of a system. Random grinding builds a library of solutions you've memorized. Systematic prep builds pattern recognition — the ability to see a new problem and know immediately which approach to apply.
- 
-This 8-week guide is for engineers targeting FAANG, top-tier startups, and competitive mid-market companies. If you have less than 8 weeks, compress it — but keep the structure. The sequence matters.
- 
-## Week 1–2: Data structures and core algorithms
- 
-Start with the foundations. Every interview problem is a variation of a pattern you should already own.
- 
-**Arrays and two pointers (3 days):** The two-pointer pattern reduces O(n²) brute-force solutions to O(n). Master it with: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water, Move Zeroes. Understand when to use same-direction vs. opposite-direction pointers.
- 
-**Sliding window (2 days):** For subarray and substring problems with a constraint — "longest," "minimum," "maximum" with a condition. Practice: Longest Substring Without Repeating Characters, Minimum Window Substring, Fruit Into Baskets.
- 
-**Hash maps and sets (2 days):** O(1) lookup transforms many O(n²) problems to O(n). Practice: Group Anagrams, Top K Frequent Elements, Valid Anagram, Longest Consecutive Sequence.
- 
-**Linked lists (2 days):** Reverse Linked List, Merge Two Sorted Lists, Linked List Cycle, LRU Cache, Reorder List. The slow/fast pointer pattern for cycle detection is a fundamental technique.
- 
-**Stacks and queues (1 day):** Valid Parentheses, Daily Temperatures, Min Stack, Evaluate Reverse Polish Notation.
- 
-## Week 3–4: Trees and graphs
- 
-**Binary trees (3 days):** Master all traversals — recursive and iterative. Practice: Maximum Depth, Validate BST, Level Order Traversal (BFS), Lowest Common Ancestor, Serialize and Deserialize Binary Tree. The recursive tree pattern (solve left, solve right, combine) applies to dozens of problems.
- 
-**Binary search trees (1 day):** Kth Smallest in BST, Convert Sorted Array to BST.
- 
-**Graphs (3 days):** BFS for shortest path and level-by-level traversal. DFS for connectivity, cycle detection, and pathfinding. Practice: Number of Islands, Clone Graph, Course Schedule I and II, Word Ladder, Pacific Atlantic Water Flow, Number of Connected Components.
- 
-**Heaps and priority queues (1 day):** Top K Frequent Elements (again, from heap angle), Merge K Sorted Lists, Find Median from Data Stream, Task Scheduler.
- 
-## Week 5: Dynamic programming
- 
-DP is the most feared topic — and the most pattern-heavy. The key insight: identify whether it's a DP problem (optimal substructure + overlapping subproblems), then find the state definition.
- 
-**1D DP (2 days):** Climbing Stairs, House Robber I and II, Coin Change, Jump Game, Longest Increasing Subsequence.
- 
-**2D DP (2 days):** Unique Paths, Minimum Path Sum, Longest Common Subsequence, Edit Distance.
- 
-**String DP (1 day):** Word Break, Palindromic Substrings, Longest Palindromic Substring.
- 
-## Week 6: System design
- 
-System design interviews are evaluated differently from coding rounds. There's no correct answer — there are only well-reasoned trade-offs. The interview is a conversation, not a test.
- 
-**The 6-step framework:** (1) Clarify requirements — functional and non-functional. (2) Estimate scale — users, RPS, storage, read/write ratio. (3) Define the API — what endpoints, inputs, outputs. (4) Draw high-level design — clients, load balancers, app servers, database, cache, CDN. (5) Deep dive — the interviewer will steer you; common topics are database schema, caching strategy, scaling the write path, message queues. (6) Failure and edge cases — what breaks under load?
- 
-**Practice these 6 systems:** URL shortener, Twitter/Instagram feed, YouTube, WhatsApp/messaging app, Uber (ride matching), Google search autocomplete. Each one teaches a different architectural pattern.
- 
-## Week 7: Behavioral prep
- 
-Behavioral interviews are the most underprepared part of engineering interviews. Engineers assume coding will compensate. It won't — especially at FAANG, where behavioral rounds are formal and separately scored.
- 
-Prepare 7 STAR stories (Situation, Task, Action, Result):
-1. A project you led end-to-end
-2. A technical disagreement with a teammate or manager
-3. Your biggest technical failure
-4. A decision you made under ambiguity or incomplete information
-5. A time you influenced a decision without formal authority
-6. A technical decision you made and had to defend
-7. Your strongest accomplishment — fully quantified
- 
-Practice each story out loud. Target 2 minutes. Say "I" not "we."
- 
-## Week 8: Company-specific prep and mock interviews
- 
-Research your target company's engineering blog, conference talks, and recent open-source releases. Understand their tech stack and scale. For Google, understand the 4 evaluation dimensions. For Amazon, know all 16 Leadership Principles by name. For Meta, understand their engineering culture and how they think about product impact.
- 
-Do at least 4 full mock interviews — voice-based, under time pressure, with behavioral questions mixed in. Coding silently at your keyboard is a completely different skill from coding while explaining your thinking to another person. Practice the right skill.
- 
-Preciprocal's AI mock interview panel simulates a multi-round onsite with an HR screener, technical interviewer, and hiring manager simultaneously — scored across communication, technical depth, and problem-solving structure.`
-  },
- 
-  {
-    slug: "how-to-answer-tell-me-about-yourself",
-    title: "How to Answer 'Tell Me About Yourself' in 2026 (With Word-for-Word Examples)",
-    description: "The most common interview question — and the most mishandled. A proven framework plus 4 word-for-word example answers for tech, business, finance, and entry-level roles.",
-    category: "Behavioral",
-    readTime: "7 min read",
-    publishedAt: "2026-02-03",
-    updatedAt: "2026-04-27",
-    content: `## Why this question trips up even experienced candidates
- 
-"Tell me about yourself" feels open-ended, which makes most people either recite their resume chronologically or default to vague generalities like "I'm a hard worker who's passionate about technology." Neither approach works.
- 
-This question is the one moment in an interview where you fully control the narrative. The interviewer isn't asking for your life story — they're giving you a warm-up pitch. They want to know if you're articulate, self-aware, and if your background is relevant to what they need. A strong answer sets the tone for the entire interview.
- 
-## The Present-Past-Future framework
- 
-The most reliable framework for answering this question:
- 
-**Present (1–2 sentences):** Current role, scope, what you're actively working on. If you're a student, current status and focus area.
- 
-**Past (2–3 sentences):** The two or three highlights that explain why you're good at what you do. Not a full chronological history — only what's relevant to this role.
- 
-**Future (2–3 sentences):** Why this role, at this company, right now. Name something specific about the company, team, or problem that genuinely interests you.
- 
-Target length: 90 seconds to 2 minutes. Practice it until it sounds natural, not rehearsed.
- 
-## Example 1: Software Engineer (3 years experience)
- 
-"Right now I'm a software engineer at a Series B fintech where I work on payments infrastructure — specifically the reconciliation pipeline that processes about $2 billion in transactions daily. Before that I was the second engineer at an early-stage startup, which meant I touched everything from API design to on-call response.
- 
-The thing I'm most proud of is reducing our failed transaction rate by 38% by redesigning our idempotency key system — that was a six-week project I led end-to-end.
- 
-I'm here because I want to work on reliability at a company that's actually at Google-scale. What I read about your deterministic simulation testing on the engineering blog is exactly the kind of problem I want to be solving — I've been thinking about those failure mode challenges for a while now."
- 
-## Example 2: New Graduate (CS)
- 
-"I'm finishing my CS degree at Georgia Tech in May, focused on machine learning and distributed systems. Last summer I interned at Capital One, where I built a feature extraction pipeline that improved fraud detection precision by 8 percentage points — it went to production before I left the internship.
- 
-Before that I built an open-source neural network visualization tool that picked up about 400 GitHub stars, which I wasn't expecting. I learned more debugging that project at 2am than in any single class.
- 
-I'm excited about this role because your team is working on real-time ML inference at scale, and that intersection of systems engineering and ML is exactly the direction I want to go deep in. The paper your team published on model serving latency was genuinely what put you on my shortlist."
- 
-## Example 3: Product Manager (5 years)
- 
-"I'm currently a senior PM at a B2B SaaS company where I own our analytics and reporting product line — about $12M ARR and a team of 8 engineers. I came up through a product analyst role, which means I'm unusually comfortable in the data layer, which has been a real advantage when working with engineering.
- 
-The launch I'm most proud of is a self-serve dashboard we shipped 18 months ago that became our highest NPS feature and reduced support tickets by 30% in the first quarter. It also directly contributed to our net revenue retention moving from 108% to 119%.
- 
-I'm here because you're building developer infrastructure, and I've been trying to get closer to that space for two years. The fact that your PM team works embedded in engineering — I read the article your CPO wrote about that — is specifically what made me reach out."
- 
-## Example 4: Finance (Investment Banking Analyst)
- 
-"I just finished two years as an M&A analyst in the technology group at Jefferies, where I worked on 9 closed transactions. About half were software deals, which is the space I want to stay in.
- 
-The deal I learned the most from was a $600M SaaS acquisition where I built most of the financial model and got to sit in on management presentations. I got very good at holding up under pressure in a room.
- 
-I'm targeting the buyside because I want to be on the side of the table making investment decisions rather than executing processes. The opportunity here to be more active in sourcing, and the fund's focus on vertical SaaS, is exactly where I think I can add the most value."
- 
-## What every strong answer has in common
- 
-All four examples contain a specific number, a named accomplishment, and a future section that references something real and specific about the company. None of them use adjectives like "passionate," "results-driven," or "hardworking." They let the content speak.
- 
-Practice your answer out loud at least five times before the interview. The goal is to sound like you're telling a story to a friend, not reciting a prepared speech.`
-  },
- 
-  {
-    slug: "star-method-behavioral-interviews",
-    title: "The STAR Method: How to Answer Every Behavioral Interview Question (2026)",
-    description: "Situation, Task, Action, Result — the framework behind every great behavioral answer. Includes 15 question-to-story mappings and the 5 most common STAR mistakes to avoid.",
-    category: "Behavioral",
+  { slug: "how-to-pass-ats-resume-screening",       title: "How to Pass ATS Resume Screening in 2026 (Complete Guide)",              description: "Most resumes are rejected before a human sees them. Here's exactly how ATS systems work, why they reject qualified candidates, and the 10 fixes that get you past the filter.",                                            category: "Resume",          readTime: "8 min read",  publishedAt: "2026-01-15", updatedAt: "2026-05-01", featured: true,  content: `## What is ATS and why does it matter?\n\nAn Applicant Tracking System (ATS) is software companies use to receive, sort, and filter job applications before a recruiter ever sees them. If your resume doesn't pass the automated screen, no human reads it, regardless of your qualifications.\n\n## Why good resumes fail ATS\n\nThe most counterintuitive truth: a beautifully designed resume often scores worse than a plain text one. Multi-column layouts, tables, text boxes, graphics, and custom fonts all break ATS parsers.\n\nThe five most common ATS rejection reasons:\n\n**Missing keywords**, mirror the exact language from the job posting.\n\n**Non-standard section headers**, use "Work Experience" not "Professional History."\n\n**Text in headers/footers**, most ATS systems can't read content outside the main body.\n\n**Tables and text boxes**, these render as blank space or are skipped entirely.\n\n**Wrong file format**, unless requested, submit .docx not PDF.\n\n## The 10 fixes that move your score\n\n**Fix 1: Use a single-column layout.** No multi-column formatting, no graphics.\n\n**Fix 2: Mirror job description language exactly.** "Agile methodology" not "agile process."\n\n**Fix 3: Add a Skills section.** List the exact tools from the job description near the top.\n\n**Fix 4: Use standard section headers.** Work Experience, Education, Skills, Certifications.\n\n**Fix 5: Move contact info to the main body.** Not in a document header.\n\n**Fix 6: Remove tables and text boxes.** Reformat as plain text.\n\n**Fix 7: Spell out acronyms once.** "Search Engine Optimization (SEO)" then just "SEO."\n\n**Fix 8: Quantify everything.** "Managed a team of 8" beats "Managed a team."\n\n**Fix 9: Tailor for every application.** One resume for all jobs is the biggest mistake.\n\n**Fix 10: Check your score first.** Use Preciprocal's free ATS checker before submitting.\n\n## What ATS can't evaluate\n\nPassing ATS is the floor, not the ceiling. A score above 75 gets your resume to a human. Now you need to survive the 6-second recruiter scan, clear structure, strong verbs, and quantified impact.` },
+  { slug: "software-engineer-interview-prep-guide", title: "The Complete Software Engineer Interview Prep Guide (2026)",             description: "A systematic 8-week study plan for SWE interviews: data structures, algorithms, system design, behavioral, and company-specific prep.",                                                                                   category: "Interview Prep",  readTime: "12 min read", publishedAt: "2026-01-22", updatedAt: "2026-05-01", featured: true,  content: `## The honest truth about SWE interview prep\n\nMost engineers prepare wrong. They grind 300 random LeetCode problems, then panic when the actual interview asks something slightly different. The problem isn't the problems, it's the lack of a system.\n\n## Week 1-2: Data structures and core algorithms\n\n**Arrays and two pointers:** Practice Two Sum, Best Time to Buy Stock, Longest Substring Without Repeating Characters, Container With Most Water.\n\n**Hash maps and sets:** Group Anagrams, Top K Frequent Elements, Valid Anagram.\n\n**Linked lists:** Reverse Linked List, Merge Two Sorted Lists, Linked List Cycle, LRU Cache.\n\n**Stacks and queues:** Valid Parentheses, Daily Temperatures, Min Stack.\n\n## Week 3-4: Trees and graphs\n\n**Binary trees:** Traversals (recursive + iterative), Maximum Depth, Validate BST, Level Order Traversal, Serialize/Deserialize.\n\n**Graphs:** BFS for shortest path, DFS for connectivity. Number of Islands, Clone Graph, Course Schedule, Pacific Atlantic Water Flow.\n\n## Week 5: Dynamic programming\n\nMaster five patterns: 1D DP, 2D DP, knapsack, interval DP, string DP. Practice: Climbing Stairs, Coin Change, Longest Common Subsequence, Word Break, House Robber, Edit Distance.\n\n## Week 6: System design\n\nThe framework: clarify requirements, estimate scale, design high-level architecture, deep-dive critical components, discuss trade-offs. Practice: URL shortener, Twitter feed, YouTube, WhatsApp, Uber.\n\n## Week 7: Behavioral prep\n\nPrepare 7 STAR stories: project you led, conflict with a teammate, a failure, decision with incomplete info, influence without authority, technical decision you defended, greatest accomplishment.\n\n## Week 8: Company-specific prep and mock interviews\n\nResearch the company's engineering blog and recent conference talks. Do at least 3 full mock interviews, with voice, under time pressure, with behavioral questions. Think out loud. Always.` },
+  { slug: "how-to-answer-tell-me-about-yourself",   title: "How to Answer 'Tell Me About Yourself' (With Examples for 2026)",       description: "The most common interview question, and the most mishandled. A proven framework plus 3 word-for-word example answers for tech, business, and entry-level roles.",                                                         category: "Behavioral",      readTime: "6 min read",  publishedAt: "2026-02-03", updatedAt: "2026-05-01",          content: `## Why this question trips people up\n\nMost candidates either recite their resume chronologically or give vague generalities like "I'm a hard worker." Neither works. This question is an opportunity, the one moment you fully control the narrative.\n\n## The Present-Past-Future framework\n\n**Present** (1-2 sentences): current role, scope, what you're working on.\n\n**Past** (2-3 sentences): the highlights that explain why you're good at what you do. Not a full history, only what's relevant.\n\n**Future** (2-3 sentences): why this role, at this company, right now. Name something specific.\n\nTarget: 90 seconds to 2 minutes total.\n\n## Example 1: Software engineer (3 years)\n\n"Right now I'm a software engineer at a Series B fintech working on payments infrastructure, I've spent the last year building the reconciliation pipeline that processes $2 billion in transactions daily. Before that I was the second engineer at a startup, which meant I touched everything from APIs to on-call response. I'm most proud of reducing our failed transaction rate by 38% by redesigning our idempotency key system. I'm looking at Stripe because the reliability engineering challenges here, particularly what I read about your deterministic simulation testing, are exactly what I want to be solving next."\n\n## Example 2: New graduate\n\n"I'm finishing my CS degree at Georgia Tech in May, focused on machine learning and distributed systems. Last summer at Capital One I built a feature extraction pipeline that improved fraud detection precision by 8 points, it went to production before I left. Before that I built an open-source neural network visualization tool that got ~400 GitHub stars. I'm excited about this role because your team is working on real-time ML inference at scale, which is exactly the direction I want to go deep in."\n\n## What makes these answers work\n\nSpecific scope. Numbers. A future that names something real about the company. No words like "passionate" or "hardworking."` },
+  { slug: "star-method-behavioral-interviews",      title: "The STAR Method: How to Answer Every Behavioral Interview Question (2026)", description: "Situation, Task, Action, Result, the framework behind every great behavioral answer. Includes 15 question-to-story mappings.",                                                                                       category: "Behavioral",      readTime: "10 min read", publishedAt: "2026-02-10", updatedAt: "2026-05-01",          content: `## What STAR is and why it works\n\nSTAR: Situation, Task, Action, Result. It works because behavioral interviews seek evidence, not assertions. "I'm good at conflict resolution" tells the interviewer nothing. A specific story with a clear action and quantified result gives them the evidence they need.\n\n## How to build each section\n\n**Situation (2-3 sentences):** just enough context. Don't over-explain.\n\n**Task (1-2 sentences):** YOUR specific responsibility, not the team's.\n\n**Action (3-5 sentences):** the most important part. What did YOU specifically do? Say "I" not "we."\n\n**Result (2-3 sentences):** what happened? Quantify. Close with what you learned or what you'd do differently.\n\n## The 7 stories to prepare\n\n**Story 1, Leadership/initiative:** ownership beyond your job description.\n\n**Story 2, Conflict/disagreement:** disagreed with manager or teammate and how you handled it.\n\n**Story 3, Failure/mistake:** something that went wrong and what you changed.\n\n**Story 4, Ambiguity:** decision made with incomplete information.\n\n**Story 5, Influence without authority:** getting results when you didn't have direct control.\n\n**Story 6, Technical decision:** meaningful decision you made and defended.\n\n**Story 7, Greatest accomplishment:** your strongest story, fully quantified.\n\n## 15 questions mapped to stories\n\nTell me about a time you took initiative: Story 1\nDescribe a time you led a project: Story 1\nTell me about a disagreement with your manager: Story 2\nTell me about your biggest failure: Story 3\nHow do you handle ambiguity?: Story 4\nTell me about influencing without authority: Story 5\nDescribe a difficult technical decision: Story 6\nWhat's your greatest accomplishment?: Story 7\n\n## The most common STAR mistakes\n\n**Too much situation:** three minutes of context, thirty seconds of action. Flip it.\n\n**Using "we" throughout:** the interviewer is evaluating you.\n\n**No numbers in the result:** "The project was a success" is weak. "We reduced complaints by 22%" is strong.\n\n**Not practicing out loud:** STAR answers that sound crisp in your head sound stilted when spoken. Target 2-3 minutes per answer.` },
+  { slug: "system-design-interview-tips",           title: "System Design Interview Tips: How to Think Like a Senior Engineer (2026)", description: "The framework top candidates use to tackle any system design question, from clarifying requirements to drawing the final architecture.",                                                                          category: "Technical",       readTime: "14 min read", publishedAt: "2026-02-17", updatedAt: "2026-05-01",          content: `## Why system design interviews are different\n\nCoding interviews have right answers. System design interviews don't. There are only trade-offs, and the interviewer is evaluating how clearly you reason about them.\n\n## The 6-step framework\n\n**Step 1, Clarify requirements (5 min):** Never start drawing. Ask: Who are the users? What's the core use case? What are non-functional requirements (availability, latency, consistency)? Write them on the board.\n\n**Step 2, Estimate scale (3 min):** Users, requests/second, read/write ratio, storage. These numbers drive architectural choices.\n\n**Step 3, Define the API (3 min):** What endpoints? What do they take and return? Forces precision before design.\n\n**Step 4, High-level design (10 min):** Draw major components: clients, load balancer, app servers, database(s), cache, CDN, message queue. Don't go deep yet.\n\n**Step 5, Deep dive (15 min):** The interviewer steers you. Common deep-dives: database schema, cache invalidation, scaling the write path, handling failures.\n\n**Step 6, Failure and edge cases (5 min):** What happens when a server dies? Database unreachable? Traffic spike?\n\n## 5 worked examples\n\n**URL shortener:** Write path, base62 ID generator, key-value store (Redis cache + DB). Read path, Redis lookup, DB fallback, redirect. Scale: cache hit rate is critical (reads >> writes).\n\n**Twitter timeline:** Fan-out on write (push to follower timelines at write time) vs fan-out on read. Twitter uses a hybrid: fan-out on write for most users, fan-out on read for celebrities with millions of followers.\n\n**WhatsApp messaging:** Exactly-once delivery via message queue per recipient. Key challenge: ordering guarantees. Use sequence numbers per conversation.\n\n**YouTube:** Separate write and read paths. Upload: video to blob storage to transcoding queue to CDN. Stream: manifest file, CDN chunks. Video data is immutable, perfect for caching.\n\n**Autocomplete:** Trie data structure. At Google's scale: pre-compute popular queries, distribute by geographic region, separate ranking layer weighted by location and query frequency.\n\n## What interviewers want to see\n\nDrive the conversation. Know where the hard parts are. Make trade-offs out loud. "We could do X, but that would mean Y. Given the scale requirements, I'd choose Z because...", that sentence is the whole interview.` },
+  { slug: "how-to-negotiate-salary-offer",          title: "How to Negotiate Your Salary Offer in 2026 (Scripts That Work)",         description: "Most offers have room to negotiate. Here are the exact scripts, timing strategies, and tactics that can meaningfully increase your total compensation.",                                                             category: "Career Strategy", readTime: "9 min read",  publishedAt: "2026-02-24", updatedAt: "2026-05-01",          content: `## The negotiation most people skip\n\nMost job seekers accept the first offer. Starting salary anchors every future raise and offer for years. Negotiating is expected, most recruiters have a range and the first offer is rarely the top of it.\n\n## Before you negotiate: know your numbers\n\nResearch Levels.fyi (tech), Glassdoor, LinkedIn Salary, and Blind. Have a target (what you want) and a walk-away (what you need for the move to make sense). Understand total compensation: base, equity, signing bonus, benefits, flexibility.\n\n## The timing\n\nDon't negotiate during the interview process. If asked for salary expectations early, deflect: "I'd love to learn more about the full scope of the role first, I'm confident we can find a number that works for both sides."\n\nWhen you receive a written offer, take 24-48 hours. Use the time to prepare.\n\n## The counter: exact scripts\n\n**By email:** "Thank you, I'm genuinely excited about the role. After reviewing the details, I was hoping we could discuss the base salary. Based on my research and experience, I was targeting closer to $[target]. Is there flexibility there?"\n\n**By phone:** "I appreciate the offer and I'm very interested. I've done some research on the market rate, and I was hoping to land closer to $[target]. Is that something we could work toward?"\n\n**When they say no to base:** "I understand. Would there be flexibility on the signing bonus or equity? Even a small increase would help bridge the gap."\n\n**With a competing offer:** "I want to be transparent, I have another offer at $[X]. I'm more excited about this role, which is why I'm bringing this to you first. Is there any way to get closer?"\n\n## What can be negotiated\n\n**Base salary:** most impactful and most common.\n\n**Signing bonus:** one-time cost, often easier to move.\n\n**Equity:** especially at pre-IPO companies.\n\n**Start date:** giving proper notice protects your reputation.\n\n**Title:** matters for future negotiations.\n\n**Remote flexibility:** if hybrid, sometimes you can reduce in-office days.` },
+  { slug: "google-interview-process-explained",     title: "The Google Interview Process Explained (2026)",                           description: "Everything you need to know about Google's hiring process, from the recruiter screen to the hiring committee vote.",                                                                                             category: "Company Guides",  readTime: "11 min read", publishedAt: "2026-03-03", updatedAt: "2026-05-01",          content: `## How Google evaluates candidates\n\nGoogle assesses on four dimensions: General Cognitive Ability, Leadership, Googleyness (culture fit), and Role-Related Knowledge. Pedigree doesn't predict performance here, a state school graduate who interviews well is evaluated identically to a Stanford PhD.\n\n## The process, step by step\n\n**Stage 1, Recruiter screen (30 min):** Background and interest. Be warm, clear, and express genuine enthusiasm for Google specifically.\n\n**Stage 2, Technical phone screen (45-60 min):** One or two LeetCode-style problems, usually medium. Talk through your thinking, don't code silently.\n\n**Stage 3, Onsite (4-5 rounds, 45 min each):** Two coding rounds (medium to hard), one system design round (L4+), one or two Googleyness/behavioral rounds using STAR.\n\n**Stage 4, Hiring committee:** 4-5 engineers who weren't in your interviews review your full packet and vote. This means every round matters, one weak round can sink you.\n\n**Stage 5, Team matching (some levels):** After committee approval, you meet potential teams.\n\n## How to prepare\n\n**Coding:** 75-100 LeetCode problems, focused on trees, graphs, DP, string manipulation. Prioritize mediums.\n\n**System design:** 8-10 practice systems using the 6-step framework. Google-scale: search autocomplete, YouTube, Google Maps, Gmail, Google Docs collaborative editing.\n\n**Googleyness:** Show intellectual humility, changed your mind based on data, sought out feedback, supported teammates without personal benefit.\n\n## The thing most candidates underestimate\n\nGoogle's bar is set by committee, not individual interviewers. Consistency across rounds matters more than crushing one round. If behavioral questions are your weakness, fix that before the onsite, your coding won't compensate.` },
+  { slug: "amazon-leadership-principles-interview", title: "How to Answer Amazon Leadership Principles Questions (All 16), 2026",    description: "Amazon's 16 Leadership Principles drive every interview. Here's what each one means, what interviewers look for, and answer frameworks.",                                                                          category: "Company Guides",  readTime: "15 min read", publishedAt: "2026-03-10", updatedAt: "2026-05-01",          content: `## Why the LPs matter more than you think\n\nAt Amazon, the Leadership Principles are the actual hiring rubric. Every interviewer is assigned specific LPs to probe. Every hiring decision is made against them. The Bar Raiser uses LPs as their primary framework.\n\n## The 5 most-probed LPs\n\n**Customer Obsession:** Show a concrete example of identifying what customers really needed (not just what they asked for) and prioritizing their outcome over an easier path. Weak: "I always try to put the customer first." Strong: specific situation with quantified result.\n\n**Ownership:** Evidence you treated the company's resources as your own and took on problems outside your formal scope.\n\n**Bias for Action:** Calculated risk-taking, launch with 70% information rather than waiting for 100%. Show you identified which decisions were reversible vs. not.\n\n**Dive Deep:** You discovered a critical problem by looking at raw data or talking directly to customers, and that insight changed a decision.\n\n**Disagree and Commit:** Two things in the same story: (1) you pushed back on a decision you disagreed with, and (2) once the decision was made, you executed with full commitment.\n\n## The remaining 11 LPs\n\n**Invent and Simplify:** Simplify a complex process, simpler outcomes show more skill.\n\n**Are Right, A Lot:** Judgment was validated; show you sought diverse input before deciding.\n\n**Learn and Be Curious:** Something significant you taught yourself recently.\n\n**Hire and Develop the Best:** Help teammates grow or raise the team's bar.\n\n**Insist on the Highest Standards:** Held a quality bar higher than strictly required.\n\n**Think Big:** Proposed something that changed trajectory, not just incremental optimization.\n\n**Frugality:** Accomplished more with fewer resources.\n\n**Earn Trust:** Admitting a mistake, or giving difficult feedback to a peer.\n\n**Deliver Results:** Your clearest example of measurable impact. Numbers required.\n\n**Strive to Be Earth's Best Employer** and **Success and Scale Bring Broad Responsibility:** For managers and senior leaders.\n\n## Practical prep\n\nPrepare one strong STAR story for every LP, all 16. Practice saying "I" not "we." Have depth behind every story: know your numbers, the outcome, and what you'd do differently.` },
+  { slug: "leetcode-study-plan-4-weeks",            title: "The 4-Week LeetCode Study Plan That Gets You Hired (2026)",               description: "Stop grinding random problems. This structured 4-week plan covers the patterns that appear in the vast majority of FAANG interviews.",                                                                            category: "Technical",       readTime: "7 min read",  publishedAt: "2026-03-17", updatedAt: "2026-05-01",          content: `## The problem with random grinding\n\nMost engineers solve 150 problems but can't reliably solve a medium they haven't seen. The goal isn't memorization, it's pattern recognition. See a problem, identify the pattern, apply the template.\n\n## Week 1: Arrays, strings, hash maps\n\n**Two pointers (days 1-2):** Reduces O(n squared) problems to O(n). Practice: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water.\n\n**Sliding window (days 3-4):** For subarray/substring problems with a constraint. Practice: Longest Substring Without Repeating Characters, Minimum Window Substring.\n\n**Hash maps (day 5):** O(1) lookup. Practice: Group Anagrams, Top K Frequent Elements.\n\nDaily target: 4-5 problems. Understand the pattern, don't just get the solution.\n\n## Week 2: Trees and graphs\n\n**Binary trees (days 1-2):** Recursive + iterative traversals. Practice: Max Depth, Invert Binary Tree, Diameter, Level Order Traversal, Lowest Common Ancestor.\n\n**Graphs (days 4-5):** BFS for shortest path, DFS for connectivity. Practice: Number of Islands, Course Schedule, Word Ladder.\n\n## Week 3: Dynamic programming and binary search\n\n**1D DP (days 1-2):** Climbing Stairs, House Robber, Coin Change, LIS.\n\n**2D DP (days 3-4):** Unique Paths, LCS, Edit Distance.\n\n**Binary search (day 5):** Binary search on the answer. Practice: Find Minimum in Rotated Array, Koko Eating Bananas.\n\n## Week 4: Stacks, heaps, mock interviews\n\n**Stacks (days 1-2):** Monotonic stack. Daily Temperatures, Largest Rectangle in Histogram.\n\n**Heaps (day 3):** K-th largest problems. Merge K Sorted Lists, Task Scheduler.\n\n**Full mock interviews (days 4-7):** Set a timer. Code while talking out loud. Analyze complexity. Do at least 4 full mocks.\n\n## The rules that make this work\n\nSolve every problem twice (48 hours apart). Time-box struggle to 15 minutes. Do the mocks out loud, coding silently is a different skill.` },
+  { slug: "resume-keywords-that-get-past-ats",      title: "Resume Keywords That Get Past ATS in 2026 (By Role)",                    description: "The exact keywords ATS systems look for in software engineering, data science, product management, and 6 other roles, with examples of how to use them naturally.",                                              category: "Resume",          readTime: "8 min read",  publishedAt: "2026-03-24", updatedAt: "2026-05-01",          content: `## How ATS keyword matching works\n\nModern ATS platforms use semantic matching and contextual analysis. But the core principle holds: if your resume doesn't contain the language the job description uses, your score suffers. The solution isn't keyword stuffing, it's ensuring relevant concepts appear naturally in context.\n\n## Software Engineer\n\nCore keywords: Python, JavaScript, TypeScript, Java, Go, SQL, REST API, GraphQL, microservices, distributed systems, CI/CD, Docker, Kubernetes, AWS/GCP/Azure, system design, agile, TDD.\n\nAction verbs: architected, built, optimized, reduced, scaled, migrated, deployed, shipped.\n\nPattern: "Architected and deployed [system] using [tech], reducing [metric] by [X]%."\n\n## Data Scientist\n\nCore keywords: Python, R, SQL, machine learning, statistical modeling, A/B testing, hypothesis testing, regression, neural networks, feature engineering, Pandas, scikit-learn, TensorFlow, PyTorch, Spark.\n\nDifferentiating keywords (signal depth): production ML, MLOps, model deployment, causal inference, Bayesian methods.\n\n## Product Manager\n\nCore keywords: product roadmap, user research, A/B testing, KPIs, OKRs, stakeholder management, cross-functional, agile, go-to-market, user stories, backlog prioritization, data-driven, DAU, MAU, NPS.\n\nTrap: listing responsibilities not outcomes. "Managed the roadmap" vs. "Prioritized and shipped 4 features that grew DAU by 18% in Q3."\n\n## Financial Analyst\n\nCore keywords: financial modeling, DCF, EBITDA, LBO, comparable companies, Excel, PowerPoint, variance analysis, budget, forecast, P&L, balance sheet, cash flow, GAAP, Bloomberg.\n\n## Marketing Manager\n\nCore keywords: go-to-market, demand generation, content marketing, SEO, SEM, paid social, email marketing, CRM, HubSpot, Salesforce, analytics, Google Analytics, attribution, funnel, conversion rate.\n\n## HR Manager\n\nCore keywords: talent acquisition, HRIS, Workday, performance management, compensation benchmarking, employee relations, DEI, onboarding, workforce planning, compliance, FLSA, FMLA.\n\n## How to use these keywords naturally\n\nPasting a keyword list at the bottom is detectable and suspicious. Put keywords inside bullets describing what you did with them: "Reduced customer churn by 18% through a data-driven segmentation model using Python and scikit-learn."\n\nRun your resume through Preciprocal's ATS checker after updating, see exactly which keywords are present, which are missing, and your overall match score before you submit.` },
+{slug: "how-to-get-first-tech-job-no-experience",
+    title: "How to Get Your First Tech Job With No Experience (2026 Guide)",
+    description: "Breaking into tech without experience is possible, but the path is different from what most guides tell you. Here is the exact strategy that works for new grads and career switchers in 2026.",
+    category: "Career Strategy",
     readTime: "11 min read",
-    publishedAt: "2026-02-10",
-    updatedAt: "2026-04-27",
-    content: `## What STAR is and why behavioral interviews exist
- 
-STAR: Situation, Task, Action, Result. Behavioral interviews are based on the premise that past behavior is the best predictor of future behavior. Interviewers aren't asking hypotheticals — they want evidence from your actual experience.
- 
-"I'm good at conflict resolution" tells the interviewer nothing. It's an assertion anyone can make. A specific story with a real conflict, a clear action you took, and a measurable result gives them the evidence they need to believe you.
- 
-STAR works because it forces you to be specific. It also gives interviewers a consistent framework for comparing candidates — which is why every major company, from Google to McKinsey to Goldman Sachs, uses behavioral interviews as a formal part of their process.
- 
-## How to build each STAR section
- 
-**Situation (2–3 sentences):** Set the scene with just enough context for the interviewer to understand the stakes. Don't over-explain the background — candidates who spend 3 minutes on situation and 30 seconds on action have their STAR inverted.
- 
-**Task (1–2 sentences):** Your specific responsibility in the situation. Distinguish between what the team was doing and what YOU specifically were accountable for.
- 
-**Action (3–5 sentences):** The most important section. This is where most candidates are too vague. Go deep on what YOU specifically did — the decisions you made, how you approached the problem, why you chose one path over another. Say "I" not "we."
- 
-**Result (2–3 sentences):** What happened? Quantify wherever possible. Close with what you learned or what you'd do differently — this shows self-awareness, which is a distinct signal interviewers look for.
- 
-## The 7 core stories to prepare
- 
-Prepare one strong STAR story for each of these categories. Most behavioral questions map to one of them.
- 
-**Story 1 — Leadership and ownership:** A time you took initiative or ownership beyond your formal responsibilities. The story should show you identified a problem, decided to own it without being asked, and drove it to resolution.
- 
-**Story 2 — Conflict or disagreement:** A time you disagreed with a manager, teammate, or stakeholder. Shows your ability to handle tension professionally, advocate for your position, and maintain relationships. Key: show you pushed back with data, not emotion.
- 
-**Story 3 — Failure or mistake:** Something that went wrong and what you changed as a result. This is not a trick question. Interviewers who ask this are specifically evaluating self-awareness and learning agility. The worst answer is claiming you've never failed.
- 
-**Story 4 — Ambiguity:** A time you had to make a meaningful decision without complete information. Shows judgment, comfort with uncertainty, and how you de-risk decisions.
- 
-**Story 5 — Influence without authority:** Getting meaningful results when you didn't have direct control. A cross-functional project, convincing a team that didn't report to you, or changing a process you didn't own.
- 
-**Story 6 — Technical decision:** A significant technical or analytical decision you made and defended. Shows the depth and quality of your judgment in your domain.
- 
-**Story 7 — Greatest accomplishment:** Your best story, fully quantified. This is the story you should be most excited to tell and most practiced in delivering.
- 
-## 15 questions mapped to your 7 stories
- 
-- "Tell me about a time you took initiative" → Story 1
-- "Describe a time you led a project" → Story 1
-- "Tell me about a disagreement with your manager" → Story 2
-- "Describe a time you had to push back on a stakeholder" → Story 2
-- "Tell me about your biggest failure" → Story 3
-- "Describe a mistake you made and what you learned" → Story 3
-- "How do you handle ambiguity?" → Story 4
-- "Tell me about a time you made a decision with incomplete information" → Story 4
-- "Tell me about influencing without authority" → Story 5
-- "How do you work with teams that don't report to you?" → Story 5
-- "Describe a difficult technical decision" → Story 6
-- "Tell me about a time you disagreed with a technical direction" → Story 6
-- "What's your greatest accomplishment?" → Story 7
-- "Tell me about the project you're most proud of" → Story 7
-- "Why should we hire you?" → Story 7 + elements of Stories 1 and 6
- 
-## The 5 most common STAR mistakes
- 
-**Mistake 1: Too much Situation.** Three minutes of context, thirty seconds of action. The ratio should be roughly reversed. If your story has more than 3 sentences of background, cut it.
- 
-**Mistake 2: Using "we" throughout the Action.** The interviewer is evaluating you, not your team. Replace every "we" with what you specifically did. "We built the feature" becomes "I designed the API and owned the backend implementation while coordinating with two frontend engineers."
- 
-**Mistake 3: No numbers in the Result.** "The project was a success" is meaningless. "We reduced complaints by 22%, and the fix shipped before the quarterly deadline" is evidence. If you don't have a number, estimate one — "roughly 30% improvement in processing time" is better than nothing.
- 
-**Mistake 4: Not practicing out loud.** Stories that seem crisp in your head sound fragmented and over-long when spoken. Practice each story at full voice until you can deliver it in 2–3 minutes smoothly.
- 
-**Mistake 5: Picking stories where you weren't the key actor.** If your story is really about what your team did and you were a supporting player, find a different story. The interviewer needs to be able to evaluate your individual contribution.
- 
-## Using Preciprocal to practice STAR
- 
-Preciprocal's AI mock interview panel asks real behavioral questions and gives you scored feedback on your STAR structure — specifically whether your Action section had enough depth, whether your Result was quantified, and whether your answer was the right length. It's the fastest way to identify which of your 7 stories need work before the real interview.`
-  },
- 
-  // ── TECHNICAL ─────────────────────────────────────────────────────────────
- 
-  {
-    slug: "system-design-interview-tips",
-    title: "System Design Interview Tips: How to Think Like a Senior Engineer (2026)",
-    description: "The 6-step framework top candidates use to tackle any system design question — from clarifying requirements to drawing the final architecture. Includes 5 fully worked examples.",
-    category: "Technical",
-    readTime: "15 min read",
-    publishedAt: "2026-02-17",
-    updatedAt: "2026-04-27",
-    content: `## Why system design interviews are different from everything else
- 
-Coding interviews have right answers. System design interviews don't. There are only trade-offs — and the interviewer is evaluating how clearly you reason about them, not whether you arrive at the "correct" architecture.
- 
-This changes how you should approach the interview. The goal is not to draw the perfect diagram. The goal is to demonstrate that you understand the problem deeply, can break it into components systematically, and can make explicit, well-reasoned trade-offs at each decision point.
- 
-Senior engineers who struggle with system design interviews usually have the technical knowledge — they just don't have a framework for structuring the conversation. That's what this guide gives you.
- 
-## The 6-step framework
- 
-**Step 1 — Clarify requirements (5 minutes)**
- 
-Never start drawing. The single most common mistake in system design interviews is jumping to architecture before understanding the problem. Spend the first 5 minutes asking:
- 
-- Who are the users? What's the core use case?
-- What are the non-functional requirements? (availability, latency, consistency, durability)
-- Are there any constraints I should know about? (budget, existing infrastructure, compliance)
-- What does success look like? (SLA targets, performance benchmarks)
- 
-Write these down on the whiteboard or virtual canvas. This does two things: it shows the interviewer you approach problems methodically, and it prevents you from designing the wrong system.
- 
-**Step 2 — Estimate scale (3 minutes)**
- 
-The numbers drive the architecture. A system serving 10,000 users needs completely different solutions than one serving 100 million. Estimate:
- 
-- Daily Active Users (DAU) and Monthly Active Users (MAU)
-- Requests per second (read and write separately)
-- Read/write ratio
-- Data storage requirements (per user, total, growth rate)
-- Bandwidth requirements
- 
-These estimates don't need to be precise — they need to be in the right order of magnitude. "We're looking at roughly 10,000 requests/second at peak" is enough to justify architectural decisions.
- 
-**Step 3 — Define the API (3 minutes)**
- 
-Before drawing any boxes, define the interface. What endpoints does the system expose? What do they take as input and return as output?
- 
-This forces precision. If you can't define the API, you don't yet understand the system well enough to design it. It also surfaces edge cases early — what does the endpoint return when there's an error? When there's no data?
- 
-**Step 4 — High-level design (10 minutes)**
- 
-Now draw the major components: client, load balancer, API servers, databases, cache, CDN, message queues. Don't go deep yet — this is the 30,000-foot view.
- 
-Identify the critical paths: the write path (how data gets into the system) and the read path (how data gets out). Mark the component that will be the bottleneck at scale.
- 
-**Step 5 — Deep dive (15 minutes)**
- 
-The interviewer will steer you to the parts they care about most. Common deep-dive areas:
- 
-- Database schema design and indexing strategy
-- Caching strategy: what to cache, cache invalidation, consistency
-- Scaling the write path under high load
-- Message queue design for async processing
-- Handling failures: what happens when a server goes down?
- 
-Drive this section. Don't wait to be asked — propose the most interesting trade-off in the design and explain how you'd address it.
- 
-**Step 6 — Failure and edge cases (5 minutes)**
- 
-Walk through failure scenarios: server crash, database unavailable, network partition, traffic spike 10x normal. What degrades gracefully? What fails hard? What do you add to handle each case (circuit breakers, retry logic, backpressure, rate limiting)?
- 
-## 5 worked examples
- 
-**URL shortener:**
-Write path — base62-encode a unique ID (counter or UUID), store short→long mapping in a key-value store (Redis for speed + database for durability). Read path — check Redis cache first, fall back to database, return 301 redirect. Key trade-off: 301 (permanent, browser-caches) vs. 302 (temporary, you see all traffic) redirect.
- 
-**Twitter/Instagram feed:**
-Two approaches — fan-out on write (push to followers' feeds at write time, fast reads, expensive writes for users with many followers) vs. fan-out on read (compute feed at read time, expensive reads, simple writes). Twitter uses a hybrid: fan-out on write for most users, fan-out on read for celebrities with millions of followers.
- 
-**YouTube:**
-Separate write (upload) and read (stream) paths entirely. Upload: video → blob storage → transcoding queue → multiple resolutions → CDN. Stream: manifest file from CDN → chunked video delivery. Video data is immutable — ideal for aggressive CDN caching. Metadata (views, likes) is mutable — store in a database with eventual consistency acceptable.
- 
-**WhatsApp messaging:**
-Exactly-once delivery is the core challenge. Message queue per recipient device. Sequence numbers per conversation to guarantee ordering. Offline delivery: store messages until device comes online, then push. End-to-end encryption: keys never leave devices.
- 
-**Google search autocomplete:**
-Trie data structure for prefix lookup. At Google's scale: pre-compute top-K completions per prefix offline, store in a distributed cache. Separate ranking layer weighted by query frequency, location, and recency. Update suggestions asynchronously — don't recompute on every query.
- 
-## What interviewers want to see (and almost never get)
- 
-They want you to drive the conversation. To know where the hard parts are before they ask. To say: "The most interesting trade-off here is X vs. Y. Given our availability requirement of 99.99%, I'd choose X even though it adds latency, because..." — that sentence structure is the whole interview.
- 
-Most candidates wait to be led. The candidates who get offers lead.`
-  },
- 
-  {
-    slug: "leetcode-study-plan-4-weeks",
-    title: "The 4-Week LeetCode Study Plan That Gets You Hired (2026)",
-    description: "Stop grinding random problems. This structured 4-week plan covers the exact patterns that appear in the vast majority of FAANG and top startup interviews — with daily targets.",
-    category: "Technical",
-    readTime: "8 min read",
-    publishedAt: "2026-03-17",
-    updatedAt: "2026-04-27",
-    content: `## The problem with random grinding
- 
-Ask any engineer who has failed a FAANG loop despite solving 250 LeetCode problems: it's entirely possible to grind hundreds of problems and still be unable to reliably solve a medium you haven't seen before. The issue isn't effort — it's approach.
- 
-Random grinding builds a library of solutions you've memorized. Structured prep builds pattern recognition — the ability to look at a new problem you've never seen and immediately recognize which of a dozen patterns it belongs to, then apply the appropriate template.
- 
-This 4-week plan is built around that principle. The goal isn't to have seen the problem before. The goal is to recognize the shape of the problem.
- 
-## Rules before you start
- 
-**Rule 1:** Solve every problem twice — once now, once 48 hours later without looking at your previous solution. Retention requires repetition.
- 
-**Rule 2:** Time-box your struggle. Spend 15–20 minutes genuinely trying before you look at a solution. Less than that and you don't build problem-solving instincts. More than that and you're wasting time.
- 
-**Rule 3:** Practice out loud. Coding silently at your keyboard is a fundamentally different skill from coding while explaining your approach. Start narrating your thinking from day one.
- 
-**Rule 4:** Track patterns, not problems. After each problem, write one sentence: "This was a [pattern] problem. The signal was [X]."
- 
-## Week 1: Arrays, strings, and hash maps
- 
-**Days 1–2: Two pointers**
- 
-The two-pointer pattern reduces O(n²) brute-force solutions to O(n) by using two indices moving through an array in coordinated ways. Two categories: same-direction (sliding window variation) and opposite-direction (converging pointers).
- 
-Problems: Two Sum II, 3Sum, Container With Most Water, Trapping Rain Water, Move Zeroes, Valid Palindrome.
- 
-Signal: "Find pair/triplet," "sorted array," "from both ends."
- 
-**Days 3–4: Sliding window**
- 
-For subarray and substring problems with a constraint. The window expands to include elements and shrinks when the constraint is violated.
- 
-Problems: Longest Substring Without Repeating Characters, Minimum Window Substring, Longest Subarray With K Ones, Fruit Into Baskets, Permutation in String.
- 
-Signal: "Longest/shortest subarray/substring with [condition]."
- 
-**Day 5: Hash maps**
- 
-O(1) lookup transforms many O(n²) problems. When you see "find duplicates," "count frequencies," or "check membership quickly" — hash map.
- 
-Problems: Group Anagrams, Top K Frequent Elements, Longest Consecutive Sequence, Subarray Sum Equals K.
- 
-**Daily target:** 4–5 problems. Understand the pattern, not just the solution.
- 
-## Week 2: Trees and graphs
- 
-**Days 1–2: Binary trees**
- 
-Master both recursive and iterative traversals before anything else. The recursive pattern (solve left subtree, solve right subtree, combine results) applies to a remarkable number of tree problems.
- 
-Problems: Maximum Depth, Invert Binary Tree, Diameter of Binary Tree, Level Order Traversal (BFS), Lowest Common Ancestor, Validate BST, Symmetric Tree, Path Sum.
- 
-**Day 3: Binary search trees**
- 
-Problems: Kth Smallest Element in BST, Convert Sorted Array to BST, Delete Node in BST.
- 
-**Days 4–5: Graphs**
- 
-BFS for shortest path and level-by-level traversal. DFS for connectivity, cycle detection, and exploring all paths.
- 
-Problems: Number of Islands, Clone Graph, Course Schedule I and II (topological sort), Word Ladder (BFS), Pacific Atlantic Water Flow, Number of Connected Components, Accounts Merge (Union-Find).
- 
-## Week 3: Dynamic programming and binary search
- 
-**Days 1–2: 1D dynamic programming**
- 
-DP problems have two properties: optimal substructure (optimal solution built from optimal sub-solutions) and overlapping subproblems (same sub-problems computed repeatedly). When you see these, reach for DP.
- 
-Problems: Climbing Stairs, House Robber I and II, Coin Change, Jump Game, Longest Increasing Subsequence, Word Break.
- 
-**Days 3–4: 2D dynamic programming**
- 
-Problems: Unique Paths, Minimum Path Sum, Longest Common Subsequence, Edit Distance, 0/1 Knapsack.
- 
-**Day 5: Binary search**
- 
-Beyond searching sorted arrays — binary search on the answer. When you can frame "find the minimum X such that [condition]" or "find the maximum X such that [condition]," you can binary search even when there's no explicit sorted array.
- 
-Problems: Find Minimum in Rotated Sorted Array, Search in Rotated Sorted Array, Koko Eating Bananas, Capacity to Ship Packages, Find Peak Element.
- 
-## Week 4: Stacks, heaps, and mock interviews
- 
-**Days 1–2: Stacks and monotonic stacks**
- 
-The monotonic stack maintains a stack where elements are always in increasing (or decreasing) order. It solves "next greater/smaller element" problems in O(n).
- 
-Problems: Valid Parentheses, Daily Temperatures, Largest Rectangle in Histogram, Trapping Rain Water (stack approach), Next Greater Element.
- 
-**Day 3: Heaps and priority queues**
- 
-Use a min-heap for "K smallest" problems, a max-heap for "K largest." Use a heap whenever you need repeated min/max extraction from a dynamic set.
- 
-Problems: Top K Frequent Elements (heap approach), Merge K Sorted Lists, K Closest Points to Origin, Task Scheduler, Find Median from Data Stream.
- 
-**Days 4–7: Full mock interviews**
- 
-Set a 45-minute timer. Pick two problems you haven't seen. Solve them while talking out loud, explaining your approach, complexity, and any alternatives. Then pick 3 behavioral questions and answer them using STAR.
- 
-Do at least 4 full mocks this week. Preciprocal's AI mock interview simulates a real technical interview with an interviewer who asks follow-up questions and scores your communication alongside your solution quality.
- 
-## The uncomfortable truth about prep time
- 
-Four weeks of structured prep beats twelve weeks of random grinding. But four weeks of structured prep requires genuine focus — 2–3 hours per day minimum. If you can't commit to that, extend the timeline and maintain the structure. The structure is the point.`
-  },
- 
-  // ── BEHAVIORAL ───────────────────────────────────────────────────────────
- 
-  {
-    slug: "how-to-prepare-for-behavioral-interview",
-    title: "How to Prepare for a Behavioral Interview in 2026 (Complete Guide)",
-    description: "Behavioral interviews trip up even strong candidates. Here's the systematic prep process — story bank, practice method, and company-specific tips — that gets consistent offers.",
-    category: "Behavioral",
-    readTime: "10 min read",
-    publishedAt: "2026-04-21",
+    publishedAt: "2026-05-01",
+    updatedAt: "2026-05-08",
     featured: true,
-    content: `## Why behavioral interviews catch people off guard
+    content: `## The honest reality of getting your first tech job
  
-Technical candidates assume their coding skills will carry them. Non-technical candidates wing it and hope their personality comes through. Neither approach produces consistent results.
+Most advice about breaking into tech is written by people who did it 10 years ago or who already had connections. The reality in 2026 is more competitive and more navigable than ever, but you need a different playbook.
  
-Behavioral interviews are a skill, and like every skill, they respond to deliberate practice. The candidates who consistently perform well in behavioral rounds aren't necessarily more interesting or experienced — they're more prepared. They've thought carefully about their experiences, identified the best stories to tell, structured them with a clear framework, and practiced delivering them until they sound natural.
+The good news: companies hire people with no professional experience every day. The bad news: your resume, interview skills, and job search strategy all have to compensate for what your work history cannot show.
  
-This guide gives you that system.
+## Why "apply everywhere" doesn't work
  
-## Step 1: Build your story bank
+The default strategy most new grads use is to spray applications across 50-100 job postings and wait. This approach fails for three reasons.
  
-Before any specific preparation, you need raw material. Set aside 90 minutes and write down every significant professional experience you can think of — projects you led, problems you solved, conflicts you navigated, failures you learned from, accomplishments you're proud of, decisions that were hard to make.
+First, your resume gets filtered by ATS before a human sees it. If your resume isn't optimised for the specific job description, it scores below the threshold and no recruiter ever reads it.
  
-Don't filter yet. Just list everything. Aim for 20–30 experiences across your career or academic history.
+Second, without targeted preparation, interviews feel like random tests rather than predictable conversations. Companies ask the same types of questions repeatedly. You can prepare for them.
  
-Then tag each experience by category:
-- Leadership / ownership
-- Conflict / disagreement
-- Failure / mistake
-- Ambiguity / uncertainty
-- Influence without authority
-- Technical or analytical decision
-- Accomplishment / impact
+Third, volume without strategy is exhausting and demoralising. A focused approach to 15 well-matched jobs outperforms scattering 100 applications.
  
-Most strong experiences can serve multiple categories depending on how you tell them. A project you led that also involved a conflict with a stakeholder can answer questions about leadership OR conflict. That's called a "flexible story" — and having 3–4 of them is more valuable than having 10 single-use stories.
+## Step 1: Build a resume that passes ATS before it reaches humans
  
-## Step 2: Select your best 7 stories
+ATS systems filter resumes before any human sees them. For entry-level candidates, this is where most applications die.
  
-From your bank, select the strongest story for each category. Evaluate on three criteria:
+What makes a new grad resume pass ATS:
  
-**Impact:** Does the story have measurable results? The stronger the numbers, the more compelling.
+**Mirror the job description language exactly.** If the posting says "proficiency in Python and SQL," your resume should say "proficiency in Python and SQL," not "experience with programming languages." ATS systems do keyword matching. Use the exact phrases from the posting.
  
-**Your role:** Are you clearly the main actor? Or are you a supporting player in someone else's story?
+**Use a single-column, plain-text-friendly format.** No multi-column layouts, no graphics, no tables, no text boxes. These break ATS parsers. A clean single-column resume scores higher than a beautifully designed two-column one.
  
-**Relevance:** Does it connect to the kind of work you'll do in the target role?
+**Put a Skills section near the top.** List the exact tools and languages from the job description. This gives the ATS multiple hits on your keywords early.
  
-These 7 stories will answer the vast majority of behavioral questions you'll ever face.
+**Lead with projects and internships, not your GPA.** Hiring managers want evidence you can do the work. A GitHub project that solves a real problem is more compelling than a 3.8 GPA with no applied work.
  
-## Step 3: Structure each story using STAR
+Run every resume version through an ATS checker before submitting. Most rejections happen here, not at the interview stage.
  
-For each of your 7 stories, write out the full STAR structure:
+## Step 2: Build projects that prove you can do the job
  
-**Situation:** 2–3 sentences of context. What was the setting? What were the stakes?
+If you have no professional experience, projects are your experience section. They need to be substantial enough to generate interview conversations, not just checkbox items.
  
-**Task:** 1–2 sentences on YOUR specific responsibility. Not the team's objective — your role.
+What makes a project worth including:
  
-**Action:** 4–6 sentences on what YOU specifically did. This is the most important section. Be concrete about the decisions you made, the approach you chose, and why. Use "I" not "we."
+It solves a real problem. "Expense tracker app" is weak. "Expense tracker that used ML to categorise 3 years of my family's spending and identified $4,200 in recurring subscriptions we didn't know about" is a conversation starter.
  
-**Result:** 2–3 sentences on what happened, ideally with numbers. Include what you learned or would do differently.
+It demonstrates skills directly relevant to the roles you're targeting. Backend engineering roles want to see APIs, databases, and system design. Data science roles want to see data cleaning, model training, and evaluation. Match your projects to your target role.
  
-## Step 4: Calibrate length and delivery
+It has a live link or public repository. Something you can demo in an interview is worth 10x a project that only exists on your resume. Deploy your projects. Make them publicly visible.
  
-The target for a behavioral answer is 2–3 minutes. Less than 90 seconds and you're probably not being concrete enough. More than 4 minutes and you're losing the interviewer.
+Aim for 2-3 substantial projects over many shallow ones. Depth is what generates interesting interview conversations.
  
-Practice each story out loud — not in your head, not by reading your notes, but fully spoken out loud, as if you're in the interview. Record yourself and listen back. The most common issues:
+## Step 3: Get the application itself right
  
-- Too much Situation (fix: cut background ruthlessly)
-- Not enough Action detail (fix: add one more sentence about what you specifically decided)
-- Vague Result (fix: add a number, even an estimate)
-- Sounds scripted (fix: practice until you can tell the story 5 different ways from the same notes)
+**Target companies that hire new grads systematically, not just by preference.** Large tech companies (Google, Microsoft, Amazon, Meta) have structured new grad programs with specific headcount set aside. Mid-size companies with 50-500 engineers often prefer candidates with some experience. Startups under 20 people rarely have the bandwidth to train someone from scratch. Target large tech, scale-ups, and companies with explicit new grad programs.
  
-## Step 5: Company-specific preparation
+**Apply early in hiring cycles.** Most tech companies open new grad positions in August through October for the following year. By January, many roles are already filled. If you're graduating in May, apply the preceding autumn.
  
-Different companies emphasize different behavioral dimensions. Preparing without knowing the company's framework is like preparing for a test without knowing the subject.
+**Tailor your resume for each application.** This does not mean rewriting from scratch. It means adjusting your Skills section and 2-3 bullet points to mirror the specific job description. A 20-minute tailoring effort per application meaningfully improves your ATS score.
  
-**Amazon:** All behavioral questions map explicitly to their 16 Leadership Principles. Every interviewer is assigned specific LPs to probe. Prepare a distinct STAR story for each of the 16. The most commonly probed: Customer Obsession, Ownership, Bias for Action, Dive Deep, and Disagree and Commit.
+## Step 4: Prepare for interviews like they are predictable, because they are
  
-**Google:** Evaluates on Leadership, Cognitive Ability, Googleyness (culture fit), and Role Knowledge. Googleyness questions look for intellectual humility, curiosity, comfort in ambiguity, and evidence you've supported teammates without personal benefit.
+Technical interviews for entry-level roles test a specific, learnable set of patterns. They are not random. They are not tests of intelligence. They are tests of preparation.
  
-**Meta:** Prioritizes impact and speed. Stories about moving fast, iterating based on data, and making bold bets resonate. Be ready for "Tell me about a time you shipped something that failed" — Meta values learning from failure over avoiding it.
+**For software engineering:** Data structures and algorithms cover approximately 80% of coding interview content. The patterns that appear most often are two pointers, sliding window, binary search, BFS/DFS on trees and graphs, and dynamic programming. Study the pattern, not the individual problem. Practice out loud, not silently.
  
-**McKinsey / consulting:** Structure and communication quality are evaluated as carefully as the content. A structured STAR answer that clearly delineates situation from action matters as much as the substance.
+**For all roles:** Every entry-level interview includes behavioural questions. Prepare 5-6 STAR stories from your projects, internships, or academic experiences. Cover: a project you led, a challenge you overcame, a time you worked with others through disagreement, something you taught yourself, and your most impactful result. Quantify every story, even from project work.
  
-## The practice schedule
+**Mock interviews before the real thing.** Answering interview questions alone in your room feels easy. Answering them in front of another person under time pressure feels completely different. The gap between the two is practice under realistic conditions. Do at least 3 full mock interviews before any real interview.
  
-**Week 1:** Write story bank and select 7 stories. Write full STAR structure for each.
+## Step 5: Manage the job search like a project
  
-**Week 2:** Practice each story out loud once per day. Record 2–3 and listen back.
+Track every application: company, role, date applied, status, next action. This matters because the average tech job search for a new grad takes 3-6 months and 50-150 applications before an offer. Without a tracking system, you lose context, miss follow-ups, and cannot identify patterns in what is and isn't working.
  
-**Week 3:** Do 3 full mock behavioral interviews (30–40 minutes each, multiple questions). Get feedback on structure, length, and whether your stories are compelling.
+Follow up on every application that reaches a human reviewer. A brief, professional email 5-7 days after a phone screen or onsite is not aggressive; it is professional. Most candidates don't do it.
  
-**Week before interview:** Do one full mock focused specifically on the target company's behavioral framework.
+Adjust your strategy based on data. If you're getting no callbacks, the problem is your resume or your targeting. If you're getting callbacks but not passing phone screens, the problem is your initial pitch and communication. If you're passing phone screens but failing onsites, the problem is technical or behavioural interview preparation. Each stage requires a different fix.
  
-Preciprocal's behavioral mock interviews include real follow-up questions — interviewers dig into your stories with "why did you choose that approach?" and "what would you do differently?" — which is exactly what real interviewers do. Being able to go deeper on any story is as important as the story itself.`
+## The most important thing nobody tells you
+ 
+Breaking into tech for the first time is a volume-and-quality game. You will get rejected many more times than you get offers. This is not a signal that you are not good enough. It is a signal that the process is a numbers game with a long tail.
+ 
+The candidates who get offers are not always the most talented. They are the most prepared, the most persistent, and the most strategic about where they spend their energy. Build the skills, build the projects, prepare for interviews, and apply consistently. The offer comes.`,
   },
- 
-  // ── CAREER STRATEGY ───────────────────────────────────────────────────────
- 
   {
-    slug: "how-to-negotiate-salary-offer",
-    title: "How to Negotiate Your Salary Offer in 2026 (Scripts That Work)",
-    description: "Most offers have room to negotiate. Here are the exact scripts, timing strategies, and tactics that can meaningfully increase your total compensation — without risking the offer.",
-    category: "Career Strategy",
-    readTime: "10 min read",
-    publishedAt: "2026-02-24",
-    updatedAt: "2026-04-27",
-    content: `## The negotiation most people skip — and what it costs them
- 
-Roughly 60% of job seekers accept the first offer without negotiating. This is one of the most expensive decisions in a career, and it compounds over time. Starting salary anchors every future raise, bonus, and offer for years. A $5,000 increase negotiated at 25 is worth over $100,000 over a decade when you account for raises and compounding.
- 
-Negotiating is expected. Most companies have a budget range for every position — the first offer is rarely the top of that range. A recruiter who makes an offer isn't surprised or offended when you negotiate. They budget for it.
- 
-## Step 1: Research before you respond
- 
-Never negotiate from intuition. Before you respond to any offer, spend time building a clear picture of the market:
- 
-**Levels.fyi** for tech roles — the most accurate source for total compensation at technology companies, including base, equity, and bonus data by level and company.
- 
-**Glassdoor and LinkedIn Salary** for non-tech and broader role data.
- 
-**Blind** for anonymous peer data at specific companies.
- 
-**Your network** — talking to people at the same company or in the same role is the most accurate data source you'll have.
- 
-Know two numbers before you pick up the phone: your target (what you'd be delighted to get) and your walk-away (the minimum that makes this move worthwhile for you). Write them down.
- 
-## Step 2: Understand total compensation
- 
-Base salary is the most visible number, but it's not always the most important one. Total compensation includes:
- 
-- Base salary
-- Annual bonus (and whether it's guaranteed or performance-based)
-- Equity (RSUs vested over 4 years, stock options, or ESOP)
-- Signing bonus
-- Benefits (health insurance value, 401k match, parental leave)
-- Remote/flexibility (worth real money in commute time and costs)
-- Title (affects future negotiations and external perception)
- 
-At some tech companies, equity can be 30–50% of total compensation. Negotiating a 5% higher base while leaving equity on the table might be the wrong optimization.
- 
-## Step 3: Timing — when to negotiate
- 
-Do not negotiate during the interview process. If you're asked for salary expectations in early rounds, deflect gracefully:
- 
-"I'd love to learn more about the full scope of the role before we discuss numbers — I'm confident we can find something that works for both sides once I have a better picture."
- 
-When you receive a written offer, take 24–48 hours before responding. This is both professional and practical — you need time to evaluate the full package, do your research, and formulate your counter. A recruiter who pressures you to decide in hours is unusual; it's reasonable to ask for a day or two.
- 
-## Step 4: The counter — exact scripts
- 
-**By email (recommended for first response):**
- 
-"Thank you so much — I'm genuinely excited about this role and the team. After reviewing the offer, I was hoping we could discuss the base salary. Based on my research on the market rate for this role and my experience with [specific relevant experience], I was targeting something closer to $[target]. Is there flexibility there?"
- 
-**By phone:**
- 
-"I appreciate the offer, and I want to be clear that I'm very interested in this role. I've done some research on the market, and I was hoping to land closer to $[target]. Is that something we could work toward?"
- 
-**When they say no to base:**
- 
-"I completely understand. Would there be any flexibility on the signing bonus or equity? Even closing part of that gap would be meaningful."
- 
-**When you have a competing offer:**
- 
-"I want to be transparent with you — I do have another offer I'm considering at $[X]. I'm more excited about this opportunity, which is why I'm bringing this to you first rather than just accepting the other. Is there any way to get closer to that number?"
- 
-**When you want everything:**
- 
-Don't ask for everything at once. Counter on base first. If they can't move on base, pivot to signing bonus, then equity. Asking for all three simultaneously signals inexperience.
- 
-## What else can be negotiated
- 
-**Signing bonus:** One-time cost to the company, often easier to move than base because it doesn't affect comp structure permanently. If they can't move base, always ask about signing.
- 
-**Equity:** More complex to negotiate, but often where the most value is at growth-stage companies. Ask for the current 409A valuation and the strike price if they're offering options.
- 
-**Start date:** Giving proper notice to your current employer protects your professional reputation. Asking for 4 weeks instead of 2 is reasonable and usually accommodated.
- 
-**Title:** Matters for your external perception, future negotiations, and LinkedIn. If they can't move on comp, a title bump costs them nothing.
- 
-**Remote flexibility:** If the role is hybrid, ask whether you can reduce required in-office days. This has real value.
- 
-## The one rule that covers everything
- 
-You cannot lose an offer by negotiating professionally. Companies do not rescind offers because a candidate countered once, politely, by email. The risk of negotiating is essentially zero. The cost of not negotiating is real and permanent.
- 
-Ask once. Be specific. Be professional. Then stop — don't continue negotiating after they've given their best number.`
-  },
- 
-  {
-    slug: "how-to-write-cover-letter-2026",
-    title: "How to Write a Cover Letter That Gets Read in 2026 (With Examples)",
-    description: "Most cover letters are ignored. Here's the format, framework, and word-for-word examples that make recruiters stop and read — for tech, business, and entry-level roles.",
-    category: "Career Strategy",
+    slug: "ats-resume-tips-new-grads",
+    title: "ATS Resume Tips for New Grads in 2026 (No Work Experience? No Problem)",
+    description: "New grads face a harder ATS challenge than experienced candidates. Your resume gets compared against people with years of keywords you don't have yet. Here is how to close that gap.",
+    category: "Resume",
     readTime: "9 min read",
-    publishedAt: "2026-04-28",
-    featured: true,
-    content: `## Do cover letters still matter in 2026?
+    publishedAt: "2026-05-08",
+    updatedAt: "2026-05-08",
+    featured: false,
+    content: `## Why ATS is harder for new grads than everyone else
  
-Yes — but differently than most people think. Most cover letters are ignored because they're generic. When a cover letter is specific, well-written, and actually addresses the company and role, it gets read. And when it gets read, it works.
+ATS (Applicant Tracking System) software doesn't know you're a new grad. It compares your resume against a job description using keyword matching and scores you against every other applicant, including people with 3-5 years of experience who have the exact keywords you're still building.
  
-The bar is so low — most candidates submit generic letters or none at all — that a genuinely good cover letter is a meaningful differentiator, especially for competitive roles and companies that care about communication skills.
+This means new grads face a structural disadvantage: less work history means fewer opportunities to naturally accumulate the language that ATS systems reward. The fix isn't to lie, it's to be more strategic about how you present what you actually have.
  
-The goal is not to summarize your resume. The recruiter can read your resume. The goal is to give them one compelling reason to interview you that the resume alone doesn't provide.
+## Understand what ATS is actually scoring
  
-## The format
+Modern ATS platforms score resumes on several dimensions. Understanding each one helps you know where to focus your effort.
  
-Keep it to one page. Three to four short paragraphs. Total length: 250–350 words. Use the same header as your resume (name, contact info). Address it to the hiring manager by name if you can find it — LinkedIn, the company website, or the job posting usually reveals it.
+**Keyword match:** Does your resume contain the specific terms from the job description? This is the most important dimension and the most fixable. The system looks for exact or near-exact phrase matches. "Machine learning" and "ML" may score differently. "SQL" and "structured query language" may score differently. Use the exact language from the posting.
  
-**Paragraph 1 — The hook:** One or two sentences. State the role you're applying for and lead with your strongest relevant credential or a specific reason this company interests you. Do not start with "I am writing to express my interest in..." — every other letter starts this way.
+**Section recognition:** Does your resume have standard, recognisable sections? ATS parsers are trained on standard headers: Work Experience, Education, Skills, Projects, Certifications. Non-standard headers ("Where I've Been," "Things I'm Good At") confuse parsers and result in content being miscategorised or skipped entirely.
  
-**Paragraph 2 — Your strongest proof:** Two to three sentences on the most relevant accomplishment from your background. Quantify it. Connect it explicitly to what the job posting says they need.
+**Format compatibility:** Can the ATS actually read your resume? Multi-column layouts, tables, text boxes, headers and footers, graphics, and complex formatting all break ATS parsers in different ways. A resume that looks stunning in Word or PDF may parse as near-empty in an ATS.
  
-**Paragraph 3 — Why this company specifically:** One to two sentences on something real and specific about the company — a recent launch, a public blog post, a product direction, a mission statement. This paragraph is what separates your letter from every generic one in the pile.
+**Content depth:** How much relevant content does your resume contain overall? Thin resumes, common for new grads, score lower simply because there is less content for the system to evaluate.
  
-**Paragraph 4 — The close:** One sentence expressing enthusiasm and asking for the conversation. "I'd love the chance to discuss how my experience with [X] could contribute to [Y] — I'm happy to make time at your convenience."
+## The new grad ATS advantage you're not using: the Projects section
  
-## Example 1: Software Engineer at Stripe
+Most new grad resumes have a Projects section that reads like a list of technologies rather than a demonstration of skills. This is a missed opportunity.
  
-"I'm applying for the software engineering role on Stripe's payments infrastructure team. For the past two years I've built the reconciliation and settlement pipeline at a Series B fintech that processes $1.8B in monthly transaction volume — which means I've spent most of my career solving exactly the reliability and correctness problems that define payments infrastructure work.
+A weak projects entry looks like this:
+"Personal Finance Tracker - Python, Flask, PostgreSQL, React"
  
-In my current role, I reduced failed transaction rates by 38% by redesigning our idempotency key system — a project I led end-to-end from design review through production monitoring. I also migrated our core settlement service from a monolith to an event-driven architecture, which improved processing throughput by 4x.
+A strong projects entry, one that scores well on ATS and generates interview conversations, looks like this:
+"Personal Finance Tracker - Built a full-stack web application using Python (Flask), PostgreSQL, and React that automatically categorised 3 years of transaction data using a custom ML classification model. Achieved 91% categorisation accuracy. Reduced manual review time by 4 hours per month."
  
-What draws me specifically to Stripe is the deterministic simulation testing work your infrastructure team published last year. Building systems that can be reliably tested at that level of fidelity is the kind of engineering problem I find genuinely interesting — and it's clear Stripe is thinking about correctness in ways that most companies aren't.
+The second version contains: Python, Flask, PostgreSQL, React, machine learning, classification model, accuracy (a metric), and a quantified impact. Every one of those terms is a potential ATS keyword match. The first version contains only technology names with no context.
  
-I'd love the chance to talk about how my experience could contribute to the team."
+Rewrite every project entry to describe what you built, what technology you used (explicitly), what the result was, and how you could measure it.
  
-## Example 2: Product Manager at Figma
+## Keyword strategy for new grads
  
-"I'm applying for the senior product manager role on Figma's enterprise team. I've spent the last three years as a PM at a B2B SaaS company owning a product line generating $12M ARR, with a focus on making complex workflows feel simple for non-technical users — which maps directly to the challenge of bringing collaborative design to enterprise teams.
+You cannot fake experience. But you can ensure that the experience you do have is described using the language that ATS systems and recruiters recognise.
  
-My most relevant work: I led a 0-to-1 redesign of our reporting and analytics experience that reduced the time-to-first-insight from 45 minutes to under 5, increased feature adoption by 60%, and became the highest-NPS feature in our product. The core insight driving that work was that most "power users" had simply learned to work around our complexity — not that they needed the complexity.
+**Step 1: Copy the job description into a document.** Highlight every technical term, tool, methodology, and skill mentioned. This is your keyword target list.
  
-I've used Figma daily for three years, and the thing I find most interesting about the enterprise direction is the governance and permissions work — specifically how you make those constraints feel like features rather than friction. That's a product problem I'd enjoy working on.
+**Step 2: Map every keyword to something real in your background.** If the posting mentions "REST APIs" and you built one in a class project, your project description should say "REST API," not "back-end web service." If it mentions "agile" and you followed a sprint structure in a group project, say "agile sprint methodology." Accurate, specific language.
  
-I'd be glad to share more detail about my background and what I'd bring to this role."
+**Step 3: Add a Skills section near the top of your resume.** This section exists purely for ATS. List every tool, language, framework, and methodology you have genuine familiarity with, using the exact terms from job postings in your target area. Keep it factual. The interview will verify everything on this list.
  
-## Example 3: Entry-level Marketing Analyst
+**Step 4: Check your score before submitting.** Run your tailored resume through an ATS checker with the specific job description. Your goal is a match score above 75%. Below that, you're likely getting filtered before a human sees you.
  
-"I'm applying for the marketing analyst role at HubSpot. I'm finishing my marketing degree at Boston University in May, and I've spent the last year focused specifically on the intersection of content strategy and SEO that this role centers on.
+## Format rules that matter most
  
-Last semester I managed the content and SEO strategy for a student-run e-commerce project that grew organic traffic from 400 to 6,200 monthly visitors over 6 months through systematic keyword research, on-page optimization, and content calendar execution. I also completed HubSpot's Content Marketing and SEO certifications — yes, I know that might seem like a cliché for a HubSpot application, but I've actually used both frameworks in practice.
+These formatting decisions have a direct and measurable impact on ATS scores for new grads.
  
-What drew me to HubSpot specifically is your inbound marketing philosophy. I've been following the HubSpot blog since sophomore year — the content you produce is genuinely the highest-quality marketing education available for free anywhere. Working on the team that produces that content would be a real privilege.
+**Single column only.** Two-column resumes are the most common ATS formatting mistake. The parser reads left-to-right, top-to-bottom. In a two-column layout, it reads half a sentence from the left column, then half a sentence from the right column, producing gibberish. Use a single-column format.
  
-I'd love to connect and share more about my work."
+**Standard fonts only.** Arial, Calibri, Helvetica, Times New Roman, Georgia. Custom or decorative fonts sometimes fail to render in ATS parsers, turning text into encoding errors.
  
-## The fastest way to write a great cover letter
+**No graphics, icons, or profile photos.** These are invisible to ATS and waste space that could contain keywords.
  
-The hardest part of a cover letter is the company-specific paragraph. Most candidates either skip it entirely or write something generic ("I've always admired your company's innovative approach...").
+**No headers or footers for contact information.** Many ATS systems cannot read content inside document headers and footers. Put your name, email, phone, and LinkedIn URL in the main body of the document.
  
-Preciprocal's cover letter generator researches the company in real-time, analyzes the job description, and writes the specific paragraph for you based on your resume — including real company details that make the letter feel personal. It's the part that takes most people the longest and produces the most generic output when done manually.`
+**Save as .docx, not PDF, unless specifically requested otherwise.** Some ATS systems parse .docx more reliably than PDF. When in doubt, use .docx.
+ 
+**Keep it to one page if under 2 years of experience.** Recruiters and ATS systems both prefer focused, dense resumes over padded two-page documents for new grads. Every line should earn its place.
+ 
+## What to put in your resume when you have limited work history
+ 
+The concern most new grads have is that they simply don't have enough to fill a resume. Here is the order of priority for content when you have limited professional experience.
+ 
+**Lead with a Skills section.** This is your highest-density keyword opportunity. Two to three rows listing languages, frameworks, tools, and methodologies. Keep it factual. You should be able to demonstrate everything listed in an interview.
+ 
+**Projects section comes second for tech roles.** Three to four substantial projects described with impact and metrics as described above. This is your de facto experience section.
+ 
+**Internships and part-time work.** Even non-tech internships demonstrate professional behaviour, communication, and work ethic. Describe them using the same impact-and-metric framing. A customer service role becomes "Resolved an average of 45 customer issues per day with a 4.8/5 satisfaction rating."
+ 
+**Education.** For most new grads, education goes near the top. Include: degree, institution, graduation date, and GPA if above 3.5. Also include relevant coursework if it directly maps to the job requirements (e.g., "Relevant coursework: Data Structures and Algorithms, Database Systems, Machine Learning").
+ 
+**Certifications and relevant coursework.** AWS certifications, Google data analytics certificates, Coursera specialisations in relevant areas. These add keywords and demonstrate initiative.
+ 
+## The mistake that costs the most ATS points
+ 
+The single most common and most costly ATS mistake new grads make is submitting the same resume to every job.
+ 
+ATS systems compare your resume to a specific job description. A resume optimised for a software engineering role at a startup will score poorly against a data analyst role at a bank, even if you are qualified for both. Tailoring is not optional. It is the entire game.
+ 
+The good news is that tailoring does not mean rewriting from scratch. It means adjusting your Skills section to prioritise the tools mentioned in this specific posting, and rewriting 2-3 bullet points to use the exact language from the description. This takes 20-30 minutes per application and meaningfully changes your outcomes.
+ 
+Use an ATS checker with the specific job description every time before submitting. Treat anything below a 70% match score as a signal to spend another 20 minutes tailoring before you hit submit.
+ 
+## After the ATS: what happens next
+ 
+Passing ATS gets your resume in front of a human recruiter. The average recruiter spends 6-7 seconds on an initial resume scan. In that 6 seconds, they are looking for: your name and contact info (top), your most recent or most relevant role (first third of the page), a recognisable company or institution, and a number that catches their eye (any quantified metric).
+ 
+Structure your resume so that the most compelling information sits in the top half of the page. Lead with your strongest project or most recent experience. Make your metrics visible at a glance.
+ 
+Passing the ATS screen is necessary but not sufficient. After that, you need to be ready to interview. Run mock interviews before every real interview. Know your projects deeply enough to be questioned on implementation decisions. Have your STAR stories practised out loud, not just in your head. The resume gets you in the room. Preparation is what gets you the offer.`,
   },
- 
-  // ── COMPANY GUIDES ────────────────────────────────────────────────────────
- 
-  {
-    slug: "google-interview-process-explained",
-    title: "The Google Interview Process Explained in Full (2026)",
-    description: "Everything you need to know about Google's hiring process — from the recruiter screen to the hiring committee vote — and how to prepare for each stage.",
-    category: "Company Guides",
-    readTime: "12 min read",
-    publishedAt: "2026-03-03",
-    updatedAt: "2026-04-27",
-    content: `## How Google actually evaluates candidates
- 
-Google assesses candidates on four dimensions, and they're explicit about this:
- 
-**General Cognitive Ability (GCA):** How you think through problems. Demonstrated through coding and system design — but they're evaluating reasoning, not just correctness. "How did you approach this?" matters as much as "Did you get the right answer?"
- 
-**Leadership:** Evidence you've taken initiative, influenced outcomes, and driven results beyond your formal scope. Evaluated in behavioral rounds using structured STAR questions.
- 
-**Googleyness:** A catch-all for culture and character — intellectual humility, genuine curiosity, comfort in ambiguity, and evidence that you've supported teammates without personal benefit. Harder to prepare for specifically, but visible in how you talk about past experiences.
- 
-**Role-Related Knowledge (RRK):** Domain-specific expertise for the specific role. For SWEs, this is primarily coding and system design. For PMs, it's product sense and analytical thinking. For data scientists, it's statistics, SQL, and ML.
- 
-One thing that surprises candidates: pedigree carries almost no weight in Google's process. A state school graduate who interviews well is evaluated identically to a Stanford PhD. The process is designed to measure demonstrated ability, not credentials.
- 
-## The process, step by step
- 
-**Stage 1 — Recruiter screen (30 minutes)**
- 
-A conversation about your background, interest in Google, and availability. The recruiter is checking for communication clarity, genuine enthusiasm (they can tell the difference), and basic fit with the role. Be warm, specific about why you want to work at Google — "great company, smart people" is not specific — and clear about your experience.
- 
-**Stage 2 — Technical phone screen (45–60 minutes)**
- 
-One or two LeetCode-style problems, usually medium difficulty. The key behavior difference here: talk through your thinking out loud. Google interviewers are evaluating your problem-solving process, not just whether you arrive at the solution. A candidate who thinks clearly and communicates well while arriving at a good-enough solution often outperforms a candidate who codes the optimal solution silently.
- 
-Start with a brute-force approach, state the complexity, and then optimize. Don't code in silence.
- 
-**Stage 3 — Onsite interviews (4–5 rounds, 45 minutes each)**
- 
-The onsite is typically:
-- 2 coding rounds (medium to hard — graphs, DP, trees, string manipulation)
-- 1 system design round (L4+ / 3+ years experience)
-- 1–2 Googleyness/behavioral rounds
- 
-Each round is scored independently by the interviewer. You don't know how previous rounds went, and interviewers aren't told either. Treat every round as a fresh start.
- 
-**Stage 4 — Hiring committee review**
- 
-This is Google's most distinctive process. A group of 4–5 engineers who were NOT in your interviews review your complete packet — all interviewer feedback, your resume, your work samples if provided — and vote on whether to extend an offer.
- 
-This means two things: (1) one weak round can sink you even if all other rounds were strong, because the committee sees everything, and (2) your packet needs to make sense on paper, not just in person. Write clearly in any documents or take-home work. Your interviewer's written summary of your performance will be read by people who never met you.
- 
-**Stage 5 — Team matching (L4+)**
- 
-After committee approval, you meet potential teams. This is less of a hurdle than previous stages — you've been approved by the committee. The matching process can take weeks, especially if you have specific team preferences.
- 
-## How to prepare for Google specifically
- 
-**Coding:** 75–100 curated LeetCode problems is the right target, not 300 random ones. Focus on trees, graphs, dynamic programming, and string manipulation. Prioritize mediums — Google's phone screen is almost always medium difficulty.
- 
-**System design:** 8–10 practice systems using a consistent framework. Google-scale systems to practice: search autocomplete, YouTube, Google Maps, Gmail, Google Docs (real-time collaborative editing), Google Analytics.
- 
-**Googleyness:** Prepare stories that show intellectual humility — times you changed your mind based on evidence, sought feedback proactively, or supported a teammate's idea over your own. Avoid stories where you were simply right and everyone else was wrong.
- 
-## The most common mistake Google candidates make
- 
-Most candidates underestimate behavioral prep and over-prepare on LeetCode. The reality: Google's onsite has 1–2 behavioral rounds that are evaluated with the same rigor as coding rounds. A candidate who crushes every coding round but stumbles through behavioral questions will fail the hiring committee review.
- 
-Prepare your behavioral stories with the same care as your LeetCode patterns. Practice them out loud. Get scored on structure and depth. Preciprocal's mock interviews simulate the Google behavioral format specifically, with follow-up questions that mirror what Google interviewers actually ask.`
-  },
- 
-  {
-    slug: "amazon-leadership-principles-interview",
-    title: "How to Answer All 16 Amazon Leadership Principles Questions (2026)",
-    description: "Amazon's 16 Leadership Principles are the actual hiring rubric — every interview question maps to one. Here's what each principle means, what interviewers look for, and frameworks for answering.",
-    category: "Company Guides",
-    readTime: "16 min read",
-    publishedAt: "2026-03-10",
-    updatedAt: "2026-04-27",
-    content: `## Why the Leadership Principles matter more than anything else at Amazon
- 
-At Amazon, the Leadership Principles aren't values on a poster. They're the hiring rubric. Every interviewer is assigned specific LPs to probe in their round. Every hiring decision is made against them. The Bar Raiser — a specially designated interviewer present at every loop — uses LPs as their primary framework for evaluating candidates.
- 
-This means the single most important thing you can do to prepare for an Amazon interview is to prepare one strong STAR story for every LP. Not a vague familiarity — a specific, quantified, practiced story you can tell under pressure.
- 
-## The 5 most-probed LPs (prioritize these first)
- 
-**1. Customer Obsession**
- 
-What they're looking for: evidence you identified what customers truly needed — often distinct from what they asked for — and prioritized their outcome even when it was inconvenient or difficult.
- 
-Weak signal: "I always try to put the customer first." This is an assertion anyone can make.
- 
-Strong signal: A specific situation where customer data or direct customer contact revealed a need you hadn't anticipated, and you changed course to address it with a quantified result.
- 
-Watch out for: defining "customer" too narrowly. Your internal stakeholders are also your customers at Amazon.
- 
-**2. Ownership**
- 
-What they're looking for: you treated the company's problem as your problem, even when it wasn't in your job description. Evidence you didn't say "that's not my team's responsibility."
- 
-Key: the ownership story needs a concrete action, not just a statement of responsibility. What did you do? What did you decide? What were the results?
- 
-**3. Bias for Action**
- 
-What they're looking for: calculated risk-taking. You launched with 70% confidence instead of waiting for 100%. You identified which decisions were reversible vs. irreversible and moved faster on reversible ones.
- 
-This LP explicitly values speed over perfection on low-stakes decisions. Your story should demonstrate judgment about WHEN to move fast — not just that you moved fast.
- 
-**4. Dive Deep**
- 
-What they're looking for: you discovered something important by looking at the raw data, talking directly to customers, or going beyond the surface of a problem — and that discovery changed a decision.
- 
-The story structure Amazon loves: "Everyone thought X. I looked at [specific data/evidence]. It revealed Y. We changed our approach and achieved Z."
- 
-**5. Disagree and Commit**
- 
-This LP requires two things in the same story, which is what makes it hard: (1) you genuinely pushed back on a decision you disagreed with, using data and reasoning to make your case, AND (2) once the decision was made (possibly against your recommendation), you executed with full commitment and didn't undermine it.
- 
-The mistake: telling a story where you disagreed and then turned out to be right, without demonstrating the "commit" part. Or worse, a story where you just did what you were told.
- 
-## The remaining 11 LPs
- 
-**Invent and Simplify:** You created something new OR simplified an existing process significantly. Simpler solutions demonstrate more skill. "We simplified our deployment process from 12 steps to 3, reducing deployment time from 2 hours to 8 minutes."
- 
-**Are Right, A Lot:** Your judgment was validated. Critical: show you sought diverse input and considered opposing views before deciding. Being "right" without a process for being right is not the story they want.
- 
-**Learn and Be Curious:** Something significant you taught yourself recently and applied. Should feel genuinely interesting to you — forced enthusiasm is visible.
- 
-**Hire and Develop the Best:** You actively helped a teammate grow, raised the bar on a hiring decision, or mentored someone who then exceeded expectations.
- 
-**Insist on the Highest Standards:** You held a quality bar higher than strictly required, even when it slowed things down. The best stories here have a concrete moment where you said "this isn't good enough yet" and what you did instead.
- 
-**Think Big:** You proposed something that changed trajectory — not incremental optimization, but a different direction. Show the reasoning behind the vision, not just the vision itself.
- 
-**Frugality:** You accomplished more with fewer resources. The frugality LP isn't about cutting corners — it's about finding ingenious solutions within constraints.
- 
-**Earn Trust:** Two types of stories work here: (1) you admitted a mistake publicly and rebuilt trust through transparency, or (2) you gave difficult feedback to a peer or manager directly and respectfully.
- 
-**Deliver Results:** Your clearest example of measurable impact. Numbers are not optional here — they're the point. If you don't have numbers, estimate them and say you're estimating.
- 
-**Strive to Be Earth's Best Employer** (added in 2021): Usually probed for managers and senior individual contributors. How have you created an environment where people can do their best work? Shows up as questions about psychological safety, inclusion, and team culture.
- 
-**Success and Scale Bring Broad Responsibility** (added in 2021): Primarily for senior leaders. How have you thought about the broader societal impact of your work?
- 
-## Practical prep system
- 
-**Week 1:** Write one STAR story for each LP. Focus on stories with quantified results.
- 
-**Week 2:** Practice each story out loud. Identify which stories are weak (no numbers, you weren't the key actor, result was vague) and replace them.
- 
-**Week 3:** Do two full mock behavioral interviews, Amazon-format. Practice going deeper when the interviewer asks follow-ups.
- 
-**Day before:** Review your 16 stories once. Don't cram new material.
- 
-The most important rule: practice saying "I" not "we." Amazon interviewers will probe relentlessly if they can't distinguish your contribution from your team's.`
-  },
- 
-  {
-    slug: "how-to-follow-up-after-interview",
-    title: "How to Follow Up After a Job Interview in 2026 (With Templates)",
-    description: "Most candidates either don't follow up or follow up wrong. Here's exactly when to send a thank-you note, what to say, and how to check in without being annoying.",
-    category: "Career Strategy",
-    readTime: "7 min read",
-    publishedAt: "2026-04-28",
-    content: `## Does following up actually matter?
- 
-Yes — but not for the reason most people think. A follow-up note won't save a weak interview performance, and it won't be the deciding factor in a competitive process with strong candidates. What it does is reinforce a positive impression, demonstrate professionalism, and occasionally provide a small but real differentiator when candidates are close.
- 
-More importantly: most candidates don't do it, or do it poorly. A well-written, specific thank-you note is memorable precisely because it's rare.
- 
-## The thank-you note: when and how
- 
-Send a thank-you email within 24 hours of the interview — ideally within a few hours. Not a text message. Not a LinkedIn message. An email to each person who interviewed you separately, if you have their addresses.
- 
-**What makes a thank-you note work:**
- 
-It's specific to the conversation. Reference something you actually discussed — a problem, an idea, a question they asked. Generic thank-you notes ("Thank you for your time, I enjoyed learning about the role") add nothing. Specific ones show you were paying attention.
- 
-It reinforces your candidacy. One sentence connecting something from the conversation to your qualifications.
- 
-It's short. Three to five sentences maximum. This is not a second cover letter.
- 
-## Thank-you note template (adapt, don't copy)
- 
-Subject: Thank you — [Your Name] / [Role Name] interview
- 
-"Hi [Name],
- 
-Thank you for taking the time to speak with me today about the [role] position. I especially enjoyed our conversation about [specific topic discussed] — it confirmed for me that the [challenge/problem/direction] is exactly the kind of work I want to be doing.
- 
-The point you made about [something specific] resonated — I've been thinking about [brief relevant thought].
- 
-I'm very interested in the role and would welcome the chance to continue the conversation. Please let me know if there's anything else I can provide."
- 
-## Example: Software Engineer at Stripe
- 
-"Hi Sarah,
- 
-Thank you for taking the time today — I really enjoyed the conversation about Stripe's approach to idempotency and how you handle distributed failures at that scale.
- 
-The question you raised about how I'd approach consistency in a multi-region deployment got me thinking more after our call — I'd handle it differently than I described, using a single-writer architecture per region with async replication, and I'd be happy to walk through that reasoning if it's useful.
- 
-I'm genuinely excited about this role and the team. Looking forward to hearing from you."
- 
-## When there's no response: how to check in without being annoying
- 
-If you were given a timeline and that date has passed, it's completely appropriate to follow up once.
- 
-"Hi [Name], I wanted to follow up on my interview for the [role] position. I know you mentioned a decision by [date] — I'm still very interested and would love to hear where things stand when you have a chance."
- 
-If you weren't given a timeline, wait one week after the interview before following up.
- 
-After two follow-ups with no response, stop. Continued follow-up beyond that point crosses from professional persistence into pressure, which works against you.
- 
-## What not to do
- 
-Don't ask "how did I do?" in a follow-up — it puts the interviewer in an awkward position and seems needy.
- 
-Don't send identical notes to multiple interviewers — if they compare, it looks lazy.
- 
-Don't follow up with the recruiter AND the hiring manager separately on the same day — it creates confusion and signals anxiety.
- 
-Don't send a LinkedIn connection request immediately after the interview unless you had a particularly warm conversation where they invited it.
- 
-## Using Preciprocal's interview debrief journal
- 
-After the interview, before you write your thank-you note, spend 10 minutes in Preciprocal's debrief journal recording what you remember — questions asked, how you answered, what landed, what didn't. This serves two purposes: it gives you the material for a specific, compelling thank-you note, and it builds a record you can use to improve for future interviews.`
-  },
- 
 ];
- 
+
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find((p) => p.slug === slug);
 }
- 
+
 export const ALL_BLOG_SLUGS = BLOG_POSTS.map((p) => p.slug);
 
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 // 8. FAQ DATA
-// ═══════════════════════════════════════════════════════════════════════════
+// =============================================================================
 
 export type FAQCategory = "general" | "pricing" | "interviews" | "resume" | "cover-letter" | "planner" | "technical";
 export interface FAQItem { id: string; q: string; a: string; category: FAQCategory; }
@@ -1791,32 +818,32 @@ export const FAQ_CATEGORIES: { id: FAQCategory; label: string }[] = [
 ];
 
 export const FAQS: FAQItem[] = [
-  { id: "g1", category: "general",      q: "What is Preciprocal?",                           a: "Preciprocal is an AI-powered job search operating system. It combines resume analysis (ATS scoring, recruiter eye simulation, candidate benchmarking, interview intelligence), voice-based mock interviews with a multi-agent panel, cover letter generation, AI study planning, LinkedIn optimisation, cold outreach, and a job tracker with contact finder — all in one platform." },
-  { id: "g2", category: "general",      q: "Who is Preciprocal for?",                        a: "Students, recent graduates, and early-career professionals preparing for any role — tech, finance, consulting, marketing, HR, healthcare, legal, and more. Every tool adapts to your target role and industry." },
-  { id: "g3", category: "general",      q: "How do I get started?",                          a: "Sign up free at app.preciprocal.com — no credit card needed. Upload a resume and get your ATS score in 2 minutes, or jump straight into a mock interview. The platform walks you through everything." },
-  { id: "g4", category: "general",      q: "Is there a mobile app?",                         a: "Not yet — Preciprocal is fully web-based and works on any device with a modern browser. A native app is on our roadmap." },
-  { id: "g5", category: "general",      q: "How is this different from using ChatGPT?",      a: "ChatGPT is a general-purpose chatbot. Preciprocal is a purpose-built system with specialised AI agents for each task — ATS scoring calibrated against real hiring data, a multi-agent interview panel, recruiter eye-tracking simulation based on published research, and a full application pipeline." },
+  { id: "g1", category: "general",      q: "What is Preciprocal?",                           a: "Preciprocal is an AI-powered job search operating system. It combines resume analysis (ATS scoring, recruiter eye simulation, candidate benchmarking, interview intelligence), voice-based mock interviews with a multi-agent panel, cover letter generation, AI study planning, LinkedIn optimisation, cold outreach, and a job tracker with contact finder, all in one platform." },
+  { id: "g2", category: "general",      q: "Who is Preciprocal for?",                        a: "Students, recent graduates, and early-career professionals preparing for any role: tech, finance, consulting, marketing, HR, healthcare, legal, and more. Every tool adapts to your target role and industry." },
+  { id: "g3", category: "general",      q: "How do I get started?",                          a: "Sign up free at app.preciprocal.com, no credit card needed. Upload a resume and get your ATS score in 2 minutes, or jump straight into a mock interview. The platform walks you through everything." },
+  { id: "g4", category: "general",      q: "Is there a mobile app?",                         a: "Not yet. Preciprocal is fully web-based and works on any device with a modern browser. A native app is on our roadmap." },
+  { id: "g5", category: "general",      q: "How is this different from using ChatGPT?",      a: "ChatGPT is a general-purpose chatbot. Preciprocal is a purpose-built system with specialised AI agents for each task, ATS scoring calibrated against real hiring data, a multi-agent interview panel, recruiter eye-tracking simulation based on published research, and a full application pipeline." },
   { id: "g6", category: "general",      q: "Do you have a Chrome extension?",                a: "Yes. The Preciprocal Chrome extension lets you save jobs from LinkedIn and job boards with one click, auto-import job descriptions for resume tailoring, and track applications without leaving the page." },
   { id: "g7", category: "general",      q: "How many tools does Preciprocal include?",       a: "11 core tools: Resume Analysis (ATS + Benchmarking + Recruiter Sim + Interview Intel), Resume Tailoring, Mock Interviews, Cover Letter Generator, Study Planner, LinkedIn Optimiser, Cold Outreach Generator, Interview Debrief Journal, Job Tracker, Contact Finder, and Chrome Extension." },
-  { id: "g8", category: "general",      q: "Does it work for non-tech roles?",               a: "Absolutely. Every tool adapts to your target role — whether you're applying for software engineering, finance, consulting, marketing, HR, healthcare, or any other field. The AI tailors its analysis, questions, and recommendations to the specific role and job description you provide." },
-  { id: "p1", category: "pricing",      q: "Is Preciprocal really $9.99/mo?",                a: "Yes. Pro is $9.99/month (or $7.49/mo billed annually). We built Preciprocal for students and early-career professionals who can't afford $50–100/mo tools." },
+  { id: "g8", category: "general",      q: "Does it work for non-tech roles?",               a: "Absolutely. Every tool adapts to your target role, whether you're applying for software engineering, finance, consulting, marketing, HR, healthcare, or any other field. The AI tailors its analysis, questions, and recommendations to the specific role and job description you provide." },
+  { id: "p1", category: "pricing",      q: "Is Preciprocal really $9.99/mo?",                a: "Yes. Pro is $9.99/month (or $7.49/mo billed annually). We built Preciprocal for students and early-career professionals who can't afford $50-100/mo tools." },
   { id: "p2", category: "pricing",      q: "Do you offer a free plan?",                      a: "Yes. The free tier includes 5 resume analyses, 3 mock interviews, 5 cover letters, 2 LinkedIn optimisations, 1 interview debrief, 2 contact lookups, a 10-job tracker, and basic analytics per month. It's a real free plan, not a 7-day trial." },
-  { id: "p3", category: "pricing",      q: "Is there a student discount?",                   a: "Students with a .edu email get 1 month of Pro completely free — no credit card required to activate." },
+  { id: "p3", category: "pricing",      q: "Is there a student discount?",                   a: "Students with a .edu email get 1 month of Pro completely free, no credit card required to activate." },
   { id: "p4", category: "pricing",      q: "What's the difference between Pro and Premium?", a: "Pro ($9.99/mo): 20 resume analyses, 30 mock interviews, unlimited cover letters, full resume editor, recruiter eye simulation, and complete analytics. Premium ($24.99/mo): unlimited everything, company-specific prep, advanced study planning, and a full LinkedIn rewrite." },
-  { id: "p5", category: "pricing",      q: "Is there a money-back guarantee?",               a: "Yes — 30 days, no questions asked. If Preciprocal doesn't help your job search, email support@preciprocal.com for a full refund." },
-  { id: "p6", category: "pricing",      q: "Can I cancel anytime?",                          a: "Yes. Cancel from Settings → Billing → Cancel Subscription. No fee, no waiting period. You keep access until the end of your billing period." },
-  { id: "i1", category: "interviews",   q: "How do mock interviews work?",                   a: "Our voice-based interviews use a multi-agent AI system to simulate a real interview panel — HR screener, technical lead, and hiring manager. You speak into your mic, they respond with follow-up questions, and you get a detailed debrief with scoring across 5 dimensions." },
-  { id: "i2", category: "interviews",   q: "Do I need a webcam?",                            a: "No. Mock interviews are voice-only — you just need a microphone. Your built-in laptop mic works fine." },
+  { id: "p5", category: "pricing",      q: "Is there a money-back guarantee?",               a: "Yes, 30 days, no questions asked. If Preciprocal doesn't help your job search, email support@preciprocal.com for a full refund." },
+  { id: "p6", category: "pricing",      q: "Can I cancel anytime?",                          a: "Yes. Cancel from Settings, Billing, Cancel Subscription. No fee, no waiting period. You keep access until the end of your billing period." },
+  { id: "i1", category: "interviews",   q: "How do mock interviews work?",                   a: "Our voice-based interviews use a multi-agent AI system to simulate a real interview panel: HR screener, technical lead, and hiring manager. You speak into your mic, they respond with follow-up questions, and you get a detailed debrief with scoring across 5 dimensions." },
+  { id: "i2", category: "interviews",   q: "Do I need a webcam?",                            a: "No. Mock interviews are voice-only, you just need a microphone. Your built-in laptop mic works fine." },
   { id: "i3", category: "interviews",   q: "What types of interviews can I practise?",       a: "Technical (coding + system design), behavioural (STAR method), case interviews (consulting), finance interviews (DCF, LBO), marketing strategy, and general screening. You can target specific companies and roles, select difficulty level, and the AI adjusts accordingly." },
   { id: "i4", category: "interviews",   q: "Can I practise for a specific company?",         a: "Yes. Enter the company name and role, and the AI tailors questions to that company's known interview style, values, and technical focus areas." },
-  { id: "r1", category: "resume",       q: "What is ATS scoring?",                           a: "ATS (Applicant Tracking System) is the software used by most large employers to automatically filter resumes before a human sees them. Our ATS scorer analyses your resume across keyword matching, formatting compatibility, section structure, and header parsing — and gives you a score out of 100 with specific fixes." },
+  { id: "r1", category: "resume",       q: "What is ATS scoring?",                           a: "ATS (Applicant Tracking System) is the software used by most large employers to automatically filter resumes before a human sees them. Our ATS scorer analyses your resume across keyword matching, formatting compatibility, section structure, and header parsing, and gives you a score out of 100 with specific fixes." },
   { id: "r2", category: "resume",       q: "What is the Recruiter Eye Simulation?",          a: "Based on published eye-tracking research, we simulate how three reviewers approach your document: an HR screener (quick first pass), a technical lead (deeper skill evaluation), and a hiring manager (impact & leadership focus). You see an attention heatmap showing where each reviewer's eyes go and what gets missed." },
-  { id: "r3", category: "resume",       q: "Can I tailor my resume to a specific job?",      a: "Yes. Paste a job description into the Tailor tab, and the AI rewrites specific bullets to better match — adjusting keywords, reframing experience, and prioritising relevant skills. Every change is shown in a clear 'original → rewrite' format for your approval." },
+  { id: "r3", category: "resume",       q: "Can I tailor my resume to a specific job?",      a: "Yes. Paste a job description into the Tailor tab, and the AI rewrites specific bullets to better match, adjusting keywords, reframing experience, and prioritising relevant skills. Every change is shown in a clear 'original to rewrite' format for your approval." },
   { id: "c1", category: "cover-letter", q: "How does the cover letter generator work?",      a: "Paste a job description and the AI (1) researches the company in real-time, (2) analyses job requirements against your resume, and (3) writes a personalised letter connecting your experience to their needs, referencing real company details." },
   { id: "s1", category: "planner",      q: "How does the AI Study Planner work?",            a: "Enter your target role, interview date, current skill level, and daily time commitment. The AI generates a personalised day-by-day schedule with tasks, curated resources, daily quizzes, and an AI coach you can ask questions anytime." },
   { id: "t1", category: "technical",    q: "Is my data safe?",                               a: "Yes. All data is encrypted in transit (TLS 1.3) and at rest (AES-256). We never sell your data, never use it for advertising, and never share it with third parties." },
   { id: "t2", category: "technical",    q: "Do you use my resume to train AI models?",       a: "No. Your data is used exclusively to serve you. It is never used to train, fine-tune, or improve any AI models." },
-  { id: "t3", category: "technical",    q: "How do I contact support?",                      a: "Email support@preciprocal.com or use the in-app support widget in Settings → Support. We respond within 24 hours on weekdays." },
+  { id: "t3", category: "technical",    q: "How do I contact support?",                      a: "Email support@preciprocal.com or use the in-app support widget in Settings, Support. We respond within 24 hours on weekdays." },
 ];
 
 export const LANDING_FAQ_IDS = ["p1", "g5", "p2", "i1", "t1", "p5"] as const;

@@ -3,7 +3,6 @@
  *
  * SEO changes from original:
  *   • Added WebSiteJsonLd (enables Google Sitelinks Search Box)
- *   • Added WebPageJsonLd (links all schemas together — entity graph)
  *   • Richer keywords in metadata
  *   • Stronger description (includes price + guarantee for CTR)
  *   • All section-level aria-labels added for accessibility + crawlability
@@ -13,7 +12,7 @@
  */
 
 import type { Metadata } from "next";
-import { WebSiteJsonLd, WebPageJsonLd } from "@/components/JsonLd";
+import { WebSiteJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
@@ -33,7 +32,7 @@ import HeroProductDemo from "@/components/HeroProductDemo";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
-  title: "Preciprocal — AI-Powered Job Search Operating System",
+  title: "Preciprocal | AI-Powered Job Search Operating System",
 
   // 155 chars — specific, keyword-rich, includes price/guarantee for CTR
   description:
@@ -54,7 +53,7 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Preciprocal — Stop Applying Into the Void",
+    title: "Preciprocal | Stop Applying Into the Void",
     description:
       "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo. 30-day guarantee.",
     url: "https://preciprocal.com",
@@ -64,7 +63,7 @@ export const metadata: Metadata = {
         url: "https://preciprocal.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Preciprocal — AI Job Search Operating System",
+        alt: "Preciprocal | AI Job Search Operating System",
       },
     ],
     type: "website",
@@ -72,7 +71,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Preciprocal — AI Job Search OS",
+    title: "Preciprocal | AI Job Search OS",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans & job tracking. $9.99/mo.",
     images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal" }],
@@ -86,14 +85,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* WebSiteJsonLd — enables Sitelinks Search Box in Google */}
+      {/* WebSiteJsonLd enables Sitelinks Search Box in Google */}
       <WebSiteJsonLd />
-
-      {/* WebPageJsonLd — links all schemas into a connected entity graph.
-          Tells Google this URL is a WebPage → part of this WebSite →
-          about this Organization → primary image is the OG image.
-          Improves Knowledge Panel eligibility and rich result completeness. */}
-      <WebPageJsonLd />
 
       <StickyBanner />
       <Navbar />

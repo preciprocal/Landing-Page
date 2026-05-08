@@ -72,7 +72,7 @@ function LoadingCard({ message, sub }: { message: string; sub: string }) {
 function LinkedInForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoading: boolean }) {
   return (
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
-      {/* Left — Form */}
+      {/* Left, Form */}
       <div className="w-[48%] flex-shrink-0 flex flex-col">
         <FadeIn delay={0}>
           <div className="flex items-center gap-2.5 mb-3">
@@ -152,7 +152,7 @@ function LinkedInForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoa
         </div>
       </div>
 
-      {/* Right — Empty state or Loading */}
+      {/* Right, Empty state or Loading */}
       {isLoading ? (
         <LoadingCard
           message="Analysing your profile…"
@@ -182,7 +182,7 @@ function LinkedInResults() {
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
-      {/* Left — Form (filled) */}
+      {/* Left, Form (filled) */}
       <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: 520 }}>
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
@@ -207,7 +207,7 @@ function LinkedInResults() {
         </div>
       </div>
 
-      {/* Right — Results */}
+      {/* Right, Results */}
       <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
         {/* Overall Score */}
         <FadeIn delay={0}>
@@ -250,7 +250,7 @@ function LinkedInResults() {
                 <span className="text-[7px] text-slate-500 flex items-center gap-0.5"><Copy className="w-2 h-2" /> Copy</span>
               </div>
               <p className="text-[10px] text-white font-medium leading-relaxed">Data Scientist | ML & Analytics | Python, SQL, Spark | BU MS CS | MS CS from BU</p>
-              <p className="text-[8px] text-slate-500 mt-1">Includes target role, industry, key skills, and social proof — 4x more searchable.</p>
+              <p className="text-[8px] text-slate-500 mt-1">Includes target role, industry, key skills, and social proof, 4x more searchable.</p>
             </div>
           </div>
         </FadeIn>
@@ -406,7 +406,7 @@ function OutreachForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoa
         </div>
       </div>
 
-      {/* Right — Empty state or Loading */}
+      {/* Right, Empty state or Loading */}
       {isLoading ? (
         <LoadingCard
           message="Crafting your messages…"
@@ -437,13 +437,13 @@ function OutreachResults() {
   const versions = [
     { label: 'Best', approach: 'Value-first: lead with what you can offer Meta, not what you want.',
       subject: "Quick question about Meta's experimentation platform",
-      body: "Hi Priya,\n\nI noticed your post about Meta's experimentation platform — the approach to multi-armed bandits for feature rollouts is exactly what I explored in my thesis work at BU.\n\nAt Datadog, I built a real-time anomaly detection pipeline processing 2M+ events/sec and created a customer segmentation model that drove a 22% lift in recommendations. Ravi Kumar mentioned your team is scaling the experimentation platform — I'd love to hear more.\n\nWould a 15-min chat next week work?\n\nBest,\nArjun" },
+      body: "Hi Priya,\n\nI noticed your post about Meta's experimentation platform. The approach to multi-armed bandits for feature rollouts is exactly what I explored in my thesis work at BU.\n\nAt Datadog, I built a real-time anomaly detection pipeline processing 2M+ events/sec and created a customer segmentation model that drove a 22% lift in recommendations. Ravi Kumar mentioned your team is scaling the experimentation platform, I'd love to hear more.\n\nWould a 15-min chat next week work?\n\nBest,\nArjun" },
     { label: 'Option 2', approach: 'Mutual connection angle: leverage the shared network.',
-      subject: 'Ravi Kumar suggested I reach out — data science team',
-      body: "Hi Priya,\n\nRavi Kumar suggested I reach out — he mentioned your team at Meta is doing impressive work on the product analytics platform.\n\nI've spent the past 2 years building ML pipelines and data products at Datadog, and I'm exploring what's next. Your recent post about experimentation at scale really resonated with the problems I've been solving.\n\nWould you be open to a brief chat about what it's like on the data science side at Meta?\n\nCheers,\nArjun" },
+      subject: 'Ravi Kumar suggested I reach out re: data science team',
+      body: "Hi Priya,\n\nRavi Kumar suggested I reach out; he mentioned your team at Meta is doing impressive work on the product analytics platform.\n\nI've spent the past 2 years building ML pipelines and data products at Datadog, and I'm exploring what's next. Your recent post about experimentation at scale really resonated with the problems I've been solving.\n\nWould you be open to a brief chat about what it's like on the data science side at Meta?\n\nCheers,\nArjun" },
     { label: 'Option 3', approach: 'Direct & bold: express clear interest upfront.',
       subject: "Interested in Meta's Data Scientist role",
-      body: "Hi Priya,\n\nI'll keep this short — I'm a data scientist with 2 years at Datadog building ML pipelines, and Meta's data science team is at the top of my list.\n\nI saw the Data Scientist, Product Analytics role and your post about experimentation at scale. My experience building anomaly detection and recommendation systems maps directly to what your team is doing.\n\nCould I get 10 minutes of your time this week?\n\nThanks,\nArjun" },
+      body: "Hi Priya,\n\nI'll keep this short. I'm a data scientist with 2 years at Datadog building ML pipelines, and Meta's data science team is at the top of my list.\n\nI saw the Data Scientist, Product Analytics role and your post about experimentation at scale. My experience building anomaly detection and recommendation systems maps directly to what your team is doing.\n\nCould I get 10 minutes of your time this week?\n\nThanks,\nArjun" },
   ];
 
   const active = versions[activeVersion];
@@ -452,7 +452,7 @@ function OutreachResults() {
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
-      {/* Left — compact form summary */}
+      {/* Left, compact form summary */}
       <div className="w-[35%] flex-shrink-0 overflow-y-auto ct-scroll" style={{ maxHeight: 520 }}>
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
@@ -478,7 +478,7 @@ function OutreachResults() {
         </div>
       </div>
 
-      {/* Right — Results */}
+      {/* Right, Results */}
       <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
         {/* Version tabs */}
         <FadeIn delay={0}>
@@ -529,7 +529,7 @@ function OutreachResults() {
               <p className="text-[8px] text-blue-300">Send 3–5 business days after initial email</p>
             </div>
             <div className="p-2 bg-white/[0.03] border border-white/[0.07] rounded-lg">
-              <p className="text-[8px] text-slate-300 leading-relaxed">Hi Priya, just bumping this to the top — I know inboxes move fast. Would a 10-minute call work this week? Happy to share more about the ML pipeline work I mentioned. No worries if the timing isn&apos;t right.</p>
+              <p className="text-[8px] text-slate-300 leading-relaxed">Hi Priya, just bumping this to the top. I know inboxes move fast. Would a 10-minute call work this week? Happy to share more about the ML pipeline work I mentioned. No worries if the timing isn&apos;t right.</p>
             </div>
           </div>
         </FadeIn>
@@ -556,7 +556,7 @@ function OutreachResults() {
   );
 }
 
-// ─── Phase 5: Interactive (user explores both tools — two-panel layout) ───────
+// ─── Phase 5: Interactive (user explores both tools, two-panel layout) ───────
 
 function InteractiveView() {
   const [activeTool, setActiveTool] = useState<'linkedin' | 'outreach'>('linkedin');
@@ -565,20 +565,20 @@ function InteractiveView() {
   const versions = [
     { label: 'Best', approach: 'Value-first: lead with what you can offer Meta, not what you want.',
       subject: "Quick question about Meta's experimentation platform",
-      body: "Hi Priya,\n\nI noticed your post about Meta's experimentation platform — the approach to multi-armed bandits for feature rollouts is exactly what I explored in my thesis work at BU.\n\nAt Datadog, I built a real-time anomaly detection pipeline processing 2M+ events/sec and created a customer segmentation model that drove a 22% lift in recommendations. Ravi Kumar mentioned your team is scaling the experimentation platform — I'd love to hear more.\n\nWould a 15-min chat next week work?\n\nBest,\nArjun" },
+      body: "Hi Priya,\n\nI noticed your post about Meta's experimentation platform. The approach to multi-armed bandits for feature rollouts is exactly what I explored in my thesis work at BU.\n\nAt Datadog, I built a real-time anomaly detection pipeline processing 2M+ events/sec and created a customer segmentation model that drove a 22% lift in recommendations. Ravi Kumar mentioned your team is scaling the experimentation platform, I'd love to hear more.\n\nWould a 15-min chat next week work?\n\nBest,\nArjun" },
     { label: 'Option 2', approach: 'Mutual connection angle: leverage the shared network.',
-      subject: 'Ravi Kumar suggested I reach out — data science team',
-      body: "Hi Priya,\n\nRavi Kumar suggested I reach out — he mentioned your team at Meta is doing impressive work on the product analytics platform.\n\nI've spent the past 2 years building ML pipelines and data products at Datadog, and I'm exploring what's next. Your recent post about experimentation at scale really resonated with the problems I've been solving.\n\nWould you be open to a brief chat about what it's like on the data science side at Meta?\n\nCheers,\nArjun" },
+      subject: 'Ravi Kumar suggested I reach out re: data science team',
+      body: "Hi Priya,\n\nRavi Kumar suggested I reach out; he mentioned your team at Meta is doing impressive work on the product analytics platform.\n\nI've spent the past 2 years building ML pipelines and data products at Datadog, and I'm exploring what's next. Your recent post about experimentation at scale really resonated with the problems I've been solving.\n\nWould you be open to a brief chat about what it's like on the data science side at Meta?\n\nCheers,\nArjun" },
     { label: 'Option 3', approach: 'Direct & bold: express clear interest upfront.',
       subject: "Interested in Meta's Data Scientist role",
-      body: "Hi Priya,\n\nI'll keep this short — I'm a data scientist with 2 years at Datadog building ML pipelines, and Meta's data science team is at the top of my list.\n\nI saw the Data Scientist, Product Analytics role and your post about experimentation at scale. My experience building anomaly detection and recommendation systems maps directly to what your team is doing.\n\nCould I get 10 minutes of your time this week?\n\nThanks,\nArjun" },
+      body: "Hi Priya,\n\nI'll keep this short. I'm a data scientist with 2 years at Datadog building ML pipelines, and Meta's data science team is at the top of my list.\n\nI saw the Data Scientist, Product Analytics role and your post about experimentation at scale. My experience building anomaly detection and recommendation systems maps directly to what your team is doing.\n\nCould I get 10 minutes of your time this week?\n\nThanks,\nArjun" },
   ];
 
   return (
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
-      {/* Left — Form summary + tool switcher */}
+      {/* Left, Form summary + tool switcher */}
       <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: 520 }}>
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
@@ -603,7 +603,7 @@ function InteractiveView() {
         {/* Hint */}
         <p className="text-[8px] text-indigo-400 text-center mb-2.5 font-medium">✨ Switch tabs to explore both tools</p>
 
-        {/* Form summary — changes based on active tool */}
+        {/* Form summary, changes based on active tool */}
         {activeTool === 'linkedin' ? (
           <div className="space-y-2">
             {[
@@ -636,7 +636,7 @@ function InteractiveView() {
         )}
       </div>
 
-      {/* Right — Results (changes based on active tool) */}
+      {/* Right, Results (changes based on active tool) */}
       <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
         {activeTool === 'linkedin' ? (
           <>
@@ -773,7 +773,7 @@ function InteractiveView() {
                   <p className="text-[8px] text-blue-300">Send 3–5 business days after initial email</p>
                 </div>
                 <div className="p-2 bg-white/[0.03] border border-white/[0.07] rounded-lg">
-                  <p className="text-[8px] text-slate-300 leading-relaxed">Hi Priya, just bumping this to the top — I know inboxes move fast. Would a 10-minute call work this week? Happy to share more about the ML pipeline work I mentioned. No worries if the timing isn&apos;t right.</p>
+                  <p className="text-[8px] text-slate-300 leading-relaxed">Hi Priya, just bumping this to the top. I know inboxes move fast. Would a 10-minute call work this week? Happy to share more about the ML pipeline work I mentioned. No worries if the timing isn&apos;t right.</p>
                 </div>
               </div>
             </FadeIn>
@@ -810,7 +810,7 @@ const LOADING_DURATION = 2000; // ms to show loading spinner
 
 export function CareerToolsExamplePreview({ step }: { step: number }) {
   const [phase, setPhase] = useState<Phase>('li-form');
-  const [autoMode, setAutoMode] = useState(false); // Start in manual mode — user clicks to advance
+  const [autoMode, setAutoMode] = useState(false); // Start in manual mode, user clicks to advance
 
   // ── Auto-play only fills the form (step 0), everything else requires user click ──
   useEffect(() => {

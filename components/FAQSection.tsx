@@ -105,7 +105,7 @@ export default function FAQSection() {
             <a href="mailto:support@preciprocal.com" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
               contact support
             </a>
-            {" "}— we respond within 24 hours.
+            , we respond within 24 hours.
           </p>
         </RevealOnScroll>
       </div>

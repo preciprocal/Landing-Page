@@ -19,14 +19,13 @@ const PLANS = [
     period: "",
     tagline: "Get started and feel the value.",
     features: [
-      "2 resume analyses / month",
-      "3 cover letters / month",
-      "1 mock interview / month",
-      "1 LinkedIn optimisation / month",
+      "5 resume analyses / month",
+      "5 cover letters / month",
+      "2 LinkedIn optimisations / month",
       "1 interview debrief / month",
-      "1 cold outreach message / month",
-      "1 find contacts / month",
-      "Job tracker (5 jobs)",
+      "2 find contacts / month",
+      "3 mock interviews / month",
+      "Job tracker (10 jobs)",
       "Chrome extension (limited)",
       "Basic analytics",
     ],
@@ -39,21 +38,19 @@ const PLANS = [
     period: "/mo",
     tagline: "Everything an active job seeker needs.",
     features: [
-      "10 resume analyses / month",
-      "20 cover letters / month",
-      "Unlimited mock interviews",
+      "20 resume analyses / month",
+      "30 mock interviews / month",
+      "Unlimited cover letters",
       "5 LinkedIn optimisations / month",
       "5 interview debriefs / month",
-      "5 cold outreach messages / month",
-      "5 find contacts / month",
+      "10 find contacts / month",
       "5 active study plans",
-      "Job tracker (30 jobs)",
+      "Unlimited job tracker",
       "Chrome extension (full)",
       "Resume editor + PDF & Word export",
       "Recruiter eye simulation",
       "Full analytics dashboard",
       "Priority AI responses",
-      "Students: 1 month free — no card needed",
     ],
     cta: "Start Pro",
     highlighted: true,
@@ -93,7 +90,7 @@ export default function Pricing() {
             <span className="text-gradient">It pays back fast.</span>
           </h2>
           <p className="text-base text-slate-400 max-w-lg mx-auto">
-            The average job search costs months of lost salary. Preciprocal helps you land offers weeks faster — for less than a single coffee a day.
+            The average job search costs months of lost salary. Preciprocal helps you land offers weeks faster, for less than a single coffee a day.
           </p>
         </RevealOnScroll>
 
@@ -173,7 +170,7 @@ export default function Pricing() {
         <p className="text-center text-[13px] text-slate-600 mt-5">
           University student? Verify your .edu email for{" "}
           <span className="text-slate-400 font-medium">1 month of Pro free</span>{" "}
-          — no card needed.
+          , no card needed.
         </p>
 
         {/* FAQ link — catches hesitant buyers */}

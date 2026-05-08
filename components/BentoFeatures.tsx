@@ -176,7 +176,7 @@ function CoverageCard() {
           </div>
           <div>
             <h3 className="text-[14px] font-bold text-white">One platform, zero gaps</h3>
-            <p className="text-[10px] text-slate-500">Everything you need — nothing you have to piece together</p>
+            <p className="text-[10px] text-slate-500">Everything you need, nothing you have to piece together</p>
           </div>
         </div>
 
@@ -232,7 +232,7 @@ function NotChatbotCard() {
     <Card delay={0}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Not a chatbot.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">A full 4-person interview panel — HR screener, technical lead, hiring manager, and you — just like real interviews at top companies.</p>
+        <p className="text-[10px] text-slate-500 mb-3">A full 4-person interview panel: HR screener, technical lead, hiring manager, and you. Just like real interviews at top companies.</p>
 
         <div className="flex items-center gap-2 flex-1 justify-center">
           {panelMembers.map((m, i) => (
@@ -258,14 +258,14 @@ function NotChatbotCard() {
 function BrutallyHonestCard() {
   const scores = [
     { label: "What you think",  value: "Great resume!",  color: "text-emerald-400", bg: "bg-emerald-500/10" },
-    { label: "What we tell you", value: "65/100 — missing summary, weak verbs, no metrics on 3 bullets", color: "text-amber-400", bg: "bg-amber-500/10" },
+    { label: "What we tell you", value: "65/100: missing summary, weak verbs, no metrics on 3 bullets", color: "text-amber-400", bg: "bg-amber-500/10" },
   ];
 
   return (
     <Card delay={0.1}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Brutally honest.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">Other tools inflate scores to keep you happy. We tell you exactly what&apos;s costing you interviews — then fix it.</p>
+        <p className="text-[10px] text-slate-500 mb-3">Other tools inflate scores to keep you happy. We tell you exactly what&apos;s costing you interviews, then fix it.</p>
 
         <div className="space-y-2 flex-1">
           {scores.map((s, i) => (
@@ -319,7 +319,7 @@ function StudentPriceCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[8px] text-slate-500">30-day money-back guarantee — no questions asked</span>
+          <span className="text-[8px] text-slate-500">30-day money-back guarantee, no questions asked</span>
         </div>
       </div>
     </Card>
@@ -342,7 +342,7 @@ function AINotGenericCard() {
     <Card delay={0.3}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Your story, not filler.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">We read your actual resume and job description. Every word is calibrated to your experience — not templated garbage.</p>
+        <p className="text-[10px] text-slate-500 mb-3">We read your actual resume and job description. Every word is calibrated to your experience, not templated garbage.</p>
 
         <div className="flex-1">
           <AnimatePresence mode="wait">
@@ -373,7 +373,7 @@ function TrustBar() {
   const items = [
     { icon: Lock,              label: "End-to-end encrypted",   sub: "Your resume data never shared or sold" },
     { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
-    { icon: Globe,             label: "Works everywhere",        sub: "Web app — no downloads, any device" },
+    { icon: Globe,             label: "Works everywhere",        sub: "Web app, no downloads, any device" },
     // ⚠️  Guarantee wording: "30-day money-back" is the accurate claim.
     // Original read "Land an interview in 30 days or refund" — that implies
     // a guaranteed outcome we cannot promise and creates legal liability.

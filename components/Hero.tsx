@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { APP_URL, STATS } from "@/lib/constants";
-import { ArrowRightIcon } from "@/components/Icons";
+import { ArrowRightIcon, SparkIcon } from "@/components/Icons";
 import { Spotlight } from "@/components/ui/SpotLight";
 import { FlipWords } from "@/components/ui/FlipWords";
 import { MovingBorder } from "@/components/ui/MovingBorder";
@@ -28,10 +28,10 @@ export default function Hero() {
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[12px] font-medium text-slate-400 tracking-wide">11 AI-powered tools · Free to start</span>
+            <SparkIcon className="text-indigo-300" />
+            <span className="text-[13px] font-medium text-indigo-300">Trusted by 25,000+ job seekers</span>
           </motion.div>
 
           {/* Headline */}
@@ -55,7 +55,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
             className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed px-2 sm:px-0"
           >
-            You&apos;re not unqualified — you&apos;re unprepared. Preciprocal gives you AI mock interviews,
+            You&apos;re not unprepared, you&apos;re just not prepared yet. Preciprocal gives you AI mock interviews,
             resume analysis, cover letters, study plans, and job tracking so you walk into every interview
             knowing you belong there.
           </motion.p>
