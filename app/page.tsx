@@ -29,6 +29,7 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ScrollToast from "@/components/ScrollToast";
 import HeroProductDemo from "@/components/HeroProductDemo";
+import ChromeExtensionBanner from "@/components/ChromeExtensionBanner";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
@@ -120,6 +121,8 @@ export default function Home() {
           <ComparisonTable />
         </section>
 
+{/* 8. Chrome Extension */}
+        <ChromeExtensionBanner />
       
         {/* 9. Pricing */}
         <section id="pricing" aria-label="Pricing plans">

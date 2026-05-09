@@ -18,7 +18,10 @@ import { ALL_ROLES, ALL_COMPANIES, ALL_BLOG_SLUGS, SITE_URL } from "@/lib/consta
  *  • Kept dynamic role/company/blog pages on `new Date()` since they
  *    regenerate when constants.ts changes.
  *
- * DEPLOY NOTE: After deploying, go to Search Console → Sitemaps and
+ * Added /salary-guide/[role], /cover-letter-examples/[role], /resume-tips/[role]
+ *  programmatic sections - Google already discovered these, now submitting them.
+ *
+ * DEPLOY NOTE: After deploying, go to Search Console -> Sitemaps and
  * re-submit https://preciprocal.com/sitemap.xml to trigger re-crawl.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -131,5 +134,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...rolePages, ...companyPages, ...blogPages];
+
+  // Salary guide pages - all 40+ roles
+  const salaryPages: MetadataRoute.Sitemap = ALL_ROLES.map((role) => ({
+    url: `${SITE_URL}/salary-guide/${role}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Cover letter examples pages - all 40+ roles
+  const coverLetterPages: MetadataRoute.Sitemap = ALL_ROLES.map((role) => ({
+    url: `${SITE_URL}/cover-letter-examples/${role}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  // Resume tips pages - all 40+ roles
+  const resumeTipsPages: MetadataRoute.Sitemap = ALL_ROLES.map((role) => ({
+    url: `${SITE_URL}/resume-tips/${role}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticPages, ...rolePages, ...companyPages, ...blogPages, ...salaryPages, ...coverLetterPages, ...resumeTipsPages];
 }
