@@ -288,45 +288,12 @@ export default function ChromeExtensionBanner() {
                 Watch it complete itself.
               </motion.p>
 
-              {/* Social proof strip with stagger pop-in */}
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.44, duration: 0.4 }}
-                className="flex items-center gap-3 mb-6"
-              >
-                <div className="flex -space-x-2">
-                  {["bg-indigo-500","bg-purple-500","bg-blue-500","bg-emerald-500","bg-pink-500"].map((c, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.5, x: -8 }}
-                      whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.5 + i * 0.07, duration: 0.3, ease: [0.16,1,0.3,1] }}
-                      className={`w-7 h-7 rounded-full ${c} border-2 border-[#050810] flex items-center justify-center text-white text-[9px] font-bold`}
-                    >
-                      {["AK","JL","MR","ST","NP"][i]}
-                    </motion.div>
-                  ))}
-                </div>
-                <motion.p
-                  initial={{ opacity: 0, x: -4 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.88, duration: 0.35 }}
-                  className="text-[12px] text-slate-400"
-                >
-                  <span className="text-white font-semibold">4,200+ job seekers</span> installed this week
-                </motion.p>
-              </motion.div>
-
               {/* CTA with magnetic hover feel */}
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.54, duration: 0.5 }}
+                transition={{ delay: 0.44, duration: 0.5 }}
               >
                 <motion.a
                   href="https://chromewebstore.google.com/detail/iiomkjnpkaefapdajnabiljngkjddmoi?utm_source=landing-page"
@@ -361,7 +328,7 @@ export default function ChromeExtensionBanner() {
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.65 + i * 0.08, duration: 0.3 }}
+                      transition={{ delay: 0.55 + i * 0.08, duration: 0.3 }}
                       className="flex items-center gap-1.5 text-[11px] text-slate-500"
                     >
                       <ShieldCheck size={11} className="text-slate-600" />
