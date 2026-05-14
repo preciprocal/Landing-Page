@@ -19,13 +19,13 @@ const PLANS = [
     period: "",
     tagline: "Get started and feel the value.",
     features: [
-      "5 resume analyses / month",
-      "5 cover letters / month",
-      "2 LinkedIn optimisations / month",
+      "2 resume analyses / month",
+      "3 cover letters / month",
+      "1 LinkedIn optimisations / month",
       "1 interview debrief / month",
-      "2 find contacts / month",
-      "3 mock interviews / month",
-      "Job tracker (10 jobs)",
+      "1 find contacts / month",
+      "1 mock interviews / month",
+      "Job tracker (5 jobs)",
       "Chrome extension (limited)",
       "Basic analytics",
     ],
@@ -38,13 +38,13 @@ const PLANS = [
     period: "/mo",
     tagline: "Everything an active job seeker needs.",
     features: [
-      "20 resume analyses / month",
-      "30 mock interviews / month",
-      "Unlimited cover letters",
-      "5 LinkedIn optimisations / month",
-      "5 interview debriefs / month",
+      "10 resume analyses / month",
+      "5 mock interviews / month",
+      "20 cover letters / month",
+      "3 LinkedIn optimisations / month",
+      "3 interview debriefs / month",
       "10 find contacts / month",
-      "5 active study plans",
+      "3 active study plans",
       "Unlimited job tracker",
       "Chrome extension (full)",
       "Resume editor + PDF & Word export",
@@ -59,13 +59,19 @@ const PLANS = [
     name: "Premium",
     price: "$24.99",
     period: "/mo",
-    tagline: "Unlimited access for serious candidates.",
+    tagline: "Maximum power for serious candidates.",
     features: [
-      "Unlimited everything",
-      "Company-specific interview prep",
-      "AI interview coach + deep analysis",
-      "Post-interview improvement roadmap",
-      "All Pro features included",
+      "30 resume analyses / month",
+      "30 mock interviews / month",
+      "Unlimited cover letters",
+      "15 LinkedIn optimisations / month",
+      "20 interview debriefs / month",
+      "30 find contacts / month",
+      "15 active study plans",
+      "Unlimited job tracker",
+      "Chrome extension (full)",
+      "Resume editor + PDF & Word export",
+      "Priority AI responses",
       "Priority support (24hr SLA)",
       "Early access to new features",
     ],
@@ -94,11 +100,11 @@ export default function Pricing() {
           </p>
         </RevealOnScroll>
 
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
           {PLANS.map((plan) => (
-            <StaggerItem key={plan.name}>
+            <StaggerItem key={plan.name} className="flex flex-col">
               <div
-                className={`relative rounded-2xl p-9 ${
+                className={`relative rounded-2xl p-9 flex-1 flex flex-col ${
                   plan.highlighted
                     ? "bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05] border border-indigo-500/30 md:scale-[1.03]"
                     : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12]"
@@ -112,7 +118,7 @@ export default function Pricing() {
                   </div>
                 )}
 
-                <div className="relative z-10">
+                <div className="relative z-10 flex flex-col flex-1">
                   <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
                   <p className="text-[13px] text-slate-500 mb-4">{plan.tagline}</p>
 
@@ -121,7 +127,7 @@ export default function Pricing() {
                     {plan.period && <span className="text-[15px] text-slate-500 ml-1">{plan.period}</span>}
                   </div>
 
-                  <div className="flex flex-col gap-3.5 mb-8">
+                  <div className="flex flex-col gap-3.5 mb-8 flex-1">
                     {plan.features.map((feature) => (
                       <div key={feature} className="flex items-center gap-2.5 text-sm text-slate-300">
                         <CheckIcon className="flex-shrink-0 text-indigo-400" />
