@@ -1,18 +1,19 @@
 /**
- * app/page.tsx — Landing page (root route)
+ * app/page.tsx - Landing page (root route)
  *
  * SEO changes from original:
- *   • Added WebSiteJsonLd (enables Google Sitelinks Search Box)
- *   • Richer keywords in metadata
- *   • Stronger description (includes price + guarantee for CTR)
- *   • All section-level aria-labels added for accessibility + crawlability
+ *   - Added WebSiteJsonLd (enables Google Sitelinks Search Box)
+ *   - Added FAQJsonLd here (moved from layout.tsx - it belongs on homepage only)
+ *   - Richer keywords in metadata
+ *   - Stronger description (includes price + guarantee for CTR)
+ *   - All section-level aria-labels added for accessibility + crawlability
  *
  * NOTE: The Hero component already renders a <h1>. Every other section should
- * use <h2> for its heading — see each component's internal markup.
+ * use <h2> for its heading - see each component's internal markup.
  */
 
 import type { Metadata } from "next";
-import { WebSiteJsonLd } from "@/components/JsonLd";
+import { WebSiteJsonLd, FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
   title: "Preciprocal | AI-Powered Job Search Operating System",
 
-  // 155 chars — specific, keyword-rich, includes price/guarantee for CTR
+  // 155 chars - specific, keyword-rich, includes price/guarantee for CTR
   description:
     "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking. $9.99/mo. 30-day money-back guarantee.",
 
@@ -89,41 +90,44 @@ export default function Home() {
       {/* WebSiteJsonLd enables Sitelinks Search Box in Google */}
       <WebSiteJsonLd />
 
+      {/* FAQJsonLd belongs on the homepage only - moved from layout.tsx    */}
+      {/* Having it in layout was injecting homepage FAQ schema into every  */}
+      {/* page on the site, causing Search Console schema validation errors */}
+      <FAQJsonLd />
+
       <StickyBanner />
       <Navbar />
 
       <main>
-        {/* 1. Hero — contains the single <h1> for this page */}
+        {/* 1. Hero - contains the single <h1> for this page */}
         <Hero />
 
-        {/* 1b. Product demo — visually part of hero */}
+        {/* 1b. Product demo - visually part of hero */}
         <HeroProductDemo />
 
-        
-
-        {/* 4. Problem — pain point */}
+        {/* 4. Problem - pain point */}
         <section aria-label="The job search problem">
           <ProblemSection />
         </section>
 
-        {/* 5. Solution — bento feature grid */}
+        {/* 5. Solution - bento feature grid */}
         <section id="features" aria-label="Product features">
           <BentoFeatures />
         </section>
 
-        {/* 6. Process — 3 steps */}
+        {/* 6. Process - 3 steps */}
         <section id="how-it-works" aria-label="How Preciprocal works">
           <HowItWorks />
         </section>
 
-        {/* 7. Differentiation — comparison table */}
+        {/* 7. Differentiation - comparison table */}
         <section aria-label="Competitor comparison">
           <ComparisonTable />
         </section>
 
-{/* 8. Chrome Extension */}
+        {/* 8. Chrome Extension */}
         <ChromeExtensionBanner />
-      
+
         {/* 9. Pricing */}
         <section id="pricing" aria-label="Pricing plans">
           <Pricing />
@@ -142,7 +146,7 @@ export default function Home() {
 
       <Footer />
 
-      {/* Scroll-triggered toast for .edu users — fires after 20s */}
+      {/* Scroll-triggered toast for .edu users - fires after 20s */}
       <ScrollToast />
     </>
   );
