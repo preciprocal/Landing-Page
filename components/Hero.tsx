@@ -31,7 +31,9 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8"
           >
             <SparkIcon className="text-indigo-300" />
-            <span className="text-[13px] font-medium text-indigo-300">Trusted by 25,000+ job seekers</span>
+           <span className="text-[13px] font-medium text-indigo-300">
+  The job search is broken. We fixed your side of it.
+</span>
           </motion.div>
 
           {/* Headline */}
