@@ -1,12 +1,12 @@
 "use client";
 
 /**
- * Footer.tsx — Updated with About, Contact, Roadmap, Privacy, Terms links.
- * Drop this in to replace the existing components/Footer.tsx
+ * Footer.tsx — Social links show "Coming Soon" tooltip above on hover/click.
  */
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 
 const FOOTER_COLUMNS = [
   {
@@ -31,9 +31,9 @@ const FOOTER_COLUMNS = [
   {
     title: "Resources",
     links: [
-      { label: "Blog",     href: "/blog" },
-      { label: "FAQ",      href: "/faq" },
-      { label: "Roadmap",  href: "/roadmap" },
+      { label: "Blog",    href: "/blog" },
+      { label: "FAQ",     href: "/faq" },
+      { label: "Roadmap", href: "/roadmap" },
     ],
   },
   {
@@ -49,10 +49,53 @@ const FOOTER_COLUMNS = [
 ];
 
 const socials = [
-  { label: "Twitter",  href: "https://twitter.com/preciprocal" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/preciprocal" },
-  { label: "GitHub",   href: "https://github.com/preciprocal" },
+  { label: "Twitter" },
+  { label: "LinkedIn" },
+  { label: "GitHub" },
 ];
+
+function SocialLink({ label }: { label: string }) {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div
+      className="relative inline-flex items-center"
+      style={{ overflow: "visible" }}
+    >
+      {/* Tooltip rendered above — pure CSS transition, no framer interference */}
+      <span
+        style={{
+          position: "absolute",
+          bottom: "calc(100% + 8px)",
+          left: "50%",
+          transform: "translateX(-50%)",
+          whiteSpace: "nowrap",
+          pointerEvents: "none",
+          opacity: show ? 1 : 0,
+          translate: show ? "0 0" : "0 4px",
+          transition: "opacity 0.15s ease, translate 0.15s ease",
+          zIndex: 50,
+        }}
+        className="rounded-md bg-slate-800 border border-white/10 px-2 py-0.5 text-[11px] text-slate-300 shadow-lg"
+      >
+        Coming soon
+      </span>
+
+      <button
+        type="button"
+        onClick={() => {
+          setShow(true);
+          setTimeout(() => setShow(false), 1800);
+        }}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+        className="text-[13px] text-slate-600 hover:text-slate-300 transition-colors cursor-pointer select-none"
+      >
+        {label}
+      </button>
+    </div>
+  );
+}
 
 export default function Footer() {
   return (
@@ -112,22 +155,17 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4">
+        {/* Bottom bar — overflow visible so tooltips aren't clipped */}
+        <div
+          className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4"
+          style={{ overflow: "visible" }}
+        >
           <p className="text-[13px] text-slate-600">
             &copy; {new Date().getFullYear()} Preciprocal. All rights reserved.
           </p>
-          <div className="flex gap-5">
+          <div className="flex gap-5" style={{ overflow: "visible" }}>
             {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[13px] text-slate-600 hover:text-slate-200 transition-colors"
-              >
-                {s.label}
-              </a>
+              <SocialLink key={s.label} label={s.label} />
             ))}
           </div>
         </div>
