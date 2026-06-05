@@ -13,13 +13,12 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Interview Questions by Role — Prep Guides for Every Career",
-  description:
-    "Free interview question guides for 40+ roles across tech, finance, consulting, marketing, HR, healthcare, legal, and more. Real Q&As, salary data, and preparation tips.",
+  title: "Interview Questions by Role 2026: Prep Guides for 40+ Careers",
+  description: "Free interview question guides for 40+ roles: software engineer, product manager, data scientist, financial analyst, marketing manager, and more. Real Q&As with detailed answers, salary benchmarks, and prep tips for 2026.",
   alternates: { canonical: "https://preciprocal.com/interview-questions" },
   openGraph: {
-    title: "Interview Questions by Role — Preciprocal",
-    description: "Free Q&A guides for every major role. Real questions, detailed answers, salary ranges.",
+    title: "Interview Questions by Role 2026: Preciprocal",
+    description: "Free Q&A guides for 40+ roles. Real questions, detailed answers, salary ranges, and preparation tips updated for 2026.",
     url: "https://preciprocal.com/interview-questions",
     type: "website",
   },
@@ -41,7 +40,7 @@ export default function InterviewQuestionsIndexPage() {
       />
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -55,7 +54,7 @@ export default function InterviewQuestionsIndexPage() {
         </h1>
         <p style={{ color: "#94a3b8" }} className="text-lg mb-3 max-w-2xl leading-relaxed">
           Real interview questions, detailed answers, salary benchmarks, and preparation tips
-          for every major career path — updated for 2026.
+          for every major career path, updated for 2026.
         </p>
         <p style={{ color: "#64748b" }} className="text-sm mb-12">
           {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
@@ -120,7 +119,7 @@ export default function InterviewQuestionsIndexPage() {
             style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#ffffff" }}
             className="inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Practice with AI mock interviews — free
+            Practice with AI mock interviews, free
           </a>
         </div>
       </main>

@@ -127,10 +127,10 @@ Requirements:
 
 // ── Loading tips (cycling) ────────────────────────────────────────────────────
 const TIPS = [
-  "🚀 'Achieved, Led, Created' >> 'Responsible for, Worked on, Helped with' — own your wins!",
-  "📊 Quantify everything — numbers turn vague claims into proof.",
-  "🎯 Mirror the job description's language — ATS loves exact phrases.",
-  "✍️ One page, three paragraphs, no fluff — hiring managers scan in 6 seconds.",
+  "🚀 'Achieved, Led, Created' >> 'Responsible for, Worked on, Helped with' : own your wins!",
+  "📊 Quantify everything : numbers turn vague claims into proof.",
+  "🎯 Mirror the job description's language : ATS loves exact phrases.",
+  "✍️ One page, three paragraphs, no fluff : hiring managers scan in 6 seconds.",
   "💡 Open with the role's core problem you solve, not 'I am applying for...'",
 ];
 

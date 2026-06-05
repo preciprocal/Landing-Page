@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { FloatingNavbar } from "@/components/ui/FloatingNavbar";
 import { APP_URL } from "@/lib/constants";
 import { MenuIcon, CloseIcon } from "@/components/Icons";
@@ -56,16 +57,16 @@ const RESOURCES_GROUPS = [
   {
     group: "Career Tools",
     items: [
-      { label: "Free ATS Checker",      href: "/free-ats-checker",      sub: "Score your resume in 60s" },
-      { label: "Resume Tips by Role",   href: "/resume-tips",           sub: "ATS keywords & bullet formulas" },
-      { label: "Cover Letter Examples", href: "/cover-letter-examples", sub: "Annotated templates for every role" },
-      { label: "Salary Guide 2026",     href: "/salary-guide",          sub: "Ranges, equity & negotiation scripts" },
+      { label: "Free ATS Checker",      href: "/free-ats-checker",         sub: "Score your resume in 60s" },
+      { label: "Cover Letter Generator",href: "/cover-letter-generator",   sub: "Tailored letters in seconds" },
+      { label: "Roadmap",               href: "/roadmap",                  sub: "What we have shipped and what is next" },
+      { label: "Pricing",               href: "/#pricing",                 sub: "Free plan available, no credit card" },
     ],
   },
   {
     group: "Learn",
     items: [
-      { label: "Blog", href: "/blog", sub: "Interview & career guides" },
+      { label: "Blog", href: "/blog", sub: "Interview and career guides" },
       { label: "FAQ",  href: "/faq",  sub: "Common questions answered" },
     ],
   },
@@ -209,9 +210,11 @@ function ResourcesDropdown() {
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpandedGroup, setMobileExpandedGroup] = useState<string | null>(null);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   return (
-    <FloatingNavbar style={{ top: "var(--banner-h, 0px)" }}>
+    <FloatingNavbar style={{ top: "var(--banner-h, 0px)" }} forceBackground={!isHomePage}>
       {/* Desktop */}
       <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[72px] px-6">
         {/* Logo */}

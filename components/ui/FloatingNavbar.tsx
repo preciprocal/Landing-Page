@@ -4,7 +4,17 @@ import { useState, type CSSProperties } from "react";
 import { motion, AnimatePresence, useMotionValueEvent, useScroll } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export function FloatingNavbar({ children, className, style }: { children: React.ReactNode; className?: string; style?: CSSProperties }) {
+export function FloatingNavbar({
+  children,
+  className,
+  style,
+  forceBackground = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  style?: CSSProperties;
+  forceBackground?: boolean;
+}) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [scrolled, setScrolled] = useState(false);
@@ -17,6 +27,8 @@ export function FloatingNavbar({ children, className, style }: { children: React
     }
   });
 
+  const hasBg = forceBackground || scrolled;
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -27,7 +39,9 @@ export function FloatingNavbar({ children, className, style }: { children: React
           style={style}
           className={cn(
             "fixed inset-x-0 z-[5000] transition-colors",
-            scrolled ? "bg-[#050810]/80 backdrop-blur-xl border-b border-white/[0.06]" : "bg-transparent border-b border-transparent",
+            hasBg
+              ? "bg-[#050810]/90 backdrop-blur-xl border-b border-white/[0.06]"
+              : "bg-transparent border-b border-transparent",
             className
           )}
         >

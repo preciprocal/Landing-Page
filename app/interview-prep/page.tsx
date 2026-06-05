@@ -16,16 +16,12 @@ import { ALL_COMPANIES } from "@/lib/constants";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Company Interview Prep Guides — Google, Amazon, Meta & More",
-  description:
-    "Free interview prep guides for 20+ top tech companies. Learn each company's interview process, culture, difficulty, and get role-specific tips from hired candidates.",
-  alternates: {
-    canonical: "https://preciprocal.com/interview-prep",
-  },
+  title: "Company Interview Prep Guides 2026: Google, Amazon, Meta, Stripe & More",
+  description: "Free interview prep guides for 20 top companies including Google, Amazon, Meta, Microsoft, OpenAI, Stripe, and more. Interview process breakdown, culture tips, difficulty ratings, and Q&As.",
+  alternates: { canonical: "https://preciprocal.com/interview-prep" },
   openGraph: {
-    title: "Company Interview Prep Guides — Preciprocal",
-    description:
-      "How to prepare for Google, Amazon, Meta, Microsoft, Stripe, and 15 more top companies. Process breakdown, culture tips, and Q&As.",
+    title: "Company Interview Prep Guides 2026: Preciprocal",
+    description: "How to prepare for Google, Amazon, Meta, Microsoft, OpenAI, Stripe, and 15 more top companies. Process breakdown, culture tips, and real Q&As.",
     url: "https://preciprocal.com/interview-prep",
     type: "website",
   },
@@ -81,7 +77,7 @@ export default function InterviewPrepIndexPage() {
       <div className="min-h-screen bg-[#050810]">
         <Navbar />
 
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 page-main">
+        <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="text-sm text-slate-400 mb-8 flex gap-2 items-center">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -94,7 +90,7 @@ export default function InterviewPrepIndexPage() {
             Company interview prep guides
           </h1>
           <p className="text-slate-400 text-lg mb-12 max-w-2xl leading-relaxed">
-            In-depth prep guides for 20 top companies — covering interview process, culture,
+            In-depth prep guides for 20 top companies, covering interview process, culture,
             difficulty, common questions, and what actually gets you the offer.
           </p>
 
@@ -145,7 +141,7 @@ export default function InterviewPrepIndexPage() {
           <div className="mt-16 p-6 bg-white/[0.03] border border-white/[0.07] rounded-2xl">
             <h2 className="text-white font-semibold mb-2">Looking for role-specific questions?</h2>
             <p className="text-slate-400 text-sm mb-4">
-              We also have detailed Q&A guides for 20+ roles — software engineer, PM, data scientist, and more.
+              We also have detailed Q&A guides for 20+ roles, including software engineer, PM, data scientist, and more.
             </p>
             <Link
               href="/interview-questions"
@@ -164,7 +160,7 @@ export default function InterviewPrepIndexPage() {
               href={`${APP_URL}/sign-up`}
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
             >
-              Start practicing free — no credit card required
+              Start practicing free, no credit card required
             </a>
           </div>
         </main>

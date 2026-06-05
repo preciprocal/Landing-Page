@@ -3,10 +3,9 @@
 /**
  * app/about/page.tsx
  *
- * SEO improvements over original:
- *   • PersonJsonLd for founder — signals E-E-A-T (real human behind the product)
+ * SEO:
  *   • BreadcrumbJsonLd — helps Google understand site hierarchy
- *   • Founder section with name + role (crawlable, not just a face)
+ *   • AboutPage schema with accurate description
  *   • aria-labels on every section for accessibility + crawlability
  *   • Metadata lives in app/about/metadata.ts (separate file, "use client" constraint)
  */
@@ -26,22 +25,7 @@ import Footer from "@/components/Footer";
 import { APP_URL } from "@/lib/constants";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
-// Inline because this is a client component and we can't import server JsonLd helpers
 function AboutJsonLd() {
-  const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": "https://preciprocal.com/about#founder",
-    name: "Yash Harale",
-    jobTitle: "Founder",
-    worksFor: { "@id": "https://preciprocal.com/#organization" },
-    url: "https://preciprocal.com/about",
-    sameAs: [
-      "https://linkedin.com/company/preciprocal",
-      "https://twitter.com/preciprocal",
-    ],
-  };
-
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -56,9 +40,9 @@ function AboutJsonLd() {
     "@type": "AboutPage",
     "@id": "https://preciprocal.com/about#webpage",
     url: "https://preciprocal.com/about",
-    name: "About Preciprocal — Our Story, Mission & Values",
+    name: "About Preciprocal: Our Story, Mission & Values",
     description:
-      "Preciprocal started as one frustrated student's side project after 200+ job applications. Here's the story of why we built it, what we believe, and where we're going.",
+      "Preciprocal was built by international students who experienced the US job market firsthand and reverse-engineered what actually works. Here's why we built it, what we believe, and where we're going.",
     isPartOf: { "@id": "https://preciprocal.com/#website" },
     about: { "@id": "https://preciprocal.com/#organization" },
     inLanguage: "en-US",
@@ -66,7 +50,6 @@ function AboutJsonLd() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
     </>
@@ -105,28 +88,37 @@ const VALUES = [
 const MILESTONES = [
   {
     date: "Early 2024",
-    title: "The frustration starts",
+    title: "The reality check",
     description:
-      "Our founder applied to 200+ jobs across tech and finance, got ghosted by 80% of them, and couldn't figure out why. Resume looked good. Interviews felt fine. But nothing landed.",
+      "A group of international students, freshly arrived in the US, started applying for jobs with strong academic records and real skills. The results were humbling. Most applications disappeared. The unspoken rules of the American job market were nowhere in the textbooks.",
   },
   {
     date: "Mid 2024",
-    title: "The experiment",
+    title: "Reverse-engineering the system",
     description:
-      "Started building small AI scripts to score resumes against job descriptions, generate tailored cover letters, and simulate interview questions. Shared them with classmates — they actually worked.",
+      "Instead of guessing, we studied. How do ATS systems actually score resumes? What do US recruiters look for in the first 6 seconds? What do FAANG, consulting, and finance interviewers actually evaluate? We turned the answers into tools and shared them with classmates.",
   },
   {
     date: "Late 2024",
     title: "Preciprocal is born",
     description:
-      "Turned the scripts into a proper product. Named it Preciprocal — a nod to the reciprocal exchange between preparation and results. Built in public from day one.",
+      "The tools worked well enough that we turned them into a real product. Named it Preciprocal, a nod to the reciprocal relationship between preparation and results. Built in public from day one.",
   },
   {
-    date: "2025 →",
+    date: "2025 onwards",
     title: "Growing with real users",
     description:
-      "Real students using it, real feedback shaping it. Every feature on the roadmap comes from a conversation with a user who had a problem we hadn't solved yet.",
+      "Real students using it, real feedback shaping it. Every feature on the roadmap comes from a conversation with someone who had a problem we hadn't solved yet.",
   },
+];
+
+const TEAM_BACKGROUNDS = [
+  { code: "in", label: "India" },
+  { code: "ng", label: "Nigeria" },
+  { code: "br", label: "Brazil" },
+  { code: "cn", label: "China" },
+  { code: "mx", label: "Mexico" },
+  { code: "kr", label: "South Korea" },
 ];
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -140,11 +132,8 @@ export default function AboutPage() {
       <main className="relative overflow-hidden">
         <FloatingDots count={25} />
 
-        {/* ── Breadcrumb nav (crawlable) ── */}
-        <nav
-          aria-label="Breadcrumb"
-          className="max-w-3xl mx-auto px-6 pt-28 pb-0"
-        >
+        {/* Breadcrumb nav */}
+        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto px-6 pt-28 pb-0">
           <ol className="flex items-center gap-2 text-xs text-slate-500">
             <li>
               <Link href="/" className="hover:text-slate-300 transition-colors">
@@ -156,7 +145,7 @@ export default function AboutPage() {
           </ol>
         </nav>
 
-        {/* ── Hero ── */}
+        {/* Hero */}
         <section aria-label="About Preciprocal" className="relative pt-10 pb-20 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
@@ -168,98 +157,112 @@ export default function AboutPage() {
                 <span className="text-gradient">wish existed</span>
               </h1>
               <p className="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto">
-                Preciprocal started as a frustrated student&apos;s side project. It became
-                something bigger when we realized the frustration was universal.
+                Built by international students who experienced the US job market
+                firsthand and decided to reverse-engineer it instead of accepting it.
               </p>
             </RevealOnScroll>
           </div>
         </section>
 
-        {/* ── Origin story ── */}
+        {/* Origin story */}
         <section aria-label="Our origin story" className="relative py-16 px-6">
           <div className="max-w-3xl mx-auto">
             <GlowDivider />
             <div className="mt-16 space-y-6 text-slate-400 text-base leading-relaxed">
               <RevealOnScroll>
                 <p className="text-xl text-white font-medium leading-relaxed">
-                  The job search is broken — and everyone pretends it&apos;s not.
+                  Nobody teaches you how the US job market actually works.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={0.1}>
                 <p>
-                  You spend hours crafting a resume, write a cover letter for every
-                  application, and then wait. Most of the time you hear nothing.
-                  No feedback. No explanation. Just silence.
+                  We came from different countries: India, Nigeria, Brazil, China,
+                  and more, with strong degrees, real skills, and zero understanding
+                  of why our applications kept disappearing. The cultural context around
+                  networking, resume formatting, ATS systems, and interview expectations
+                  was invisible. Nobody told us the rules because everyone else already knew them.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={0.15}>
                 <p>
-                  Our founder went through this. 200+ applications. Automated rejections
-                  from companies that never even saw the resume. Interviews that went
-                  &quot;really well&quot; and never called back. The whole process felt like
-                  shouting into a void.
+                  Between us, we sent hundreds of applications. We watched classmates
+                  with less experience land roles faster, often because they knew someone
+                  or had grown up speaking the language of American hiring. We didn&apos;t
+                  resent it. We studied it.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={0.2}>
                 <p>
-                  So instead of accepting it, we started reverse-engineering it.
-                  What do ATS systems actually score? What do recruiters look at in the
-                  first 6 seconds? What questions do companies like Google, McKinsey, and
-                  Goldman actually ask — and how do they evaluate answers?
+                  What do ATS systems actually score? What do US recruiters look at in
+                  the first 6 seconds? What do Google, McKinsey, and Goldman actually
+                  ask in interviews, and how do they evaluate answers? We mapped all of
+                  it, built tools to address each gap, and tested them on ourselves first.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={0.25}>
                 <p>
-                  Preciprocal is the answer to all of that. Not a chatbot you paste
-                  your resume into. A purpose-built system with tools calibrated to
-                  how hiring actually works.
+                  Preciprocal is what came out of that. Not a generic chatbot. A
+                  purpose-built system designed by people who had to learn the hard way,
+                  so you don&apos;t have to.
                 </p>
               </RevealOnScroll>
             </div>
           </div>
         </section>
 
-        {/* ── Founder ── */}
-        <section aria-label="Founder" className="relative py-16 px-6">
+        {/* Who built it */}
+        <section aria-label="Who built Preciprocal" className="relative py-16 px-6">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll className="mb-10">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Who&apos;s behind it
               </h2>
+              <p className="text-slate-400 text-sm mt-3 leading-relaxed max-w-2xl">
+                A team of international students and recent graduates who went through
+                the US job search, figured out what actually works, and built the tools
+                they wish they&apos;d had on day one.
+              </p>
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
               <SpotlightCard
-                className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 p-7"
-                spotlightColor="rgba(99,102,241,0.05)"
+                className="rounded-xl border border-white/[0.12] bg-[#0d1428]/90 p-7"
+                spotlightColor="rgba(99,102,241,0.08)"
               >
-                <div className="flex items-start gap-5">
-                  {/* Avatar placeholder — swap src for a real photo */}
-                  <div
-                    className="w-14 h-14 rounded-full flex-shrink-0 flex items-center justify-center text-lg font-bold text-white"
-                    style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)" }}
-                    aria-label="Yash Harale"
-                  >
-                    YH
-                  </div>
-                  <div>
-                    {/* Name + role are crawlable text — important for E-E-A-T */}
-                    <p className="text-white font-bold text-[15px]">Yash Harale</p>
-                    <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
-                      Founder
-                    </p>
-                    <p className="text-slate-400 text-sm leading-relaxed">
-                      Applied to 200+ jobs, reverse-engineered why most failed, and built
-                      Preciprocal to give every student the same unfair advantage that
-                      expensive career coaches give to a lucky few.
-                    </p>
+                <p className="text-[11px] font-semibold text-indigo-400 uppercase tracking-widest mb-5">
+                  Where we come from
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {TEAM_BACKGROUNDS.map((b) => (
+                    <div
+                      key={b.label}
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/[0.15]"
+                    >
+                      <img
+                        src={`https://flagcdn.com/24x18/${b.code}.png`}
+                        srcSet={`https://flagcdn.com/48x36/${b.code}.png 2x`}
+                        width={20}
+                        height={15}
+                        alt={b.label}
+                        className="rounded-[2px] object-cover flex-shrink-0"
+                      />
+                      <span className="text-xs text-slate-200 font-medium">{b.label}</span>
+                    </div>
+                  ))}
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.08] border border-white/[0.15]">
+                    <span className="text-xs text-slate-300 font-medium">+ more</span>
                   </div>
                 </div>
+                <p className="text-slate-400 text-xs mt-5 leading-relaxed">
+                  Collectively spread across US universities, applying to jobs in tech,
+                  finance, consulting, and beyond. Every feature in Preciprocal traces
+                  back to a real gap one of us hit during our own job search.
+                </p>
               </SpotlightCard>
             </RevealOnScroll>
           </div>
         </section>
 
-        {/* ── Timeline ── */}
+        {/* Timeline */}
         <section aria-label="Company timeline" className="relative py-20 px-6">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll className="mb-12">
@@ -296,7 +299,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Values ── */}
+        {/* Values */}
         <section aria-label="Our values" className="relative py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <RevealOnScroll className="mb-12 text-center">
@@ -330,7 +333,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ── Mission statement ── */}
+        {/* Mission statement */}
         <section aria-label="Our mission" className="relative py-20 px-6">
           <div className="max-w-3xl mx-auto">
             <RevealOnScroll>
@@ -346,15 +349,15 @@ export default function AboutPage() {
                   regardless of where they went to school or who they know.&rdquo;
                 </p>
                 <p className="text-slate-400 text-sm">
-                  The students who land the best jobs often aren&apos;t the most qualified —
-                  they&apos;re the best prepared. We&apos;re here to fix that.
+                  The students who land the best jobs often aren&apos;t the most qualified.
+                  They&apos;re the best prepared. We&apos;re here to fix that.
                 </p>
               </SpotlightCard>
             </RevealOnScroll>
           </div>
         </section>
 
-        {/* ── CTA ── */}
+        {/* CTA */}
         <section aria-label="Contact and get started" className="relative py-20 px-6">
           <div className="max-w-xl mx-auto text-center">
             <RevealOnScroll>
@@ -363,7 +366,7 @@ export default function AboutPage() {
               </h2>
               <p className="text-slate-400 text-sm mb-8">
                 We&apos;re a small team and we actually read every email. Whether it&apos;s
-                feedback, a bug report, or just to say hi — reach out.
+                feedback, a bug report, or just to say hi, reach out.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <a

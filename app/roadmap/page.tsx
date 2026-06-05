@@ -19,8 +19,6 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 type Status = "shipped" | "in-progress" | "planned";
 
 interface RoadmapItem {
@@ -31,10 +29,7 @@ interface RoadmapItem {
   tag?: string;
 }
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
 const ITEMS: RoadmapItem[] = [
-  // ── Shipped ──
   {
     title: "Resume ATS Scorer",
     description:
@@ -46,7 +41,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "AI Mock Interviews (voice)",
     description:
-      "Multi-agent voice interview panel — HR screener, technical lead, hiring manager — with real-time follow-ups and a full debrief.",
+      "Multi-agent voice interview panel with HR screener, technical lead, and hiring manager, with real-time follow-ups and a full debrief.",
     status: "shipped",
     date: "Nov 2024",
     tag: "Interviews",
@@ -62,7 +57,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Recruiter Eye Simulation",
     description:
-      "Heatmap showing where an HR screener, technical lead, and hiring manager look on your resume — based on published eye-tracking research.",
+      "Heatmap showing where an HR screener, technical lead, and hiring manager look on your resume, based on published eye-tracking research.",
     status: "shipped",
     date: "Dec 2024",
     tag: "Resume",
@@ -115,22 +110,57 @@ const ITEMS: RoadmapItem[] = [
     date: "Mar 2025",
     tag: "Resume",
   },
-  // ── In progress ──
   {
     title: "Cold Outreach Generator",
     description:
       "Generate personalised cold emails and LinkedIn messages to recruiters and hiring managers, tailored to their company and role.",
-    status: "in-progress",
+    status: "shipped",
+    date: "Apr 2025",
     tag: "Outreach",
   },
   {
     title: "Contact Finder",
     description:
       "Find the name and email of the hiring manager or recruiter at a target company. Built for respectful, targeted outreach.",
-    status: "in-progress",
+    status: "shipped",
+    date: "Apr 2025",
     tag: "Outreach",
   },
-  // ── Planned ──
+  {
+    title: "Ghost Job Detector",
+    description:
+      "Before you spend an hour applying, know if the job is real. We cross-reference posting age, company hiring patterns, LinkedIn headcount changes, and recruiter activity to flag roles that are likely expired, fake, or already filled internally. 67% of candidates have suspected a posting was misleading. Now you'll know before you apply.",
+    status: "in-progress",
+    tag: "New Tool",
+  },
+  {
+    title: "Salary Intelligence",
+    description:
+      "See real, role-specific compensation ranges before you apply or negotiate. Pulls from live market data across levels, cities, and company sizes. No more going into an offer blind or anchoring too low because the job posting left the salary blank.",
+    status: "in-progress",
+    tag: "New Tool",
+  },
+  {
+    title: "Application ghosting tracker",
+    description:
+      "Automatically flags applications that have gone silent past the expected response window for that company, based on their known hiring pace. Tells you when to follow up, when to move on, and when a role has likely been filled so you stop waiting on jobs that are already gone.",
+    status: "planned",
+    tag: "Job Tracker",
+  },
+  {
+    title: "AI screening interview simulator",
+    description:
+      "Practice against the actual AI screening tools companies use, including HireVue-style video interviews with question prediction based on the role. Over 90% of employers now use automated screening. Most candidates have never practiced for it.",
+    status: "planned",
+    tag: "Interviews",
+  },
+  {
+    title: "Career pivot planner",
+    description:
+      "Switching industries or roles? Get a skills gap analysis between where you are and where you want to go, a step-by-step transition plan with realistic timelines, and resume positioning advice that makes your unrelated experience look like an asset instead of a liability.",
+    status: "planned",
+    tag: "New Tool",
+  },
   {
     title: "Mobile app (iOS & Android)",
     description:
@@ -141,7 +171,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Company-specific interview prep packs",
     description:
-      "Curated question banks, values frameworks, and interview formats for specific target companies — expanded beyond the current 40+.",
+      "Curated question banks, values frameworks, and interview formats for specific target companies, expanded beyond the current 40+.",
     status: "planned",
     tag: "Interviews",
   },
@@ -190,8 +220,6 @@ const STATUS_CONFIG: Record<
 
 const ALL_STATUSES: Status[] = ["shipped", "in-progress", "planned"];
 
-// ─── Sub-component ────────────────────────────────────────────────────────────
-
 function StatusBadge({ status }: { status: Status }) {
   const cfg = STATUS_CONFIG[status];
   const Icon = cfg.icon;
@@ -204,8 +232,6 @@ function StatusBadge({ status }: { status: Status }) {
     </span>
   );
 }
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function RoadmapPage() {
   const [activeFilter, setActiveFilter] = useState<Status | "all">("all");
@@ -224,7 +250,7 @@ export default function RoadmapPage() {
       <main className="relative overflow-hidden">
         <FloatingDots count={20} />
 
-        {/* ── Hero ── */}
+        {/* Hero */}
         <section className="relative pt-32 pb-16 px-6">
           <div className="max-w-3xl mx-auto text-center">
             <RevealOnScroll>
@@ -233,12 +259,12 @@ export default function RoadmapPage() {
                 Updated as we ship
               </div>
               <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                Roadmap &{" "}
+                Roadmap &amp;{" "}
                 <span className="text-gradient">Changelog</span>
               </h1>
               <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                Everything we've shipped, what's being built right now, and what's
-                coming next. No vaporware — if it's here, it's real.
+                Everything we&apos;ve shipped, what&apos;s being built right now, and what&apos;s
+                coming next. No vaporware. If it&apos;s here, it&apos;s real.
               </p>
             </RevealOnScroll>
 
@@ -264,7 +290,7 @@ export default function RoadmapPage() {
           </div>
         </section>
 
-        {/* ── Filter tabs ── */}
+        {/* Filter tabs */}
         <section className="relative px-6 pb-8">
           <div className="max-w-3xl mx-auto">
             <GlowDivider />
@@ -286,7 +312,7 @@ export default function RoadmapPage() {
           </div>
         </section>
 
-        {/* ── Items list ── */}
+        {/* Items list */}
         <section className="relative pb-24 px-6">
           <div className="max-w-3xl mx-auto">
             <AnimatePresence mode="popLayout">
@@ -330,7 +356,7 @@ export default function RoadmapPage() {
           </div>
         </section>
 
-        {/* ── Suggest a feature ── */}
+        {/* Suggest a feature */}
         <section className="relative pb-24 px-6">
           <div className="max-w-2xl mx-auto">
             <RevealOnScroll>
@@ -343,7 +369,7 @@ export default function RoadmapPage() {
                 </h2>
                 <p className="text-slate-400 text-sm mb-6">
                   Every item on this roadmap started as a user request. If you want
-                  something built, tell us — we actually listen.
+                  something built, tell us. We actually listen.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <a
@@ -356,7 +382,7 @@ export default function RoadmapPage() {
                     href={`${APP_URL}/sign-up`}
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
                   >
-                    Try what's live now <ArrowRight className="w-4 h-4" />
+                    Try what&apos;s live now <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </SpotlightCard>

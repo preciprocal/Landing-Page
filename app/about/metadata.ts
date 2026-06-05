@@ -8,32 +8,34 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Preciprocal — Our Story, Mission & Values",
+  title: "About Preciprocal: Built by International Students Who Cracked the US Job Market",
   description:
-    "Preciprocal started as one frustrated student's side project after 200+ job applications. Here's the story of why we built it, what we believe, and where we're going.",
+    "Preciprocal was built by international students who experienced the US job market firsthand and reverse-engineered what actually works. Our story, mission, and values.",
   keywords: [
     "about preciprocal",
     "preciprocal story",
     "AI job search tool",
     "career prep platform mission",
+    "international students job search",
     "who built preciprocal",
-    "preciprocal founder",
+    "preciprocal team",
+    "job search for international students",
   ],
   alternates: {
     canonical: "https://preciprocal.com/about",
   },
   openGraph: {
-    title: "About Preciprocal — Our Story & Mission",
+    title: "About Preciprocal: Our Story & Mission",
     description:
-      "We built the tool we wish existed. One frustrated student, 200+ rejections, and a mission to make expert-level career prep accessible to everyone.",
+      "Built by international students who navigated the US job market the hard way and reverse-engineered what actually works. Here is why we built Preciprocal.",
     url: "https://preciprocal.com/about",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Preciprocal — Our Story & Mission",
+    title: "About Preciprocal: Our Story & Mission",
     description:
-      "We built the tool we wish existed. One frustrated student, 200+ rejections, and a mission to make expert-level career prep accessible to everyone.",
+      "Built by international students who navigated the US job market the hard way and reverse-engineered what actually works.",
   },
 };

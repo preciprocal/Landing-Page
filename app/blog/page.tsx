@@ -13,10 +13,15 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Career Advice Blog — Interview Prep, Resume Tips & Job Search Strategy",
-  description: "Practical guides on acing interviews, writing resumes that pass ATS, negotiating offers, and landing jobs at top tech companies.",
+  title: "Career Advice Blog: Interview Prep, Resume Tips & Job Search Strategy 2026",
+  description: "Practical guides on acing interviews, writing resumes that pass ATS, negotiating offers, networking, visa sponsorship, and landing jobs at top companies. Updated for 2026.",
   alternates: { canonical: "https://preciprocal.com/blog" },
-  openGraph: { title: "Preciprocal Blog — Interview Prep & Career Advice", description: "Practical guides on interviews, resumes, job search strategy, and landing tech jobs.", url: "https://preciprocal.com/blog", type: "website" },
+  openGraph: {
+    title: "Preciprocal Blog: Interview Prep & Career Advice",
+    description: "Practical guides on interviews, resumes, job search strategy, visa sponsorship, and landing tech and finance jobs in 2026.",
+    url: "https://preciprocal.com/blog",
+    type: "website",
+  },
 };
 
 const CATEGORIES = [...new Set(BLOG_POSTS.map((p) => p.category))];
@@ -42,7 +47,7 @@ export default function BlogIndexPage() {
 
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 page-main">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -115,7 +120,7 @@ export default function BlogIndexPage() {
         {/* CTA */}
         <div className="mt-12 text-center">
           <a href={`${APP_URL}/sign-up`} style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#ffffff" }} className="inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl hover:opacity-90 transition-opacity">
-            Practice everything you&apos;ve read — free
+            Practice everything you&apos;ve read, free
           </a>
         </div>
       </main>

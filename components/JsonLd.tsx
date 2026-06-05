@@ -1,5 +1,17 @@
 /**
- * JsonLd.tsx, All structured data (schema.org) for Preciprocal.
+ * JsonLd.tsx — All structured data (schema.org) for Preciprocal.
+ *
+ * SEO changes applied (2026-06):
+ *  - SoftwareAppJsonLd: applicationCategory changed from "EducationalApplication"
+ *    to "BusinessApplication" — more accurate for a job-search tool and widens
+ *    rich-result eligibility on Google.
+ *  - WebSiteJsonLd: SearchAction removed. The potentialAction sitelinks searchbox
+ *    requires a working real-time search endpoint at the urlTemplate. Preciprocal
+ *    uses static programmatic pages, not a search endpoint, so the action is
+ *    invalid and was causing a structured-data warning in GSC.
+ *  - OrganizationJsonLd: sameAs array pruned to only live, verified profiles.
+ *    Dead sameAs URLs weaken entity trust. Uncomment each line once the profile
+ *    is live and publicly accessible.
  *
  * ⚠️  IMPORTANT: Do not add aggregateRating until you have a verified
  * review platform (e.g. G2, Trustpilot, Product Hunt) you can link to.
@@ -35,10 +47,15 @@ export function OrganizationJsonLd() {
     description:
       "AI-powered job search operating system with mock interviews, resume analysis, cover letter generation, study planning, and job tracking.",
     foundingDate: "2024",
+    // -----------------------------------------------------------------------
+    // sameAs: only include profiles that are live and publicly accessible.
+    // A 404 or private profile here damages entity trust with Google.
+    // Add each line back once the corresponding profile is confirmed live.
+    // -----------------------------------------------------------------------
     sameAs: [
-      "https://twitter.com/preciprocal",
-      "https://linkedin.com/company/preciprocal",
-      "https://github.com/preciprocal",
+      // "https://twitter.com/preciprocal",       // uncomment once live
+      // "https://linkedin.com/company/preciprocal", // uncomment once live
+      // "https://github.com/preciprocal",        // uncomment once live
       "https://www.producthunt.com/products/preciprocal",
     ],
     contactPoint: [
@@ -76,7 +93,11 @@ export function SoftwareAppJsonLd() {
     "@type": "SoftwareApplication",
     "@id": "https://preciprocal.com/#software",
     name: "Preciprocal",
-    applicationCategory: "EducationalApplication",
+    // Changed from "EducationalApplication" → "BusinessApplication".
+    // Preciprocal is a productivity/career tool, not a learning app.
+    // "BusinessApplication" is the correct schema.org category and
+    // improves rich-result eligibility for software apps on Google.
+    applicationCategory: "BusinessApplication",
     applicationSubCategory: "Career Preparation",
     operatingSystem: "Web",
     url: "https://preciprocal.com",
@@ -123,7 +144,7 @@ export function SoftwareAppJsonLd() {
         availability: "https://schema.org/InStock",
       },
     ],
-    // aggregateRating intentionally omitted, add once real reviews exist.
+    // aggregateRating intentionally omitted — add once real reviews exist.
     author: {
       "@id": "https://preciprocal.com/#organization",
     },
@@ -166,14 +187,10 @@ export function WebSiteJsonLd() {
     description:
       "AI-powered job search operating system: mock interviews, resume analysis, cover letters, study planner, job tracker.",
     publisher: { "@id": "https://preciprocal.com/#organization" },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: "https://preciprocal.com/interview-questions/{search_term_string}",
-      },
-      "query-input": "required name=search_term_string",
-    },
+    // SearchAction removed: potentialAction requires a live server-side search
+    // endpoint at the urlTemplate. Preciprocal uses static programmatic pages,
+    // not a real-time search API, so this was invalid and generating a GSC
+    // structured-data warning. Re-add only if a /search?q= endpoint is built.
   };
 
   return (

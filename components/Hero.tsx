@@ -31,13 +31,33 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8"
           >
             <SparkIcon className="text-indigo-300" />
-           <span className="text-[13px] font-medium text-indigo-300">
-  The job search is broken. We fixed your side of it.
-</span>
+            <span className="text-[13px] font-medium text-indigo-300">
+              The job search is broken. We fixed your side of it.
+            </span>
           </motion.div>
 
-          {/* Headline */}
+          {/*
+           * SEO H1 — keyword-bearing, screen-reader visible, visually subtle.
+           *
+           * WHY: Google weights the <h1> heavily as a page relevance signal.
+           * The emotional headline below ("Stop applying into the void") is
+           * great copy but contains zero target keywords. This H1 gives Google
+           * the keyword anchor ("AI job search platform", "mock interviews",
+           * "resume analysis") while staying visually unobtrusive above the
+           * emotional headline. Screen readers read it first, which is correct.
+           *
+           * Do NOT remove or move this below the emotional headline — order
+           * in the DOM matters for crawlers and screen readers alike.
+           */}
           <motion.h1
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
+            className="text-[13px] sm:text-sm font-semibold tracking-widest uppercase text-indigo-400/80 mb-3 px-2 sm:px-0"
+          >
+            AI Job Search Platform: Mock Interviews, Resume Analysis &amp; Job Tracker
+          </motion.h1>
+
+          {/* Emotional headline — visual hero, intentionally NOT the H1 */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-8 px-2 sm:px-0"
           >
@@ -50,7 +70,7 @@ export default function Hero() {
                 className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-extrabold"
               />
             </span>
-          </motion.h1>
+          </motion.p>
 
           {/* Sub-copy */}
           <motion.p

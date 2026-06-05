@@ -5,12 +5,6 @@
  *
  * Full FAQ page — all categories, search, structured data.
  * The landing page only shows 6 FAQs; this page shows all of them.
- *
- * SEO value:
- *   • FAQPage JSON-LD → answers expand directly in Google SERPs
- *   • Unique canonical URL (/faq)
- *   • Internal links back to the homepage and feature sections
- *   • Full question text is crawlable (no JS-gating of answers)
  */
 
 import { useState, useMemo, useCallback } from "react";
@@ -28,11 +22,6 @@ import {
 import { FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-// ─── Metadata is exported from a separate server component file ───────────────
-// Because this file is "use client", metadata lives in app/faq/metadata.ts
-// (Next.js 15 pattern). If you're on an older pattern, remove "use client"
-// and make the component async with a separate client child for interactions.
 
 function FAQItem({
   faq,
@@ -132,13 +121,11 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-[#050810]">
-      {/* JSON-LD — crawlable even in client component via dangerouslySetInnerHTML */}
       <FAQJsonLd />
-
       <FloatingDots count={20} />
       <Navbar />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 page-main">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-10 pb-16">
         {/* Back link */}
         <Link
           href="/"
@@ -165,7 +152,7 @@ export default function FAQPage() {
             >
               Email support
             </a>{" "}
-            — we respond within 24 hours.
+            and we respond within 24 hours.
           </p>
         </RevealOnScroll>
 
@@ -227,7 +214,7 @@ export default function FAQPage() {
         {/* FAQ items */}
         {filtered.length > 0 ? (
           <StaggerChildren className="space-y-3">
-            {filtered.map((faq, i) => (
+            {filtered.map((faq) => (
               <StaggerItem key={faq.id}>
                 <FAQItem
                   faq={faq}
@@ -275,7 +262,7 @@ export default function FAQPage() {
             href="https://app.preciprocal.com/sign-up"
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Start preparing free — no credit card required
+            Start preparing free, no credit card required
           </a>
         </div>
       </div>

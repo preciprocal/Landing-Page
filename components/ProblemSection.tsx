@@ -33,7 +33,7 @@ const RecruiterTooltip = () => (
     <p className="text-xs font-bold text-white mb-1">The 6-second resume scan</p>
     <p className="text-[11px] text-neutral-400 leading-relaxed">
       Eye-tracking studies show recruiters spend an average of 6–7 seconds on
-      initial resume review — focusing on job title, company, dates, and education.
+      initial resume review, focusing on job title, company, dates, and education.
       Everything else is noise unless it jumps out immediately.
     </p>
     <p className="text-[10px] text-indigo-400 mt-2">Source: TheLadders eye-tracking study</p>
@@ -45,7 +45,7 @@ const NervesTooltip = () => (
     <p className="text-xs font-bold text-white mb-1">Interview anxiety is real</p>
     <p className="text-[11px] text-neutral-400 leading-relaxed">
       Studies find that nearly half of candidates underperform in interviews due to
-      anxiety — not lack of knowledge. Mock practice is the single most effective
+      anxiety, not lack of knowledge. Mock practice is the single most effective
       way to rewire that response before it counts.
     </p>
   </div>
