@@ -1,25 +1,8 @@
 "use client";
 
-/**
- * app/blog/[slug]/page.tsx  — Blog article layout
- *
- * Drop this into your Next.js app at app/blog/[slug]/page.tsx
- * Replace the static `article` object with your actual CMS/MDX data source.
- *
- * Fixes from screenshot:
- *  - Proper h1/h2/h3 hierarchy (no raw ## showing)
- *  - Normal font-weight body text (not all-bold)
- *  - Prose typography with comfortable line-height & measure
- *  - Clean sidebar with sticky positioning
- *  - Consistent spacing between sections
- *  - Highlighted inline links (indigo) not plain text
- */
-
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import StickyBanner from "@/components/StickyBanner";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface RelatedPost {
   category: string;
@@ -27,8 +10,6 @@ interface RelatedPost {
   href: string;
   readTime: string;
 }
-
-// ─── Static demo data (replace with your CMS/MDX fetch) ──────────────────────
 
 const relatedPosts: RelatedPost[] = [
   {
@@ -57,8 +38,6 @@ const relatedPosts: RelatedPost[] = [
   },
 ];
 
-// ─── Sidebar CTA ──────────────────────────────────────────────────────────────
-
 function SidebarCTA() {
   return (
     <div className="rounded-2xl bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border border-indigo-500/20 p-6">
@@ -66,7 +45,7 @@ function SidebarCTA() {
         Practice what you read
       </h3>
       <p className="text-sm text-slate-400 leading-relaxed mb-5">
-        AI mock interviews, resume scoring, cover letters, and job tracking —
+        AI mock interviews, resume scoring, cover letters, and job tracking,
         all in one place. $9.99/mo.
       </p>
       <a
@@ -78,8 +57,6 @@ function SidebarCTA() {
     </div>
   );
 }
-
-// ─── Related posts sidebar ────────────────────────────────────────────────────
 
 function RelatedPosts() {
   return (
@@ -107,14 +84,9 @@ function RelatedPosts() {
   );
 }
 
-// ─── Article prose content ────────────────────────────────────────────────────
-// In a real app this would come from MDX / your CMS.
-// Rendered here as structured JSX to show the correct hierarchy.
-
 function ArticleBody() {
   return (
     <div className="prose-article">
-      {/* ── Lead paragraph ── */}
       <p className="lead">
         An <strong>Applicant Tracking System (ATS)</strong> is software that
         companies use to receive, sort, and filter job applications before a
@@ -123,7 +95,7 @@ function ArticleBody() {
         studies suggest that{" "}
         <strong>75% of resumes are rejected before a human reviews them</strong>
         . If your resume doesn&apos;t pass the automated screen, it doesn&apos;t
-        matter how qualified you are — your application simply disappears.
+        matter how qualified you are. Your application simply disappears.
       </p>
 
       <p>
@@ -135,15 +107,14 @@ function ArticleBody() {
         apply across all of them.
       </p>
 
-      {/* ── Section 1 ── */}
       <h2>Why well-written resumes still fail ATS</h2>
 
       <p>
         The most counterintuitive truth about ATS: a beautifully designed resume
         often scores <em>lower</em> than a plain, boring one. Multi-column
         layouts, tables, text boxes, graphics, headers and footers, and custom
-        fonts all confuse ATS parsers. The system reads your resume as raw text
-        — if that text is scrambled by formatting, your qualifications never
+        fonts all confuse ATS parsers. The system reads your resume as raw text.
+        If that text is scrambled by formatting, your qualifications never
         register.
       </p>
 
@@ -151,35 +122,34 @@ function ArticleBody() {
 
       <ol>
         <li>
-          <strong>Missing keywords</strong> — ATS systems match your resume
+          <strong>Missing keywords.</strong> ATS systems match your resume
           against the job description. If you say &quot;team lead&quot; and the
           job description says &quot;team leadership,&quot; you may not match.
           Mirror the exact language from the posting.
         </li>
         <li>
-          <strong>Non-standard section headers</strong> — &quot;Professional
+          <strong>Non-standard section headers.</strong> &quot;Professional
           History&quot; or &quot;Where I&apos;ve Worked&quot; confuse parsers.
           Use <em>Work Experience</em>, <em>Education</em>, <em>Skills</em>, and{" "}
           <em>Certifications</em>.
         </li>
         <li>
-          <strong>Text in headers/footers</strong> — Most ATS systems cannot
+          <strong>Text in headers/footers.</strong> Most ATS systems cannot
           parse content outside the main document body. Your name and contact
           info in a header may be completely invisible.
         </li>
         <li>
-          <strong>Tables and text boxes</strong> — These render as blank space
-          or get skipped entirely. Anything inside them — skills, achievements,
-          contact details — vanishes.
+          <strong>Tables and text boxes.</strong> These render as blank space
+          or get skipped entirely. Anything inside them, skills, achievements,
+          contact details, vanishes.
         </li>
         <li>
-          <strong>Fancy fonts and graphics</strong> — Logos, profile photos,
+          <strong>Fancy fonts and graphics.</strong> Logos, profile photos,
           icons, and decorative elements are either ignored or cause parsing
           errors that corrupt surrounding text.
         </li>
       </ol>
 
-      {/* ── Section 2 ── */}
       <h2>How ATS scoring works</h2>
 
       <p>
@@ -190,9 +160,9 @@ function ArticleBody() {
       </p>
 
       <p>
-        A score above roughly 70–80% typically moves a candidate to the &quot;to
+        A score above roughly 70 to 80% typically moves a candidate to the &quot;to
         review&quot; pile. Below that threshold, the application is archived
-        automatically — no human ever opens it.
+        automatically and no human ever opens it.
       </p>
 
       <h3>What signals boost your score</h3>
@@ -201,11 +171,10 @@ function ArticleBody() {
         <li>Exact-match job title in your most recent role</li>
         <li>Skills section with verbatim keywords from the posting</li>
         <li>Quantified achievements (&quot;reduced load time by 40%&quot;)</li>
-        <li>Standard date formats (Jan 2023 – Present)</li>
+        <li>Standard date formats (Jan 2023 to Present)</li>
         <li>Clean, single-column layout saved as a .docx or plain PDF</li>
       </ul>
 
-      {/* ── Section 3 ── */}
       <h2>How to format your resume for ATS in 2026</h2>
 
       <p>
@@ -217,14 +186,14 @@ function ArticleBody() {
       <p>
         Submit a <strong>.docx</strong> whenever the application allows it.
         .docx files parse more reliably than PDFs across all major ATS platforms.
-        If you must use PDF, export from Word or Google Docs — never from Canva,
+        If you must use PDF, export from Word or Google Docs, never from Canva,
         Figma, or a design tool.
       </p>
 
       <h3>Layout</h3>
       <p>
         Use a <strong>single-column layout</strong> with standard margins
-        (0.5–1 in). Avoid columns, tables, and text boxes entirely. Your contact
+        (0.5 to 1 in). Avoid columns, tables, and text boxes entirely. Your contact
         information should sit in the document body, not in a header or footer.
       </p>
 
@@ -234,11 +203,10 @@ function ArticleBody() {
         <strong>
           Work Experience · Education · Skills · Certifications · Projects
         </strong>
-        . Avoid creative alternatives — no matter how clever, they confuse
+        . Avoid creative alternatives. No matter how clever, they confuse
         parsers.
       </p>
 
-      {/* ── Callout ── */}
       <div className="callout">
         <p className="callout-title">💡 Pro tip</p>
         <p>
@@ -251,12 +219,11 @@ function ArticleBody() {
         </p>
       </div>
 
-      {/* ── Section 4 ── */}
       <h2>ATS keyword strategy: doing it right</h2>
 
       <p>
-        Keyword stuffing — pasting the job description in white text at the
-        bottom of your resume — used to work. It doesn&apos;t anymore. Modern ATS
+        Keyword stuffing, pasting the job description in white text at the
+        bottom of your resume, used to work. It doesn&apos;t anymore. Modern ATS
         platforms use NLP to detect it, and recruiters who do see your resume
         will immediately disqualify you.
       </p>
@@ -269,7 +236,7 @@ function ArticleBody() {
 
       <blockquote>
         Led cross-functional collaboration between engineering, design, and
-        product to ship a redesigned checkout flow — reducing cart abandonment
+        product to ship a redesigned checkout flow, reducing cart abandonment
         by 18%.
       </blockquote>
 
@@ -278,7 +245,6 @@ function ArticleBody() {
         impact, and reads naturally to a human recruiter.
       </p>
 
-      {/* ── Summary table ── */}
       <h2>Quick-reference checklist</h2>
 
       <div className="checklist">
@@ -302,35 +268,23 @@ function ArticleBody() {
   );
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-
 export default function BlogArticlePage() {
   return (
     <>
-      {/* ── Inline styles ── */}
       <style>{`
-        /* ── Prose article typography ───────────────────────────────────── */
         .prose-article {
-          color: #cbd5e1;          /* slate-300 */
+          color: #cbd5e1;
           font-size: 1rem;
           line-height: 1.8;
           font-weight: 400;
         }
-
-        /* Paragraphs */
-        .prose-article p {
-          margin: 0 0 1.25rem;
-        }
-
-        /* Lead paragraph */
+        .prose-article p { margin: 0 0 1.25rem; }
         .prose-article .lead {
           font-size: 1.125rem;
           line-height: 1.75;
           color: #e2e8f0;
           margin-bottom: 1.75rem;
         }
-
-        /* Headings */
         .prose-article h2 {
           font-size: 1.5rem;
           font-weight: 700;
@@ -347,21 +301,13 @@ export default function BlogArticlePage() {
           letter-spacing: -0.01em;
           line-height: 1.4;
         }
-
-        /* Lists */
         .prose-article ul,
         .prose-article ol {
           padding-left: 1.5rem;
           margin: 0 0 1.25rem;
         }
-        .prose-article li {
-          margin-bottom: 0.5rem;
-        }
-        .prose-article li strong {
-          color: #e2e8f0;
-        }
-
-        /* Inline elements */
+        .prose-article li { margin-bottom: 0.5rem; }
+        .prose-article li strong { color: #e2e8f0; }
         .prose-article strong { color: #e2e8f0; }
         .prose-article em { font-style: italic; }
         .prose-article .link {
@@ -372,8 +318,6 @@ export default function BlogArticlePage() {
           transition: color 150ms;
         }
         .prose-article .link:hover { color: #a5b4fc; }
-
-        /* Blockquote */
         .prose-article blockquote {
           border-left: 3px solid #6366f1;
           background: rgba(99,102,241,0.07);
@@ -385,8 +329,6 @@ export default function BlogArticlePage() {
           font-size: 0.95rem;
           line-height: 1.7;
         }
-
-        /* Callout */
         .prose-article .callout {
           background: rgba(99,102,241,0.08);
           border: 1px solid rgba(99,102,241,0.2);
@@ -401,8 +343,6 @@ export default function BlogArticlePage() {
           font-size: 0.875rem;
         }
         .prose-article .callout p:last-child { margin-bottom: 0; }
-
-        /* Checklist */
         .prose-article .checklist {
           background: rgba(255,255,255,0.02);
           border: 1px solid rgba(255,255,255,0.06);
@@ -426,8 +366,6 @@ export default function BlogArticlePage() {
           flex-shrink: 0;
           margin-top: 1px;
         }
-
-        /* Responsive sidebar */
         @media (max-width: 1024px) {
           .article-sidebar { display: none; }
         }
@@ -438,11 +376,10 @@ export default function BlogArticlePage() {
 
       <div
         style={{ background: "#050810", minHeight: "100vh" }}
-        className="pt-[72px]" /* clears the floating navbar */
+        className="pt-[72px]"
       >
         <div className="max-w-[1200px] mx-auto px-6 pt-8 pb-16">
 
-          {/* ── Breadcrumb (full width, above the two-column split) ── */}
           <nav className="flex items-center gap-1.5 text-xs text-slate-500 mb-8">
             <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
             <span>/</span>
@@ -453,10 +390,8 @@ export default function BlogArticlePage() {
 
           <div className="flex gap-14 items-start">
 
-            {/* ── Main column ──────────────────────────────────────────── */}
             <article className="flex-1 min-w-0">
 
-              {/* Category + read time */}
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full">
                   Resume
@@ -466,12 +401,10 @@ export default function BlogArticlePage() {
                 <span className="text-xs text-slate-500">Updated May 2026</span>
               </div>
 
-              {/* Title */}
               <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight mb-5">
                 What is ATS and Why Does It Matter in 2026?
               </h1>
 
-              {/* Author row */}
               <div className="flex items-center gap-3 pb-8 border-b border-white/[0.06] mb-8">
                 <div className="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-xs font-bold text-indigo-300">
                   P
@@ -482,16 +415,14 @@ export default function BlogArticlePage() {
                 </div>
               </div>
 
-              {/* Article body */}
               <ArticleBody />
 
-              {/* Footer CTA */}
               <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-indigo-600/15 to-purple-600/15 border border-indigo-500/20 text-center">
                 <p className="text-lg font-semibold text-white mb-2">
                   Ready to beat the ATS?
                 </p>
                 <p className="text-sm text-slate-400 mb-5 max-w-sm mx-auto">
-                  Score your resume against any job description in 60 seconds —
+                  Score your resume against any job description in 60 seconds,
                   free, no account needed.
                 </p>
                 <a
@@ -503,7 +434,6 @@ export default function BlogArticlePage() {
               </div>
             </article>
 
-            {/* ── Sidebar ──────────────────────────────────────────────── */}
             <aside
               className="article-sidebar w-[280px] flex-shrink-0 flex flex-col gap-8"
               style={{ position: "sticky", top: "104px" }}
