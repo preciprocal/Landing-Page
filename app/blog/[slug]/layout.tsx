@@ -1,9 +1,7 @@
 /**
  * app/blog/[slug]/layout.tsx
  *
- * This layout lives alongside the "use client" page.tsx.
- * Next.js allows generateMetadata in a layout even when the page is a client component.
- * This is the cleanest way to add per-post SEO metadata without refactoring page.tsx.
+ * Next.js 15: params is now a Promise — must be awaited in generateMetadata.
  */
 
 import type { Metadata } from "next";
@@ -13,17 +11,19 @@ import { BLOG_SEO } from "@/lib/blogSeo";
 const SITE_URL = "https://preciprocal.com";
 
 interface Props {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
   children: React.ReactNode;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
     return {
       title: "Blog | Preciprocal",
-      description: "Career advice, job search strategy, interview prep, and visa guides for international professionals.",
+      description:
+        "Career advice, job search strategy, interview prep, and visa guides for international professionals.",
     };
   }
 
@@ -64,6 +64,6 @@ export async function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
 }
 
-export default function BlogSlugLayout({ children }: Props) {
+export default function BlogSlugLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
