@@ -1,13 +1,9 @@
-/**
- * app/free-ats-checker/metadata.ts
- */
-
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Free ATS Resume Checker: Score Your Resume Against Any Job in 60 Seconds",
   description:
-    "Upload your resume and a job description to get an instant ATS compatibility score. See exactly which keywords are missing, what is hurting your score, and get line-by-line fixes. Free, no sign-up required.",
+    "Upload your resume and a job description to get an instant ATS score. See exactly which keywords are missing, what is hurting your score, and get line-by-line fixes. Free, no sign-up required.",
   keywords: [
     "free ATS checker",
     "ATS resume checker",
@@ -20,7 +16,10 @@ export const metadata: Metadata = {
     "applicant tracking system checker",
     "resume scanner free online",
     "Jobscan free alternative",
+    "Resume Worded free alternative",
     "resume keyword checker",
+    "ATS resume checker for students",
+    "ATS checker no signup",
   ],
   alternates: { canonical: "https://preciprocal.com/free-ats-checker" },
   openGraph: {
@@ -29,7 +28,7 @@ export const metadata: Metadata = {
       "See exactly how your resume scores against any job description. Find missing keywords and get fixes instantly. Free, no account needed.",
     url: "https://preciprocal.com/free-ats-checker",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

@@ -1,10 +1,3 @@
-/**
- * app/about/metadata.ts
- *
- * Metadata lives here because app/about/page.tsx is a "use client" component.
- * Next.js 15 automatically picks up metadata exports from route segment files.
- */
-
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,21 +13,21 @@ export const metadata: Metadata = {
     "who built preciprocal",
     "preciprocal team",
     "job search for international students",
+    "F1 student career platform",
+    "OPT job search tool",
   ],
-  alternates: {
-    canonical: "https://preciprocal.com/about",
-  },
+  alternates: { canonical: "https://preciprocal.com/about" },
   openGraph: {
-    title: "About Preciprocal: Our Story & Mission",
+    title: "About Preciprocal: Our Story and Mission",
     description:
       "Built by international students who navigated the US job market the hard way and reverse-engineered what actually works. Here is why we built Preciprocal.",
     url: "https://preciprocal.com/about",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Preciprocal: Our Story & Mission",
+    title: "About Preciprocal: Our Story and Mission",
     description:
       "Built by international students who navigated the US job market the hard way and reverse-engineered what actually works.",
   },

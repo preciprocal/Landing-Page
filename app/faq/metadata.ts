@@ -1,16 +1,9 @@
-/**
- * app/faq/metadata.ts
- *
- * Metadata lives here because app/faq/page.tsx is a "use client" component.
- * Next.js 15 automatically picks up metadata exports from route segment files.
- */
-
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ — Preciprocal: Pricing, Mock Interviews, Resume Analysis & More",
+  title: "FAQ: Pricing, Mock Interviews, Resume Analysis and More | Preciprocal",
   description:
-    "Answers to the most common questions about Preciprocal. Covers pricing and plans, how AI mock interviews work, resume ATS scoring, cover letter generation, data privacy, and cancellation.",
+    "Answers to the most common questions about Preciprocal. Pricing and plans, how AI mock interviews work, resume ATS scoring, cover letter generation, data privacy, and cancellation.",
   keywords: [
     "preciprocal FAQ",
     "preciprocal questions",
@@ -20,22 +13,22 @@ export const metadata: Metadata = {
     "resume ATS checker FAQ",
     "preciprocal free plan",
     "preciprocal refund policy",
+    "preciprocal cancel subscription",
+    "preciprocal data privacy",
   ],
-  alternates: {
-    canonical: "https://preciprocal.com/faq",
-  },
+  alternates: { canonical: "https://preciprocal.com/faq" },
   openGraph: {
     title: "Preciprocal FAQ: Everything You Need to Know",
     description:
-      "Answers to every question about Preciprocal — pricing, how the AI tools work, data privacy, refunds, and more.",
+      "Answers to every question about Preciprocal: pricing, how the AI tools work, data privacy, refunds, and more.",
     url: "https://preciprocal.com/faq",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Preciprocal FAQ: Everything You Need to Know",
     description:
-      "Answers to every question about Preciprocal — pricing, AI tools, data privacy, and more.",
+      "Answers to every question about Preciprocal: pricing, AI tools, data privacy, and more.",
   },
 };
