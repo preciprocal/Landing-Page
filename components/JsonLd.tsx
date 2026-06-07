@@ -12,6 +12,10 @@
  *  - OrganizationJsonLd: sameAs array pruned to only live, verified profiles.
  *    Dead sameAs URLs weaken entity trust. Uncomment each line once the profile
  *    is live and publicly accessible.
+ *  - OrganizationJsonLd: added alternateName, legalName, knowsAbout, image,
+ *    logo caption, and @id on logo — all used by Google for brand entity
+ *    disambiguation. These help Google recognise "Preciprocal" as a proper
+ *    brand name rather than a misspelling of "reciprocal".
  *
  * ⚠️  IMPORTANT: Do not add aggregateRating until you have a verified
  * review platform (e.g. G2, Trustpilot, Product Hunt) you can link to.
@@ -37,25 +41,45 @@ export function OrganizationJsonLd() {
     "@type": "Organization",
     "@id": "https://preciprocal.com/#organization",
     name: "Preciprocal",
+    // alternateName and legalName help Google understand "Preciprocal" is an
+    // intentional proper noun and not a misspelling of "reciprocal".
+    alternateName: ["Preciprocal AI", "Preciprocal Job Search"],
+    legalName: "Preciprocal",
     url: "https://preciprocal.com",
     logo: {
       "@type": "ImageObject",
+      "@id": "https://preciprocal.com/#logo",
       url: "https://preciprocal.com/logo.png",
+      contentUrl: "https://preciprocal.com/logo.png",
       width: 192,
       height: 192,
+      caption: "Preciprocal",
     },
+    // image at the top level reinforces the logo association
+    image: "https://preciprocal.com/logo.png",
     description:
-      "AI-powered job search operating system with mock interviews, resume analysis, cover letter generation, study planning, and job tracking.",
+      "Preciprocal is an AI-powered job search platform with mock interviews, resume analysis, cover letter generation, study planning, and job tracking. Built for students and early-career professionals.",
     foundingDate: "2024",
+    numberOfEmployees: { "@type": "QuantitativeValue", value: 5 },
+    // knowsAbout builds topical authority signals for the brand entity
+    knowsAbout: [
+      "Job search",
+      "Resume writing",
+      "Interview preparation",
+      "Cover letter generation",
+      "Career coaching",
+      "Applicant tracking systems",
+      "OPT and visa guidance for international students",
+    ],
     // -----------------------------------------------------------------------
     // sameAs: only include profiles that are live and publicly accessible.
     // A 404 or private profile here damages entity trust with Google.
     // Add each line back once the corresponding profile is confirmed live.
     // -----------------------------------------------------------------------
     sameAs: [
-      // "https://twitter.com/preciprocal",       // uncomment once live
+      // "https://twitter.com/preciprocal",          // uncomment once live
       // "https://linkedin.com/company/preciprocal", // uncomment once live
-      // "https://github.com/preciprocal",        // uncomment once live
+      // "https://github.com/preciprocal",           // uncomment once live
       "https://www.producthunt.com/products/preciprocal",
     ],
     contactPoint: [
@@ -183,6 +207,7 @@ export function WebSiteJsonLd() {
     "@type": "WebSite",
     "@id": "https://preciprocal.com/#website",
     name: "Preciprocal",
+    alternateName: "Preciprocal AI Job Search Platform",
     url: "https://preciprocal.com",
     description:
       "AI-powered job search operating system: mock interviews, resume analysis, cover letters, study planner, job tracker.",

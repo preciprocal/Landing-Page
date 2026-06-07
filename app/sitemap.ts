@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ALL_ROLES, ALL_COMPANIES, ALL_BLOG_SLUGS, SITE_URL } from "@/lib/constants";
+import { ALL_ROLES, ALL_COMPANIES, BLOG_POSTS, SITE_URL } from "@/lib/constants";
 
 /**
  * sitemap.ts
@@ -9,14 +9,29 @@ import { ALL_ROLES, ALL_COMPANIES, ALL_BLOG_SLUGS, SITE_URL } from "@/lib/consta
  *  - Added /contact page
  *  - Sharpened lastModified dates for all static pages
  *  - Updated blog priority to 0.7 (from 0.65) — new high-quality posts added
+ *  - Visa/immigration posts boosted to 0.82 (high commercial intent)
  *  - Removed /salary-guide, /cover-letter-examples, /resume-tips programmatic
  *    sections — these routes were in the previous sitemap but the pages do not
  *    exist, causing GSC 404 errors. Re-add once the pages are built.
  *  - Kept /alternatives comparison pages at high priority (buying-intent traffic)
+ *  - Switched blog section from ALL_BLOG_SLUGS to BLOG_POSTS so each post
+ *    uses its own updatedAt date rather than "now"
  *
  * DEPLOY NOTE: After deploying, go to Search Console -> Sitemaps and
  * re-submit https://preciprocal.com/sitemap.xml to trigger re-crawl.
  */
+
+const VISA_SLUGS = new Set([
+  "ead-card-f1-visa-opt-complete-guide-2026",
+  "how-to-stop-the-clock-f1-students-opt-2026",
+  "h1b-visa-complete-guide-2026",
+  "l1-visa-complete-guide-2026",
+  "o1-visa-extraordinary-ability-guide-2026",
+  "tn-visa-canada-mexico-professionals-2026",
+  "green-card-employment-based-pathways-2026",
+  "how-to-get-job-with-visa-sponsorship-2026",
+]);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
@@ -24,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Core ────────────────────────────────────────────────────────────────
     {
       url: SITE_URL,
-      lastModified: new Date("2026-06-01"),
+      lastModified: new Date("2026-06-06"),
       changeFrequency: "weekly",
       priority: 1.0,
     },
@@ -64,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${SITE_URL}/blog`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.82,
     },
     {
       url: `${SITE_URL}/faq`,
@@ -142,12 +157,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.78,
   }));
 
-  // Blog posts — updated priority now that content is stronger
-  const blogPages: MetadataRoute.Sitemap = ALL_BLOG_SLUGS.map((slug) => ({
-    url: `${SITE_URL}/blog/${slug}`,
-    lastModified: now,
+  // Blog posts — each post uses its own updatedAt for accurate lastModified.
+  // Visa / immigration posts boosted to 0.82 (high-intent audience).
+  const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${SITE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updatedAt ?? post.publishedAt),
     changeFrequency: "monthly" as const,
-    priority: 0.7,
+    priority: VISA_SLUGS.has(post.slug) ? 0.82 : 0.7,
   }));
 
   return [
