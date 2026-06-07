@@ -1,144 +1,329 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { APP_URL, STATS } from "@/lib/constants";
-import { ArrowRightIcon, SparkIcon } from "@/components/Icons";
-import { Spotlight } from "@/components/ui/SpotLight";
+import { APP_URL } from "@/lib/constants";
+import { ArrowRightIcon } from "@/components/Icons";
 import { FlipWords } from "@/components/ui/FlipWords";
-import { MovingBorder } from "@/components/ui/MovingBorder";
+import { SpotlightNew } from "@/components/ui/SpotlightNew";
 
-const FLIP_WORDS = ["dream job", "FAANG offer", "career break", "next chapter", "big promotion"];
+// Aurora canvas
+
+function Aurora() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+  const smoothMouse = useRef({ x: 0.5, y: 0.5 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const gl = canvas.getContext("webgl", { antialias: false, alpha: true });
+    if (!gl) return;
+
+    const onMouse = (e: MouseEvent) => {
+      mouseRef.current = {
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      };
+    };
+    window.addEventListener("mousemove", onMouse, { passive: true });
+
+    const vert = `
+      attribute vec2 a_pos;
+      void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+    `;
+
+    const frag = `
+      precision mediump float;
+      uniform float u_t;
+      uniform vec2  u_res;
+      uniform vec2  u_mouse;
+
+      #define PI 3.14159265359
+
+      float hash(vec2 p) {
+        return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+      }
+
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(
+          mix(hash(i), hash(i + vec2(1,0)), u.x),
+          mix(hash(i + vec2(0,1)), hash(i + vec2(1,1)), u.x),
+          u.y
+        );
+      }
+
+      float fbm(vec2 p) {
+        float v = 0.0;
+        float a = 0.5;
+        for (int i = 0; i < 5; i++) {
+          v += a * noise(p);
+          p  = p * 2.1 + vec2(1.7, 9.2);
+          a *= 0.5;
+        }
+        return v;
+      }
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_res;
+        uv.y = 1.0 - uv.y;
+
+        vec2 m = u_mouse * 0.15;
+        float t = u_t * 0.18;
+
+        vec2 q = vec2(fbm(uv + t + m), fbm(uv + vec2(1.0) + t * 0.9));
+        vec2 r = vec2(fbm(uv + q * 1.8 + vec2(1.7, 9.2) + t * 0.8 + m * 0.5),
+                      fbm(uv + q * 1.8 + vec2(8.3, 2.8) + t * 0.7));
+
+        float f = fbm(uv + r * 1.6);
+
+        vec3 c1 = vec3(0.02, 0.02, 0.06);
+        vec3 c2 = vec3(0.06, 0.05, 0.18);
+        vec3 c3 = vec3(0.14, 0.07, 0.28);
+        vec3 c4 = vec3(0.22, 0.05, 0.35);
+
+        vec3 col = mix(c1, c2, clamp(f * 2.0, 0.0, 1.0));
+        col = mix(col, c3, clamp(f * f * 3.5, 0.0, 1.0));
+        col = mix(col, c4, clamp(pow(f, 4.0) * 5.0, 0.0, 1.0));
+
+        vec2 vig = uv * 2.0 - 1.0;
+        float v = 1.0 - dot(vig * vec2(0.7, 0.5), vig * vec2(0.7, 0.5));
+        col *= v * 0.7;
+
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    const compile = (type: number, src: string) => {
+      const s = gl.createShader(type)!;
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      return s;
+    };
+
+    const prog = gl.createProgram()!;
+    gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert));
+    gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag));
+    gl.linkProgram(prog);
+    gl.useProgram(prog);
+
+    const buf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+
+    const aPos = gl.getAttribLocation(prog, "a_pos");
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const uT     = gl.getUniformLocation(prog, "u_t");
+    const uRes   = gl.getUniformLocation(prog, "u_res");
+    const uMouse = gl.getUniformLocation(prog, "u_mouse");
+
+    let raf: number;
+
+    const resize = () => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      canvas.width  = Math.floor(w * 0.6);
+      canvas.height = Math.floor(h * 0.6);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const draw = () => {
+      smoothMouse.current.x = lerp(smoothMouse.current.x, mouseRef.current.x, 0.03);
+      smoothMouse.current.y = lerp(smoothMouse.current.y, mouseRef.current.y, 0.03);
+
+      const t = (performance.now()) / 1000;
+      gl.uniform1f(uT, t);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform2f(uMouse, smoothMouse.current.x, smoothMouse.current.y);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("mousemove", onMouse);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="absolute inset-0 w-full h-full"
+      style={{ imageRendering: "auto" }}
+    />
+  );
+}
+
+// Hero
+
+const WORDS = ["dream job.", "FAANG offer.", "career break.", "next chapter.", "big promotion."];
 
 export default function Hero() {
   return (
-    <div className="relative overflow-x-hidden overflow-y-visible bg-[#050810] pt-28 pb-16 antialiased bg-grid">
+    <section className="relative bg-[#050810] overflow-hidden" style={{ minHeight: "100svh" }}>
 
-      {/* Spotlights — above everything, no mask killing them */}
-      <Spotlight fill="#6366f1" className="w-[900px] h-[900px] -top-40 -left-60 z-[2]" />
-      <Spotlight fill="#818cf8" className="w-[900px] h-[900px] -top-40 -right-60 z-[2]" />
+      {/* Full-bleed aurora */}
+      <Aurora />
 
-      {/* Subtle edge darkening — only kills the very corners, not the centre */}
-      <div className="pointer-events-none absolute inset-0 z-[1]" style={{
-        background: "radial-gradient(ellipse 80% 60% at 50% 0%, transparent 60%, #050810 100%)"
-      }} />
+      {/* Spotlight — violet, sweeping from top-left */}
+      <SpotlightNew
+        className="-top-40 -left-20 z-[2]"
+        fill="rgba(139,92,246,0.55)"
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-3xl mx-auto">
+      {/* Spotlight — fuchsia, sweeping from top-right (mirrored) */}
+      <SpotlightNew
+        className="-top-40 -right-20 z-[2] scale-x-[-1]"
+        fill="rgba(232,121,249,0.35)"
+      />
 
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 mb-8"
-          >
-            <SparkIcon className="text-indigo-300" />
-            <span className="text-[13px] font-medium text-indigo-300">
-              The job search is broken. We fixed your side of it.
-            </span>
-          </motion.div>
+      {/* Dark overlay */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none z-[3]"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 65% at 50% 45%, rgba(5,8,16,0.45) 0%, rgba(5,8,16,0.75) 60%, rgba(5,8,16,0.97) 100%)",
+        }}
+      />
 
-          {/*
-           * SEO H1 — keyword-bearing, screen-reader visible, visually subtle.
-           *
-           * WHY: Google weights the <h1> heavily as a page relevance signal.
-           * The emotional headline below ("Stop applying into the void") is
-           * great copy but contains zero target keywords. This H1 gives Google
-           * the keyword anchor ("AI job search platform", "mock interviews",
-           * "resume analysis") while staying visually unobtrusive above the
-           * emotional headline. Screen readers read it first, which is correct.
-           *
-           * Do NOT remove or move this below the emotional headline — order
-           * in the DOM matters for crawlers and screen readers alike.
-           */}
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}
-            className="text-[13px] sm:text-sm font-semibold tracking-widest uppercase text-indigo-400/80 mb-3 px-2 sm:px-0"
-          >
-            AI Job Search Platform: Mock Interviews, Resume Analysis &amp; Job Tracker
-          </motion.h1>
+      {/* Vertical rule accent */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[4]"
+        style={{
+          top: "calc(50% - 240px)",
+          width: "1px",
+          height: "80px",
+          background: "linear-gradient(to bottom, transparent, rgba(139,92,246,0.5), transparent)",
+        }}
+      />
 
-          {/* Emotional headline — visual hero, intentionally NOT the H1 */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.15] mb-8 px-2 sm:px-0"
-          >
-            Stop applying into the void.
-            <span className="block mt-2 text-slate-400 font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-[42px]">
-              Start landing your{" "}
-              <FlipWords
-                words={FLIP_WORDS}
-                duration={2500}
-                className="bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-400 bg-clip-text text-transparent font-extrabold"
-              />
-            </span>
-          </motion.p>
-
-          {/* Sub-copy */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto mb-8 leading-relaxed px-2 sm:px-0"
-          >
-            You&apos;re not unprepared, you&apos;re just not prepared yet. Preciprocal gives you AI mock interviews,
-            resume analysis, cover letters, study plans, and job tracking so you walk into every interview
-            knowing you belong there.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-3 justify-center items-center px-2 sm:px-0"
-          >
-            <MovingBorder
-              as="a"
-              href={`${APP_URL}/sign-up`}
-              duration={2800}
-              borderRadius="0.75rem"
-              containerClassName="w-full sm:w-auto"
-              borderClassName="bg-[radial-gradient(#818cf8_40%,#c084fc_60%,transparent_70%)]"
-              className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold text-[15px] flex items-center justify-center gap-2 group transition-shadow hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]"
-            >
-              Start Preparing Free
-              <ArrowRightIcon className="transition-transform group-hover:translate-x-1" />
-            </MovingBorder>
-
-            <a
-              href="#features"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-transparent text-slate-200 border border-white/[0.12] rounded-xl font-medium transition-all hover:bg-white/[0.05] hover:border-white/20 hover:-translate-y-0.5"
-            >
-              See All Features
-            </a>
-          </motion.div>
-
-          {/* Trust micro-copy */}
-          <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.7 }}
-            className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 mt-5 text-[12px] text-slate-500 px-2 sm:px-0"
-          >
-            {["No credit card required", "30-day money-back guarantee", "Cancel anytime"].map((txt) => (
-              <span key={txt} className="flex items-center gap-1.5">
-                <svg className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
-                {txt}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.0 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-14 max-w-[700px] mx-auto px-2 sm:px-0"
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-center text-center px-6"
+        style={{ minHeight: "100svh" }}
+      >
+        {/* Eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, letterSpacing: "0.3em" }}
+          animate={{ opacity: 1, letterSpacing: "0.2em" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="mb-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-400/70"
         >
-          {STATS.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
-                {stat.value}
-              </div>
-              <div className="text-[11px] sm:text-[12px] text-slate-500 mt-1 font-medium">{stat.label}</div>
-            </div>
-          ))}
+          AI Job Search Platform
+        </motion.p>
+
+        {/* Main headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="font-black tracking-[-0.03em] leading-[0.92] text-white select-none"
+          style={{ fontSize: "clamp(3.8rem, 10vw, 8.5rem)" }}
+        >
+          Stop applying
+          <br />
+          <span
+            className="relative inline-block"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #e879f9 65%, #a78bfa 100%)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "shimmer 5s ease-in-out infinite",
+            }}
+          >
+            into the void.
+          </span>
+        </motion.h1>
+
+        {/* Flip sub-headline */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 text-xl sm:text-2xl font-semibold text-slate-400"
+        >
+          Start landing your{" "}
+          <FlipWords
+            words={WORDS}
+            duration={2800}
+            className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent font-bold"
+          />
+        </motion.p>
+
+        {/* One-liner */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mt-5 text-[15px] text-slate-500 max-w-sm leading-relaxed font-light tracking-wide"
+        >
+          Mock interviews · Resume analysis · Cover letters · Job tracking
+        </motion.p>
+
+        {/* CTA row */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.62 }}
+          className="mt-11 flex flex-col sm:flex-row items-center gap-3"
+        >
+          <a
+            href={`${APP_URL}/sign-up`}
+            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-semibold text-white transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_50px_rgba(139,92,246,0.5)]"
+            style={{
+              background: "linear-gradient(135deg, #7c3aed, #a855f7, #7c3aed)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 4s ease infinite",
+            }}
+          >
+            Start Preparing Free
+            <ArrowRightIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+
+          <a
+            href="#features"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-medium text-slate-400 border border-white/10 transition-all duration-300 hover:text-white hover:border-white/25 hover:bg-white/5"
+          >
+            Explore features
+          </a>
         </motion.div>
+
+        {/* Trust */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-5 text-[11px] text-slate-600 tracking-wide"
+        >
+          No credit card · 30-day guarantee · Cancel anytime
+        </motion.p>
+
+
       </div>
-    </div>
+
+      {/* Shimmer keyframes */}
+      <style>{`
+        @keyframes shimmer {
+          0%, 100% { background-position: 0% 50%; }
+          50%       { background-position: 100% 50%; }
+        }
+      `}</style>
+    </section>
   );
 }

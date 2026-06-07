@@ -10,7 +10,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Search, ArrowLeft, Sparkles } from "lucide-react";
+import { ChevronDown, ArrowLeft, Sparkles } from "lucide-react";
 import { FAQS, FAQ_CATEGORIES, type FAQCategory, type FAQItem } from "@/lib/constants";
 import {
   RevealOnScroll,
@@ -22,6 +22,15 @@ import {
 import { FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PlaceholdersAndVanishInput } from "@/components/ui/PlaceholdersAndVanishInput";
+
+const searchPlaceholders = [
+  "How does resume analysis work?",
+  "Is Preciprocal free to use?",
+  "Can I track multiple job applications?",
+  "How does AI interview prep work?",
+  "What file formats are supported?",
+];
 
 function FAQItem({
   faq,
@@ -158,16 +167,11 @@ export default function FAQPage() {
 
         {/* Search */}
         <RevealOnScroll delay={0.1} className="mb-6">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
-            <input
-              type="search"
-              placeholder="Search questions…"
-              value={search}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500/40 focus:bg-white/[0.06] transition-all"
-            />
-          </div>
+          <PlaceholdersAndVanishInput
+            placeholders={searchPlaceholders}
+            onChange={(e) => handleSearchChange(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+          />
         </RevealOnScroll>
 
         {/* Category pills */}
