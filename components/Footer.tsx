@@ -12,20 +12,31 @@ const FOOTER_COLUMNS = [
   {
     title: "Product",
     links: [
-      { label: "Features",         href: "/#features" },
-      { label: "Pricing",          href: "/#pricing" },
-      { label: "Free ATS Checker", href: "/free-ats-checker" },
-      { label: "Chrome Extension", href: "/#features" },
-      { label: "Roadmap",          href: "/roadmap" },
+      { label: "Free ATS Checker",   href: "/free-ats-checker" },
+      { label: "Resume Tailoring",   href: "/resume-tailoring" },
+      { label: "LinkedIn Optimizer", href: "/linkedin-profile-optimizer" },
+      { label: "Cover Letters",      href: "/cover-letter-generator" },
+      { label: "Pricing",            href: "/pricing" },
+      { label: "Roadmap",            href: "/roadmap" },
+    ],
+  },
+  {
+    title: "Job Search",
+    links: [
+      { label: "Job Tracker",       href: "/job-application-tracker" },
+      { label: "Contact Finder",    href: "/recruiter-contact-finder" },
+      { label: "Cold Email Writer", href: "/cold-email-generator" },
+      { label: "Chrome Extension",  href: "/chrome-extension" },
     ],
   },
   {
     title: "Interview Prep",
     links: [
+      { label: "AI Mock Interview", href: "/ai-mock-interview" },
+      { label: "Study Planner",     href: "/interview-study-planner" },
+      { label: "Interview Debrief", href: "/interview-debrief" },
       { label: "All Roles",         href: "/interview-questions" },
       { label: "All Companies",     href: "/interview-prep" },
-      { label: "Software Engineer", href: "/interview-questions/software-engineer" },
-      { label: "Google Prep",       href: "/interview-prep/google" },
     ],
   },
   {
@@ -112,7 +123,7 @@ export default function Footer() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-12 mb-12"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-12 mb-12"
         >
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">

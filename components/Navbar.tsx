@@ -55,12 +55,30 @@ const PREP_LINKS = [
 
 const RESOURCES_GROUPS = [
   {
-    group: "Career Tools",
+    group: "Resume & Profile",
     items: [
-      { label: "Free ATS Checker",      href: "/free-ats-checker",         sub: "Score your resume in 60s" },
-      { label: "Cover Letter Generator",href: "/cover-letter-generator",   sub: "Tailored letters in seconds" },
-      { label: "Roadmap",               href: "/roadmap",                  sub: "What we have shipped and what is next" },
-      { label: "Pricing",               href: "/#pricing",                 sub: "Free plan available, no credit card" },
+      { label: "Free ATS Checker",       href: "/free-ats-checker",           sub: "Score your resume in 60s" },
+      { label: "Resume Tailoring",       href: "/resume-tailoring",           sub: "Match any job description" },
+      { label: "LinkedIn Optimizer",     href: "/linkedin-profile-optimizer", sub: "Get found by recruiters" },
+      { label: "Cover Letter Generator", href: "/cover-letter-generator",     sub: "Tailored letters in seconds" },
+    ],
+  },
+  {
+    group: "Interview & Outreach",
+    items: [
+      { label: "AI Mock Interview",      href: "/ai-mock-interview",          sub: "Voice practice with a real panel" },
+      { label: "Interview Study Planner",href: "/interview-study-planner",    sub: "A plan built to your date" },
+      { label: "Interview Debrief",      href: "/interview-debrief",          sub: "Learn from every interview" },
+      { label: "Cold Email Generator",   href: "/cold-email-generator",       sub: "Outreach that gets replies" },
+    ],
+  },
+  {
+    group: "Track & Apply",
+    items: [
+      { label: "Job Tracker",       href: "/job-application-tracker",  sub: "Every application in one place" },
+      { label: "Contact Finder",    href: "/recruiter-contact-finder", sub: "Find the right person to email" },
+      { label: "Chrome Extension",  href: "/chrome-extension",         sub: "Save any job in one click" },
+      { label: "Pricing",           href: "/pricing",                  sub: "Free plan available, no credit card" },
     ],
   },
   {

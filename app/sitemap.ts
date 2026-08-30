@@ -75,6 +75,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    // ── Tool landing pages ───────────────────────────────────────────────────
+    // One page per product surface. Previously 8 of the 11 tools had no page at
+    // all, so there was nothing for Google to rank against those keywords.
+    ...[
+      "linkedin-profile-optimizer",
+      "resume-tailoring",
+      "job-application-tracker",
+      "interview-study-planner",
+      "cold-email-generator",
+      "recruiter-contact-finder",
+      "interview-debrief",
+      "chrome-extension",
+    ].map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
+      lastModified: new Date("2026-08-30"),
+      changeFrequency: "monthly" as const,
+      priority: 0.88,
+    })),
     // ── Interview prep hubs ──────────────────────────────────────────────────
     {
       url: `${SITE_URL}/interview-questions`,
