@@ -10,9 +10,13 @@ import { ALL_ROLES, ALL_COMPANIES, BLOG_POSTS, SITE_URL } from "@/lib/constants"
  *  - Sharpened lastModified dates for all static pages
  *  - Updated blog priority to 0.7 (from 0.65) — new high-quality posts added
  *  - Visa/immigration posts boosted to 0.82 (high commercial intent)
- *  - Removed /salary-guide, /cover-letter-examples, /resume-tips programmatic
- *    sections — these routes were in the previous sitemap but the pages do not
- *    exist, causing GSC 404 errors. Re-add once the pages are built.
+ *  - RESTORED /salary-guide, /cover-letter-examples, /resume-tips programmatic
+ *    sections. These were dropped when the pages did not exist, but all three
+ *    have since been rebuilt and prerender 41 role pages each. Leaving them out
+ *    left 126 real pages with no sitemap entry and no inbound internal link,
+ *    which is what GSC reported as "Crawled - currently not indexed".
+ *  - Fixed /alternatives/resume-worded-alternative -> resumeworded-alternative.
+ *    The hyphenated URL has never existed; it was a sitemap-only 404.
  *  - Kept /alternatives comparison pages at high priority (buying-intent traffic)
  *  - Switched blog section from ALL_BLOG_SLUGS to BLOG_POSTS so each post
  *    uses its own updatedAt date rather than "now"
@@ -64,6 +68,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.9,
     },
+    {
+      // Self-canonical page that was missing from the sitemap entirely.
+      url: `${SITE_URL}/pricing`,
+      lastModified: new Date("2026-06-05"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     // ── Interview prep hubs ──────────────────────────────────────────────────
     {
       url: `${SITE_URL}/interview-questions`,
@@ -83,6 +94,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.82,
+    },
+    // ── Programmatic hubs ────────────────────────────────────────────────────
+    {
+      url: `${SITE_URL}/resume-tips`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/salary-guide`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/cover-letter-examples`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${SITE_URL}/faq`,
@@ -124,7 +154,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.78,
     },
     {
-      url: `${SITE_URL}/alternatives/resume-worded-alternative`,
+      url: `${SITE_URL}/alternatives/resumeworded-alternative`,
       lastModified: new Date("2026-05-08"),
       changeFrequency: "monthly",
       priority: 0.78,
@@ -160,6 +190,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.78,
   }));
 
+  // Programmatic role pages for the three rebuilt sections — 41 roles each.
+  // Each hub links to all of its children, so these are crawlable once the
+  // hub itself is reachable from the sitemap and the footer.
+  const programmaticPages: MetadataRoute.Sitemap = (
+    ["resume-tips", "salary-guide", "cover-letter-examples"] as const
+  ).flatMap((section) =>
+    ALL_ROLES.map((role) => ({
+      url: `${SITE_URL}/${section}/${role}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    }))
+  );
+
   // Blog posts — each post uses its own updatedAt for accurate lastModified.
   // Visa / immigration posts boosted to 0.82 (high-intent audience).
   const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
@@ -173,6 +217,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPages,
     ...rolePages,
     ...companyPages,
+    ...programmaticPages,
     ...blogPages,
   ];
 }

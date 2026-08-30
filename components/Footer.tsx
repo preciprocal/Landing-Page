@@ -29,11 +29,16 @@ const FOOTER_COLUMNS = [
     ],
   },
   {
+    // These three hubs each fan out to 41 role pages. Keep them linked here:
+    // without an inbound internal link they are orphan pages, and Google
+    // reported them as "Crawled - currently not indexed".
     title: "Resources",
     links: [
-      { label: "Blog",    href: "/blog" },
-      { label: "FAQ",     href: "/faq" },
-      { label: "Roadmap", href: "/roadmap" },
+      { label: "Blog",                  href: "/blog" },
+      { label: "Resume Tips",           href: "/resume-tips" },
+      { label: "Salary Guide",          href: "/salary-guide" },
+      { label: "Cover Letter Examples", href: "/cover-letter-examples" },
+      { label: "FAQ",                   href: "/faq" },
     ],
   },
   {

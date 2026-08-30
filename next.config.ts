@@ -17,26 +17,23 @@ const nextConfig: NextConfig = {
       // ------------------------------------------------------------------
       // Cover letter routes
       // ------------------------------------------------------------------
-      // Old /cover-letter slug (Google found a 404 here)
+      // Old /cover-letter slug (Google found a 404 here).
+      // This route genuinely does not exist, so the redirect stays.
       {
         source: "/cover-letter",
         destination: "/cover-letter-generator",
         permanent: true,
       },
-      // /cover-letter-examples/[slug] — this entire section was removed.
-      // Google crawled at least /cover-letter-examples/cybersecurity-analyst
-      // and found a redirect chain (GSC validation: Failed).
-      // Redirect the index and ALL slugs to cover-letter-generator.
-      {
-        source: "/cover-letter-examples",
-        destination: "/cover-letter-generator",
-        permanent: true,
-      },
-      {
-        source: "/cover-letter-examples/:slug",
-        destination: "/cover-letter-generator",
-        permanent: true,
-      },
+
+      // NOTE: /cover-letter-examples and /cover-letter-examples/:slug used to
+      // be redirected here, from a period when that section had been removed.
+      // The section was later rebuilt — app/cover-letter-examples/page.tsx and
+      // app/cover-letter-examples/[role]/page.tsx now prerender 42 real pages
+      // with their own canonicals and metadata. The redirects survived the
+      // rebuild and were intercepting every one of them, which is what GSC
+      // reported as "Page with redirect" (validation: Failed).
+      //
+      // Do not re-add a redirect for a path that has a page.tsx behind it.
     ];
   },
 };
