@@ -146,6 +146,41 @@ function renderMarkdown(content: string) {
       continue;
     }
 
+    // Table — header row, separator row (|---|---|), then body rows
+    if (line.startsWith("|") && i + 1 < lines.length && /^\|[\s:|-]+\|$/.test(lines[i + 1].trim())) {
+      const cells = (row: string) => row.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
+      const headers = cells(line);
+      i += 2;
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].startsWith("|")) {
+        rows.push(cells(lines[i]));
+        i++;
+      }
+      elements.push(
+        <div key={key++} className="overflow-x-auto my-6">
+          <table className="w-full text-sm border-collapse">
+            <thead>
+              <tr>
+                {headers.map((h, idx) => (
+                  <th key={idx} className="text-left font-semibold text-slate-200 px-3 py-2 border-b border-white/15">{parseInline(h)}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rIdx) => (
+                <tr key={rIdx}>
+                  {row.map((c, cIdx) => (
+                    <td key={cIdx} className="align-top px-3 py-2 border-b border-white/[0.06] text-slate-400">{parseInline(c)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+
     // Horizontal rule
     if (line.trim() === "---") {
       elements.push(<hr key={key++} className="border-white/10 my-6" />);

@@ -2262,6 +2262,468 @@ Preciprocal helps international professionals present their experience and achie
 
 Start free at app.preciprocal.com. No credit card required.`,
   },
+  {
+    slug: "us-visa-policy-updates-2026",
+    title: "New US Visa Updates (2026): Duration of Status Ends, the H-1B Fee Is Blocked, EAD Extensions Are Gone",
+    description: "Four rule changes reshaped US work and student visas in 2026. What actually changed, what is still in litigation, the dates that matter, and what each change means for your job search.",
+    category: "Visa & Immigration",
+    readTime: "13 min read",
+    publishedAt: "2026-08-30",
+    updatedAt: "2026-08-30",
+    featured: true,
+    content: `## Why this year is different
+
+Most years bring incremental immigration changes: a fee adjustment here, a form revision there. 2026 did not work that way. Four separate changes landed within twelve months, and together they alter how long international students can stay, how work permits are renewed, how the H-1B lottery picks winners, and how much it costs to bring someone in from abroad.
+
+This guide covers what changed, what is confirmed versus still being fought in court, and the specific dates you need on your calendar. It is a summary of public policy, not legal advice. Confirm anything that affects your own case with your DSO or an immigration attorney before you act on it.
+
+## Update 1: Duration of status ends on September 15, 2026
+
+This is the biggest structural change to student visas in decades.
+
+**What it was.** For decades, F and J nonimmigrants were admitted for "duration of status" (D/S). Your I-94 said D/S rather than a date. As long as you kept making normal progress in your program, your status kept up with you. Program extended by a semester? Your DSO issued a new I-20 and that was the end of it.
+
+**What it is now.** DHS published the final rule on July 17, 2026, and it takes effect September 15, 2026. New admissions get a fixed admit-until date on the I-94, tied to the program end date on the I-20, and capped at four years regardless of how long the program actually runs. When you need more time, you file with USCIS instead of handling it entirely through your school.
+
+**The mechanics that matter:**
+
+- New admissions are admitted until the program end date on the I-20, not to exceed four years, plus a departure grace period.
+- The departure grace period for F nonimmigrants admitted under the new fixed-date system is 30 days, down from the 60 days students have had for years.
+- To stay past your admit-until date, whether to finish a longer program, start a new one, or do OPT, you file Form I-539, Application to Extend/Change Nonimmigrant Status, with USCIS. The current fee is $420 online or $470 by mail.
+- Doctoral programs are the obvious pressure point. A five or six year PhD no longer fits inside a single admission period.
+
+**The transition provision, and why the date March 18, 2027 matters.**
+
+If you were properly maintaining F status and admitted for D/S before the effective date, you are not immediately converted to a fixed date. Under the transition rules, you remain authorized until the later of the program end date on your valid I-20, or the expiration of your EAD if you are on OPT or STEM OPT, capped at four years from the effective date, plus the applicable grace period.
+
+More importantly for anyone graduating soon: F-1 students who were admitted for D/S, are present in the US on the effective date, and who timely file Form I-765 for post-completion OPT or a STEM OPT extension **on or before March 18, 2027** do not need to file a separate I-539 extension of stay for that OPT period. File after that window and the extension of stay becomes a separate application, with its own fee and its own processing time.
+
+**Travel ends your transition treatment.** If you leave the US and re-enter after September 15, 2026, CBP issues a new I-94 with a fixed admit-until date based on your current program dates. You are then on the new system. Plan international travel around this deliberately, especially if you are mid-program with more than a year remaining.
+
+## Update 2: the 540-day automatic EAD extension is gone
+
+DHS issued an interim final rule on October 30, 2025 that ended automatic extensions of employment authorization for most renewal applicants. USCIS stopped granting them as of that date.
+
+**What the old rule did.** If you filed your EAD renewal on time, your existing card kept working for up to 540 days past its printed expiration date while USCIS processed the renewal. It was the safety net that kept hundreds of thousands of people employed through processing backlogs.
+
+**What happens now.** For most renewal categories, a timely-filed I-765 no longer extends anything. Your work authorization stops on the date printed on your card. If USCIS has not approved the renewal by then, you stop working, your employer must take you off payroll, and you resume only when the new card arrives.
+
+**Categories hit hardest:** H-4 spouses (C26), E and L-1 spouses (A17 and A18), pending asylum applicants (C08), pending adjustment of status applicants (C09), TPS holders (A12), VAWA self-petitioners (C31), and several others.
+
+**What did not change:** the 180-day automatic extension for STEM OPT is a separate regulation and remains in place. If you file your STEM OPT extension before your post-completion OPT EAD expires, your authorization continues for up to 180 days while the case is pending. F-1 students on OPT are not caught by the 540-day repeal, though they are affected by the duration of status rule above.
+
+The practical consequence is simple and harsh: file renewals at the earliest date your category allows, and treat your EAD expiration date as a hard employment cliff rather than a soft one.
+
+## Update 3: the wage-weighted H-1B lottery is now live
+
+DHS finalized the weighted selection rule effective February 27, 2026, and it governed the FY2027 registration season in March 2026. The purely random lottery is gone.
+
+**How selection works now.** Each registration receives entries based on the OEWS wage level that the offered salary meets or exceeds for that occupation and metro area:
+
+| Wage level | Lottery entries |
+|---|---|
+| Level IV | 4 |
+| Level III | 3 |
+| Level II | 2 |
+| Level I | 1 |
+
+Every wage level can still be selected. But a Level I offer now competes against Level IV offers that carry four times the weight.
+
+**What it means for candidates.** The salary an employer offers is no longer just a compensation question, it is a selection-odds question. An entry-level offer that lands at Level I materially reduces your chance of selection compared to the same role priced at Level III. If you are negotiating an offer with a sponsoring employer before a cap season, the wage level is a legitimate and important topic to raise. Ask which OEWS level the offer falls into for your occupation code and location.
+
+**Cap status.** The FY2027 cap filing deadline passed on June 30, 2026, and USCIS announced the cap was reached on July 17, 2026 with no second lottery. The next cap-subject registration period is expected in March 2027. If you need cap-subject H-1B sponsorship and were not selected this year, your realistic timeline is a March 2027 registration for an October 2027 start.
+
+## Update 4: the $100,000 H-1B fee has been struck down, for now
+
+Proclamation 10973 introduced a $100,000 payment tied to certain H-1B beneficiaries entering from abroad. It has been in litigation ever since, and the status has changed several times.
+
+**Where it stands as of late August 2026:**
+
+- On June 8, 2026, the US District Court for the District of Massachusetts ruled the fee unlawful, finding that the implementation exceeded executive authority and violated the Administrative Procedure Act.
+- A brief administrative stay reinstated the fee on June 12, 2026.
+- On July 24, 2026, the First Circuit denied the government's motion to stay the district court judgment, finding the government unlikely to succeed on appeal. The vacatur stands while the appeal proceeds.
+- The fee is not currently collectible. The merits appeal continues, and a separate case in Washington, DC that reached the opposite conclusion is still pending.
+- The proclamation itself was not vacated, only the policy implementing it, which leaves room for re-implementation on a different legal basis.
+- The 12-month restriction in Proclamation 10973 is scheduled to expire on September 20, 2026 unless it is extended, renewed, or reissued.
+
+**What it meant in practice.** The fee applied to beneficiaries entering from abroad, not to workers already in the US changing status. That distinction drove a lot of 2026 hiring behavior: employers strongly preferred candidates already in the US on F-1 OPT or another status over candidates who would need consular processing.
+
+**What to do with this.** Do not assume the issue is settled in either direction. If you are interviewing with a company that went quiet on sponsorship during the fee period, it is worth re-opening the conversation now that the fee is not collectible. If you are abroad and relying on the current status quo, watch the September 20 expiry and the appeal.
+
+## The dates that matter
+
+| Date | What happens |
+|---|---|
+| September 15, 2026 | Duration of status ends; fixed admission periods begin for new F and J admissions |
+| September 20, 2026 | Proclamation 10973's 12-month H-1B entry restriction is scheduled to expire unless extended |
+| March 18, 2027 | Last day D/S-admitted F-1 students can timely file I-765 for OPT or STEM OPT without a separate I-539 extension of stay |
+| March 2027 (expected) | FY2028 H-1B cap registration, under wage-weighted selection |
+
+## What this means if you are job searching right now
+
+**If you are an F-1 student graduating in the next year:** your OPT filing timing is now a status question, not just a work authorization question. File your I-765 as early as your program completion date allows, and get it in before March 18, 2027 if you are covered by the transition provision. Talk to your DSO this term, not the week before you graduate.
+
+**If you are on an EAD in a renewal-dependent category:** calendar your renewal filing at the earliest permitted date. With no automatic extension and I-765 processing running months, filing late now means unpaid time off work rather than a paperwork inconvenience.
+
+**If you need H-1B sponsorship:** the wage level in your offer affects your lottery odds. Target employers and roles where the offered salary clears Level II or higher for your occupation and metro. Ask about it directly during offer conversations.
+
+**If you are competing for sponsored roles:** employers spent 2026 in a defensive crouch on immigration cost and risk. The candidates who won sponsored offers were the ones who could explain their own status clearly and confidently, in one or two sentences, without making the recruiter do the research. That is a preparable skill.
+
+## How Preciprocal helps
+
+You cannot control USCIS timelines or federal rulemaking. You can control how prepared you are when a sponsoring employer finally calls back.
+
+Preciprocal's voice-based mock interviews let you practise the sponsorship conversation until it sounds routine rather than apologetic. The resume analysis shows your ATS score against each specific job description and tells you which keywords are missing. The cover letter generator addresses your work authorization status accurately and professionally instead of leaving a recruiter guessing. The job tracker keeps every application, follow-up, and immigration deadline in one place, so nothing gets lost in a six-month processing window.
+
+Start free at app.preciprocal.com. No credit card required.`,
+  },
+  {
+    slug: "ead-renewal-2026-automatic-extension-ended",
+    title: "EAD Renewal in 2026: The 540-Day Automatic Extension Is Gone (What to Do Now)",
+    description: "DHS ended automatic EAD extensions for most renewal categories. Here is exactly who is affected, how to time your I-765 filing, what to tell your employer, and what to do if your card expires while USCIS is still processing.",
+    category: "Visa & Immigration",
+    readTime: "12 min read",
+    publishedAt: "2026-08-30",
+    updatedAt: "2026-08-30",
+    content: `## The rule that quietly changed everything
+
+For years, EAD renewals had a safety net. File your Form I-765 renewal on time, and your expired card kept working, first for 180 days, later for up to 540 days, while USCIS processed the new one. Employers could keep you on payroll using your expired card plus your receipt notice. Processing delays were annoying, not catastrophic.
+
+DHS issued an interim final rule on October 30, 2025 that ended automatic extensions for most renewal applicants. USCIS stopped granting them as of that date. Applicants who filed renewals on or after October 30, 2025 generally do not receive an automatic extension unless a separate law or Federal Register notice authorises one for their specific category.
+
+The safety net is gone. Your work authorization now ends on the date printed on your card, full stop.
+
+This guide is a summary of public policy, not legal advice. Verify your own category and timeline with an immigration attorney.
+
+## Who is affected
+
+The repeal hits the categories that depended on it most:
+
+- **H-4 dependent spouses (C26)** of H-1B workers
+- **E and L-1 dependent spouses (A17 and A18)**
+- **Pending asylum applicants (C08)**
+- **Pending adjustment of status applicants (C09)**
+- **TPS holders (A12)**
+- **Withholding of removal recipients (A10)**
+- **Cancellation of removal applicants (C10)**
+- **VAWA self-petitioners (C31)**
+
+If you are in one of these categories, your renewal timing is now the single most important variable in whether you keep working continuously.
+
+## Who is not affected
+
+**STEM OPT applicants keep their 180-day extension.** The 180-day continued employment authorization for STEM OPT is a separate regulation and was not part of the 540-day framework that was repealed. If USCIS receives your STEM OPT I-765 before your post-completion OPT EAD expires, your work authorization continues for up to 180 days while the application is pending, or until USCIS decides, whichever comes first.
+
+**Initial OPT applicants were never covered.** Post-completion OPT is an initial grant, not a renewal, so there was never an automatic extension to lose. What matters there is filing early enough that the card arrives before you want to start.
+
+Note that F-1 students face a separate change: the duration of status rule taking effect September 15, 2026 alters how long you are admitted for and when you need to file Form I-539. That is a different rule with different deadlines, and it interacts with your OPT filing.
+
+## What this means in practice
+
+Here is the sequence that used to be survivable and now is not:
+
+Your EAD expires March 1. You file your renewal in January. USCIS takes five months. Under the old rule, you kept working the entire time on your expired card plus the receipt notice. Under the current rule, you stop working on March 1. Your employer must remove you from payroll. You sit unpaid until the card arrives, potentially in June. Depending on your category, a gap may also raise questions about your underlying status.
+
+USCIS processing times for Form I-765 across many categories are running well past six months in 2026. The gap between a reasonably timed filing and an approval is now often larger than the buffer you have.
+
+## The new filing timeline
+
+**File at the earliest date your category permits.** For most renewal categories that is 180 days before expiration. Not 90. Not 60. The earliest permitted date, and then treat it as a deadline rather than a target.
+
+**Build a 6 to 9 month runway.** Given current processing times, six months of lead time is the minimum defensible plan and nine months is safer where your category allows it.
+
+**Set three calendar reminders.** One at 210 days before expiration to gather documents, one at 180 days to file, and one at 90 days to check status and consider a service request if the case has not moved.
+
+## Filing checklist
+
+**Fees as of 2026:**
+
+| Item | Cost |
+|---|---|
+| Form I-765, online filing | $470 |
+| Form I-765, paper filing | $520 |
+| Premium processing (where available) | approximately $1,780, 30 business days |
+
+USCIS began adjusting fees for inflation annually starting January 1, 2026. Confirm the exact current amount on uscis.gov the day you file, because the most common rejection reason is an outdated fee.
+
+**File online, not on paper.** Online filing gives you immediate confirmation, a digital case record, faster receipting, and in many categories noticeably faster adjudication. Paper filings for OPT-type cases have been running roughly 3 to 5 months against 2 to 3 months online.
+
+**Documents to have ready:**
+
+- Completed Form I-765 with the correct eligibility category code
+- Copy of your current and all previous EAD cards
+- Copy of your I-94, downloaded from the CBP website
+- Copy of your passport biographical page and current visa stamp
+- Category-specific evidence: your spouse's H-1B approval notice and marriage certificate for H-4, your I-797 receipt for a pending I-485 for C09, and so on
+- Two passport-style photos if filing by mail
+
+**Check the eligibility category code twice.** A wrong category code is the fastest way to a rejection or a Request for Evidence, and an RFE can add months you no longer have room for.
+
+## What to tell your employer, and when
+
+Do not surprise your employer in the last two weeks. Have the conversation the moment you file.
+
+**What to say:** "My work authorization card expires on [date]. I filed my renewal on [date], which is the earliest USCIS allows. The automatic extension rule that used to cover this gap was eliminated in October 2025, so if USCIS has not approved my renewal by [expiration date], I will need to be off payroll until the new card arrives. I wanted to flag this early so we can plan around it."
+
+**What to ask for:** an unpaid leave of absence rather than a termination, with your role held open. Employers can accommodate this when they know months in advance. They usually cannot when they find out on the Friday before.
+
+**What your employer must do legally.** For Form I-9 purposes, once your EAD expires without a valid automatic extension, they cannot continue to employ you in that authorization. This is not a policy they can waive as a favour. Approach it as a scheduling problem to solve together, not a rule to negotiate around.
+
+## If your card is going to expire before approval
+
+**Check whether premium processing is available for your category.** For OPT-related I-765 filings, premium processing targets 30 business days. Availability varies by category, so check the current USCIS premium processing page for your specific code.
+
+**Submit a service request if you are past posted processing times.** Through your USCIS online account, submit an e-Request "case outside normal processing time." Include your receipt number and the published processing time for your form and category.
+
+**Contact the USCIS Contact Center and ask about expedite criteria.** Expedite requests are granted sparingly, but severe financial loss to a company or person is a recognised criterion. Documented evidence of imminent job loss is stronger than a general statement of hardship.
+
+**Ask your Congressional representative's office for a case inquiry.** Every House and Senate office has caseworkers who submit congressional inquiries to USCIS. It is free, it takes about fifteen minutes to request online, and it sometimes moves a stalled case. Have your receipt number, A-number, and filing date ready.
+
+**Do not keep working past the expiration date.** Unauthorised employment carries consequences far worse than an unpaid gap, including on future adjustment of status applications. No paycheque is worth it.
+
+## How to track your case
+
+Go to egov.uscis.gov and enter your receipt number, or check your USCIS online account for a richer status view. Typical statuses:
+
+- **Case Was Received:** USCIS has the filing
+- **Case Is Being Actively Reviewed:** normal processing
+- **Request for Evidence Was Sent:** respond immediately, and by the deadline on the notice
+- **New Card Is Being Produced:** approval is done, card production has started
+- **Card Was Mailed To Me:** typically arrives within about 10 business days
+- **Case Was Approved:** approval notice issued
+
+**Keep your address current with USCIS.** USPS does not forward EAD cards. If your card is mailed to an old address it can be returned or lost, and replacement adds weeks. Update your address through your USCIS online account immediately when you move.
+
+## Use the waiting period
+
+If you are facing an unpaid gap, or you are simply stuck waiting on USCIS, that time is worth something. The candidates who come out of a processing gap in the strongest position are the ones who used it to prepare for the next move rather than refreshing a case status page.
+
+Preciprocal's mock interviews let you practise the sponsorship and work authorization conversation until it sounds routine. The resume analysis scores your resume against each specific job description and shows the missing keywords before you submit. The cover letter generator handles your authorization status accurately and professionally. The job tracker keeps applications, follow-ups, and immigration deadlines in one view, which matters a great deal when your work window is defined by a date on a card.
+
+Start free at app.preciprocal.com. No credit card required.`,
+  },
+  {
+    slug: "how-to-check-your-visa-status-2026",
+    title: "How to Check Your Visa Status in 2026 (I-94, SEVIS, USCIS Case Status)",
+    description: "Your visa stamp is not your status. Here is how to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what changes when duration of status ends on September 15, 2026.",
+    category: "Visa & Immigration",
+    readTime: "10 min read",
+    publishedAt: "2026-08-30",
+    updatedAt: "2026-08-30",
+    content: `## The distinction that trips up almost everyone
+
+Your visa is not your status. They are two different things issued by two different agencies, and confusing them is the single most common reason people accidentally fall out of status.
+
+**Your visa** is the stamp or foil in your passport, issued by a US consulate abroad. It is an entry document. It says you may present yourself at a port of entry and request admission until a certain date. Once you are inside the United States, an expired visa stamp is not itself a problem. You need a valid one only to re-enter after travelling abroad.
+
+**Your status** is what you are permitted to do while inside the United States. It is set by CBP when you are admitted and maintained through your conduct: enrolling full-time, working only where authorized, filing timely applications. Status is what determines whether you are lawfully present, and it is recorded on your I-94.
+
+You can be in perfectly valid status with an expired visa stamp. You can also hold a visa stamp valid for five more years and be out of status. The stamp is not the answer.
+
+This guide summarises public information and is not legal advice. Confirm your own situation with your DSO or an immigration attorney.
+
+## Check 1: your I-94, the record that actually defines your status
+
+The Form I-94 arrival record is the authoritative record of your admission. It shows the class of admission and, crucially, your admit-until date.
+
+**How to check it:** go to i94.cbp.dhs.gov, select "Get Most Recent I-94," and enter your name, date of birth, and passport details exactly as they appear in your passport. The record is free and available immediately. Download the PDF, do not just look at it.
+
+**What to verify on it, every single time:**
+
+- **Class of admission:** F1, H1B, L1, J1, and so on. Confirm it matches what you expect. Data-entry errors happen at the port of entry and are far easier to fix in the first weeks than a year later.
+- **Admit until date:** this is the date your authorized stay ends. Historically F and J records showed "D/S" here. Under the rule taking effect September 15, 2026, new admissions show an actual date.
+- **Name spelling and date of birth:** errors here cascade into every subsequent filing.
+
+**Check your I-94 after every single entry to the US.** Not once a year. Every entry generates a new record, and every entry is an opportunity for an error that only you will catch.
+
+**If something is wrong:** for errors made at an airport or seaport, contact a CBP Deferred Inspection Site. For land border errors, return to the port of entry. Do not wait, and do not assume your school or employer will notice.
+
+## What changes on September 15, 2026
+
+The duration of status framework for F and J nonimmigrants ends on that date, and it directly changes what you will see on your I-94.
+
+Under D/S, your I-94 said "D/S" and your status tracked your program. Under the new rule, new admissions receive a fixed admit-until date tied to the program end date on your I-20, capped at four years, plus a departure grace period. Students admitted under the new fixed-date system have a 30-day departure period, shortened from the 60 days that applied previously.
+
+**If you were admitted for D/S before the effective date** and are maintaining status, transition provisions let you remain until the later of your program end date on your valid I-20, or your EAD expiration if you are on OPT or STEM OPT, capped at four years from the effective date, plus the applicable grace period.
+
+**Two consequences worth internalising:**
+
+First, if you travel and re-enter the US after September 15, 2026, you receive a new I-94 with a fixed admit-until date based on your current program dates. The transition treatment ends at that point.
+
+Second, extending your stay is now a USCIS filing. To stay beyond your admit-until date, whether to finish a longer program, begin a new one, or engage in OPT or STEM OPT, you file Form I-539, Application to Extend/Change Nonimmigrant Status, currently $420 online or $470 by mail. One important carve-out: F-1 students admitted for D/S who timely file Form I-765 for post-completion OPT or STEM OPT on or before March 18, 2027 are not required to file a separate I-539 for that OPT period.
+
+After September 15, 2026, checking your I-94 stops being an occasional formality and becomes the thing that tells you your actual deadline.
+
+## Check 2: your SEVIS record, if you are on F or J status
+
+Your SEVIS record is the government database entry that underpins your F or J status. If it is terminated, your status and any associated work authorization end, regardless of what your documents say.
+
+**How to check it:** you cannot query SEVIS directly. Your DSO or responsible officer can, and they can confirm your record is Active. Email your international student office and ask them to verify your SEVIS status and registration for the current term. Do this at the start of each term and after any change in enrollment, employment, or address.
+
+**What your I-20 tells you:** check the program end date, the SEVIS ID (starting with N), your enrollment status, and, if you are on OPT, the recommendation and the employment dates. Confirm the details match your I-94 and EAD.
+
+**What terminates a SEVIS record:** dropping below full-time enrollment without prior DSO authorization, unauthorized employment, failure to report a change of address within 10 days, exceeding unemployment limits during OPT, or failing to report new employment within 10 days during OPT.
+
+**The reporting duties people forget:** address changes within 10 days, new OPT employment within 10 days, and STEM OPT validation reports every six months. Missing these is one of the most common causes of accidental status problems, and none of them feel urgent at the time.
+
+## Check 3: your USCIS case status, if you have a pending application
+
+If you have filed an I-765, I-539, I-129, I-140, or I-485, that case has a status you should be tracking actively.
+
+**Where to check:** egov.uscis.gov with your receipt number, or your USCIS online account for a fuller picture including notices and document uploads.
+
+**What the statuses mean:**
+
+| Status | What it means |
+|---|---|
+| Case Was Received | USCIS has your filing and issued a receipt |
+| Case Is Being Actively Reviewed | Normal processing, no action needed |
+| Request for Evidence Was Sent | Action required; respond by the deadline on the notice |
+| Response To USCIS Request Received | Your RFE response is in, clock restarted |
+| New Card Is Being Produced | Approved, card production started |
+| Card Was Mailed To Me | Typically arrives within about 10 business days |
+| Case Was Approved | Approval notice issued |
+| Case Was Denied | Read the notice carefully and consult an attorney immediately |
+
+**Compare against posted processing times.** USCIS publishes processing times by form, category, and service centre at egov.uscis.gov/processing-times. If your case is past the posted time for your specific form and category, you can submit an e-Request through your online account for a case outside normal processing time.
+
+**Set up automatic case alerts** in your USCIS online account rather than checking manually. And keep your address current with USCIS, because official government mail including EAD cards is not forwarded by USPS.
+
+## Check 4: your work authorization dates
+
+If you are working, three dates govern your legal ability to do so, and you should know all three from memory.
+
+**Your EAD validity dates.** You may not work before the start date printed on the card, and you may not work after the end date. As of the October 2025 rule change, most renewal categories no longer receive an automatic extension past the printed expiration, so that end date is a hard stop. STEM OPT retains a separate 180-day continued employment provision when the extension is filed before the current EAD expires.
+
+**Your I-94 admit-until date.** Work authorization does not extend your permission to be in the US, and being in the US does not by itself authorize work.
+
+**Your petition validity dates, if you are in a petition-based status** such as H-1B or L-1. Your I-797 approval notice shows the validity period, and you are authorized to work for the petitioning employer within those dates.
+
+## A quarterly 15-minute status audit
+
+Put this on a recurring calendar invite. It takes fifteen minutes and prevents the failure modes that take months to fix.
+
+1. Download your current I-94 from i94.cbp.dhs.gov and confirm the class of admission and admit-until date.
+2. Confirm your passport is valid at least six months out, and renew if it is not.
+3. Check your EAD expiration date and calculate how many days remain until the earliest permitted renewal filing date.
+4. Email your DSO to confirm your SEVIS record is Active, if you are on F or J status.
+5. Check any pending USCIS case status and compare it against posted processing times.
+6. Confirm your address is current with USCIS, SEVIS, and your employer.
+
+## Where Preciprocal fits
+
+Knowing your status cold is not only defensive paperwork, it is also an interview skill. Recruiters routinely ask international candidates about work authorization, and the answers that work are short, specific, and confident: what status you are in, what dates it runs through, and what the employer would need to do, if anything.
+
+Preciprocal's mock interviews let you rehearse that answer until it is automatic. The resume analysis and cover letter tools help you present your experience without the authorization question overshadowing it. The job tracker keeps your applications and your immigration deadlines in the same place, so a renewal date never sneaks up on you in the middle of an interview loop.
+
+Start free at app.preciprocal.com. No credit card required.`,
+  },
+  {
+    slug: "us-job-market-late-2026-data",
+    title: "The US Job Market in Late 2026: What the Data Actually Says",
+    description: "Job postings are near their pre-pandemic baseline, but software development is 25% below it and new grad unemployment is elevated. Here is what the numbers show and how to run a job search around them.",
+    category: "Career Strategy",
+    readTime: "11 min read",
+    publishedAt: "2026-08-30",
+    updatedAt: "2026-08-30",
+    content: `## The market is not collapsing, and it is not fine either
+
+Job market commentary in 2026 splits into two camps that are both wrong. One says the labour market is healthy because the headline unemployment rate is low. The other says hiring has collapsed. The data supports neither.
+
+What the numbers actually show is a low-churn market: few layoffs, few hires, and very little movement. That is a specific condition with specific implications for how you should run a search, and it is very different from either a boom or a bust.
+
+Here is what the aggregate data shows as of August 2026, and what to do about it.
+
+## The headline numbers
+
+| Indicator | Level | Reading |
+|---|---|---|
+| Unemployment rate | 4.1% (July) | Low, but partly driven by labour supply decline |
+| Indeed Job Postings Index | 101.8 | 1.8% above the February 2020 baseline |
+| New postings index | 97.2 | 3% below baseline |
+| Postings, year over year | -2.9% | Slowly declining |
+| Hires rate | 3.4% | Low |
+| Quits rate | 2.0% | Low, people are staying put |
+| Layoffs rate | 1.1% | Low, companies are not cutting broadly |
+| Vacancy-to-unemployment ratio | 1.0 | One opening per unemployed worker |
+| Posted wage growth | 2.5% year over year | Below CPI inflation of 3.4% |
+
+Two things stand out.
+
+**Total postings are roughly at the pre-pandemic baseline.** The overall volume of open jobs is not unusual by historical standards. What is unusual is how little movement there is around them.
+
+**Low layoffs plus low hiring is a specific trap.** If you have a job, you are relatively safe. If you want a different job, the pipeline is slow. Quits at 2.0% means people are not voluntarily leaving, which means fewer backfill openings, which means fewer entry points. This is the mechanism behind the widespread feeling that the market is worse than the statistics say.
+
+**Real wages are slightly negative.** Posted wage growth of 2.5% against 3.4% CPI means the typical new offer is losing ground against inflation. Staying put has a cost too.
+
+## The sector picture is extremely uneven
+
+The aggregate hides enormous variation.
+
+**Software development postings sit at an index of 74.4**, roughly 25% below the February 2020 baseline. Among major categories, this is one of the weakest. If you are a software engineer, you are not imagining the difficulty, and the aggregate "postings are at baseline" story does not describe your market.
+
+**Physical and operational roles are growing.** Production and manufacturing postings are up about 8% year over year, and loading and stocking up about 11%. The demand is real, it is just not where most white-collar job seekers are looking.
+
+**Healthcare is normalising.** After years of outperforming, healthcare postings are beginning to fall in line with the rest of the market.
+
+**Human resources postings are below pre-pandemic levels**, which is a compounding problem for job seekers: fewer recruiters processing a larger applicant pool means slower responses everywhere.
+
+**AI-related postings are about 6.3% of all postings.** Growing, and worth noting, but not yet large enough to offset softness elsewhere. Where it does show up is in role requirements rather than role counts.
+
+## The new graduate picture is genuinely difficult
+
+This is where the numbers are worst, and where honest advice matters most.
+
+As of Q2 2026, unemployment for recent college graduates sat around 5.6%, with underemployment near 42%. Recent computer engineering graduates faced roughly 7.5% unemployment and computer science graduates roughly 6.1%, against about 3.6% for college graduates overall.
+
+Read that again: computer science, the degree that was marketed for a decade as the safe bet, now carries recent-graduate unemployment well above the college-graduate average.
+
+Two forces are behind it. Employers are reducing entry-level headcount through a mix of attrition, fewer new openings, and selective cuts. And a growing share of postings that used to be genuinely entry-level now ask for three to five years of experience.
+
+**What this means for you if you are a new grad:** the difficulty is structural, not personal. Rejections at this stage are largely a market condition. That does not make them feel better, but it should change your strategy: volume alone will not fix a structural shortage of entry points, and it burns you out. Precision and proof of ability will do more.
+
+## Six strategies that follow from this data
+
+**1. Target the experience-inflated postings anyway.** When a genuinely junior role asks for three to five years, that requirement is often aspirational. Employers routinely hire candidates below the stated bar when the applicant demonstrates the specific skills. Apply if you meet roughly 60% of the requirements, and address the gap directly in your cover letter rather than hoping it is not noticed.
+
+**2. Fix your ATS match before you increase volume.** In a market with one opening per unemployed worker and fewer recruiters to read applications, the automated screen carries more weight than it did. Tailoring 20 applications to a strong keyword match beats sending 200 generic ones. Check your score against each specific job description before submitting.
+
+**3. Go where the postings are.** If you are in software and open to adjacent paths, note that manufacturing, logistics, and operations are hiring. Internal tools, data, and automation roles inside those sectors are still technical work, and they are competing against a much smaller applicant pool than a consumer tech job posting.
+
+**4. Treat referrals as the main channel, not the backup.** Low quits means fewer openings ever get posted publicly. Referrals and internal moves fill a larger share of what does open. A referral is worth more in a low-churn market than in a hot one, because the pipeline it bypasses is longer.
+
+**5. Take the wage-growth data into your negotiation.** Posted wage growth of 2.5% against 3.4% inflation means employers are anchoring low and expecting acceptance. It also means the cost of not negotiating is higher than usual: a flat offer is a real pay cut. Negotiate, and use total compensation levers such as signing bonus and equity when base salary is inflexible.
+
+**6. Assume a longer search and build for endurance.** With a hires rate of 3.4% and a vacancy-to-unemployment ratio of 1.0, timelines stretch. Plan for a search measured in months. Set weekly process targets you control, applications sent, conversations had, mocks completed, rather than outcome targets you do not control.
+
+## What is genuinely different this year
+
+**Entry-level compression is the defining feature.** The 2026 market is hardest at exactly the point where people enter it. Mid and senior candidates with specific in-demand skills still move, though more slowly than in 2021.
+
+**Skills are being evaluated more explicitly.** With fewer openings and more applicants, employers are running more structured assessments. Interview performance carries more weight relative to resume pedigree than it did.
+
+**The AI question shows up in interviews now.** For technical and analytical roles, candidates are increasingly asked how they use AI tools in their work. The strong answer is specific: what you use it for, where you do not trust it, and how you verify output. Vague enthusiasm or blanket dismissal both read poorly.
+
+**Foreign-born labour force declines are shaping the supply side.** Part of the unemployment rate decline reflects a shrinking labour force rather than expanding employment, which matters for interpreting the headline number but does not change what a given job seeker should do.
+
+## The honest summary
+
+If you have a job in 2026, your risk of layoff is historically low, and your leverage to leave is also low.
+
+If you are looking, the openings exist but the process is slow, and you are competing against a larger and more experienced pool than the posting suggests.
+
+If you are graduating, the entry-level market is genuinely constrained, and the answer is not more applications. It is fewer, better-targeted applications, real proof of ability, referrals wherever you can find them, and preparation good enough that you convert the interviews you do get.
+
+The candidates getting offers in this market are not the ones sending the most applications. They are the ones who match the keywords, get the referral, and are prepared enough to convert a scarce interview into an offer.
+
+## How to prepare for a market like this
+
+When interviews are scarce, conversion rate matters more than pipeline volume. Every interview you get needs to count.
+
+Preciprocal's voice-based mock interviews put you in a realistic panel with follow-up questions and a detailed debrief, so your first live interview in months is not your first practice run. The resume analysis gives you an ATS score against each specific job description and tells you which keywords are missing. The cover letter generator writes tailored letters that address experience gaps directly. The job tracker and contact finder help you build the referral pipeline that matters most when few roles are posted publicly.
+
+Start free at app.preciprocal.com. No credit card required.`,
+  },
 ];
 
 export function getBlogPost(slug: string): BlogPost | undefined {

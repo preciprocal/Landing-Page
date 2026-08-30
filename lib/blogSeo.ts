@@ -212,4 +212,32 @@ export const BLOG_SEO: Record<string, BlogSeoEntry> = {
     ogTitle: "Employment-Based Green Card Pathways Explained (EB-1 to EB-5): 2026",
     ogDescription: "Every employment-based green card category explained: requirements, timelines, and the backlog reality for Indian and Chinese nationals.",
   },
+  "us-visa-policy-updates-2026": {
+    title: "New US Visa Updates 2026: Duration of Status, H-1B Fee, EAD Changes | Preciprocal",
+    description: "Duration of status ends September 15, 2026. The $100,000 H-1B fee is vacated pending appeal. Automatic EAD extensions are gone. Every 2026 visa rule change explained with the dates that matter.",
+    keywords: ["US visa updates 2026", "duration of status rule 2026", "F1 visa changes September 2026", "H1B $100000 fee blocked", "H1B weighted lottery 2026", "EAD automatic extension ended", "new immigration rules 2026", "I-539 extension of stay F1", "USCIS changes 2026"],
+    ogTitle: "New US Visa Updates (2026): What Actually Changed",
+    ogDescription: "Duration of status ends Sept 15, the H-1B fee is blocked, EAD auto-extensions are gone. The dates and the details.",
+  },
+  "ead-renewal-2026-automatic-extension-ended": {
+    title: "EAD Renewal 2026: The 540-Day Automatic Extension Is Gone | Preciprocal",
+    description: "DHS ended automatic EAD extensions for most renewal categories. Who is affected, how early to file your I-765, what to tell your employer, and what to do if your card expires while USCIS is still processing.",
+    keywords: ["EAD renewal 2026", "540 day automatic extension ended", "EAD automatic extension rule change", "I-765 renewal processing time 2026", "H4 EAD renewal 2026", "work permit expired USCIS pending", "EAD gap employment", "STEM OPT 180 day extension"],
+    ogTitle: "EAD Renewal in 2026: The 540-Day Automatic Extension Is Gone",
+    ogDescription: "Your work authorization now ends on the date printed on your card. Here is how to file early enough to avoid an unpaid gap.",
+  },
+  "how-to-check-your-visa-status-2026": {
+    title: "How to Check Your Visa Status in 2026: I-94, SEVIS, USCIS Case Status | Preciprocal",
+    description: "Your visa stamp is not your status. How to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what changes when duration of status ends September 15, 2026.",
+    keywords: ["how to check visa status", "check I-94 status online", "SEVIS record status F1", "USCIS case status check 2026", "visa vs status difference", "admit until date I-94", "immigration status check international student", "am I in status F1"],
+    ogTitle: "How to Check Your Visa Status in 2026 (I-94, SEVIS, USCIS)",
+    ogDescription: "Your visa stamp is not your status. Here is how to verify what actually governs your stay, and the quarterly audit that prevents problems.",
+  },
+  "us-job-market-late-2026-data": {
+    title: "The US Job Market in Late 2026: What the Data Actually Says | Preciprocal",
+    description: "Postings sit near the pre-pandemic baseline, but software development is 25% below it and recent-grad unemployment is elevated. What the numbers show and how to run a job search around them.",
+    keywords: ["US job market 2026", "job market data 2026", "tech hiring 2026", "new grad unemployment 2026", "software engineer job market 2026", "hiring rate quits rate 2026", "entry level job market 2026", "job search strategy 2026 data"],
+    ogTitle: "The US Job Market in Late 2026: What the Data Actually Says",
+    ogDescription: "Low layoffs, low hiring, software postings 25% below baseline. The numbers, and the six strategies that follow from them.",
+  },
 };

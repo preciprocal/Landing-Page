@@ -30,6 +30,9 @@ const VISA_SLUGS = new Set([
   "tn-visa-canada-mexico-professionals-2026",
   "green-card-employment-based-pathways-2026",
   "how-to-get-job-with-visa-sponsorship-2026",
+  "us-visa-policy-updates-2026",
+  "ead-renewal-2026-automatic-extension-ended",
+  "how-to-check-your-visa-status-2026",
 ]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
