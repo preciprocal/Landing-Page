@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "See exactly how your resume scores against any job description. Find missing keywords and get fixes instantly. Free, no account needed.",
     url: "https://preciprocal.com/free-ats-checker",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

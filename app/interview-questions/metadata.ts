@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Expert answers to the most common interview questions across 40+ roles. Software engineering, finance, consulting, marketing, HR, and more.",
     url: "https://preciprocal.com/interview-questions",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

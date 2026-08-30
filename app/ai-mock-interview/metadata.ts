@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Practice with a multi-agent AI panel that pushes back, asks follow-ups, and scores you like a real hiring committee. Covers 40+ roles.",
     url: "https://preciprocal.com/ai-mock-interview",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

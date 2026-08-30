@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Built by international students who navigated the US job market the hard way and reverse-engineered what actually works. Here is why we built Preciprocal.",
     url: "https://preciprocal.com/about",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogTitle = seo?.ogTitle ?? post.title;
   const ogDescription = seo?.ogDescription ?? post.description;
   const url = `${SITE_URL}/blog/${post.slug}`;
-  const imageUrl = `${SITE_URL}/ogimage.png`;
+  const imageUrl = `${SITE_URL}/og-image.png`;
 
   return {
     title,

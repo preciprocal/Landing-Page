@@ -23,7 +23,7 @@ export const metadata: Metadata = {
       "Full comparison of Jobscan vs Preciprocal. ATS scoring, keyword matching, pricing, and which gives you more for less.",
     url: "https://preciprocal.com/alternatives/jobscan-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

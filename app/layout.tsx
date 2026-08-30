@@ -84,7 +84,7 @@ export const metadata: Metadata = {
       "AI mock interviews, ATS resume scoring, cover letters, study plans and job tracking. Built for students and new grads. From $9.99/mo.",
     images: [
       {
-        url: "https://preciprocal.com/ogimage.png",
+        url: "https://preciprocal.com/og-image.png",
         width: 1200,
         height: 630,
         alt: "Preciprocal: AI Job Search Platform for Students",
@@ -100,7 +100,7 @@ export const metadata: Metadata = {
     title: "Preciprocal: AI Job Search Platform for Students and New Grads",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans and job tracking. $9.99/mo.",
-    images: [{ url: "https://preciprocal.com/ogimage.png", alt: "Preciprocal - AI Job Search for Students" }],
+    images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal - AI Job Search for Students" }],
   },
 
   alternates: {

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       "See everything shipped, what is in progress, and what is coming next. No vaporware.",
     url: "https://preciprocal.com/roadmap",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

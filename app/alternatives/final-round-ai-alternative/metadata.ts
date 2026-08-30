@@ -22,7 +22,7 @@ export const metadata: Metadata = {
       "Full comparison of Final Round AI vs Preciprocal. Features, pricing, mock interview quality, and which is better for students.",
     url: "https://preciprocal.com/alternatives/final-round-ai-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Practical career advice for students and new grads. ATS tips, interview prep, salary negotiation, OPT, H-1B, and green card guides.",
     url: "https://preciprocal.com/blog",
     type: "website",
-    images: [{ url: "https://preciprocal.com/ogimage.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
