@@ -11,7 +11,8 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { InterviewPageJsonLd } from "@/components/JsonLd";
-import { ALL_ROLES, getRoleMeta, getRoleQuestions, APP_URL } from "@/lib/constants";
+import { ALL_ROLES, getRoleMeta, APP_URL } from "@/lib/constants";
+import { getRoleInterviewQuestions } from "@/lib/roleContent";
 
 export async function generateStaticParams() {
   return ALL_ROLES.map((role) => ({ role }));
@@ -36,7 +37,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
   if (!ALL_ROLES.includes(role as any)) notFound();
 
   const meta      = getRoleMeta(role);
-  const questions = getRoleQuestions(role);
+  const questions = getRoleInterviewQuestions(role);
   const roleLabel = role.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
   return (

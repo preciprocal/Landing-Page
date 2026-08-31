@@ -29,7 +29,7 @@
  * read closer to its siblings than it should.
  */
 
-import { ROLE_DISPLAY, getRoleMeta, type RoleSlug } from "@/lib/constants";
+import { ROLE_DISPLAY, ROLE_QUESTIONS, getRoleMeta, type RoleQA, type RoleSlug } from "@/lib/constants";
 
 // ─── Per-role ATS keywords ────────────────────────────────────────────────────
 // These are the terms that actually appear in job descriptions for each role.
@@ -517,4 +517,68 @@ export function getRoleContent(slug: string): RoleContent | null {
     profile,
     note: ROLE_NOTES[slug] ?? DEFAULT_NOTE,
   };
+}
+
+// ─── Interview questions ──────────────────────────────────────────────────────
+
+/**
+ * Role-specific interview Q&A.
+ *
+ * ROLE_QUESTIONS in constants.ts covers 20 of the 41 roles. The other 21 were
+ * falling back to a generic set that interpolated only the role name, which made
+ * those pages 92% word-identical to each other — the same defect that kept the
+ * resume-tips and salary-guide sections out of Google's index.
+ *
+ * Hand-written questions always win. For the rest, this composes questions from
+ * the role's own keyword set, its positioning note and its category profile, so
+ * a Brand Manager page and a Digital Marketing Specialist page ask genuinely
+ * different questions rather than the same eight with a name swapped in.
+ *
+ * Lives here rather than in constants.ts because it depends on ROLE_KEYWORDS and
+ * ROLE_NOTES; constants.ts must not import this module.
+ */
+export function getRoleInterviewQuestions(slug: string): RoleQA[] {
+  if (ROLE_QUESTIONS[slug]) return ROLE_QUESTIONS[slug];
+
+  const content = getRoleContent(slug);
+  if (!content) return [];
+
+  const { name, keywords, salaryRange, topCompanies, profile, note } = content;
+  const k = (i: number) => keywords[i] ?? "the core skill for this role";
+  const employers = topCompanies.slice(0, 3).join(", ");
+
+  return [
+    {
+      question: `What does a ${name} interview actually focus on?`,
+      answer: `${note.positioning} In practice that means interviewers concentrate on ${note.screened}. Expect the conversation to keep returning to ${profile.provesValue} — panels for this role are calibrated to look for exactly that, and answers that stay at the level of duties performed tend to stall. Come with two or three examples where you can go three questions deep on the details.`,
+    },
+    {
+      question: `What technical topics come up in a ${name} interview?`,
+      answer: `The recurring areas for ${name} roles are ${keywords.slice(0, 6).join(", ")}. Interviewers rarely ask you to define these — they ask you to describe a time you used one and then probe the decisions you made. Be ready to explain why you chose ${k(0)} over the alternative in a specific situation, since that reasoning is what distinguishes real experience from familiarity.`,
+    },
+    {
+      question: `How do I demonstrate ${k(0)} experience in a ${name} interview?`,
+      answer: `Pick one example and carry it all the way through: the situation, what you specifically did with ${k(0)}, what constraint made it difficult, and the measurable outcome. Then be prepared for follow-ups about what you would do differently. A single example you can defend in depth is considerably stronger than listing five you can only describe at surface level.`,
+    },
+    {
+      question: `What is the biggest mistake candidates make in ${name} interviews?`,
+      answer: `${profile.commonMistakes[0] ?? "Describing responsibilities rather than results"}. It shows up in interviews the same way it shows up on resumes: the candidate explains what the team did and what they were responsible for, without ever stating what changed as a result of their own work. Interviewers are trying to assess ${note.screened}, and a duty-level answer gives them nothing to evaluate.`,
+    },
+    {
+      question: `How should I prepare for the behavioural round as a ${name}?`,
+      answer: `Build five to seven STAR stories and make sure they collectively cover a project you led, a disagreement you handled, a failure you learned from, a decision made without enough information, and a time you influenced people who did not report to you. For ${name} roles specifically, at least two of those stories should demonstrate ${profile.provesValue}, because that is the thread interviewers will keep pulling on.`,
+    },
+    {
+      question: `What is the ${name} interview process typically like?`,
+      answer: `Most employers run a recruiter screen of 20 to 30 minutes, a hiring manager conversation of about 45 minutes covering domain depth, two to four role-specific rounds, and one or two behavioural rounds before an offer. At companies like ${employers} the middle stage is where ${name} candidates are most often filtered, since that is where ${note.screened} gets tested directly. The full process usually runs three to six weeks.`,
+    },
+    {
+      question: `What questions should I ask at the end of a ${name} interview?`,
+      answer: `Ask things that only someone who understands the role would think to ask: how success is measured in the first six months, what the biggest constraint on the team currently is, and how decisions about ${k(1)} get made in practice. Avoid questions answered on the careers page — they signal you did not prepare, which undercuts an otherwise strong interview.`,
+    },
+    {
+      question: `What salary should I expect as a ${name}?`,
+      answer: `${name} roles currently span roughly ${salaryRange} across US markets, varying with location, company stage and scope. ${note.payNote} Research your specific market on Levels.fyi, Glassdoor and LinkedIn Salary before the conversation, and treat the first offer as an opening position — most have room, and the base you agree to anchors every subsequent raise.`,
+    },
+  ];
 }

@@ -3,17 +3,29 @@ import type { NextConfig } from "next";
 /**
  * next.config.ts
  *
- * NOTE: The www -> non-www redirect is handled at the Vercel domain level,
- * NOT here. Go to: Vercel Dashboard -> your project -> Settings -> Domains,
- * add "www.preciprocal.com" and set it to redirect to "preciprocal.com".
- * That is the correct place for this redirect and avoids redirect loops.
- *
  * SEO redirects — all permanent (308/301) so link equity passes through.
  * Add new redirects here whenever a route is renamed or removed.
+ *
+ * WWW: the previous note here said www -> non-www was handled at the Vercel
+ * domain level and deliberately not configured in this file. Search Console
+ * showed otherwise — www.preciprocal.com/terms, /cover-letter and
+ * /forgot-password were all reported as 404s while their non-www equivalents
+ * resolved fine. The host-based rule below is a safety net that works whether
+ * or not the Vercel domain redirect is in place. It cannot loop, because the
+ * destination host is non-www and the rule only matches the www host.
  */
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // ------------------------------------------------------------------
+      // www -> non-www (host-based, covers every path)
+      // ------------------------------------------------------------------
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.preciprocal.com" }],
+        destination: "https://preciprocal.com/:path*",
+        permanent: true,
+      },
       // ------------------------------------------------------------------
       // Cover letter routes
       // ------------------------------------------------------------------
@@ -22,6 +34,39 @@ const nextConfig: NextConfig = {
       {
         source: "/cover-letter",
         destination: "/cover-letter-generator",
+        permanent: true,
+      },
+
+      // ------------------------------------------------------------------
+      // Dead blog slugs Google still crawls
+      // ------------------------------------------------------------------
+      // These three were reported as 404s in Search Console. They were never
+      // published under these slugs, so they are most likely from old internal
+      // links or external references. Each points at the closest live post.
+      {
+        source: "/blog/how-to-prepare-for-behavioral-interview",
+        destination: "/blog/star-method-behavioral-interviews",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-to-write-a-resume-with-no-experience",
+        destination: "/blog/ats-resume-tips-new-grads",
+        permanent: true,
+      },
+      {
+        source: "/blog/resume-summary-examples-2026",
+        destination: "/blog/resume-keywords-that-get-past-ats",
+        permanent: true,
+      },
+
+      // ------------------------------------------------------------------
+      // App routes crawled on the marketing domain
+      // ------------------------------------------------------------------
+      // /forgot-password lives on the app subdomain, not here. Google found it
+      // on preciprocal.com and got a 404, so send it to the real page.
+      {
+        source: "/forgot-password",
+        destination: "https://app.preciprocal.com/forgot-password",
         permanent: true,
       },
 
