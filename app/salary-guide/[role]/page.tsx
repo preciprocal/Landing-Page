@@ -14,6 +14,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
+import { getRoleContent } from "@/lib/roleContent";
 
 // ─── Static params ────────────────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -142,29 +143,106 @@ const SALARY_DATA: Record<string, SalaryData> = {
   },
 };
 
+/** Markets where each job family concentrates. Tech hubs are not the answer for every role. */
+const CATEGORY_MARKETS: Record<string, string[]> = {
+  Engineering: ["San Francisco Bay Area", "Seattle", "New York City", "Austin", "Boston"],
+  "Data & Analytics": ["San Francisco Bay Area", "New York City", "Seattle", "Boston", "Chicago"],
+  "Product & Design": ["San Francisco Bay Area", "New York City", "Seattle", "Los Angeles", "Austin"],
+  "Architecture & IT": ["San Francisco Bay Area", "Seattle", "Washington DC", "Dallas", "Atlanta"],
+  "Business & Ops": ["New York City", "Chicago", "Dallas", "Atlanta", "Phoenix"],
+  Finance: ["New York City", "San Francisco Bay Area", "Chicago", "Boston", "Charlotte"],
+  "Sales & Marketing": ["New York City", "San Francisco Bay Area", "Chicago", "Los Angeles", "Austin"],
+  "People & HR": ["New York City", "San Francisco Bay Area", "Chicago", "Seattle", "Denver"],
+  Healthcare: ["Boston", "New York City", "Los Angeles", "Houston", "Philadelphia"],
+  Legal: ["New York City", "Washington DC", "Los Angeles", "Chicago", "San Francisco Bay Area"],
+};
+
+/** Parses "$120,000 - $220,000" from ROLE_META into numbers. */
+function parseRange(range: string): [number, number] | null {
+  const nums = range.match(/[\d,]+/g)?.map((n) => Number(n.replace(/,/g, "")));
+  if (!nums || nums.length < 2 || !nums[0] || !nums[1]) return null;
+  return [nums[0], nums[1]];
+}
+
+const usd = (n: number) => `$${Math.round(n / 1000) * 1000}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+/**
+ * Roles without a hand-written entry above derive their bands from that role's
+ * own ROLE_META salary range, so every page shows different numbers, markets
+ * and pay drivers. This replaced a fallback that returned the same hardcoded
+ * bands for all 36 roles, producing pages 97% identical to one another.
+ */
 function getSalaryData(role: string): SalaryData | null {
   if (SALARY_DATA[role]) return SALARY_DATA[role];
-  const display = ROLE_DISPLAY[role];
-  if (!display) return null;
+
+  const content = getRoleContent(role);
+  if (!content) return null;
+
+  const { name, category, salaryRange, topCompanies, profile, note } = content;
+  const parsed = parseRange(salaryRange);
+  if (!parsed) return null;
+  const [low, high] = parsed;
+  const span = high - low;
+
+  // Total comp uplift varies by field: equity-heavy tech vs bonus-heavy finance
+  // vs largely base-only healthcare and legal support roles.
+  const uplift =
+    category === "Engineering" || category === "Data & Analytics" || category === "Product & Design"
+      ? 1.25
+      : category === "Finance" || category === "Sales & Marketing"
+      ? 1.35
+      : 1.1;
+
+  const band = (a: number, b: number) => `${usd(low + span * a)} – ${usd(low + span * b)}`;
+  const total = (a: number, b: number) =>
+    `${usd((low + span * a) * uplift)} – ${usd((low + span * b) * uplift)}`;
+
   return {
-    medianBase: "Varies by location, company, and experience",
-    medianTotal: "Varies by location, company, and experience",
-    topPayingCities: ["San Francisco Bay Area", "New York City", "Seattle", "Boston", "Chicago"],
+    medianBase: `${usd(low + span * 0.45)} – ${usd(low + span * 0.6)}`,
+    medianTotal: `${usd((low + span * 0.45) * uplift)} – ${usd((low + span * 0.6) * uplift)}`,
+    topPayingCities: CATEGORY_MARKETS[category] ?? CATEGORY_MARKETS["Business & Ops"],
     levels: [
-      { level: "Entry Level",  yearsExp: "0–2 years",  baseSalary: "Typically $50,000 – $80,000",   totalComp: "Typically $55,000 – $90,000",  equityNote: "Limited equity at this level outside tech companies" },
-      { level: "Mid Level",    yearsExp: "2–5 years",  baseSalary: "Typically $75,000 – $110,000",  totalComp: "Typically $85,000 – $125,000", equityNote: "Performance bonus 5–15% common; equity at growth-stage tech companies" },
-      { level: "Senior Level", yearsExp: "5–10 years", baseSalary: "Typically $105,000 – $145,000", totalComp: "Typically $120,000 – $170,000", equityNote: "Equity and bonus become more significant at senior levels" },
-      { level: "Manager / Director", yearsExp: "10+ years", baseSalary: "Typically $140,000 – $190,000", totalComp: "Typically $165,000 – $240,000+", equityNote: "Leadership roles carry meaningful equity components" },
+      {
+        level: "Entry Level",
+        yearsExp: "0–2 years",
+        baseSalary: band(0, 0.2),
+        totalComp: total(0, 0.2),
+        equityNote:
+          uplift > 1.2
+            ? "Bonus and equity are limited at this level, but the base is the anchor for every future raise"
+            : "Compensation at this level is almost entirely base salary",
+      },
+      {
+        level: "Mid Level",
+        yearsExp: "2–5 years",
+        baseSalary: band(0.2, 0.5),
+        totalComp: total(0.2, 0.5),
+        equityNote:
+          uplift > 1.3
+            ? "Bonus becomes a meaningful share of total compensation and is often negotiable separately"
+            : "Performance bonus of 5–15% is common; equity appears at growth-stage companies",
+      },
+      {
+        level: "Senior Level",
+        yearsExp: "5–10 years",
+        baseSalary: band(0.5, 0.8),
+        totalComp: total(0.5, 0.8),
+        equityNote:
+          uplift > 1.2
+            ? "Equity or bonus frequently exceeds the base salary difference between two competing offers"
+            : "Bonus and additional benefits become a larger share of the package",
+      },
+      {
+        level: "Manager / Director",
+        yearsExp: "10+ years",
+        baseSalary: `${usd(low + span * 0.8)} – ${usd(high)}+`,
+        totalComp: `${usd((low + span * 0.8) * uplift)} – ${usd(high * uplift)}+`,
+        equityNote: "Leadership packages carry the widest variance; scope and company stage drive most of it",
+      },
     ],
-    negotiationScript: `"Thank you for the offer — I'm genuinely interested in this role. Based on my research on comparable positions at similar companies, I was expecting a base closer to [$X]. I'm confident I can bring [specific value relevant to their team] from day one. Is there flexibility to move toward that number?"`,
-    salaryFactors: [
-      "Industry vertical: tech, finance, and consulting typically pay more than non-profit, government, or education",
-      "Company size and stage: startups offer equity upside; large companies offer stability and higher base",
-      "Location: major tech hubs pay 20–40% more than secondary markets for most roles",
-      "Specialization depth: niche expertise commands a premium over generalist roles",
-      "Negotiation: always counter — most hiring managers have a range with room above the first offer",
-    ],
-    sources: "Data aggregated from Glassdoor, LinkedIn Salary, and Bureau of Labor Statistics (2025–2026). Individual packages vary significantly.",
+    negotiationScript: `"Thank you for the offer — I'm genuinely excited about this ${name} role. Based on my research on comparable ${name.toLowerCase()} positions at companies like ${topCompanies.slice(0, 2).join(" and ")}, I was targeting a base closer to [$X]. Given [specific relevant strength], is there flexibility to move toward that number?"`,
+    salaryFactors: [note.payNote, ...profile.payDrivers],
+    sources: `Ranges reflect ${name} compensation across US markets, aggregated from public salary data for 2026. ${note.positioning} ${name} roles concentrate at employers such as ${topCompanies.slice(0, 4).join(", ")}, and individual packages vary significantly by location, company stage and scope.`,
   };
 }
 

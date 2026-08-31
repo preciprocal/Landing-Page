@@ -14,6 +14,16 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
+import { getRoleContent } from "@/lib/roleContent";
+
+interface ResumeTipData {
+  salaryRange: string;
+  topAtsKeywords: string[];
+  bulletFormula: string;
+  bulletExample: string;
+  sections: { title: string; body: string }[];
+  commonMistakes: string[];
+}
 
 // ─── Static params for all roles ─────────────────────────────────────────────
 export function generateStaticParams() {
@@ -131,30 +141,55 @@ const RESUME_TIP_DATA: Record<string, {
   },
 };
 
-// Fallback for roles without explicit data
-function getResumeTipData(role: string) {
+/**
+ * Roles without a hand-written entry above are composed from lib/roleContent.ts
+ * rather than a single generic template. That module supplies a real per-role
+ * ATS keyword set, category-specific resume advice, and the salary range and
+ * top employers from ROLE_META.
+ *
+ * This replaced a fallback that interpolated only the role name and produced
+ * pages 97% identical to one another — which is why Google was crawling them
+ * and declining to index. Do not reintroduce a name-only fallback here.
+ */
+function getResumeTipData(role: string): ResumeTipData | null {
   if (RESUME_TIP_DATA[role]) return RESUME_TIP_DATA[role];
-  const display = ROLE_DISPLAY[role];
-  if (!display) return null;
+
+  const content = getRoleContent(role);
+  if (!content) return null;
+
+  const { name, keywords, salaryRange, topCompanies, profile, note } = content;
+  const primary = keywords.slice(0, 3).join(", ");
+  const employers = topCompanies.slice(0, 3).join(", ");
+
   return {
-    salaryRange: "Varies by location and experience",
-    topAtsKeywords: ["communication", "problem solving", "data analysis", "stakeholder management", "project management"],
-    bulletFormula: "Action verb + what you did + tool/method used + measurable outcome",
-    bulletExample: `Led a cross-functional initiative that improved ${display.name.toLowerCase()} efficiency by 30%, saving the team 8 hours per week.`,
+    salaryRange,
+    topAtsKeywords: keywords,
+    bulletFormula: profile.bulletFormula,
+    bulletExample: buildBulletExample(name, keywords),
     sections: [
-      { title: "Lead with outcomes, not responsibilities", body: `For ${display.name} roles, every bullet should answer 'what changed because of your work?' Recruiters skim resumes in seconds — if your bullets read like a job description, they stop reading. Replace duty-based language with impact-based language. Quantify wherever possible.` },
-      { title: "Keywords recruiters search for", body: `Study 10 ${display.name} job descriptions and highlight recurring terms. These are the ATS keywords you need. Include them naturally in your bullets and skills section — don't just list them at the bottom.` },
-      { title: "Format for ATS parsing", body: "Use a clean, single-column layout. No tables, no text boxes, no graphics. Save as a .docx or .pdf depending on the application. Section order: Summary, Skills, Experience, Education. Consistent date formatting throughout." },
-      { title: "Tailor for every application", body: `No two ${display.name} roles are identical. Spend 10 minutes adjusting your skills section and top 2 bullets to mirror each job description. This alone can move your ATS score from 60% to 85%.` },
+      {
+        title: `What makes a ${name} resume different`,
+        body: `${note.positioning} That shapes what belongs on the page. Reviewers screening ${name} applications are looking for ${note.screened}, so the bullets that earn their attention are the ones carrying that evidence rather than a complete account of your responsibilities. Everything below applies generally, but this is the specific thing to optimise for.`,
+      },
+      ...profile.resumeSections,
+      {
+        title: `Keywords that matter for ${name} roles specifically`,
+        body: `${name} postings cluster around a recognisable vocabulary: ${keywords.join(", ")}. Pull the ten most relevant to your own experience and work them into your bullets rather than listing them at the bottom — a keyword sitting inside a sentence that describes a real result carries the ATS match and the credibility at once. When you are targeting employers like ${employers}, mirror the exact phrasing from their posting, since ${primary} and its near-synonyms are matched literally.`,
+      },
+      {
+        title: "Calibrate against the market rate",
+        body: `${name} roles currently sit in the ${salaryRange} range depending on location, company stage and seniority. ${note.payNote} This matters for your resume because the level you target determines how much scope you need to evidence — aiming at the upper half of that band means bullets showing ownership and cross-functional influence, not only execution.`,
+      },
     ],
-    commonMistakes: [
-      "Writing responsibilities instead of achievements",
-      "No metrics or quantified outcomes",
-      "One resume sent to all applications without tailoring",
-      "Using a visually complex template that ATS can't parse",
-      "Missing keywords from the job description",
-    ],
+    commonMistakes: profile.commonMistakes,
   };
+}
+
+/** A role-shaped example bullet, built from that role's own keyword set. */
+function buildBulletExample(name: string, keywords: string[]): string {
+  const [k1, k2] = keywords;
+  if (!k1) return `Led a ${name.toLowerCase()} initiative that reduced cycle time by 30% across a team of 12.`;
+  return `Led a ${name.toLowerCase()} initiative using ${k1}${k2 ? ` and ${k2}` : ""}, cutting turnaround time by 34% and saving roughly 9 hours per week across a team of 12.`;
 }
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────

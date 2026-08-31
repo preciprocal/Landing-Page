@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
+import { getRoleContent } from "@/lib/roleContent";
 
 // ── Static params ─────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -71,24 +72,31 @@ export async function generateMetadata({
 }
 
 // ── Cover letter structure data ───────────────────────────────────────────────
-function getCoverLetterSections(roleName: string, topCompanies: string[]) {
+function getCoverLetterSections(
+  roleName: string,
+  topCompanies: string[],
+  content: ReturnType<typeof getRoleContent>
+) {
   const company = topCompanies[0] ?? "the company";
+  const kws = content?.keywords ?? [];
+  const k1 = kws[0] ?? "the core skill for this role";
+  const k2 = kws[1] ?? "a closely related area";
+  const k3 = kws[2] ?? "the requirement they emphasised";
+  const proves = content?.profile.provesValue ?? "measurable outcomes";
   return [
     {
       label: "Opening paragraph",
       badge: "Hook",
       badgeColor: "#6366f1",
-      guidance:
-        "Lead with something specific, not 'I am writing to express my interest.' Reference the company or role directly. Your first sentence determines whether the hiring manager reads the second.",
-      example: `I have spent the past two years building [specific skill/project relevant to the role], and when I saw the ${roleName} opening at ${company}, it was exactly the kind of problem I have been preparing to work on. [One sentence on why this company specifically, not generic enthusiasm.]`,
+      guidance: `Lead with something specific, not 'I am writing to express my interest.' For ${roleName} roles the strongest opening establishes ${proves} immediately. Your first sentence determines whether the hiring manager reads the second.`,
+      example: `I have spent the past two years working on ${k1} and ${k2}, and when I saw the ${roleName} opening at ${company}, it was exactly the kind of problem I have been preparing to work on. [One sentence on why this company specifically, not generic enthusiasm.]`,
     },
     {
       label: "Paragraph 2",
       badge: "Relevance",
       badgeColor: "#8b5cf6",
-      guidance:
-        "Connect your most relevant experience to their most important requirement. Use their language from the job description. One concrete example with a result is worth three paragraphs of general claims.",
-      example: `In my role at [Company/Project], I [specific action using language from the job description] that resulted in [quantified outcome]. This is directly relevant to what you described as [specific requirement from the posting] because [connection].`,
+      guidance: `Connect your most relevant experience to their most important requirement, using their exact language. ${roleName} postings tend to lean on terms like ${k1}, ${k2} and ${k3} — mirror the phrasing rather than paraphrasing it. One concrete example with a result beats three paragraphs of general claims.`,
+      example: `In my role at [Company/Project], I [specific action involving ${k1}] that resulted in [quantified outcome]. This is directly relevant to what you described as [specific requirement from the posting] because [connection].`,
     },
     {
       label: "Paragraph 3",
@@ -109,60 +117,96 @@ function getCoverLetterSections(roleName: string, topCompanies: string[]) {
   ];
 }
 
-function getCoverLetterTips(roleName: string) {
+/**
+ * Role-aware writing tips.
+ *
+ * These were previously identical for all 41 roles, which made every page in
+ * this section 95% word-identical and kept them out of Google's index. They now
+ * compose from the role's own keyword set and its category profile, so a
+ * Paralegal page and an SRE page give genuinely different advice.
+ */
+function getCoverLetterTips(roleName: string, content: ReturnType<typeof getRoleContent>) {
+  const keywords = content?.keywords ?? [];
+  const angle = content?.profile.coverLetterAngle ?? "a concrete result you delivered";
+  const proves = content?.profile.provesValue ?? "measurable outcomes";
+  const screens = content?.profile.screeningFocus ?? "relevant experience";
+  const positioning = content?.note.positioning ?? "";
+  const roleScreened = content?.note.screened ?? screens;
+  const kwSample = keywords.slice(0, 4).join(", ");
+
   return [
     {
-      title: "Mirror the job description language",
-      body: `ATS systems score cover letters the same way they score resumes. If the posting says 'cross-functional collaboration,' your letter should use that phrase, not 'working with different teams.' Use their exact language for the 3-4 most important requirements.`,
+      title: `What a ${roleName} letter has to establish`,
+      body: `${positioning} Reviewers reading ${roleName} applications are specifically looking for ${roleScreened}, which is narrower than the general advice about enthusiasm and fit. A letter that establishes it in the opening is doing the one job that matters for this role.`,
     },
     {
-      title: "Lead with your strongest match, not your timeline",
-      body: `Most cover letters waste the first paragraph on 'I am a recent graduate from X University.' Start with what you can do for them. Your education and timeline can appear later. Hiring managers read the first three lines and decide whether to continue.`,
+      title: `Open with ${angle}`,
+      body: `A ${roleName} cover letter earns its second paragraph in the first two sentences. The strongest opening for this field is ${angle} — stated plainly, with the outcome attached. Hiring managers reading ${roleName} applications are screening for ${screens}, so leading with that is what buys you the rest of the page.`,
     },
     {
-      title: "One specific example beats five vague claims",
-      body: `'I am a strong communicator with excellent analytical skills' tells a hiring manager nothing. 'I reduced our reporting cycle from two weeks to three days by rebuilding the data pipeline' tells them exactly what you can do. One real example with a number is worth more than a paragraph of adjectives.`,
+      title: "Mirror the posting's exact language",
+      body: `Cover letters are parsed by the same systems that score your resume. ${roleName} postings tend to cluster around terms like ${kwSample}. If the posting uses a specific phrase, use that phrase rather than a synonym — the match is frequently literal, and the three or four most important requirements are the ones worth mirroring precisely.`,
     },
     {
-      title: "Keep it to one page and under 350 words",
-      body: `Hiring managers spend less than 30 seconds on a cover letter before deciding whether to read the resume. A concise, well-structured letter that gets to the point signals strong communication skills. A long letter signals the opposite.`,
+      title: `Show ${proves}`,
+      body: `This is the specific currency of ${roleName} hiring. The letter should demonstrate ${proves}, not general enthusiasm or a restatement of your resume bullets. One example carried through to its result does more work than a paragraph of adjectives, because it gives the reader something concrete to ask you about in the screen.`,
     },
     {
-      title: "Address the gap proactively if you are a new grad",
-      body: `Do not apologise for limited experience. Reframe it: 'While I am early in my career, I have spent the past year building [specific relevant work] that directly maps to what you described.' Own your trajectory instead of hedging.`,
+      title: "Keep it under 350 words on one page",
+      body: `Hiring managers spend well under a minute on a cover letter before deciding whether to open the resume. A tight, well-structured letter signals communication skill directly, and in ${roleName} roles that judgement carries over into how they imagine you writing docs, updates and client communication.`,
     },
     {
-      title: "Do not repeat your resume",
-      body: `Your cover letter should add context and narrative, not list the same bullet points. Use it to explain why, not what. The resume covers what you did. The cover letter covers why this role, why this company, and what you bring that the resume cannot show.`,
+      title: "Address a gap directly rather than hedging",
+      body: `If you are early in your career or switching into ${roleName} work, name it and reframe it in one sentence: what you have built that maps onto the requirement, even if the title does not match. Apologising for a gap draws more attention to it than addressing it confidently does, and hedged language reads as uncertainty about your own fit.`,
+    },
+    {
+      title: "Do not restate the resume",
+      body: `The resume covers what you did. The letter covers why this role, why this company, and what the resume cannot show — a decision you made, a constraint you worked under, or the reason this particular team interests you. Duplicating bullets wastes the one document where you control the narrative.`,
     },
   ];
 }
 
-function getCoverLetterFAQs(roleName: string) {
+function getCoverLetterFAQs(roleName: string, content: ReturnType<typeof getRoleContent>) {
+  const kws = content?.keywords ?? [];
+  const angle = content?.profile.coverLetterAngle ?? "a concrete result you delivered";
+  const proves = content?.profile.provesValue ?? "measurable outcomes";
+  const screens = content?.profile.screeningFocus ?? "relevant experience";
+  const mistake = content?.profile.commonMistakes[0] ?? "writing responsibilities instead of achievements";
+  const positioning = content?.note.positioning ?? "";
+  const roleScreened = content?.note.screened ?? screens;
+  const employers = content?.topCompanies.slice(0, 3).join(", ") ?? "target companies";
+  const salary = content?.salaryRange ?? "";
+  const kwLead = kws.slice(0, 3).join(", ");
+  const kwMore = kws.slice(3, 7).join(", ");
+
   return [
     {
       q: `What should a ${roleName} cover letter include?`,
-      a: `A strong ${roleName} cover letter has four components: (1) an opening that names the specific role and leads with your strongest relevant qualification, not generic enthusiasm; (2) a paragraph connecting your most relevant experience to the job description using their exact language; (3) a paragraph showing genuine knowledge of the company and why you are interested specifically in them; and (4) a short, direct close. Total length: 250 to 350 words on one page.`,
+      a: `Four components. An opening built around ${angle}. A second paragraph connecting your experience to the posting's top requirement in its own language — for ${roleName} roles that usually means terms like ${kwLead}. A third showing you understand what makes this company different. Then a short, direct close. Total length 250 to 350 words. ${positioning} Because reviewers are specifically looking for ${roleScreened}, the letter's job is to establish that in the first two sentences rather than build to it.`,
     },
     {
       q: `How long should a ${roleName} cover letter be?`,
-      a: `One page, 250 to 350 words. Hiring managers in most industries spend under 30 seconds on a cover letter initially. A concise letter that makes its case quickly is more effective than a thorough one that requires effort to read. If you cannot fit your argument in 350 words, the argument is not focused enough yet.`,
+      a: `One page, 250 to 350 words. Hiring managers reviewing ${roleName} applications spend well under a minute on the letter before deciding whether to open the resume. In this field the letter also serves as a writing sample, so brevity is read as a signal about how you would communicate on the job. If your argument does not fit in 350 words it is not focused enough yet.`,
     },
     {
       q: `How do I write a ${roleName} cover letter with no experience?`,
-      a: `Focus on projects, coursework, internships, and transferable skills. Be specific: a project that solved a real problem with a measurable result is more compelling than a GPA. Lead with what you have built or accomplished, not an apology for what you lack. Use the job description language to frame your experience, even if that experience comes from non-traditional sources. Explicitly state your enthusiasm for learning the parts you have not done professionally yet.`,
+      a: `Lead with what you have built rather than what you lack. For ${roleName} work, projects and coursework count when they carry a real result — pick the one closest to ${proves} and describe it the way you would describe professional work. Use the vocabulary the field actually uses (${kwMore || kwLead}) so the letter reads as someone inside the discipline. Name the gap once, in a single confident sentence, then move on.`,
     },
     {
       q: `Should I include a cover letter if it is listed as optional?`,
-      a: `Yes. Optional means the hiring manager will read it if you send one. Candidates who send a strong optional cover letter differentiate themselves from those who do not. The only reason not to send one is if you cannot write a good one. In that case, use Preciprocal's AI cover letter generator to produce a tailored first draft in under 60 seconds.`,
+      a: `Yes. Optional means it gets read if you send one, and most applicants do not. For ${roleName} roles at competitive employers such as ${employers}, the applicant pool is large enough that any real differentiator matters. The only reason to skip it is if you cannot write a good one — in which case Preciprocal's cover letter generator will produce a tailored first draft you can edit.`,
     },
     {
       q: `How do I make my ${roleName} cover letter stand out?`,
-      a: `Three things that almost no candidates do: (1) Name a specific detail about the company that is not on their homepage, something from a recent blog post, product launch, or news story. (2) Open with your strongest relevant accomplishment, not your name and the role title. (3) Use the exact phrases from the job description in your second paragraph. These three things alone put you in the top 10% of applicants.`,
+      a: `Three things almost nobody does. Name a specific detail about the company that is not on their homepage. Open with ${angle} rather than your name and the role title. And mirror the posting's exact phrasing for its top requirements instead of paraphrasing — ${roleName} postings repeat a recognisable vocabulary (${kwLead}), and matching it precisely is both an ATS signal and a credibility one.`,
     },
     {
       q: `What is the biggest mistake in ${roleName} cover letters?`,
-      a: `Starting with 'I am writing to express my interest in the ${roleName} position at [Company].' Every cover letter the hiring manager reads says this. It signals that you did not spend time on differentiation. Start with a specific hook: a relevant accomplishment, a specific reason you are interested in this company, or a direct statement of your strongest qualification for this role.`,
+      a: `Opening with "I am writing to express my interest in the ${roleName} position." Every letter says it, so it conveys nothing. The field-specific version of the same error is ${mistake} — it is the pattern that most often gets a ${roleName} application set aside, and it is entirely avoidable by leading with a result instead of a description of duties.`,
+    },
+    {
+      q: `Should I mention salary expectations in a ${roleName} cover letter?`,
+      a: `No, unless the posting explicitly asks. Raising compensation before the employer has decided they want you weakens your position. For context, ${roleName} roles currently span roughly ${salary} depending on location, company stage and scope — useful for deciding whether to apply, but not something to put in the letter. If a form requires a number, give a range anchored to your research and note it is negotiable.`,
     },
   ];
 }
@@ -180,9 +224,10 @@ export default async function CoverLetterExampleRolePage({
   const display = ROLE_DISPLAY[role];
   const roleName = display?.name ?? role.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
 
-  const sections = getCoverLetterSections(roleName, meta.topCompanies);
-  const tips = getCoverLetterTips(roleName);
-  const faqs = getCoverLetterFAQs(roleName);
+  const content = getRoleContent(role);
+  const sections = getCoverLetterSections(roleName, meta.topCompanies, content);
+  const tips = getCoverLetterTips(roleName, content);
+  const faqs = getCoverLetterFAQs(roleName, content);
 
   const faqSchema = {
     "@context": "https://schema.org",
