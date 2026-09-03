@@ -12,8 +12,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { ALL_COMPANIES } from "@/lib/constants";
-import { APP_URL } from "@/lib/constants";
+import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Company Interview Prep Guides 2026: Google, Amazon, Meta, Stripe & More",
@@ -27,30 +26,41 @@ export const metadata: Metadata = {
   },
 };
 
-const COMPANY_DISPLAY: Record<string, { name: string; difficulty: string; tier: string }> = {
-  google:      { name: "Google",      difficulty: "Very Hard",      tier: "FAANG" },
-  amazon:      { name: "Amazon",      difficulty: "Hard",           tier: "FAANG" },
-  meta:        { name: "Meta",        difficulty: "Very Hard",      tier: "FAANG" },
-  microsoft:   { name: "Microsoft",   difficulty: "Hard",           tier: "FAANG" },
-  apple:       { name: "Apple",       difficulty: "Very Hard",      tier: "FAANG" },
-  stripe:      { name: "Stripe",      difficulty: "Very Hard",      tier: "Top Tier" },
-  airbnb:      { name: "Airbnb",      difficulty: "Hard",           tier: "Top Tier" },
-  uber:        { name: "Uber",        difficulty: "Hard",           tier: "Top Tier" },
-  netflix:     { name: "Netflix",     difficulty: "Very Hard",      tier: "Top Tier" },
-  spotify:     { name: "Spotify",     difficulty: "Hard",           tier: "Top Tier" },
-  linkedin:    { name: "LinkedIn",    difficulty: "Hard",           tier: "Top Tier" },
-  salesforce:  { name: "Salesforce",  difficulty: "Medium",         tier: "Enterprise" },
-  oracle:      { name: "Oracle",      difficulty: "Medium",         tier: "Enterprise" },
-  adobe:       { name: "Adobe",       difficulty: "Medium",         tier: "Enterprise" },
-  nvidia:      { name: "NVIDIA",      difficulty: "Hard",           tier: "Top Tier" },
-  openai:      { name: "OpenAI",      difficulty: "Extremely Hard", tier: "AI Labs" },
-  anthropic:   { name: "Anthropic",   difficulty: "Extremely Hard", tier: "AI Labs" },
-  databricks:  { name: "Databricks",  difficulty: "Hard",           tier: "Unicorn" },
-  snowflake:   { name: "Snowflake",   difficulty: "Hard",           tier: "Unicorn" },
-  palantir:    { name: "Palantir",    difficulty: "Extremely Hard", tier: "Unicorn" },
-};
+/**
+ * Company display data is derived from COMPANY_META rather than duplicated here.
+ * This page previously kept its own hardcoded list of 20 companies, which meant
+ * adding a company required editing two files and silently dropped it from this
+ * hub if you forgot the second one.
+ */
+const COMPANY_DISPLAY: Record<string, { name: string; difficulty: string; tier: string }> =
+  Object.fromEntries(
+    ALL_COMPANIES.map((slug) => {
+      const meta = COMPANY_META[slug];
+      return [slug, { name: meta.displayName, difficulty: meta.difficulty, tier: meta.tier }];
+    })
+  );
 
-const TIERS = ["FAANG", "AI Labs", "Top Tier", "Unicorn", "Enterprise"];
+// Display order for the tier groupings. Any tier present in COMPANY_META but
+// missing here would not render, so the list is derived and then sorted rather
+// than hardcoded.
+const TIER_ORDER = [
+  "FAANG",
+  "AI Labs",
+  "Top Tier",
+  "Unicorn",
+  "Enterprise",
+  "Investment Banking",
+  "Quant & Trading",
+  "Consulting",
+  "Professional Services",
+  "Financial Services",
+  "Healthcare",
+  "Consumer & Retail",
+];
+
+const TIERS = [...new Set(ALL_COMPANIES.map((c) => COMPANY_META[c].tier))].sort(
+  (a, b) => TIER_ORDER.indexOf(a) - TIER_ORDER.indexOf(b)
+);
 
 const DIFFICULTY_COLOR: Record<string, string> = {
   "Medium":           "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
