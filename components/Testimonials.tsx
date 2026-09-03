@@ -12,6 +12,17 @@ export default function Testimonials() {
     title: t.role,
   }));
 
+  /**
+   * TESTIMONIALS in lib/constants.ts is currently empty, which is correct: we
+   * do not have consented, attributable testimonials yet, and inventing them
+   * would breach the FTC's rule on consumer reviews and testimonials.
+   *
+   * Without this guard the section still rendered its "Real Stories" heading
+   * and the claim "Real people. Real rejections. Real comebacks." above an
+   * empty carousel. Render nothing until there is something real to show.
+   */
+  if (items.length === 0) return null;
+
   return (
     <section id="testimonials" className="py-20">
       <div className="max-w-7xl mx-auto px-6">

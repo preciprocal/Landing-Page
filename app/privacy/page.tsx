@@ -31,7 +31,7 @@ function renderContent(text: string) {
 const SECTIONS = [
   {
     title: "Introduction and scope",
-    content: `This Privacy Policy (**Policy**) describes how Preciprocal (**Company**, **we**, **us**, or **our**) collects, uses, discloses, and protects personal information about you (**User**, **you**, or **your**) when you access or use the Preciprocal platform, including all associated websites, applications, and services (collectively, the **Service**).
+    content: `This Privacy Policy (**Policy**) describes how Preciprocal (**we**, **us**, or **our**) collects, uses, discloses, and protects personal information about you (**User**, **you**, or **your**) when you access or use the Preciprocal platform, including all associated websites, applications, and services (collectively, the **Service**).
 
 By accessing or using the Service, you acknowledge that you have read and understood this Policy. If you do not agree with this Policy, please do not use the Service.
 
@@ -97,7 +97,7 @@ Service Providers: We share information with trusted third-party service provide
 
 - **Stripe** (payment processing)
 - Hosting and cloud infrastructure providers (serving the Service and storing data, including server logs that contain IP addresses)
-- AI API providers (processing submitted content to generate outputs, subject to data processing agreements that prohibit retention for training)
+- **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may retain it for a limited period, typically up to 30 days, for abuse and misuse monitoring before deleting it. We have not opted in to any data sharing or model improvement programme offered by these providers. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
 
@@ -111,7 +111,7 @@ Business Transfers: In the event of a merger, acquisition, reorganization, bankr
 
 With Your Consent: We may share your information with third parties when you have given us explicit consent to do so.
 
-We require all third parties that process personal data on our behalf to enter into data processing agreements that obligate them to protect your information and process it only as instructed by us.`,
+We use established providers whose published data processing terms commit them to protect personal data and to process it only in order to provide their service to us. Where a provider offers a data processing agreement, we accept it and it governs their handling of your information.`,
   },
   {
     title: "Data retention",
@@ -135,7 +135,7 @@ You may request deletion of your data at any time as described in Section 8 of t
 
 For transfers of personal data from the EEA, United Kingdom, or Switzerland to the United States, we rely on the following transfer mechanisms:
 
-Standard Contractual Clauses (SCCs): We use the European Commission's approved Standard Contractual Clauses for transfers of personal data to third countries, incorporated into our data processing agreements with service providers.
+Standard Contractual Clauses (SCCs): The service providers we use publish data processing agreements that incorporate the European Commission's approved Standard Contractual Clauses for transfers to third countries, and those terms apply to our use of their services. We rely on those clauses rather than on separately negotiated agreements of our own.
 
 Adequacy Decisions: Where available, we rely on adequacy decisions issued by the European Commission recognizing the destination country as providing adequate data protection.
 
@@ -195,13 +195,13 @@ For more information about cookies and how to manage them, visit www.allaboutcoo
 
 Encryption: All data in transit is protected using TLS 1.2 or higher. Data at rest is encrypted using AES-256 encryption.
 
-Access Controls: Access to personal data is restricted to authorized personnel on a need-to-know basis. All access is logged and audited.
+Access Controls: Administrative access to personal data is limited to the smallest number of people necessary to operate and support the Service, and is granted on a need-to-know basis.
 
 Password Security: Passwords are hashed using industry-standard cryptographic algorithms and are never stored in plain text.
 
 Infrastructure Security: Our infrastructure is hosted on cloud providers that maintain SOC 2 Type II certifications and comply with industry security standards.
 
-Incident Response: We maintain a security incident response plan and will notify you and applicable regulatory authorities of any data breach in accordance with applicable law.
+Incident Response: If we become aware of a breach affecting your personal information, we will investigate promptly and notify you, and where required the applicable regulatory authorities, in accordance with applicable law and within the timeframes it sets.
 
 Despite these measures, no security system is impenetrable. We cannot guarantee the absolute security of your information. In the event of a data breach that is likely to result in a risk to your rights and freedoms, we will notify you without undue delay in accordance with applicable law.
 
@@ -237,13 +237,15 @@ We encourage you to review this Policy periodically to stay informed about how w
   },
   {
     title: "Contact and data controller information",
-    content: `Preciprocal is the data controller for personal information collected through the Service.
+    content: `Preciprocal is the data controller for personal information collected through the Service, and is operated from the United States.
 
 For questions, concerns, or requests regarding this Policy or our data practices, please contact us at:
 
 Preciprocal
 Privacy inquiries: support@preciprocal.com
 General inquiries: hello@preciprocal.com
+
+If you require our full registered details or a postal address for a formal data protection request, email support@preciprocal.com and we will provide them.
 
 We will respond to all privacy-related inquiries within 30 days. For data subject requests under GDPR or CCPA, please include sufficient information to verify your identity and clearly describe your request.
 

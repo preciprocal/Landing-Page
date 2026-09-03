@@ -60,7 +60,9 @@ export function OrganizationJsonLd() {
     description:
       "Preciprocal is an AI-powered job search platform with mock interviews, resume analysis, cover letter generation, study planning, and job tracking. Built for students and early-career professionals.",
     foundingDate: "2024",
-    numberOfEmployees: { "@type": "QuantitativeValue", value: 5 },
+    // numberOfEmployees removed: it published a specific headcount of 5, which
+    // is not a figure we can substantiate. Do not re-add unverifiable
+    // organisation facts here; structured data is a public claim.
     // knowsAbout builds topical authority signals for the brand entity
     knowsAbout: [
       "Job search",

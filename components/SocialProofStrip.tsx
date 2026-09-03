@@ -4,11 +4,27 @@ import { motion } from "framer-motion";
 import Counter from "@/components/Counter";
 import { RevealOnScroll, GlowDivider } from "@/components/LandingAnimations";
 
+/**
+ * Only claims that are verifiable from the product itself.
+ *
+ * This strip previously published usage and outcome figures: 25,000+ mock
+ * interviews completed, 12,000+ resumes optimised, 3,200+ offers landed, and an
+ * 89% interview callback rate. None of those were measured, and the callback
+ * rate was a performance claim about results users could expect.
+ *
+ * Fabricated usage numbers and efficacy claims are prohibited under the FTC Act
+ * and the FTC's rule on consumer reviews and testimonials, and the equivalent
+ * consumer protection rules in the UK and EU. They also cannot be substantiated
+ * if anyone asks, which is the practical problem.
+ *
+ * Every number below can be counted in this repository. If you later have real,
+ * measured usage data, it can go back here, but it must be data you can show.
+ */
 const PROOF = [
-  { value: 25000, suffix: "+", label: "Mock interviews completed", icon: "🎤" },
-  { value: 12000, suffix: "+", label: "Resumes optimised", icon: "📄" },
-  { value: 3200, suffix: "+", label: "Offers landed", icon: "🎉" },
-  { value: 89, suffix: "%", label: "Interview callback rate after optimisation", icon: "📈" },
+  { value: 11, suffix: "", label: "AI tools in one subscription", icon: "🧰" },
+  { value: 56, suffix: "", label: "Company interview prep guides", icon: "🏢" },
+  { value: 41, suffix: "", label: "Roles with tailored questions", icon: "🎯" },
+  { value: 32, suffix: "", label: "In-depth career and visa guides", icon: "📚" },
 ];
 
 export default function SocialProofStrip() {

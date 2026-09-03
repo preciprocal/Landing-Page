@@ -16,11 +16,11 @@ import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Company Interview Prep: 56 Top Employers (2026)",
-  description: "Free interview prep guides for 56 top employers across tech, investment banking, consulting, healthcare and retail. Google, Goldman Sachs, McKinsey, Mayo Clinic and more, with process breakdowns and culture tips.",
+  description: "Free interview prep guides for 56 top employers across tech, investment banking, consulting, healthcare and retail. Google, Amazon, Goldman Sachs, McKinsey, Citadel, Mayo Clinic and more, with process breakdowns, difficulty ratings and culture tips.",
   alternates: { canonical: "https://preciprocal.com/interview-prep" },
   openGraph: {
     title: "Company Interview Prep Guides 2026: Preciprocal",
-    description: "How to prepare for Google, Amazon, Meta, Microsoft, OpenAI, Stripe, and 15 more top companies. Process breakdown, culture tips, and real Q&As.",
+    description: "How to prepare for Google, Amazon, Goldman Sachs, McKinsey, Stripe, Mayo Clinic and 50 more top employers. Process breakdown, culture tips, and real Q&As.",
     url: "https://preciprocal.com/interview-prep",
     type: "website",
   },
