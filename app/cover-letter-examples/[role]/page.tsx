@@ -18,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
+import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 
 // ── Static params ─────────────────────────────────────────────────────────────
@@ -39,7 +40,7 @@ export async function generateMetadata({
   const roleName = display?.name ?? role.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const canonical = `https://preciprocal.com/cover-letter-examples/${role}`;
 
-  const title = `${roleName} Cover Letter Example (2026) | Preciprocal`;
+  const title = fitTitle(`${roleName} Cover Letter Example`, " (2026)");
   const description = `Free ${roleName} cover letter example and writing guide for 2026. What to include, what to avoid, and a full annotated template that gets past ATS and makes hiring managers keep reading.`;
 
   return {

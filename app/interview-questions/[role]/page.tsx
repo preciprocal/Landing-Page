@@ -11,7 +11,8 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { InterviewPageJsonLd } from "@/components/JsonLd";
-import { ALL_ROLES, getRoleMeta, APP_URL } from "@/lib/constants";
+import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
+import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import { getRoleInterviewQuestions } from "@/lib/roleContent";
 
 export async function generateStaticParams() {
@@ -23,12 +24,17 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
   if (!ALL_ROLES.includes(role as any)) return {};
   const meta = getRoleMeta(role);
   const canonical = `https://preciprocal.com/interview-questions/${role}`;
+  // ROLE_META.title already ends with "| Preciprocal", which the layout
+  // template would duplicate. Build a short title and keep the longer stored
+  // one for the social cards.
+  const name = ROLE_DISPLAY[role]?.name ?? role;
+  const title = fitTitle(`${name} Interview Questions`, " (2026)");
   return {
-    title: meta.title,
+    title,
     description: meta.description,
     alternates: { canonical },
-    openGraph: { title: meta.title, description: meta.description, url: canonical, type: "article", images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }] },
-    twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
+    openGraph: { title: stripBrand(meta.title), description: meta.description, url: canonical, type: "article", images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image", title: stripBrand(meta.title), description: meta.description },
   };
 }
 

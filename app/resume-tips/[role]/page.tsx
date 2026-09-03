@@ -14,6 +14,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
+import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 
 interface ResumeTipData {
@@ -198,7 +199,7 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
   const display = ROLE_DISPLAY[role];
   if (!display) return { title: "Resume Tips, Preciprocal" };
   return {
-    title: `${display.name} Resume Tips, How to Write a Resume That Gets Interviews`,
+    title: fitTitle(`${display.name} Resume Tips`, " (2026)"),
     description: `Step-by-step resume guide for ${display.name}s: ATS keywords, bullet formulas, format tips, and common mistakes to avoid. Updated for 2026.`,
     alternates: { canonical: `https://preciprocal.com/resume-tips/${role}` },
     openGraph: {

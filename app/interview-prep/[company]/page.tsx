@@ -15,6 +15,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
+import { fitTitle, stripBrand } from "@/lib/seoTitle";
 
 export async function generateStaticParams() {
   return ALL_COMPANIES.map((company) => ({ company }));
@@ -25,12 +26,17 @@ export async function generateMetadata({ params }: { params: Promise<{ company: 
   const meta = getCompanyMeta(company);
   if (!meta) return {};
   const canonical = `https://preciprocal.com/interview-prep/${company}`;
+  // COMPANY_META.title already ends with "| Preciprocal" and the layout
+  // template appends it again, so a short title is built here instead. The
+  // long stored title is still used for the OG and Twitter cards, which have
+  // a much larger display budget.
+  const title = fitTitle(`${meta.displayName} Interview Prep`, " (2026)");
   return {
-    title: meta.title,
+    title,
     description: meta.description,
     alternates: { canonical },
-    openGraph: { title: meta.title, description: meta.description, url: canonical, type: "article", images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }] },
-    twitter: { card: "summary_large_image", title: meta.title, description: meta.description },
+    openGraph: { title: stripBrand(meta.title), description: meta.description, url: canonical, type: "article", images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image", title: stripBrand(meta.title), description: meta.description },
   };
 }
 

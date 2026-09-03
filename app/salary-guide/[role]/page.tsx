@@ -14,6 +14,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
+import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 
 // ─── Static params ────────────────────────────────────────────────────────────
@@ -253,7 +254,7 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
   if (!display) return { title: "Salary Guide, Preciprocal" };
   const data = getSalaryData(role);
   return {
-    title: `${display.name} Salary Guide 2026, Base, Total Comp & Negotiation Tips`,
+    title: fitTitle(`${display.name} Salary Guide`, " 2026"),
     description: `2026 salary data for ${display.name.toLowerCase()}s: base salary ranges by level, total compensation breakdowns, equity benchmarks, and negotiation scripts. Median base: ${data?.medianBase ?? "varies"}.`,
     alternates: { canonical: `https://preciprocal.com/salary-guide/${role}` },
     openGraph: {

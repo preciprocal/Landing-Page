@@ -6,6 +6,7 @@
 
 import type { Metadata } from "next";
 import { BLOG_POSTS } from "@/lib/constants";
+import { stripBrand } from "@/lib/seoTitle";
 import { BLOG_SEO } from "@/lib/blogSeo";
 
 const SITE_URL = "https://preciprocal.com";
@@ -28,7 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const seo = BLOG_SEO[post.slug];
-  const title = seo?.title ?? `${post.title} | Preciprocal`;
+  // BLOG_SEO titles already end with "| Preciprocal"; the layout template
+  // appends it again, so strip the stored one.
+  const title = stripBrand(seo?.title ?? post.title);
   const description = seo?.description ?? post.description;
   const keywords = seo?.keywords ?? [];
   const ogTitle = seo?.ogTitle ?? post.title;
