@@ -19,7 +19,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Best Jobscan Alternative in 2026: Preciprocal vs Jobscan",
+  title: { absolute: "Jobscan Alternative: Preciprocal vs Jobscan" },
   description:
     "Looking for a Jobscan alternative? Preciprocal offers ATS resume scoring, AI mock interviews, cover letter generation, and job tracking, all in one platform built for students at $9.99/mo vs Jobscan's $49.95/mo.",
   keywords: [

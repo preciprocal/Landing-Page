@@ -177,6 +177,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.78,
     },
+    {
+      // Hub for the comparison pages. Every comparison page's breadcrumb schema
+      // already pointed here before this route existed.
+      url: `${SITE_URL}/alternatives`,
+      lastModified: new Date("2026-09-03"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    // Comparison pages added September 2026. Pricing in these pages was checked
+    // against public sources at that date and needs periodic re-verification.
+    ...[
+      "teal-alternative",
+      "careerflow-alternative",
+      "kickresume-alternative",
+      "enhancv-alternative",
+      "rezi-alternative",
+      "huntr-alternative",
+      "big-interview-alternative",
+      "interviewing-io-alternative",
+      "simplify-alternative",
+    ].map((slug) => ({
+      url: `${SITE_URL}/alternatives/${slug}`,
+      lastModified: new Date("2026-09-03"),
+      changeFrequency: "monthly" as const,
+      priority: 0.78,
+    })),
     // ── Legal ────────────────────────────────────────────────────────────────
     {
       url: `${SITE_URL}/privacy`,

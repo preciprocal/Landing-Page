@@ -18,7 +18,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Best Resume Worded Alternative in 2026: Preciprocal vs Resume Worded",
+  title: { absolute: "Resume Worded Alternative: Preciprocal Compared" },
   description:
     "Looking for a Resume Worded alternative? Preciprocal offers resume scoring, AI mock interviews, cover letter generation, and job tracking in one platform. Built for students at $9.99/mo.",
   keywords: [

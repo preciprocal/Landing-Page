@@ -49,6 +49,7 @@ const FOOTER_COLUMNS = [
       { label: "Resume Tips",           href: "/resume-tips" },
       { label: "Salary Guide",          href: "/salary-guide" },
       { label: "Cover Letter Examples", href: "/cover-letter-examples" },
+      { label: "Tool Comparisons",      href: "/alternatives" },
       { label: "FAQ",                   href: "/faq" },
     ],
   },

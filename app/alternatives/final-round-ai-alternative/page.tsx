@@ -26,7 +26,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Best Final Round AI Alternative in 2026: Preciprocal vs Final Round AI",
+  title: { absolute: "Final Round AI Alternative: Preciprocal Compared" },
   description:
     "Looking for a Final Round AI alternative? Compare features, pricing, and fit. Preciprocal offers AI mock interviews + ATS resume scoring + cover letter generator + job tracker, built for students at $9.99/mo.",
   keywords: [
