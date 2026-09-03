@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Preciprocal Pricing: Free Plan + Pro at $9.99/mo",
+  title: { absolute: "Preciprocal Pricing: Free Plan, Pro at $9.99/mo" },
   description:
     "Start free, upgrade when you're ready. Preciprocal Pro is $9.99/mo. Includes AI mock interviews, resume ATS scoring, cover letters, study plans, and job tracking. 30-day money-back guarantee.",
   keywords: [

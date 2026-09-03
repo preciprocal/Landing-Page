@@ -14,10 +14,10 @@
  * The fix is to compose each page from three layers of genuinely role-specific
  * material rather than one generic template:
  *
- *   1. ROLE_KEYWORDS      — a real ATS keyword set per role (all 41 authored)
- *   2. CATEGORY_PROFILE   — framing that differs per job family, so a Paralegal
+ *   1. ROLE_KEYWORDS      - a real ATS keyword set per role (all 41 authored)
+ *   2. CATEGORY_PROFILE   - framing that differs per job family, so a Paralegal
  *                           page and an SRE page share no structural advice
- *   3. ROLE_META          — salary range, six real top companies, related roles
+ *   3. ROLE_META          - salary range, six real top companies, related roles
  *                           (already in constants.ts, previously unused here)
  *
  * Two roles in different categories now share almost nothing. Two roles in the
@@ -101,13 +101,13 @@ export const ROLE_KEYWORDS: Record<string, string[]> = {
 
 // ─── Per-role notes ───────────────────────────────────────────────────────────
 // Category profiles differentiate a Paralegal page from an SRE page, but they
-// cannot separate two roles inside the same family — an Account Executive and a
+// cannot separate two roles inside the same family, an Account Executive and a
 // Sales Manager share a profile. These notes carry the role-specific substance
 // that makes siblings genuinely different pages.
 //
-//   positioning — what distinguishes this role from its closest neighbours
-//   screened    — what hiring managers uniquely probe for in this role
-//   payNote     — what actually moves compensation for this specific role
+//   positioning - what distinguishes this role from its closest neighbours
+//   screened    - what hiring managers uniquely probe for in this role
+//   payNote     - what actually moves compensation for this specific role
 
 interface RoleNote {
   positioning: string;
@@ -117,25 +117,25 @@ interface RoleNote {
 
 export const ROLE_NOTES: Record<string, RoleNote> = {
   // Engineering
-  "software-engineer": { positioning: "The generalist engineering role, which means the bar is breadth plus one area of genuine depth rather than narrow specialisation.", screened: "whether you can design a system from an ambiguous requirement and defend the trade-offs out loud", payNote: "Levelling is the dominant factor — the gap between L4 and L5 at a large tech company usually exceeds the gap between two different employers at the same level." },
-  "frontend-developer": { positioning: "Judged on what users actually experience: rendering performance, accessibility and interaction quality, not just whether the component renders.", screened: "whether you understand the browser beneath the framework — rendering, layout, and bundle cost", payNote: "Depth in performance and accessibility pays above general React work, because far fewer candidates can evidence it." },
+  "software-engineer": { positioning: "The generalist engineering role, which means the bar is breadth plus one area of genuine depth rather than narrow specialisation.", screened: "whether you can design a system from an ambiguous requirement and defend the trade-offs out loud", payNote: "Levelling is the dominant factor, the gap between L4 and L5 at a large tech company usually exceeds the gap between two different employers at the same level." },
+  "frontend-developer": { positioning: "Judged on what users actually experience: rendering performance, accessibility and interaction quality, not just whether the component renders.", screened: "whether you understand the browser beneath the framework, rendering, layout, and bundle cost", payNote: "Depth in performance and accessibility pays above general React work, because far fewer candidates can evidence it." },
   "backend-developer": { positioning: "Measured on what happens under load and under failure, so data modelling and correctness matter more than feature velocity.", screened: "how you reason about consistency, retries and failure modes in a distributed setting", payNote: "Roles owning data-critical paths such as payments or auth pay above general API work at the same level." },
   "full-stack-developer": { positioning: "Valued for shipping a feature end to end without handoffs, which suits smaller teams where ownership spans the whole stack.", screened: "whether your breadth is real on both sides or genuinely deep on one and shallow on the other", payNote: "Pay tracks the stack half you are strongest in; startups pay a premium for genuine end-to-end ownership." },
   "ios-developer": { positioning: "A platform specialisation where App Store constraints, release cadence and device fragmentation shape the whole job.", screened: "memory management, lifecycle handling, and how you ship and roll back a release you cannot hotfix", payNote: "A smaller candidate pool than web keeps senior iOS compensation competitive even when general hiring slows." },
   "android-developer": { positioning: "Defined by device and OS fragmentation, which makes compatibility and performance across a wide hardware range a constant concern.", screened: "Kotlin depth, lifecycle correctness, and how you handle fragmentation without shipping three codebases", payNote: "Compose migration experience currently carries a premium as teams move off legacy View systems." },
   "machine-learning-engineer": { positioning: "Distinguished from data science by production ownership: serving, latency, monitoring and retraining rather than analysis.", screened: "whether you have shipped a model into production and kept it healthy afterwards, not just trained one", payNote: "One of the highest-paying engineering specialisations, and production ML ownership is the single largest differentiator within it." },
   "devops-engineer": { positioning: "Sits between development and operations, measured on deployment velocity and the reliability of the pipeline itself.", screened: "infrastructure-as-code fluency and how you have reduced toil rather than automated around it", payNote: "Kubernetes and Terraform depth remain the clearest premium; cost-optimisation wins are increasingly negotiable leverage." },
-  "cloud-engineer": { positioning: "Focused on the platform layer — provisioning, networking, identity and cost — rather than the applications running on it.", screened: "depth in one cloud rather than shallow familiarity with three, plus real cost awareness", payNote: "Current certifications matter more here than in most engineering roles, and multi-cloud experience is genuinely scarce." },
+  "cloud-engineer": { positioning: "Focused on the platform layer, provisioning, networking, identity and cost, rather than the applications running on it.", screened: "depth in one cloud rather than shallow familiarity with three, plus real cost awareness", payNote: "Current certifications matter more here than in most engineering roles, and multi-cloud experience is genuinely scarce." },
   "site-reliability-engineer": { positioning: "An engineering role defined by error budgets and operational rigour, where reducing toil counts as much as shipping features.", screened: "how you have run incidents and what you changed afterwards, evidenced through real postmortems", payNote: "On-call load is compensated differently across companies and is a legitimate, often overlooked negotiation point." },
   "cybersecurity-analyst": { positioning: "Split between detection work and compliance work, and the two career tracks diverge sharply in tooling and pay.", screened: "practical detection and response experience rather than certification lists alone", payNote: "Clearances and specialised incident-response experience command the steepest premiums in this field." },
   "data-engineer": { positioning: "Owns the reliability and shape of data that everyone downstream depends on, so correctness beats cleverness.", screened: "how you handle schema evolution, late data and pipeline failures without silent corruption", payNote: "Streaming experience pays above batch-only work, and warehouse cost ownership is increasingly part of the role." },
 
   // Data & Analytics
-  "data-scientist": { positioning: "Distinguished from analytics by inference and experimentation — causality and uncertainty, not just reporting what happened.", screened: "experimental design and whether you can identify when a result is not actually significant", payNote: "Product data science and research science are different markets; production modelling pulls pay toward ML engineering bands." },
-  "data-analyst": { positioning: "The role closest to the business question, judged on speed and clarity rather than modelling sophistication.", screened: "SQL fluency under pressure and whether you can turn a vague question into a defined metric", payNote: "The widest band in analytics — moving into product analytics or experimentation raises pay substantially." },
+  "data-scientist": { positioning: "Distinguished from analytics by inference and experimentation, causality and uncertainty, not just reporting what happened.", screened: "experimental design and whether you can identify when a result is not actually significant", payNote: "Product data science and research science are different markets; production modelling pulls pay toward ML engineering bands." },
+  "data-analyst": { positioning: "The role closest to the business question, judged on speed and clarity rather than modelling sophistication.", screened: "SQL fluency under pressure and whether you can turn a vague question into a defined metric", payNote: "The widest band in analytics, moving into product analytics or experimentation raises pay substantially." },
 
   // Product & Design
-  "product-manager": { positioning: "Accountable for outcomes without owning the people who produce them, so influence is the core mechanic of the job.", screened: "product judgement — why this problem, why now, and what you chose not to build", payNote: "Owning a revenue surface rather than an internal tool is the largest single factor in the band." },
+  "product-manager": { positioning: "Accountable for outcomes without owning the people who produce them, so influence is the core mechanic of the job.", screened: "product judgement, why this problem, why now, and what you chose not to build", payNote: "Owning a revenue surface rather than an internal tool is the largest single factor in the band." },
   "ux-designer": { positioning: "Evaluated primarily through the portfolio, where reasoning and process matter more than final visual polish.", screened: "whether your case studies show research and iteration or only the finished screens", payNote: "Product design pays above visual design; design systems and research specialisations carry their own premium." },
   "technical-program-manager": { positioning: "Owns execution across teams that do not report to you, making dependency and risk management the actual craft.", screened: "how you surfaced and resolved a cross-team dependency before it slipped the date", payNote: "TPM bands track engineering closely at large tech companies, and technical depth is what unlocks the upper half." },
 
@@ -145,8 +145,8 @@ export const ROLE_NOTES: Record<string, RoleNote> = {
 
   // Business & Ops
   "business-analyst": { positioning: "The translation layer between business intent and technical delivery, where requirement clarity is the deliverable.", screened: "whether you can elicit real requirements from stakeholders who disagree with each other", payNote: "Technical BAs who write SQL and own data models earn materially above pure documentation roles." },
-  "project-manager": { positioning: "Owns delivery against scope, time and budget, with the discipline living in risk and change management.", screened: "how you recovered a project that was slipping, specifically what you cut or renegotiated", payNote: "Industry drives this band more than title — construction, pharma and tech pay very differently for identical scope." },
-  "operations-manager": { positioning: "Accountable for throughput and cost of a running function, so improvement is measured in sustained deltas.", screened: "a process you changed and whether the improvement held six months later", payNote: "Scope — sites, headcount and budget — determines the band more than sector or tooling." },
+  "project-manager": { positioning: "Owns delivery against scope, time and budget, with the discipline living in risk and change management.", screened: "how you recovered a project that was slipping, specifically what you cut or renegotiated", payNote: "Industry drives this band more than title, construction, pharma and tech pay very differently for identical scope." },
+  "operations-manager": { positioning: "Accountable for throughput and cost of a running function, so improvement is measured in sustained deltas.", screened: "a process you changed and whether the improvement held six months later", payNote: "Scope, sites, headcount and budget, determines the band more than sector or tooling." },
   "supply-chain-analyst": { positioning: "Balances inventory cost against service level, a trade-off that defines nearly every decision in the role.", screened: "forecasting accuracy and how you handled a genuine disruption to supply", payNote: "ERP depth, particularly SAP, is the clearest premium; manufacturing and retail pay differently for the same work." },
   "management-consultant": { positioning: "Sold on structured problem solving under time pressure, with communication weighted as heavily as analysis.", screened: "case structuring live, and whether you can defend a recommendation you formed in minutes", payNote: "Firm tier dominates everything else, and the progression is steep and highly structured by year." },
 
@@ -157,7 +157,7 @@ export const ROLE_NOTES: Record<string, RoleNote> = {
   "fp-and-a-analyst": { positioning: "The forward-looking counterpart to accounting, valued for business partnering as much as modelling accuracy.", screened: "forecast accuracy and whether operational leaders actually used your analysis to decide something", payNote: "Business-partnering roles pay above pure reporting; board-facing exposure accelerates the band notably." },
 
   // Sales & Marketing
-  "marketing-manager": { positioning: "Owns a channel or segment outcome, with the constant challenge of attributing results to activity.", screened: "attribution — whether you can connect what you ran to pipeline that closed", payNote: "Owning a pipeline number rather than a brand metric pulls compensation toward revenue bands." },
+  "marketing-manager": { positioning: "Owns a channel or segment outcome, with the constant challenge of attributing results to activity.", screened: "attribution, whether you can connect what you ran to pipeline that closed", payNote: "Owning a pipeline number rather than a brand metric pulls compensation toward revenue bands." },
   "digital-marketing-specialist": { positioning: "The most directly measurable marketing role, judged on channel economics and conversion efficiency.", screened: "channel depth and whether you have managed real budget against a CAC target", payNote: "Paid acquisition experience with meaningful budget pays above organic-only backgrounds." },
   "sales-manager": { positioning: "Carries a team number rather than a personal one, so coaching and forecast accuracy become the core skills.", screened: "team attainment, forecast accuracy, and how you turned around an underperforming rep", payNote: "Team size and segment set the band; forecast reliability is what earns the larger territory." },
   "account-executive": { positioning: "Owns an individual number end to end, from pipeline generation through close, with attainment as the sole headline metric.", screened: "attainment history with quota size attached, and whether you self-generated pipeline", payNote: "Segment and deal size drive OTE more than title; the base-to-variable split is genuinely negotiable." },
@@ -174,7 +174,7 @@ export const ROLE_NOTES: Record<string, RoleNote> = {
   "clinical-data-analyst": { positioning: "Combines clinical domain knowledge with analytics, a pairing that is genuinely scarce in the hiring market.", screened: "whether you understand clinical data quality problems rather than treating EHR data as clean", payNote: "The clinical-plus-technical combination is scarce enough to pay above general analytics roles." },
 
   // Legal
-  paralegal: { positioning: "Practice area defines the job almost entirely — litigation and corporate support share very little day to day.", screened: "practice area match and evidence of accuracy under filing deadlines", payNote: "Large firms and in-house teams pay well above small practices; specialisation raises the band further." },
+  paralegal: { positioning: "Practice area defines the job almost entirely, litigation and corporate support share very little day to day.", screened: "practice area match and evidence of accuracy under filing deadlines", payNote: "Large firms and in-house teams pay well above small practices; specialisation raises the band further." },
   "compliance-analyst": { positioning: "Sits between legal and operations, translating regulation into controls the business will actually follow.", screened: "specific regulatory frameworks you have worked under and a remediation you drove to completion", payNote: "Financial services compliance pays above most other sectors, and AML and KYC depth is consistently in demand." },
 };
 
@@ -211,14 +211,14 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       { title: "Show ownership beyond the code", body: "On-call rotations, incident response, design docs, code review, and mentoring all signal seniority more reliably than another framework name. One bullet about a system you owned end-to-end, including its failures, is worth three about features you shipped." },
     ],
     commonMistakes: [
-      "Listing technologies you touched once — every item on your resume is fair game in the interview",
+      "Listing technologies you touched once, every item on your resume is fair game in the interview",
       "Describing team output as though it were yours, which collapses under one follow-up question",
       "No scale or performance numbers anywhere, leaving the reader unable to calibrate your level",
       "A visually complex two-column template that ATS parsers mangle into unreadable text",
       "Burying the projects section, which is often the strongest signal for junior engineers",
     ],
     payDrivers: [
-      "Company tier and funding stage — the same title varies enormously between a Series A startup and a public tech company",
+      "Company tier and funding stage, the same title varies enormously between a Series A startup and a public tech company",
       "Location, even for remote roles, since most companies still band pay geographically",
       "Depth in a scarce specialisation such as distributed systems, ML infrastructure, or security",
       "Equity, which at senior levels frequently exceeds the difference in base salary between offers",
@@ -244,7 +244,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "Treating dashboards as the achievement rather than the decisions they enabled",
     ],
     payDrivers: [
-      "Whether the role is closer to product analytics, ML modeling, or business reporting — modeling-heavy work pays more",
+      "Whether the role is closer to product analytics, ML modeling, or business reporting, modeling-heavy work pays more",
       "Industry, with tech and finance paying well above healthcare and non-profit for identical skills",
       "Production ownership: analysts who ship models into production earn closer to engineering bands",
       "Domain expertise in a regulated or specialised field, which is much harder to hire for",
@@ -255,10 +255,10 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
   "Product & Design": {
     provesValue: "outcomes for users and the business, not features shipped",
     bulletFormula: "What you shipped or designed + the user problem + the metric that moved + magnitude",
-    screeningFocus: "judgement — why you chose this problem over the alternatives",
+    screeningFocus: "judgement, why you chose this problem over the alternatives",
     resumeSections: [
       { title: "Outcome first, feature second", body: "The single biggest weakness in product and design resumes is describing what was built. 'Redesigned the onboarding flow' is output. 'Redesigned onboarding after research showed 60% drop-off at step three, cutting time-to-first-value from 8 minutes to 2.5 and lifting D7 retention 22%' shows research, judgement and result in one line." },
-      { title: "Show the judgement, not just the execution", body: "Anyone can execute a roadmap handed to them. What gets you hired is evidence you decided what to build. Reference something you deprioritised or killed, and why — it demonstrates the reasoning that interviewers spend the entire loop probing for." },
+      { title: "Show the judgement, not just the execution", body: "Anyone can execute a roadmap handed to them. What gets you hired is evidence you decided what to build. Reference something you deprioritised or killed, and why, it demonstrates the reasoning that interviewers spend the entire loop probing for." },
       { title: "Speak the right metric dialect", body: "Consumer roles want engagement, retention and DAU/MAU. B2B roles want ARR, churn, expansion and NPS. Platform roles want adoption and developer velocity. Read the posting and mirror its vocabulary, because using the wrong dialect signals a mismatch before anyone reads your bullets." },
       { title: "Designers: your portfolio carries the weight", body: "For design roles the resume exists to get someone to open your portfolio. Make the link unmissable, and make sure each case study shows process rather than only final visuals: the problem, the research, what you tried, what failed, and what shipped." },
     ],
@@ -270,7 +270,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "A portfolio link that is broken, gated, or buried at the bottom of the page",
     ],
     payDrivers: [
-      "Product surface — revenue-owning and platform roles pay above internal tools work",
+      "Product surface, revenue-owning and platform roles pay above internal tools work",
       "Company stage, with late-stage and public companies paying materially more than seed startups",
       "Technical depth for PM roles, which unlocks the higher-paying technical PM and TPM bands",
       "Scope: number of engineers supported and whether you own a P&L line",
@@ -286,7 +286,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       { title: "Lead with the constraint you solved for", body: "Architecture is the discipline of trade-offs, so state the constraint: cost, latency, compliance, migration risk, or headcount. 'Designed a multi-region failover architecture meeting a 15-minute RTO for a regulated workload' communicates far more than 'designed cloud architecture'." },
       { title: "Quantify in money and uptime", body: "These roles are judged on availability and spend. Percentage uptime, incident reduction, migration timelines, and annual infrastructure cost savings are the numbers that matter, and they are unusually persuasive because they are directly comparable across candidates." },
       { title: "Show the stakeholder half of the job", body: "Architects and IT managers spend much of their time with vendors, finance, security and executives. Mention proposals you defended, vendor negotiations you led, and technical decisions you had to justify to non-technical leadership." },
-      { title: "Name your platforms explicitly", body: "This field screens hard on platform match. Name the clouds, the identity providers, the ITSM tooling, and the compliance regimes you have worked under — these are literal ATS matches and genuine differentiators." },
+      { title: "Name your platforms explicitly", body: "This field screens hard on platform match. Name the clouds, the identity providers, the ITSM tooling, and the compliance regimes you have worked under, these are literal ATS matches and genuine differentiators." },
     ],
     commonMistakes: [
       "Describing architecture in abstractions with no concrete platforms or numbers attached",
@@ -297,7 +297,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
     ],
     payDrivers: [
       "Cloud platform depth and current certifications, which are unusually well rewarded here",
-      "Industry regulation — finance and healthcare pay a premium for compliance-aware architects",
+      "Industry regulation, finance and healthcare pay a premium for compliance-aware architects",
       "Whether the role is pre-sales facing, which typically adds a variable compensation component",
       "Team and budget size under your ownership",
     ],
@@ -322,7 +322,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "Failing to show cross-functional influence, the core competency being screened for",
     ],
     payDrivers: [
-      "Scope of ownership — headcount, budget and number of sites drive the band more than title",
+      "Scope of ownership, headcount, budget and number of sites drive the band more than title",
       "Industry margin, with tech and pharma paying well above retail and non-profit",
       "Specialised systems expertise such as SAP or a major ERP, which commands a clear premium",
       "Whether the role owns a cost centre or a P&L",
@@ -337,7 +337,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
     resumeSections: [
       { title: "Sizes are the currency of this field", body: "Finance resumes are read for magnitude. Deal size, budget owned, portfolio value, revenue supported, headcount in scope. 'Built a DCF model' is unremarkable; 'built the DCF supporting a $340M acquisition, including three downside scenarios presented to the investment committee' is a different candidate entirely." },
       { title: "Name the model types explicitly", body: "DCF, LBO, three-statement, merger and accretion-dilution, sensitivity and scenario analysis are all literal ATS matches and genuine skill signals. Generic 'financial modeling' tells a reviewer nothing about your actual depth." },
-      { title: "Excel is table stakes, so go further", body: "Everyone lists Excel. Distinguish yourself with specifics — pivot tables, Power Query, VBA — and then the tooling above it: SQL, Python, Bloomberg, FactSet, Capital IQ, or your ERP for corporate finance roles." },
+      { title: "Excel is table stakes, so go further", body: "Everyone lists Excel. Distinguish yourself with specifics, pivot tables, Power Query, VBA, and then the tooling above it: SQL, Python, Bloomberg, FactSet, Capital IQ, or your ERP for corporate finance roles." },
       { title: "Tailor for buy-side, sell-side or corporate", body: "These are three different jobs. Buy-side wants modeling depth and investment judgement. Sell-side wants pitch books, coverage and client execution. Corporate finance wants business partnering, budget ownership and variance discipline. Match the posting or you read as unfocused." },
     ],
     commonMistakes: [
@@ -348,7 +348,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "Under-selling Excel depth in junior roles, where it remains the core screening tool",
     ],
     payDrivers: [
-      "Sector — investment banking and private equity sit far above corporate FP&A for equivalent tenure",
+      "Sector, investment banking and private equity sit far above corporate FP&A for equivalent tenure",
       "Bonus structure, which at senior levels often exceeds base salary and varies enormously by firm",
       "Certifications, with the CFA and CPA carrying real, measurable premiums",
       "Firm tier and location, particularly the gap between money-centre cities and regional offices",
@@ -374,7 +374,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "Claiming team results without clarifying your individual contribution",
     ],
     payDrivers: [
-      "On-target earnings split — the base-to-variable ratio matters as much as the headline number",
+      "On-target earnings split, the base-to-variable ratio matters as much as the headline number",
       "Segment, with enterprise roles paying well above SMB for the same title",
       "Deal size and sales cycle length, which drive the whole compensation band",
       "Marketing: whether the role owns pipeline targets, which pulls pay toward revenue bands",
@@ -390,7 +390,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       { title: "HR is measurable, so measure it", body: "People roles are frequently written as duties because the outcomes feel soft. They are not. Time-to-fill, offer acceptance rate, first-year attrition, engagement scores, and internal mobility are all real numbers. 'Reduced time-to-fill from 52 to 31 days across 40 technical roles' is a far stronger claim than 'managed recruiting'." },
       { title: "State the population you supported", body: "Supporting 40 employees and supporting 4,000 are different jobs requiring different systems. Give headcount, number of locations, and whether the population was technical, hourly, unionised or international, because each changes the complexity substantially." },
       { title: "Name your systems", body: "Workday, BambooHR, Greenhouse, Lever, and Ashby are literal ATS matches, and the systems you have administered signal your operational level. For recruiting roles, the ATS you worked in daily is one of the first filters applied." },
-      { title: "Show judgement in hard situations", body: "The differentiator at senior level is handling genuinely difficult matters: investigations, restructures, performance exits, and compliance issues. Reference these carefully and without identifying detail, but do reference them — they are what separates coordination from partnership." },
+      { title: "Show judgement in hard situations", body: "The differentiator at senior level is handling genuinely difficult matters: investigations, restructures, performance exits, and compliance issues. Reference these carefully and without identifying detail, but do reference them, they are what separates coordination from partnership." },
     ],
     commonMistakes: [
       "Writing the role as duties because the outcomes seem hard to quantify",
@@ -401,7 +401,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
     ],
     payDrivers: [
       "Company size and headcount supported, the primary determinant of the band",
-      "Specialisation — compensation, HRIS and employee relations pay above generalist roles",
+      "Specialisation, compensation, HRIS and employee relations pay above generalist roles",
       "Industry, with tech paying well above non-profit and public sector for identical scope",
       "Whether the role is a strategic business partner or transactional support",
     ],
@@ -413,10 +413,10 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
     bulletFormula: "What you managed or analysed + the patient or operational scale + the quality or cost outcome",
     screeningFocus: "regulatory fluency alongside operational competence",
     resumeSections: [
-      { title: "Compliance fluency is a screening gate", body: "Healthcare resumes are filtered on regulatory literacy before anything else. HIPAA, Joint Commission accreditation, CMS requirements and state regulations are not decoration — they are prerequisites, and their absence reads as inexperience regardless of your actual background." },
+      { title: "Compliance fluency is a screening gate", body: "Healthcare resumes are filtered on regulatory literacy before anything else. HIPAA, Joint Commission accreditation, CMS requirements and state regulations are not decoration, they are prerequisites, and their absence reads as inexperience regardless of your actual background." },
       { title: "Quantify in patients and outcomes", body: "State patient volumes, bed counts, department size, or records handled. Then attach the outcome: readmission rates, wait times, patient satisfaction scores, or audit results. These numbers are the field's common language and they travel well between employers." },
       { title: "Name your clinical systems", body: "Epic, Cerner, Meditech and the specific modules you have worked in are heavily screened. For analytics roles add SQL, SAS or R alongside the clinical systems, since the combination is genuinely scarce and worth surfacing." },
-      { title: "Show the cross-functional reality", body: "Healthcare operations sit between clinical staff, administration and compliance. Evidence of working across all three — a protocol you implemented with clinician buy-in, an audit you led — signals you understand the actual constraints of the environment." },
+      { title: "Show the cross-functional reality", body: "Healthcare operations sit between clinical staff, administration and compliance. Evidence of working across all three, a protocol you implemented with clinician buy-in, an audit you led, signals you understand the actual constraints of the environment." },
     ],
     commonMistakes: [
       "No regulatory or compliance vocabulary, which fails the first screen",
@@ -441,7 +441,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
     resumeSections: [
       { title: "Practice area is the first filter", body: "Legal roles screen on domain before anything else. Litigation, corporate, immigration, IP, employment and regulatory compliance are effectively different professions. Name your practice areas prominently and match the posting, because a generalist framing reads as a weaker fit than it usually is." },
       { title: "Volume and complexity are your metrics", body: "Quantify what you handled: number of matters supported, documents reviewed, filings prepared, or contracts processed, along with deadline pressure and case complexity. 'Managed document review across 40,000 documents for a multi-district litigation' establishes scale immediately." },
-      { title: "Name your research and case tools", body: "Westlaw, LexisNexis, Relativity, e-filing systems and contract lifecycle management platforms are direct ATS matches. For compliance roles add the regulatory frameworks — AML, KYC, SOX, GDPR — that you have worked under." },
+      { title: "Name your research and case tools", body: "Westlaw, LexisNexis, Relativity, e-filing systems and contract lifecycle management platforms are direct ATS matches. For compliance roles add the regulatory frameworks, AML, KYC, SOX, GDPR, that you have worked under." },
       { title: "Accuracy and discretion are the whole job", body: "Evidence of error-free filing records, audit outcomes, or handling privileged and confidential material speaks directly to what this field screens for. A clean record under deadline pressure is the strongest signal you can offer." },
     ],
     commonMistakes: [
@@ -452,7 +452,7 @@ const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
       "Over-explaining routine duties while under-selling the complex matters you supported",
     ],
     payDrivers: [
-      "Firm type — large law firms and in-house corporate roles pay well above small practices",
+      "Firm type, large law firms and in-house corporate roles pay well above small practices",
       "Practice area, with corporate, IP and regulatory compliance commanding clear premiums",
       "Certifications and specialised training relevant to the practice area",
       "Geographic market, where legal pay differs sharply between major and regional markets",
@@ -526,7 +526,7 @@ export function getRoleContent(slug: string): RoleContent | null {
  *
  * ROLE_QUESTIONS in constants.ts covers 20 of the 41 roles. The other 21 were
  * falling back to a generic set that interpolated only the role name, which made
- * those pages 92% word-identical to each other — the same defect that kept the
+ * those pages 92% word-identical to each other, the same defect that kept the
  * resume-tips and salary-guide sections out of Google's index.
  *
  * Hand-written questions always win. For the rest, this composes questions from
@@ -550,11 +550,11 @@ export function getRoleInterviewQuestions(slug: string): RoleQA[] {
   return [
     {
       question: `What does a ${name} interview actually focus on?`,
-      answer: `${note.positioning} In practice that means interviewers concentrate on ${note.screened}. Expect the conversation to keep returning to ${profile.provesValue} — panels for this role are calibrated to look for exactly that, and answers that stay at the level of duties performed tend to stall. Come with two or three examples where you can go three questions deep on the details.`,
+      answer: `${note.positioning} In practice that means interviewers concentrate on ${note.screened}. Expect the conversation to keep returning to ${profile.provesValue}, panels for this role are calibrated to look for exactly that, and answers that stay at the level of duties performed tend to stall. Come with two or three examples where you can go three questions deep on the details.`,
     },
     {
       question: `What technical topics come up in a ${name} interview?`,
-      answer: `The recurring areas for ${name} roles are ${keywords.slice(0, 6).join(", ")}. Interviewers rarely ask you to define these — they ask you to describe a time you used one and then probe the decisions you made. Be ready to explain why you chose ${k(0)} over the alternative in a specific situation, since that reasoning is what distinguishes real experience from familiarity.`,
+      answer: `The recurring areas for ${name} roles are ${keywords.slice(0, 6).join(", ")}. Interviewers rarely ask you to define these, they ask you to describe a time you used one and then probe the decisions you made. Be ready to explain why you chose ${k(0)} over the alternative in a specific situation, since that reasoning is what distinguishes real experience from familiarity.`,
     },
     {
       question: `How do I demonstrate ${k(0)} experience in a ${name} interview?`,
@@ -574,11 +574,11 @@ export function getRoleInterviewQuestions(slug: string): RoleQA[] {
     },
     {
       question: `What questions should I ask at the end of a ${name} interview?`,
-      answer: `Ask things that only someone who understands the role would think to ask: how success is measured in the first six months, what the biggest constraint on the team currently is, and how decisions about ${k(1)} get made in practice. Avoid questions answered on the careers page — they signal you did not prepare, which undercuts an otherwise strong interview.`,
+      answer: `Ask things that only someone who understands the role would think to ask: how success is measured in the first six months, what the biggest constraint on the team currently is, and how decisions about ${k(1)} get made in practice. Avoid questions answered on the careers page, they signal you did not prepare, which undercuts an otherwise strong interview.`,
     },
     {
       question: `What salary should I expect as a ${name}?`,
-      answer: `${name} roles currently span roughly ${salaryRange} across US markets, varying with location, company stage and scope. ${note.payNote} Research your specific market on Levels.fyi, Glassdoor and LinkedIn Salary before the conversation, and treat the first offer as an opening position — most have room, and the base you agree to anchors every subsequent raise.`,
+      answer: `${name} roles currently span roughly ${salaryRange} across US markets, varying with location, company stage and scope. ${note.payNote} Research your specific market on Levels.fyi, Glassdoor and LinkedIn Salary before the conversation, and treat the first offer as an opening position, most have room, and the base you agree to anchors every subsequent raise.`,
     },
   ];
 }

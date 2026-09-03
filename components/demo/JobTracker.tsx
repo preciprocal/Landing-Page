@@ -91,7 +91,7 @@ function BookmarkIcon() {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STATUS DROPDOWN — click-outside aware
+// STATUS DROPDOWN, click-outside aware
 // ─────────────────────────────────────────────────────────────────────────────
 export function StatusDropdown({ job, onUpdate }: { job: TrackerJob; onUpdate: (id:string, s:string)=>void }) {
   const [open, setOpen] = useState(false);
@@ -366,7 +366,7 @@ export function JobCard({ job, onEdit, onContacts, onPlan, onUpdateStatus }: {
   );
 }
 
-// ── Main tracker view (no fixed overlay — renders inside browser frame) ────────
+// ── Main tracker view (no fixed overlay, renders inside browser frame) ────────
 export function JobTrackerView({ jobs, appliedJobs, onUpdateStatus }: {
   jobs: TrackerJob[];
   appliedJobs: string[];
@@ -545,7 +545,7 @@ export function JobTrackerView({ jobs, appliedJobs, onUpdateStatus }: {
             ))}
           </div>
 
-          {/* Filter tabs — all status categories */}
+          {/* Filter tabs, all status categories */}
           <div className="flex items-center gap-1.5 mb-2.5 overflow-x-auto pb-0.5 scrollbar-hide">
             {[
               { label: "All",          dot: "bg-slate-400",   active_bg: "bg-slate-500/15",   active_border: "border-slate-500/30",   active_text: "text-slate-200"   },
@@ -619,7 +619,7 @@ export function JobTrackerView({ jobs, appliedJobs, onUpdateStatus }: {
         </div>
       </div>
 
-      {/* Sub-overlays — rendered inside the same container */}
+      {/* Sub-overlays, rendered inside the same container */}
       <AnimatePresence>
         {editJob    && <EditOverlay key="edit" job={editJob} onClose={()=>setEditJob(null)} onSave={j=>setLocalJobs(p=>p.map(x=>x.id===j.id?j:x))} />}
         {(contactJob || planJob) && (

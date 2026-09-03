@@ -3,7 +3,7 @@
 /**
  * app/faq/page.tsx
  *
- * Full FAQ page — all categories, search, structured data.
+ * Full FAQ page, all categories, search, structured data.
  * The landing page only shows 6 FAQs; this page shows all of them.
  */
 

@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     "AI cover letter generator",
     "cover letter generator free",
     "cover letter generator for students",
-    // International student signals — now supported by blog content
+    // International student signals, now supported by blog content
     "F1 student job search",
     "OPT job search",
     "international student career",

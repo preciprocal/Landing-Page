@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Preciprocal Roadmap: What We Have Shipped and What Is Coming Next",
+  title: { absolute: "Preciprocal Roadmap: Shipped and Coming Next" },
   description:
     "Every feature Preciprocal has shipped, what is in progress, and what is planned next. Ghost job detector, salary intelligence, AI screening simulator, and more. Updated as we build.",
   keywords: [

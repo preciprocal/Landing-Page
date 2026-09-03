@@ -175,11 +175,11 @@ export default function Pricing() {
 
         <p className="text-center text-[13px] text-slate-600 mt-5">
           University student? Verify your .edu email for{" "}
-          <span className="text-slate-400 font-medium">1 month of Pro free</span>{" "}
-          , no card needed.
+          <span className="text-slate-400 font-medium">1 month of Pro free</span>, no card
+          needed.
         </p>
 
-        {/* FAQ link — catches hesitant buyers */}
+        {/* FAQ link, catches hesitant buyers */}
         <p className="text-center text-[12px] text-slate-700 mt-3">
           Have questions before subscribing?{" "}
           <a href="/faq" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">

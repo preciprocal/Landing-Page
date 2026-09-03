@@ -177,13 +177,13 @@ export default function Hero() {
       {/* Full-bleed aurora */}
       <Aurora />
 
-      {/* Spotlight — violet, sweeping from top-left */}
+      {/* Spotlight, violet, sweeping from top-left */}
       <SpotlightNew
         className="-top-40 -left-20 z-[2]"
         fill="rgba(139,92,246,0.55)"
       />
 
-      {/* Spotlight — fuchsia, sweeping from top-right (mirrored) */}
+      {/* Spotlight, fuchsia, sweeping from top-right (mirrored) */}
       <SpotlightNew
         className="-top-40 -right-20 z-[2] scale-x-[-1]"
         fill="rgba(232,121,249,0.35)"

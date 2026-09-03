@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// GLOWING EFFECT — Aceternity-inspired
+// GLOWING EFFECT, Aceternity-inspired
 // Animated border glow that responds to cursor proximity.
 // Place inside any `relative` container.
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -70,7 +70,7 @@ export function GlowingEffect({
       className={`pointer-events-none absolute inset-0 z-[5] rounded-[inherit] ${className}`}
       aria-hidden="true"
     >
-      {/* Border glow — the main visible effect */}
+      {/* Border glow, the main visible effect */}
       <div
         className="absolute inset-0 rounded-[inherit] transition-opacity duration-300"
         style={{
@@ -82,7 +82,7 @@ export function GlowingEffect({
           padding: `${borderWidth}px`,
         }}
       />
-      {/* Inner glow bloom — soft fill behind content */}
+      {/* Inner glow bloom, soft fill behind content */}
       {glow && (
         <div
           className="absolute inset-0 rounded-[inherit] transition-opacity duration-300"

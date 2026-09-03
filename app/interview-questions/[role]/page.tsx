@@ -124,7 +124,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
         <div className="mt-16 text-center">
           <p style={{ color: "#475569" }} className="text-sm mb-4">Ready to turn preparation into offers?</p>
           <a href={`${APP_URL}/sign-up`} style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#ffffff" }} className="inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl hover:opacity-90 transition-opacity">
-            Try Preciprocal free — no credit card required
+            Try Preciprocal free, no credit card required
           </a>
         </div>
       </main>

@@ -133,7 +133,7 @@ const PAIN_POINTS = [
             nerves
           </span>
         </Tooltip>
-        , not lack of skill
+        {", not lack of skill"}
       </>
     ),
     color: "text-orange-400",

@@ -63,7 +63,7 @@ function PanelAvatar({ initials, gradient, isSpeaking, size = 'lg' }: {
 function WaitingRoom({ step, onJoin }: { step: number; onJoin?: () => void }) {
   return (
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
-      {/* Left — Main area */}
+      {/* Left, Main area */}
       <div className="flex-1 min-w-0 flex flex-col gap-2.5">
         <FadeIn delay={0}>
           <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-lg">
@@ -141,7 +141,7 @@ function WaitingRoom({ step, onJoin }: { step: number; onJoin?: () => void }) {
         </FadeIn>
       </div>
 
-      {/* Right — Sidebar */}
+      {/* Right, Sidebar */}
       <div className="w-[38%] flex-shrink-0 flex flex-col gap-2.5">
         <FadeIn delay={100}>
           <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-lg">
@@ -315,7 +315,7 @@ function LiveInterview({ step }: { step: number }) {
         </div>
       </FadeIn>
 
-      {/* 2×2 Grid — flex-1 to fill all available space */}
+      {/* 2×2 Grid, flex-1 to fill all available space */}
       <FadeIn delay={200} className="flex-1 min-h-0 flex flex-col">
         <div className="grid grid-cols-2 gap-3 flex-1">
                       {participants.map(p => {
@@ -359,7 +359,7 @@ function LiveInterview({ step }: { step: number }) {
         </div>
       </FadeIn>
 
-      {/* Controls — compact at bottom */}
+      {/* Controls, compact at bottom */}
       <FadeIn delay={400}>
         <div className="mt-1.5 p-2 bg-white/[0.02] border border-white/[0.06] rounded-lg space-y-1.5">
           <div className="flex items-center justify-between">

@@ -4,7 +4,7 @@
  * app/about/page.tsx
  *
  * SEO:
- *   • BreadcrumbJsonLd — helps Google understand site hierarchy
+ *   • BreadcrumbJsonLd, helps Google understand site hierarchy
  *   • AboutPage schema with accurate description
  *   • aria-labels on every section for accessibility + crawlability
  *   • Metadata lives in app/about/metadata.ts (separate file, "use client" constraint)

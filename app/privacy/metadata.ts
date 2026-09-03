@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Preciprocal",
+  title: { absolute: "Privacy Policy | Preciprocal" },
   description:
     "Preciprocal's full privacy policy. How we collect and use your data, your rights under GDPR and CCPA, data retention schedules, security practices, and how to contact us.",
   keywords: [

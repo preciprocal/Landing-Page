@@ -15,12 +15,12 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Resume Tips by Role — Write a Resume That Gets Interviews",
+  title: "Resume Tips by Role: 41 Career Guides",
   description:
     "Role-specific resume guides for 40+ careers. ATS keywords, bullet point formulas, format tips, and real examples for software engineers, PMs, data scientists, and more.",
   alternates: { canonical: "https://preciprocal.com/resume-tips" },
   openGraph: {
-    title: "Resume Tips by Role — Preciprocal",
+    title: "Resume Tips by Role, Preciprocal",
     description:
       "Role-specific resume writing guides. ATS keywords, bullet formulas, and format tips for every career path.",
     url: "https://preciprocal.com/resume-tips",
@@ -58,7 +58,7 @@ export default function ResumeTipsIndexPage() {
         </h1>
         <p style={{ color: "#94a3b8" }} className="text-lg mb-3 max-w-2xl leading-relaxed">
           Role-specific resume guides with ATS keywords, bullet point formulas, format advice,
-          and real before/after examples — updated for 2026.
+          and real before/after examples, updated for 2026.
         </p>
         <p style={{ color: "#475569" }} className="text-sm mb-12">
           {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
@@ -133,7 +133,7 @@ export default function ResumeTipsIndexPage() {
             href={`${APP_URL}/sign-up`}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Get your free ATS score — no credit card required
+            Get your free ATS score, no credit card required
           </a>
         </div>
       </main>

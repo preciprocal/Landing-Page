@@ -23,7 +23,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "AI Cover Letter Generator: Free, Personalised, Done in 60 Seconds",
+  title: "AI Cover Letter Generator: Free, in 60 Seconds",
   description:
     "Generate a tailored cover letter in 60 seconds. Our AI researches the company, matches your resume to the job, and writes a letter that sounds like you. Free to start. Built for students and new grads.",
   keywords: [

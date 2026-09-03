@@ -211,7 +211,7 @@ export function StaggerItem({
 
 
 // ─── 5. GLOW LINE DIVIDER ───────────────────────────────────────────────────
-// Animated horizontal beam between sections — a subtle travelling pulse.
+// Animated horizontal beam between sections, a subtle travelling pulse.
 // Usage: <GlowDivider /> between sections
 
 export function GlowDivider() {
@@ -229,7 +229,7 @@ export function GlowDivider() {
 
 
 // ─── 6. REVEAL ON SCROLL ─────────────────────────────────────────────────────
-// Smooth clip-path reveal from bottom — more interesting than a basic fade.
+// Smooth clip-path reveal from bottom, more interesting than a basic fade.
 // Usage: <RevealOnScroll> ... </RevealOnScroll>
 
 export function RevealOnScroll({
@@ -260,7 +260,7 @@ export function RevealOnScroll({
 
 
 // ─── 7. FLOATING PARTICLES (lightweight CSS-only) ────────────────────────────
-// Tiny dots that drift slowly — ambient depth without canvas overhead.
+// Tiny dots that drift slowly, ambient depth without canvas overhead.
 // Usage: <FloatingDots /> as a section background
 
 export function FloatingDots({ count = 20 }: { count?: number }) {

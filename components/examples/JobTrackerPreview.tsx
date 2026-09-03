@@ -163,7 +163,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
   const [userTriggered, setUserTriggered] = useState(false);
   const [highlightFirst, setHighlightFirst] = useState(false);
 
-  // Sync autoplay steps to view — cap at dashboard, user must click Find Contacts
+  // Sync autoplay steps to view, cap at dashboard, user must click Find Contacts
   useEffect(() => {
     if (userTriggered) return;
     if (step <= 1) setView('form');
@@ -513,7 +513,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
         </FadeIn>
       )}
 
-      {/* Cards grid — full width, 4 cols */}
+      {/* Cards grid, full width, 4 cols */}
       {(step >= 3 || isComplete || userTriggered) && (
         <FadeIn delay={100}>
           <p className="text-[8px] text-slate-600 mb-1.5">{APPS.length} applications</p>

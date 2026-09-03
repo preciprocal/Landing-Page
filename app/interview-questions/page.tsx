@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Interview Questions by Role 2026: Prep Guides for 40+ Careers",
+  title: "Interview Questions by Role: 40+ Careers (2026)",
   description: "Free interview question guides for 40+ roles: software engineer, product manager, data scientist, financial analyst, marketing manager, and more. Real Q&As with detailed answers, salary benchmarks, and prep tips for 2026.",
   alternates: { canonical: "https://preciprocal.com/interview-questions" },
   openGraph: {

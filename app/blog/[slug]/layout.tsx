@@ -1,7 +1,7 @@
 /**
  * app/blog/[slug]/layout.tsx
  *
- * Next.js 15: params is now a Promise — must be awaited in generateMetadata.
+ * Next.js 15: params is now a Promise, must be awaited in generateMetadata.
  */
 
 import type { Metadata } from "next";

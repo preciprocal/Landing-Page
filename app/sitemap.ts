@@ -8,7 +8,7 @@ import { ALL_ROLES, ALL_COMPANIES, BLOG_POSTS, SITE_URL } from "@/lib/constants"
  *  - Added /about, /roadmap, /faq, /privacy, /terms static pages
  *  - Added /contact page
  *  - Sharpened lastModified dates for all static pages
- *  - Updated blog priority to 0.7 (from 0.65) — new high-quality posts added
+ *  - Updated blog priority to 0.7 (from 0.65), new high-quality posts added
  *  - Visa/immigration posts boosted to 0.82 (high commercial intent)
  *  - RESTORED /salary-guide, /cover-letter-examples, /resume-tips programmatic
  *    sections. These were dropped when the pages did not exist, but all three
@@ -158,7 +158,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
     },
     // ── Alternatives / Comparison pages ─────────────────────────────────────
-    // High commercial intent — searchers are in buying mode.
+    // High commercial intent, searchers are in buying mode.
     {
       url: `${SITE_URL}/alternatives/final-round-ai-alternative`,
       lastModified: new Date("2026-05-08"),
@@ -192,7 +192,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // Dynamic role pages — 40+ roles, high keyword value
+  // Dynamic role pages, 40+ roles, high keyword value
   const rolePages: MetadataRoute.Sitemap = ALL_ROLES.map((role) => ({
     url: `${SITE_URL}/interview-questions/${role}`,
     lastModified: now,
@@ -200,7 +200,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  // Dynamic company prep pages — 20 companies
+  // Dynamic company prep pages, 20 companies
   const companyPages: MetadataRoute.Sitemap = ALL_COMPANIES.map((company) => ({
     url: `${SITE_URL}/interview-prep/${company}`,
     lastModified: now,
@@ -208,7 +208,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.78,
   }));
 
-  // Programmatic role pages for the three rebuilt sections — 41 roles each.
+  // Programmatic role pages for the three rebuilt sections, 41 roles each.
   // Each hub links to all of its children, so these are crawlable once the
   // hub itself is reachable from the sitemap and the footer.
   const programmaticPages: MetadataRoute.Sitemap = (
@@ -222,7 +222,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // Blog posts — each post uses its own updatedAt for accurate lastModified.
+  // Blog posts, each post uses its own updatedAt for accurate lastModified.
   // Visa / immigration posts boosted to 0.82 (high-intent audience).
   const blogPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,

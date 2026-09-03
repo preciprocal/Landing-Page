@@ -51,9 +51,9 @@ const SALARY_DATA: Record<string, SalaryData> = {
       { level: "Senior / L5",     yearsExp: "5–10 years", baseSalary: "$160,000 – $200,000", totalComp: "$220,000 – $350,000", equityNote: "Equity becomes primary comp lever at this level" },
       { level: "Staff / L6",      yearsExp: "10+ years",  baseSalary: "$195,000 – $240,000", totalComp: "$350,000 – $600,000+",equityNote: "Heavy equity weighting; stock refreshes matter more than base" },
     ],
-    negotiationScript: `"Thank you for the offer — I'm genuinely excited about this role. Based on my research using Levels.fyi and conversations with peers at comparable companies, I was targeting a base closer to [$X]. Given my experience with [specific relevant skill], I believe that's well-supported by the market. Is there flexibility to move in that direction?"`,
+    negotiationScript: `"Thank you for the offer, I'm genuinely excited about this role. Based on my research using Levels.fyi and conversations with peers at comparable companies, I was targeting a base closer to [$X]. Given my experience with [specific relevant skill], I believe that's well-supported by the market. Is there flexibility to move in that direction?"`,
     salaryFactors: [
-      "Company tier (FAANG vs unicorn vs startup vs enterprise) is the single biggest driver — $50K+ swings are common",
+      "Company tier (FAANG vs unicorn vs startup vs enterprise) is the single biggest driver, $50K+ swings are common",
       "Location still matters: remote-first companies may apply geo-adjustments of 10–25%",
       "Stack and specialty: ML engineers, security engineers, and distributed systems engineers command 15–30% premiums",
       "Offer timing: candidates with competing offers see 10–20% higher final packages on average",
@@ -71,7 +71,7 @@ const SALARY_DATA: Record<string, SalaryData> = {
       { level: "Senior PM",        yearsExp: "5–9 years",  baseSalary: "$155,000 – $190,000", totalComp: "$200,000 – $290,000", equityNote: "Senior PMs increasingly equity-rich; refreshes compound over time" },
       { level: "Principal / GPM",  yearsExp: "9+ years",   baseSalary: "$190,000 – $230,000", totalComp: "$300,000 – $500,000+",equityNote: "Director-level equity; large refreshes; bonus components" },
     ],
-    negotiationScript: `"I really appreciate the offer and I'm excited about the opportunity. I've done some research and talked to PMs at similar-stage companies — based on that, I was expecting a base closer to [$X]. I'm also wondering about the equity component: is there flexibility to increase the initial grant? I'd love to find something that works for both of us."`,
+    negotiationScript: `"I really appreciate the offer and I'm excited about the opportunity. I've done some research and talked to PMs at similar-stage companies, based on that, I was expecting a base closer to [$X]. I'm also wondering about the equity component: is there flexibility to increase the initial grant? I'd love to find something that works for both of us."`,
     salaryFactors: [
       "B2C vs B2B vs Platform PM: consumer tech pays highest; platform/infra PM roles often get engineering-tier comp",
       "Technical depth: TPMs and PMs with engineering backgrounds earn 10–20% more at technical companies",
@@ -91,7 +91,7 @@ const SALARY_DATA: Record<string, SalaryData> = {
       { level: "Senior DS / L5",   yearsExp: "5–9 years",  baseSalary: "$150,000 – $185,000", totalComp: "$195,000 – $280,000", equityNote: "MLOps/production ML seniors approach SWE L5 compensation" },
       { level: "Staff DS / L6",    yearsExp: "9+ years",   baseSalary: "$180,000 – $220,000", totalComp: "$300,000 – $450,000+",equityNote: "Research Scientists / Staff DSs at AI labs can far exceed this range" },
     ],
-    negotiationScript: `"Thank you — I'm really interested in joining the team. I've been looking at market data for data scientists with production ML experience at this scale, and I was expecting something closer to [$X] total compensation. Given my background in [specific skill — MLOps, experimentation, NLP, etc.], I think that's a fair ask. Is there room to move?"`,
+    negotiationScript: `"Thank you, I'm really interested in joining the team. I've been looking at market data for data scientists with production ML experience at this scale, and I was expecting something closer to [$X] total compensation. Given my background in [specific skill, MLOps, experimentation, NLP, etc.], I think that's a fair ask. Is there room to move?"`,
     salaryFactors: [
       "Research vs applied split: AI/research scientists at top labs (OpenAI, Anthropic, DeepMind) earn dramatically more than applied DS at typical companies",
       "Production ML premium: DSs with MLOps and deployment experience earn 15–25% more than pure notebook scientists",
@@ -111,7 +111,7 @@ const SALARY_DATA: Record<string, SalaryData> = {
       { level: "Manager / VP",     yearsExp: "6–10 years", baseSalary: "$110,000 – $150,000", totalComp: "$140,000 – $200,000", equityNote: "Equity more common in public company management roles" },
       { level: "Director / SVP",   yearsExp: "10+ years",  baseSalary: "$150,000 – $200,000", totalComp: "$200,000 – $350,000+",equityNote: "Significant equity + substantial bonus at director level" },
     ],
-    negotiationScript: `"Thank you for the offer. Based on my research using Glassdoor and conversations with peers in FP&A at comparable companies, I was expecting a base in the [$X] range. I'm also curious about the bonus structure — could you walk me through how bonus targets are set? I want to make sure I understand the total compensation picture before I respond."`,
+    negotiationScript: `"Thank you for the offer. Based on my research using Glassdoor and conversations with peers in FP&A at comparable companies, I was expecting a base in the [$X] range. I'm also curious about the bonus structure, could you walk me through how bonus targets are set? I want to make sure I understand the total compensation picture before I respond."`,
     salaryFactors: [
       "Track (IB vs PE vs HF vs Corp FP&A): IB and buy-side pay dramatically more than corporate finance roles",
       "Firm tier: bulge bracket IB analysts earn $80K+ base with $30–60K bonus; boutique firms pay less",
@@ -131,7 +131,7 @@ const SALARY_DATA: Record<string, SalaryData> = {
       { level: "Senior / Sr. Marketing Manager",     yearsExp: "7–12 years", baseSalary: "$110,000 – $145,000",totalComp: "$130,000 – $170,000",  equityNote: "Significant equity at tech companies; bonus 15–20% of base" },
       { level: "Director of Marketing / VP",         yearsExp: "12+ years",  baseSalary: "$145,000 – $200,000",totalComp: "$185,000 – $280,000+", equityNote: "Heavy equity and performance bonus; significant variation by company" },
     ],
-    negotiationScript: `"I'm really excited about this role and the team. After reviewing the offer and benchmarking against similar roles at comparable companies, I was hoping we could discuss the base — I was targeting around [$X]. I'd also like to understand the bonus structure better: how are targets set, and what's a realistic range for someone in this role? I want to make sure I have the full picture."`,
+    negotiationScript: `"I'm really excited about this role and the team. After reviewing the offer and benchmarking against similar roles at comparable companies, I was hoping we could discuss the base, I was targeting around [$X]. I'd also like to understand the bonus structure better: how are targets set, and what's a realistic range for someone in this role? I want to make sure I have the full picture."`,
     salaryFactors: [
       "Industry vertical: tech marketing managers earn 20–40% more than equivalent roles in non-profit, retail, or healthcare",
       "Channel specialty: growth/performance marketing specialists command premium; brand and content managers earn less",
@@ -240,7 +240,7 @@ function getSalaryData(role: string): SalaryData | null {
         equityNote: "Leadership packages carry the widest variance; scope and company stage drive most of it",
       },
     ],
-    negotiationScript: `"Thank you for the offer — I'm genuinely excited about this ${name} role. Based on my research on comparable ${name.toLowerCase()} positions at companies like ${topCompanies.slice(0, 2).join(" and ")}, I was targeting a base closer to [$X]. Given [specific relevant strength], is there flexibility to move toward that number?"`,
+    negotiationScript: `"Thank you for the offer, I'm genuinely excited about this ${name} role. Based on my research on comparable ${name.toLowerCase()} positions at companies like ${topCompanies.slice(0, 2).join(" and ")}, I was targeting a base closer to [$X]. Given [specific relevant strength], is there flexibility to move toward that number?"`,
     salaryFactors: [note.payNote, ...profile.payDrivers],
     sources: `Ranges reflect ${name} compensation across US markets, aggregated from public salary data for 2026. ${note.positioning} ${name} roles concentrate at employers such as ${topCompanies.slice(0, 4).join(", ")}, and individual packages vary significantly by location, company stage and scope.`,
   };
@@ -250,14 +250,14 @@ function getSalaryData(role: string): SalaryData | null {
 export async function generateMetadata({ params }: { params: Promise<{ role: string }> }): Promise<Metadata> {
   const { role } = await params;
   const display = ROLE_DISPLAY[role];
-  if (!display) return { title: "Salary Guide — Preciprocal" };
+  if (!display) return { title: "Salary Guide, Preciprocal" };
   const data = getSalaryData(role);
   return {
-    title: `${display.name} Salary Guide 2026 — Base, Total Comp & Negotiation Tips`,
+    title: `${display.name} Salary Guide 2026, Base, Total Comp & Negotiation Tips`,
     description: `2026 salary data for ${display.name.toLowerCase()}s: base salary ranges by level, total compensation breakdowns, equity benchmarks, and negotiation scripts. Median base: ${data?.medianBase ?? "varies"}.`,
     alternates: { canonical: `https://preciprocal.com/salary-guide/${role}` },
     openGraph: {
-      title: `${display.name} Salary Guide 2026 — Preciprocal`,
+      title: `${display.name} Salary Guide 2026, Preciprocal`,
       description: `Salary ranges, equity data, and negotiation scripts for ${display.name.toLowerCase()}s in 2026.`,
       url: `https://preciprocal.com/salary-guide/${role}`,
       type: "article",
@@ -315,7 +315,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
             {display.name} salary guide 2026
           </h1>
           <p style={{ color: "#94a3b8" }} className="text-lg leading-relaxed">
-            Real salary data for {display.name.toLowerCase()}s — base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
+            Real salary data for {display.name.toLowerCase()}s, base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
           </p>
         </div>
 

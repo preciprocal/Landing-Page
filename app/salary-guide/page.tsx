@@ -15,12 +15,12 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Salary Guide by Role — 2026 Salary Data & Negotiation Tips",
+  title: "Salary Guide by Role: 2026 Data & Negotiation",
   description:
     "Up-to-date 2026 salary data for 40+ roles. Base salary ranges, equity benchmarks, total compensation breakdowns, and negotiation scripts for software engineers, PMs, data scientists, and more.",
   alternates: { canonical: "https://preciprocal.com/salary-guide" },
   openGraph: {
-    title: "Salary Guide by Role — Preciprocal 2026",
+    title: "Salary Guide by Role, Preciprocal 2026",
     description:
       "2026 salary ranges, equity benchmarks, and negotiation tips for every major role.",
     url: "https://preciprocal.com/salary-guide",
@@ -58,7 +58,7 @@ export default function SalaryGuideIndexPage() {
         </h1>
         <p style={{ color: "#94a3b8" }} className="text-lg mb-3 max-w-2xl leading-relaxed">
           Real salary data, equity benchmarks, total compensation breakdowns, and proven negotiation scripts
-          for every major career path — updated for 2026.
+          for every major career path, updated for 2026.
         </p>
         <p style={{ color: "#475569" }} className="text-sm mb-12">
           {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
@@ -127,7 +127,7 @@ export default function SalaryGuideIndexPage() {
         {/* CTA */}
         <div className="mt-10 text-center">
           <p style={{ color: "#475569" }} className="text-sm mb-4">
-            Once you know your number — let us help you get the interview that leads to it.
+            Once you know your number, let us help you get the interview that leads to it.
           </p>
           <a
             href={`${APP_URL}/sign-up`}

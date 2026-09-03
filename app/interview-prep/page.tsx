@@ -15,8 +15,8 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Company Interview Prep Guides 2026: Google, Amazon, Meta, Stripe & More",
-  description: "Free interview prep guides for 20 top companies including Google, Amazon, Meta, Microsoft, OpenAI, Stripe, and more. Interview process breakdown, culture tips, difficulty ratings, and Q&As.",
+  title: "Company Interview Prep: 56 Top Employers (2026)",
+  description: "Free interview prep guides for 56 top employers across tech, investment banking, consulting, healthcare and retail. Google, Goldman Sachs, McKinsey, Mayo Clinic and more, with process breakdowns and culture tips.",
   alternates: { canonical: "https://preciprocal.com/interview-prep" },
   openGraph: {
     title: "Company Interview Prep Guides 2026: Preciprocal",
@@ -100,8 +100,8 @@ export default function InterviewPrepIndexPage() {
             Company interview prep guides
           </h1>
           <p className="text-slate-400 text-lg mb-12 max-w-2xl leading-relaxed">
-            In-depth prep guides for 20 top companies, covering interview process, culture,
-            difficulty, common questions, and what actually gets you the offer.
+            In-depth prep guides for 56 top employers across tech, banking, consulting, healthcare
+            and retail, covering interview process, culture, difficulty, and what gets you the offer.
           </p>
 
           {/* Company grid by tier */}

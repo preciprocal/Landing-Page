@@ -1,9 +1,9 @@
 /**
- * JsonLd.tsx — All structured data (schema.org) for Preciprocal.
+ * JsonLd.tsx, All structured data (schema.org) for Preciprocal.
  *
  * SEO changes applied (2026-06):
  *  - SoftwareAppJsonLd: applicationCategory changed from "EducationalApplication"
- *    to "BusinessApplication" — more accurate for a job-search tool and widens
+ *    to "BusinessApplication", more accurate for a job-search tool and widens
  *    rich-result eligibility on Google.
  *  - WebSiteJsonLd: SearchAction removed. The potentialAction sitelinks searchbox
  *    requires a working real-time search endpoint at the urlTemplate. Preciprocal
@@ -13,7 +13,7 @@
  *    Dead sameAs URLs weaken entity trust. Uncomment each line once the profile
  *    is live and publicly accessible.
  *  - OrganizationJsonLd: added alternateName, legalName, knowsAbout, image,
- *    logo caption, and @id on logo — all used by Google for brand entity
+ *    logo caption, and @id on logo, all used by Google for brand entity
  *    disambiguation. These help Google recognise "Preciprocal" as a proper
  *    brand name rather than a misspelling of "reciprocal".
  *
@@ -168,7 +168,7 @@ export function SoftwareAppJsonLd() {
         availability: "https://schema.org/InStock",
       },
     ],
-    // aggregateRating intentionally omitted — add once real reviews exist.
+    // aggregateRating intentionally omitted, add once real reviews exist.
     author: {
       "@id": "https://preciprocal.com/#organization",
     },

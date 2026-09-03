@@ -1,6 +1,6 @@
 "use client";
 
-// Deterministic pseudo-random using a simple seed — pure, no Math.random during render
+// Deterministic pseudo-random using a simple seed, pure, no Math.random during render
 function seededValues(count: number) {
   const results = [];
   for (let i = 0; i < count; i++) {

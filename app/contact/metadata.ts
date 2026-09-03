@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Preciprocal: Get in Touch",
+  title: { absolute: "Contact Preciprocal: Support and Sales" },
   description:
     "Questions, feedback, bug reports, or partnership enquiries. We read every email and respond within 24 hours on weekdays. Reach us at support@preciprocal.com.",
   keywords: [

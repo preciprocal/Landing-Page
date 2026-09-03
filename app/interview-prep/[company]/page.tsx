@@ -238,7 +238,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
             style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#ffffff" }}
             className="inline-flex items-center gap-2 px-8 py-3.5 font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Start practicing free — no credit card required
+            Start practicing free, no credit card required
           </a>
         </div>
       </main>

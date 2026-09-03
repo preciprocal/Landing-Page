@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Footer.tsx — Social links show "Coming Soon" tooltip above on hover/click.
+ * Footer.tsx, Social links show "Coming Soon" tooltip above on hover/click.
  */
 
 import { motion } from "framer-motion";
@@ -78,7 +78,7 @@ function SocialLink({ label }: { label: string }) {
       className="relative inline-flex items-center"
       style={{ overflow: "visible" }}
     >
-      {/* Tooltip rendered above — pure CSS transition, no framer interference */}
+      {/* Tooltip rendered above, pure CSS transition, no framer interference */}
       <span
         style={{
           position: "absolute",
@@ -171,7 +171,7 @@ export default function Footer() {
           ))}
         </motion.div>
 
-        {/* Bottom bar — overflow visible so tooltips aren't clipped */}
+        {/* Bottom bar, overflow visible so tooltips aren't clipped */}
         <div
           className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4"
           style={{ overflow: "visible" }}

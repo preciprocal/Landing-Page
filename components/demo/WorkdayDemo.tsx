@@ -88,7 +88,7 @@ function BookmarkIcon() {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FORM FIELD — renders one Workday field in idle / filled state
+// FORM FIELD, renders one Workday field in idle / filled state
 // ─────────────────────────────────────────────────────────────────────────────
 export function FormField({ field, filled }: { field: Field; filled: boolean }) {
   if (field.type === "upload") {
@@ -241,7 +241,7 @@ export function PreciprocalPanel({
           </div>
         </div>
 
-        {/* Required field checklist — shows the 4 key ones */}
+        {/* Required field checklist, shows the 4 key ones */}
         <div>
           <p className="text-[10px] text-slate-500 font-medium mb-1.5">Required (0/4 filled)</p>
           <div className="space-y-1.5">
@@ -326,7 +326,7 @@ export function PreciprocalPanel({
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WORKDAY PAGE — stepper + form fields
+// WORKDAY PAGE, stepper + form fields
 // ─────────────────────────────────────────────────────────────────────────────
 // ─────────────────────────────────────────────────────────────────────────────
 // WORKDAY PAGE (stepper + current step fields)

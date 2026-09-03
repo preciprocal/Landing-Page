@@ -88,7 +88,7 @@ function BookmarkIcon() {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ACTION BAR — Preciprocal overlay on LinkedIn job cards
+// ACTION BAR, Preciprocal overlay on LinkedIn job cards
 // ─────────────────────────────────────────────────────────────────────────────
 export function ActionBar({ onAutoApply, onSave, isSaved, onCoverLetter }: {
   onAutoApply: () => void;
@@ -286,7 +286,7 @@ export function LinkedInScreen({ onAutoApply, onCoverLetter, appliedJobs, savedJ
                     <p className="text-[10px] text-slate-300">{job.company}</p>
                     <p className="text-[9px] text-slate-400">{job.loc}</p>
 
-                    {/* Badge — always same position, right after location */}
+                    {/* Badge, always same position, right after location */}
                     {(isApplied || savedJobs.includes(job.id)) && (
                       <div className="mt-1">
                         {isApplied ? (

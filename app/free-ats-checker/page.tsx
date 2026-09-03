@@ -1,7 +1,7 @@
 /**
  * app/free-ats-checker/page.tsx
  *
- * HIGH-PRIORITY SEO PAGE — "free ATS checker" gets ~6,600 searches/month.
+ * HIGH-PRIORITY SEO PAGE, "free ATS checker" gets ~6,600 searches/month.
  *
  * This page:
  *   • Targets: "free ATS checker", "ATS resume scanner", "ATS score checker",
@@ -22,7 +22,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Free ATS Resume Checker — Score Your Resume in 60 Seconds",
+  title: "Free ATS Resume Checker: Score in 60 Seconds",
   description:
     "Check your resume's ATS compatibility score for free. See which keywords you're missing, fix formatting issues, and get a line-by-line improvement plan before you apply.",
   keywords: [
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     canonical: "https://preciprocal.com/free-ats-checker",
   },
   openGraph: {
-    title: "Free ATS Resume Checker — Score Your Resume in 60 Seconds",
+    title: "Free ATS Resume Checker, Score Your Resume in 60 Seconds",
     description:
       "Check your resume's ATS score free. Fix keywords, formatting, and structure before your application gets auto-rejected.",
     url: "https://preciprocal.com/free-ats-checker",
@@ -57,11 +57,11 @@ export const metadata: Metadata = {
 const ATS_FAQS = [
   {
     q: "What is an ATS (Applicant Tracking System)?",
-    a: "An ATS is software used by 73% of companies to automatically screen and filter resumes before a human ever sees them. The system parses your resume, scores it against job requirements, and ranks candidates. Resumes that score below the threshold are automatically rejected — even if the candidate is qualified. Common ATS platforms include Workday, Greenhouse, Lever, iCIMS, and Taleo.",
+    a: "An ATS is software used by 73% of companies to automatically screen and filter resumes before a human ever sees them. The system parses your resume, scores it against job requirements, and ranks candidates. Resumes that score below the threshold are automatically rejected, even if the candidate is qualified. Common ATS platforms include Workday, Greenhouse, Lever, iCIMS, and Taleo.",
   },
   {
     q: "Why does my resume get rejected by ATS?",
-    a: "The most common reasons: (1) Missing keywords — your resume doesn't include the exact terms from the job description. (2) Bad formatting — tables, columns, text boxes, and headers/footers confuse ATS parsers. (3) Wrong file type — some ATS systems struggle with PDF; .docx is more reliably parsed. (4) Non-standard section headers — using 'Professional History' instead of 'Work Experience' can break parsing. (5) Missing contact information in a recognizable format.",
+    a: "The most common reasons: (1) Missing keywords, your resume doesn't include the exact terms from the job description. (2) Bad formatting, tables, columns, text boxes, and headers/footers confuse ATS parsers. (3) Wrong file type, some ATS systems struggle with PDF; .docx is more reliably parsed. (4) Non-standard section headers, using 'Professional History' instead of 'Work Experience' can break parsing. (5) Missing contact information in a recognizable format.",
   },
   {
     q: "How is the ATS score calculated?",
@@ -69,15 +69,15 @@ const ATS_FAQS = [
   },
   {
     q: "What ATS score should I aim for?",
-    a: "Aim for 75+ to get past initial automated screening. 85+ is competitive. 90+ means your resume is optimally formatted and keyword-matched. Below 60, you're likely getting auto-rejected at most companies. A score doesn't guarantee interviews — it just means a human will actually read your resume.",
+    a: "Aim for 75+ to get past initial automated screening. 85+ is competitive. 90+ means your resume is optimally formatted and keyword-matched. Below 60, you're likely getting auto-rejected at most companies. A score doesn't guarantee interviews, it just means a human will actually read your resume.",
   },
   {
     q: "How do I improve my ATS score?",
-    a: "The five highest-impact fixes: (1) Tailor your resume to each job description — mirror the exact language used. (2) Use a clean single-column layout — no tables, no text boxes, no headers/footers. (3) Rename non-standard sections ('Relevant Experience' → 'Work Experience'). (4) Add a Skills section with the exact tools and technologies from the job posting. (5) Include metrics — ATS systems score for quantifiable achievements.",
+    a: "The five highest-impact fixes: (1) Tailor your resume to each job description, mirror the exact language used. (2) Use a clean single-column layout, no tables, no text boxes, no headers/footers. (3) Rename non-standard sections ('Relevant Experience' → 'Work Experience'). (4) Add a Skills section with the exact tools and technologies from the job posting. (5) Include metrics, ATS systems score for quantifiable achievements.",
   },
   {
     q: "Is the ATS checker really free?",
-    a: "Yes. Preciprocal's free plan includes 5 ATS resume analyses per month — no credit card required. Each analysis includes your overall score, keyword gap analysis, formatting issues, and section structure feedback. Paid plans include the Recruiter Eye Simulation, Candidate Benchmarking, and Interview Intelligence features.",
+    a: "Yes. Preciprocal's free plan includes 5 ATS resume analyses per month, no credit card required. Each analysis includes your overall score, keyword gap analysis, formatting issues, and section structure feedback. Paid plans include the Recruiter Eye Simulation, Candidate Benchmarking, and Interview Intelligence features.",
   },
   {
     q: "What file formats does the ATS checker support?",
@@ -99,7 +99,7 @@ const HOW_IT_WORKS = [
   {
     step: "3",
     title: "Fix what's failing you",
-    body: "Get a line-by-line breakdown of exactly what to fix — not vague advice, but specific rewrites and missing keywords.",
+    body: "Get a line-by-line breakdown of exactly what to fix, not vague advice, but specific rewrites and missing keywords.",
   },
 ];
 
@@ -135,7 +135,7 @@ export default function FreeATSCheckerPage() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[12px] text-emerald-300 font-medium mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                Free — no credit card required
+                Free, no credit card required
               </div>
 
               {/* H1 */}
@@ -148,7 +148,7 @@ export default function FreeATSCheckerPage() {
               </h1>
 
               <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-                73% of resumes are rejected before a human sees them — by software, not people.
+                73% of resumes are rejected before a human sees them, by software, not people.
                 Find out if yours passes ATS screening, and get exact fixes to make it through.
               </p>
 
@@ -174,7 +174,7 @@ export default function FreeATSCheckerPage() {
                 What the ATS checker analyses
               </h2>
               <p className="text-slate-400 text-center mb-12 max-w-xl mx-auto">
-                Six dimensions. Specific scores. Exact fixes — not generic resume advice.
+                Six dimensions. Specific scores. Exact fixes, not generic resume advice.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {WHAT_WE_CHECK.map((item) => (
@@ -215,7 +215,7 @@ export default function FreeATSCheckerPage() {
             </div>
           </section>
 
-          {/* ── ATS explainer — the SEO content body ──────────────────── */}
+          {/* ── ATS explainer, the SEO content body ──────────────────── */}
           <section className="py-16 px-4 sm:px-6 border-t border-white/[0.04]">
             <div className="max-w-3xl mx-auto">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
@@ -230,8 +230,8 @@ export default function FreeATSCheckerPage() {
                   through an ATS before any human reviews it.
                 </p>
                 <p>
-                  The ATS parses your resume into structured data — name, contact info, work
-                  history, education, skills — and scores it against the job requirements. Resumes
+                  The ATS parses your resume into structured data, name, contact info, work
+                  history, education, skills, and scores it against the job requirements. Resumes
                   below the company&apos;s threshold are auto-rejected. Most candidates never know why.
                 </p>
                 <p>
@@ -245,11 +245,11 @@ export default function FreeATSCheckerPage() {
                   <h3 className="text-white font-semibold mb-4">The 5 most common ATS rejection reasons</h3>
                   <ul className="space-y-3">
                     {[
-                      "Missing keywords — your resume doesn't use the exact language from the job description",
-                      "Multi-column layouts — ATS parsers read left-to-right and mangle column-based resumes",
-                      "Text in headers/footers — most ATS systems can't parse text outside the main body",
-                      "Non-standard section names — 'Career History' instead of 'Work Experience'",
-                      "Tables and text boxes — these render as blank space or gibberish in most parsers",
+                      "Missing keywords, your resume doesn't use the exact language from the job description",
+                      "Multi-column layouts, ATS parsers read left-to-right and mangle column-based resumes",
+                      "Text in headers/footers, most ATS systems can't parse text outside the main body",
+                      "Non-standard section names, 'Career History' instead of 'Work Experience'",
+                      "Tables and text boxes, these render as blank space or gibberish in most parsers",
                     ].map((reason, i) => (
                       <li key={i} className="flex gap-3 text-sm">
                         <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
@@ -261,7 +261,7 @@ export default function FreeATSCheckerPage() {
 
                 <p>
                   Preciprocal&apos;s free ATS checker identifies all of these issues and tells you
-                  exactly how to fix them — not with vague advice, but with specific rewrites and
+                  exactly how to fix them, not with vague advice, but with specific rewrites and
                   missing keywords pulled from your target role.
                 </p>
               </div>

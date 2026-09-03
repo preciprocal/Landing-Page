@@ -122,7 +122,7 @@ function BorderBeam() {
           animation: "beamSpin 4s linear infinite",
         }}
       />
-      {/* Inner mask — punches out the center so only the 1px edge shows */}
+      {/* Inner mask, punches out the center so only the 1px edge shows */}
       <div className="absolute inset-[1px] rounded-[15px] bg-[#0a0f1e]" />
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes beamSpin { to { transform: rotate(360deg); } }
@@ -206,7 +206,7 @@ function PulseHighlight({ children, active, className = "" }: {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// OPENING SCENE — Arjun finds Meta listing on LinkedIn
+// OPENING SCENE, Arjun finds Meta listing on LinkedIn
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function LinkedInJobListing({ onApply }: { onApply: () => void }) {
@@ -611,7 +611,7 @@ export default function HeroProductDemo() {
     <section className="relative pb-20">
       <div className="max-w-5xl mx-auto px-6">
 
-        {/* Header — TextGenerate effect */}
+        {/* Header, TextGenerate effect */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           className="text-center mb-6">
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
@@ -666,7 +666,7 @@ export default function HeroProductDemo() {
           </div>
         )}
 
-        {/* Context bar during demo — animated step dots */}
+        {/* Context bar during demo, animated step dots */}
         {phase === "demo" && (
           <motion.div key={`ctx-${activeChapter}`} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-3 mb-3 px-4 py-2 bg-white/[0.02] border border-white/[0.06] rounded-xl">
@@ -689,7 +689,7 @@ export default function HeroProductDemo() {
           </motion.div>
         )}
 
-        {/* Content — Spotlight mouse-follow + BorderBeam */}
+        {/* Content, Spotlight mouse-follow + BorderBeam */}
         <Spotlight className="rounded-2xl">
           <div className="rounded-2xl bg-[#0a0f1e]/90 border border-white/[0.06] overflow-hidden relative backdrop-blur-sm">
             <BorderBeam />

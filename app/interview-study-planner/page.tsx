@@ -4,7 +4,7 @@
  * Targets: "interview study plan", "interview preparation plan", "how to
  * prepare for an interview in 2 weeks", "coding interview study schedule".
  *
- * The date-bounded queries ("2 weeks", "30 days") are the winnable ones here —
+ * The date-bounded queries ("2 weeks", "30 days") are the winnable ones here,
  * they carry real urgency and the big career sites answer them poorly, with
  * generic listicles rather than an actual schedule.
  */
@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "AI Interview Study Planner — A Day-by-Day Plan to Your Interview Date",
+  title: "AI Interview Study Planner: Day-by-Day Prep Plan",
   description:
     "Get a personalised interview prep schedule built around your target role, your interview date, and the hours you actually have. Daily tasks, curated resources, and progress tracking.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/interview-study-planner" },
   openGraph: {
-    title: "AI Interview Study Planner — A Day-by-Day Plan to Your Interview Date",
+    title: "AI Interview Study Planner, A Day-by-Day Plan to Your Interview Date",
     description:
       "Stop grinding random problems. Get a schedule built backward from your interview date.",
     url: "https://preciprocal.com/interview-study-planner",
@@ -49,7 +49,7 @@ const FAQS = [
   },
   {
     q: "What should I study first if my interview is in two weeks?",
-    a: "Patterns, not problem count. In two weeks you cannot cover the space, so you want the highest-frequency patterns — two pointers, sliding window, BFS and DFS, and basic dynamic programming — plus at least three full mock interviews under time pressure. Candidates who do fewer problems but talk through all of them out loud consistently outperform those who silently solve twice as many.",
+    a: "Patterns, not problem count. In two weeks you cannot cover the space, so you want the highest-frequency patterns, two pointers, sliding window, BFS and DFS, and basic dynamic programming, plus at least three full mock interviews under time pressure. Candidates who do fewer problems but talk through all of them out loud consistently outperform those who silently solve twice as many.",
   },
   {
     q: "How many LeetCode problems do I actually need?",
@@ -61,7 +61,7 @@ const FAQS = [
   },
   {
     q: "What if I fall behind the plan?",
-    a: "The plan reschedules around you. Everyone falls behind — a work deadline lands, a week disappears. What matters is that the remaining time gets re-prioritised toward the highest-value material rather than you simply continuing from where you stopped, which is what causes people to arrive at the interview having never practised system design.",
+    a: "The plan reschedules around you. Everyone falls behind, a work deadline lands, a week disappears. What matters is that the remaining time gets re-prioritised toward the highest-value material rather than you simply continuing from where you stopped, which is what causes people to arrive at the interview having never practised system design.",
   },
   {
     q: "Does it cover system design?",
@@ -93,7 +93,7 @@ export default function InterviewStudyPlannerPage() {
     <ToolPage
       breadcrumbName="Interview Study Planner"
       canonicalPath="/interview-study-planner"
-      badge="Free — full personalised plan"
+      badge="Free, full personalised plan"
       h1="AI interview study planner"
       h1Accent="a plan built to your date"
       subhead="Most people prepare by grinding random problems and hoping. Get a day-by-day schedule built backward from your actual interview date, sized to the hours you actually have."
@@ -138,10 +138,10 @@ export default function InterviewStudyPlannerPage() {
             <h3 className="text-white font-semibold mb-4">The four ways unstructured prep goes wrong</h3>
             <ul className="space-y-3">
               {[
-                "Over-indexing on coding — 90% of prep time on the round that's often 50% of the decision",
-                "Breadth without depth — 300 problems seen once, no pattern recognition built",
-                "Skipping behavioural entirely — the round that sinks the most senior candidates",
-                "Never practising out loud — silent solving is a genuinely different skill from interviewing",
+                "Over-indexing on coding, 90% of prep time on the round that's often 50% of the decision",
+                "Breadth without depth, 300 problems seen once, no pattern recognition built",
+                "Skipping behavioural entirely, the round that sinks the most senior candidates",
+                "Never practising out loud, silent solving is a genuinely different skill from interviewing",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
@@ -155,7 +155,7 @@ export default function InterviewStudyPlannerPage() {
             The last one is worth dwelling on. Solving a problem in your head at your own pace is a
             different activity from explaining your reasoning aloud, to a stranger, while typing, on
             a clock. Candidates who have only ever done the first are routinely blindsided by how
-            much harder the second is — and it is entirely trainable, which is why every plan the
+            much harder the second is, and it is entirely trainable, which is why every plan the
             tool generates reserves time for mock interviews rather than treating them as optional.
           </p>
           <p>

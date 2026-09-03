@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Preciprocal Chrome Extension — Save Jobs From LinkedIn in One Click",
+  title: { absolute: "Job Search Chrome Extension: Save Jobs in 1 Click" },
   description:
     "Save any job from LinkedIn or any job board with one click. The full job description imports automatically, ready for resume tailoring and application tracking.",
   keywords: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/chrome-extension" },
   openGraph: {
-    title: "Preciprocal Chrome Extension — Save Jobs From LinkedIn in One Click",
+    title: "Preciprocal Chrome Extension, Save Jobs From LinkedIn in One Click",
     description:
       "One click to save a job with its full description, ready to tailor against and track.",
     url: "https://preciprocal.com/chrome-extension",
@@ -88,7 +88,7 @@ export default function ChromeExtensionPage() {
     <ToolPage
       breadcrumbName="Chrome Extension"
       canonicalPath="/chrome-extension"
-      badge="Free — works with the free plan"
+      badge="Free, works with the free plan"
       h1="Preciprocal Chrome extension"
       h1Accent="save any job in one click"
       subhead="The reason people abandon their job tracking spreadsheet is data entry. Save a job from LinkedIn or any board with one click, full description included, ready to tailor against."
@@ -126,7 +126,7 @@ export default function ChromeExtensionPage() {
             company, copy the URL, select the entire description and copy it, switch to your
             tracker, paste four fields, set a status. Call it three to five minutes. At twenty
             applications a week that is over an hour of pure clerical work, and it is the first
-            thing to go when you are busy — which is why{" "}
+            thing to go when you are busy, which is why{" "}
             <strong className="text-white">
               almost every job search spreadsheet dies around week three
             </strong>
@@ -144,10 +144,10 @@ export default function ChromeExtensionPage() {
             <h3 className="text-white font-semibold mb-4">What the saved description feeds</h3>
             <ul className="space-y-3">
               {[
-                "Resume tailoring — the keyword match runs against this exact text",
-                "Cover letter generation — specifics from the posting, not generic enthusiasm",
-                "Interview prep — the requirements you're about to be questioned on",
-                "Duplicate detection — a warning before you apply to the same role twice",
+                "Resume tailoring, the keyword match runs against this exact text",
+                "Cover letter generation, specifics from the posting, not generic enthusiasm",
+                "Interview prep, the requirements you're about to be questioned on",
+                "Duplicate detection, a warning before you apply to the same role twice",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>

@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Resume Tailoring Tool — Match Your Resume to Any Job Description",
+  title: "Resume Tailoring: Match Any Job Description",
   description:
     "Paste a job description and get your resume rewritten to match it. See every change side by side, keep your voice, and raise your keyword match before you apply.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/resume-tailoring" },
   openGraph: {
-    title: "Resume Tailoring Tool — Match Your Resume to Any Job Description",
+    title: "Resume Tailoring Tool, Match Your Resume to Any Job Description",
     description:
       "One resume for every job is the biggest mistake in a job search. Tailor in minutes, not hours.",
     url: "https://preciprocal.com/resume-tailoring",
@@ -66,7 +66,7 @@ const FAQS = [
   },
   {
     q: "Does it work for non-technical roles?",
-    a: "Yes. The matching works from the language of the posting itself, so it adapts to finance, marketing, healthcare, legal, operations, and any other field. The underlying mechanic — mirroring the vocabulary of the specific job description — is identical regardless of industry.",
+    a: "Yes. The matching works from the language of the posting itself, so it adapts to finance, marketing, healthcare, legal, operations, and any other field. The underlying mechanic, mirroring the vocabulary of the specific job description, is identical regardless of industry.",
   },
   {
     q: "Is resume tailoring included in the free plan?",
@@ -94,7 +94,7 @@ export default function ResumeTailoringPage() {
     <ToolPage
       breadcrumbName="Resume Tailoring"
       canonicalPath="/resume-tailoring"
-      badge="Free — 5 analyses per month"
+      badge="Free, 5 analyses per month"
       h1="Tailor your resume"
       h1Accent="to any job description"
       subhead="The same resume scores 55 against one posting and 85 against another. Paste the job description, see exactly which terms you're missing, and get bullet-level rewrites you approve one by one."
@@ -131,7 +131,7 @@ export default function ResumeTailoringPage() {
             <strong className="text-white">comparison between two documents</strong>: your resume
             and this specific posting. Change the posting and the score changes, even though your
             resume is identical. A backend engineer&apos;s resume might score 85 against a job asking
-            for Python and Django, and 52 against one asking for Go and Kubernetes — describing the
+            for Python and Django, and 52 against one asking for Go and Kubernetes, describing the
             same person with the same abilities.
           </p>
           <p>
@@ -144,11 +144,11 @@ export default function ResumeTailoringPage() {
             <h3 className="text-white font-semibold mb-4">What tailoring actually changes</h3>
             <ul className="space-y-3">
               {[
-                "Vocabulary — 'agile methodology' vs 'agile process' can be the difference in a literal keyword match",
-                "Skills ordering — the tools this posting names, moved to the top of your skills section",
-                "Bullet emphasis — the same project framed toward the outcome this team cares about",
-                "Seniority signals — scope language matched to the level in the posting",
-                "Acronyms — spelled out once so both the acronym and the full term are indexed",
+                "Vocabulary, 'agile methodology' vs 'agile process' can be the difference in a literal keyword match",
+                "Skills ordering, the tools this posting names, moved to the top of your skills section",
+                "Bullet emphasis, the same project framed toward the outcome this team cares about",
+                "Seniority signals, scope language matched to the level in the posting",
+                "Acronyms, spelled out once so both the acronym and the full term are indexed",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
@@ -167,7 +167,7 @@ export default function ResumeTailoringPage() {
           <p>
             The reason people stop tailoring is purely economic. Thirty minutes per application is
             unsustainable across a real pipeline, so it gets reserved for the handful of jobs you
-            care most about — which are also the most competitive, where the marginal value of
+            care most about, which are also the most competitive, where the marginal value of
             tailoring is lowest relative to the field. Getting the cost down to a few minutes
             inverts that: you tailor everything, including the roles you would have dismissed as
             long shots, which is frequently where offers actually come from.
@@ -175,7 +175,7 @@ export default function ResumeTailoringPage() {
           <p>
             Tailoring is the rewrite step. If you want to check where your resume stands before you
             start, run it through the{" "}
-            <strong className="text-white">free ATS checker</strong> first — that scores the
+            <strong className="text-white">free ATS checker</strong> first, that scores the
             document on its own terms, and this tool closes the gap against a specific posting.
           </p>
         </>

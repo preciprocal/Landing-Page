@@ -1,6 +1,6 @@
 /**
  * app/not-found.tsx
- * Branded 404 page — helpful links, no dead ends.
+ * Branded 404 page, helpful links, no dead ends.
  * Next.js automatically uses this for any unmatched route.
  */
 
@@ -75,7 +75,7 @@ export default function NotFound() {
             href={`${APP_URL}/sign-up`}
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
           >
-            Get started free — it's the right page
+            Get started free, it's the right page
           </Link>
         </div>
       </main>

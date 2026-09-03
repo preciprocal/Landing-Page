@@ -3,11 +3,11 @@
 /**
  * app/pricing/page.tsx
  *
- * Standalone /pricing page — targets high-intent searches like
+ * Standalone /pricing page, targets high-intent searches like
  * "preciprocal pricing", "AI interview prep cost", "mock interview app price".
  *
  * SEO additions over the homepage Pricing section:
- *   • PricingPageJsonLd — OfferCatalog + individual Offer schemas with full detail
+ *   • PricingPageJsonLd, OfferCatalog + individual Offer schemas with full detail
  *   • BreadcrumbList JSON-LD
  *   • WebPage JSON-LD linking back to site entity graph
  *   • Canonical URL /pricing
@@ -40,7 +40,7 @@ function PricingJsonLd() {
     "@id": "https://preciprocal.com/pricing#offercatalog",
     name: "Preciprocal Pricing Plans",
     url: "https://preciprocal.com/pricing",
-    description: "AI-powered job search platform plans — Free, Pro ($9.99/mo), and Premium ($24.99/mo).",
+    description: "AI-powered job search platform plans, Free, Pro ($9.99/mo), and Premium ($24.99/mo).",
     provider: { "@id": "https://preciprocal.com/#organization" },
     itemListElement: [
       {
@@ -95,7 +95,7 @@ function PricingJsonLd() {
     "@type": "WebPage",
     "@id": "https://preciprocal.com/pricing#webpage",
     url: "https://preciprocal.com/pricing",
-    name: "Preciprocal Pricing — Start Free, Land Faster",
+    name: "Preciprocal Pricing, Start Free, Land Faster",
     description: "Free plan available. Pro at $9.99/mo with 30-day money-back guarantee.",
     isPartOf: { "@id": "https://preciprocal.com/#website" },
     about: { "@id": "https://preciprocal.com/#software" },
@@ -192,7 +192,7 @@ const PLANS = [
 const PRICING_FAQS = [
   {
     q: "Is there a free plan?",
-    a: "Yes — Preciprocal's free plan includes 5 resume analyses, 3 mock interviews, and 5 cover letters per month with no credit card required. You can use it indefinitely.",
+    a: "Yes, Preciprocal's free plan includes 5 resume analyses, 3 mock interviews, and 5 cover letters per month with no credit card required. You can use it indefinitely.",
   },
   {
     q: "What's included in the Pro plan?",
@@ -204,7 +204,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What is the 30-day money-back guarantee?",
-    a: "If you don't land an interview within 30 days of using Preciprocal Pro, we'll give you a full refund — no questions asked. Email support@preciprocal.com.",
+    a: "If you don't land an interview within 30 days of using Preciprocal Pro, we'll give you a full refund, no questions asked. Email support@preciprocal.com.",
   },
   {
     q: "Is there a student discount?",
@@ -212,7 +212,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What's the difference between Pro and Premium?",
-    a: "Pro covers everything most job seekers need — resume analysis, mock interviews, cover letters, and job tracking with generous limits. Premium adds unlimited usage across all features, company-specific interview prep, an AI interview coach, and priority support.",
+    a: "Pro covers everything most job seekers need, resume analysis, mock interviews, cover letters, and job tracking with generous limits. Premium adds unlimited usage across all features, company-specific interview prep, an AI interview coach, and priority support.",
   },
 ];
 
@@ -253,7 +253,7 @@ export default function PricingPage() {
               </h1>
               <p className="text-base text-slate-400 max-w-lg mx-auto">
                 The average job search costs months of lost salary. Preciprocal helps you land
-                offers weeks faster — for less than a single coffee a day.
+                offers weeks faster, for less than a single coffee a day.
               </p>
             </RevealOnScroll>
 
@@ -341,8 +341,8 @@ export default function PricingPage() {
 
             <p className="text-center text-[13px] text-slate-600 mt-5">
               University student? Verify your .edu email for{" "}
-              <span className="text-slate-400 font-medium">1 month of Pro free</span>{" "}
-              — no card needed.
+              <span className="text-slate-400 font-medium">1 month of Pro free</span>, no
+              card needed.
             </p>
           </div>
         </section>

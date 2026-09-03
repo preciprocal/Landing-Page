@@ -6,8 +6,8 @@
  *
  * Competitive note: this SERP is held by Jobscan, Resume Worded and Careerflow.
  * We are not going to outrank them on the head term with a single page. The
- * winnable angle is the specific long-tail — recruiter search ranking, headline
- * keywords, Open to Work mechanics — which is what the body content targets.
+ * winnable angle is the specific long-tail, recruiter search ranking, headline
+ * keywords, Open to Work mechanics, which is what the body content targets.
  *
  * US spelling in the URL and title ("optimizer") because that is what people
  * search; the product itself is spelled "Optimiser" elsewhere in the app.
@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Free LinkedIn Profile Optimizer — Get Found by Recruiters",
+  title: "LinkedIn Profile Optimizer: Get Found by Recruiters",
   description:
     "Optimize your LinkedIn profile for recruiter search. Get a keyword-scored headline, About section, and experience bullets that surface you in the searches recruiters actually run.",
   keywords: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/linkedin-profile-optimizer" },
   openGraph: {
-    title: "Free LinkedIn Profile Optimizer — Get Found by Recruiters",
+    title: "Free LinkedIn Profile Optimizer, Get Found by Recruiters",
     description:
       "Recruiters search LinkedIn by keyword. If your profile doesn't contain them, you don't exist. Fix that in 10 minutes.",
     url: "https://preciprocal.com/linkedin-profile-optimizer",
@@ -102,7 +102,7 @@ export default function LinkedInProfileOptimizerPage() {
     <ToolPage
       breadcrumbName="LinkedIn Profile Optimizer"
       canonicalPath="/linkedin-profile-optimizer"
-      badge="Free — 2 optimisations per month"
+      badge="Free, 2 optimisations per month"
       h1="Free LinkedIn profile optimizer"
       h1Accent="get found by recruiters"
       subhead="Recruiters don't browse LinkedIn, they search it. If your profile doesn't contain the terms they type, you never appear. Fix the headline, About, and skills that decide whether you show up."
@@ -154,11 +154,11 @@ export default function LinkedInProfileOptimizerPage() {
             <h3 className="text-white font-semibold mb-4">The 5 fields that decide whether you appear</h3>
             <ul className="space-y-3">
               {[
-                "Headline — highest search weight, and one of the few fields visible in recruiter results",
-                "Job titles — searched literally, so an internal title like 'Ninja' costs you every query",
-                "Skills — a directly filterable field; leaving slots empty removes you from those filters",
-                "About — the largest free-text field you control, fully indexed",
-                "Experience descriptions — indexed, and where your keywords earn their credibility",
+                "Headline, highest search weight, and one of the few fields visible in recruiter results",
+                "Job titles, searched literally, so an internal title like 'Ninja' costs you every query",
+                "Skills, a directly filterable field; leaving slots empty removes you from those filters",
+                "About, the largest free-text field you control, fully indexed",
+                "Experience descriptions, indexed, and where your keywords earn their credibility",
               ].map((field, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
@@ -170,7 +170,7 @@ export default function LinkedInProfileOptimizerPage() {
 
           <p>
             There is a second-order effect worth understanding. Appearing in the search is necessary
-            but not sufficient — once a recruiter clicks through, your profile has to survive about
+            but not sufficient, once a recruiter clicks through, your profile has to survive about
             fifteen seconds of scanning. That means the headline and the first two lines of your
             About section carry disproportionate weight, and your experience bullets need to show
             outcomes rather than restate your job description.

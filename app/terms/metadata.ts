@@ -8,7 +8,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Preciprocal",
+  title: { absolute: "Terms of Service | Preciprocal" },
   description:
     "Preciprocal's full Terms of Service. Covers acceptable use, subscription payments and refunds, intellectual property, limitation of liability, arbitration, and dispute resolution.",
   keywords: [

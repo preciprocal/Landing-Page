@@ -125,7 +125,7 @@ export const STEP_LABELS = [
 
 export const TOTAL_FIELDS = STEPS.slice(0, -1).reduce((s, st) => s + st.fields.length, 0);
 
-// ── Timeline — flat array of fill events ──────────────────────────────────────
+// ── Timeline, flat array of fill events ──────────────────────────────────────
 export interface FillEvent { stepIdx: number; fieldIdx: number; }
 
 export function buildTimeline(): FillEvent[] {
@@ -136,7 +136,7 @@ export function buildTimeline(): FillEvent[] {
   return events;
 }
 
-// TIMELINE is a plain FillEvent[] — use it directly, not TIMELINE.events
+// TIMELINE is a plain FillEvent[], use it directly, not TIMELINE.events
 export const TIMELINE: FillEvent[] = buildTimeline();
 
 export function fieldsFilledInStep(events: FillEvent[], tick: number, stepIdx: number): number {

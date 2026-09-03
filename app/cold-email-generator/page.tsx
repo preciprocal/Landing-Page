@@ -4,7 +4,7 @@
  * Targets: "cold email for job", "how to email a recruiter", "cold outreach
  * template job search", "referral request message".
  *
- * These are template-hunting queries — people want text they can copy. The body
+ * These are template-hunting queries, people want text they can copy. The body
  * content therefore includes a real annotated example rather than describing
  * one, which is also what makes the page worth linking to.
  */
@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Cold Email Generator for Job Seekers — Outreach That Gets Replies",
+  title: "Cold Email Generator: Outreach That Gets Replies",
   description:
     "Write cold emails to recruiters, hiring managers, and potential referrers that actually get answered. Personalised from your background and the specific role, in seconds.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/cold-email-generator" },
   openGraph: {
-    title: "Cold Email Generator for Job Seekers — Outreach That Gets Replies",
+    title: "Cold Email Generator for Job Seekers, Outreach That Gets Replies",
     description:
       "Most cold emails fail for the same three reasons. Write ones that get answered.",
     url: "https://preciprocal.com/cold-email-generator",
@@ -53,7 +53,7 @@ const FAQS = [
   },
   {
     q: "How long should a cold email be?",
-    a: "Under 150 words. It should be readable on a phone without scrolling. The most common failure is length: a long email signals that replying will be work, so it gets deferred and then forgotten. Three short paragraphs — who you are, why them specifically, and one clear small ask — is the whole structure.",
+    a: "Under 150 words. It should be readable on a phone without scrolling. The most common failure is length: a long email signals that replying will be work, so it gets deferred and then forgotten. Three short paragraphs, who you are, why them specifically, and one clear small ask, is the whole structure.",
   },
   {
     q: "What's the right ask in a cold email?",
@@ -93,7 +93,7 @@ export default function ColdEmailGeneratorPage() {
     <ToolPage
       breadcrumbName="Cold Email Generator"
       canonicalPath="/cold-email-generator"
-      badge="Free — outreach included"
+      badge="Free, outreach included"
       h1="Cold email generator"
       h1Accent="outreach that gets replies"
       subhead="A cold email that reaches a real person skips the automated screen entirely. Most fail for the same three reasons: too long, too generic, and asking for too much. Write ones that don't."
@@ -121,7 +121,7 @@ export default function ColdEmailGeneratorPage() {
       body={
         <>
           <p>
-            Cold outreach has a terrible reputation among job seekers, and it is deserved — but the
+            Cold outreach has a terrible reputation among job seekers, and it is deserved, but the
             reason is not that the channel does not work. It is that almost every cold email sent by
             a job seeker makes the same three mistakes, and those mistakes are entirely fixable.
           </p>
@@ -130,9 +130,9 @@ export default function ColdEmailGeneratorPage() {
             <h3 className="text-white font-semibold mb-4">The three failures</h3>
             <ul className="space-y-3">
               {[
-                "Too long — anything past 150 words signals that replying will be work, so it gets deferred forever",
-                "Too generic — 'I'm passionate about your mission' is indistinguishable from the other forty emails that week",
-                "Ask too large — a stranger will not refer you, but they might take a 15-minute call",
+                "Too long, anything past 150 words signals that replying will be work, so it gets deferred forever",
+                "Too generic, 'I'm passionate about your mission' is indistinguishable from the other forty emails that week",
+                "Ask too large, a stranger will not refer you, but they might take a 15-minute call",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
@@ -149,7 +149,7 @@ export default function ColdEmailGeneratorPage() {
             merge, regardless of how sincere it is.
           </p>
           <p>
-            The fix is one concrete, specific detail. Not the company&apos;s mission statement — something
+            The fix is one concrete, specific detail. Not the company&apos;s mission statement, something
             you could only know by paying attention. A talk someone on the team gave, a design
             decision in their public API, a post about how they handle on-call. One line of genuine
             specificity outperforms three paragraphs of enthusiasm.
@@ -161,7 +161,7 @@ export default function ColdEmailGeneratorPage() {
               <strong className="text-slate-200">Subject:</strong> Question about the payments team
             </p>
             <p className="text-sm text-slate-400 leading-relaxed mb-3">
-              Hi Priya — I read your write-up on moving the reconciliation pipeline to event
+              Hi Priya, I read your write-up on moving the reconciliation pipeline to event
               sourcing, particularly the part about idempotency keys under retry storms. I spent
               last year on the same problem at a smaller scale and took a different approach, so it
               was a genuinely useful read.

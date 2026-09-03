@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import { RevealOnScroll, FloatingDots } from "@/components/LandingAnimations";
 
 
-// Renders content strings — parses **bold** markers into <strong> tags
+// Renders content strings, parses **bold** markers into <strong> tags
 function renderContent(text: string) {
   return text.split("\n").map((line, i) => {
     const parts = line.split(/(\*\*[^*]+\*\*)/g);

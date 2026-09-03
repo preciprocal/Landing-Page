@@ -146,7 +146,7 @@ function renderMarkdown(content: string) {
       continue;
     }
 
-    // Table — header row, separator row (|---|---|), then body rows
+    // Table, header row, separator row (|---|---|), then body rows
     if (line.startsWith("|") && i + 1 < lines.length && /^\|[\s:|-]+\|$/.test(lines[i + 1].trim())) {
       const cells = (row: string) => row.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
       const headers = cells(line);

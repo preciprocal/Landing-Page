@@ -4,7 +4,7 @@
  * Targets: "find recruiter email", "how to find hiring manager email",
  * "email finder for job search", "company email format finder".
  *
- * Keep the framing on job-search outreach rather than sales prospecting — the
+ * Keep the framing on job-search outreach rather than sales prospecting, the
  * sales email-finder SERP is saturated (Hunter, Apollo, RocketReach) and we
  * have no chance there, but the job-seeker phrasing is a distinct, softer query.
  */
@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Recruiter Contact Finder — Find the Right Person to Email",
+  title: "Recruiter Contact Finder: Who to Email",
   description:
     "Find and verify the email address of the recruiter, hiring manager, or team member for any role. Stop sending applications into a portal and start reaching actual people.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/recruiter-contact-finder" },
   openGraph: {
-    title: "Recruiter Contact Finder — Find the Right Person to Email",
+    title: "Recruiter Contact Finder, Find the Right Person to Email",
     description:
       "Find and verify the hiring manager's email for any role. Bypass the portal entirely.",
     url: "https://preciprocal.com/recruiter-contact-finder",
@@ -93,7 +93,7 @@ export default function RecruiterContactFinderPage() {
     <ToolPage
       breadcrumbName="Recruiter Contact Finder"
       canonicalPath="/recruiter-contact-finder"
-      badge="Free — 2 lookups per month"
+      badge="Free, 2 lookups per month"
       h1="Recruiter contact finder"
       h1Accent="find the right person to email"
       subhead="An application in a portal joins several hundred others. An email to the hiring manager arrives in an inbox with your name on it. Find who to contact and verify the address before you send."
@@ -128,7 +128,7 @@ export default function RecruiterContactFinderPage() {
           </p>
           <p>
             When someone on the team forwards your resume internally, you enter through a{" "}
-            <strong className="text-white">completely different queue</strong> — one that is
+            <strong className="text-white">completely different queue</strong>, one that is
             measured in dozens rather than hundreds, and where a human reads it first. Referred
             candidates are hired at dramatically higher rates than portal applicants, and the
             difference is mostly structural rather than a judgement about quality.
@@ -144,10 +144,10 @@ export default function RecruiterContactFinderPage() {
             <h3 className="text-white font-semibold mb-4">Who to contact, in order</h3>
             <ul className="space-y-3">
               {[
-                "Hiring manager — owns the role and feels the cost of it staying open",
-                "Team member in the same role — can refer you, and knows what the team actually needs",
-                "Someone who recently joined the team — remembers the process and is usually generous about it",
-                "Recruiter — the most contacted and most saturated inbox, but still better than the portal",
+                "Hiring manager, owns the role and feels the cost of it staying open",
+                "Team member in the same role, can refer you, and knows what the team actually needs",
+                "Someone who recently joined the team, remembers the process and is usually generous about it",
+                "Recruiter, the most contacted and most saturated inbox, but still better than the portal",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
                   <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>

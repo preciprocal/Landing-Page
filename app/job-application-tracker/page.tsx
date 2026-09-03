@@ -4,7 +4,7 @@
  * Targets: "job application tracker", "job search tracker", "track job
  * applications", "job application spreadsheet".
  *
- * The strongest angle here is the spreadsheet comparison — most people
+ * The strongest angle here is the spreadsheet comparison, most people
  * currently track applications in Google Sheets, so the query behind this page
  * is usually "is there something better than my spreadsheet". The body content
  * answers that directly rather than listing features.
@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Free Job Application Tracker — Every Application in One Place",
+  title: "Free Job Application Tracker: All in One Place",
   description:
     "Track every job application, interview stage, and follow-up in one place. Know what to chase, when to follow up, and which applications have gone quiet, without a spreadsheet.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/job-application-tracker" },
   openGraph: {
-    title: "Free Job Application Tracker — Every Application in One Place",
+    title: "Free Job Application Tracker, Every Application in One Place",
     description:
       "Stop losing applications in a spreadsheet. Track stages, follow-ups, and contacts in one pipeline.",
     url: "https://preciprocal.com/job-application-tracker",
@@ -75,7 +75,7 @@ const FAQS = [
 ];
 
 const FEATURES = [
-  { label: "Stage pipeline", description: "Applied, screening, interviewing, offer, rejected — see the whole funnel at once." },
+  { label: "Stage pipeline", description: "Applied, screening, interviewing, offer, rejected, see the whole funnel at once." },
   { label: "Follow-up reminders", description: "Automatic prompts at the right interval per application, not a shared calendar." },
   { label: "Saved job descriptions", description: "The posting you applied against, kept even after it's taken down." },
   { label: "Contact linking", description: "Who you spoke to at each company, and when you last contacted them." },
@@ -94,7 +94,7 @@ export default function JobApplicationTrackerPage() {
     <ToolPage
       breadcrumbName="Job Application Tracker"
       canonicalPath="/job-application-tracker"
-      badge="Free — track up to 10 jobs"
+      badge="Free, track up to 10 jobs"
       h1="Free job application tracker"
       h1Accent="stop losing track of applications"
       subhead="Thirty applications in, nobody remembers who they contacted, what they applied for, or which company has gone quiet. One pipeline with stages, follow-ups, and the original job description attached."
@@ -140,7 +140,7 @@ export default function JobApplicationTrackerPage() {
             <h3 className="text-white font-semibold mb-4">What untracked job searches lose</h3>
             <ul className="space-y-3">
               {[
-                "Follow-ups that never happen — the single highest-ROI action in a job search",
+                "Follow-ups that never happen, the single highest-ROI action in a job search",
                 "The original job description, deleted from the board before your interview",
                 "Duplicate applications to the same company, which recruiters do notice",
                 "Which resume version you sent, so you can't tell what's working",
@@ -159,7 +159,7 @@ export default function JobApplicationTrackerPage() {
             pre-pandemic baseline but the hiring rate is only 3.4%, applications are not rejected so
             much as they are forgotten. Roles stay open for months, get deprioritised, and get
             revived. A polite follow-up at the right moment is often what moves an application from
-            the pile back onto a screen — and it is precisely the action that untracked searches
+            the pile back onto a screen, and it is precisely the action that untracked searches
             never take.
           </p>
           <p>

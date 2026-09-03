@@ -214,7 +214,7 @@ function renderWithLinks(text: string): React.ReactNode {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// COVER LETTER VIEW — renders inline inside the browser frame
+// COVER LETTER VIEW, renders inline inside the browser frame
 // ─────────────────────────────────────────────────────────────────────────────
 export function CoverLetterView({ prefillRole = "", prefillCompany = "" }: {
   prefillRole?: string;

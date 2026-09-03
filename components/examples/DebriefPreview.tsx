@@ -119,7 +119,7 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
   return (
     <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
-      {/* Left — Form */}
+      {/* Left, Form */}
       <div className="w-[52%] flex-shrink-0 overflow-y-auto pr-0.5 db-scroll" style={{ maxHeight: 520 }}>
         <FadeIn delay={0}>
           <div className="flex items-center gap-2 mb-3">
@@ -268,7 +268,7 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
         </div>
       </div>
 
-      {/* Right — Empty state or loading */}
+      {/* Right, Empty state or loading */}
       {isLoading ? (
         <LoadingCard message="Saving entry…" sub="Logging your interview debrief to the journal" />
       ) : (

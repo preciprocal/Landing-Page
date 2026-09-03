@@ -15,12 +15,12 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Cover Letter Examples by Role — Templates That Actually Work",
+  title: "Cover Letter Examples by Role: 41 Templates",
   description:
-    "Free cover letter examples and templates for 40+ roles. Real examples for software engineers, product managers, data scientists, marketing managers, and more — updated for 2026.",
+    "Free cover letter examples and templates for 40+ roles. Real examples for software engineers, product managers, data scientists, marketing managers, and more, updated for 2026.",
   alternates: { canonical: "https://preciprocal.com/cover-letter-examples" },
   openGraph: {
-    title: "Cover Letter Examples by Role — Preciprocal",
+    title: "Cover Letter Examples by Role, Preciprocal",
     description:
       "Free cover letter templates for every major career path. Real examples with breakdowns for 2026.",
     url: "https://preciprocal.com/cover-letter-examples",
@@ -58,7 +58,7 @@ export default function CoverLetterExamplesIndexPage() {
         </h1>
         <p style={{ color: "#94a3b8" }} className="text-lg mb-3 max-w-2xl leading-relaxed">
           Real cover letter examples, annotated templates, and writing guides for every major role.
-          Written to get past ATS and make hiring managers keep reading — updated for 2026.
+          Written to get past ATS and make hiring managers keep reading, updated for 2026.
         </p>
         <p style={{ color: "#475569" }} className="text-sm mb-12">
           {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries

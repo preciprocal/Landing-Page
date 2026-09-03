@@ -6,7 +6,7 @@ import { X, GraduationCap } from "lucide-react";
 import { APP_URL } from "@/lib/constants";
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// STICKY BANNER — Dismissible announcement bar
+// STICKY BANNER, Dismissible announcement bar
 // Fixed to very top (z-70, above navbar z-50).
 // Sets CSS var --banner-h so FloatingNavbar can offset its top position.
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -76,7 +76,7 @@ export default function StickyBanner() {
         )}
       </AnimatePresence>
 
-      {/* Spacer — pushes page content below the fixed banner */}
+      {/* Spacer, pushes page content below the fixed banner */}
       {visible && <div style={{ height: "var(--banner-h, 0px)" }} />}
 
       <style dangerouslySetInnerHTML={{ __html: `

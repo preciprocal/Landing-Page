@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// SHARED — Card with cursor-follow glow
+// SHARED, Card with cursor-follow glow
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function Card({ children, className = "", delay = 0 }: {
@@ -49,10 +49,10 @@ function Card({ children, className = "", delay = 0 }: {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// ROW 1 — WHAT IT DOES (3 large cards)
+// ROW 1, WHAT IT DOES (3 large cards)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// SpeedCard — shows actual product speed facts (not user outcome claims)
+// SpeedCard, shows actual product speed facts (not user outcome claims)
 function SpeedCard() {
   const [active, setActive] = useState(0);
   const items = [
@@ -102,7 +102,7 @@ function SpeedCard() {
 
 // ─── AccuracyCard replaced with DepthCard ─────────────────────────────────────
 // The original AccuracyCard showed "ATS pass rate 89%", "Interview callback 3.2x",
-// "Offer rate lift 47%" — all fabricated, labelled "Real results, not promises".
+// "Offer rate lift 47%", all fabricated, labelled "Real results, not promises".
 // Replaced with product capability facts: what the resume analysis actually checks.
 
 function DepthCard() {
@@ -211,7 +211,7 @@ function CoverageCard() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// ROW 2 — DIFFERENTIATORS (4 cards)
+// ROW 2, DIFFERENTIATORS (4 cards)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function NotChatbotCard() {
@@ -292,7 +292,7 @@ function BrutallyHonestCard() {
 }
 
 // ─── StudentPriceCard ─────────────────────────────────────────────────────────
-// Removed fake ~~$49~~ strikethrough — there is no $49 list price being
+// Removed fake ~~$49~~ strikethrough, there is no $49 list price being
 // discounted to $9.99. $9.99 IS the price. Showing a fabricated "original
 // price" crossed out is a deceptive pricing pattern and illegal in several
 // jurisdictions (UK CPR 2008, EU Consumer Rights Directive, US FTC Act).
@@ -366,7 +366,7 @@ function AINotGenericCard() {
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
-// ROW 3 — TRUST BAR (full width)
+// ROW 3, TRUST BAR (full width)
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function TrustBar() {
@@ -375,7 +375,7 @@ function TrustBar() {
     { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
     { icon: Globe,             label: "Works everywhere",        sub: "Web app, no downloads, any device" },
     // ⚠️  Guarantee wording: "30-day money-back" is the accurate claim.
-    // Original read "Land an interview in 30 days or refund" — that implies
+    // Original read "Land an interview in 30 days or refund", that implies
     // a guaranteed outcome we cannot promise and creates legal liability.
     { icon: Award,             label: "30-day money-back",       sub: "Not working for you? Full refund, no questions" },
   ];
@@ -434,14 +434,14 @@ export default function BentoFeatures() {
           </p>
         </div>
 
-        {/* Row 1: What it does — 3 equal cards */}
+        {/* Row 1: What it does, 3 equal cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <SpeedCard />
           <DepthCard />
           <CoverageCard />
         </div>
 
-        {/* Row 2: Differentiators — 4 equal cards */}
+        {/* Row 2: Differentiators, 4 equal cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
           <NotChatbotCard />
           <BrutallyHonestCard />

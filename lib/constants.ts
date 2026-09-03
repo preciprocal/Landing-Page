@@ -567,18 +567,18 @@ export function getRoleQuestions(slug: string): RoleQA[] {
  * Company prep coverage.
  *
  * The original 20 were all tech, which left every non-tech role in ROLE_DISPLAY
- * without a single relevant company page — a Financial Analyst or Paralegal had
+ * without a single relevant company page, a Financial Analyst or Paralegal had
  * nowhere to go. The additions below are weighted toward those uncovered
  * categories: investment banking, quant trading, consulting, Big 4, healthcare
  * and retail, plus the high-volume tech employers that were missing.
  */
 export type CompanySlug =
-  // Tech — original 20
+  // Tech, original 20
   | "google" | "amazon" | "meta" | "microsoft" | "apple"
   | "stripe" | "spotify" | "netflix" | "uber" | "airbnb"
   | "linkedin" | "salesforce" | "oracle" | "adobe" | "nvidia"
   | "openai" | "anthropic" | "databricks" | "snowflake" | "palantir"
-  // Tech — added
+  // Tech, added
   | "tesla" | "coinbase" | "figma" | "datadog" | "cloudflare"
   | "atlassian" | "shopify" | "doordash" | "robinhood" | "bloomberg"
   // Investment banking

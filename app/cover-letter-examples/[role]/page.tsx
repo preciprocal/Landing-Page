@@ -95,7 +95,7 @@ function getCoverLetterSections(
       label: "Paragraph 2",
       badge: "Relevance",
       badgeColor: "#8b5cf6",
-      guidance: `Connect your most relevant experience to their most important requirement, using their exact language. ${roleName} postings tend to lean on terms like ${k1}, ${k2} and ${k3} — mirror the phrasing rather than paraphrasing it. One concrete example with a result beats three paragraphs of general claims.`,
+      guidance: `Connect your most relevant experience to their most important requirement, using their exact language. ${roleName} postings tend to lean on terms like ${k1}, ${k2} and ${k3}, mirror the phrasing rather than paraphrasing it. One concrete example with a result beats three paragraphs of general claims.`,
       example: `In my role at [Company/Project], I [specific action involving ${k1}] that resulted in [quantified outcome]. This is directly relevant to what you described as [specific requirement from the posting] because [connection].`,
     },
     {
@@ -141,11 +141,11 @@ function getCoverLetterTips(roleName: string, content: ReturnType<typeof getRole
     },
     {
       title: `Open with ${angle}`,
-      body: `A ${roleName} cover letter earns its second paragraph in the first two sentences. The strongest opening for this field is ${angle} — stated plainly, with the outcome attached. Hiring managers reading ${roleName} applications are screening for ${screens}, so leading with that is what buys you the rest of the page.`,
+      body: `A ${roleName} cover letter earns its second paragraph in the first two sentences. The strongest opening for this field is ${angle}, stated plainly, with the outcome attached. Hiring managers reading ${roleName} applications are screening for ${screens}, so leading with that is what buys you the rest of the page.`,
     },
     {
       title: "Mirror the posting's exact language",
-      body: `Cover letters are parsed by the same systems that score your resume. ${roleName} postings tend to cluster around terms like ${kwSample}. If the posting uses a specific phrase, use that phrase rather than a synonym — the match is frequently literal, and the three or four most important requirements are the ones worth mirroring precisely.`,
+      body: `Cover letters are parsed by the same systems that score your resume. ${roleName} postings tend to cluster around terms like ${kwSample}. If the posting uses a specific phrase, use that phrase rather than a synonym, the match is frequently literal, and the three or four most important requirements are the ones worth mirroring precisely.`,
     },
     {
       title: `Show ${proves}`,
@@ -161,7 +161,7 @@ function getCoverLetterTips(roleName: string, content: ReturnType<typeof getRole
     },
     {
       title: "Do not restate the resume",
-      body: `The resume covers what you did. The letter covers why this role, why this company, and what the resume cannot show — a decision you made, a constraint you worked under, or the reason this particular team interests you. Duplicating bullets wastes the one document where you control the narrative.`,
+      body: `The resume covers what you did. The letter covers why this role, why this company, and what the resume cannot show, a decision you made, a constraint you worked under, or the reason this particular team interests you. Duplicating bullets wastes the one document where you control the narrative.`,
     },
   ];
 }
@@ -182,7 +182,7 @@ function getCoverLetterFAQs(roleName: string, content: ReturnType<typeof getRole
   return [
     {
       q: `What should a ${roleName} cover letter include?`,
-      a: `Four components. An opening built around ${angle}. A second paragraph connecting your experience to the posting's top requirement in its own language — for ${roleName} roles that usually means terms like ${kwLead}. A third showing you understand what makes this company different. Then a short, direct close. Total length 250 to 350 words. ${positioning} Because reviewers are specifically looking for ${roleScreened}, the letter's job is to establish that in the first two sentences rather than build to it.`,
+      a: `Four components. An opening built around ${angle}. A second paragraph connecting your experience to the posting's top requirement in its own language, for ${roleName} roles that usually means terms like ${kwLead}. A third showing you understand what makes this company different. Then a short, direct close. Total length 250 to 350 words. ${positioning} Because reviewers are specifically looking for ${roleScreened}, the letter's job is to establish that in the first two sentences rather than build to it.`,
     },
     {
       q: `How long should a ${roleName} cover letter be?`,
@@ -190,23 +190,23 @@ function getCoverLetterFAQs(roleName: string, content: ReturnType<typeof getRole
     },
     {
       q: `How do I write a ${roleName} cover letter with no experience?`,
-      a: `Lead with what you have built rather than what you lack. For ${roleName} work, projects and coursework count when they carry a real result — pick the one closest to ${proves} and describe it the way you would describe professional work. Use the vocabulary the field actually uses (${kwMore || kwLead}) so the letter reads as someone inside the discipline. Name the gap once, in a single confident sentence, then move on.`,
+      a: `Lead with what you have built rather than what you lack. For ${roleName} work, projects and coursework count when they carry a real result, pick the one closest to ${proves} and describe it the way you would describe professional work. Use the vocabulary the field actually uses (${kwMore || kwLead}) so the letter reads as someone inside the discipline. Name the gap once, in a single confident sentence, then move on.`,
     },
     {
       q: `Should I include a cover letter if it is listed as optional?`,
-      a: `Yes. Optional means it gets read if you send one, and most applicants do not. For ${roleName} roles at competitive employers such as ${employers}, the applicant pool is large enough that any real differentiator matters. The only reason to skip it is if you cannot write a good one — in which case Preciprocal's cover letter generator will produce a tailored first draft you can edit.`,
+      a: `Yes. Optional means it gets read if you send one, and most applicants do not. For ${roleName} roles at competitive employers such as ${employers}, the applicant pool is large enough that any real differentiator matters. The only reason to skip it is if you cannot write a good one, in which case Preciprocal's cover letter generator will produce a tailored first draft you can edit.`,
     },
     {
       q: `How do I make my ${roleName} cover letter stand out?`,
-      a: `Three things almost nobody does. Name a specific detail about the company that is not on their homepage. Open with ${angle} rather than your name and the role title. And mirror the posting's exact phrasing for its top requirements instead of paraphrasing — ${roleName} postings repeat a recognisable vocabulary (${kwLead}), and matching it precisely is both an ATS signal and a credibility one.`,
+      a: `Three things almost nobody does. Name a specific detail about the company that is not on their homepage. Open with ${angle} rather than your name and the role title. And mirror the posting's exact phrasing for its top requirements instead of paraphrasing, ${roleName} postings repeat a recognisable vocabulary (${kwLead}), and matching it precisely is both an ATS signal and a credibility one.`,
     },
     {
       q: `What is the biggest mistake in ${roleName} cover letters?`,
-      a: `Opening with "I am writing to express my interest in the ${roleName} position." Every letter says it, so it conveys nothing. The field-specific version of the same error is ${mistake} — it is the pattern that most often gets a ${roleName} application set aside, and it is entirely avoidable by leading with a result instead of a description of duties.`,
+      a: `Opening with "I am writing to express my interest in the ${roleName} position." Every letter says it, so it conveys nothing. The field-specific version of the same error is ${mistake}, it is the pattern that most often gets a ${roleName} application set aside, and it is entirely avoidable by leading with a result instead of a description of duties.`,
     },
     {
       q: `Should I mention salary expectations in a ${roleName} cover letter?`,
-      a: `No, unless the posting explicitly asks. Raising compensation before the employer has decided they want you weakens your position. For context, ${roleName} roles currently span roughly ${salary} depending on location, company stage and scope — useful for deciding whether to apply, but not something to put in the letter. If a form requires a number, give a range anchored to your research and note it is negotiable.`,
+      a: `No, unless the posting explicitly asks. Raising compensation before the employer has decided they want you weakens your position. For context, ${roleName} roles currently span roughly ${salary} depending on location, company stage and scope, useful for deciding whether to apply, but not something to put in the letter. If a form requires a number, give a range anchored to your research and note it is negotiable.`,
     },
   ];
 }

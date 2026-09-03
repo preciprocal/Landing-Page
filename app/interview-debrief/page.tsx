@@ -5,7 +5,7 @@
  * remember interview questions", "interview reflection template".
  *
  * Lowest search volume of the eight, but the queries are high-intent and almost
- * nobody covers them properly — the SERP is mostly employer-side content about
+ * nobody covers them properly, the SERP is mostly employer-side content about
  * how hiring panels run debriefs, not candidate-side. That mismatch is the
  * opening.
  */
@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Interview Debrief Journal — Learn From Every Interview You Take",
+  title: "Interview Debrief Journal: Learn From Every One",
   description:
     "Log what was asked, what you said, and what you'd change while it's still fresh. Turn each interview into preparation for the next one instead of a vague memory.",
   keywords: [
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/interview-debrief" },
   openGraph: {
-    title: "Interview Debrief Journal — Learn From Every Interview You Take",
+    title: "Interview Debrief Journal, Learn From Every Interview You Take",
     description:
       "Most candidates take the same interview five times and learn nothing. Capture it while it's fresh.",
     url: "https://preciprocal.com/interview-debrief",
@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: "Companies rarely give feedback. Does that make this pointless?",
-    a: "It makes it more important, not less. Since almost no company gives real feedback beyond a template rejection, your own notes are the only feedback signal you will ever have. The pattern that emerges across five debriefs — that you consistently run out of time on the coding round, or freeze on ambiguity questions — is information nobody else is going to hand you.",
+    a: "It makes it more important, not less. Since almost no company gives real feedback beyond a template rejection, your own notes are the only feedback signal you will ever have. The pattern that emerges across five debriefs, that you consistently run out of time on the coding round, or freeze on ambiguity questions, is information nobody else is going to hand you.",
   },
   {
     q: "How do I use debriefs to actually improve?",
@@ -94,7 +94,7 @@ export default function InterviewDebriefPage() {
     <ToolPage
       breadcrumbName="Interview Debrief Journal"
       canonicalPath="/interview-debrief"
-      badge="Free — 1 debrief per month"
+      badge="Free, 1 debrief per month"
       h1="Interview debrief journal"
       h1Accent="learn from every interview"
       subhead="Almost no company tells you why you were rejected. Your own notes are the only feedback you will ever get, and they are worthless if you write them three days later."
@@ -123,15 +123,15 @@ export default function InterviewDebriefPage() {
         <>
           <p>
             Here is the pattern that plays out across most job searches. You interview at a company
-            and it goes badly in a specific, identifiable way — you ran out of time on the second
+            and it goes badly in a specific, identifiable way, you ran out of time on the second
             coding problem, or you gave a weak answer to a question about handling conflict. You
             feel bad for an afternoon. Two weeks later you interview somewhere else and{" "}
             <strong className="text-white">the same thing happens again</strong>.
           </p>
           <p>
             This is not a memory failure so much as a capture failure. The specific texture of an
-            interview — the exact wording of the question, the moment you started rambling, the
-            follow-up that caught you out — fades within hours. What survives is a vague emotional
+            interview, the exact wording of the question, the moment you started rambling, the
+            follow-up that caught you out, fades within hours. What survives is a vague emotional
             residue: that one went badly. Emotional residue is useless as a training signal.
           </p>
           <p>
@@ -144,7 +144,7 @@ export default function InterviewDebriefPage() {
             <h3 className="text-white font-semibold mb-4">What to capture, within the hour</h3>
             <ul className="space-y-3">
               {[
-                "Every question, as close to verbatim as you can manage — the wording matters more than you'd think",
+                "Every question, as close to verbatim as you can manage, the wording matters more than you'd think",
                 "What you actually answered, not the improved version you thought of in the car",
                 "The exact moment you stalled, and what you were being asked when it happened",
                 "Anything they told you about the team, the role, or the timeline",
@@ -160,7 +160,7 @@ export default function InterviewDebriefPage() {
 
           <p>
             That last item is quietly the most valuable. Most candidates are badly calibrated about
-            how their interviews went — some are convinced they bombed a round they passed
+            how their interviews went, some are convinced they bombed a round they passed
             comfortably, others feel great about rounds that sank them. Recording your prediction
             and comparing it against the result, several times, fixes that calibration. And knowing
             whether your instinct is trustworthy changes how you run the rest of your search.

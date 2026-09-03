@@ -45,18 +45,18 @@ const RESUME_TIP_DATA: Record<string, {
     bulletFormula: "Action verb + what you built/did + tech used + measurable outcome",
     bulletExample: "Architected a distributed caching layer using Redis and Go, reducing p99 API latency by 47% for 2M daily active users.",
     sections: [
-      { title: "Lead with impact, not responsibilities", body: "Recruiters spend 6 seconds on your resume. Every bullet must answer 'so what?' — not just describe your job. Replace 'Responsible for building APIs' with 'Built and shipped 12 REST endpoints that reduced mobile app load time by 35%.' Quantify everything: users, latency, uptime, team size, time saved." },
-      { title: "ATS keywords that matter most", body: "SWE job descriptions are keyword-dense. Make sure your resume naturally includes: your primary languages (Python, Java, Go, etc.), cloud platforms (AWS/GCP/Azure), container tools (Docker, K8s), methodologies (Agile, TDD), and architecture terms (microservices, distributed systems). Don't keyword-stuff — weave them into real bullets." },
-      { title: "The right format for engineers", body: "One page for under 7 years of experience. Two pages is acceptable at senior level. Use a clean single-column or two-column layout — no tables, no graphics, no headers/footers. ATS parsers choke on these. Sections in order: Summary (optional), Skills, Experience, Projects, Education." },
+      { title: "Lead with impact, not responsibilities", body: "Recruiters spend 6 seconds on your resume. Every bullet must answer 'so what?', not just describe your job. Replace 'Responsible for building APIs' with 'Built and shipped 12 REST endpoints that reduced mobile app load time by 35%.' Quantify everything: users, latency, uptime, team size, time saved." },
+      { title: "ATS keywords that matter most", body: "SWE job descriptions are keyword-dense. Make sure your resume naturally includes: your primary languages (Python, Java, Go, etc.), cloud platforms (AWS/GCP/Azure), container tools (Docker, K8s), methodologies (Agile, TDD), and architecture terms (microservices, distributed systems). Don't keyword-stuff, weave them into real bullets." },
+      { title: "The right format for engineers", body: "One page for under 7 years of experience. Two pages is acceptable at senior level. Use a clean single-column or two-column layout, no tables, no graphics, no headers/footers. ATS parsers choke on these. Sections in order: Summary (optional), Skills, Experience, Projects, Education." },
       { title: "Projects section is your secret weapon", body: "Side projects and open source contributions signal genuine passion. For each: name, 1-line description, tech stack, and a link (GitHub, live URL). If a project has real users or GitHub stars, mention them. 'Personal project with 2,400 GitHub stars' is a strong signal." },
-      { title: "Skills section: do it right", body: "Group skills by category: Languages, Frameworks, Infrastructure, Databases, Tools. List what you're genuinely proficient in — interviewers WILL ask. Ordering tip: list your strongest skills first in each category. Avoid vague entries like 'Microsoft Office' — these waste space and signal junior thinking." },
+      { title: "Skills section: do it right", body: "Group skills by category: Languages, Frameworks, Infrastructure, Databases, Tools. List what you're genuinely proficient in, interviewers WILL ask. Ordering tip: list your strongest skills first in each category. Avoid vague entries like 'Microsoft Office', these waste space and signal junior thinking." },
     ],
     commonMistakes: [
       "Writing a generic objective statement instead of a results-focused summary",
-      "Listing technologies you barely touched — interviewers will probe these",
+      "Listing technologies you barely touched, interviewers will probe these",
       "Using a template with tables or columns that break ATS parsing",
-      "Not quantifying impact — every bullet should have a number",
-      "One resume for all jobs — tailor your skills section to each JD",
+      "Not quantifying impact, every bullet should have a number",
+      "One resume for all jobs, tailor your skills section to each JD",
     ],
   },
   "product-manager": {
@@ -73,9 +73,9 @@ const RESUME_TIP_DATA: Record<string, {
     ],
     commonMistakes: [
       "Focusing on features shipped rather than outcomes achieved",
-      "Missing metrics — every PM bullet should have at least one number",
-      "Burying leadership signals — explicitly name team sizes and cross-functional scope",
-      "Using a template that's too design-heavy (fancy charts, icons) — ATS can't read these",
+      "Missing metrics, every PM bullet should have at least one number",
+      "Burying leadership signals, explicitly name team sizes and cross-functional scope",
+      "Using a template that's too design-heavy (fancy charts, icons), ATS can't read these",
       "Not distinguishing individual vs team contributions",
     ],
   },
@@ -94,9 +94,9 @@ const RESUME_TIP_DATA: Record<string, {
     commonMistakes: [
       "Leading with technique instead of business impact",
       "Listing every Python library you've ever imported",
-      "No GitHub link or portfolio — harder to evaluate than other roles without one",
+      "No GitHub link or portfolio, harder to evaluate than other roles without one",
       "Research-focused bullets for applied DS roles (and vice versa)",
-      "Missing production/deployment experience — distinguish prototype from production",
+      "Missing production/deployment experience, distinguish prototype from production",
     ],
   },
   "marketing-manager": {
@@ -115,7 +115,7 @@ const RESUME_TIP_DATA: Record<string, {
       "Vague bullets with no metrics (e.g. 'managed social media presence')",
       "Not specifying budget sizes or team sizes",
       "Generic summary that could apply to any marketing role",
-      "Missing the marketing tools stack — ATS filters heavily on these",
+      "Missing the marketing tools stack, ATS filters heavily on these",
       "Not differentiating between channels owned vs channels contributed to",
     ],
   },
@@ -128,14 +128,14 @@ const RESUME_TIP_DATA: Record<string, {
       { title: "Lead with the analysis and the decision it drove", body: "Finance bullets should follow this structure: what you analyzed → what you built → what decision it supported → what happened as a result. 'Developed a 5-year revenue forecast' is weak. 'Built a bottoms-up 5-year forecast used by the CFO to secure $40M Series C at a $2.4x revenue multiple' is strong." },
       { title: "Quantify the size of everything", body: "Finance resumes need scale signals: deal sizes, portfolio values, budget sizes, savings identified, forecasting accuracy percentages. These numbers tell the interviewer the complexity of the problems you've worked on. '$3M budget' and '$3B portfolio' require very different skill levels." },
       { title: "Model types are keywords", body: "Explicitly name the models you've built: DCF, LBO, merger/accretion-dilution, 3-statement, sensitivity analysis, scenario analysis, Monte Carlo. These are parsed by ATS and screened by analysts reviewing your resume. If you've built complex models, say so explicitly." },
-      { title: "Show your tools fluency", body: "Excel is table stakes — mention specific skills (pivot tables, VBA, Power Query). Beyond Excel: SQL, Python (pandas, numpy), Bloomberg Terminal, FactSet, Capital IQ, Tableau/Power BI. For FP&A roles, add your ERP experience: SAP, Oracle, Workday Adaptive." },
+      { title: "Show your tools fluency", body: "Excel is table stakes, mention specific skills (pivot tables, VBA, Power Query). Beyond Excel: SQL, Python (pandas, numpy), Bloomberg Terminal, FactSet, Capital IQ, Tableau/Power BI. For FP&A roles, add your ERP experience: SAP, Oracle, Workday Adaptive." },
       { title: "Tailor for buy-side vs sell-side vs corporate", body: "Buy-side (PE, HF, VC): emphasize modeling depth, investment thesis work, deal execution. Sell-side (IB, research): emphasize pitch books, coverage universes, client work. Corporate FP&A: emphasize business partnership, budget/variance ownership, cross-functional influence." },
     ],
     commonMistakes: [
       "Not specifying deal sizes, budget sizes, or portfolio values",
       "Generic 'financial modeling' without naming the model type",
-      "Missing Excel skill signals for junior roles — it's still the core tool",
-      "Burying the business impact — what decision did your analysis support?",
+      "Missing Excel skill signals for junior roles, it's still the core tool",
+      "Burying the business impact, what decision did your analysis support?",
       "Not tailoring for buy-side vs sell-side vs FP&A",
     ],
   },
@@ -148,7 +148,7 @@ const RESUME_TIP_DATA: Record<string, {
  * top employers from ROLE_META.
  *
  * This replaced a fallback that interpolated only the role name and produced
- * pages 97% identical to one another — which is why Google was crawling them
+ * pages 97% identical to one another, which is why Google was crawling them
  * and declining to index. Do not reintroduce a name-only fallback here.
  */
 function getResumeTipData(role: string): ResumeTipData | null {
@@ -174,11 +174,11 @@ function getResumeTipData(role: string): ResumeTipData | null {
       ...profile.resumeSections,
       {
         title: `Keywords that matter for ${name} roles specifically`,
-        body: `${name} postings cluster around a recognisable vocabulary: ${keywords.join(", ")}. Pull the ten most relevant to your own experience and work them into your bullets rather than listing them at the bottom — a keyword sitting inside a sentence that describes a real result carries the ATS match and the credibility at once. When you are targeting employers like ${employers}, mirror the exact phrasing from their posting, since ${primary} and its near-synonyms are matched literally.`,
+        body: `${name} postings cluster around a recognisable vocabulary: ${keywords.join(", ")}. Pull the ten most relevant to your own experience and work them into your bullets rather than listing them at the bottom, a keyword sitting inside a sentence that describes a real result carries the ATS match and the credibility at once. When you are targeting employers like ${employers}, mirror the exact phrasing from their posting, since ${primary} and its near-synonyms are matched literally.`,
       },
       {
         title: "Calibrate against the market rate",
-        body: `${name} roles currently sit in the ${salaryRange} range depending on location, company stage and seniority. ${note.payNote} This matters for your resume because the level you target determines how much scope you need to evidence — aiming at the upper half of that band means bullets showing ownership and cross-functional influence, not only execution.`,
+        body: `${name} roles currently sit in the ${salaryRange} range depending on location, company stage and seniority. ${note.payNote} This matters for your resume because the level you target determines how much scope you need to evidence, aiming at the upper half of that band means bullets showing ownership and cross-functional influence, not only execution.`,
       },
     ],
     commonMistakes: profile.commonMistakes,
@@ -196,13 +196,13 @@ function buildBulletExample(name: string, keywords: string[]): string {
 export async function generateMetadata({ params }: { params: Promise<{ role: string }> }): Promise<Metadata> {
   const { role } = await params;
   const display = ROLE_DISPLAY[role];
-  if (!display) return { title: "Resume Tips — Preciprocal" };
+  if (!display) return { title: "Resume Tips, Preciprocal" };
   return {
-    title: `${display.name} Resume Tips — How to Write a Resume That Gets Interviews`,
+    title: `${display.name} Resume Tips, How to Write a Resume That Gets Interviews`,
     description: `Step-by-step resume guide for ${display.name}s: ATS keywords, bullet formulas, format tips, and common mistakes to avoid. Updated for 2026.`,
     alternates: { canonical: `https://preciprocal.com/resume-tips/${role}` },
     openGraph: {
-      title: `${display.name} Resume Tips — Preciprocal`,
+      title: `${display.name} Resume Tips, Preciprocal`,
       description: `ATS keywords, bullet formulas, and format tips for ${display.name} resumes. Get more interviews in 2026.`,
       url: `https://preciprocal.com/resume-tips/${role}`,
       type: "article",
@@ -224,7 +224,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `https://preciprocal.com/resume-tips/${role}#article`,
-    headline: `${display.name} Resume Tips — How to Write a Resume That Gets Interviews`,
+    headline: `${display.name} Resume Tips, How to Write a Resume That Gets Interviews`,
     description: `Step-by-step resume guide for ${display.name}s: ATS keywords, bullet formulas, format tips.`,
     url: `https://preciprocal.com/resume-tips/${role}`,
     author: { "@type": "Organization", name: "Preciprocal", url: "https://preciprocal.com" },

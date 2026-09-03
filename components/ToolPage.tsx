@@ -5,8 +5,8 @@
  *
  * The markup here is lifted directly from app/free-ats-checker/page.tsx, which
  * was the first of these pages and set the pattern. Every tool page renders the
- * same sections in the same order — hero, feature grid, how-it-works, SEO prose
- * body, FAQ with JSON-LD, internal links, bottom CTA — and differs only in its
+ * same sections in the same order, hero, feature grid, how-it-works, SEO prose
+ * body, FAQ with JSON-LD, internal links, bottom CTA, and differs only in its
  * copy. Keeping the shell here means a layout fix lands on all of them at once,
  * while each page.tsx still owns its own metadata, keywords, and body content.
  *

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Preciprocal: Built by International Students Who Cracked the US Job Market",
+  title: { absolute: "About Preciprocal: Built by Intl Students" },
   description:
     "Preciprocal was built by international students who experienced the US job market firsthand and reverse-engineered what actually works. Our story, mission, and values.",
   keywords: [

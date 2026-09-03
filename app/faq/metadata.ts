@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "FAQ: Pricing, Mock Interviews, Resume Analysis and More | Preciprocal",
+  title: { absolute: "Preciprocal FAQ: Pricing, Interviews, Resumes" },
   description:
     "Answers to the most common questions about Preciprocal. Pricing and plans, how AI mock interviews work, resume ATS scoring, cover letter generation, data privacy, and cancellation.",
   keywords: [

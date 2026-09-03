@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Career Advice Blog: Interview Prep, Resume Tips & Job Search Strategy 2026",
+  title: "Career Advice Blog: Interviews, Resumes, Job Search",
   description: "Practical guides on acing interviews, writing resumes that pass ATS, negotiating offers, networking, visa sponsorship, and landing jobs at top companies. Updated for 2026.",
   alternates: { canonical: "https://preciprocal.com/blog" },
   openGraph: {

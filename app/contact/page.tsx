@@ -119,7 +119,7 @@ export default function ContactPage() {
                 What do you need help with?
               </h2>
               <p className="text-slate-500 text-sm">
-                Click any card to open a pre-filled email — saves you a few seconds.
+                Click any card to open a pre-filled email, saves you a few seconds.
               </p>
             </RevealOnScroll>
 

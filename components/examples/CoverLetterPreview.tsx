@@ -13,7 +13,7 @@ import { FadeIn, TypingText } from '@/lib/primitives';
 export function CoverLetterExamplePreview({ step }: { step: number }) {
   // Auto-play fills the form (step 0-1), but generation requires user click
   const [userStep, setUserStep] = useState<number | null>(null);
-  // Cap auto-play at step 1 (form filled) — user must click Generate for step 2+
+  // Cap auto-play at step 1 (form filled), user must click Generate for step 2+
   const activeStep = userStep !== null ? userStep : Math.min(step, 1);
 
   // User clicks Generate button
@@ -78,7 +78,7 @@ export function CoverLetterExamplePreview({ step }: { step: number }) {
               </FadeIn>
             </div>
 
-            {/* Generate button — clickable with purple highlight */}
+            {/* Generate button, clickable with purple highlight */}
             <FadeIn delay={activeStep >= 0 ? 2000 : 99999}>
               <button
                 onClick={handleGenerate}

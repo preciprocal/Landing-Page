@@ -29,7 +29,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "AI Mock Interview Practice: Realistic, Instant, Free to Start",
+  title: "AI Mock Interview Practice: Free, Instant Feedback",
   description:
     "Practice AI mock interviews for any role or company. Get scored on technical depth, communication, and structure. Built for students and new grads. Free to start.",
   keywords: [
