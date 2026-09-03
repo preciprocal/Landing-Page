@@ -49,6 +49,8 @@ User-Submitted Content: To provide our AI-powered tools, we collect and process 
 
 Usage and Analytics Data: We automatically collect information about how you interact with the Service, including pages and features accessed, session duration, clickstream data, device type and operating system, browser type and version, and IP address.
 
+Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft Clarity applies automatic masking to text you type into form fields, and we do not use it to capture the content of your resumes, cover letters or interview responses. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
+
 Communications: If you contact us for support or other inquiries, we collect the contents of your messages and your contact information.
 
 Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 9 of this Policy.
@@ -91,7 +93,15 @@ AI MODEL TRAINING RESTRICTION: Your resume, cover letters, interview recordings,
     title: "Disclosure of your information",
     content: `We do not sell, rent, or trade your personal information to third parties for their marketing purposes. We disclose your information only in the following circumstances:
 
-Service Providers: We share information with trusted third-party service providers who assist us in operating the Service, subject to confidentiality obligations. These include Stripe (payment processing), cloud infrastructure providers (data hosting and storage), AI API providers (processing submitted content to generate outputs, subject to data processing agreements that prohibit retention for training), and analytics providers.
+Service Providers: We share information with trusted third-party service providers who assist us in operating the Service, subject to confidentiality obligations. These include:
+
+- **Stripe** (payment processing)
+- Hosting and cloud infrastructure providers (serving the Service and storing data, including server logs that contain IP addresses)
+- AI API providers (processing submitted content to generate outputs, subject to data processing agreements that prohibit retention for training)
+- **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
+- **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
+
+Google Analytics and Microsoft Clarity are the only analytics providers we use, and both are gated behind your cookie consent choice as described in Section 9.
 
 Legal Requirements: We may disclose your information if required to do so by law, regulation, legal process, or governmental request, including to comply with a court order, subpoena, or similar legal obligation.
 
@@ -165,13 +175,17 @@ Categories of cookies we use:
 
 Strictly Necessary Cookies: Essential for the Service to function. These cookies enable core features such as user authentication, session management, and security. They cannot be disabled without impairing Service functionality.
 
-Analytics Cookies: Help us understand how users interact with the Service by collecting aggregated, anonymized data about pages visited, features used, and session behavior. We use this data to improve the Service. These cookies can be declined.
+Analytics Cookies: Help us understand how users interact with the Service. We use **Google Analytics 4** for aggregate usage measurement and **Microsoft Clarity** for session replay and interaction analytics, as described in Section 2.
+
+**These are set only if you consent.** Neither Google Analytics nor Microsoft Clarity is loaded until you opt in. Until you accept analytics cookies, no analytics script runs and no request is made to Google or Microsoft. Choosing "Essential only" on our cookie banner, or dismissing it without choosing, means neither is ever loaded.
 
 Preference Cookies: Remember your settings and preferences to enhance your experience. These cookies can be declined.
 
-We do NOT use advertising cookies, behavioral tracking cookies, or cross-site tracking technologies. We do not share cookie data with advertising networks.
+We do NOT use advertising cookies, behavioral tracking cookies, or cross-site tracking technologies. We do not share cookie data with advertising networks, and we have not enabled Google Analytics advertising features or data sharing for advertising purposes.
 
-You may manage your cookie preferences through our cookie consent banner, your browser settings (note that blocking all cookies may affect Service functionality), or by emailing support@preciprocal.com.
+**Managing and withdrawing your choice:** our cookie banner appears on your first visit. You can change your decision at any time using the **Cookie preferences** link in the footer of any page, which reopens the banner. You may also use your browser settings, noting that blocking all cookies may affect Service functionality, or email support@preciprocal.com.
+
+Withdrawing consent stops further collection but does not by itself delete cookies already stored on your device from a prior opt-in. To remove those, clear cookies through your browser settings.
 
 For more information about cookies and how to manage them, visit www.allaboutcookies.org.`,
   },
@@ -253,7 +267,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: January 15, 2025. Effective date: January 15, 2025.
+                Last updated: September 3, 2026. Effective date: September 3, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

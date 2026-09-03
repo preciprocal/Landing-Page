@@ -2,19 +2,27 @@
 
 /**
  * CookieBanner.tsx
- * GDPR/CCPA compliant cookie consent banner.
- * Shows on first visit, persists decision in localStorage.
- * Add <CookieBanner /> to your root layout.tsx just before </body>.
+ * Cookie consent banner. Rendered from app/layout.tsx.
+ *
+ * This component previously existed but was never rendered anywhere, and its
+ * accept/decline handlers only wrote to localStorage with TODO comments where
+ * the gating should have been. That meant the privacy policy's statement that
+ * analytics cookies "can be declined" was not actually true.
+ *
+ * It now records the decision through lib/consent, which fires an event that
+ * ConsentedAnalytics listens for. Declining leaves Google Analytics with
+ * analytics_storage denied under Consent Mode v2 and never loads Microsoft
+ * Clarity at all.
+ *
+ * Dismissing with the X is treated as declining, not as consent, since silence
+ * is not consent under GDPR.
  */
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Cookie, X } from "lucide-react";
-
-const STORAGE_KEY = "preciprocal_cookie_consent";
-
-type ConsentState = "accepted" | "declined" | null;
+import { CONSENT_EVENT, getConsent, setConsent as persistConsent, type ConsentState } from "@/lib/consent";
 
 export default function CookieBanner() {
   const [consent, setConsent] = useState<ConsentState>("accepted"); // default hidden until hydrated
@@ -22,20 +30,23 @@ export default function CookieBanner() {
 
   useEffect(() => {
     setMounted(true);
-    const stored = localStorage.getItem(STORAGE_KEY) as ConsentState | null;
-    setConsent(stored); // null = not yet decided → show banner
+    setConsent(getConsent()); // null = not yet decided → show banner
+
+    // The footer's "Cookie preferences" link clears the decision, which should
+    // bring the banner straight back rather than requiring a reload.
+    const onChange = () => setConsent(getConsent());
+    window.addEventListener(CONSENT_EVENT, onChange);
+    return () => window.removeEventListener(CONSENT_EVENT, onChange);
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem(STORAGE_KEY, "accepted");
+    persistConsent("accepted"); // ConsentedAnalytics grants storage and loads Clarity
     setConsent("accepted");
-    // Here you would enable analytics scripts if you're loading them conditionally
   };
 
   const handleDecline = () => {
-    localStorage.setItem(STORAGE_KEY, "declined");
+    persistConsent("declined"); // analytics_storage stays denied, Clarity never loads
     setConsent("declined");
-    // Here you would disable/skip analytics initialisation
   };
 
   // Don't render until client hydration is done (avoids SSR mismatch)

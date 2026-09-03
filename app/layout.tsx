@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd } from "@/components/JsonLd";
+import CookieBanner from "@/components/CookieBanner";
+import ConsentedAnalytics from "@/components/ConsentedAnalytics";
 import "./globals.css";
 
 const inter = Inter({
@@ -121,32 +123,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#050810" />
         <meta name="color-scheme" content="dark" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XJVD3DYG25" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-XJVD3DYG25', { page_path: window.location.pathname });
-            `,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window, document, "clarity", "script", "wojqnrrn0s");
-            `,
-          }}
-        />
+        {/*
+          NO ANALYTICS ARE LOADED HERE, deliberately.
+
+          Google Analytics and Microsoft Clarity are both injected by
+          components/ConsentedAnalytics.tsx, and only after the user opts in via
+          CookieBanner. Previously both loaded unconditionally from this head,
+          which contradicted the privacy policy's statement that analytics
+          cookies can be declined.
+
+          A Consent Mode v2 snippet was tried here first, but Next.js hoists
+          external <script async src> tags to the top of the document, so
+          gtag.js was being placed above the inline consent-default block and
+          could execute before consent was configured. Gating both scripts
+          entirely removes that ordering dependency: before consent there are no
+          analytics network requests at all.
+        */}
         <OrganizationJsonLd />
         <SoftwareAppJsonLd />
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        {/* Consent gate. CookieBanner records the decision; ConsentedAnalytics
+            acts on it by granting GA storage and loading Clarity. */}
+        <CookieBanner />
+        <ConsentedAnalytics />
+      </body>
     </html>
   );
 }

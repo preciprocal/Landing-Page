@@ -7,6 +7,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { resetConsent } from "@/lib/consent";
 
 const FOOTER_COLUMNS = [
   {
@@ -177,9 +178,23 @@ export default function Footer() {
           className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4"
           style={{ overflow: "visible" }}
         >
-          <p className="text-[13px] text-slate-600">
-            &copy; {new Date().getFullYear()} Preciprocal. All rights reserved.
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 justify-center sm:justify-start">
+            <p className="text-[13px] text-slate-600">
+              &copy; {new Date().getFullYear()} Preciprocal. All rights reserved.
+            </p>
+            {/*
+              GDPR requires withdrawing consent to be as easy as giving it, so
+              the banner has to be reachable after the first visit. This clears
+              the stored decision, which brings it back.
+            */}
+            <button
+              type="button"
+              onClick={resetConsent}
+              className="text-[13px] text-slate-600 hover:text-slate-300 transition-colors underline underline-offset-2"
+            >
+              Cookie preferences
+            </button>
+          </div>
           <div className="flex gap-5" style={{ overflow: "visible" }}>
             {socials.map((s) => (
               <SocialLink key={s.label} label={s.label} />
