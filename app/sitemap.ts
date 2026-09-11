@@ -39,7 +39,15 @@ const VISA_SLUGS = new Set([
   "how-to-check-your-visa-status-2026",
 ]);
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/**
+ * Emits four sitemaps behind an index rather than one flat file.
+ * See the tier comments at the bottom of this file for the rationale.
+ */
+export async function generateSitemaps() {
+  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }];
+}
+
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
   /**
    * Stable content dates.
    *
@@ -289,11 +297,64 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: VISA_SLUGS.has(post.slug) ? 0.82 : 0.7,
   }));
 
-  return [
-    ...staticPages,
-    ...rolePages,
-    ...companyPages,
-    ...programmaticPages,
-    ...blogPages,
+  // ── Split into crawl tiers ────────────────────────────────────────────────
+  //
+  // 141 URLs were sitting in "Discovered, currently not indexed", meaning
+  // Google had queued them and not yet fetched them. That is crawl budget
+  // rationing on a domain it does not rate highly yet, and a single flat list
+  // of 290 URLs gives it no way to tell which ones matter.
+  //
+  // Splitting by value does two things. Google gets an ordering signal, and
+  // Search Console reports indexed counts per sitemap, so you can actually see
+  // which tier is being picked up rather than watching one aggregate number.
+  //
+  // Submit them in order in Search Console: tier 0 first, then 1, and leave 3
+  // until the earlier tiers are landing.
+  const commercial = new Set([
+    "/", "/pricing",
+    "/ai-mock-interview", "/cover-letter-generator", "/free-ats-checker",
+    "/linkedin-profile-optimizer", "/resume-tailoring", "/job-application-tracker",
+    "/interview-study-planner", "/cold-email-generator", "/recruiter-contact-finder",
+    "/interview-debrief", "/chrome-extension",
+  ].map((p) => (p === "/" ? SITE_URL : `${SITE_URL}${p}`)));
+
+  const isAlternative = (u: string) => u.startsWith(`${SITE_URL}/alternatives`);
+  const isLegalOrCorp = (u: string) =>
+    ["/privacy", "/terms", "/about", "/contact", "/roadmap", "/faq"].some(
+      (p) => u === `${SITE_URL}${p}`
+    );
+
+  // Tier 0: pages that convert, plus the comparison pages, which carry the
+  // highest commercial intent of anything on the site.
+  const tier0 = [
+    ...staticPages.filter((p) => commercial.has(String(p.url)) || isAlternative(String(p.url))),
   ];
+
+  // Tier 1: blog. The visa guides are the most linkable thing here, and links
+  // are what eventually lifts crawl priority for everything else.
+  const tier1 = [...blogPages, ...staticPages.filter((p) => String(p.url) === `${SITE_URL}/blog`)];
+
+  // Tier 2: company and role interview pages. Real hand-written depth.
+  const tier2 = [
+    ...companyPages,
+    ...rolePages,
+    ...staticPages.filter((p) =>
+      [`${SITE_URL}/interview-prep`, `${SITE_URL}/interview-questions`].includes(String(p.url))
+    ),
+  ];
+
+  // Tier 3: the programmatic long tail, plus low-value legal and corporate
+  // pages. These are the weakest pages on the site and the ones whose
+  // same-category near-duplication is still unresolved, so they should be the
+  // last thing competing for crawl budget.
+  const claimed = new Set(
+    [...tier0, ...tier1, ...tier2].map((p) => String(p.url))
+  );
+  const tier3 = [
+    ...programmaticPages,
+    ...staticPages.filter((p) => !claimed.has(String(p.url)) && (isLegalOrCorp(String(p.url)) || true)),
+  ];
+
+  const tiers = [tier0, tier1, tier2, tier3];
+  return tiers[Number(id)] ?? [];
 }
