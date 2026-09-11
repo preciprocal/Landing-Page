@@ -275,6 +275,11 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
   const salaryData = getSalaryData(role);
   if (!salaryData) notFound();
 
+  // Role-specific context for the prose sections below. Pulled from
+  // lib/roleContent so every role gets it, including the handful that still
+  // have hand-written SALARY_DATA entries.
+  const content = getRoleContent(role);
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -393,6 +398,89 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
             ))}
           </ul>
         </section>
+
+        {/*
+          Role-specific prose.
+
+          These salary pages were the thinnest and most duplicated section of
+          the site: roughly 540 to 600 words at 62% average overlap against a
+          24% site-chrome baseline, and Search Console reported them as
+          crawled but not indexed. Tables and bullet lists carry very little
+          unique text, so the sections below add substance drawn from the
+          role's own keyword set, positioning note and category profile.
+        */}
+        {content && (
+          <>
+            <section className="mb-10">
+              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
+                How to read a {display.name.toLowerCase()} offer
+              </h2>
+              <div className="space-y-4">
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  {content.note.positioning} That shapes the offer as much as it shapes the job.
+                  The headline base salary is the number most candidates fixate on, but for{" "}
+                  {display.name.toLowerCase()} roles the total package is where the real variation
+                  sits: {content.note.payNote.charAt(0).toLowerCase() + content.note.payNote.slice(1)}
+                </p>
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  A {display.name.toLowerCase()} package is typically {content.offerShape}. That
+                  structure is why comparing two offers on base alone is unreliable in this field,
+                  and why the components below are worth asking about explicitly before you accept.
+                </p>
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  Compare offers at the same level rather than by title. Titles are inconsistent
+                  between employers, and a senior title at a smaller organisation frequently maps
+                  to a mid-level band at a larger one. Ask which level the offer sits at and what
+                  the range for that level is; many employers will simply tell you.
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-10">
+              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
+                What actually moves a {display.name.toLowerCase()} offer
+              </h2>
+              <div className="space-y-4">
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  Employers hiring for this role are assessing {content.note.screened}. The
+                  candidates who land at the top of the {content.salaryRange} range are not
+                  necessarily the ones with the most years behind them, they are the ones who can
+                  evidence that specific thing concretely and early in the process.
+                </p>
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  Depth in the areas this field actually pays for is the most reliable lever you
+                  control. For {display.name.toLowerCase()} roles those cluster around{" "}
+                  {content.keywords.slice(0, 5).join(", ")}. Being genuinely strong in two or three
+                  of them, with results you can quantify, is worth considerably more at the offer
+                  stage than passing familiarity with all of them.
+                </p>
+                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
+                  Employer choice matters at least as much as skill. {display.name}s concentrate at
+                  organisations like {content.topCompanies.slice(0, 4).join(", ")}, and the spread
+                  between the top and bottom of the band above is driven more by which employer you
+                  join than by any single thing you do in the interview.
+                </p>
+              </div>
+            </section>
+
+            <section className="mb-10">
+              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
+                Negotiation mistakes that cost {display.name.toLowerCase()}s money
+              </h2>
+              <ul className="space-y-3">
+                {[
+                  ...content.negotiationMistakes,
+                  `Giving a number first. If asked for expectations before an offer exists, redirect once and say you would like to understand the full scope first. If a form forces a figure, anchor to the upper half of ${content.salaryRange} and note that it is negotiable.`,
+                ].map((m, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span style={{ color: "#f87171" }} className="text-sm font-bold mt-0.5 flex-shrink-0">✕</span>
+                    <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">{m}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </>
+        )}
 
         {/* Negotiation script */}
         <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(245,158,11,0.04)", borderColor: "rgba(245,158,11,0.15)" }}>

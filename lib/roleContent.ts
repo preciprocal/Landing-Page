@@ -199,6 +199,111 @@ interface CategoryProfile {
   coverLetterAngle: string;
 }
 
+/**
+ * Category-specific negotiation content for the salary pages.
+ *
+ * Kept separate from CATEGORY_PROFILES only because it was added later, when
+ * measurement showed the salary pages were the thinnest and most duplicated
+ * section on the site. A first attempt at deepening them used one shared block
+ * of prose for all 41 roles, which raised word count but pushed average overlap
+ * from 62% to 74%: more text, less differentiation. These ten variants exist so
+ * the added depth actually differs between job families.
+ */
+const CATEGORY_NEGOTIATION: Record<string, { offerShape: string; mistakes: string[] }> = {
+  Engineering: {
+    offerShape:
+      "base, an annual equity grant that vests over four years, and often a signing bonus used to offset whatever you are walking away from",
+    mistakes: [
+      "Comparing offers on base alone when equity is the larger number. At senior levels the grant frequently exceeds the base difference between two offers, and a refresh policy matters more than the initial grant.",
+      "Ignoring the vesting cliff and schedule. A front-loaded schedule and a back-loaded one with the same headline value are worth very different amounts if you leave in two years.",
+      "Not asking which level the offer maps to. Engineering ladders are banded, and moving up one level is usually worth more than anything you can negotiate inside your current band.",
+      "Treating a remote offer as location-independent. Most employers still geo-adjust, and the adjustment is a negotiable term rather than a fixed policy.",
+    ],
+  },
+  "Data & Analytics": {
+    offerShape: "base, a bonus tied to company or team performance, and equity that varies sharply by employer type",
+    mistakes: [
+      "Pricing yourself as an analyst when the role is really modelling. If the job involves shipping models to production, it belongs in an engineering-adjacent band, not a reporting one.",
+      "Not distinguishing research from applied work in the conversation. They pay very differently, and interviewers will not correct you if you undersell which one you are doing.",
+      "Overlooking the bonus structure. In finance and consulting settings the bonus can be a large share of the package and is frequently discretionary rather than guaranteed.",
+      "Failing to mention production ownership. Analysts who have shipped and maintained something in production command a different band, but only if they say so.",
+    ],
+  },
+  "Product & Design": {
+    offerShape: "base, equity that grows as a share of the package with seniority, and a performance bonus at larger employers",
+    mistakes: [
+      "Not pinning down scope before discussing numbers. Owning a revenue surface and owning an internal tool pay differently, and scope is more negotiable early than compensation is later.",
+      "Accepting a title in place of money. A senior title at a small employer often maps to a mid band elsewhere, and the title will not travel with you the way the salary history does.",
+      "Designers omitting the portfolio's leverage. A strong portfolio is your clearest evidence at the offer stage and is worth referencing explicitly when you counter.",
+      "Ignoring the equity refresh policy. The initial grant gets all the attention, but the refresh determines what the role pays in years three and four.",
+    ],
+  },
+  "Architecture & IT": {
+    offerShape: "base, an on-call or availability component in some organisations, and a bonus tied to uptime or delivery milestones",
+    mistakes: [
+      "Not pricing on-call. If the role carries a rotation, that is compensable and varies enormously between employers, yet most candidates never raise it.",
+      "Underselling cost savings. Infrastructure and IT work produces hard money numbers, and an offer conversation is the right place to cite the spend you have reduced.",
+      "Letting certifications go unmentioned. This field rewards current certifications more than most, and they are a concrete anchor for a counter.",
+      "Ignoring budget and headcount scope. Those, rather than job title, determine the band for management-track roles.",
+    ],
+  },
+  "Business & Ops": {
+    offerShape: "base, an annual bonus tied to operational targets, and limited equity outside technology employers",
+    mistakes: [
+      "Quoting a range without knowing the scope. Sites, headcount and budget under management drive this band more than title does, so establish scope before naming a figure.",
+      "Not clarifying whether the bonus is guaranteed. Operational bonuses are frequently tied to targets set after you join, which makes the headline total compensation optimistic.",
+      "Omitting the money you saved. Process improvement work produces cost numbers, and those numbers are the strongest possible anchor in a negotiation.",
+      "Accepting a band set by the previous holder of the role. If the scope has grown since, say so explicitly rather than assuming it is priced in.",
+    ],
+  },
+  Finance: {
+    offerShape: "base plus a bonus that at senior levels routinely exceeds it, which makes the headline base a poor guide to the package",
+    mistakes: [
+      "Negotiating base and ignoring bonus. In this field the bonus is the larger number above analyst level, and the target percentage is the term worth pushing on.",
+      "Not asking whether the first-year bonus is guaranteed. Guaranteed first-year bonuses are common and are frequently available simply for asking.",
+      "Failing to price the certification. The CFA and CPA carry measurable premiums, and an in-progress qualification is still worth raising.",
+      "Comparing a buy-side offer to a sell-side one on base. The structures are different enough that only all-in compensation over a full cycle is comparable.",
+    ],
+  },
+  "Sales & Marketing": {
+    offerShape:
+      "on-target earnings split between base and variable, where the split, the quota and the accelerators matter more than the headline OTE",
+    mistakes: [
+      "Negotiating OTE without interrogating the quota. A high OTE against an unattainable quota pays less than a modest one against a realistic number. Ask what share of the team hit quota last year.",
+      "Ignoring the base-to-variable split. A 50/50 split and an 80/20 split at identical OTE carry completely different risk, and the split is negotiable.",
+      "Not asking about accelerators and caps. Whether commission accelerates past quota, and whether it is capped, decides what a strong year is actually worth.",
+      "Skipping the ramp. Most roles offer a guaranteed or reduced quota during ramp, and its length is negotiable, particularly for long sales cycles.",
+    ],
+  },
+  "People & HR": {
+    offerShape: "base, a modest bonus at larger employers, and equity that is mostly limited to technology companies",
+    mistakes: [
+      "Not pricing the population supported. Supporting 40 people and supporting 4,000 are different jobs, and headcount is the clearest anchor available to you.",
+      "Undervaluing specialisation. Compensation, HRIS and employee relations specialists earn above generalists, so do not let the conversation flatten you into a generalist band.",
+      "Assuming HR roles cannot negotiate. Knowing how the process works from the inside is an advantage, not a reason to accept the first number.",
+      "Omitting systems ownership. Having administered the HRIS rather than merely used it is a differentiator worth naming.",
+    ],
+  },
+  Healthcare: {
+    offerShape: "base, shift or on-call differentials where applicable, and benefits that form a larger share of the package than in most fields",
+    mistakes: [
+      "Evaluating base without the benefits. Healthcare employers frequently offer pension, tuition and insurance terms that are worth a great deal and vary widely between systems.",
+      "Not comparing by facility type. Large hospital systems, clinics and private practices pay very differently for the same title.",
+      "Leaving credentials unpriced. Clinical credentials alongside administrative experience are scarce, and scarcity is leverage.",
+      "Overlooking differentials. Shift, weekend and on-call differentials can materially change annual earnings and are often standardised rather than negotiable, so know them before you compare.",
+    ],
+  },
+  Legal: {
+    offerShape: "base, a bonus that is often lockstep or formulaic rather than individually negotiated, and overtime eligibility in support roles",
+    mistakes: [
+      "Not checking whether the bonus is lockstep. Where it is formulaic, negotiating base is the only lever that matters and bonus discussion wastes your leverage.",
+      "Failing to price the practice area. Corporate, IP and regulatory work pay above general practice, so make sure the offer reflects the area you actually work in.",
+      "Ignoring billable expectations. Two offers at the same salary are not equivalent if the billable requirement differs, and the requirement is a legitimate question.",
+      "Overlooking overtime eligibility. For support roles this can be a substantial part of annual earnings and should be clarified in writing.",
+    ],
+  },
+};
+
 const CATEGORY_PROFILES: Record<string, CategoryProfile> = {
   Engineering: {
     provesValue: "systems you built and the measurable behaviour of those systems in production",
@@ -477,6 +582,10 @@ export interface RoleContent {
   keywords: string[];
   profile: CategoryProfile;
   note: RoleNote;
+  /** How compensation is structured in this job family, used by the salary pages */
+  offerShape: string;
+  /** Negotiation errors specific to this job family, not generic advice */
+  negotiationMistakes: string[];
 }
 
 /** Used only if a role is added to ROLE_DISPLAY without a ROLE_NOTES entry. */
@@ -497,6 +606,7 @@ export function getRoleContent(slug: string): RoleContent | null {
 
   const meta = getRoleMeta(slug);
   const profile = CATEGORY_PROFILES[display.category] ?? DEFAULT_PROFILE;
+  const negotiation = CATEGORY_NEGOTIATION[display.category] ?? CATEGORY_NEGOTIATION["Business & Ops"];
 
   // Fall back to a sibling role's keywords only if this slug has no set of its
   // own. Every role in ROLE_DISPLAY should have one; this keeps the page alive
@@ -516,6 +626,8 @@ export function getRoleContent(slug: string): RoleContent | null {
     keywords,
     profile,
     note: ROLE_NOTES[slug] ?? DEFAULT_NOTE,
+    offerShape: negotiation.offerShape,
+    negotiationMistakes: negotiation.mistakes,
   };
 }
 
