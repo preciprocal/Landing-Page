@@ -40,7 +40,34 @@ const VISA_SLUGS = new Set([
 ]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  /**
+   * Stable content dates.
+   *
+   * These used to be `now`, which meant every deploy stamped 224 of the 290
+   * URLs (77%) with the build timestamp, telling Google that three quarters of
+   * the site changed every time we pushed. Google only uses lastmod to
+   * prioritise crawling when it judges the values reliable, and a sitemap that
+   * always claims "just changed" is the textbook unreliable case, so the signal
+   * gets discounted for the whole file. With 141 URLs sitting in "Discovered,
+   * currently not indexed", that signal is exactly what we want working.
+   *
+   * BUMP THESE BY HAND when the underlying content actually changes, not on
+   * every deploy. The date should answer "when did the text on these pages
+   * last genuinely change?"
+   */
+  const CONTENT_UPDATED = {
+    /** getRoleInterviewQuestions in lib/roleContent.ts */
+    interviewQuestions: new Date("2026-09-03"),
+    /** COMPANY_META expansion to 56 employers */
+    companies: new Date("2026-09-03"),
+    /** ROLE_KEYWORDS, ROLE_NOTES and CATEGORY_PROFILES rewrite */
+    resumeTips: new Date("2026-09-03"),
+    coverLetterExamples: new Date("2026-09-03"),
+    /** CATEGORY_NEGOTIATION and the added prose sections */
+    salaryGuide: new Date("2026-09-10"),
+    /** Hub pages change whenever their section does */
+    hubs: new Date("2026-09-10"),
+  } as const;
 
   const staticPages: MetadataRoute.Sitemap = [
     // ── Core ────────────────────────────────────────────────────────────────
@@ -109,26 +136,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Content ──────────────────────────────────────────────────────────────
     {
       url: `${SITE_URL}/blog`,
-      lastModified: now,
+      lastModified: new Date(BLOG_POSTS.reduce((a, b) => (a > (b.updatedAt ?? b.publishedAt) ? a : (b.updatedAt ?? b.publishedAt)), "2026-01-01")),
       changeFrequency: "weekly",
       priority: 0.82,
     },
     // ── Programmatic hubs ────────────────────────────────────────────────────
     {
       url: `${SITE_URL}/resume-tips`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED.resumeTips,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/salary-guide`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED.salaryGuide,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${SITE_URL}/cover-letter-examples`,
-      lastModified: now,
+      lastModified: CONTENT_UPDATED.coverLetterExamples,
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -221,7 +248,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic role pages, 40+ roles, high keyword value
   const rolePages: MetadataRoute.Sitemap = ALL_ROLES.map((role) => ({
     url: `${SITE_URL}/interview-questions/${role}`,
-    lastModified: now,
+    lastModified: CONTENT_UPDATED.interviewQuestions,
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
@@ -229,7 +256,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamic company prep pages, 20 companies
   const companyPages: MetadataRoute.Sitemap = ALL_COMPANIES.map((company) => ({
     url: `${SITE_URL}/interview-prep/${company}`,
-    lastModified: now,
+    lastModified: CONTENT_UPDATED.companies,
     changeFrequency: "monthly" as const,
     priority: 0.78,
   }));
@@ -242,7 +269,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ).flatMap((section) =>
     ALL_ROLES.map((role) => ({
       url: `${SITE_URL}/${section}/${role}`,
-      lastModified: now,
+      lastModified:
+        section === "salary-guide"
+          ? CONTENT_UPDATED.salaryGuide
+          : section === "resume-tips"
+          ? CONTENT_UPDATED.resumeTips
+          : CONTENT_UPDATED.coverLetterExamples,
       changeFrequency: "monthly" as const,
       priority: 0.75,
     }))
