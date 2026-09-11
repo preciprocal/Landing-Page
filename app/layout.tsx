@@ -118,7 +118,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        {/*
+          No manual favicon link here. app/favicon.ico is a Next.js metadata
+          file convention and the framework injects the <link> itself. The
+          file previously sat at the repo root, which Next does not serve, so
+          /favicon.ico returned 404 and Search Console reported it.
+        */}
         <link rel="icon" href="/logo.png" type="image/png" sizes="192x192" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <meta name="theme-color" content="#050810" />
