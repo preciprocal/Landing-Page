@@ -13,12 +13,12 @@ import AlternativePage, { type ComparisonRow, type AlternativeFaq, type Alternat
 
 export const metadata: Metadata = {
   title: { absolute: "Enhancv Alternative: Preciprocal vs Enhancv" },
-  description: "An Enhancv alternative that adds AI mock interviews, job tracking and per-posting ATS scoring to resume building, at $9.99/mo against Enhancv Pro at $14.99/mo.",
+  description: "An Enhancv alternative that adds AI mock interviews, job tracking and per-posting ATS scoring to resume building, at $9.99/mo against Enhancv Pro at $39/mo.",
   keywords: ["Enhancv alternative","Enhancv vs Preciprocal","cheaper than Enhancv","Enhancv for students","resume builder alternative","Enhancv pricing","ATS resume checker alternative"],
   alternates: { canonical: "https://preciprocal.com/alternatives/enhancv-alternative" },
   openGraph: {
     title: "Enhancv Alternative: Preciprocal Compared (2026)",
-    description: "An Enhancv alternative that adds AI mock interviews, job tracking and per-posting ATS scoring to resume building, at $9.99/mo against Enhancv Pro at $14.99/mo.",
+    description: "An Enhancv alternative that adds AI mock interviews, job tracking and per-posting ATS scoring to resume building, at $9.99/mo against Enhancv Pro at $39/mo.",
     url: "https://preciprocal.com/alternatives/enhancv-alternative",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
@@ -87,9 +87,14 @@ const ROWS: ComparisonRow[] = [
       "theirs": "7-day full-access trial"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Not included"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
-      "theirs": "$14.99, or $10.99 on longer plans"
+      "ours": "$9.99",
+      "theirs": "$39, or $16.50/mo on semiannual"
     },
     {
       "feature": "Student discount",
@@ -108,8 +113,8 @@ const REASONS: AlternativeReason[] = [
       "body": "Once the resume works, the constraint moves to the interview. Preciprocal includes voice mock interviews with a panel that asks follow-ups and scores across five dimensions, a study planner built to your interview date, and a debrief journal. Enhancv does not cover any of that."
     },
     {
-      "title": "$9.99 against $14.99, with more included",
-      "body": "Enhancv Pro is $14.99 monthly, or $10.99 monthly on quarterly and semi-annual plans. Preciprocal Pro is $9.99 monthly or $7.49 annually, and includes the interview and tracking tools. Note that Enhancv's entry point is a seven-day trial rather than a permanent free tier."
+      "title": "$9.99 against $39, with more included",
+      "body": "Enhancv Pro is $39 monthly, dropping to about $23 monthly on the quarterly plan and $16.50 on the semiannual plan. Preciprocal Pro is $9.99 monthly, and includes the interview and tracking tools. Note that Enhancv's entry point is a seven-day trial rather than a permanent free tier."
     },
     {
       "title": "A free tier rather than a trial",
@@ -128,7 +133,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How much does Enhancv cost compared to Preciprocal?",
-      "a": "Enhancv Pro is $14.99 monthly, dropping to about $10.99 monthly on quarterly or semi-annual billing. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually. Enhancv's free entry is a seven-day trial; Preciprocal's free tier is permanent."
+      "a": "Enhancv Pro is $39 monthly, or about $23 monthly quarterly and $16.50 monthly semiannually. Preciprocal Pro is $9.99 monthly. Enhancv's free entry is a seven-day trial; Preciprocal's free tier is permanent."
     },
     {
       "q": "Does Enhancv have mock interviews?",
@@ -150,10 +155,10 @@ export default function EnhancvAlternativePage() {
       competitor="Enhancv"
       slug="enhancv-alternative"
       theirPlanLabel="Enhancv Pro"
-      theirPrice="$14.99/mo"
+      theirPrice="$39/mo"
       theirPriceNote="Resume builder and checker"
       intro="Enhancv produces some of the best-looking resumes of any builder, and its content checks go beyond formatting into whether your bullets actually say anything. Its resume checker is a real tool rather than a lead magnet, and the seven-day full-access trial lets you evaluate it properly."
-      positioning="Preciprocal covers ATS scoring and resume work and adds voice mock interviews, a study planner, cover letters and application tracking, at $9.99/mo against Enhancv Pro at $14.99/mo."
+      positioning="Preciprocal covers ATS scoring and resume work and adds voice mock interviews, a study planner, cover letters and application tracking, at $9.99/mo against Enhancv Pro at $39/mo."
       verdictTheirs="resume quality and design are your priority, you want detailed content feedback on the document itself, and you have interview prep covered."
       verdictOurs="you want per-posting ATS scoring plus interview practice and tracking in one subscription at a lower monthly price."
       rows={ROWS}

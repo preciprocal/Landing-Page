@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "AI Interview Study Planner: Day-by-Day Prep Plan",
+  title: "AI Interview Study Planner: Daily Plan",
   description:
     "Get a personalised interview prep schedule built around your target role, your interview date, and the hours you actually have. Daily tasks, curated resources, and progress tracking.",
   keywords: [

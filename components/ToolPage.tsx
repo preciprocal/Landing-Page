@@ -109,10 +109,10 @@ export default function ToolPage({
 
         <main>
           {/* ── Hero ─────────────────────────────────────────────────────── */}
-          <section className="relative pt-32 pb-20 px-4 sm:px-6 overflow-hidden">
+          <section className="relative pt-32 pb-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative max-w-4xl mx-auto text-center">
+            <div className="relative w-full text-center">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[12px] text-emerald-300 font-medium mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 {badge}
@@ -143,8 +143,8 @@ export default function ToolPage({
           </section>
 
           {/* ── Feature grid ───────────────────────────────────────────── */}
-          <section className="py-16 px-4 sm:px-6 border-t border-white/[0.04]">
-            <div className="max-w-4xl mx-auto">
+          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+            <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-4">
                 {featuresTitle}
               </h2>
@@ -171,8 +171,8 @@ export default function ToolPage({
           </section>
 
           {/* ── How it works ───────────────────────────────────────────── */}
-          <section className="py-16 px-4 sm:px-6 border-t border-white/[0.04]">
-            <div className="max-w-4xl mx-auto">
+          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+            <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-12">
                 How it works
               </h2>
@@ -191,8 +191,8 @@ export default function ToolPage({
           </section>
 
           {/* ── SEO content body ───────────────────────────────────────── */}
-          <section className="py-16 px-4 sm:px-6 border-t border-white/[0.04]">
-            <div className="max-w-3xl mx-auto">
+          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+            <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
                 {bodyTitle}
               </h2>
@@ -201,8 +201,8 @@ export default function ToolPage({
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section className="py-16 px-4 sm:px-6 border-t border-white/[0.04]">
-            <div className="max-w-3xl mx-auto">
+          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+            <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-10 text-center">
                 {faqTitle}
               </h2>
@@ -236,8 +236,8 @@ export default function ToolPage({
           </section>
 
           {/* ── Internal links ─────────────────────────────────────────── */}
-          <section className="py-12 px-4 sm:px-6 border-t border-white/[0.04]">
-            <div className="max-w-4xl mx-auto">
+          <section className="py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+            <div className="w-full">
               <h2 className="text-lg font-semibold text-white mb-6">Also useful for your job search</h2>
               <div className="flex flex-wrap gap-3">
                 {relatedLinks.map((link) => (
@@ -254,7 +254,7 @@ export default function ToolPage({
           </section>
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
-          <section className="py-20 px-4 sm:px-6 text-center border-t border-white/[0.04]">
+          <section className="py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 text-center border-t border-white/[0.04]">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">{bottomTitle}</h2>
             <p className="text-slate-400 max-w-md mx-auto mb-8">{bottomBody}</p>
             <a

@@ -3,12 +3,12 @@ import type { NextConfig } from "next";
 /**
  * next.config.ts
  *
- * SEO redirects — all permanent (308/301) so link equity passes through.
+ * SEO redirects, all permanent (308/301) so link equity passes through.
  * Add new redirects here whenever a route is renamed or removed.
  *
  * WWW: the previous note here said www -> non-www was handled at the Vercel
  * domain level and deliberately not configured in this file. Search Console
- * showed otherwise — www.preciprocal.com/terms, /cover-letter and
+ * showed otherwise: www.preciprocal.com/terms, /cover-letter and
  * /forgot-password were all reported as 404s while their non-www equivalents
  * resolved fine. The host-based rule below is a safety net that works whether
  * or not the Vercel domain redirect is in place. It cannot loop, because the
@@ -72,7 +72,7 @@ const nextConfig: NextConfig = {
 
       // NOTE: /cover-letter-examples and /cover-letter-examples/:slug used to
       // be redirected here, from a period when that section had been removed.
-      // The section was later rebuilt — app/cover-letter-examples/page.tsx and
+      // The section was later rebuilt: app/cover-letter-examples/page.tsx and
       // app/cover-letter-examples/[role]/page.tsx now prerender 42 real pages
       // with their own canonicals and metadata. The redirects survived the
       // rebuild and were intercepting every one of them, which is what GSC

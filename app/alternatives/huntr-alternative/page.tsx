@@ -87,8 +87,13 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Included"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "One-click autofill from your profile"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
+      "ours": "$9.99",
       "theirs": "$40, or about $27 on 6-month billing"
     },
     {
@@ -105,7 +110,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$40 against $9.99 for the paid tiers",
-      "body": "Huntr Pro is $40 monthly, $90 quarterly or $160 for six months, which works out to roughly $27 monthly at the longest commitment. Preciprocal Pro is $9.99 monthly or $7.49 billed annually, and includes mock interviews, a study planner and outreach tools."
+      "body": "Huntr Pro is $40 monthly, $90 quarterly or $160 for six months, which works out to roughly $27 monthly at the longest commitment. Preciprocal Pro is $9.99 monthly, and includes mock interviews, a study planner and outreach tools."
     },
     {
       "title": "Interview preparation is absent",

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: { absolute: "Preciprocal Pricing: Free Plan, Pro at $9.99/mo" },
   description:
-    "Start free, upgrade when you're ready. Preciprocal Pro is $9.99/mo. Includes AI mock interviews, resume ATS scoring, cover letters, study plans, and job tracking. 30-day money-back guarantee.",
+    "Start free, upgrade when you're ready. Preciprocal Pro is $9.99/mo. Includes AI mock interviews, resume ATS scoring, cover letters, study plans, and job tracking. Land a job while subscribed and we refund that month.",
   keywords: [
     "preciprocal pricing",
     "AI interview prep cost",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Preciprocal Pricing: Free Plan + Pro at $9.99/mo",
     description:
-      "Free plan available. Pro at $9.99/mo. 30-day money-back guarantee. AI mock interviews, resume scoring, cover letters and job tracking.",
+      "Free plan available. Pro at $9.99/mo. Land a job while subscribed and we refund that month. AI mock interviews, resume scoring and job tracking.",
     url: "https://preciprocal.com/pricing",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
@@ -28,6 +28,6 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Preciprocal Pricing: Free Plan + Pro at $9.99/mo",
-    description: "Free plan available. Pro at $9.99/mo. 30-day money-back guarantee.",
+    description: "Free plan available. Pro at $9.99/mo. Land a job while subscribed and we refund that month.",
   },
 };

@@ -31,7 +31,11 @@ export const metadata: Metadata = {
     "AI resume feedback",
   ],
   alternates: {
-    canonical: "https://preciprocal.com/alternatives/resume-worded-alternative",
+    // Self-canonical. This previously pointed at .../resume-worded-alternative
+    // (hyphenated), which 404s, so Google was told the real version of this page
+    // lived at a URL that does not exist. The route is resumeworded-alternative,
+    // which is also what the sitemap lists.
+    canonical: "https://preciprocal.com/alternatives/resumeworded-alternative",
   },
   openGraph: {
     title: "Resume Worded Alternative: Preciprocal vs Resume Worded (2026)",
@@ -60,10 +64,11 @@ const COMPARISON_ROWS = [
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",         resumeWorded: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                resumeWorded: "❌ Not included" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",           resumeWorded: "❌ Not included" },
+  { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        resumeWorded: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",            resumeWorded: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",         resumeWorded: "✅ LinkedIn grader" },
   { feature: "Free plan",                   preciprocal: "✅ 5 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
-  { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                         resumeWorded: "⚠️ $29/mo+" },
+  { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                         resumeWorded: "⚠️ $49/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",       resumeWorded: "❌ No student plan" },
   { feature: "Primary audience",            preciprocal: "✅ Students & new grads",                   resumeWorded: "⚠️ General professionals" },
 ];
@@ -75,7 +80,7 @@ const FAQS = [
   },
   {
     q: "Why do people look for a Resume Worded alternative?",
-    a: "The most common reasons: pricing ($29/mo+ adds up quickly for students on a budget), limited scope (Resume Worded covers resume feedback but you still need separate tools for interviews and cover letters), and the free tier being too restricted to get real value. Students often want a single, affordable platform for the whole job search.",
+    a: "The most common reasons: pricing ($49/mo adds up quickly for students on a budget), limited scope (Resume Worded covers resume feedback but you still need separate tools for interviews and cover letters), and the free tier being too restricted to get real value. Students often want a single, affordable platform for the whole job search.",
   },
   {
     q: "Is Preciprocal's resume scoring as detailed as Resume Worded's?",
@@ -87,7 +92,7 @@ const FAQS = [
   },
   {
     q: "How much does Resume Worded cost vs Preciprocal?",
-    a: "Resume Worded's paid plans start around $29/mo. Preciprocal Pro is $9.99/mo with significantly more features. For students with a .edu email, Preciprocal offers 1 month of Pro completely free.",
+    a: "Resume Worded's paid plans start at $49/mo, or about $19/mo prepaid annually. Preciprocal Pro is $9.99/mo with significantly more features. For students with a .edu email, Preciprocal offers 1 month of Pro completely free.",
   },
   {
     q: "Can I get free resume feedback without paying?",
@@ -122,7 +127,7 @@ export default function ResumeWordedAlternativePage() {
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
@@ -179,7 +184,7 @@ export default function ResumeWordedAlternativePage() {
         {/* Price callout */}
         <div className="grid sm:grid-cols-2 gap-4 mb-12">
           {[
-            { label: "Resume Worded", price: "$29+/mo", note: "Resume review only", highlight: false },
+            { label: "Resume Worded", price: "$49/mo", note: "Resume review only", highlight: false },
             { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full job search platform", highlight: true },
           ].map(({ label, price, note, highlight }) => (
             <div
@@ -229,7 +234,7 @@ export default function ResumeWordedAlternativePage() {
             </table>
           </div>
           <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Based on publicly available feature lists as of May 2026. Always verify on each tool's pricing page.
+            Based on publicly available feature lists as of September 2026. Always verify on each tool's pricing page.
           </p>
         </section>
 
@@ -246,7 +251,7 @@ export default function ResumeWordedAlternativePage() {
               },
               {
                 title: "More affordable for students",
-                body: "Resume Worded starts at $29/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, no credit card required.",
+                body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, no credit card required.",
               },
               {
                 title: "Built for people without extensive work history",
@@ -324,7 +329,7 @@ export default function ResumeWordedAlternativePage() {
         {/* CTA */}
         <section
           aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 rounded-2xl border"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
           style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
         >
           <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>

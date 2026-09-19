@@ -15,7 +15,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Company Interview Prep: 56 Top Employers (2026)",
+  title: "Company Interview Prep: 56 Employers",
   description: "Free interview prep guides for 56 top employers across tech, investment banking, consulting, healthcare and retail. Google, Amazon, Goldman Sachs, McKinsey, Citadel, Mayo Clinic and more, with process breakdowns, difficulty ratings and culture tips.",
   alternates: { canonical: "https://preciprocal.com/interview-prep" },
   openGraph: {
@@ -87,7 +87,7 @@ export default function InterviewPrepIndexPage() {
       <div className="min-h-screen bg-[#050810]">
         <Navbar />
 
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+        <main className="w-full pt-10 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="text-sm text-slate-400 mb-8 flex gap-2 items-center">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>

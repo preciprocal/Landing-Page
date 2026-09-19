@@ -29,7 +29,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "AI Mock Interview Practice: Free, Instant Feedback",
+  title: "AI Mock Interviews: Free Practice + Feedback",
   description:
     "Practice AI mock interviews for any role or company. Get scored on technical depth, communication, and structure. Built for students and new grads. Free to start.",
   keywords: [
@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: "Is there a free plan?",
-    a: "Yes. The free tier includes 3 mock interviews per month, no credit card required. Students with a .edu email get 1 month of Pro free (30 interviews/month). Pro is $9.99/month with a 30-day money-back guarantee.",
+    a: "Yes. The free tier includes 3 mock interviews per month, no credit card required. Students with a .edu email get 1 month of Pro free (30 interviews/month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
   },
   {
     q: "Do I need a webcam?",
@@ -167,7 +167,7 @@ export default function AIMockInterviewPage() {
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center" style={{ color: "#64748b" }}>
@@ -413,7 +413,7 @@ export default function AIMockInterviewPage() {
         {/* ── Final CTA ───────────────────────────────────────────────────── */}
         <section
           aria-label="Get started with AI mock interviews"
-          className="text-center py-12 px-6 rounded-2xl border"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
           style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: "#ffffff" }}>

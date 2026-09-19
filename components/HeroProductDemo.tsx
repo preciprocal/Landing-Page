@@ -21,17 +21,33 @@ import { JobTrackerExamplePreview } from "@/components/examples/JobTrackerPrevie
 // ACETERNITY-INSPIRED ANIMATIONS (pure framer-motion + CSS)
 // ═══════════════════════════════════════════════════════════════════════════════
 
+// Deterministic pseudo-random, same approach as components/ui/Meteors.tsx and
+// FloatingDots in LandingAnimations.
+//
+// These values land in `style` attributes, and this component is server-rendered
+// on the homepage. Math.random() during render produces one set of numbers on the
+// server and a different set on the client, so React reports a hydration mismatch
+// on every particle. `seeded` is pure and index-based, so both passes agree.
+//
+// `salt` separates the axes: without it every field of a given particle would get
+// the same number and the points would fall on a diagonal line.
+function seeded(i: number, salt: number): number {
+  let h = Math.imul(i + 1, 374761393) ^ Math.imul(salt + 1, 668265263);
+  h = Math.imul(h ^ (h >>> 13), 1274126177);
+  return ((h ^ (h >>> 16)) >>> 0) / 4294967296;
+}
+
 // --- Sparkles Field: floating particles behind hero/narration screens ---
 function SparklesField({ count = 28, className = "" }: { count?: number; className?: string }) {
   const particles = useMemo(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 2 + 0.5,
-      duration: Math.random() * 4 + 3,
-      delay: Math.random() * 3,
-      opacity: Math.random() * 0.4 + 0.1,
+      x: seeded(i, 1) * 100,
+      y: seeded(i, 2) * 100,
+      size: seeded(i, 3) * 2 + 0.5,
+      duration: seeded(i, 4) * 4 + 3,
+      delay: seeded(i, 5) * 3,
+      opacity: seeded(i, 6) * 0.4 + 0.1,
     })),
   [count]);
 
@@ -136,10 +152,10 @@ function MeteorLines({ count = 5 }: { count?: number }) {
   const meteors = useMemo(() =>
     Array.from({ length: count }, (_, i) => ({
       id: i,
-      left: Math.random() * 100,
-      delay: Math.random() * 4,
-      duration: Math.random() * 1.5 + 1,
-      width: Math.random() * 60 + 40,
+      left: seeded(i, 7) * 100,
+      delay: seeded(i, 8) * 4,
+      duration: seeded(i, 9) * 1.5 + 1,
+      width: seeded(i, 10) * 60 + 40,
     })),
   [count]);
 

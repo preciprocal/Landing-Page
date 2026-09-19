@@ -13,7 +13,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Cold Email Generator: Outreach That Gets Replies",
+  title: "Cold Email Generator for Job Outreach",
   description:
     "Write cold emails to recruiters, hiring managers, and potential referrers that actually get answered. Personalised from your background and the specific role, in seconds.",
   keywords: [

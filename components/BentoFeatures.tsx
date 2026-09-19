@@ -319,7 +319,7 @@ function StudentPriceCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[8px] text-slate-500">30-day money-back guarantee, no questions asked</span>
+          <span className="text-[8px] text-slate-500">Land a job while subscribed and we refund that month</span>
         </div>
       </div>
     </Card>
@@ -374,10 +374,11 @@ function TrustBar() {
     { icon: Lock,              label: "End-to-end encrypted",   sub: "Your resume data never shared or sold" },
     { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
     { icon: Globe,             label: "Works everywhere",        sub: "Web app, no downloads, any device" },
-    // ⚠️  Guarantee wording: "30-day money-back" is the accurate claim.
+    // ⚠️  Refund wording: see REFUND_POLICY in lib/pricing.ts. Do not restate
+    // the retired "30-day money-back, no questions asked" claim here.
     // Original read "Land an interview in 30 days or refund", that implies
     // a guaranteed outcome we cannot promise and creates legal liability.
-    { icon: Award,             label: "30-day money-back",       sub: "Not working for you? Full refund, no questions" },
+    { icon: Award,             label: "Success Refund",          sub: "Land a job while subscribed, we refund that month" },
   ];
 
   return (

@@ -59,6 +59,7 @@ const COMPARISON_ROWS = [
   { feature: "Cover Letter Generator",    preciprocal: "✅ AI-written, company-researched",          finalRound: "❌ Not included" },
   { feature: "Job Tracker",               preciprocal: "✅ Kanban + contact finder",                 finalRound: "❌ Not included" },
   { feature: "Chrome Extension",          preciprocal: "✅ 1-click import from LinkedIn",            finalRound: "✅ Real-time interview assist" },
+  { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        finalRound: "❌ Not included" },
   { feature: "Study Planner",             preciprocal: "✅ Day-by-day AI schedule",                  finalRound: "❌ Not included" },
   { feature: "Free plan",                 preciprocal: "✅ 3 mock interviews/mo, no card",           finalRound: "✅ Limited free tier" },
   { feature: "Starting price",            preciprocal: "✅ $9.99/mo (Pro)",                          finalRound: "⚠️ Higher pricing tiers" },
@@ -116,7 +117,7 @@ export default function FinalRoundAIAlternativePage() {
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
@@ -197,7 +198,7 @@ export default function FinalRoundAIAlternativePage() {
             </table>
           </div>
           <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Information based on publicly available feature lists as of May 2026. Features may change. Always verify on each tool's pricing page.
+            Information based on publicly available feature lists as of September 2026. Features may change. Always verify on each tool's pricing page.
           </p>
         </section>
 
@@ -218,7 +219,7 @@ export default function FinalRoundAIAlternativePage() {
               },
               {
                 title: "Honest pricing for students",
-                body: "Pro is $9.99/mo, not $30+. Students with a .edu email get 1 month of Pro free. 30-day money-back guarantee for everyone else.",
+                body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land a job while subscribed and we refund that month.",
               },
               {
                 title: "ATS resume scoring included",
@@ -292,7 +293,7 @@ export default function FinalRoundAIAlternativePage() {
         {/* ── CTA ─────────────────────────────────────────────────────────── */}
         <section
           aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 rounded-2xl border"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
           style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
         >
           <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>

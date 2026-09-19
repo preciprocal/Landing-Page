@@ -304,7 +304,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
       />
       <Navbar />
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 page-main">
+      <main className="w-full page-main px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center flex-wrap">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>

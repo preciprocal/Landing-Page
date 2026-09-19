@@ -53,6 +53,20 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
   if (!meta) notFound();
 
   const questions = getCompanyQuestions(company);
+
+  // Curated relations first, then fill from a rotation over every company so no
+  // page is left with only its hub link. See the Related companies section.
+  const relatedCompanySlugs: string[] = (() => {
+    const picked = [...meta.relatedCompanies];
+    const i = ALL_COMPANIES.findIndex((c) => c === company);
+    const start = i === -1 ? 0 : i + 1;
+    const rotated = [...ALL_COMPANIES.slice(start), ...ALL_COMPANIES.slice(0, start)];
+    for (const slug of rotated) {
+      if (picked.length >= 6) break;
+      if (slug !== company && !picked.includes(slug)) picked.push(slug);
+    }
+    return picked;
+  })();
   const diffStyle = DIFFICULTY_COLOR[meta.difficulty] ?? DIFFICULTY_COLOR["Hard"];
 
   return (
@@ -65,7 +79,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
       />
       <Navbar />
 
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center flex-wrap">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -213,12 +227,19 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
           </div>
         </section>
 
-        {/* Related companies */}
-        {meta.relatedCompanies.length > 0 && (
+        {/* Related companies.
+
+            The curated relatedCompanies list is used first, then topped up by
+            rotating through ALL_COMPANIES from this company's own position.
+            Purely curated, four companies (DoorDash, Figma, Palantir, Tesla)
+            appeared in nobody else's list and so had a single inbound link from
+            the hub. The rotation guarantees every company page is reachable from
+            several others, and being index-based it stays deterministic for SSR. */}
+        {relatedCompanySlugs.length > 0 && (
           <section className="mt-12 pt-10" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
             <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-6">Also preparing for</h2>
             <div className="flex flex-wrap gap-3">
-              {meta.relatedCompanies.map((slug) => {
+              {relatedCompanySlugs.map((slug) => {
                 const relMeta = COMPANY_META[slug];
                 const name = relMeta?.displayName ?? slug.charAt(0).toUpperCase() + slug.slice(1);
                 return (

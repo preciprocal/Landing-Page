@@ -40,14 +40,15 @@ const VISA_SLUGS = new Set([
 ]);
 
 /**
- * Emits four sitemaps behind an index rather than one flat file.
- * See the tier comments at the bottom of this file for the rationale.
+ * One flat sitemap at /sitemap.xml.
+ *
+ * This used to emit four tiered sitemaps via generateSitemaps(), which put the
+ * real URLs at /sitemap/0.xml..3.xml and left /sitemap.xml, the address named in
+ * robots.txt, serving an empty <urlset>. A single file is also well inside the
+ * 50,000 URL limit at ~291 URLs, so the tiering bought crawl-budget nuance at
+ * the cost of the sitemap actually working.
  */
-export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }];
-}
-
-export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+export default function sitemap(): MetadataRoute.Sitemap {
   /**
    * Stable content dates.
    *
@@ -84,6 +85,14 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
       lastModified: new Date("2026-06-06"),
       changeFrequency: "weekly",
       priority: 1.0,
+    },
+    {
+      // Hub linking to every tool page, so it carries internal link equity down
+      // to them and targets category-level queries they do not.
+      url: `${SITE_URL}/features`,
+      lastModified: new Date("2026-09-19"),
+      changeFrequency: "monthly",
+      priority: 0.95,
     },
     {
       url: `${SITE_URL}/ai-mock-interview`,
@@ -223,6 +232,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     // Comparison pages added September 2026. Pricing in these pages was checked
     // against public sources at that date and needs periodic re-verification.
     ...[
+      "jobright-alternative",
       "teal-alternative",
       "careerflow-alternative",
       "kickresume-alternative",
@@ -311,7 +321,7 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
   // Submit them in order in Search Console: tier 0 first, then 1, and leave 3
   // until the earlier tiers are landing.
   const commercial = new Set([
-    "/", "/pricing",
+    "/", "/pricing", "/features",
     "/ai-mock-interview", "/cover-letter-generator", "/free-ats-checker",
     "/linkedin-profile-optimizer", "/resume-tailoring", "/job-application-tracker",
     "/interview-study-planner", "/cold-email-generator", "/recruiter-contact-finder",
@@ -355,6 +365,8 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     ...staticPages.filter((p) => !claimed.has(String(p.url)) && (isLegalOrCorp(String(p.url)) || true)),
   ];
 
-  const tiers = [tier0, tier1, tier2, tier3];
-  return tiers[Number(id)] ?? [];
+  // The tier order is preserved as the ordering of the single file: most
+  // commercially important first. Ordering is not a ranking signal, but it
+  // keeps the file readable when diffing what changed.
+  return [...tier0, ...tier1, ...tier2, ...tier3];
 }

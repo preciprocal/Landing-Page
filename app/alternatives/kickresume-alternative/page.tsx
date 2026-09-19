@@ -87,9 +87,14 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Free version available"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Not included"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
-      "theirs": "$24, or about $8 billed annually"
+      "ours": "$9.99",
+      "theirs": "$24, $18/mo quarterly, or $8/mo annually"
     },
     {
       "feature": "Student discount",
@@ -113,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "Compare the monthly rates honestly",
-      "body": "Kickresume is cheaper than Preciprocal if you commit annually, at roughly $8 a month against $7.49, so the two are close. On monthly billing it is $24 against $9.99. The real difference is scope rather than price: one builds documents, the other runs the whole search."
+      "body": "On monthly billing it is $24 against $9.99. Kickresume also sells an annual plan at roughly $8 a month, which undercuts us if you are willing to prepay twelve months up front; Preciprocal is monthly only, so you are never committing beyond the month you are in. The real difference is scope rather than price: one builds documents, the other runs the whole search."
     }
   ];
 
@@ -128,7 +133,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Is Preciprocal cheaper than Kickresume?",
-      "a": "On monthly billing, considerably: $9.99 against $24. On annual billing they are close, with Kickresume at roughly $8 a month and Preciprocal at $7.49. The more meaningful difference is what you get, since Preciprocal includes interview preparation and tracking."
+      "a": "On monthly billing, considerably: $9.99 against $24. Kickresume sells an annual plan at roughly $8 a month, so it is cheaper if you prepay a full year; Preciprocal is monthly only. The more meaningful difference is what you get, since Preciprocal includes interview preparation and tracking."
     },
     {
       "q": "Does Kickresume include interview practice?",

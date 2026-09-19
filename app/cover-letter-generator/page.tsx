@@ -153,7 +153,7 @@ export default function CoverLetterGeneratorPage() {
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center" style={{ color: "#64748b" }}>
@@ -384,7 +384,7 @@ export default function CoverLetterGeneratorPage() {
         {/* Final CTA */}
         <section
           aria-label="Generate your cover letter free"
-          className="text-center py-12 px-6 rounded-2xl border"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
           style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
         >
           <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: "#ffffff" }}>

@@ -13,12 +13,12 @@ import AlternativePage, { type ComparisonRow, type AlternativeFaq, type Alternat
 
 export const metadata: Metadata = {
   title: { absolute: "Rezi Alternative: Preciprocal vs Rezi" },
-  description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo monthly.",
+  description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo.",
   keywords: ["Rezi alternative","Rezi vs Preciprocal","Rezi.ai alternative","cheaper than Rezi","Rezi for students","ATS resume builder alternative","Rezi pricing","Rezi Score"],
   alternates: { canonical: "https://preciprocal.com/alternatives/rezi-alternative" },
   openGraph: {
     title: "Rezi Alternative: Preciprocal Compared (2026)",
-    description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo monthly.",
+    description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo.",
     url: "https://preciprocal.com/alternatives/rezi-alternative",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Rezi Alternative | Preciprocal",
-    description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo monthly.",
+    description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo.",
   },
 };
 
@@ -87,9 +87,14 @@ const ROWS: ComparisonRow[] = [
       "theirs": "One monthly review on Pro"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Not included"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
-      "theirs": "$29, or $19 billed quarterly"
+      "ours": "$9.99",
+      "theirs": "$29, or $149 lifetime"
     },
     {
       "feature": "Student discount",
@@ -105,7 +110,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 against $29 monthly",
-      "body": "Rezi Pro is $29 monthly or $19 monthly billed quarterly. Preciprocal Pro is $9.99 monthly or $7.49 billed annually. Over a six-month search that is roughly $174 at Rezi's monthly rate against $60 at Preciprocal's."
+      "body": "Rezi Pro is $29 monthly, or $149 once for lifetime access. Preciprocal Pro is $9.99 monthly. Over a six-month search that is roughly $174 at Rezi's monthly rate against $60 at Preciprocal's."
     },
     {
       "title": "Analysis beyond the score",
@@ -128,7 +133,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Why do people look for a Rezi alternative?",
-      "a": "Price is the usual reason, since $29 monthly is substantial for a student, and the quarterly plan at $19 monthly still requires committing upfront. Scope is the other, for people who want tracking and outreach rather than another document tool."
+      "a": "Price is the usual reason, since $29 monthly is substantial for a student. Rezi also sells lifetime access at $149, which is good value if you expect to job hunt repeatedly but a large sum to find upfront. Scope is the other, for people who want tracking and outreach rather than another document tool."
     },
     {
       "q": "Does Rezi have mock interviews?",
@@ -153,7 +158,7 @@ export default function ReziAlternativePage() {
       theirPrice="$29/mo"
       theirPriceNote="ATS-focused resume builder"
       intro="Rezi is built specifically around ATS optimisation, and the Rezi Score with its keyword targeting is a focused, well-executed take on that problem. Unlike design-led builders it treats machine readability as the primary goal, which is the right instinct. It also includes AI interviews on the Pro plan."
-      positioning="Preciprocal covers the same ATS ground and adds voice mock interviews with a multi-agent panel, a study planner, debrief journal and application tracking, at $9.99/mo against Rezi Pro at $29/mo monthly."
+      positioning="Preciprocal covers the same ATS ground and adds voice mock interviews with a multi-agent panel, a study planner, debrief journal and application tracking, at $9.99/mo against Rezi Pro at $29/mo."
       verdictTheirs="you want a tool narrowly focused on ATS resume optimisation with a clear score to optimise against, and the monthly price is acceptable."
       verdictOurs="you want ATS scoring plus deeper interview practice, tracking and outreach at roughly a third of the monthly cost."
       rows={ROWS}

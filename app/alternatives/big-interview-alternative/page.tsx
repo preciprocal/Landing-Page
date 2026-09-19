@@ -87,9 +87,14 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Often free via schools and libraries"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Not included"
+    },
+    {
       "feature": "Price",
-      "ours": "$9.99/mo, or $7.49 billed annually",
-      "theirs": "$39/mo, or $299 lifetime"
+      "ours": "$9.99/mo",
+      "theirs": "$39/mo, $99 per 3 months, or $299 lifetime"
     },
     {
       "feature": "Student discount",
@@ -113,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 monthly against $39 monthly",
-      "body": "Big Interview's entry price is $39 for a month, with lifetime access at $299 as a one-time payment. Preciprocal Pro is $9.99 monthly or $7.49 billed annually. The lifetime option is worth considering if you expect to be interviewing on and off for years, since it has no recurring cost."
+      "body": "Big Interview's entry price is $39 for a month, $99 for three months, with lifetime access at $299 as a one-time payment. Preciprocal Pro is $9.99 monthly. The lifetime option is worth considering if you expect to be interviewing on and off for years, since it has no recurring cost."
     }
   ];
 
@@ -132,7 +137,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How much does Big Interview cost?",
-      "a": "Its entry price is $39 for a monthly subscription, with lifetime access available at $299 as a one-time payment. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually."
+      "a": "Its entry price is $39 for a monthly subscription, with lifetime access available at $299 as a one-time payment. Preciprocal Pro is $9.99 monthly."
     },
     {
       "q": "Which is better for a complete beginner?",

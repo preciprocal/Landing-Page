@@ -22,7 +22,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 
 export interface ComparisonRow {
   feature: string;
@@ -108,7 +108,7 @@ export default function AlternativePage({
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -241,9 +241,41 @@ export default function AlternativePage({
           </div>
         </section>
 
-        {/* Other comparisons */}
+        {/* Other comparisons.
+
+            This block used to link only to the /alternatives hub, which left
+            every comparison page with exactly one inbound internal link. Linking
+            to siblings spreads equity between them and matches how people
+            shortlist: someone reading "vs Teal" is usually weighing Huntr and
+            Simplify too. Rotating by this page's own position means each page
+            surfaces a different set rather than all of them pointing at the
+            same few. */}
         <section className="mb-16">
           <h2 className="text-lg font-semibold mb-4" style={{ color: "#ffffff" }}>Compare other tools</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-5">
+            {(() => {
+              const i = ALTERNATIVE_PAGES.findIndex((a) => a.slug === slug);
+              const start = i === -1 ? 0 : i + 1;
+              const ordered = [
+                ...ALTERNATIVE_PAGES.slice(start),
+                ...ALTERNATIVE_PAGES.slice(0, start),
+              ].filter((a) => a.slug !== slug);
+              return ordered.slice(0, 6).map((a) => (
+                <Link
+                  key={a.slug}
+                  href={`/alternatives/${a.slug}`}
+                  className="text-sm px-3 py-2 rounded-lg border transition-colors hover:border-indigo-500/40"
+                  style={{
+                    color: "#cbd5e1",
+                    background: "rgba(255,255,255,0.02)",
+                    borderColor: "rgba(255,255,255,0.07)",
+                  }}
+                >
+                  Preciprocal vs {a.name}
+                </Link>
+              ));
+            })()}
+          </div>
           <Link href="/alternatives" className="text-sm font-medium hover:text-indigo-300 transition-colors" style={{ color: "#818cf8" }}>
             See all Preciprocal comparisons →
           </Link>

@@ -15,7 +15,6 @@
 import type { Metadata } from "next";
 import { WebSiteJsonLd, FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
-import StickyBanner from "@/components/StickyBanner";
 import Hero from "@/components/Hero";
 import LogoBar from "@/components/LogoBar";
 import SocialProofStrip from "@/components/SocialProofStrip";
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 
   // 155 chars - specific, keyword-rich, includes price/guarantee for CTR
   description:
-    "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking. $9.99/mo. 30-day money-back guarantee.",
+    "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking. $9.99/mo. Land a job while subscribed and we refund that month.",
 
   keywords: [
     "AI mock interview",
@@ -57,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Preciprocal | Stop Applying Into the Void",
     description:
-      "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo. 30-day guarantee.",
+      "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo. Land a job, get that month back.",
     url: "https://preciprocal.com",
     siteName: "Preciprocal",
     images: [
@@ -95,7 +94,6 @@ export default function Home() {
       {/* page on the site, causing Search Console schema validation errors */}
       <FAQJsonLd />
 
-      <StickyBanner />
       <Navbar />
 
       <main>

@@ -82,18 +82,40 @@ export const STEPS = [
   { number: "03", title: "Apply Smarter, Not Harder",          description: "Generate tailored cover letters in seconds. Track every application on a Kanban board. Find hiring contacts with real emails. Send personalised outreach that gets replies, not silence." },
 ] as const;
 
-export const PLANS = [
-  { id: "free",       name: "Free",       price: "Free",    period: "",        tagline: "Get started and feel the value.",              cta: "Get started free",  ctaHref: "/sign-up",              highlighted: false, mostPopular: false, features: ["5 resume analyses / month","5 cover letters / month","2 LinkedIn optimisations / month","1 interview debrief / month","2 find contacts / month","3 mock interviews / month","Job tracker (10 jobs)","Chrome extension (limited)","Basic analytics"] },
-  { id: "pro",        name: "Pro",        price: "$9.99",   period: "/ month", tagline: "Everything you need to land the role.",        cta: "Start Pro free",    ctaHref: "/sign-up?plan=pro",     highlighted: true,  mostPopular: true,  features: ["20 resume analyses / month","30 mock interviews / month","Unlimited cover letters","Full resume editor (PDF + Word export)","Recruiter eye simulation","Candidate benchmarking","Interview intelligence","Full analytics dashboard","LinkedIn optimiser (10/mo)","Cold outreach generator","Interview debrief journal","Contact finder (20/mo)","Job tracker (unlimited)","Chrome extension (full)","Priority support"] },
-  { id: "premium",    name: "Premium",    price: "$24.99",  period: "/ month", tagline: "For serious job seekers who won't settle.",    cta: "Go Premium",        ctaHref: "/sign-up?plan=premium", highlighted: false, mostPopular: false, features: ["Everything in Pro","Unlimited resume analyses","Unlimited mock interviews","Company-specific interview prep","Advanced AI study planner","LinkedIn profile full rewrite","Unlimited contact finder","Dedicated priority support","Early access to new features"] },
-  { id: "enterprise", name: "Enterprise", price: "Custom",  period: "",        tagline: "For universities, bootcamps & career centres.", cta: "Contact us",        ctaHref: "mailto:hello@preciprocal.com", highlighted: false, mostPopular: false, features: ["Everything in Premium","Unlimited seats across your org","Custom AI interview tracks per role","Dedicated account manager","Flexible invoice billing","GDPR & CCPA ready","Custom DPA available","Pricing based on team size & needs"] },
+// Plan tiers, packs and every price the site quotes now live in lib/pricing.ts.
+// A duplicated PLANS array used to sit here, unimported by anything, and drifted
+// out of sync with both pricing surfaces. Import from "@/lib/pricing" instead.
+
+/**
+ * Every comparison page, used by components/AlternativePage.tsx to cross-link
+ * siblings.
+ *
+ * Before this existed each comparison page linked only back to the /alternatives
+ * hub, so all ten had exactly one inbound internal link. Linking them to each
+ * other spreads equity and matches how people actually shop: someone reading
+ * "vs Teal" is usually also weighing Huntr and Simplify.
+ */
+export const ALTERNATIVE_PAGES = [
+  { name: "Jobscan",         slug: "jobscan-alternative" },
+  { name: "Jobright",        slug: "jobright-alternative" },
+  { name: "Teal",            slug: "teal-alternative" },
+  { name: "Rezi",            slug: "rezi-alternative" },
+  { name: "Huntr",           slug: "huntr-alternative" },
+  { name: "Enhancv",         slug: "enhancv-alternative" },
+  { name: "Kickresume",      slug: "kickresume-alternative" },
+  { name: "Careerflow",      slug: "careerflow-alternative" },
+  { name: "Simplify",        slug: "simplify-alternative" },
+  { name: "Big Interview",   slug: "big-interview-alternative" },
+  { name: "interviewing.io", slug: "interviewing-io-alternative" },
+  { name: "Resume Worded",   slug: "resumeworded-alternative" },
+  { name: "Final Round AI",  slug: "final-round-ai-alternative" },
 ] as const;
 
 export const STATS = [
   { value: "11",     label: "Career tools in one platform" },
   { value: "150+",   label: "Interview types covered" },
   { value: "$9.99",  label: "Per month, no hidden fees" },
-  { value: "30-day", label: "Money-back guarantee" },
+  { value: "1 month", label: "Refunded when you land a job" },
 ] as const;
 
 export const UNIVERSITY_LOGOS = [
@@ -2845,11 +2867,11 @@ export const FAQS: FAQItem[] = [
   { id: "g6", category: "general",      q: "Do you have a Chrome extension?",                a: "Yes. The Preciprocal Chrome extension lets you save jobs from LinkedIn and job boards with one click, auto-import job descriptions for resume tailoring, and track applications without leaving the page." },
   { id: "g7", category: "general",      q: "How many tools does Preciprocal include?",       a: "11 core tools: Resume Analysis (ATS + Benchmarking + Recruiter Sim + Interview Intel), Resume Tailoring, Mock Interviews, Cover Letter Generator, Study Planner, LinkedIn Optimiser, Cold Outreach Generator, Interview Debrief Journal, Job Tracker, Contact Finder, and Chrome Extension." },
   { id: "g8", category: "general",      q: "Does it work for non-tech roles?",               a: "Absolutely. Every tool adapts to your target role, whether you're applying for software engineering, finance, consulting, marketing, HR, healthcare, or any other field. The AI tailors its analysis, questions, and recommendations to the specific role and job description you provide." },
-  { id: "p1", category: "pricing",      q: "Is Preciprocal really $9.99/mo?",                a: "Yes. Pro is $9.99/month (or $7.49/mo billed annually). We built Preciprocal for students and early-career professionals who can't afford $50-100/mo tools." },
-  { id: "p2", category: "pricing",      q: "Do you offer a free plan?",                      a: "Yes. The free tier includes 5 resume analyses, 3 mock interviews, 5 cover letters, 2 LinkedIn optimisations, 1 interview debrief, 2 contact lookups, a 10-job tracker, and basic analytics per month. It's a real free plan, not a 7-day trial." },
+  { id: "p1", category: "pricing",      q: "Is Preciprocal really $9.99/mo?",                a: "Yes. Pro is $9.99/month. We built Preciprocal for students and early-career professionals who can't afford $50-100/mo tools." },
+  { id: "p2", category: "pricing",      q: "Do you offer a free plan?",                      a: "Yes. The free tier includes 3 resume analyses, 5 cover letters, 1 mock interview (8 minutes), 1 interview debrief, 2 LinkedIn optimisations, 3 contact searches, and an 8-job tracker per month. It's a real free plan, not a 7-day trial." },
   { id: "p3", category: "pricing",      q: "Is there a student discount?",                   a: "Students with a .edu email get 1 month of Pro completely free, no credit card required to activate." },
-  { id: "p4", category: "pricing",      q: "What's the difference between Pro and Premium?", a: "Pro ($9.99/mo): 20 resume analyses, 30 mock interviews, unlimited cover letters, full resume editor, recruiter eye simulation, and complete analytics. Premium ($24.99/mo): unlimited everything, company-specific prep, advanced study planning, and a full LinkedIn rewrite." },
-  { id: "p5", category: "pricing",      q: "Is there a money-back guarantee?",               a: "Yes, 30 days, no questions asked. If Preciprocal doesn't help your job search, email support@preciprocal.com for a full refund." },
+  { id: "p4", category: "pricing",      q: "What's the difference between Pro and Premium?", a: "Pro ($9.99/mo): 20 resume analyses, 30 cover letters, 2 mock interviews, 5 interview debriefs, 5 LinkedIn optimisations, 15 contact searches and an unlimited job tracker. Premium ($24.99/mo) raises every limit, to 50 resume analyses, 80 cover letters, 5 mock interviews, 20 debriefs, 15 LinkedIn optimisations and 50 contact searches, and adds priority support with a 24-hour SLA plus early access to new features." },
+  { id: "p5", category: "pricing",      q: "Can I get a refund?",                            a: "Three rules, depending on what you bought. On a subscription, if you have used more than half of your monthly allowance for the current billing period, you can request a refund for the value of what you have not used, minus payment processing fees. This is based on usage, not on satisfaction. Separately, if you land a job while subscribed, send us your offer letter, a public LinkedIn post about your experience and a short testimonial, all three, and we will refund that month's subscription in full; this covers your most recent billing period only, not your whole subscription history. One-time packs are different: refundable in full within 7 days of purchase if you have not used any of the pack, and non-refundable once you have used part of it." },
   { id: "p6", category: "pricing",      q: "Can I cancel anytime?",                          a: "Yes. Cancel from Settings, Billing, Cancel Subscription. No fee, no waiting period. You keep access until the end of your billing period." },
   { id: "i1", category: "interviews",   q: "How do mock interviews work?",                   a: "Our voice-based interviews use a multi-agent AI system to simulate a real interview panel: HR screener, technical lead, and hiring manager. You speak into your mic, they respond with follow-up questions, and you get a detailed debrief with scoring across 5 dimensions." },
   { id: "i2", category: "interviews",   q: "Do I need a webcam?",                            a: "No. Mock interviews are voice-only, you just need a microphone. Your built-in laptop mic works fine." },

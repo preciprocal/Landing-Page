@@ -51,11 +51,13 @@ Usage and Analytics Data: We automatically collect information about how you int
 
 Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft Clarity applies automatic masking to text you type into form fields, and we do not use it to capture the content of your resumes, cover letters or interview responses. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
 
+Success Refund Submissions: If you claim a Success Refund, we collect the materials you submit in support of that claim: a copy of your offer letter, the address of your public post about the Service, and a written testimonial. Your offer letter is used only to verify the claim. It may contain employment and compensation details, and it is never published.
+
 Communications: If you contact us for support or other inquiries, we collect the contents of your messages and your contact information.
 
 Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 9 of this Policy.
 
-We do not knowingly collect sensitive personal information such as government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data.`,
+We do not knowingly collect sensitive personal information such as government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data. The one exception is an offer letter you choose to send us for a Success Refund claim, which you control and which may state your compensation; we do not ask you to redact it, but you may do so provided the employer, role and date remain legible.`,
   },
   {
     title: "Legal bases for processing (GDPR)",
@@ -83,6 +85,10 @@ Product Improvement: To analyze usage patterns, identify bugs and performance is
 
 Security and Fraud Prevention: To detect, investigate, and prevent fraudulent transactions, unauthorized access, and other illegal or harmful activities.
 
+Refund Claims: To assess refund requests. For a usage-based refund this means reviewing the usage recorded on your account for the billing period in question. For a Success Refund this means verifying the offer letter, public post and testimonial you submit.
+
+Marketing With Your Permission: To publish approved testimonials and success stories, strictly within the permissions you select when you submit them.
+
 Legal Compliance: To comply with applicable laws, regulations, legal processes, and governmental requests.
 
 Communications: To send transactional communications (account confirmations, payment receipts, password resets, security alerts) and, with your consent, product updates and promotional materials. You may opt out of marketing communications at any time.
@@ -103,6 +109,8 @@ Service Providers: We share information with trusted third-party service provide
 
 Google Analytics and Microsoft Clarity are the only analytics providers we use, and both are gated behind your cookie consent choice as described in Section 9.
 
+Public Publication of Testimonials: If you claim a Success Refund, we may publish the testimonial you provide on our website and in our marketing. What appears is governed by the permissions you choose when you submit it, each of which is independent: you may allow your words to be quoted without your name, allow or withhold your role and employer, and allow or withhold a link to your public post. If you withhold your name, we also suppress the link to your public post, because that post would identify you and publishing it would undo the anonymity you asked for. Your offer letter is never published. You may withdraw permission at any time by contacting support@preciprocal.com.
+
 Legal Requirements: We may disclose your information if required to do so by law, regulation, legal process, or governmental request, including to comply with a court order, subpoena, or similar legal obligation.
 
 Protection of Rights: We may disclose information where we believe disclosure is necessary to protect the rights, property, or safety of Preciprocal, our users, or the public, including to prevent fraud or other illegal activity.
@@ -122,6 +130,8 @@ Account Data: Retained for the duration of your account and for up to 90 days fo
 User-Submitted Content: Retained while your account is active. Upon account deletion, your submitted content is deleted within 30 days, except for anonymized aggregates that cannot be linked back to you.
 
 Payment Records: Retained for 7 years following the transaction to comply with financial record-keeping requirements.
+
+Success Refund Materials: Offer letters are deleted within 90 days of the claim being resolved. A published testimonial is retained for as long as it remains published, and is removed from surfaces we control within 30 days of you withdrawing permission.
 
 Usage Analytics: Retained in identifiable form for up to 24 months, after which data is aggregated and anonymized.
 
@@ -262,14 +272,14 @@ export default function PrivacyPage() {
         <FloatingDots count={15} />
 
         {/* Header */}
-        <section className="relative pt-32 pb-12 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative pt-32 pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <RevealOnScroll>
               <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: September 3, 2026. Effective date: September 3, 2026.
+                Last updated: September 19, 2026. Effective date: September 19, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
@@ -279,8 +289,8 @@ export default function PrivacyPage() {
         </section>
 
         {/* Sections */}
-        <section className="relative pb-24 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <div className="space-y-10">
               {SECTIONS.map((section, i) => (
                 <motion.div

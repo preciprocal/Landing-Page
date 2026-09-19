@@ -133,7 +133,7 @@ export default function AboutPage() {
         <FloatingDots count={25} />
 
         {/* Breadcrumb nav */}
-        <nav aria-label="Breadcrumb" className="max-w-3xl mx-auto px-6 pt-28 pb-0">
+        <nav aria-label="Breadcrumb" className="w-full pt-28 pb-0 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <ol className="flex items-center gap-2 text-xs text-slate-500">
             <li>
               <Link href="/" className="hover:text-slate-300 transition-colors">
@@ -146,8 +146,8 @@ export default function AboutPage() {
         </nav>
 
         {/* Hero */}
-        <section aria-label="About Preciprocal" className="relative pt-10 pb-20 px-6">
-          <div className="max-w-3xl mx-auto text-center">
+        <section aria-label="About Preciprocal" className="relative pt-10 pb-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full text-center">
             <RevealOnScroll>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-slate-400 font-medium mb-6">
                 Our story
@@ -165,8 +165,8 @@ export default function AboutPage() {
         </section>
 
         {/* Origin story */}
-        <section aria-label="Our origin story" className="relative py-16 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section aria-label="Our origin story" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <GlowDivider />
             <div className="mt-16 space-y-6 text-slate-400 text-base leading-relaxed">
               <RevealOnScroll>
@@ -211,8 +211,8 @@ export default function AboutPage() {
         </section>
 
         {/* Who built it */}
-        <section aria-label="Who built Preciprocal" className="relative py-16 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section aria-label="Who built Preciprocal" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <RevealOnScroll className="mb-10">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 Who&apos;s behind it
@@ -263,8 +263,8 @@ export default function AboutPage() {
         </section>
 
         {/* Timeline */}
-        <section aria-label="Company timeline" className="relative py-20 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section aria-label="Company timeline" className="relative py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <RevealOnScroll className="mb-12">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
                 How we got here
@@ -300,8 +300,8 @@ export default function AboutPage() {
         </section>
 
         {/* Values */}
-        <section aria-label="Our values" className="relative py-20 px-6">
-          <div className="max-w-4xl mx-auto">
+        <section aria-label="Our values" className="relative py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <RevealOnScroll className="mb-12 text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
                 What we believe
@@ -334,8 +334,8 @@ export default function AboutPage() {
         </section>
 
         {/* Mission statement */}
-        <section aria-label="Our mission" className="relative py-20 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section aria-label="Our mission" className="relative py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <RevealOnScroll>
               <SpotlightCard
                 className="rounded-2xl border border-indigo-500/20 bg-indigo-500/[0.04] p-10 text-center"
@@ -358,7 +358,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section aria-label="Contact and get started" className="relative py-20 px-6">
+        <section aria-label="Contact and get started" className="relative py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <div className="max-w-xl mx-auto text-center">
             <RevealOnScroll>
               <h2 className="text-2xl font-extrabold text-white mb-4">

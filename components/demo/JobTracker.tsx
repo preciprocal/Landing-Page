@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, CheckCircle2 } from "lucide-react";
 import { U, STATUS_CFG, PREP_TIMES, type TrackerJob } from "@/lib/demo";
@@ -10,7 +10,9 @@ export type { TrackerJob };
 
 // ── Chrome logo (official 4-colour) ──────────────────────────────────────────
 function ChromeLogo({ size = 40 }: { size?: number }) {
-  const id = useRef(`cl-${Math.random().toString(36).slice(2, 7)}`).current;
+  // useId is stable across server and client renders; a random id would change
+  // between them and break hydration on these SVG gradient references.
+  const id = `cl-${useId().replace(/:/g, "")}`;
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
       <circle cx="20" cy="20" r="20" fill="#fff" />

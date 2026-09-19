@@ -12,7 +12,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { InterviewPageJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
-import { fitTitle, stripBrand } from "@/lib/seoTitle";
+import { fitTitle, stripBrand, titleField } from "@/lib/seoTitle";
 import { getRoleInterviewQuestions } from "@/lib/roleContent";
 
 export async function generateStaticParams() {
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
   // template would duplicate. Build a short title and keep the longer stored
   // one for the social cards.
   const name = ROLE_DISPLAY[role]?.name ?? role;
-  const title = fitTitle(`${name} Interview Questions`, " (2026)");
+  const title = titleField(fitTitle(`${name} Interview Questions`, " (2026)"));
   return {
     title,
     description: meta.description,
@@ -56,7 +56,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
       />
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center flex-wrap">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>

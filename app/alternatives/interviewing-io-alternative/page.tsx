@@ -87,6 +87,11 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Free practice with peers available"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Not included"
+    },
+    {
       "feature": "Price",
       "ours": "$9.99/mo, unlimited-ish practice",
       "theirs": "About $179 to $339 per session"

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useParams, notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
-import StickyBanner from "@/components/StickyBanner";
 import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
 
@@ -31,8 +30,40 @@ function SidebarCTA() {
 
 // ─── Related posts ────────────────────────────────────────────────────────────
 
+/** Rotates an array so it starts `by` places in, wrapping around. */
+function rotate<T>(arr: T[], by: number): T[] {
+  if (arr.length === 0) return arr;
+  const n = ((by % arr.length) + arr.length) % arr.length;
+  return [...arr.slice(n), ...arr.slice(0, n)];
+}
+
 function RelatedPosts({ currentSlug }: { currentSlug: string }) {
-  const related = BLOG_POSTS.filter((p) => p.slug !== currentSlug).slice(0, 4);
+  /**
+   * This used to be `BLOG_POSTS.filter(...).slice(0, 4)`, which handed every
+   * post the SAME first four links. The result was four posts collecting all
+   * the internal equity while 21 others had exactly one inbound link, from the
+   * /blog index, which is what an audit flagged as thin internal linking.
+   *
+   * Rotating by the post's own index gives every post a different set, so
+   * inbound links spread evenly across the corpus. Same-category posts are
+   * preferred for the first two so the block still reads as "related" rather
+   * than arbitrary, and the rotation is deterministic, which matters because
+   * this renders during SSR.
+   */
+  const index = BLOG_POSTS.findIndex((p) => p.slug === currentSlug);
+  const current = BLOG_POSTS[index];
+  const others = BLOG_POSTS.filter((p) => p.slug !== currentSlug);
+
+  const sameCategory = rotate(
+    others.filter((p) => p.category === current?.category),
+    index
+  ).slice(0, 2);
+
+  const related: typeof BLOG_POSTS = [...sameCategory];
+  for (const post of rotate(others, index + 1)) {
+    if (related.length >= 4) break;
+    if (!related.some((p) => p.slug === post.slug)) related.push(post);
+  }
   return (
     <div>
       <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-slate-500 mb-4">
@@ -273,11 +304,10 @@ export default function BlogArticlePage() {
         datePublished={post.publishedAt}
         dateModified={post.updatedAt}
       />
-      <StickyBanner />
       <Navbar />
 
       <div style={{ background: "#050810", minHeight: "100vh" }} className="pt-[72px]">
-        <div className="max-w-[1200px] mx-auto px-6 pt-8 pb-16">
+        <div className="w-full pt-8 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
           {/* Breadcrumb */}
           <nav className="flex items-center gap-1.5 text-xs text-slate-500 mb-8">

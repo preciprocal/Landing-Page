@@ -34,6 +34,7 @@
  */
 
 import { FAQS } from "@/lib/constants";
+import { TIERS, tierFeatureLines, tierSchemaPrice } from "@/lib/pricing";
 
 export function OrganizationJsonLd() {
   const schema = {
@@ -142,34 +143,17 @@ export function SoftwareAppJsonLd() {
       "Cold Outreach Generator",
       "Interview Debrief Journal",
     ],
-    offers: [
-      {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "USD",
-        name: "Free",
-        description: "5 resume analyses, 3 mock interviews, 5 cover letters per month",
-        availability: "https://schema.org/InStock",
-      },
-      {
-        "@type": "Offer",
-        price: "9.99",
-        priceCurrency: "USD",
-        name: "Pro",
-        billingIncrement: "P1M",
-        description: "20 resume analyses, 30 mock interviews, unlimited cover letters, full analytics",
-        availability: "https://schema.org/InStock",
-      },
-      {
-        "@type": "Offer",
-        price: "24.99",
-        priceCurrency: "USD",
-        name: "Premium",
-        billingIncrement: "P1M",
-        description: "Unlimited everything, company-specific prep, priority support",
-        availability: "https://schema.org/InStock",
-      },
-    ],
+    // Derived from lib/pricing.ts. Never restate a price or quota here; this
+    // block previously carried its own copy and went stale behind the cards.
+    offers: TIERS.map((tier) => ({
+      "@type": "Offer",
+      price: tierSchemaPrice(tier.id),
+      priceCurrency: "USD",
+      name: tier.name,
+      ...(tier.priceUsd > 0 ? { billingIncrement: "P1M" } : {}),
+      description: tierFeatureLines(tier).join(", "),
+      availability: "https://schema.org/InStock",
+    })),
     // aggregateRating intentionally omitted, add once real reviews exist.
     author: {
       "@id": "https://preciprocal.com/#organization",

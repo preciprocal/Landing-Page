@@ -31,6 +31,18 @@ import {
 } from "@/components/LandingAnimations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Packs from "@/components/Packs";
+import SuccessStories from "@/components/SuccessStories";
+import RefundPolicy from "@/components/RefundPolicy";
+import {
+  TIERS,
+  getPacks,
+  tierFeatureLines,
+  tierPeriodLabel,
+  tierPriceLabel,
+  tierPriceWithPeriod,
+  tierSchemaPrice,
+} from "@/lib/pricing";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -40,45 +52,43 @@ function PricingJsonLd() {
     "@id": "https://preciprocal.com/pricing#offercatalog",
     name: "Preciprocal Pricing Plans",
     url: "https://preciprocal.com/pricing",
-    description: "AI-powered job search platform plans, Free, Pro ($9.99/mo), and Premium ($24.99/mo).",
+    description: `AI-powered job search platform plans, Free, Pro (${tierPriceWithPeriod("pro")}), and Premium (${tierPriceWithPeriod("premium")}).`,
     provider: { "@id": "https://preciprocal.com/#organization" },
-    itemListElement: [
-      {
-        "@type": "Offer",
-        "@id": "https://preciprocal.com/pricing#free",
-        name: "Free",
-        price: "0",
-        priceCurrency: "USD",
-        description: "5 resume analyses, 3 mock interviews, 5 cover letters per month. Job tracker for up to 10 jobs.",
-        availability: "https://schema.org/InStock",
-        url: `${APP_URL}/sign-up`,
-        seller: { "@id": "https://preciprocal.com/#organization" },
-      },
-      {
-        "@type": "Offer",
-        "@id": "https://preciprocal.com/pricing#pro",
-        name: "Pro",
-        price: "9.99",
-        priceCurrency: "USD",
-        description: "20 resume analyses, 30 mock interviews, unlimited cover letters, recruiter eye simulation, full analytics dashboard. 30-day money-back guarantee.",
-        availability: "https://schema.org/InStock",
-        url: `${APP_URL}/sign-up?plan=pro`,
-        billingIncrement: "P1M",
-        seller: { "@id": "https://preciprocal.com/#organization" },
-      },
-      {
-        "@type": "Offer",
-        "@id": "https://preciprocal.com/pricing#premium",
-        name: "Premium",
-        price: "24.99",
-        priceCurrency: "USD",
-        description: "Unlimited everything, company-specific interview prep, AI interview coach, post-interview improvement roadmap, priority support.",
-        availability: "https://schema.org/InStock",
-        url: `${APP_URL}/sign-up?plan=premium`,
-        billingIncrement: "P1M",
-        seller: { "@id": "https://preciprocal.com/#organization" },
-      },
-    ],
+    // Derived from lib/pricing.ts so the structured-data price and quota claims
+    // cannot drift from what the cards below actually render.
+    itemListElement: TIERS.map((tier) => ({
+      "@type": "Offer",
+      "@id": `https://preciprocal.com/pricing#${tier.id}`,
+      name: tier.name,
+      price: tierSchemaPrice(tier.id),
+      priceCurrency: "USD",
+      description: `${tierFeatureLines(tier).join(", ")}.`,
+      availability: "https://schema.org/InStock",
+      url: tier.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${tier.id}`,
+      ...(tier.priceUsd > 0 ? { billingIncrement: "P1M" } : {}),
+      seller: { "@id": "https://preciprocal.com/#organization" },
+    })),
+  };
+
+  const packsSchema = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "@id": "https://preciprocal.com/pricing#packs",
+    name: "Preciprocal Add-On Packs",
+    url: "https://preciprocal.com/pricing",
+    description: "One-time top-up packs that stack on any Preciprocal plan.",
+    provider: { "@id": "https://preciprocal.com/#organization" },
+    itemListElement: getPacks().map((pack) => ({
+      "@type": "Offer",
+      "@id": `https://preciprocal.com/pricing#${pack.id}`,
+      name: pack.name,
+      price: pack.priceUsd.toFixed(2),
+      priceCurrency: "USD",
+      description: pack.items.join(", "),
+      availability: "https://schema.org/InStock",
+      url: `${APP_URL}/sign-up`,
+      seller: { "@id": "https://preciprocal.com/#organization" },
+    })),
   };
 
   const breadcrumbSchema = {
@@ -96,7 +106,7 @@ function PricingJsonLd() {
     "@id": "https://preciprocal.com/pricing#webpage",
     url: "https://preciprocal.com/pricing",
     name: "Preciprocal Pricing, Start Free, Land Faster",
-    description: "Free plan available. Pro at $9.99/mo with 30-day money-back guarantee.",
+    description: "Free plan available. Pro at $9.99/mo. Land a job while subscribed and we refund that month.",
     isPartOf: { "@id": "https://preciprocal.com/#website" },
     about: { "@id": "https://preciprocal.com/#software" },
     inLanguage: "en-US",
@@ -115,6 +125,7 @@ function PricingJsonLd() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(offerCatalogSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(packsSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
@@ -124,87 +135,23 @@ function PricingJsonLd() {
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
-const PLANS = [
-  {
-    name: "Free",
-    price: "Free",
-    period: "",
-    tagline: "Get started and feel the value.",
-    features: [
-      "5 resume analyses / month",
-      "5 cover letters / month",
-      "2 LinkedIn optimisations / month",
-      "1 interview debrief / month",
-      "2 find contacts / month",
-      "3 mock interviews / month",
-      "Job tracker (10 jobs)",
-      "Chrome extension (limited)",
-      "Basic analytics",
-    ],
-    cta: "Get started free",
-    ctaHref: `${APP_URL}/sign-up`,
-    highlighted: false,
-  },
-  {
-    name: "Pro",
-    price: "$9.99",
-    period: "/mo",
-    tagline: "Everything an active job seeker needs.",
-    features: [
-      "20 resume analyses / month",
-      "30 mock interviews / month",
-      "Unlimited cover letters",
-      "5 LinkedIn optimisations / month",
-      "5 interview debriefs / month",
-      "10 find contacts / month",
-      "5 active study plans",
-      "Unlimited job tracker",
-      "Chrome extension (full)",
-      "Resume editor + PDF & Word export",
-      "Recruiter eye simulation",
-      "Full analytics dashboard",
-      "Priority AI responses",
-    ],
-    cta: "Start Pro",
-    ctaHref: `${APP_URL}/sign-up?plan=pro`,
-    highlighted: true,
-  },
-  {
-    name: "Premium",
-    price: "$24.99",
-    period: "/mo",
-    tagline: "Unlimited access for serious candidates.",
-    features: [
-      "Unlimited everything",
-      "Company-specific interview prep",
-      "AI interview coach + deep analysis",
-      "Post-interview improvement roadmap",
-      "All Pro features included",
-      "Priority support (24hr SLA)",
-      "Early access to new features",
-    ],
-    cta: "Go Premium",
-    ctaHref: `${APP_URL}/sign-up?plan=premium`,
-    highlighted: false,
-  },
-];
 
 const PRICING_FAQS = [
   {
     q: "Is there a free plan?",
-    a: "Yes, Preciprocal's free plan includes 5 resume analyses, 3 mock interviews, and 5 cover letters per month with no credit card required. You can use it indefinitely.",
+    a: "Yes, Preciprocal's free plan includes 3 resume analyses, 5 cover letters, 1 mock interview and 1 interview debrief per month, with no credit card required. You can use it indefinitely.",
   },
   {
     q: "What's included in the Pro plan?",
-    a: "Pro ($9.99/mo) includes 20 resume analyses, 30 mock interviews, unlimited cover letters, recruiter eye simulation, full analytics dashboard, resume editor with PDF and Word export, and the full Chrome extension.",
+    a: "Pro ($9.99/mo) includes 20 resume analyses, 30 cover letters, 2 mock interviews of 8 minutes each, 5 interview debriefs, 5 LinkedIn optimisations, 15 contact searches, an unlimited job tracker and priority AI response speed.",
   },
   {
     q: "Can I cancel anytime?",
     a: "Yes. You can cancel your subscription at any time from your account settings. You'll keep access until the end of your billing period.",
   },
   {
-    q: "What is the 30-day money-back guarantee?",
-    a: "If you don't land an interview within 30 days of using Preciprocal Pro, we'll give you a full refund, no questions asked. Email support@preciprocal.com.",
+    q: "Can I get a refund?",
+    a: "Three rules, depending on what you bought. On a subscription, if you have used more than half of your monthly allowance for the current billing period, you can request a refund for the value of what you have not used, minus payment processing fees. This is based on usage, not on satisfaction. Separately, if you land a job while subscribed, send us your offer letter, a public LinkedIn post about your experience and a short testimonial, all three, and we will refund that month's subscription in full; this covers your most recent billing period only, not your whole subscription history. One-time packs are different: refundable in full within 7 days of purchase if you have not used any of the pack, and non-refundable once you have used part of it.",
   },
   {
     q: "Is there a student discount?",
@@ -212,7 +159,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What's the difference between Pro and Premium?",
-    a: "Pro covers everything most job seekers need, resume analysis, mock interviews, cover letters, and job tracking with generous limits. Premium adds unlimited usage across all features, company-specific interview prep, an AI interview coach, and priority support.",
+    a: "Both plans include the same tools; Premium raises the monthly limits. Pro gives you 20 resume analyses, 30 cover letters and 2 mock interviews a month. Premium ($24.99/mo) gives you 50, 80 and 5 respectively, with 20 debriefs and 50 contact searches, and adds priority support on a 24-hour SLA plus early access to new features.",
   },
 ];
 
@@ -227,7 +174,7 @@ export default function PricingPage() {
       <main className="relative overflow-hidden">
 
         {/* ── Breadcrumb ── */}
-        <nav aria-label="Breadcrumb" className="max-w-[1100px] mx-auto px-6 pt-28 pb-0">
+        <nav aria-label="Breadcrumb" className="w-full pt-28 pb-0 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <ol className="flex items-center gap-2 text-xs text-slate-500">
             <li>
               <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
@@ -239,7 +186,7 @@ export default function PricingPage() {
 
         {/* ── Hero ── */}
         <section aria-label="Pricing plans" className="relative">
-          <div className="max-w-[1100px] mx-auto px-6 py-16">
+          <div className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
             <GlowDivider />
 
             <RevealOnScroll className="text-center mb-16 mt-10">
@@ -258,39 +205,39 @@ export default function PricingPage() {
             </RevealOnScroll>
 
             {/* ── Plan cards ── */}
-            <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
-              {PLANS.map((plan) => (
-                <StaggerItem key={plan.name}>
+            <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+              {TIERS.map((plan) => (
+                <StaggerItem key={plan.name} className="flex flex-col">
                   <div
-                    className={`relative rounded-2xl p-9 ${
-                      plan.highlighted
+                    className={`relative rounded-2xl p-9 flex-1 flex flex-col ${
+                      plan.mostPopular
                         ? "bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05] border border-indigo-500/30 md:scale-[1.03]"
                         : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12]"
                     } transition-all duration-300`}
                   >
-                    {plan.highlighted && <GlowingEffect spread={50} glow proximity={80} />}
+                    {plan.mostPopular && <GlowingEffect spread={50} glow proximity={80} />}
 
-                    {plan.highlighted && (
+                    {plan.mostPopular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white whitespace-nowrap z-20">
                         Most Popular
                       </div>
                     )}
 
-                    <div className="relative z-10">
+                    <div className="relative z-10 flex flex-col flex-1">
                       <h2 className="text-xl font-bold text-white mb-1">{plan.name}</h2>
                       <p className="text-[13px] text-slate-500 mb-4">{plan.tagline}</p>
 
                       <div className="mb-6">
                         <span className="text-5xl font-extrabold text-white tracking-tight">
-                          {plan.price}
+                          {tierPriceLabel(plan)}
                         </span>
-                        {plan.period && (
-                          <span className="text-[15px] text-slate-500 ml-1">{plan.period}</span>
+                        {tierPeriodLabel(plan) && (
+                          <span className="text-[15px] text-slate-500 ml-1">{tierPeriodLabel(plan)}</span>
                         )}
                       </div>
 
-                      <div className="flex flex-col gap-3.5 mb-8">
-                        {plan.features.map((feature) => (
+                      <div className="flex flex-col gap-3.5 mb-8 flex-1">
+                        {tierFeatureLines(plan).map((feature) => (
                           <div key={feature} className="flex items-center gap-2.5 text-sm text-slate-300">
                             <CheckIcon className="flex-shrink-0 text-indigo-400" />
                             <span>{feature}</span>
@@ -298,10 +245,10 @@ export default function PricingPage() {
                         ))}
                       </div>
 
-                      {plan.highlighted ? (
+                      {plan.mostPopular ? (
                         <MagneticHover>
                           <a
-                            href={plan.ctaHref}
+                            href={`${APP_URL}/sign-up?plan=${plan.id}`}
                             className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
                                        bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]"
                           >
@@ -310,7 +257,7 @@ export default function PricingPage() {
                         </MagneticHover>
                       ) : (
                         <a
-                          href={plan.ctaHref}
+                          href={plan.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${plan.id}`}
                           className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
                                      bg-white/[0.05] border border-white/[0.12] text-slate-200 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5"
                         >
@@ -323,21 +270,8 @@ export default function PricingPage() {
               ))}
             </StaggerChildren>
 
-            {/* ── Guarantee ── */}
-            <RevealOnScroll delay={0.2} className="mt-10 max-w-2xl mx-auto">
-              <div className="p-5 bg-emerald-500/[0.06] border border-emerald-500/20 rounded-2xl text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <span className="text-[15px] font-bold text-emerald-400">30-Day Money-Back Guarantee</span>
-                </div>
-                <p className="text-[13px] text-slate-400 leading-relaxed">
-                  Land an interview within 30 days or get a full refund. No hoops, no fine print,
-                  no awkward emails. We&apos;re that confident this works.
-                </p>
-              </div>
-            </RevealOnScroll>
+            {/* ── Refund policy ── */}
+            <RefundPolicy />
 
             <p className="text-center text-[13px] text-slate-600 mt-5">
               University student? Verify your .edu email for{" "}
@@ -347,8 +281,14 @@ export default function PricingPage() {
           </div>
         </section>
 
+        {/* ── One-time packs ── */}
+        <Packs />
+
+        {/* ── Success stories (hides itself when none are approved yet) ── */}
+        <SuccessStories />
+
         {/* ── Pricing FAQ ── */}
-        <section aria-label="Pricing frequently asked questions" className="relative py-16 px-6">
+        <section aria-label="Pricing frequently asked questions" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <div className="max-w-2xl mx-auto">
             <RevealOnScroll className="mb-10 text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">

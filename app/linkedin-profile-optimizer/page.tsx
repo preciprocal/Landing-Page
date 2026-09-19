@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "LinkedIn Profile Optimizer: Get Found by Recruiters",
+  title: "LinkedIn Profile Optimizer: Get Found",
   description:
     "Optimize your LinkedIn profile for recruiter search. Get a keyword-scored headline, About section, and experience bullets that surface you in the searches recruiters actually run.",
   keywords: [

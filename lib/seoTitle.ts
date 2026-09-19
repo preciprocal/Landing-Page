@@ -52,3 +52,22 @@ export function fitTitle(essential: string, ...optional: string[]): string {
   }
   return base;
 }
+
+/**
+ * Metadata `title` value that never exceeds MAX_TOTAL once the brand is added.
+ *
+ * `fitTitle` drops optional suffixes, but it will not truncate the essential
+ * text, so a long role name can still push past the budget on its own. The
+ * longest role, "Digital Marketing Specialist", produces a 47-character
+ * essential against a 46-character budget, and the only ways out are to cut a
+ * keyword or to drop the brand.
+ *
+ * Dropping the brand is the better trade: the keywords are what the page ranks
+ * for, and the brand is already in the URL, the breadcrumb and the OG tags. So
+ * titles that fit keep "| Preciprocal" via the layout template, and the handful
+ * that do not are returned as `absolute` without it.
+ */
+export function titleField(text: string): string | { absolute: string } {
+  const t = stripBrand(text);
+  return t.length <= TITLE_BUDGET ? t : { absolute: t.slice(0, MAX_TOTAL) };
+}

@@ -13,6 +13,7 @@ const FOOTER_COLUMNS = [
   {
     title: "Product",
     links: [
+      { label: "All Features",       href: "/features" },
       { label: "Free ATS Checker",   href: "/free-ats-checker" },
       { label: "Resume Tailoring",   href: "/resume-tailoring" },
       { label: "LinkedIn Optimizer", href: "/linkedin-profile-optimizer" },
@@ -118,7 +119,10 @@ function SocialLink({ label }: { label: string }) {
 export default function Footer() {
   return (
     <footer className="border-t border-white/[0.06]">
-      <div className="max-w-[1200px] mx-auto px-6 pt-16 pb-10">
+      {/* Full-bleed: no max-width cap, so the footer spans the viewport and the
+          columns spread to the edges on wide screens. Padding scales up with the
+          breakpoint so the content still clears the edge on large displays. */}
+      <div className="w-full px-6 sm:px-10 lg:px-16 pt-16 pb-10">
         {/* Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -220,9 +220,11 @@ export function CoverLetterView({ prefillRole = "", prefillCompany = "" }: {
   prefillRole?: string;
   prefillCompany?: string;
 }) {
-  const [role, setRole]           = useState(prefillRole || "Associate, LCD Data and Analytics");
-  const [company, setCompany]     = useState(prefillCompany || "Morgan Stanley");
-  const [jd, setJd]               = useState(() =>
+  // Setters dropped deliberately: these three fields are read-only in the demo,
+  // so nothing can change them after the initial prefill.
+  const [role]    = useState(prefillRole || "Associate, LCD Data and Analytics");
+  const [company] = useState(prefillCompany || "Morgan Stanley");
+  const [jd]      = useState(() =>
     getJD(prefillCompany || "Morgan Stanley", prefillRole || "Associate, LCD Data and Analytics")
   );
   const [tone, setTone]           = useState("Professional");
@@ -420,11 +422,15 @@ export function CoverLetterView({ prefillRole = "", prefillCompany = "" }: {
                 <label className="text-[10px] text-slate-400 mb-1 block">
                   Job Role <span className="text-red-400">*</span>
                 </label>
+                {/* readOnly: this is a canned example and the fields are
+                    prefilled from the job imported above. Typing here would
+                    desync the form from the letter already shown alongside. */}
                 <input
                   value={role}
-                  onChange={e => setRole(e.target.value)}
-                  placeholder="e.g. Data Scientist"
-                  className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[12px] text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition-colors"
+                  readOnly
+                  tabIndex={-1}
+                  aria-readonly="true"
+                  className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[12px] text-white outline-none cursor-default"
                 />
               </div>
 
@@ -435,9 +441,10 @@ export function CoverLetterView({ prefillRole = "", prefillCompany = "" }: {
                 </label>
                 <input
                   value={company}
-                  onChange={e => { setCompany(e.target.value); setJd(getJD(e.target.value, role)); }}
-                  placeholder="e.g. Morgan Stanley"
-                  className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[12px] text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition-colors"
+                  readOnly
+                  tabIndex={-1}
+                  aria-readonly="true"
+                  className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[12px] text-white outline-none cursor-default"
                 />
               </div>
 
@@ -449,16 +456,14 @@ export function CoverLetterView({ prefillRole = "", prefillCompany = "" }: {
                 <div className="relative">
                   <textarea
                     value={jd}
-                    onChange={e => setJd(e.target.value)}
-                    placeholder={"About the job\n\nPaste the full job posting for targeted results"}
+                    readOnly
+                    tabIndex={-1}
+                    aria-readonly="true"
                     rows={5}
-                    className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[11px] text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition-colors resize-none leading-relaxed"
+                    className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2 text-[11px] text-white outline-none cursor-default resize-none leading-relaxed"
                   />
                   <div className="flex items-center justify-between px-1 mt-0.5">
                     <span className="text-[9px] text-slate-600">{jd.length} chars</span>
-                    {jd.length > 0 && (
-                      <button onClick={() => setJd("")} className="text-[9px] text-slate-500 hover:text-slate-300 transition-colors">Clear</button>
-                    )}
                   </div>
                 </div>
               </div>

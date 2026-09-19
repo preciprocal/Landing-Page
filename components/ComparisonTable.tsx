@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, Crown, ArrowRight } from "lucide-react";
+import { reportStaleContent } from "@/lib/contentFreshness";
 import {
   SpotlightCard,
   StaggerChildren,
@@ -12,6 +13,14 @@ import {
   FloatingDots,
 } from "@/components/LandingAnimations";
 
+// ⚠️  MANUAL RECHECK REQUIRED, roughly every 90 days.
+// Competitor prices and feature sets move without notice, and a stale claim on
+// this table is a legal exposure as much as an SEO one. When you re-verify:
+//   1. Check each competitor's own live pricing page, not a cached summary.
+//   2. Update the rows below.
+//   3. Bump `checkedAt` for "comparison-table" in lib/contentFreshness.ts.
+// Step 3 silences the dev-console staleness warning. No freshness date is shown
+// on the page, so that warning is the only reminder you will get.
 const features: string[] = [
   "ATS Resume Scoring",
   "Candidate Benchmarking",
@@ -24,6 +33,7 @@ const features: string[] = [
   "Cold Outreach Generator",
   "Job Tracker + Contact Finder",
   "Chrome Extension",
+  "Application Autofill",
   "One Upload, Tailored Per Job",
   "Price (monthly)",
 ];
@@ -32,12 +42,12 @@ type CellValue = boolean | string;
 
 const competitors: { name: string; highlight: boolean; values: CellValue[] }[] = [
   //                                ATS   Bench  Recruiter IntIntel Mock  Planner CoverL  LinkedIn Cold   Tracker Chrome  1Upload Price
-  { name: "Preciprocal",      highlight: true,  values: [true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  true,  "$9.99"] },
-  { name: "Resumeworded",     highlight: false, values: [true,  false, false, false, false, false, false, true,  false, false, false, false, "$49+"] },
-  { name: "Jobright",         highlight: false, values: [false, false, false, false, false, false, true,  false, false, true,  true,  false, "$29+"] },
-  { name: "Final Round AI",   highlight: false, values: [true,  false, false, false, true,  false, true,  false, false, false, true,  false, "$99+"] },
-  { name: "Jobscan",          highlight: false, values: [true,  false, false, false, false, false, false, true,  false, false, true,  false, "$49.95"] },
-  { name: "Interviewing.io",  highlight: false, values: [false, false, false, false, true,  false, false, false, false, false, false, false, "$100+"] },
+  { name: "Preciprocal",      highlight: true,  values: [true, true, true, true, true, true, true, true, true, true, true, true, true, "$9.99"] },
+  { name: "Resumeworded",     highlight: false, values: [true, false, false, false, false, false, false, true, false, false, false, false, false, "$49+"] },
+  { name: "Jobright",         highlight: false, values: [false, false, false, false, false, false, true, false, false, true, true, true, false, "$39.99"] },
+  { name: "Final Round AI",   highlight: false, values: [true, false, false, false, true, false, true, false, false, false, true, false, false, "$90"] },
+  { name: "Jobscan",          highlight: false, values: [true, false, false, false, false, false, false, true, false, false, true, false, false, "$49.95"] },
+  { name: "Interviewing.io",  highlight: false, values: [false, false, false, false, true, false, false, false, false, false, false, false, false, "$179+"] },
 ];
 
 function CellCheck({ active, highlight }: { active: boolean; highlight: boolean }) {
@@ -65,6 +75,13 @@ function CellCheck({ active, highlight }: { active: boolean; highlight: boolean 
 
 export default function ComparisonTable() {
   const [animDone, setAnimDone] = useState(false);
+
+  // Staleness is reported to the dev console only. Nothing about the recheck
+  // schedule is rendered on the page, by request.
+  useEffect(() => {
+    if (process.env.NODE_ENV === "production") return;
+    reportStaleContent();
+  }, []);
 
   return (
     <section className="relative py-24 overflow-hidden">
@@ -149,10 +166,6 @@ export default function ComparisonTable() {
           </SpotlightCard>
         </RevealOnScroll>
 
-        <p className="text-[10px] text-slate-600 text-center mt-4">
-          Feature comparison based on publicly available information as of April 2026. Pricing reflects published plans.
-        </p>
-
         <RevealOnScroll delay={0.3} className="flex justify-center mt-8">
           <MagneticHover>
             <a
@@ -161,7 +174,7 @@ export default function ComparisonTable() {
                          bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500
                          shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
             >
-              Get all 12 features for $9.99
+              Get all 13 features for $9.99
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </MagneticHover>

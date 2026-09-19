@@ -14,7 +14,7 @@ import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 
 export const metadata: Metadata = {
-  title: "Interview Debrief Journal: Learn From Every One",
+  title: "Interview Debrief Journal for Job Seekers",
   description:
     "Log what was asked, what you said, and what you'd change while it's still fresh. Turn each interview into preparation for the next one instead of a vague memory.",
   keywords: [

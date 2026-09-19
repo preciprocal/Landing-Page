@@ -87,8 +87,13 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Free basic plan available"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Across Workday, Greenhouse and Lever"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
+      "ours": "$9.99",
       "theirs": "$23.99, or $14.41 billed annually"
     },
     {
@@ -109,7 +114,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 against $23.99, and no weekly tier",
-      "body": "Careerflow Premium is $23.99 monthly, $54.99 quarterly, or $172.99 annually. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually. Both offer real free tiers, so compare those first with your own profile."
+      "body": "Careerflow Premium is $23.99 monthly, $54.99 quarterly, or $172.99 annually. Preciprocal Pro is $9.99 monthly, with no longer commitment to buy into. Both offer real free tiers, so compare those first with your own profile."
     },
     {
       "title": "Resume depth beyond the ATS score",
@@ -132,7 +137,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How much does Careerflow cost compared to Preciprocal?",
-      "a": "Careerflow Premium is $23.99 monthly, $54.99 quarterly, or $172.99 yearly, with Premium Plus above that. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually, with mock interviews included at that tier."
+      "a": "Careerflow Premium is $23.99 monthly, $54.99 quarterly, or $172.99 yearly, with Premium Plus above that. Preciprocal Pro is $9.99 monthly, with mock interviews included at that tier."
     },
     {
       "q": "Do both tools have free plans?",

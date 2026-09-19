@@ -61,6 +61,7 @@ const COMPARISON_ROWS = [
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",          jobscan: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                 jobscan: "✅ Basic tracker" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",            jobscan: "✅ Yes" },
+  { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        jobscan: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",             jobscan: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",          jobscan: "✅ LinkedIn scanning" },
   { feature: "Free plan",                   preciprocal: "✅ 5 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
@@ -76,7 +77,7 @@ const FAQS = [
   },
   {
     q: "Why do people look for a Jobscan alternative?",
-    a: "The most common reasons are price ($49.95/mo is steep for students and new grads), scope (Jobscan only does ATS scanning, so you still need separate tools for interview prep and cover letters), and the need for a more affordable all-in-one solution. Students in particular often find they need 3-4 tools to cover what Preciprocal does in one platform.",
+    a: "The most common reasons are price ($49.95/mo monthly, or $89.95 per quarter, is steep for students and new grads), scope (Jobscan only does ATS scanning, so you still need separate tools for interview prep and cover letters), and the need for a more affordable all-in-one solution. Students in particular often find they need 3-4 tools to cover what Preciprocal does in one platform.",
   },
   {
     q: "Is Preciprocal's ATS checker as good as Jobscan's?",
@@ -88,7 +89,7 @@ const FAQS = [
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",
-    a: "Jobscan's paid plan starts at $49.95/mo. Preciprocal Pro is $9.99/mo (or $7.49/mo billed annually). That's an 80% cost reduction for more features. Students with a .edu email get 1 month of Preciprocal Pro free.",
+    a: "Jobscan's paid plan starts at $49.95/mo. Preciprocal Pro is $9.99/mo. That's an 80% cost reduction for more features. Students with a .edu email get 1 month of Preciprocal Pro free.",
   },
   {
     q: "Can I use Preciprocal's ATS checker for free?",
@@ -123,7 +124,7 @@ export default function JobscanAlternativePage() {
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
@@ -229,7 +230,7 @@ export default function JobscanAlternativePage() {
             </table>
           </div>
           <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Based on publicly available feature lists as of May 2026. Always verify on each tool's pricing page.
+            Based on publicly available feature lists as of September 2026. Always verify on each tool's pricing page.
           </p>
         </section>
 
@@ -324,7 +325,7 @@ export default function JobscanAlternativePage() {
         {/* CTA */}
         <section
           aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 rounded-2xl border"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
           style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
         >
           <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>

@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Interview Questions by Role: 40+ Careers (2026)",
+  title: "Interview Questions by Role: 40+ Careers",
   description: "Free interview question guides for 40+ roles: software engineer, product manager, data scientist, financial analyst, marketing manager, and more. Real Q&As with detailed answers, salary benchmarks, and prep tips for 2026.",
   alternates: { canonical: "https://preciprocal.com/interview-questions" },
   openGraph: {
@@ -40,7 +40,7 @@ export default function InterviewQuestionsIndexPage() {
       />
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+      <main className="w-full pt-10 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>

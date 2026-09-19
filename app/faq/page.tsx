@@ -134,7 +134,7 @@ export default function FAQPage() {
       <FloatingDots count={20} />
       <Navbar />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+      <div className="relative z-10 w-full pt-10 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Back link */}
         <Link
           href="/"

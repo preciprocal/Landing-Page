@@ -87,8 +87,13 @@ const ROWS: ComparisonRow[] = [
       "theirs": "Genuinely usable free tier"
     },
     {
+      "feature": "Application autofill",
+      "ours": "Fills the form, you review and submit",
+      "theirs": "Yes, but not Workday, Greenhouse or Lever"
+    },
+    {
       "feature": "Monthly price",
-      "ours": "$9.99, or $7.49 billed annually",
+      "ours": "$9.99",
       "theirs": "$29, or $79 per quarter"
     },
     {
@@ -105,7 +110,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$29 against $9.99, and no weekly plan trap",
-      "body": "Teal+ is $29 monthly, $79 quarterly, or $13 weekly. The weekly option looks cheap but works out near $56 a month if you stay subscribed through a real search. Preciprocal Pro is $9.99 monthly or $7.49 billed annually, with no weekly tier."
+      "body": "Teal+ is $29 monthly, $79 quarterly, or $13 weekly. The weekly option looks cheap but works out near $56 a month if you stay subscribed through a real search. Preciprocal Pro is $9.99 monthly, with no weekly tier."
     },
     {
       "title": "Built for the entry-level resume specifically",
@@ -132,7 +137,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How much does Teal cost compared to Preciprocal?",
-      "a": "Teal+ is $29 monthly, $79 quarterly, or $13 weekly. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually. Over a six-month search that is roughly $174 against $60. Both have free tiers worth trying first."
+      "a": "Teal+ is $29 monthly, $79 quarterly, or $13 weekly. Preciprocal Pro is $9.99 monthly. Over a six-month search that is roughly $174 against $60. Both have free tiers worth trying first."
     },
     {
       "q": "Does Teal have mock interviews?",

@@ -55,7 +55,7 @@ const GROUPS = [
     items: [
       { name: "Jobscan", slug: "jobscan-alternative", price: "$49.95/mo", note: "ATS scanning specialist" },
       { name: "Rezi", slug: "rezi-alternative", price: "$29/mo", note: "ATS-first resume builder" },
-      { name: "Enhancv", slug: "enhancv-alternative", price: "$14.99/mo", note: "Design-led resume builder" },
+      { name: "Enhancv", slug: "enhancv-alternative", price: "$39/mo", note: "Design-led resume builder" },
       { name: "Kickresume", slug: "kickresume-alternative", price: "$24/mo", note: "Template library" },
       { name: "Resume Worded", slug: "resumeworded-alternative", price: "See page", note: "Resume and LinkedIn scoring" },
     ],
@@ -67,6 +67,7 @@ const GROUPS = [
       { name: "Huntr", slug: "huntr-alternative", price: "$40/mo", note: "Tracker with a generous free tier" },
       { name: "Simplify", slug: "simplify-alternative", price: "$39.99/mo", note: "Free application autofill" },
       { name: "Careerflow", slug: "careerflow-alternative", price: "$23.99/mo", note: "LinkedIn optimisation" },
+      { name: "Jobright", slug: "jobright-alternative", price: "$39.99/mo", note: "AI matching and autofill" },
     ],
   },
   {
@@ -92,7 +93,7 @@ export default function AlternativesIndexPage() {
       />
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center" style={{ color: "#64748b" }}>
           <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <span>›</span>
@@ -151,7 +152,7 @@ export default function AlternativesIndexPage() {
             where they do not, which is noted on the page.
           </p>
           <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-            Preciprocal Pro is $9.99/mo, or $7.49/mo billed annually. The free plan needs no card,
+            Preciprocal Pro is $9.99/mo, billed monthly. The free plan needs no card,
             so the fastest way to judge any of this is to run your own resume through both.
           </p>
         </div>

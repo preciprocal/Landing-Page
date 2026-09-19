@@ -311,7 +311,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-5 text-[11px] text-slate-600 tracking-wide"
         >
-          No credit card · 30-day guarantee · Cancel anytime
+          No credit card · Cancel anytime
         </motion.p>
 
 

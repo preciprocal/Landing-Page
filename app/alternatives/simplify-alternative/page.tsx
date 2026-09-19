@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 const ROWS: ComparisonRow[] = [
     {
       "feature": "Application autofill",
-      "ours": "Not offered",
+      "ours": "Fills the form from your profile",
       "theirs": "Core strength, free forever"
     },
     {
@@ -93,7 +93,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Paid price",
-      "ours": "$9.99/mo, or $7.49 billed annually",
+      "ours": "$9.99/mo",
       "theirs": "$39.99/mo, or $89.99 per quarter"
     }
   ];
@@ -101,7 +101,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Use their free tier, it is genuinely good",
-      "body": "Simplify's autofill, job matching and tracking are free forever. If form-filling is your bottleneck, install it and pay nothing. The comparison only matters if you are considering Simplify+ at $39.99 a month, or if your problem is application quality rather than application speed."
+      "body": "Simplify's autofill, job matching and tracking are free forever, and its job matching is something we do not offer at all. Our extension also fills application forms, free on every plan, so autofill alone is not the deciding factor. The comparison turns on what happens after the form is submitted."
     },
     {
       "title": "Speed and quality pull against each other",
@@ -113,7 +113,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 against $39.99 for the paid tiers",
-      "body": "Simplify+ is $39.99 monthly, $19.99 weekly or $89.99 quarterly, and adds AI resume tailoring and cover letters. Preciprocal Pro is $9.99 monthly or $7.49 billed annually, and includes interview practice as well as resume and cover letter tooling. Simplify does not publish a public pricing page, so verify before subscribing."
+      "body": "Simplify+ is $39.99 monthly, $19.99 weekly or $89.99 quarterly, and adds AI resume tailoring and cover letters. Preciprocal Pro is $9.99 monthly, and includes interview practice as well as resume and cover letter tooling. Simplify does not publish a public pricing page, so verify before subscribing."
     }
   ];
 
@@ -124,7 +124,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Is Simplify's free tier worth using?",
-      "a": "Yes. Unlimited autofill, job matching and tracking at no cost is a genuinely good offer, and form-filling is real friction it removes. We would suggest using it alongside whatever you choose for resume and interview work."
+      "a": "Yes. Unlimited autofill, job matching and tracking at no cost is a genuinely good offer, and the job matching in particular is something Preciprocal does not do. Our extension covers the autofill part, so the useful overlap is smaller than it looks."
     },
     {
       "q": "Does Simplify auto-apply for me?",
@@ -132,7 +132,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How much does Simplify+ cost?",
-      "a": "Reported pricing is $39.99 monthly, $19.99 weekly or $89.99 quarterly. Simplify does not publish a public pricing page, so confirm the current figure before subscribing. Preciprocal Pro is $9.99 monthly or $7.49 monthly billed annually."
+      "a": "Reported pricing is $39.99 monthly, $19.99 weekly or $89.99 quarterly. Simplify does not publish a public pricing page, so confirm the current figure before subscribing. Preciprocal Pro is $9.99 monthly."
     },
     {
       "q": "Should I optimise for application volume?",
@@ -140,7 +140,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Can I use both together?",
-      "a": "Yes, and it is a sensible pairing: Simplify's free autofill to remove form friction, Preciprocal to make sure what you are submitting is tailored and to prepare you for the interviews. That combination costs $9.99 a month."
+      "a": "You can, though the autofill overlaps: both extensions fill application forms. The genuine pairing is Simplify for job matching and discovery, Preciprocal to make sure what you submit is tailored and to prepare you for the interviews that follow."
     }
   ];
 
@@ -152,9 +152,9 @@ export default function SimplifyAlternativePage() {
       theirPlanLabel="Simplify+"
       theirPrice="$39.99/mo"
       theirPriceNote="Autofill plus AI tailoring"
-      intro="Simplify's autofill is the best thing about it and it is free. The extension fills application forms from your saved profile, which removes a genuinely tedious part of applying, and the free tier includes unlimited autofill, job matching and tracking. That is a strong offer and worth using regardless of what else you pay for."
-      positioning="Preciprocal is not an autofill tool. It covers ATS resume scoring against specific postings, voice mock interviews, cover letters, tracking and outreach at $9.99/mo, against Simplify+ at $39.99/mo."
-      verdictTheirs="you want application autofill, in which case use the free tier, which covers autofill, matching and tracking without paying anything."
+      intro="Simplify's free tier is a strong offer: unlimited application autofill, job matching and tracking without paying anything. The autofill removes a genuinely tedious part of applying, and the job matching surfaces roles, which is something Preciprocal does not attempt at all."
+      positioning="Preciprocal fills application forms too, free on every plan, so the difference is not autofill. It is everything around the application: ATS resume scoring against specific postings, voice mock interviews, cover letters, tracking and outreach at $9.99/mo, against Simplify+ at $39.99/mo."
+      verdictTheirs="you want job matching and discovery, which we do not offer, and their free tier covers autofill, matching and tracking without paying anything."
       verdictOurs="you want the application to be good rather than fast, and you need interview preparation, since volume of untailored applications is the weakest strategy in a competitive market."
       rows={ROWS}
       reasons={REASONS}

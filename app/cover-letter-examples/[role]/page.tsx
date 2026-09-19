@@ -18,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
-import { fitTitle } from "@/lib/seoTitle";
+import { fitTitle, titleField } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 
 // ── Static params ─────────────────────────────────────────────────────────────
@@ -40,7 +40,7 @@ export async function generateMetadata({
   const roleName = display?.name ?? role.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
   const canonical = `https://preciprocal.com/cover-letter-examples/${role}`;
 
-  const title = fitTitle(`${roleName} Cover Letter Example`, " (2026)");
+  const title = titleField(fitTitle(`${roleName} Cover Letter Example`, " (2026)"));
   const description = `Free ${roleName} cover letter example and writing guide for 2026. What to include, what to avoid, and a full annotated template that gets past ATS and makes hiring managers keep reading.`;
 
   return {
@@ -280,7 +280,7 @@ export default async function CoverLetterExampleRolePage({
 
       <Navbar />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
 
         {/* Breadcrumb */}
         <nav
@@ -623,7 +623,7 @@ export default async function CoverLetterExampleRolePage({
         {/* Final CTA */}
         <section
           aria-label="Generate cover letter free"
-          className="text-center py-12 px-6 rounded-2xl"
+          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl"
           style={{
             background: "rgba(255,255,255,0.02)",
             border: "1px solid rgba(255,255,255,0.07)",

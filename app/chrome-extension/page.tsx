@@ -71,6 +71,7 @@ const FAQS = [
 const FEATURES = [
   { label: "One-click save", description: "A button on the posting itself. No copying, no tab switching, no forms." },
   { label: "Full description capture", description: "The complete posting text, kept after the listing comes down." },
+  { label: "Autofill the application", description: "Name, contact, experience and the repetitive questions, filled from your profile. You review and submit." },
   { label: "Auto-fill company and title", description: "Structured fields parsed from the page, not typed by you." },
   { label: "Straight into tailoring", description: "The saved description feeds resume tailoring without a paste step." },
   { label: "Duplicate detection", description: "Warns you if you've already applied to this role at this company." },

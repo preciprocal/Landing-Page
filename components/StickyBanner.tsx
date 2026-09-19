@@ -22,14 +22,23 @@ export default function StickyBanner() {
     if (!dismissed) setVisible(true);
   }, []);
 
-  // Set CSS variable for banner height so navbar can offset
+  // Set CSS variable for banner height so navbar can offset.
+  //
+  // The cleanup matters: this writes to <html>, which outlives the component.
+  // While the banner was mounted per page rather than in the root layout,
+  // navigating to a route without it left --banner-h at its old value, so the
+  // navbar reserved space for a banner that was no longer rendered. Resetting
+  // on unmount keeps that from happening again if it is ever moved back.
   useEffect(() => {
+    const root = document.documentElement;
+
     if (visible && bannerRef.current) {
-      const h = bannerRef.current.offsetHeight;
-      document.documentElement.style.setProperty("--banner-h", `${h}px`);
+      root.style.setProperty("--banner-h", `${bannerRef.current.offsetHeight}px`);
     } else {
-      document.documentElement.style.setProperty("--banner-h", "0px");
+      root.style.setProperty("--banner-h", "0px");
     }
+
+    return () => root.style.setProperty("--banner-h", "0px");
   }, [visible]);
 
   const dismiss = () => {

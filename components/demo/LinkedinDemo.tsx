@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, ArrowRight } from "lucide-react";
 import { U } from "@/lib/demo";
 
 // ── Chrome logo (official 4-colour) ──────────────────────────────────────────
 function ChromeLogo({ size = 40 }: { size?: number }) {
-  const id = useRef(`cl-${Math.random().toString(36).slice(2, 7)}`).current;
+  // useId is stable across server and client renders; a random id would change
+  // between them and break hydration on these SVG gradient references.
+  const id = `cl-${useId().replace(/:/g, "")}`;
   return (
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
       <circle cx="20" cy="20" r="20" fill="#fff" />

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { Menu, MenuItem, HoveredLink } from "@/components/ui/Navbarmenu";
 import { usePathname } from "next/navigation";
 import { FloatingNavbar } from "@/components/ui/FloatingNavbar";
 import { APP_URL } from "@/lib/constants";
@@ -57,6 +58,7 @@ const RESOURCES_GROUPS = [
   {
     group: "Resume & Profile",
     items: [
+      { label: "All Features",           href: "/features",                   sub: "Every tool, by search stage" },
       { label: "Free ATS Checker",       href: "/free-ats-checker",           sub: "Score your resume in 60s" },
       { label: "Resume Tailoring",       href: "/resume-tailoring",           sub: "Match any job description" },
       { label: "LinkedIn Optimizer",     href: "/linkedin-profile-optimizer", sub: "Get found by recruiters" },
@@ -96,69 +98,20 @@ const FLAT_NAV = [
   { label: "Pricing",      href: "/#pricing" },
 ];
 
-// ─── Dropdown component ───────────────────────────────────────────────────────
-
-function NavDropdown({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  // Close on outside click
-  useEffect(() => {
-    function handler(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
-      <button
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1 text-sm font-medium text-slate-400 hover:text-white transition-colors group"
-        aria-expanded={open}
-        aria-haspopup="true"
-      >
-        {label}
-        <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        />
-        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-500 rounded-full transition-all group-hover:w-full" />
-      </button>
-
-      {open && (
-        <div
-          className="absolute top-full left-1/2 -translate-x-1/2 pt-3 z-50"
-          style={{ minWidth: "720px" }}
-        >
-          {/* Arrow */}
-          <div className="absolute top-[10px] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0d1224] border-l border-t border-white/[0.08] rotate-45 z-10" />
-
-          <div className="relative bg-[#0d1224] border border-white/[0.08] rounded-2xl shadow-2xl shadow-black/50 overflow-hidden">
-            {children}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
+// Both dropdowns receive the shared hover state so moving between triggers
+// swaps panels instead of closing one and opening the other.
+type MenuProps = { active: string | null; setActive: (item: string | null) => void };
 
 // ─── Prep mega-dropdown panel ─────────────────────────────────────────────────
 
-function PrepDropdown() {
+function PrepDropdown({ active, setActive }: MenuProps) {
   return (
-    <NavDropdown label="Interview Prep">
+    <MenuItem
+      setActive={setActive}
+      active={active}
+      item="Interview Prep"
+      panelClassName="w-[720px] max-w-[calc(100vw-2rem)]"
+    >
       <div className="grid grid-cols-3 gap-0 p-2">
         {PREP_LINKS.map((group) => (
           <div key={group.group} className="p-4">
@@ -168,12 +121,7 @@ function PrepDropdown() {
             <ul className="space-y-1">
               {group.items.map((item) => (
                 <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="block text-[13px] text-slate-300 hover:text-white hover:bg-white/[0.04] rounded-lg px-2 py-1.5 transition-all"
-                  >
-                    {item.label}
-                  </Link>
+                  <HoveredLink href={item.href}>{item.label}</HoveredLink>
                 </li>
               ))}
             </ul>
@@ -186,16 +134,24 @@ function PrepDropdown() {
           </div>
         ))}
       </div>
-    </NavDropdown>
+    </MenuItem>
   );
 }
 
 // ─── Resources dropdown ───────────────────────────────────────────────────────
 
-function ResourcesDropdown() {
+function ResourcesDropdown({ active, setActive }: MenuProps) {
   return (
-    <NavDropdown label="Resources">
-      <div className="grid grid-cols-2 gap-0 p-2">
+    <MenuItem
+      setActive={setActive}
+      active={active}
+      item="Resources"
+      panelClassName="w-[900px] max-w-[calc(100vw-2rem)]"
+    >
+      {/* One row of four rather than a 2x2. Stacked, the four groups made the
+          panel tall enough to run off the bottom of the viewport and left a
+          dead gap under the shorter column. */}
+      <div className="grid grid-cols-4 gap-0 p-2 items-start">
         {RESOURCES_GROUPS.map((group) => (
           <div key={group.group} className="p-4">
             <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
@@ -219,7 +175,7 @@ function ResourcesDropdown() {
           </div>
         ))}
       </div>
-    </NavDropdown>
+    </MenuItem>
   );
 }
 
@@ -227,6 +183,7 @@ function ResourcesDropdown() {
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileExpandedGroup, setMobileExpandedGroup] = useState<string | null>(null);
   const pathname = usePathname();
   const isHomePage = pathname === "/";
@@ -234,7 +191,11 @@ export default function Navbar() {
   return (
     <FloatingNavbar style={{ top: "var(--banner-h, 0px)" }} forceBackground={!isHomePage}>
       {/* Desktop */}
-      <div className="max-w-[1200px] mx-auto flex items-center justify-between h-[72px] px-6">
+      {/* Full-bleed to match the footer: no max-width cap, with padding that
+          scales by breakpoint so the logo and CTA still clear the edge on wide
+          displays. The mega-menus are right-aligned, which matters more here,
+          since a full-width bar pushes their triggers closer to the edge. */}
+      <div className="w-full px-6 sm:px-10 lg:px-16 flex items-center justify-between h-[72px]">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
           <Image
@@ -259,15 +220,23 @@ export default function Navbar() {
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-500 rounded-full transition-all group-hover:w-full" />
             </a>
           ))}
-          <PrepDropdown />
-          <ResourcesDropdown />
+          <Menu setActive={setActiveMenu}>
+            <PrepDropdown active={activeMenu} setActive={setActiveMenu} />
+            <ResourcesDropdown active={activeMenu} setActive={setActiveMenu} />
+          </Menu>
         </div>
 
         {/* Desktop CTAs */}
         <div className="hidden md:flex items-center gap-3">
+          {/* Outlined secondary button, matching the non-highlighted plan card
+              CTAs. As bare text it read as another nav link rather than as the
+              pair to "Get Started Free". */}
           <a
             href={`${APP_URL}/sign-in`}
-            className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold
+                       text-slate-200 bg-white/[0.04] border border-white/[0.12]
+                       hover:text-white hover:bg-white/[0.08] hover:border-white/25 hover:-translate-y-0.5
+                       transition-all duration-300"
           >
             Log in
           </a>

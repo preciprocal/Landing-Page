@@ -13,7 +13,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Career Advice Blog: Interviews, Resumes, Job Search",
+  title: "Career Advice: Interviews, Resumes, Jobs",
   description: "Practical guides on acing interviews, writing resumes that pass ATS, negotiating offers, networking, visa sponsorship, and landing jobs at top companies. Updated for 2026.",
   alternates: { canonical: "https://preciprocal.com/blog" },
   openGraph: {
@@ -47,7 +47,7 @@ export default function BlogIndexPage() {
 
       <Navbar />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-16">
+      <main className="w-full pt-10 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
         {/* Breadcrumb */}
         <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center">
           <Link href="/" className="hover:text-white transition-colors">Home</Link>

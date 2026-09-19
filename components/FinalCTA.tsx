@@ -45,7 +45,7 @@ export default function FinalCTA() {
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.6 }}
           className="text-sm text-emerald-400 font-medium mb-10">
-          30-day money-back guarantee. If it doesn&apos;t work, you pay nothing.
+          Land a job while you&apos;re subscribed and we&apos;ll refund that month.
         </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

@@ -2,7 +2,14 @@
 
 import { motion } from "framer-motion";
 import { CheckIcon } from "@/components/Icons";
+import RefundPolicy from "@/components/RefundPolicy";
 import { APP_URL } from "@/lib/constants";
+import {
+  TIERS,
+  tierFeatureLines,
+  tierPeriodLabel,
+  tierPriceLabel,
+} from "@/lib/pricing";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import {
   RevealOnScroll,
@@ -12,73 +19,6 @@ import {
   GlowDivider,
 } from "@/components/LandingAnimations";
 
-const PLANS = [
-  {
-    name: "Free",
-    price: "Free",
-    period: "",
-    tagline: "Get started and feel the value.",
-    features: [
-      "2 resume analyses / month",
-      "3 cover letters / month",
-      "1 LinkedIn optimisations / month",
-      "1 interview debrief / month",
-      "1 find contacts / month",
-      "1 mock interviews / month",
-      "Job tracker (5 jobs)",
-      "Chrome extension (limited)",
-      "Basic analytics",
-    ],
-    cta: "Get started free",
-    highlighted: false,
-  },
-  {
-    name: "Pro",
-    price: "$9.99",
-    period: "/mo",
-    tagline: "Everything an active job seeker needs.",
-    features: [
-      "10 resume analyses / month",
-      "5 mock interviews / month",
-      "20 cover letters / month",
-      "3 LinkedIn optimisations / month",
-      "3 interview debriefs / month",
-      "10 find contacts / month",
-      "3 active study plans",
-      "Unlimited job tracker",
-      "Chrome extension (full)",
-      "Resume editor + PDF & Word export",
-      "Recruiter eye simulation",
-      "Full analytics dashboard",
-      "Priority AI responses",
-    ],
-    cta: "Start Pro",
-    highlighted: true,
-  },
-  {
-    name: "Premium",
-    price: "$24.99",
-    period: "/mo",
-    tagline: "Maximum power for serious candidates.",
-    features: [
-      "30 resume analyses / month",
-      "30 mock interviews / month",
-      "Unlimited cover letters",
-      "15 LinkedIn optimisations / month",
-      "20 interview debriefs / month",
-      "30 find contacts / month",
-      "15 active study plans",
-      "Unlimited job tracker",
-      "Chrome extension (full)",
-      "Resume editor + PDF & Word export",
-      "Priority AI responses",
-      "Priority support (24hr SLA)",
-      "Early access to new features",
-    ],
-    cta: "Go Premium",
-    highlighted: false,
-  },
-];
 
 export default function Pricing() {
   return (
@@ -101,18 +41,18 @@ export default function Pricing() {
         </RevealOnScroll>
 
         <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-          {PLANS.map((plan) => (
+          {TIERS.map((plan) => (
             <StaggerItem key={plan.name} className="flex flex-col">
               <div
                 className={`relative rounded-2xl p-9 flex-1 flex flex-col ${
-                  plan.highlighted
+                  plan.mostPopular
                     ? "bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05] border border-indigo-500/30 md:scale-[1.03]"
                     : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12]"
                 } transition-all duration-300`}
               >
-                {plan.highlighted && <GlowingEffect spread={50} glow proximity={80} />}
+                {plan.mostPopular && <GlowingEffect spread={50} glow proximity={80} />}
 
-                {plan.highlighted && (
+                {plan.mostPopular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white whitespace-nowrap z-20">
                     Most Popular
                   </div>
@@ -123,12 +63,14 @@ export default function Pricing() {
                   <p className="text-[13px] text-slate-500 mb-4">{plan.tagline}</p>
 
                   <div className="mb-6">
-                    <span className="text-5xl font-extrabold text-white tracking-tight">{plan.price}</span>
-                    {plan.period && <span className="text-[15px] text-slate-500 ml-1">{plan.period}</span>}
+                    <span className="text-5xl font-extrabold text-white tracking-tight">{tierPriceLabel(plan)}</span>
+                    {tierPeriodLabel(plan) && (
+                      <span className="text-[15px] text-slate-500 ml-1">{tierPeriodLabel(plan)}</span>
+                    )}
                   </div>
 
                   <div className="flex flex-col gap-3.5 mb-8 flex-1">
-                    {plan.features.map((feature) => (
+                    {tierFeatureLines(plan).map((feature) => (
                       <div key={feature} className="flex items-center gap-2.5 text-sm text-slate-300">
                         <CheckIcon className="flex-shrink-0 text-indigo-400" />
                         <span>{feature}</span>
@@ -136,7 +78,7 @@ export default function Pricing() {
                     ))}
                   </div>
 
-                  {plan.highlighted ? (
+                  {plan.mostPopular ? (
                     <MagneticHover>
                       <a href={`${APP_URL}/sign-up`}
                         className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
@@ -157,21 +99,8 @@ export default function Pricing() {
           ))}
         </StaggerChildren>
 
-        {/* Money-back guarantee */}
-        <RevealOnScroll delay={0.2} className="mt-10 max-w-2xl mx-auto">
-          <div className="p-5 bg-emerald-500/[0.06] border border-emerald-500/20 rounded-2xl text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <svg className="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="text-[15px] font-bold text-emerald-400">30-Day Money-Back Guarantee</span>
-            </div>
-            <p className="text-[13px] text-slate-400 leading-relaxed">
-              Land an interview within 30 days or get a full refund. No hoops, no fine print, no awkward emails.
-              We&apos;re that confident this works.
-            </p>
-          </div>
-        </RevealOnScroll>
+        {/* Refund policy */}
+        <RefundPolicy />
 
         <p className="text-center text-[13px] text-slate-600 mt-5">
           University student? Verify your .edu email for{" "}

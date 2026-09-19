@@ -251,8 +251,8 @@ export default function RoadmapPage() {
         <FloatingDots count={20} />
 
         {/* Hero */}
-        <section className="relative pt-32 pb-16 px-6">
-          <div className="max-w-3xl mx-auto text-center">
+        <section className="relative pt-32 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full text-center">
             <RevealOnScroll>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-slate-400 font-medium mb-6">
                 <Rocket className="w-3 h-3 text-indigo-400" />
@@ -291,8 +291,8 @@ export default function RoadmapPage() {
         </section>
 
         {/* Filter tabs */}
-        <section className="relative px-6 pb-8">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 pb-8">
+          <div className="w-full">
             <GlowDivider />
             <div className="mt-8 flex flex-wrap gap-2">
               {(["all", ...ALL_STATUSES] as const).map((f) => (
@@ -313,8 +313,8 @@ export default function RoadmapPage() {
         </section>
 
         {/* Items list */}
-        <section className="relative pb-24 px-6">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <div className="w-full">
             <AnimatePresence mode="popLayout">
               <motion.div layout className="space-y-3">
                 {filtered.map((item) => (
@@ -357,7 +357,7 @@ export default function RoadmapPage() {
         </section>
 
         {/* Suggest a feature */}
-        <section className="relative pb-24 px-6">
+        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <div className="max-w-2xl mx-auto">
             <RevealOnScroll>
               <SpotlightCard

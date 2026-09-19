@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd } from "@/components/JsonLd";
 import CookieBanner from "@/components/CookieBanner";
 import ConsentedAnalytics from "@/components/ConsentedAnalytics";
+import StickyBanner from "@/components/StickyBanner";
 import "./globals.css";
 
 const inter = Inter({
@@ -148,6 +149,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SoftwareAppJsonLd />
       </head>
       <body className="font-sans">
+        {/* Rendered here rather than per page so it survives navigation and
+            shows on every route until dismissed. It was previously mounted only
+            in app/page.tsx and the blog post template, which meant every other
+            route inherited the --banner-h offset it had already written to
+            <html> without rendering a banner to fill the space. */}
+        <StickyBanner />
         {children}
         {/* Consent gate. CookieBanner records the decision; ConsentedAnalytics
             acts on it by granting GA storage and loading Clarity. */}
