@@ -61,7 +61,7 @@ const COMPARISON_ROWS = [
   { feature: "Chrome Extension",          preciprocal: "✅ 1-click import from LinkedIn",            finalRound: "✅ Real-time interview assist" },
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        finalRound: "❌ Not included" },
   { feature: "Study Planner",             preciprocal: "✅ Day-by-day AI schedule",                  finalRound: "❌ Not included" },
-  { feature: "Free plan",                 preciprocal: "✅ 3 mock interviews/mo, no card",           finalRound: "✅ Limited free tier" },
+  { feature: "Free plan",                 preciprocal: "✅ 1 mock interview/mo, no card",           finalRound: "✅ Limited free tier" },
   { feature: "Starting price",            preciprocal: "✅ $9.99/mo (Pro)",                          finalRound: "⚠️ Higher pricing tiers" },
   { feature: "Student discount",          preciprocal: "✅ 1 month Pro free with .edu email",        finalRound: "❌ No student-specific plan" },
   { feature: "Primary audience",          preciprocal: "✅ Students & new grads",                    finalRound: "⚠️ General / enterprise-focused" },
@@ -86,7 +86,7 @@ const FAQS = [
   },
   {
     q: "Can I try Preciprocal before paying?",
-    a: "Yes. The free plan includes 3 mock interviews per month, 5 resume analyses, and 5 cover letters, no credit card required. Students with a .edu email get 1 full month of Pro free (30 interviews/month, unlimited cover letters).",
+    a: "Yes. The free plan includes 1 mock interview per month, 3 resume analyses, and 5 cover letters, no credit card required. Students with a .edu email get 1 full month of Pro free (2 mock interviews and 30 cover letters a month).",
   },
 ];
 
@@ -300,7 +300,7 @@ export default function FinalRoundAIAlternativePage() {
             Try Preciprocal free. No card required.
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            3 mock interviews, 5 resume analyses, and 5 cover letters per month on the free plan.
+            1 mock interview, 3 resume analyses, and 5 cover letters per month on the free plan.
             Students with a .edu email get 1 month of Pro free.
           </p>
           <Link

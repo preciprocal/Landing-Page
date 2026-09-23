@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: "How many cover letters can I generate for free?",
-    a: "The free plan includes 5 cover letters per month, no credit card required. Pro ($9.99/mo) includes unlimited cover letters. Students with a .edu email get 1 month of Pro free.",
+    a: "The free plan includes 5 cover letters per month, no credit card required. Pro ($9.99/mo) includes 30 cover letters a month. Students with a .edu email get 1 month of Pro free.",
   },
   {
     q: "Can I customise the output?",
@@ -392,7 +392,7 @@ export default function CoverLetterGeneratorPage() {
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
             5 cover letters per month on the free plan. Students with a .edu email get 1 month of
-            Pro free (unlimited cover letters). No credit card required.
+            Pro free (30 cover letters a month). No credit card required.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

@@ -77,7 +77,7 @@ const ATS_FAQS = [
   },
   {
     q: "Is the ATS checker really free?",
-    a: "Yes. Preciprocal's free plan includes 5 ATS resume analyses per month, no credit card required. Each analysis includes your overall score, keyword gap analysis, formatting issues, and section structure feedback. Paid plans include the Recruiter Eye Simulation, Candidate Benchmarking, and Interview Intelligence features.",
+    a: "Yes. Preciprocal's free plan includes 3 ATS resume analyses per month, no credit card required. Each analysis includes your overall score, keyword gap analysis, formatting issues, and section structure feedback. Paid plans include the Recruiter Eye Simulation, Candidate Benchmarking, and Interview Intelligence features.",
   },
   {
     q: "What file formats does the ATS checker support?",

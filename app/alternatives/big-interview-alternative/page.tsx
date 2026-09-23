@@ -63,7 +63,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, unlimited on Pro",
+      "ours": "Company-researched, 30/mo on Pro",
       "theirs": "Not included"
     },
     {

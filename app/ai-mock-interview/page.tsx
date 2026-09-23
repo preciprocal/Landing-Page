@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: "Is there a free plan?",
-    a: "Yes. The free tier includes 3 mock interviews per month, no credit card required. Students with a .edu email get 1 month of Pro free (30 interviews/month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
+    a: "Yes. The free tier includes 1 mock interview per month, no credit card required. Students with a .edu email get 1 month of Pro free (2 mock interviews a month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
   },
   {
     q: "Do I need a webcam?",
@@ -420,7 +420,7 @@ export default function AIMockInterviewPage() {
             Start practicing today. It is free.
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            3 mock interviews per month on the free plan. Students with a .edu email get 1 month of Pro
+            1 mock interview per month on the free plan. Students with a .edu email get 1 month of Pro
             free. No credit card required.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

@@ -21,9 +21,6 @@
  * to be touched. See the TODO on PACKS.
  */
 
-/** Length cap on a single mock interview session, in minutes. */
-export const MOCK_INTERVIEW_MINUTES = 8;
-
 export type TierId = "free" | "pro" | "premium";
 
 /** `null` means unlimited. */
@@ -33,9 +30,23 @@ export type TierQuotas = {
   resumeAnalyses: Quota;
   coverLetters: Quota;
   mockInterviews: Quota;
-  interviewDebriefs: Quota;
+  /**
+   * Minutes per mock interview session. Tier-specific rather than one global
+   * constant: the cap is part of what a higher plan buys you.
+   */
+  mockInterviewMinutes: number;
+  studyPlans: Quota;
   linkedinOptimizations: Quota;
+  outreachMessages: Quota;
   contactSearches: Quota;
+  /**
+   * AI analyses of interviews the user actually sat, as distinct from the
+   * mock interviews we run. Named for what it measures; it was previously
+   * called interviewDebriefs, which conflated the two.
+   */
+  interviewAnalyses: Quota;
+  /** Real interviews the user can log in the journal. */
+  loggedInterviews: Quota;
   trackedJobs: Quota;
 };
 
@@ -62,9 +73,13 @@ export const TIERS: readonly Tier[] = [
       resumeAnalyses: 3,
       coverLetters: 5,
       mockInterviews: 1,
-      interviewDebriefs: 1,
+      mockInterviewMinutes: 8,
+      studyPlans: 2,
       linkedinOptimizations: 2,
+      outreachMessages: 3,
       contactSearches: 3,
+      interviewAnalyses: 1,
+      loggedInterviews: 10,
       trackedJobs: 8,
     },
     perks: [],
@@ -80,9 +95,13 @@ export const TIERS: readonly Tier[] = [
       resumeAnalyses: 20,
       coverLetters: 30,
       mockInterviews: 2,
-      interviewDebriefs: 5,
+      mockInterviewMinutes: 10,
+      studyPlans: 10,
       linkedinOptimizations: 5,
+      outreachMessages: 20,
       contactSearches: 15,
+      interviewAnalyses: 4,
+      loggedInterviews: 60,
       trackedJobs: null,
     },
     perks: ["Priority AI response speed"],
@@ -98,9 +117,13 @@ export const TIERS: readonly Tier[] = [
       resumeAnalyses: 50,
       coverLetters: 80,
       mockInterviews: 5,
-      interviewDebriefs: 20,
+      mockInterviewMinutes: 12,
+      studyPlans: 25,
       linkedinOptimizations: 15,
+      outreachMessages: 60,
       contactSearches: 50,
+      interviewAnalyses: 12,
+      loggedInterviews: 150,
       trackedJobs: null,
     },
     perks: [
@@ -124,42 +147,50 @@ export type Pack = {
 /**
  * One-time purchases, not subscription tiers.
  *
- * TODO: the two interview packs are priced against pending backend cost data,
- * so `priceUsd` and the mock-interview grants below are expected to move. When
- * a real pricing endpoint exists, change `getPacks()` to fetch it and delete
- * this constant; no component reads PACKS directly.
+ * Revised September 2026: the Starter Pack is new, the Final Round pack was
+ * retired, Networking and Interview Boost were repriced, and Application Boost
+ * no longer grants tracked jobs (Pro and Premium are unlimited, and the Free
+ * tracker cap is not something a pack tops up).
+ *
+ * When a real pricing endpoint exists, change `getPacks()` to fetch it and
+ * delete this constant; no component reads PACKS directly.
  */
 const PACKS: readonly Pack[] = [
+  {
+    id: "starter-pack",
+    name: "Starter Pack",
+    priceUsd: 4.99,
+    items: [
+      "+1 mock interview",
+      "+5 resume analyses",
+      "+15 cover letters",
+      "+2 contact searches",
+      "+2 LinkedIn optimisations",
+      "+2 outreach messages",
+      "+2 logged interviews",
+    ],
+  },
   {
     id: "application-boost",
     name: "Application Boost",
     priceUsd: 4.99,
-    items: ["+10 resume analyses", "+15 cover letters", "+20 tracked jobs"],
+    items: ["+10 resume analyses", "+15 cover letters"],
   },
   {
     id: "networking-pack",
     name: "Networking Pack",
-    priceUsd: 5.99,
-    items: ["+15 contact searches", "+3 LinkedIn optimisations"],
+    priceUsd: 4.99,
+    items: [
+      "+15 contact searches",
+      "+3 LinkedIn optimisations",
+      "+15 outreach messages",
+    ],
   },
   {
     id: "interview-boost",
     name: "Interview Boost",
-    priceUsd: 7.99,
-    items: [
-      `+3 mock interviews (${MOCK_INTERVIEW_MINUTES}-min cap)`,
-      "+2 interview debriefs",
-    ],
-  },
-  {
-    id: "final-round",
-    name: "Final Round",
-    priceUsd: 12.99,
-    items: [
-      `+5 mock interviews (${MOCK_INTERVIEW_MINUTES}-min cap)`,
-      "+5 interview debriefs",
-      "Priority AI response speed for 7 days",
-    ],
+    priceUsd: 6.49,
+    items: ["+2 mock interviews", "+3 logged interviews"],
   },
 ];
 
@@ -267,20 +298,21 @@ export function tierFeatureLines(tier: Tier): string[] {
   const lines: string[] = [
     `${pluralise(q.resumeAnalyses ?? 0, "resume analysis", "resume analyses")} / month`,
     `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")} / month`,
-    mockInterviewLine(q.mockInterviews ?? 0),
-    `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")} / month`,
+    mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
+    `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")} / month`,
     `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")} / month`,
+    `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")} / month`,
     `${pluralise(q.contactSearches ?? 0, "contact search", "contact searches")} / month`,
+    `${pluralise(q.interviewAnalyses ?? 0, "AI interview analysis", "AI interview analyses")} / month`,
+    `${pluralise(q.loggedInterviews ?? 0, "logged interview", "logged interviews")} / month`,
     q.trackedJobs === null ? "Unlimited job tracker" : `Job tracker (${q.trackedJobs} jobs)`,
   ];
 
   return [...lines, ...tier.perks];
 }
 
-function mockInterviewLine(count: number): string {
-  const suffix = count === 1
-    ? `(${MOCK_INTERVIEW_MINUTES} min)`
-    : `(${MOCK_INTERVIEW_MINUTES} min each)`;
+function mockInterviewLine(count: number, minutes: number): string {
+  const suffix = count === 1 ? `(${minutes} min)` : `(${minutes} min each)`;
   return `${pluralise(count, "mock interview", "mock interviews")} / month ${suffix}`;
 }
 

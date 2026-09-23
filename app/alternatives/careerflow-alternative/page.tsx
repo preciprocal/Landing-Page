@@ -43,12 +43,12 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "AI mock interviews",
-      "ours": "Voice panel, 30/mo on Pro at $9.99",
+      "ours": "Voice panel, 2/mo on Pro at $9.99",
       "theirs": "On Premium Plus, above Premium"
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, unlimited on Pro",
+      "ours": "Company-researched, 30/mo on Pro",
       "theirs": "Unlimited on Premium"
     },
     {
@@ -83,7 +83,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Free plan",
-      "ours": "5 analyses, 3 mocks, 10 tracked jobs",
+      "ours": "3 analyses, 1 mock, 8 tracked jobs",
       "theirs": "Free basic plan available"
     },
     {
@@ -106,7 +106,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Mock interviews on the base tier, not an upsell",
-      "body": "Careerflow puts AI mock interviews on Premium Plus, above the $23.99 Premium tier. Preciprocal includes 30 mock interviews a month on the $9.99 Pro tier, and 3 a month on the free plan. If interview practice is part of why you are buying a tool, that pricing structure matters."
+      "body": "Careerflow puts AI mock interviews on Premium Plus, above the $23.99 Premium tier. Preciprocal includes 2 mock interviews a month on the $9.99 Pro tier, and 3 a month on the free plan. If interview practice is part of why you are buying a tool, that pricing structure matters."
     },
     {
       "title": "Voice-based rather than text-based practice",

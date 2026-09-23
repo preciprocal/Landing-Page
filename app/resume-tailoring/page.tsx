@@ -70,7 +70,7 @@ const FAQS = [
   },
   {
     q: "Is resume tailoring included in the free plan?",
-    a: "The free plan includes 5 resume analyses per month, which covers tailoring against specific job descriptions. Pro raises that to 20 per month and unlocks the full resume editor.",
+    a: "The free plan includes 3 resume analyses per month, which covers tailoring against specific job descriptions. Pro raises that to 20 per month and unlocks the full resume editor.",
   },
 ];
 
@@ -94,13 +94,13 @@ export default function ResumeTailoringPage() {
     <ToolPage
       breadcrumbName="Resume Tailoring"
       canonicalPath="/resume-tailoring"
-      badge="Free, 5 analyses per month"
+      badge="Free, 3 analyses per month"
       h1="Tailor your resume"
       h1Accent="to any job description"
       subhead="The same resume scores 55 against one posting and 85 against another. Paste the job description, see exactly which terms you're missing, and get bullet-level rewrites you approve one by one."
       ctaTool="resume-tailoring"
       ctaLabel="Tailor my resume free"
-      ctaMicrocopy="5 free analyses/month · Every change reviewable · No credit card"
+      ctaMicrocopy="3 free analyses/month · Every change reviewable · No credit card"
       featuresTitle="What the tailoring tool does"
       featuresSubtitle="Gets a per-application rewrite down from 30 minutes to about three, so you actually do it every time."
       features={FEATURES}

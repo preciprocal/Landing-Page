@@ -60,14 +60,14 @@ const COMPARISON_ROWS = [
   { feature: "Candidate benchmarking",      preciprocal: "✅ See how you rank vs applicant pool",     resumeWorded: "⚠️ Limited comparison data" },
   { feature: "Recruiter eye simulation",    preciprocal: "✅ 6-second scan + attention heatmap",      resumeWorded: "❌ Not included" },
   { feature: "Resume editor",               preciprocal: "✅ Full editor, PDF + Word export",         resumeWorded: "⚠️ Basic suggestions only" },
-  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 30/mo on Pro",        resumeWorded: "❌ Not included" },
+  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 2/mo on Pro",        resumeWorded: "❌ Not included" },
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",         resumeWorded: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                resumeWorded: "❌ Not included" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",           resumeWorded: "❌ Not included" },
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        resumeWorded: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",            resumeWorded: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",         resumeWorded: "✅ LinkedIn grader" },
-  { feature: "Free plan",                   preciprocal: "✅ 5 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
+  { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                         resumeWorded: "⚠️ $49/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",       resumeWorded: "❌ No student plan" },
   { feature: "Primary audience",            preciprocal: "✅ Students & new grads",                   resumeWorded: "⚠️ General professionals" },
@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Resume Worded doesn't?",
-    a: "AI mock interviews (30/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full job search operating system.",
+    a: "AI mock interviews (2/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full job search operating system.",
   },
   {
     q: "How much does Resume Worded cost vs Preciprocal?",
@@ -96,7 +96,7 @@ const FAQS = [
   },
   {
     q: "Can I get free resume feedback without paying?",
-    a: "Yes. Preciprocal's free plan includes 5 full resume analyses per month with no credit card required. You get ATS score, keyword gap analysis, formatting recommendations, and recruiter simulation on every scan.",
+    a: "Yes. Preciprocal's free plan includes 3 full resume analyses per month with no credit card required. You get ATS score, keyword gap analysis, formatting recommendations, and recruiter simulation on every scan.",
   },
 ];
 
@@ -336,7 +336,7 @@ export default function ResumeWordedAlternativePage() {
             Try Preciprocal free. No credit card needed.
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            5 resume analyses, 3 mock interviews, and 5 cover letters per month on the free plan.
+            3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
             Students with a .edu email get 1 month of Pro free.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

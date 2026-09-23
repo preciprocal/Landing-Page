@@ -53,7 +53,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "AI mock interviews",
-      "ours": "Voice, multi-agent panel, 30/mo on Pro",
+      "ours": "Voice, multi-agent panel, 2/mo on Pro",
       "theirs": "Not included"
     },
     {
@@ -68,7 +68,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, unlimited on Pro",
+      "ours": "Company-researched, 30/mo on Pro",
       "theirs": "Unlimited on Pro"
     },
     {

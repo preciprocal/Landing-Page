@@ -139,11 +139,11 @@ function PricingJsonLd() {
 const PRICING_FAQS = [
   {
     q: "Is there a free plan?",
-    a: "Yes, Preciprocal's free plan includes 3 resume analyses, 5 cover letters, 1 mock interview and 1 interview debrief per month, with no credit card required. You can use it indefinitely.",
+    a: "Yes, Preciprocal's free plan includes 3 resume analyses, 5 cover letters, 1 mock interview and 1 AI interview analysis per month, with no credit card required. You can use it indefinitely.",
   },
   {
     q: "What's included in the Pro plan?",
-    a: "Pro ($9.99/mo) includes 20 resume analyses, 30 cover letters, 2 mock interviews of 8 minutes each, 5 interview debriefs, 5 LinkedIn optimisations, 15 contact searches, an unlimited job tracker and priority AI response speed.",
+    a: "Pro ($9.99/mo) includes 20 resume analyses, 30 cover letters, 2 mock interviews of 10 minutes each, 10 study plans, 5 LinkedIn optimisations, 20 outreach messages, 15 contact searches, 4 AI analyses of real interviews, 60 logged interviews, an unlimited job tracker and priority AI response speed.",
   },
   {
     q: "Can I cancel anytime?",
@@ -159,7 +159,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What's the difference between Pro and Premium?",
-    a: "Both plans include the same tools; Premium raises the monthly limits. Pro gives you 20 resume analyses, 30 cover letters and 2 mock interviews a month. Premium ($24.99/mo) gives you 50, 80 and 5 respectively, with 20 debriefs and 50 contact searches, and adds priority support on a 24-hour SLA plus early access to new features.",
+    a: "Both plans include the same tools; Premium raises the monthly limits. Pro gives you 20 resume analyses, 30 cover letters and 2 mock interviews of 10 minutes each. Premium ($24.99/mo) gives you 50, 80 and 5 of 12 minutes each, plus 25 study plans, 15 LinkedIn optimisations, 60 outreach messages, 50 contact searches, 12 AI interview analyses and 150 logged interviews, and it adds priority support on a 24-hour SLA plus early access to new features.",
   },
 ];
 

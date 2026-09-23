@@ -57,14 +57,14 @@ const COMPARISON_ROWS = [
   { feature: "Resume editor",               preciprocal: "✅ Full editor, PDF + Word export",          jobscan: "✅ Basic editor" },
   { feature: "Recruiter eye simulation",    preciprocal: "✅ 6-second scan + heatmap",                 jobscan: "❌ Not included" },
   { feature: "Candidate benchmarking",      preciprocal: "✅ See how you rank vs applicant pool",      jobscan: "❌ Not included" },
-  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 30/mo on Pro",         jobscan: "❌ Not included" },
+  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 2/mo on Pro",         jobscan: "❌ Not included" },
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",          jobscan: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                 jobscan: "✅ Basic tracker" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",            jobscan: "✅ Yes" },
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        jobscan: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",             jobscan: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",          jobscan: "✅ LinkedIn scanning" },
-  { feature: "Free plan",                   preciprocal: "✅ 5 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
+  { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                          jobscan: "⚠️ $49.95/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",        jobscan: "❌ No student plan" },
   { feature: "Primary audience",            preciprocal: "✅ Students & new grads",                    jobscan: "⚠️ General job seekers" },
@@ -85,7 +85,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Jobscan doesn't?",
-    a: "AI mock interviews (30/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full job search platform.",
+    a: "AI mock interviews (2/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full job search platform.",
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",
@@ -93,7 +93,7 @@ const FAQS = [
   },
   {
     q: "Can I use Preciprocal's ATS checker for free?",
-    a: "Yes. Preciprocal's free plan includes 5 resume analyses per month, no credit card required. You get a full ATS score, keyword gap analysis, and formatting recommendations on every scan.",
+    a: "Yes. Preciprocal's free plan includes 3 resume analyses per month, no credit card required. You get a full ATS score, keyword gap analysis, and formatting recommendations on every scan.",
   },
 ];
 
@@ -255,7 +255,7 @@ export default function JobscanAlternativePage() {
               },
               {
                 title: "Free ATS checker with no credit card",
-                body: "Preciprocal's free plan includes 5 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
+                body: "Preciprocal's free plan includes 3 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
               },
             ].map(({ title, body }) => (
               <div
@@ -332,7 +332,7 @@ export default function JobscanAlternativePage() {
             Try Preciprocal free. No credit card needed.
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            5 resume analyses, 3 mock interviews, and 5 cover letters per month on the free plan.
+            3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
             Students with a .edu email get 1 month of Pro free.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
