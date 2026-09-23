@@ -32,21 +32,23 @@ export type TierQuotas = {
   mockInterviews: Quota;
   /**
    * Minutes per mock interview session. Tier-specific rather than one global
-   * constant: the cap is part of what a higher plan buys you.
+   * constant: the session cap is part of what a higher plan buys you.
    */
   mockInterviewMinutes: number;
+  /**
+   * Throughput cap, not a monthly allowance: how many resume or cover letter
+   * generations can run in a single hour. Rendered separately from the monthly
+   * meters so the two are not confused.
+   */
+  resumeCoverLetterPerHour: number;
   studyPlans: Quota;
+  /** Debriefs of real interviews the user sat, captured in the journal. */
+  interviewDebriefs: Quota;
+  /** AI analyses run over those debriefs. */
+  interviewAnalyses: Quota;
   linkedinOptimizations: Quota;
   outreachMessages: Quota;
   contactSearches: Quota;
-  /**
-   * AI analyses of interviews the user actually sat, as distinct from the
-   * mock interviews we run. Named for what it measures; it was previously
-   * called interviewDebriefs, which conflated the two.
-   */
-  interviewAnalyses: Quota;
-  /** Real interviews the user can log in the journal. */
-  loggedInterviews: Quota;
   trackedJobs: Quota;
 };
 
@@ -74,13 +76,14 @@ export const TIERS: readonly Tier[] = [
       coverLetters: 5,
       mockInterviews: 1,
       mockInterviewMinutes: 8,
+      resumeCoverLetterPerHour: 5,
       studyPlans: 2,
+      interviewDebriefs: 2,
+      interviewAnalyses: 1,
       linkedinOptimizations: 2,
       outreachMessages: 3,
       contactSearches: 3,
-      interviewAnalyses: 1,
-      loggedInterviews: 10,
-      trackedJobs: 8,
+      trackedJobs: 10,
     },
     perks: [],
     cta: "Get started free",
@@ -94,14 +97,15 @@ export const TIERS: readonly Tier[] = [
     quotas: {
       resumeAnalyses: 20,
       coverLetters: 30,
-      mockInterviews: 2,
+      mockInterviews: 3,
       mockInterviewMinutes: 10,
+      resumeCoverLetterPerHour: 10,
       studyPlans: 10,
+      interviewDebriefs: 5,
+      interviewAnalyses: 4,
       linkedinOptimizations: 5,
       outreachMessages: 20,
       contactSearches: 15,
-      interviewAnalyses: 4,
-      loggedInterviews: 60,
       trackedJobs: null,
     },
     perks: ["Priority AI response speed"],
@@ -118,12 +122,13 @@ export const TIERS: readonly Tier[] = [
       coverLetters: 80,
       mockInterviews: 5,
       mockInterviewMinutes: 12,
+      resumeCoverLetterPerHour: 15,
       studyPlans: 25,
+      interviewDebriefs: 10,
+      interviewAnalyses: 12,
       linkedinOptimizations: 15,
       outreachMessages: 60,
       contactSearches: 50,
-      interviewAnalyses: 12,
-      loggedInterviews: 150,
       trackedJobs: null,
     },
     perks: [
@@ -300,12 +305,14 @@ export function tierFeatureLines(tier: Tier): string[] {
     `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")} / month`,
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
     `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")} / month`,
+    `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")} / month`,
+    `${pluralise(q.interviewAnalyses ?? 0, "AI interview analysis", "AI interview analyses")} / month`,
     `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")} / month`,
     `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")} / month`,
-    `${pluralise(q.contactSearches ?? 0, "contact search", "contact searches")} / month`,
-    `${pluralise(q.interviewAnalyses ?? 0, "AI interview analysis", "AI interview analyses")} / month`,
-    `${pluralise(q.loggedInterviews ?? 0, "logged interview", "logged interviews")} / month`,
+    `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")} / month`,
     q.trackedJobs === null ? "Unlimited job tracker" : `Job tracker (${q.trackedJobs} jobs)`,
+    // Hourly throughput, stated last so it is not read as another monthly meter.
+    `${q.resumeCoverLetterPerHour} resume or cover letter runs / hour`,
   ];
 
   return [...lines, ...tier.perks];

@@ -60,7 +60,7 @@ const COMPARISON_ROWS = [
   { feature: "Candidate benchmarking",      preciprocal: "✅ See how you rank vs applicant pool",     resumeWorded: "⚠️ Limited comparison data" },
   { feature: "Recruiter eye simulation",    preciprocal: "✅ 6-second scan + attention heatmap",      resumeWorded: "❌ Not included" },
   { feature: "Resume editor",               preciprocal: "✅ Full editor, PDF + Word export",         resumeWorded: "⚠️ Basic suggestions only" },
-  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 2/mo on Pro",        resumeWorded: "❌ Not included" },
+  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 3/mo on Pro",        resumeWorded: "❌ Not included" },
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",         resumeWorded: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                resumeWorded: "❌ Not included" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",           resumeWorded: "❌ Not included" },
@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Resume Worded doesn't?",
-    a: "AI mock interviews (2/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full job search operating system.",
+    a: "AI mock interviews (3/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full job search operating system.",
   },
   {
     q: "How much does Resume Worded cost vs Preciprocal?",

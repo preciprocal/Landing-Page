@@ -53,7 +53,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "AI mock interviews",
-      "ours": "Voice, multi-agent panel, 2/mo on Pro",
+      "ours": "Voice, multi-agent panel, 3/mo on Pro",
       "theirs": "Not included"
     },
     {

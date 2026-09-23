@@ -57,7 +57,7 @@ const COMPARISON_ROWS = [
   { feature: "Resume editor",               preciprocal: "✅ Full editor, PDF + Word export",          jobscan: "✅ Basic editor" },
   { feature: "Recruiter eye simulation",    preciprocal: "✅ 6-second scan + heatmap",                 jobscan: "❌ Not included" },
   { feature: "Candidate benchmarking",      preciprocal: "✅ See how you rank vs applicant pool",      jobscan: "❌ Not included" },
-  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 2/mo on Pro",         jobscan: "❌ Not included" },
+  { feature: "AI Mock Interviews",          preciprocal: "✅ Multi-agent panel, 3/mo on Pro",         jobscan: "❌ Not included" },
   { feature: "Cover Letter Generator",      preciprocal: "✅ AI-written, company-researched",          jobscan: "❌ Not included" },
   { feature: "Job Tracker",                 preciprocal: "✅ Kanban + contact finder",                 jobscan: "✅ Basic tracker" },
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",            jobscan: "✅ Yes" },
@@ -85,7 +85,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Jobscan doesn't?",
-    a: "AI mock interviews (2/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full job search platform.",
+    a: "AI mock interviews (3/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full job search platform.",
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",

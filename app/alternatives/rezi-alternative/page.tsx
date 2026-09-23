@@ -145,7 +145,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Can I try both free?",
-      "a": "Preciprocal's free plan is permanent and needs no card: 3 resume analyses, 5 cover letters and an 8-job tracker each month. Rezi has a free tier with limits on downloads and features. Running the same resume through both is the fastest way to decide."
+      "a": "Preciprocal's free plan is permanent and needs no card: 3 resume analyses, 5 cover letters and a 10-job tracker each month. Rezi has a free tier with limits on downloads and features. Running the same resume through both is the fastest way to decide."
     }
   ];
 

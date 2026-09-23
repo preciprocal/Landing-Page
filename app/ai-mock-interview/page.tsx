@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: "Is there a free plan?",
-    a: "Yes. The free tier includes 1 mock interview per month, no credit card required. Students with a .edu email get 1 month of Pro free (2 mock interviews a month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
+    a: "Yes. The free tier includes 1 mock interview per month, no credit card required. Students with a .edu email get 1 month of Pro free (3 mock interviews a month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
   },
   {
     q: "Do I need a webcam?",

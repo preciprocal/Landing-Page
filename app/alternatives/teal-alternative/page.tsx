@@ -53,7 +53,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "AI mock interviews",
-      "ours": "Voice, multi-agent panel, 2/mo on Pro",
+      "ours": "Voice, multi-agent panel, 3/mo on Pro",
       "theirs": "Not included"
     },
     {
@@ -83,7 +83,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Free plan",
-      "ours": "3 analyses, 1 mock, 8 tracked jobs",
+      "ours": "3 analyses, 1 mock, 10 tracked jobs",
       "theirs": "Genuinely usable free tier"
     },
     {
@@ -158,7 +158,7 @@ export default function TealAlternativePage() {
       theirPrice="$29/mo"
       theirPriceNote="Resume builder and tracker"
       intro="Teal is one of the better-designed job search tools available. The Chrome extension, the job tracker and the resume-to-posting matching are genuinely well built, and the free tier is usable rather than a teaser. Where it stops is interview preparation: Teal will help you get the application in, then leaves you on your own for everything after."
-      positioning="Preciprocal covers the same resume and tracking ground and adds voice-based mock interviews, a study planner and AI interview analysis, at $9.99/mo against Teal+ at $29/mo."
+      positioning="Preciprocal covers the same resume and tracking ground and adds voice-based mock interviews, a study planner and interview debriefs, at $9.99/mo against Teal+ at $29/mo."
       verdictTheirs="you want the best-in-class resume editing and tracking experience, are comfortable at $29/mo, and already have interview prep handled elsewhere."
       verdictOurs="you want resume scoring plus mock interviews, cover letters and a study planner in one place, and the price difference over a six-month search matters to you."
       rows={ROWS}

@@ -25,7 +25,7 @@ import AlternativePage, { type ComparisonRow, type AlternativeFaq, type Alternat
 export const metadata: Metadata = {
   title: { absolute: "Jobright Alternative: Preciprocal vs Jobright" },
   description:
-    "A Jobright alternative with voice AI mock interviews, ATS resume scoring, cover letters and AI interview analysis at $9.99/mo, against Jobright Turbo at $39.99/mo.",
+    "A Jobright alternative with voice AI mock interviews, ATS resume scoring, cover letters and interview debriefs at $9.99/mo, against Jobright Turbo at $39.99/mo.",
   keywords: [
     "Jobright alternative",
     "Jobright vs Preciprocal",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Jobright Alternative: Preciprocal Compared (2026)",
     description:
-      "A Jobright alternative with voice AI mock interviews, ATS resume scoring, cover letters and AI interview analysis at $9.99/mo, against Jobright Turbo at $39.99/mo.",
+      "A Jobright alternative with voice AI mock interviews, ATS resume scoring, cover letters and interview debriefs at $9.99/mo, against Jobright Turbo at $39.99/mo.",
     url: "https://preciprocal.com/alternatives/jobright-alternative",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jobright Alternative | Preciprocal",
     description:
-      "Mock interviews, resume scoring, cover letters and interview analysis at $9.99/mo, against Jobright Turbo at $39.99/mo.",
+      "Mock interviews, resume scoring, cover letters and interview debriefs at $9.99/mo, against Jobright Turbo at $39.99/mo.",
   },
 };
 
