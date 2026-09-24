@@ -291,14 +291,14 @@ function pluralise(count: number, singular: string, plural: string): string {
 export function tierFeatureLines(tier: Tier): string[] {
   const q = tier.quotas;
   const lines: string[] = [
-    `${pluralise(q.resumeAnalyses ?? 0, "resume analysis", "resume analyses")} / month`,
-    `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")} / month`,
+    `${pluralise(q.resumeAnalyses ?? 0, "resume analysis", "resume analyses")}`,
+    `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")}`,
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
-    `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")} / month`,
-    `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")} / month`,
-    `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")} / month`,
-    `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")} / month`,
-    `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")} / month`,
+    `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")}`,
+    `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")}`,
+    `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")}`,
+    `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")}`,
+    `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")}`,
     q.trackedJobs === null ? "Unlimited job tracker" : `Job tracker (${q.trackedJobs} jobs)`,
   ];
 
@@ -307,7 +307,7 @@ export function tierFeatureLines(tier: Tier): string[] {
 
 function mockInterviewLine(count: number, minutes: number): string {
   const suffix = count === 1 ? `(${minutes} min)` : `(${minutes} min each)`;
-  return `${pluralise(count, "mock interview", "mock interviews")} / month ${suffix}`;
+  return `${pluralise(count, "mock interview", "mock interviews")} ${suffix}`;
 }
 
 export function getTier(id: TierId): Tier {
