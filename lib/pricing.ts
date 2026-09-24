@@ -36,10 +36,12 @@ export type TierQuotas = {
    */
   mockInterviewMinutes: number;
   studyPlans: Quota;
-  /** Debriefs of real interviews the user sat, captured in the journal. */
+  /**
+   * Debriefs of real interviews the user sat, captured in the journal. The AI
+   * analysis of a debrief is part of the debrief and is deliberately not
+   * metered separately, so there is one field here, not two.
+   */
   interviewDebriefs: Quota;
-  /** AI analyses run over those debriefs. */
-  interviewAnalyses: Quota;
   linkedinOptimizations: Quota;
   outreachMessages: Quota;
   contactSearches: Quota;
@@ -72,7 +74,6 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 8,
       studyPlans: 2,
       interviewDebriefs: 2,
-      interviewAnalyses: 1,
       linkedinOptimizations: 2,
       outreachMessages: 3,
       contactSearches: 3,
@@ -94,7 +95,6 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 10,
       studyPlans: 10,
       interviewDebriefs: 5,
-      interviewAnalyses: 4,
       linkedinOptimizations: 5,
       outreachMessages: 20,
       contactSearches: 15,
@@ -116,7 +116,6 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 12,
       studyPlans: 25,
       interviewDebriefs: 10,
-      interviewAnalyses: 12,
       linkedinOptimizations: 15,
       outreachMessages: 60,
       contactSearches: 50,
@@ -297,7 +296,6 @@ export function tierFeatureLines(tier: Tier): string[] {
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
     `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")} / month`,
     `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")} / month`,
-    `${pluralise(q.interviewAnalyses ?? 0, "AI interview analysis", "AI interview analyses")} / month`,
     `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")} / month`,
     `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")} / month`,
     `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")} / month`,
