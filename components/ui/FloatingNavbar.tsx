@@ -42,6 +42,24 @@ export function FloatingNavbar({
 
   const hasBg = forceBackground || scrolled;
 
+  /**
+   * Background for the bar.
+   *
+   * Scrolled, or on a page that is not overlaying anything: near-opaque, since
+   * arbitrary page content will be passing underneath.
+   *
+   * Sitting over a hero and not yet scrolled: a lighter wash plus blur. Fully
+   * transparent leaves the links floating with nothing behind them, which is
+   * unreadable the moment the hero has anything bright in it, but the opaque
+   * treatment hides the gradient the bar is meant to sit over. The blur is what
+   * makes the middle ground work.
+   */
+  const backgroundClass = hasBg
+    ? "bg-[#050810]/90 backdrop-blur-xl border-b border-white/[0.06]"
+    : overlayContent
+      ? "bg-[#050810]/60 backdrop-blur-lg border-b border-white/[0.04]"
+      : "bg-transparent border-b border-transparent";
+
   return (
     <>
       <AnimatePresence mode="wait">
@@ -52,9 +70,7 @@ export function FloatingNavbar({
           style={style}
           className={cn(
             "fixed inset-x-0 z-[5000] transition-colors",
-            hasBg
-              ? "bg-[#050810]/90 backdrop-blur-xl border-b border-white/[0.06]"
-              : "bg-transparent border-b border-transparent",
+            backgroundClass,
             className
           )}
         >
