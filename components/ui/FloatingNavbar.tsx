@@ -9,11 +9,24 @@ export function FloatingNavbar({
   className,
   style,
   forceBackground = false,
+  overlayContent = false,
 }: {
   children: React.ReactNode;
   className?: string;
   style?: CSSProperties;
   forceBackground?: boolean;
+  /**
+   * Let the page render underneath the bar instead of below it.
+   *
+   * The nav is `fixed`, so a spacer normally reserves its height. On a page
+   * whose first section is a full-viewport hero with its own background, that
+   * spacer pushes the hero down and leaves a flat band of page background
+   * between the bar and the gradient. Those pages pass `overlayContent` so the
+   * hero starts at the very top and the transparent bar floats over it.
+   *
+   * The sticky banner is unaffected: it is opaque and keeps its own spacer.
+   */
+  overlayContent?: boolean;
 }) {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
@@ -48,8 +61,11 @@ export function FloatingNavbar({
           {children}
         </motion.nav>
       </AnimatePresence>
-      {/* Spacer: navbar height (72px) + banner height (--banner-h, defaults to 0px) */}
-      <div style={{ height: "calc(72px + var(--banner-h, 0px))" }} />
+      {/* Spacer: navbar height (72px) + banner height (--banner-h, defaults to
+          0px). Skipped when the page draws its own full-height first section. */}
+      {!overlayContent && (
+        <div style={{ height: "calc(72px + var(--banner-h, 0px))" }} />
+      )}
     </>
   );
 }

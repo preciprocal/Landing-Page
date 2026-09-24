@@ -188,8 +188,15 @@ export default function Navbar() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
+  // The homepage hero is a full-viewport section with its own gradient, so the
+  // bar floats over it (transparent until scrolled) and no spacer is reserved.
+  // Every other page sits below the bar as normal.
   return (
-    <FloatingNavbar style={{ top: "var(--banner-h, 0px)" }} forceBackground={!isHomePage}>
+    <FloatingNavbar
+      style={{ top: "var(--banner-h, 0px)" }}
+      forceBackground={!isHomePage}
+      overlayContent={isHomePage}
+    >
       {/* Desktop */}
       {/* Full-bleed to match the footer: no max-width cap, with padding that
           scales by breakpoint so the logo and CTA still clear the edge on wide
