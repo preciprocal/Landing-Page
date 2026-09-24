@@ -35,12 +35,6 @@ export type TierQuotas = {
    * constant: the session cap is part of what a higher plan buys you.
    */
   mockInterviewMinutes: number;
-  /**
-   * Throughput cap, not a monthly allowance: how many resume or cover letter
-   * generations can run in a single hour. Rendered separately from the monthly
-   * meters so the two are not confused.
-   */
-  resumeCoverLetterPerHour: number;
   studyPlans: Quota;
   /** Debriefs of real interviews the user sat, captured in the journal. */
   interviewDebriefs: Quota;
@@ -76,7 +70,6 @@ export const TIERS: readonly Tier[] = [
       coverLetters: 5,
       mockInterviews: 1,
       mockInterviewMinutes: 8,
-      resumeCoverLetterPerHour: 5,
       studyPlans: 2,
       interviewDebriefs: 2,
       interviewAnalyses: 1,
@@ -99,7 +92,6 @@ export const TIERS: readonly Tier[] = [
       coverLetters: 30,
       mockInterviews: 3,
       mockInterviewMinutes: 10,
-      resumeCoverLetterPerHour: 10,
       studyPlans: 10,
       interviewDebriefs: 5,
       interviewAnalyses: 4,
@@ -122,7 +114,6 @@ export const TIERS: readonly Tier[] = [
       coverLetters: 80,
       mockInterviews: 5,
       mockInterviewMinutes: 12,
-      resumeCoverLetterPerHour: 15,
       studyPlans: 25,
       interviewDebriefs: 10,
       interviewAnalyses: 12,
@@ -311,8 +302,6 @@ export function tierFeatureLines(tier: Tier): string[] {
     `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")} / month`,
     `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")} / month`,
     q.trackedJobs === null ? "Unlimited job tracker" : `Job tracker (${q.trackedJobs} jobs)`,
-    // Hourly throughput, stated last so it is not read as another monthly meter.
-    `${q.resumeCoverLetterPerHour} resume or cover letter runs / hour`,
   ];
 
   return [...lines, ...tier.perks];
