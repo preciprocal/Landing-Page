@@ -212,9 +212,19 @@ export default function Hero() {
       />
 
       {/* Content */}
+      {/* The navbar is fixed and transparent over this hero, and FloatingNavbar
+          reserves no spacer on the homepage so the gradient runs behind it.
+          That means the padding has to live here: the section background still
+          fills the viewport, while the content is inset far enough to clear the
+          bar. box-sizing is border-box, so the padding comes out of the 100svh
+          rather than adding to it, and the content stays centred in what is
+          left. Without this the headline renders straight through the nav links. */}
       <div
         className="relative z-10 flex flex-col items-center justify-center text-center px-6"
-        style={{ minHeight: "100svh" }}
+        style={{
+          minHeight: "100svh",
+          paddingTop: "calc(72px + var(--banner-h, 0px))",
+        }}
       >
         {/* Eyebrow */}
         <motion.p
