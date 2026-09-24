@@ -43,13 +43,19 @@ This Policy is incorporated into and forms part of our Terms of Service.`,
     title: "Information we collect",
     content: `We collect the following categories of personal information:
 
-Account Information: When you register, we collect your name, email address, and password (stored in hashed form). If you subscribe to a paid plan, our payment processor (Stripe) collects your billing information. We never see or store your full payment card number.
+Account Information: When you register, we collect your name, email address, and password (stored in hashed form). If you sign in with Google or Facebook instead, we receive your name, email address and profile identifier from that provider rather than a password, and we do not receive your password for that account. If you subscribe to a paid plan, our payment processor (Stripe) collects your billing information. We never see or store your full payment card number.
 
-User-Submitted Content: To provide our AI-powered tools, we collect and process content you voluntarily submit, including resume text and files, job descriptions, cover letter drafts, interview recordings and transcripts, and any other documents or text you upload.
+User-Submitted Content: To provide our tools, we collect and process content you voluntarily submit. This includes resume files you upload (PDF and Word, from which we extract the text), job descriptions you paste or import, cover letter and outreach drafts, the text of your LinkedIn profile where you provide it, study plans, interview journal entries describing interviews you have sat, and the applications you track, including employer, role, stage and your own notes.
+
+Voice Recordings and Transcripts: Mock interviews are spoken. When you start one we record your audio for the duration of the session and produce a transcript, then score the session and generate written feedback from it. Recording is what the feature is; if you do not want to be recorded, do not start a mock interview. You can delete a session, and its recording and transcript, from your account at any time. We do not use your voice to identify you, we do not build a voiceprint, and we do not use recordings for any purpose other than producing your feedback.
 
 Usage and Analytics Data: We automatically collect information about how you interact with the Service, including pages and features accessed, session duration, clickstream data, device type and operating system, browser type and version, and IP address.
 
 Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft Clarity applies automatic masking to text you type into form fields, and we do not use it to capture the content of your resumes, cover letters or interview responses. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
+
+Recruiter and Hiring Contact Information: The contact finder returns business contact details for recruiters and hiring managers, such as a name, employer, job title and work email address. That information concerns people who are not our users. We obtain it from commercial business-contact sources, we hold it as business rather than personal-life information, and we make it available to you strictly so you can make a job-related approach. You may not use it for bulk messaging, marketing unrelated to your own application, resale, or any purpose the recipient would not reasonably expect. If you are such a contact and want your details removed, email support@preciprocal.com and we will remove them.
+
+Browser Extension Data: If you install our browser extension, it reads the job posting on the page you are viewing when you choose to save it, and fills application forms from the profile you have already given us. It runs on job boards and application pages, and only when you act. It does not track your general browsing, and it does not read pages you have not asked it to act on.
 
 Success Refund Submissions: If you claim a Success Refund, we collect the materials you submit in support of that claim: a copy of your offer letter, the address of your public post about the Service, and a written testimonial. Your offer letter is used only to verify the claim. It may contain employment and compensation details, and it is never published.
 
@@ -88,6 +94,8 @@ Security and Fraud Prevention: To detect, investigate, and prevent fraudulent tr
 Refund Claims: To assess refund requests. For a usage-based refund this means reviewing the usage recorded on your account for the billing period in question. For a Success Refund this means verifying the offer letter, public post and testimonial you submit.
 
 Marketing With Your Permission: To publish approved testimonials and success stories, strictly within the permissions you select when you submit them.
+
+Automated Scoring: To produce the scores, rankings and feedback the Service exists to provide, including resume scores against a job description, estimates of how your application compares with a wider applicant pool, and scoring of a mock interview across several dimensions. These are automated and are generated to inform you, not to make a decision about you. We do not use them to decide anything that affects your legal rights, we do not share them with employers, and no employer sees your account. You can ask us to review or explain any score by emailing support@preciprocal.com.
 
 Legal Compliance: To comply with applicable laws, regulations, legal processes, and governmental requests.
 
@@ -130,6 +138,10 @@ Account Data: Retained for the duration of your account and for up to 90 days fo
 User-Submitted Content: Retained while your account is active. Upon account deletion, your submitted content is deleted within 30 days, except for anonymized aggregates that cannot be linked back to you.
 
 Payment Records: Retained for 7 years following the transaction to comply with financial record-keeping requirements.
+
+Voice Recordings and Transcripts: Retained while your account is active so you can revisit a session, and deleted within 30 days of you deleting the session or your account. You may delete any individual recording sooner.
+
+Recruiter and Hiring Contact Information: Refreshed periodically from source and removed on request from the contact concerned.
 
 Success Refund Materials: Offer letters are deleted within 90 days of the claim being resolved. A published testimonial is retained for as long as it remains published, and is removed from surfaces we control within 30 days of you withdrawing permission.
 
@@ -279,7 +291,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: September 19, 2026. Effective date: September 19, 2026.
+                Last updated: September 24, 2026. Effective date: September 24, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

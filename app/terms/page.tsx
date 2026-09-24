@@ -47,7 +47,11 @@ The Service is not directed to children under 13. If we become aware that a chil
   },
   {
     title: "Description of service",
-    content: `Preciprocal provides an AI-powered career preparation platform that includes, without limitation: resume analysis and scoring, AI-simulated mock interview tools, cover letter generation, study planning, job application tracking, LinkedIn optimization, cold outreach generation, and related features (collectively, the **Tools**).
+    content: `Preciprocal provides an AI-powered career preparation platform. The Tools include, without limitation: resume analysis and scoring against a specific job posting, resume tailoring, cover letter generation, LinkedIn profile optimization, cold outreach drafting, a recruiter and hiring contact finder, voice-based AI mock interviews with automated scoring and feedback, interview study planning, an interview journal for debriefing interviews you have sat, job application tracking, and a browser extension that saves job postings and fills application forms (collectively, the **Tools**).
+
+Mock interviews are conducted by voice and are recorded and transcribed in order to score them and generate your feedback. By starting a mock interview you consent to that recording. You may delete any session, together with its recording and transcript, from your account.
+
+Browser Extension: the extension operates only on job boards and application pages and only when you act. It reads a posting when you choose to save it and fills forms from the profile you have provided. You remain responsible for reviewing every application before you submit it; the extension does not submit applications for you, and we are not responsible for the accuracy of a form you submit without checking.
 
 THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND. We do not warrant that the Service will be uninterrupted, error-free, secure, or free of viruses or other harmful components. We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time with reasonable notice where practicable.
 
@@ -77,7 +81,8 @@ You agree that you will NOT:
 (h) attempt to gain unauthorized access to any portion of the Service or any other systems or networks connected to the Service;
 (i) interfere with or disrupt the integrity or performance of the Service or the data contained therein;
 (j) use the Service to send unsolicited communications or spam; or
-(k) circumvent, disable, or otherwise interfere with any security-related features of the Service.
+(k) circumvent, disable, or otherwise interfere with any security-related features of the Service; or
+(l) misuse contact details obtained through the contact finder. Those details are provided so that you can make a job-related approach about your own candidacy. You may not use them for bulk or automated messaging, for marketing, for recruiting on behalf of anyone else, for resale or redistribution, or to contact a person who has asked you to stop. You are the sender of any message you send and are responsible for complying with anti-spam and data protection law in your jurisdiction.
 
 We reserve the right to investigate and take appropriate legal action against anyone who, in our sole discretion, violates these provisions.`,
   },
@@ -235,7 +240,7 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: September 19, 2026. Effective date: September 19, 2026.
+                Last updated: September 24, 2026. Effective date: September 24, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
