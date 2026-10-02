@@ -213,11 +213,18 @@ $$;
 -- ═════════════════════════════════════════════════════════════════════════════
 
 -- ── Per-page traffic and engagement ─────────────────────────────────────────
+-- A page_view tagged closing=true is the exit record for a page the visitor
+-- has just left; it exists only to carry time_on_page_ms. Counting it as a
+-- view would double every page-view total and halve every rate derived from
+-- one, so it is excluded wherever views are counted and kept wherever time on
+-- page is measured.
 create or replace view public.web_page_stats as
 select
   e.path,
   date_trunc('day', e.occurred_at)                     as day,
-  count(*)                                             as views,
+  count(*) filter (
+    where coalesce(e.metadata->>'closing', '') <> 'true'
+  )                                                    as views,
   count(distinct e.session_id)                         as sessions,
   count(distinct e.anon_id)                            as unique_visitors,
   count(distinct e.visitor_id)
@@ -264,6 +271,7 @@ pages as (
   select path, date_trunc('day', occurred_at) as day, count(*) as page_views
   from public.web_events
   where type = 'page_view'
+    and coalesce(metadata->>'closing', '') <> 'true'
   group by path, date_trunc('day', occurred_at)
 )
 select
@@ -311,6 +319,7 @@ views as (
          count(*) as views, count(distinct session_id) as sessions
   from public.web_events
   where type = 'page_view'
+    and coalesce(metadata->>'closing', '') <> 'true'
   group by path, date_trunc('day', occurred_at)
 )
 select
@@ -364,6 +373,7 @@ base as (
   select path, date_trunc('day', occurred_at) as day, count(distinct session_id) as total
   from public.web_events
   where type = 'page_view'
+    and coalesce(metadata->>'closing', '') <> 'true'
   group by path, date_trunc('day', occurred_at)
 )
 select
