@@ -218,26 +218,39 @@ $$;
 -- view would double every page-view total and halve every rate derived from
 -- one, so it is excluded wherever views are counted and kept wherever time on
 -- page is measured.
+-- Time on page arrives on two different events and the view has to read both.
+-- Navigating to another page on the site produces a closing page_view carrying
+-- the time; leaving the site instead produces session_end carrying it. Reading
+-- only page_view therefore loses the exit page of every visit, and loses a
+-- single-page visit entirely, which on a marketing site is most of them. The
+-- counting columns stay on opening page_views so session_end never inflates a
+-- view count.
 create or replace view public.web_page_stats as
+with counted as (
+  select *,
+    (e.type = 'page_view' and coalesce(e.metadata->>'closing', '') <> 'true') as is_view
+  from public.web_events e
+  where e.type in ('page_view', 'session_end')
+)
 select
-  e.path,
-  date_trunc('day', e.occurred_at)                     as day,
-  count(*) filter (
-    where coalesce(e.metadata->>'closing', '') <> 'true'
-  )                                                    as views,
-  count(distinct e.session_id)                         as sessions,
-  count(distinct e.anon_id)                            as unique_visitors,
-  count(distinct e.visitor_id)
-    filter (where e.visitor_id is not null)            as known_visitors,
-  round(avg(e.time_on_page_ms) filter
-    (where e.time_on_page_ms is not null))             as avg_time_on_page_ms,
+  path,
+  date_trunc('day', occurred_at)                       as day,
+  count(*) filter (where is_view)                      as views,
+  count(distinct session_id) filter (where is_view)    as sessions,
+  count(distinct anon_id) filter (where is_view)       as unique_visitors,
+  count(distinct visitor_id) filter
+    (where is_view and visitor_id is not null)         as known_visitors,
+  round(avg(time_on_page_ms) filter
+    (where time_on_page_ms is not null))               as avg_time_on_page_ms,
   round(
-    percentile_cont(0.5) within group (order by e.time_on_page_ms::double precision)
-    filter (where e.time_on_page_ms is not null)
-  )                                                    as median_time_on_page_ms
-from public.web_events e
-where e.type = 'page_view'
-group by e.path, date_trunc('day', e.occurred_at);
+    percentile_cont(0.5) within group (order by time_on_page_ms::double precision)
+    filter (where time_on_page_ms is not null)
+  )                                                    as median_time_on_page_ms,
+  -- How many of those views actually contributed a timing, so a thin average
+  -- is visible as thin rather than quietly trusted.
+  count(*) filter (where time_on_page_ms is not null)  as timed_views
+from counted
+group by path, date_trunc('day', occurred_at);
 
 
 -- ── Section engagement: which parts of a page actually get seen ─────────────
@@ -659,7 +672,7 @@ select
       select e.path, sum(coalesce(e.time_on_page_ms, 0)) as ms
       from public.web_events e
       where coalesce(e.visitor_id::text, e.anon_id) = v.visitor_key
-        and e.type = 'page_view'
+        and e.type in ('page_view', 'session_end')
       group by e.path
       order by ms desc
       limit 10
