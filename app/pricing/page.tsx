@@ -185,7 +185,7 @@ export default function PricingPage() {
         </nav>
 
         {/* ── Hero ── */}
-        <section aria-label="Pricing plans" className="relative">
+        <section data-section="pricing-plans" data-section-name="Pricing plans" aria-label="Pricing plans" className="relative">
           <div className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
             <GlowDivider />
 
@@ -271,7 +271,9 @@ export default function PricingPage() {
             </StaggerChildren>
 
             {/* ── Refund policy ── */}
-            <RefundPolicy />
+            <div data-section="refund-policy" data-section-name="Refund policy">
+              <RefundPolicy />
+            </div>
 
             <p className="text-center text-[13px] text-slate-600 mt-5">
               University student? Verify your .edu email for{" "}
@@ -282,13 +284,17 @@ export default function PricingPage() {
         </section>
 
         {/* ── One-time packs ── */}
-        <Packs />
+        <div data-section="packs" data-section-name="Packs">
+          <Packs />
+        </div>
 
         {/* ── Success stories (hides itself when none are approved yet) ── */}
-        <SuccessStories />
+        <div data-section="success-stories" data-section-name="Success stories">
+          <SuccessStories />
+        </div>
 
         {/* ── Pricing FAQ ── */}
-        <section aria-label="Pricing frequently asked questions" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+        <section data-section="pricing-faq" data-section-name="Pricing FAQ" aria-label="Pricing frequently asked questions" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
           <div className="max-w-2xl mx-auto">
             <RevealOnScroll className="mb-10 text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">

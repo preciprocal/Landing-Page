@@ -61,7 +61,9 @@ Success Refund Submissions: If you claim a Success Refund, we collect the materi
 
 Communications: If you contact us for support or other inquiries, we collect the contents of your messages and your contact information.
 
-Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 10 of this Policy.
+Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 11 of this Policy.
+
+Website Usage Measurement: We record how our website itself is used, including pages opened, sections viewed, scroll depth, clicks, and where your visit came from. This is first-party, stays on our own servers, and is described in full in Section 6.
 
 We do not knowingly collect sensitive personal information such as government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data. The one exception is an offer letter you choose to send us for a Success Refund claim, which you control and which may state your compensation; we do not ask you to redact it, but you may do so provided the employer, role and date remain legible.`,
   },
@@ -131,6 +133,26 @@ Service emails are not marketing, and you cannot unsubscribe from them while you
 We do not sell your email address, and we do not send you email on behalf of other companies.`,
   },
   {
+    title: "Our own website measurement",
+    content: `Separately from the third-party analytics in Section 11, we measure how our own website is used, on our own servers, without sending anything to another company. This section explains exactly what that involves, because it is the part of this Policy most likely to matter to someone who declined cookies.
+
+**What we record.** Which pages you open and in what order; how long you spend on each; which sections of a page scroll into view and for how long; how far down a page you scroll; and which links and buttons you click, including the link's own visible text. We record the type of device, the browser and operating system, your screen and window size, your language, and the country and approximate region you are connecting from. We record how you arrived: the site that linked to you, the search engine or social network it was, and any campaign tags on the link.
+
+**What we never record.** We do not record anything you type. There is no session replay, no keystroke capture, no mouse-movement recording, no form contents, and no reading of your clipboard. We do not scan the other tabs or sites you have open, and we place no tracking on any site but our own.
+
+**Your IP address is not stored.** It is read from the connection in order to work out your country and to produce the anonymous identifier described next, and is then discarded. No column in our analytics records holds an IP address.
+
+**How this works if you decline cookies.** Measurement still happens, but with no identifier that can follow you. Instead of a cookie, our server derives a one-way fingerprint from your IP address and browser, combined with a secret value that **changes every day**. The same person visiting on two different days produces two unrelated identifiers that we cannot connect. This lets us count visits honestly without building any lasting record of a person, and it is the basis on which we consider this measurement to be legitimate without consent. Nothing is written to or read from your device.
+
+**How this works if you accept cookies.** We additionally store a random identifier in your browser, which does let us recognise a returning visitor and join up visits made on different days. That is the only practical difference, and it is the part that requires your consent. Withdrawing consent through the **Cookie preferences** link in the footer deletes that identifier immediately.
+
+**Global Privacy Control.** If your browser sends a Global Privacy Control signal we will not store the persistent identifier, even if you previously accepted cookies.
+
+**Where it goes.** Into our own database, used by our internal business reporting. It is not sold, not shared with advertising networks, and not sent to any analytics company.
+
+**If you would rather not be measured at all**, email support@preciprocal.com and we will tell you how to exclude yourself.`,
+  },
+  {
     title: "Disclosure of your information",
     content: `We do not sell, rent, or trade your personal information to third parties for their marketing purposes. We disclose your information only in the following circumstances:
 
@@ -143,7 +165,7 @@ Service Providers: We share information with trusted third-party service provide
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
 
-Google Analytics and Microsoft Clarity are the only analytics providers we use, and both are gated behind your cookie consent choice as described in Section 10.
+Google Analytics and Microsoft Clarity are the only third-party analytics providers we use, and both are gated behind your cookie consent choice as described in Section 11. We also operate our own first-party measurement, which sends nothing to any third party and is described in Section 6.
 
 Public Publication of Testimonials: If you claim a Success Refund, we may publish the testimonial you provide on our website and in our marketing. What appears is governed by the permissions you choose when you submit it, each of which is independent: you may allow your words to be quoted without your name, allow or withhold your role and employer, and allow or withhold a link to your public post. If you withhold your name, we also suppress the link to your public post, because that post would identify you and publishing it would undo the anonymity you asked for. Your offer letter is never published. You may withdraw permission at any time by contacting support@preciprocal.com.
 
@@ -173,11 +195,11 @@ Recruiter and Hiring Contact Information: Refreshed periodically from source and
 
 Success Refund Materials: Offer letters are deleted within 90 days of the claim being resolved. A published testimonial is retained for as long as it remains published, and is removed from surfaces we control within 30 days of you withdrawing permission.
 
-Usage Analytics: Retained in identifiable form for up to 24 months, after which data is aggregated and anonymized.
+Usage Analytics: Website measurement records (Section 6) are retained for 14 months and then deleted automatically. Records tied only to a daily anonymous identifier are already incapable of being linked to a person beyond the day they were collected.
 
 Legal Hold: Notwithstanding the above, we may retain certain information for longer periods where necessary to comply with legal obligations, resolve disputes, or enforce our agreements.
 
-You may request deletion of your data at any time as described in Section 9 of this Policy. Please note that deletion requests are subject to our legal retention obligations.`,
+You may request deletion of your data at any time as described in Section 10 of this Policy. Please note that deletion requests are subject to our legal retention obligations.`,
   },
   {
     title: "International data transfers",
@@ -227,7 +249,9 @@ Strictly Necessary Cookies: Essential for the Service to function. These cookies
 
 Analytics Cookies: Help us understand how users interact with the Service. We use **Google Analytics 4** for aggregate usage measurement and **Microsoft Clarity** for session replay and interaction analytics, as described in Section 2.
 
-**These are set only if you consent.** Neither Google Analytics nor Microsoft Clarity is loaded until you opt in. Until you accept analytics cookies, no analytics script runs and no request is made to Google or Microsoft. Choosing "Essential only" on our cookie banner, or dismissing it without choosing, means neither is ever loaded.
+**These are set only if you consent.** Neither Google Analytics nor Microsoft Clarity is loaded until you opt in. Until you accept analytics cookies, no third-party analytics script runs and no request is made to Google or Microsoft. Choosing "Essential only" on our cookie banner, or dismissing it without choosing, means neither is ever loaded.
+
+Our own first-party measurement, described in Section 6, is different and you should understand the distinction. It continues whether or not you accept, because when you decline it uses no cookie and no persistent identifier at all: it writes nothing to your device and relies on an identifier that is regenerated every day and cannot be traced to you. Accepting analytics cookies adds a single stored identifier that lets us recognise a returning visitor. Declining removes that identifier and leaves only same-day, anonymous counting.
 
 Preference Cookies: Remember your settings and preferences to enhance your experience. These cookies can be declined.
 
@@ -319,7 +343,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 1, 2026. Effective date: October 1, 2026.
+                Last updated: October 2, 2026. Effective date: October 2, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

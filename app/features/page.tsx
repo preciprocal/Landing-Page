@@ -217,7 +217,7 @@ export default function FeaturesPage() {
         </nav>
 
         {/* ── Hero ── */}
-        <section aria-label="Overview" className="relative">
+        <section data-section="features-overview" data-section-name="Features overview" aria-label="Overview" className="relative">
           <div className="w-full pt-14 pb-4 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
             <GlowDivider />
 
@@ -245,6 +245,8 @@ export default function FeaturesPage() {
         {STAGES.map((stage, stageIndex) => (
           <section
             key={stage.title}
+            data-section={`feature-stage-${stage.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+            data-section-name={stage.title}
             aria-label={stage.title}
             className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 py-14 sm:py-16"
           >
@@ -300,7 +302,7 @@ export default function FeaturesPage() {
         ))}
 
         {/* ── Closing CTA ── */}
-        <section aria-label="Get started" className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 pb-24 pt-4">
+        <section data-section="features-cta" data-section-name="Features CTA" aria-label="Get started" className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 pb-24 pt-4">
           <RevealOnScroll className="max-w-2xl mx-auto text-center">
             <h2 className="text-2xl sm:text-[28px] font-extrabold text-white tracking-tight mb-4">
               Start with whichever part is hurting most

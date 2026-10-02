@@ -16,6 +16,13 @@
  *
  * Dismissing with the X is treated as declining, not as consent, since silence
  * is not consent under GDPR.
+ *
+ * Declining stops the third-party scripts and deletes the first-party visitor
+ * id, but it does not stop first-party measurement, which continues with no
+ * cookie and a server-side identifier that is regenerated daily. The banner
+ * copy says so rather than implying that "Essential only" means "not counted",
+ * because a banner that overstates what declining does is its own compliance
+ * problem. Privacy policy Section 6 has the full description.
  */
 
 import { useState, useEffect } from "react";
@@ -87,7 +94,8 @@ export default function CookieBanner() {
                 </p>
                 <p className="text-[12px] text-slate-400 leading-relaxed">
                   Essential cookies keep you logged in. Analytics cookies (optional)
-                  help us improve the product.{" "}
+                  let us recognise you on a return visit. Either way we count visits
+                  anonymously, with no cookie and nothing stored on your device.{" "}
                   <Link
                     href="/privacy"
                     className="text-indigo-400 hover:text-indigo-300 transition-colors underline underline-offset-2"

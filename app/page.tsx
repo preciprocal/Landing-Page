@@ -98,46 +98,52 @@ export default function Home() {
 
       <main>
         {/* 1. Hero - contains the single <h1> for this page */}
-        <Hero />
+        <div data-section="hero" data-section-name="Hero">
+          <Hero />
+        </div>
 
         {/* 1b. Product demo - visually part of hero */}
-        <HeroProductDemo />
+        <div data-section="product-demo" data-section-name="Product demo">
+          <HeroProductDemo />
+        </div>
 
         {/* 4. Problem - pain point */}
-        <section aria-label="The job search problem">
+        <section data-section="problem" data-section-name="Problem" aria-label="The job search problem">
           <ProblemSection />
         </section>
 
         {/* 5. Solution - bento feature grid */}
-        <section id="features" aria-label="Product features">
+        <section id="features" data-section="features" data-section-name="Features" aria-label="Product features">
           <BentoFeatures />
         </section>
 
         {/* 6. Process - 3 steps */}
-        <section id="how-it-works" aria-label="How Preciprocal works">
+        <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" aria-label="How Preciprocal works">
           <HowItWorks />
         </section>
 
         {/* 7. Differentiation - comparison table */}
-        <section aria-label="Competitor comparison">
+        <section data-section="comparison" data-section-name="Comparison table" aria-label="Competitor comparison">
           <ComparisonTable />
         </section>
 
         {/* 8. Chrome Extension */}
-        <ChromeExtensionBanner />
+        <div data-section="chrome-extension" data-section-name="Chrome extension">
+          <ChromeExtensionBanner />
+        </div>
 
         {/* 9. Pricing */}
-        <section id="pricing" aria-label="Pricing plans">
+        <section id="pricing" data-section="pricing" data-section-name="Pricing" aria-label="Pricing plans">
           <Pricing />
         </section>
 
         {/* 10. FAQ */}
-        <section aria-label="Frequently asked questions">
+        <section data-section="faq" data-section-name="FAQ" aria-label="Frequently asked questions">
           <FAQSection />
         </section>
 
         {/* 11. Final CTA */}
-        <section aria-label="Get started">
+        <section data-section="final-cta" data-section-name="Final CTA" aria-label="Get started">
           <FinalCTA />
         </section>
       </main>
