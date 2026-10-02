@@ -148,6 +148,10 @@ We do not sell your email address, and we do not send you email on behalf of oth
 
 **Global Privacy Control.** If your browser sends a Global Privacy Control signal we will not store the persistent identifier, even if you previously accepted cookies.
 
+**If you create an account.** When you follow a link from this website to our app and go on to register, we connect the browsing that led you there with the account you create, so we can tell which pages and which explanations actually help people decide. From that point the record stops being anonymous to us: it is linked to you as an identified user, and the parts of this Policy covering your account data apply to it, including your right to ask for a copy or for deletion.
+
+We do this on the basis of our legitimate interest in understanding which of our pages are useful, and you may object to it at any time by emailing support@preciprocal.com, which does not affect your account or your use of the Service. If you never create an account, no such link is ever made and the record stays anonymous as described above.
+
 **Where it goes.** Into our own database, used by our internal business reporting. It is not sold, not shared with advertising networks, and not sent to any analytics company.
 
 **If you would rather not be measured at all**, email support@preciprocal.com and we will tell you how to exclude yourself.`,
@@ -343,7 +347,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 2, 2026. Effective date: October 2, 2026.
+                Last updated: October 3, 2026. Effective date: October 3, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
