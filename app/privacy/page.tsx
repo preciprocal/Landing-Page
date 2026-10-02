@@ -61,7 +61,7 @@ Success Refund Submissions: If you claim a Success Refund, we collect the materi
 
 Communications: If you contact us for support or other inquiries, we collect the contents of your messages and your contact information.
 
-Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 9 of this Policy.
+Cookies and Tracking Technologies: We use cookies and similar technologies as described in Section 10 of this Policy.
 
 We do not knowingly collect sensitive personal information such as government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data. The one exception is an offer letter you choose to send us for a Success Refund claim, which you control and which may state your compensation; we do not ask you to redact it, but you may do so provided the employer, role and date remain legible.`,
   },
@@ -99,9 +99,36 @@ Automated Scoring: To produce the scores, rankings and feedback the Service exis
 
 Legal Compliance: To comply with applicable laws, regulations, legal processes, and governmental requests.
 
-Communications: To send transactional communications (account confirmations, payment receipts, password resets, security alerts) and, with your consent, product updates and promotional materials. You may opt out of marketing communications at any time.
+Communications: To send you the service emails your account depends on, such as sign-up confirmation and email verification, onboarding guidance, password resets, security alerts, payment receipts and renewal reminders, allowance notifications, and correspondence about a refund you have requested, and, with your consent, to send product updates and promotional material. Section 5 sets out in full what we send and what you can opt out of.
 
 AI MODEL TRAINING RESTRICTION: Your resume, cover letters, interview recordings, and other personal content submitted to the Service will NOT be used to train, fine-tune, or improve any AI models without your explicit, affirmative opt-in consent. This restriction applies regardless of whether you are a free or paid user.`,
+  },
+  {
+    title: "Emails and other communications",
+    content: `Email is how we reach you about your account, so it is worth being explicit about what we send. Everything we send falls into one of two categories.
+
+**Service Emails.** These exist because you hold an account, and they carry information you need in order to use and pay for the Service. They include:
+
+- A welcome message and an email address verification link when you sign up
+- Onboarding guidance explaining how to get started and what your plan includes
+- Password resets, sign-in notifications, and security alerts
+- Payment receipts, renewal reminders, failed payment notices, and confirmation of plan upgrades, downgrades, cancellations, and one-time pack purchases
+- Notifications about your monthly allowance, including when you are approaching or have reached a limit and when the allowance resets
+- Correspondence about a refund you have requested, including a Success Refund claim and the testimonial permissions attached to it
+- Replies to support requests and other messages you send us
+- Notices we are required to give you, such as a material change to this Policy or to our Terms of Service, a security incident, or the closure of your account
+
+Service emails are not marketing, and you cannot unsubscribe from them while your account is open, because without them you would not know that a payment had failed, that an allowance had run out, or that your account had been accessed. If you no longer wish to receive them, you can close your account at any time by emailing support@preciprocal.com.
+
+**Marketing Emails.** We send these only where you have given consent, or where applicable law allows us to send them to an existing customer on the basis of our legitimate interests. They include product announcements, new features, job search guidance, and occasional offers. Every marketing email carries an unsubscribe link, and you can opt out from the message itself or by emailing support@preciprocal.com. Opting out takes effect promptly and does not affect your access to the Service or the service emails described above.
+
+**The address we use.** We send to the email address on your account, including an address provided by a sign-in provider if you registered with one. Keeping that address current is your responsibility; if it stops working we may be unable to reach you about billing or security.
+
+**Delivery and measurement.** A third-party email delivery provider sends these messages on our instructions under a data processing agreement. It processes your email address and the contents of the message only in order to deliver it. We receive delivery information such as whether a message was delivered, opened, or clicked. We use that information to confirm important messages are reaching you and to measure how our marketing performs, not to build a profile of you for sale or disclosure.
+
+**What we will never send.** We will never email you asking for your password or your payment card details. If you receive a message of that kind that appears to come from us, do not reply to it and report it to support@preciprocal.com.
+
+We do not sell your email address, and we do not send you email on behalf of other companies.`,
   },
   {
     title: "Disclosure of your information",
@@ -111,11 +138,12 @@ Service Providers: We share information with trusted third-party service provide
 
 - **Stripe** (payment processing)
 - Hosting and cloud infrastructure providers (serving the Service and storing data, including server logs that contain IP addresses)
+- An email delivery provider (sending the service and marketing emails described in Section 5)
 - **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may retain it for a limited period, typically up to 30 days, for abuse and misuse monitoring before deleting it. We have not opted in to any data sharing or model improvement programme offered by these providers. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
 
-Google Analytics and Microsoft Clarity are the only analytics providers we use, and both are gated behind your cookie consent choice as described in Section 9.
+Google Analytics and Microsoft Clarity are the only analytics providers we use, and both are gated behind your cookie consent choice as described in Section 10.
 
 Public Publication of Testimonials: If you claim a Success Refund, we may publish the testimonial you provide on our website and in our marketing. What appears is governed by the permissions you choose when you submit it, each of which is independent: you may allow your words to be quoted without your name, allow or withhold your role and employer, and allow or withhold a link to your public post. If you withhold your name, we also suppress the link to your public post, because that post would identify you and publishing it would undo the anonymity you asked for. Your offer letter is never published. You may withdraw permission at any time by contacting support@preciprocal.com.
 
@@ -149,7 +177,7 @@ Usage Analytics: Retained in identifiable form for up to 24 months, after which 
 
 Legal Hold: Notwithstanding the above, we may retain certain information for longer periods where necessary to comply with legal obligations, resolve disputes, or enforce our agreements.
 
-You may request deletion of your data at any time as described in Section 8 of this Policy. Please note that deletion requests are subject to our legal retention obligations.`,
+You may request deletion of your data at any time as described in Section 9 of this Policy. Please note that deletion requests are subject to our legal retention obligations.`,
   },
   {
     title: "International data transfers",
@@ -291,7 +319,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: September 24, 2026. Effective date: September 24, 2026.
+                Last updated: October 1, 2026. Effective date: October 1, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

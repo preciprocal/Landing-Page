@@ -66,6 +66,18 @@ You may not share your account credentials with any third party or allow any thi
 We will not be liable for any loss or damage arising from your failure to maintain the security of your account credentials.`,
   },
   {
+    title: "Communications and electronic notices",
+    content: `Consent to Electronic Communications: By creating an account, you consent to receive communications from us electronically, at the email address associated with your account and through the Service interface. You agree that any agreement, notice, disclosure, or other communication we deliver electronically satisfies any legal requirement that it be delivered in writing.
+
+Service Emails: We will send you the emails your account depends on. These include a welcome message and email verification when you sign up, onboarding guidance, password resets and security alerts, payment receipts and renewal reminders, failed payment and plan change notices, notifications about your monthly allowance and when it resets, correspondence about any refund you request, replies to your support requests, and notices of material changes to these Terms or to our Privacy Policy. These are part of the Service rather than marketing, and you may not opt out of them while your account remains open. If you do not wish to receive them, you may close your account at any time.
+
+Marketing Emails: With your consent, or where applicable law otherwise permits, we may also send product announcements, feature updates, job search guidance, and promotional offers. Every such message includes an unsubscribe link, and opting out has no effect on your access to the Service or on the service emails described above.
+
+Your Email Address: You are responsible for keeping the email address on your account accurate and for ensuring our messages are not blocked or filtered by your mail provider. A notice sent to that address is treated as received when sent, whether or not you open it. We are not responsible for any consequence of a notice you did not receive because the address was out of date or the message was filtered.
+
+Security: We will never email you asking for your password or your payment card details. If you receive a message of that kind that appears to come from us, do not reply to it and report it to support@preciprocal.com.`,
+  },
+  {
     title: "Acceptable use",
     content: `You may use the Service solely for your own personal, non-commercial job search and career preparation purposes in accordance with these Terms.
 
@@ -240,7 +252,7 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: September 24, 2026. Effective date: September 24, 2026.
+                Last updated: October 1, 2026. Effective date: October 1, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
