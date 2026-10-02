@@ -273,6 +273,30 @@ export async function POST(request: Request) {
   const visitorId = session.visitorId && UUID_RE.test(session.visitorId) ? session.visitorId : null;
   const consent = ["anonymous", "granted", "declined"].includes(session.consent) ? session.consent : "anonymous";
 
+  /**
+   * Make sure the session row exists before any event references it.
+   *
+   * web_events.session_id is a foreign key, so an event whose session row is
+   * missing fails the insert and the whole batch is lost. The row is normally
+   * created by the batch flagged isNew, but that flag is cleared in the
+   * browser the moment the batch is handed to the network, so if that one
+   * request fails server-side nothing ever creates the row and every later
+   * batch in the visit dies on the constraint. A visitor who bounces is
+   * exactly the case where the first batch is also the only one.
+   *
+   * This stub costs one upsert that almost always no-ops. ignoreDuplicates
+   * means it never overwrites the enriched row written below.
+   */
+  if (!session.isNew) {
+    const { error } = await db
+      .from("web_sessions")
+      .upsert(
+        { session_id: session.sessionId, anon_id: anon, consent, visitor_id: visitorId },
+        { onConflict: "session_id", ignoreDuplicates: true }
+      );
+    if (error) console.error("[collect] session stub", error.message);
+  }
+
   // ── open the session on its first batch ──────────────────────────────────
   if (session.isNew) {
     let referrerHost: string | null = null;
