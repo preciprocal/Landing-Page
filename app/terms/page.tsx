@@ -112,21 +112,27 @@ Testimonials and Success Stories: If you submit a testimonial, a link to a publi
   },
   {
     title: "Payments, billing, and refunds",
-    content: `Subscription Plans: Access to certain features requires a paid subscription. By subscribing to a paid plan, you authorize us to charge the payment method you provide on a recurring basis at the applicable subscription rate.
+    content: `Subscription Plans: Access to certain features requires a paid subscription. When you subscribe, we charge the payment method you provide for the first month. At checkout you choose whether to turn on auto pay. With auto pay on, you authorize us to charge that payment method each month at the applicable subscription rate. With auto pay off, we email you an invoice each month, payable in the app within 7 days; if it is not paid in that time, your plan moves to the Free plan. You can switch auto pay on or off at any time in your account settings.
 
-Billing: Subscriptions are billed in advance on a monthly basis. We do not currently offer an annual plan. All fees are stated in US dollars and are exclusive of applicable taxes, which you are responsible for paying.
+Billing: Subscriptions are billed in advance on a monthly basis. We do not currently offer an annual plan. All prices are stated in US dollars and include any sales tax or VAT that applies to your purchase, so the price shown is the amount you pay. Where tax applies, it is shown on your receipt and invoice.
 
-One-Time Packs: We also offer one-time add-on packs that grant additional usage on top of your plan's monthly allowance. Packs are charged once at the time of purchase, do not renew, and do not change the price of your subscription. Pack allowances are added to the billing period in which the pack is purchased and do not carry over into a later billing period. Pack allowance is drawn down only after your plan's own monthly allowance for that item is exhausted. Packs are separate from the refund routes described below and follow a simpler rule: a pack is refundable in full within 7 days of purchase provided none of its allowance has been used. After 7 days, or once any part of the pack allowance has been used, the pack is non-refundable.
+One-Time Packs: We also offer one-time add-on packs that grant additional usage on top of your plan's monthly allowance. Packs are charged once at the time of purchase, do not renew, and do not change the price of your subscription. Pack allowances are added to the billing period in which the pack is purchased and do not carry over into a later billing period. Pack allowance is drawn down only after your plan's own monthly allowance for that item is exhausted. Packs are separate from the refund routes described below and follow a simpler rule: a pack is refundable within 7 days of purchase provided none of its allowance has been used, less the card processing fee charged on that payment. After 7 days, or once any part of the pack allowance has been used, the pack is non-refundable.
 
 Cancellation: You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will retain access to paid features through the end of the paid period. We do not provide refunds or credits for partial subscription periods, except as stated below or as required by applicable law.
 
-Refunds: We offer two refund routes, and neither is a satisfaction guarantee.
+Refunds: We offer the refund routes below. None of them is a satisfaction guarantee, and every refund is made only on your request; nothing is refunded automatically. Routes (a) and (b) are requested in your account settings under Plan & Billing > Refunds.
 
-(a) Usage-based refund. This route is based on your usage and is not a satisfaction guarantee. If you have used more than half of your monthly usage allowance for the current billing period, you may request a refund for the value of the allowance you have not used, less payment processing fees, by contacting support@preciprocal.com. Your monthly usage allowance comprises the limits attached to your plan, including resume analyses, cover letters, mock interviews, study plans, LinkedIn optimisations, outreach messages, recruiter contact searches and interview debriefs. Requests are assessed against the usage recorded on your account for the billing period in question.
+Processing fees: Our payment provider keeps its card processing fees when a payment is refunded and does not return them. Every refund under routes (a) and (b), and every pack refund, is therefore reduced by the processing fees charged on the original payment.
 
-(b) Success Refund. If you accept an offer of employment while subscribed to a paid plan, you may request a refund of your most recent billing period in full, provided you supply all three of the following: (i) a copy of your offer letter; (ii) a public post on LinkedIn describing your experience of the Service; and (iii) a short written testimonial that you grant us permission to quote in our marketing. All three items are required. The Success Refund covers one billing period only, being your most recent one, and is not available for earlier billing periods.
+(a) First-payment refund. Within 7 days of your first payment for a paid plan, if you have used less than 10% of your plan's monthly usage allowance overall and no more than half of the allowance for any single feature, you may request a refund of that first payment. This route is available once per person, payment card and device.
 
-Refunds under either route are processed within 5-10 business days.
+(b) Unused-credits refund. At any time during your current billing period, you may request a refund of the part of that period's payment that corresponds to the allowance you have not used. Your monthly usage allowance comprises the limits attached to your plan, including resume analyses, cover letters, mock interviews, study plans, LinkedIn optimisations, outreach messages, recruiter contact searches and interview debriefs. Each feature is weighted by what it costs us to provide, so a mock interview counts for more than a cover letter. The amount is assessed against the usage recorded on your account at the time of the request. Only the current billing period qualifies: once a new billing period begins, the previous one can no longer be refunded. This route is available once every 6 months per person, payment card and device, and any refund within that time counts toward it. It is not available during a free trial, when nothing has been charged.
+
+When a refund under route (a) or (b) is made, your paid plan ends at once and your account moves to the Free plan.
+
+(c) Success Refund. If you accept an offer of employment while subscribed to a paid plan, you may request a refund of your most recent billing period in full, provided you supply all three of the following: (i) a copy of your offer letter; (ii) a public post on LinkedIn describing your experience of the Service; and (iii) a short written testimonial that you grant us permission to quote in our marketing. All three items are required. The Success Refund covers one billing period only, being your most recent one, and is not available for earlier billing periods.
+
+Refunds under routes (a) and (b) are processed as soon as you request them. Success Refunds are processed once your claim is verified. Your bank usually takes 5-10 business days to show any refund on your statement.
 
 Price Changes: We reserve the right to modify our pricing at any time. We will provide at least 30 days' notice of any price increases to existing subscribers before such changes take effect. Your continued use of the Service after a price change constitutes your agreement to the new pricing.
 
@@ -252,7 +258,7 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 1, 2026. Effective date: October 1, 2026.
+                Last updated: October 11, 2026. Effective date: October 25, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.

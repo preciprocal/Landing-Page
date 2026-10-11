@@ -203,7 +203,7 @@ export function getPacks(): readonly Pack[] {
  * sees the subscription refund copy would reasonably assume it applies here too.
  */
 export const PACK_REFUND_LINE =
-  "Changed your mind? A pack is refundable in full within 7 days, as long as you have not used any of it. Once you use part of a pack it is no longer refundable.";
+  "Changed your mind? A pack is refundable within 7 days, as long as you have not used any of it, less the card processing fee. Once you use part of a pack it is no longer refundable.";
 
 // ─── Refund policy ───────────────────────────────────────────────────────────
 
@@ -231,14 +231,13 @@ export const REFUND_POLICY = {
    * optimisations and contact searches included. An earlier draft named only
    * mock interviews and made the offer look far narrower than it is.
    *
-   * The half-way threshold is stated here rather than hidden in the Terms
-   * because the gate excludes light users: someone who used a tenth of their
-   * allowance gets nothing back. An unqualified "whatever you do not use is
-   * refundable" would be untrue for exactly the people most likely to believe
-   * it, which is how the claim this replaced went wrong.
+   * "Ask" is load-bearing: refunds are on request only, from Settings in the
+   * app, and only for the current billing month. "Less card fees" stays in
+   * the line because the amount is never the full unused share; an unqualified
+   * "whatever you do not use is refunded" would overstate it.
    */
   usageLine:
-    "Use more than half your monthly allowance and the value of the rest comes back.",
+    "Ask any time in your billing month and the part you have not used comes back, less card fees.",
   /**
    * Route two, the Success Refund, and the payoff, so it closes.
    *
