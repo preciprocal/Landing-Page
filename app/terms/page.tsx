@@ -262,7 +262,7 @@ export default function TermsPage() {
                 Terms of Service
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 11, 2026. Effective date: October 25, 2026.
+                Last updated: October 11, 2026. Effective date: October 11, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
