@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd } from "@/components/JsonLd";
 import CookieBanner from "@/components/CookieBanner";
+import GoogleOneTap from "@/components/GoogleOneTap";
 import ConsentedAnalytics from "@/components/ConsentedAnalytics";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import StickyBanner from "@/components/StickyBanner";
@@ -161,6 +162,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             acts on it by granting GA storage and loading Clarity. */}
         <CookieBanner />
         <ConsentedAnalytics />
+        <GoogleOneTap />
         {/* First-party analytics. Runs for every visitor, but sends no
             persistent identifier until the banner is accepted, so declining
             still leaves the site able to count its own traffic. Separate from
