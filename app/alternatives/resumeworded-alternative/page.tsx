@@ -251,7 +251,7 @@ export default function ResumeWordedAlternativePage() {
               },
               {
                 title: "More affordable for students",
-                body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, no credit card required.",
+                body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, with nothing charged for 30 days.",
               },
               {
                 title: "Built for people without extensive work history",

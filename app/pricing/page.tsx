@@ -155,7 +155,7 @@ const PRICING_FAQS = [
   },
   {
     q: "Is there a student discount?",
-    a: "Yes. Verify your .edu email address and get 1 month of Pro free with no credit card required.",
+    a: "Yes. Verify your .edu email address and get 1 month of Pro free. A card is required to start the trial, nothing is charged for 30 days, and you can cancel any time before it ends.",
   },
   {
     q: "What's the difference between Pro and Premium?",
@@ -277,8 +277,8 @@ export default function PricingPage() {
 
             <p className="text-center text-[13px] text-slate-600 mt-5">
               University student? Verify your .edu email for{" "}
-              <span className="text-slate-400 font-medium">1 month of Pro free</span>, no
-              card needed.
+              <span className="text-slate-400 font-medium">1 month of Pro free</span>. A card is
+              required; nothing is charged for 30 days and you can cancel any time.
             </p>
           </div>
         </section>

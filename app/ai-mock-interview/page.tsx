@@ -67,7 +67,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Is AI mock interview practice actually effective?",
-    a: "Yes. Research backs it up. The core mechanism is deliberate practice under realistic conditions. Candidates who practice out loud, under time pressure, with feedback consistently outperform those who only read answers. AI mock interviews give you unlimited reps with immediate scoring, so you build muscle memory before the real thing. The nerves shrink when you've done it 20 times.",
+    a: "Yes. Research backs it up. The core mechanism is deliberate practice under realistic conditions. Candidates who practice out loud, under time pressure, with feedback consistently outperform those who only read answers. AI mock interviews give you repeatable reps with immediate scoring, so you build muscle memory before the real thing. The nerves shrink when you've done it 20 times.",
   },
   {
     q: "How is this different from practicing with a friend or ChatGPT?",
@@ -420,8 +420,8 @@ export default function AIMockInterviewPage() {
             Start practicing today. It is free.
           </h2>
           <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            1 mock interview per month on the free plan. Students with a .edu email get 1 month of Pro
-            free. No credit card required.
+            1 mock interview per month on the free plan, no credit card required. Students with a .edu
+            email get 1 month of Pro free.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link

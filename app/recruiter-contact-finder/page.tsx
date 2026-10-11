@@ -69,7 +69,7 @@ const FAQS = [
   },
   {
     q: "How many contact lookups do I get?",
-    a: "The free plan includes 2 contact lookups per month. Pro raises this substantially, which matters if you are running a real outreach pipeline alongside your applications.",
+    a: "The free plan includes 3 contact lookups per month. Pro raises this to 15, which matters if you are running a real outreach pipeline alongside your applications.",
   },
 ];
 
@@ -93,13 +93,13 @@ export default function RecruiterContactFinderPage() {
     <ToolPage
       breadcrumbName="Recruiter Contact Finder"
       canonicalPath="/recruiter-contact-finder"
-      badge="Free, 2 lookups per month"
+      badge="Free, 3 lookups per month"
       h1="Recruiter contact finder"
       h1Accent="find the right person to email"
       subhead="An application in a portal joins several hundred others. An email to the hiring manager arrives in an inbox with your name on it. Find who to contact and verify the address before you send."
       ctaTool="contact-finder"
       ctaLabel="Find a contact free"
-      ctaMicrocopy="2 free lookups/month · Verified addresses · No credit card"
+      ctaMicrocopy="3 free lookups/month · Verified addresses · No credit card"
       featuresTitle="What the contact finder does"
       featuresSubtitle="Built for the five-to-ten carefully chosen contacts of a job search, not sales-volume prospecting."
       features={FEATURES}
@@ -117,7 +117,7 @@ export default function RecruiterContactFinderPage() {
       ]}
       bottomTitle="Applications get queued. Emails get read."
       bottomBody="The same candidate gets a different outcome depending on whether a human ever sees the application."
-      bottomMicrocopy="2 free lookups per month · No credit card · Verified before you send"
+      bottomMicrocopy="3 free lookups per month · No credit card · Verified before you send"
       body={
         <>
           <p>

@@ -47,100 +47,100 @@ const SALARY_DATA: Record<string, SalaryData> = {
     medianTotal: "$175,000",
     topPayingCities: ["San Francisco Bay Area", "Seattle", "New York City", "Austin", "Boston"],
     levels: [
-      { level: "Junior / L3",     yearsExp: "0–2 years",  baseSalary: "$95,000 – $130,000",  totalComp: "$110,000 – $160,000", equityNote: "RSUs typical at FAANG; startups offer 0.1–0.5% options" },
-      { level: "Mid / L4",        yearsExp: "2–5 years",  baseSalary: "$130,000 – $165,000", totalComp: "$160,000 – $220,000", equityNote: "RSUs ~$30K–60K/yr vested; startups 0.05–0.25%" },
-      { level: "Senior / L5",     yearsExp: "5–10 years", baseSalary: "$160,000 – $200,000", totalComp: "$220,000 – $350,000", equityNote: "Equity becomes primary comp lever at this level" },
-      { level: "Staff / L6",      yearsExp: "10+ years",  baseSalary: "$195,000 – $240,000", totalComp: "$350,000 – $600,000+",equityNote: "Heavy equity weighting; stock refreshes matter more than base" },
+      { level: "Junior / L3",     yearsExp: "0-2 years",  baseSalary: "$95,000 - $130,000",  totalComp: "$110,000 - $160,000", equityNote: "RSUs typical at FAANG; startups offer 0.1-0.5% options" },
+      { level: "Mid / L4",        yearsExp: "2-5 years",  baseSalary: "$130,000 - $165,000", totalComp: "$160,000 - $220,000", equityNote: "RSUs ~$30K-60K/yr vested; startups 0.05-0.25%" },
+      { level: "Senior / L5",     yearsExp: "5-10 years", baseSalary: "$160,000 - $200,000", totalComp: "$220,000 - $350,000", equityNote: "Equity becomes primary comp lever at this level" },
+      { level: "Staff / L6",      yearsExp: "10+ years",  baseSalary: "$195,000 - $240,000", totalComp: "$350,000 - $600,000+",equityNote: "Heavy equity weighting; stock refreshes matter more than base" },
     ],
     negotiationScript: `"Thank you for the offer, I'm genuinely excited about this role. Based on my research using Levels.fyi and conversations with peers at comparable companies, I was targeting a base closer to [$X]. Given my experience with [specific relevant skill], I believe that's well-supported by the market. Is there flexibility to move in that direction?"`,
     salaryFactors: [
       "Company tier (FAANG vs unicorn vs startup vs enterprise) is the single biggest driver, $50K+ swings are common",
-      "Location still matters: remote-first companies may apply geo-adjustments of 10–25%",
-      "Stack and specialty: ML engineers, security engineers, and distributed systems engineers command 15–30% premiums",
-      "Offer timing: candidates with competing offers see 10–20% higher final packages on average",
-      "Negotiation: 72% of employers expect negotiation; most first offers are 5–15% below the ceiling",
+      "Location still matters: remote-first companies may apply geo-adjustments of 10-25%",
+      "Stack and specialty: ML engineers, security engineers, and distributed systems engineers command 15-30% premiums",
+      "Offer timing: candidates with competing offers see 10-20% higher final packages on average",
+      "Negotiation: 72% of employers expect negotiation; most first offers are 5-15% below the ceiling",
     ],
-    sources: "Data aggregated from Levels.fyi, Glassdoor, LinkedIn Salary, and Blind (2025–2026). Individual packages vary significantly by company, location, and offer timing.",
+    sources: "Data aggregated from Levels.fyi, Glassdoor, LinkedIn Salary, and Blind (2025-2026). Individual packages vary significantly by company, location, and offer timing.",
   },
   "product-manager": {
     medianBase: "$135,000",
     medianTotal: "$165,000",
     topPayingCities: ["San Francisco Bay Area", "Seattle", "New York City", "Los Angeles", "Boston"],
     levels: [
-      { level: "APM / Junior PM",  yearsExp: "0–2 years",  baseSalary: "$85,000 – $115,000",  totalComp: "$100,000 – $140,000", equityNote: "APM programs at big tech: full RSU packages. Startups: 0.1–0.4%" },
-      { level: "PM",               yearsExp: "2–5 years",  baseSalary: "$120,000 – $155,000", totalComp: "$145,000 – $200,000", equityNote: "RSUs ~$25K–50K/yr at FAANG; meaningful equity at growth-stage" },
-      { level: "Senior PM",        yearsExp: "5–9 years",  baseSalary: "$155,000 – $190,000", totalComp: "$200,000 – $290,000", equityNote: "Senior PMs increasingly equity-rich; refreshes compound over time" },
-      { level: "Principal / GPM",  yearsExp: "9+ years",   baseSalary: "$190,000 – $230,000", totalComp: "$300,000 – $500,000+",equityNote: "Director-level equity; large refreshes; bonus components" },
+      { level: "APM / Junior PM",  yearsExp: "0-2 years",  baseSalary: "$85,000 - $115,000",  totalComp: "$100,000 - $140,000", equityNote: "APM programs at big tech: full RSU packages. Startups: 0.1-0.4%" },
+      { level: "PM",               yearsExp: "2-5 years",  baseSalary: "$120,000 - $155,000", totalComp: "$145,000 - $200,000", equityNote: "RSUs ~$25K-50K/yr at FAANG; meaningful equity at growth-stage" },
+      { level: "Senior PM",        yearsExp: "5-9 years",  baseSalary: "$155,000 - $190,000", totalComp: "$200,000 - $290,000", equityNote: "Senior PMs increasingly equity-rich; refreshes compound over time" },
+      { level: "Principal / GPM",  yearsExp: "9+ years",   baseSalary: "$190,000 - $230,000", totalComp: "$300,000 - $500,000+",equityNote: "Director-level equity; large refreshes; bonus components" },
     ],
     negotiationScript: `"I really appreciate the offer and I'm excited about the opportunity. I've done some research and talked to PMs at similar-stage companies, based on that, I was expecting a base closer to [$X]. I'm also wondering about the equity component: is there flexibility to increase the initial grant? I'd love to find something that works for both of us."`,
     salaryFactors: [
       "B2C vs B2B vs Platform PM: consumer tech pays highest; platform/infra PM roles often get engineering-tier comp",
-      "Technical depth: TPMs and PMs with engineering backgrounds earn 10–20% more at technical companies",
-      "Company growth stage: Series A–C startups pay lower base but higher equity upside",
+      "Technical depth: TPMs and PMs with engineering backgrounds earn 10-20% more at technical companies",
+      "Company growth stage: Series A-C startups pay lower base but higher equity upside",
       "Scope clarity: PMs owning a P&L or a platform used by millions command premium over feature PMs",
-      "MBA premium: top MBA programs add 10–15% at consulting/tech hybrids, less at pure tech startups",
+      "MBA premium: top MBA programs add 10-15% at consulting/tech hybrids, less at pure tech startups",
     ],
-    sources: "Data aggregated from Glassdoor, LinkedIn Salary, Levels.fyi, and Rora salary reports (2025–2026). Individual packages vary by company, product type, and scope.",
+    sources: "Data aggregated from Glassdoor, LinkedIn Salary, Levels.fyi, and Rora salary reports (2025-2026). Individual packages vary by company, product type, and scope.",
   },
   "data-scientist": {
     medianBase: "$130,000",
     medianTotal: "$155,000",
     topPayingCities: ["San Francisco Bay Area", "Seattle", "New York City", "Boston", "San Diego"],
     levels: [
-      { level: "Junior DS / L3",   yearsExp: "0–2 years",  baseSalary: "$90,000 – $120,000",  totalComp: "$105,000 – $145,000", equityNote: "Entry-level RSUs at big tech; modest equity at startups" },
-      { level: "DS / L4",          yearsExp: "2–5 years",  baseSalary: "$120,000 – $155,000", totalComp: "$145,000 – $195,000", equityNote: "RSUs ~$20K–45K/yr; production ML experience unlocks higher bands" },
-      { level: "Senior DS / L5",   yearsExp: "5–9 years",  baseSalary: "$150,000 – $185,000", totalComp: "$195,000 – $280,000", equityNote: "MLOps/production ML seniors approach SWE L5 compensation" },
-      { level: "Staff DS / L6",    yearsExp: "9+ years",   baseSalary: "$180,000 – $220,000", totalComp: "$300,000 – $450,000+",equityNote: "Research Scientists / Staff DSs at AI labs can far exceed this range" },
+      { level: "Junior DS / L3",   yearsExp: "0-2 years",  baseSalary: "$90,000 - $120,000",  totalComp: "$105,000 - $145,000", equityNote: "Entry-level RSUs at big tech; modest equity at startups" },
+      { level: "DS / L4",          yearsExp: "2-5 years",  baseSalary: "$120,000 - $155,000", totalComp: "$145,000 - $195,000", equityNote: "RSUs ~$20K-45K/yr; production ML experience unlocks higher bands" },
+      { level: "Senior DS / L5",   yearsExp: "5-9 years",  baseSalary: "$150,000 - $185,000", totalComp: "$195,000 - $280,000", equityNote: "MLOps/production ML seniors approach SWE L5 compensation" },
+      { level: "Staff DS / L6",    yearsExp: "9+ years",   baseSalary: "$180,000 - $220,000", totalComp: "$300,000 - $450,000+",equityNote: "Research Scientists / Staff DSs at AI labs can far exceed this range" },
     ],
     negotiationScript: `"Thank you, I'm really interested in joining the team. I've been looking at market data for data scientists with production ML experience at this scale, and I was expecting something closer to [$X] total compensation. Given my background in [specific skill, MLOps, experimentation, NLP, etc.], I think that's a fair ask. Is there room to move?"`,
     salaryFactors: [
       "Research vs applied split: AI/research scientists at top labs (OpenAI, Anthropic, DeepMind) earn dramatically more than applied DS at typical companies",
-      "Production ML premium: DSs with MLOps and deployment experience earn 15–25% more than pure notebook scientists",
+      "Production ML premium: DSs with MLOps and deployment experience earn 15-25% more than pure notebook scientists",
       "Domain specialty: NLP, computer vision, and reinforcement learning specialists command premium rates",
-      "PhD premium: 5–15% in research-leaning roles; minimal in applied/startup settings",
+      "PhD premium: 5-15% in research-leaning roles; minimal in applied/startup settings",
       "Industry vertical: finance (quant/data science hybrids), healthcare AI, and adtech pay highest outside pure AI labs",
     ],
-    sources: "Data aggregated from Levels.fyi, Glassdoor, LinkedIn Salary, Kaggle annual survey (2025–2026). AI lab compensation varies significantly and may exceed ranges shown.",
+    sources: "Data aggregated from Levels.fyi, Glassdoor, LinkedIn Salary, Kaggle annual survey (2025-2026). AI lab compensation varies significantly and may exceed ranges shown.",
   },
   "financial-analyst": {
     medianBase: "$80,000",
     medianTotal: "$95,000",
     topPayingCities: ["New York City", "San Francisco", "Chicago", "Boston", "Houston"],
     levels: [
-      { level: "Analyst",          yearsExp: "0–3 years",  baseSalary: "$65,000 – $90,000",   totalComp: "$75,000 – $110,000", equityNote: "IB analysts: $80–100K base + $30–60K bonus. Corp FP&A: modest or no equity" },
-      { level: "Senior Analyst",   yearsExp: "3–6 years",  baseSalary: "$85,000 – $115,000",  totalComp: "$100,000 – $145,000", equityNote: "Performance bonus 10–20% of base at most companies" },
-      { level: "Manager / VP",     yearsExp: "6–10 years", baseSalary: "$110,000 – $150,000", totalComp: "$140,000 – $200,000", equityNote: "Equity more common in public company management roles" },
-      { level: "Director / SVP",   yearsExp: "10+ years",  baseSalary: "$150,000 – $200,000", totalComp: "$200,000 – $350,000+",equityNote: "Significant equity + substantial bonus at director level" },
+      { level: "Analyst",          yearsExp: "0-3 years",  baseSalary: "$65,000 - $90,000",   totalComp: "$75,000 - $110,000", equityNote: "IB analysts: $80-100K base + $30-60K bonus. Corp FP&A: modest or no equity" },
+      { level: "Senior Analyst",   yearsExp: "3-6 years",  baseSalary: "$85,000 - $115,000",  totalComp: "$100,000 - $145,000", equityNote: "Performance bonus 10-20% of base at most companies" },
+      { level: "Manager / VP",     yearsExp: "6-10 years", baseSalary: "$110,000 - $150,000", totalComp: "$140,000 - $200,000", equityNote: "Equity more common in public company management roles" },
+      { level: "Director / SVP",   yearsExp: "10+ years",  baseSalary: "$150,000 - $200,000", totalComp: "$200,000 - $350,000+",equityNote: "Significant equity + substantial bonus at director level" },
     ],
     negotiationScript: `"Thank you for the offer. Based on my research using Glassdoor and conversations with peers in FP&A at comparable companies, I was expecting a base in the [$X] range. I'm also curious about the bonus structure, could you walk me through how bonus targets are set? I want to make sure I understand the total compensation picture before I respond."`,
     salaryFactors: [
       "Track (IB vs PE vs HF vs Corp FP&A): IB and buy-side pay dramatically more than corporate finance roles",
-      "Firm tier: bulge bracket IB analysts earn $80K+ base with $30–60K bonus; boutique firms pay less",
-      "Industry: tech, energy, and finance industry FP&A roles pay 15–25% more than non-profit or government",
-      "CFA designation: adds 10–15% at investment management firms; less impact in corporate roles",
+      "Firm tier: bulge bracket IB analysts earn $80K+ base with $30-60K bonus; boutique firms pay less",
+      "Industry: tech, energy, and finance industry FP&A roles pay 15-25% more than non-profit or government",
+      "CFA designation: adds 10-15% at investment management firms; less impact in corporate roles",
       "SQL and Python fluency: increasingly commanding a 'quant premium' in data-heavy FP&A and research roles",
     ],
-    sources: "Data aggregated from Wall Street Oasis, Glassdoor, LinkedIn Salary, and CFA Institute compensation reports (2025–2026). IB compensation varies substantially by firm and deal flow.",
+    sources: "Data aggregated from Wall Street Oasis, Glassdoor, LinkedIn Salary, and CFA Institute compensation reports (2025-2026). IB compensation varies substantially by firm and deal flow.",
   },
   "marketing-manager": {
     medianBase: "$95,000",
     medianTotal: "$110,000",
     topPayingCities: ["San Francisco Bay Area", "New York City", "Los Angeles", "Seattle", "Chicago"],
     levels: [
-      { level: "Marketing Coordinator / Specialist", yearsExp: "0–3 years",  baseSalary: "$50,000 – $75,000",  totalComp: "$55,000 – $85,000",  equityNote: "Minimal equity outside of startups and tech companies" },
-      { level: "Marketing Manager",                  yearsExp: "3–7 years",  baseSalary: "$80,000 – $115,000", totalComp: "$90,000 – $130,000",  equityNote: "10–15% annual bonus common; equity at growth-stage companies" },
-      { level: "Senior / Sr. Marketing Manager",     yearsExp: "7–12 years", baseSalary: "$110,000 – $145,000",totalComp: "$130,000 – $170,000",  equityNote: "Significant equity at tech companies; bonus 15–20% of base" },
-      { level: "Director of Marketing / VP",         yearsExp: "12+ years",  baseSalary: "$145,000 – $200,000",totalComp: "$185,000 – $280,000+", equityNote: "Heavy equity and performance bonus; significant variation by company" },
+      { level: "Marketing Coordinator / Specialist", yearsExp: "0-3 years",  baseSalary: "$50,000 - $75,000",  totalComp: "$55,000 - $85,000",  equityNote: "Minimal equity outside of startups and tech companies" },
+      { level: "Marketing Manager",                  yearsExp: "3-7 years",  baseSalary: "$80,000 - $115,000", totalComp: "$90,000 - $130,000",  equityNote: "10-15% annual bonus common; equity at growth-stage companies" },
+      { level: "Senior / Sr. Marketing Manager",     yearsExp: "7-12 years", baseSalary: "$110,000 - $145,000",totalComp: "$130,000 - $170,000",  equityNote: "Significant equity at tech companies; bonus 15-20% of base" },
+      { level: "Director of Marketing / VP",         yearsExp: "12+ years",  baseSalary: "$145,000 - $200,000",totalComp: "$185,000 - $280,000+", equityNote: "Heavy equity and performance bonus; significant variation by company" },
     ],
     negotiationScript: `"I'm really excited about this role and the team. After reviewing the offer and benchmarking against similar roles at comparable companies, I was hoping we could discuss the base, I was targeting around [$X]. I'd also like to understand the bonus structure better: how are targets set, and what's a realistic range for someone in this role? I want to make sure I have the full picture."`,
     salaryFactors: [
-      "Industry vertical: tech marketing managers earn 20–40% more than equivalent roles in non-profit, retail, or healthcare",
+      "Industry vertical: tech marketing managers earn 20-40% more than equivalent roles in non-profit, retail, or healthcare",
       "Channel specialty: growth/performance marketing specialists command premium; brand and content managers earn less",
       "B2B vs B2C: enterprise B2B marketing roles often pay more, especially with a pipeline/revenue ownership component",
-      "Company stage: Series C–D growth-stage companies pay aggressive total compensation including significant equity",
+      "Company stage: Series C-D growth-stage companies pay aggressive total compensation including significant equity",
       "P&L ownership: marketing leaders who own a budget and a revenue number earn substantially more than those who don't",
     ],
-    sources: "Data aggregated from Glassdoor, LinkedIn Salary, HubSpot State of Marketing reports, and Built In salary data (2025–2026).",
+    sources: "Data aggregated from Glassdoor, LinkedIn Salary, HubSpot State of Marketing reports, and Built In salary data (2025-2026).",
   },
 };
 
@@ -194,18 +194,18 @@ function getSalaryData(role: string): SalaryData | null {
       ? 1.35
       : 1.1;
 
-  const band = (a: number, b: number) => `${usd(low + span * a)} – ${usd(low + span * b)}`;
+  const band = (a: number, b: number) => `${usd(low + span * a)} - ${usd(low + span * b)}`;
   const total = (a: number, b: number) =>
-    `${usd((low + span * a) * uplift)} – ${usd((low + span * b) * uplift)}`;
+    `${usd((low + span * a) * uplift)} - ${usd((low + span * b) * uplift)}`;
 
   return {
-    medianBase: `${usd(low + span * 0.45)} – ${usd(low + span * 0.6)}`,
-    medianTotal: `${usd((low + span * 0.45) * uplift)} – ${usd((low + span * 0.6) * uplift)}`,
+    medianBase: `${usd(low + span * 0.45)} - ${usd(low + span * 0.6)}`,
+    medianTotal: `${usd((low + span * 0.45) * uplift)} - ${usd((low + span * 0.6) * uplift)}`,
     topPayingCities: CATEGORY_MARKETS[category] ?? CATEGORY_MARKETS["Business & Ops"],
     levels: [
       {
         level: "Entry Level",
-        yearsExp: "0–2 years",
+        yearsExp: "0-2 years",
         baseSalary: band(0, 0.2),
         totalComp: total(0, 0.2),
         equityNote:
@@ -215,17 +215,17 @@ function getSalaryData(role: string): SalaryData | null {
       },
       {
         level: "Mid Level",
-        yearsExp: "2–5 years",
+        yearsExp: "2-5 years",
         baseSalary: band(0.2, 0.5),
         totalComp: total(0.2, 0.5),
         equityNote:
           uplift > 1.3
             ? "Bonus becomes a meaningful share of total compensation and is often negotiable separately"
-            : "Performance bonus of 5–15% is common; equity appears at growth-stage companies",
+            : "Performance bonus of 5-15% is common; equity appears at growth-stage companies",
       },
       {
         level: "Senior Level",
-        yearsExp: "5–10 years",
+        yearsExp: "5-10 years",
         baseSalary: band(0.5, 0.8),
         totalComp: total(0.5, 0.8),
         equityNote:
@@ -236,8 +236,8 @@ function getSalaryData(role: string): SalaryData | null {
       {
         level: "Manager / Director",
         yearsExp: "10+ years",
-        baseSalary: `${usd(low + span * 0.8)} – ${usd(high)}+`,
-        totalComp: `${usd((low + span * 0.8) * uplift)} – ${usd(high * uplift)}+`,
+        baseSalary: `${usd(low + span * 0.8)} - ${usd(high)}+`,
+        totalComp: `${usd((low + span * 0.8) * uplift)} - ${usd(high * uplift)}+`,
         equityNote: "Leadership packages carry the widest variance; scope and company stage drive most of it",
       },
     ],
@@ -486,7 +486,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
         <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(245,158,11,0.04)", borderColor: "rgba(245,158,11,0.15)" }}>
           <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-3">Negotiation script that works</h2>
           <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
-            Use this exact script when you receive a {display.name.toLowerCase()} offer. Most hiring managers expect negotiation and have 5–15% room above the first offer.
+            Use this exact script when you receive a {display.name.toLowerCase()} offer. Most hiring managers expect negotiation and have 5-15% room above the first offer.
           </p>
           <div className="p-4 rounded-xl font-mono text-sm leading-relaxed" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#fcd34d" }}>
             {salaryData.negotiationScript}

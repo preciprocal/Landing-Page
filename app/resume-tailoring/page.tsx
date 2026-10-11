@@ -118,7 +118,7 @@ export default function ResumeTailoringPage() {
       ]}
       bottomTitle="Send 20 tailored applications, not 200 generic ones."
       bottomBody="In a market with one opening per unemployed worker, match rate beats volume every time."
-      bottomMicrocopy="5 free analyses per month · No credit card · Export to PDF or .docx"
+      bottomMicrocopy="3 free analyses per month · No credit card · Export to PDF or .docx"
       body={
         <>
           <p>

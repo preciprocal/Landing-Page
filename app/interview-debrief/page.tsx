@@ -70,7 +70,7 @@ const FAQS = [
   },
   {
     q: "Is the debrief journal free?",
-    a: "The free plan includes 1 interview debrief per month. Pro removes the limit and adds pattern analysis across all your debriefs, which is where most of the value is, since the insight comes from the aggregate rather than any single entry.",
+    a: "The free plan includes 2 interview debriefs per month. Pro raises this to 5 and adds pattern analysis across all your debriefs, which is where most of the value is, since the insight comes from the aggregate rather than any single entry.",
   },
 ];
 
@@ -94,13 +94,13 @@ export default function InterviewDebriefPage() {
     <ToolPage
       breadcrumbName="Interview Debrief Journal"
       canonicalPath="/interview-debrief"
-      badge="Free, 1 debrief per month"
+      badge="Free, 2 debriefs per month"
       h1="Interview debrief journal"
       h1Accent="learn from every interview"
       subhead="Almost no company tells you why you were rejected. Your own notes are the only feedback you will ever get, and they are worthless if you write them three days later."
       ctaTool="interview-debrief"
       ctaLabel="Start a debrief free"
-      ctaMicrocopy="1 free debrief/month · Guided prompts · No credit card"
+      ctaMicrocopy="2 free debriefs/month · Guided prompts · No credit card"
       featuresTitle="What the debrief journal captures"
       featuresSubtitle="Structured while it's fresh, so the pattern across interviews becomes visible."
       features={FEATURES}
@@ -118,7 +118,7 @@ export default function InterviewDebriefPage() {
       ]}
       bottomTitle="Stop repeating the same interview."
       bottomBody="Eight interviews should make you dramatically better. For most candidates they don't, because nothing is captured."
-      bottomMicrocopy="1 free debrief per month · No credit card · Takes about 10 minutes"
+      bottomMicrocopy="2 free debriefs per month · No credit card · Takes about 10 minutes"
       body={
         <>
           <p>

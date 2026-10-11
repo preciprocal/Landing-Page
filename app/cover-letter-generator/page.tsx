@@ -208,7 +208,7 @@ export default function CoverLetterGeneratorPage() {
           {[
             { stat: "60s",        label: "average time to generate" },
             { stat: "5/mo",       label: "free cover letters, no card" },
-            { stat: "Unlimited",  label: "on Pro at $9.99/mo" },
+            { stat: "30/mo",      label: "on Pro at $9.99/mo" },
             { stat: "Any role",   label: "tech, finance, consulting + more" },
           ].map(({ stat, label }) => (
             <div key={stat} className="flex flex-col">

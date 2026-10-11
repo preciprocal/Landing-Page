@@ -13,12 +13,12 @@ import AlternativePage, { type ComparisonRow, type AlternativeFaq, type Alternat
 
 export const metadata: Metadata = {
   title: { absolute: "interviewing.io Alternative: Preciprocal Compared" },
-  description: "An interviewing.io alternative for unlimited AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG engineers.",
+  description: "An interviewing.io alternative for AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG engineers.",
   keywords: ["interviewing.io alternative","interviewing.io vs Preciprocal","cheaper than interviewing.io","AI mock interview alternative","mock interview practice cheap","technical interview practice","interviewing.io pricing"],
   alternates: { canonical: "https://preciprocal.com/alternatives/interviewing-io-alternative" },
   openGraph: {
     title: "interviewing.io Alternative: Preciprocal Compared (2026)",
-    description: "An interviewing.io alternative for unlimited AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG engineers.",
+    description: "An interviewing.io alternative for AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG engineers.",
     url: "https://preciprocal.com/alternatives/interviewing-io-alternative",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "interviewing.io Alternative | Preciprocal",
-    description: "An interviewing.io alternative for unlimited AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG enginee",
+    description: "An interviewing.io alternative for AI mock interview practice at $9.99/mo, against roughly $179 to $339 per session with human FAANG enginee",
   },
 };
 
@@ -158,7 +158,7 @@ export default function InterviewingIoAlternativePage() {
       theirPrice="~$179+/session"
       theirPriceNote="Human engineers, per session"
       intro="interviewing.io is a genuinely different product and in one important respect a better one: you practise with real engineers from companies like Google and Meta, anonymously, and get feedback from someone who has actually conducted these interviews. For senior engineers preparing for a specific FAANG loop, that signal is hard to replicate."
-      positioning="Preciprocal offers unlimited AI practice at $9.99/mo rather than per-session human interviews. It is a volume-and-cost trade against fidelity, and which one you want depends on your stage and budget."
+      positioning="Preciprocal offers AI practice at $9.99/mo rather than per-session human interviews. It is a volume-and-cost trade against fidelity, and which one you want depends on your stage and budget."
       verdictTheirs="you are targeting a senior engineering role at a top company, need feedback from someone who has run those loops, and the per-session cost is affordable for you."
       verdictOurs="you need many repetitions rather than a few high-fidelity ones, you are earlier in your career, or per-session pricing puts human mocks out of reach."
       rows={ROWS}

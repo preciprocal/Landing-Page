@@ -118,7 +118,7 @@ export default function JobApplicationTrackerPage() {
       ]}
       bottomTitle="Run a pipeline, not a pile."
       bottomBody="The candidates who get offers aren't sending the most applications. They're the ones still following up on the ones they sent."
-      bottomMicrocopy="10 jobs free · No credit card · Export to CSV anytime"
+      bottomMicrocopy="10 jobs free · No credit card · Unlimited jobs on Pro"
       body={
         <>
           <p>

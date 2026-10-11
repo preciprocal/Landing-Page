@@ -347,7 +347,7 @@ export default function FreeATSCheckerPage() {
               Check my resume free →
             </a>
             <p className="text-[12px] text-slate-600 mt-4">
-              5 free ATS checks per month · No credit card · Results in under 60 seconds
+              3 free ATS checks per month · No credit card · Results in under 60 seconds
             </p>
           </section>
         </main>
