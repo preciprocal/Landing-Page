@@ -36,12 +36,14 @@ export type TierQuotas = {
    */
   mockInterviewMinutes: number;
   studyPlans: Quota;
-  /**
-   * Debriefs of real interviews the user sat, captured in the journal. The AI
-   * analysis of a debrief is part of the debrief and is deliberately not
-   * metered separately, so there is one field here, not two.
-   */
+  /** Debriefs of real interviews the user sat, captured in the journal. */
   interviewDebriefs: Quota;
+  /**
+   * AI analysis across the journal. Metered separately in the app
+   * (Dashboard lib/config/usage-limits.ts debriefAnalyses), so a Pro user can
+   * log 5 debriefs but run 4 analyses; the cards say so.
+   */
+  debriefAnalyses: Quota;
   linkedinOptimizations: Quota;
   outreachMessages: Quota;
   contactSearches: Quota;
@@ -74,6 +76,7 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 8,
       studyPlans: 2,
       interviewDebriefs: 2,
+      debriefAnalyses: 1,
       linkedinOptimizations: 2,
       outreachMessages: 3,
       contactSearches: 3,
@@ -95,6 +98,7 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 10,
       studyPlans: 10,
       interviewDebriefs: 5,
+      debriefAnalyses: 4,
       linkedinOptimizations: 5,
       outreachMessages: 20,
       contactSearches: 15,
@@ -116,6 +120,7 @@ export const TIERS: readonly Tier[] = [
       mockInterviewMinutes: 12,
       studyPlans: 25,
       interviewDebriefs: 10,
+      debriefAnalyses: 12,
       linkedinOptimizations: 15,
       outreachMessages: 60,
       contactSearches: 50,
@@ -295,6 +300,7 @@ export function tierFeatureLines(tier: Tier): string[] {
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
     `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")}`,
     `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")}`,
+    `${pluralise(q.debriefAnalyses ?? 0, "AI interview analysis", "AI interview analyses")}`,
     `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")}`,
     `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")}`,
     `${pluralise(q.contactSearches ?? 0, "recruiter contact search", "recruiter contact searches")}`,
