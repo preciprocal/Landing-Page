@@ -307,9 +307,13 @@ Our inclusion of links to third-party services does not imply endorsement of tho
   },
   {
     title: "Changes to this policy",
-    content: `We may update this Policy from time to time to reflect changes in our practices, the Service, or applicable law. We will notify you of material changes by sending an email to the address associated with your account at least 14 days before the changes take effect, and by posting the updated Policy on this page with a revised "Last Updated" date.
+    content: `We may update this Policy from time to time to reflect changes in our practices, the Service, or applicable law. Whenever we do, we post the updated Policy on this page with a revised "Last Updated" date.
 
-For changes required by law or to address urgent security concerns, we may implement changes immediately and notify you as soon as practicable.
+Changes that materially expand what personal information we collect, how we use it, or who we share it with take effect no sooner than 14 days after we email you about them at the address associated with your account. Where the law requires your consent for such a change, we will ask for it.
+
+All other changes, including changes that give you more protection, clarify this Policy, or are required by law or to address urgent security concerns, take effect when we post them, and we will tell you about any material ones as soon as practicable.
+
+Information we collected before a change continues to be handled under the Policy in effect when we collected it, unless you agree otherwise.
 
 Your continued use of the Service after the effective date of any changes constitutes your acceptance of the updated Policy. If you do not agree with the updated Policy, you must stop using the Service and may delete your account.
 

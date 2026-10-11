@@ -212,11 +212,15 @@ We are not responsible for and do not endorse the content or practices of any th
   },
   {
     title: "Changes to terms",
-    content: `We reserve the right to modify these Terms at any time. We will provide notice of material changes by: (a) sending an email to the address associated with your account at least 14 days before the changes take effect; and (b) posting the updated Terms on this page with a revised "Last Updated" date.
+    content: `We may update these Terms from time to time. Whenever we do, we post the updated Terms on this page with a revised "Last Updated" date.
 
-Your continued use of the Service after the effective date of any changes constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, you must stop using the Service and may cancel your account.
+Changes that materially reduce your rights or increase what you pay, such as a price increase for your plan or a narrower refund policy, take effect no sooner than 14 days after we email you about them at the address associated with your account. You may cancel before they take effect, and they will not apply to you if you do.
 
-For changes required by law or to address security concerns, we may implement changes immediately without prior notice.`,
+All other changes, including changes that benefit you, clarify these Terms, describe new features, or are required by law or to address security concerns, take effect when we post them.
+
+Changes never apply retroactively: a refund request, payment or dispute is handled under the Terms in effect when it arose.
+
+Your continued use of the Service after the effective date of any changes constitutes your acceptance of the revised Terms. If you do not agree to the revised Terms, you must stop using the Service and may cancel your account.`,
   },
   {
     title: "General provisions",
