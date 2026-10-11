@@ -136,7 +136,11 @@ Refunds under routes (a) and (b) are processed as soon as you request them. Succ
 
 Price Changes: We reserve the right to modify our pricing at any time. We will provide at least 30 days' notice of any price increases to existing subscribers before such changes take effect. Your continued use of the Service after a price change constitutes your agreement to the new pricing.
 
-Failed Payments: If a payment fails, we may suspend your access to paid features until payment is successfully processed. We may attempt to charge your payment method multiple times.`,
+Student Free Trial: If you verify a current student email address, you may start one free 30-day trial of the Pro plan. A payment card is required to start it, and nothing is charged during the trial. We email you before the trial ends. Unless you cancel before the end of the trial, your Pro subscription starts automatically when the trial ends, at the Pro price then in effect, and is charged to your card if auto pay is on, or billed by an emailed invoice if auto pay is off. You can cancel at any time during the trial in your account settings and you will not be charged. The trial is available once per person; we check this against your student email address and the device you use. Refunds under routes (a) and (b) above are not available during the trial, because nothing has been charged.
+
+Failed Payments: If an automatic payment fails, we will email you and may retry the charge over the following days. If an invoice you pay yourself is not paid within 7 days of its date, or a failed automatic payment cannot be collected, your subscription is cancelled and your account moves to the Free plan. Your saved work is kept. You can subscribe again at any time.
+
+Payment Disputes: If you dispute a charge with your bank or card issuer, we may suspend the paid plan or remove the pack allowance connected to that charge while the dispute is open. If the dispute is decided in your favour, the charge is reversed by your bank, and no further refund is due from us for that payment. Please contact support@preciprocal.com first; most problems can be resolved faster that way.`,
   },
   {
     title: "Termination and suspension",

@@ -93,7 +93,9 @@ Product Improvement: To analyze usage patterns, identify bugs and performance is
 
 Security and Fraud Prevention: To detect, investigate, and prevent fraudulent transactions, unauthorized access, and other illegal or harmful activities.
 
-Refund Claims: To assess refund requests. For a usage-based refund this means reviewing the usage recorded on your account for the billing period in question. For a Success Refund this means verifying the offer letter, public post and testimonial you submit.
+Refund Claims: To assess refund requests. For a first-payment or unused-credits refund this means reviewing the usage recorded on your account for the billing period in question. To apply the limits on how often these refunds are available, we also compare the payment card's fingerprint, a token our payment processor (Stripe) provides that identifies a card without revealing its number, and an identifier derived from your browser and device. For a Success Refund this means verifying the offer letter, public post and testimonial you submit.
+
+Student Trial: To confirm you are a student and that the free trial is used once per person, we verify your student email address with a one-time code and record an identifier derived from your browser and device. We keep the record of the verification so that the trial cannot be claimed again.
 
 Marketing With Your Permission: To publish approved testimonials and success stories, strictly within the permissions you select when you submit them.
 
@@ -347,7 +349,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 3, 2026. Effective date: October 3, 2026.
+                Last updated: October 11, 2026. Effective date: October 25, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
