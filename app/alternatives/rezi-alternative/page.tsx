@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "A Rezi alternative with ATS resume scoring, voice AI mock interviews, cover letters and job tracking at $9.99/mo, against Rezi Pro at $29/mo.",
     url: "https://preciprocal.com/alternatives/rezi-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

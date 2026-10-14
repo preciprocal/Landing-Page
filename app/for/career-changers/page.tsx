@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     description: "Translate your experience, get past the ATS, and make 'why the switch?' your best answer.",
     url: "https://preciprocal.com/for/career-changers",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "The legal agreement governing your use of Preciprocal. Covers payments, refunds, intellectual property, and your rights as a user.",
     url: "https://preciprocal.com/terms",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

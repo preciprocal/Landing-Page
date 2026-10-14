@@ -39,7 +39,7 @@ export const metadata: Metadata = {
       "Honest comparisons against the 12 tools people evaluate alongside Preciprocal, with current pricing.",
     url: "https://preciprocal.com/alternatives",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

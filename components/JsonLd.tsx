@@ -130,7 +130,7 @@ export function SoftwareAppJsonLd() {
     url: "https://preciprocal.com",
     description:
       "AI-powered career prep platform with mock interviews, resume ATS scoring, cover letter generation, study planning, and job tracking.",
-    screenshot: "https://preciprocal.com/og-image.png",
+    screenshot: "https://preciprocal.com/og-image-v2.png",
     featureList: [
       "AI Mock Interviews with multi-agent panel",
       "Resume ATS Scoring",
@@ -298,7 +298,7 @@ interface BlogPostJsonLdProps {
 export function BlogPostJsonLd({
   title, description, slug, datePublished, dateModified,
   authorName = "Preciprocal Team",
-  imageUrl = "https://preciprocal.com/og-image.png",
+  imageUrl = "https://preciprocal.com/og-image-v2.png",
 }: BlogPostJsonLdProps) {
   const pageUrl = `https://preciprocal.com/blog/${slug}`;
   const schema = {

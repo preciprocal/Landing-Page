@@ -68,7 +68,7 @@ export default function OptGuidePage(props: OptGuideProps) {
     headline: props.headline,
     description: props.description,
     url: pageUrl,
-    image: { "@type": "ImageObject", url: `${SITE_URL}/og-image.png`, width: 1200, height: 630 },
+    image: { "@type": "ImageObject", url: `${SITE_URL}/og-image-v2.png`, width: 1200, height: 630 },
     datePublished: "2026-10-13",
     dateModified: checkedAt,
     author: { "@type": "Organization", name: "Preciprocal Team", url: SITE_URL },

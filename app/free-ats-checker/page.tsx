@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       "Check your resume's ATS score free. Fix keywords, formatting, and structure before your application gets auto-rejected.",
     url: "https://preciprocal.com/free-ats-checker",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

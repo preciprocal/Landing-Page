@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "An Enhancv alternative that adds AI mock interviews, job tracking and per-posting ATS scoring to resume building, at $9.99/mo against Enhancv Pro at $39/mo.",
     url: "https://preciprocal.com/alternatives/enhancv-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

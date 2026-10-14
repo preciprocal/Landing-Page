@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "Most cold emails fail for the same three reasons. Write ones that get answered.",
     url: "https://preciprocal.com/cold-email-generator",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

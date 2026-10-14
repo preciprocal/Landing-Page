@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "Looking for a Teal alternative? Preciprocal covers resume ATS scoring, AI mock interviews, cover letters and job tracking at $9.99/mo, against Teal+ at $29/mo with no interview prep.",
     url: "https://preciprocal.com/alternatives/teal-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

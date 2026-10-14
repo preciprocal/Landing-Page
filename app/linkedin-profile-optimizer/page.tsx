@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Recruiters search LinkedIn by keyword. If your profile doesn't contain them, you don't exist. Fix that in 10 minutes.",
     url: "https://preciprocal.com/linkedin-profile-optimizer",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

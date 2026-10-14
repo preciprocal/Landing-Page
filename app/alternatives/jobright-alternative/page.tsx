@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "A Jobright alternative with voice AI mock interviews, ATS resume scoring, cover letters and interview debriefs at $9.99/mo, against Jobright Turbo at $39.99/mo.",
     url: "https://preciprocal.com/alternatives/jobright-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

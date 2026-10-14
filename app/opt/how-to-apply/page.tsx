@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "https://preciprocal.com/opt/how-to-apply",
     type: "article",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
 };
 

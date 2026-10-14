@@ -1,10 +1,9 @@
 /**
  * scripts/generate-og-image.mjs
  *
- * Renders public/og-image.png, the 1200x630 share image every page points
- * to (openGraph and twitter metadata, 69 references). Run it whenever the
- * positioning or prices change, so the image never says something the site
- * no longer does:
+ * Renders the 1200x630 share image every page points to (openGraph and
+ * twitter metadata). Run it whenever the positioning or prices change, so
+ * the image never says something the site no longer does:
  *
  *   node scripts/generate-og-image.mjs
  *
@@ -14,6 +13,13 @@
  * and an outdated "30-day guarantee". Keeping the copy here, in text, makes
  * that drift reviewable.
  *
+ * CACHE BUSTING: LinkedIn, X and Slack cache share images by URL, so a new
+ * image at the same URL keeps showing the old one. When the image changes,
+ * bump OG_VERSION here AND replace the old filename in every
+ * "https://preciprocal.com/og-image-vN.png" reference across app/,
+ * components/ and lib/. The unversioned public/og-image.png is written too,
+ * as a fallback for anything that still points at it.
+ *
  * Fonts: Segoe UI from the Windows font folder, since next/og's bundled
  * font has no bold weight. On another OS, point FONT_DIR at any TTF pair.
  */
@@ -21,6 +27,8 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { createElement as h } from "react";
 import { ImageResponse } from "next/og.js";
+
+const OG_VERSION = 2;
 
 const FONT_DIR = process.env.FONT_DIR ?? "C:/Windows/Fonts";
 const regular = readFileSync(`${FONT_DIR}/segoeui.ttf`);
@@ -134,5 +142,8 @@ const res = new ImageResponse(image, {
     { name: "Segoe UI", data: bold, weight: 700, style: "normal" },
   ],
 });
-writeFileSync("public/og-image.png", Buffer.from(await res.arrayBuffer()));
-console.log("Wrote public/og-image.png");
+const png = Buffer.from(await res.arrayBuffer());
+for (const out of [`public/og-image-v${OG_VERSION}.png`, "public/og-image.png"]) {
+  writeFileSync(out, png);
+  console.log(`Wrote ${out}`);
+}

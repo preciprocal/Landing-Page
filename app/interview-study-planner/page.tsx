@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "Stop grinding random problems. Get a schedule built backward from your interview date.",
     url: "https://preciprocal.com/interview-study-planner",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

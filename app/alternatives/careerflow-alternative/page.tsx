@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "A Careerflow alternative with LinkedIn optimisation, ATS resume scoring, AI mock interviews and job tracking at $9.99/mo, against Careerflow Premium at $23.99/mo.",
     url: "https://preciprocal.com/alternatives/careerflow-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

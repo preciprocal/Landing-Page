@@ -62,7 +62,7 @@ export async function generateMetadata({
       description,
       url: canonical,
       type: "article",
-      images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+      images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
@@ -246,7 +246,7 @@ export default async function CoverLetterExampleRolePage({
     headline: `${roleName} Cover Letter Example (2026)`,
     description: `Free ${roleName} cover letter example and writing guide for 2026.`,
     url: `https://preciprocal.com/cover-letter-examples/${role}`,
-    image: "https://preciprocal.com/og-image.png",
+    image: "https://preciprocal.com/og-image-v2.png",
     datePublished: "2026-05-01",
     dateModified: "2026-05-14",
     author: {

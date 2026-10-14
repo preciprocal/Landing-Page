@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     siteName: "Preciprocal",
     images: [
       {
-        url: "https://preciprocal.com/og-image.png",
+        url: "https://preciprocal.com/og-image-v2.png",
         width: 1200,
         height: 630,
         alt: "Preciprocal | AI Career Prep Platform",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "Preciprocal | AI Career Prep Platform",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans & job tracking. $9.99/mo.",
-    images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal" }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", alt: "Preciprocal" }],
   },
 
   alternates: {

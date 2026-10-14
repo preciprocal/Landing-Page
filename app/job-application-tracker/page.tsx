@@ -34,7 +34,7 @@ export const metadata: Metadata = {
       "Stop losing applications in a spreadsheet. Track stages, follow-ups, and contacts in one pipeline.",
     url: "https://preciprocal.com/job-application-tracker",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

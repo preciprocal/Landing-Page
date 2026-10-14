@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: "A Kickresume alternative that adds AI mock interviews, job tracking and interview prep to resume and cover letter building, at $9.99/mo against $24/mo monthly.",
     url: "https://preciprocal.com/alternatives/kickresume-alternative",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
