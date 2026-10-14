@@ -368,6 +368,26 @@ export default function BlogArticlePage() {
                 >
                   Start free →
                 </a>
+                {post.category === "Visa & Immigration" && (
+                  <p className="text-[12px] text-slate-500 mt-4">
+                    On F-1 or OPT?{" "}
+                    <Link href="/for/international-students" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
+                      See how Preciprocal works for international students
+                    </Link>
+                    <br />
+                    <Link href="/opt" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
+                      OPT guides and calculators
+                    </Link>
+                    {" · "}Latest rule status:{" "}
+                    <Link href="/new-opt-rules" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
+                      OPT
+                    </Link>
+                    {" · "}
+                    <Link href="/new-h1b-rules" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
+                      H-1B
+                    </Link>
+                  </p>
+                )}
               </div>
             </article>
 

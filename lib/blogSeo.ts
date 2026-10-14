@@ -214,10 +214,10 @@ export const BLOG_SEO: Record<string, BlogSeoEntry> = {
   },
   "us-visa-policy-updates-2026": {
     title: "New US Visa Updates 2026: What Changed",
-    description: "Duration of status ends September 15, 2026. The $100,000 H-1B fee is vacated pending appeal. Automatic EAD extensions are gone. Every 2026 visa rule change explained with the dates that matter.",
+    description: "The duration of status rule is blocked in court. The $100,000 H-1B fee is blocked too. Automatic EAD extensions are gone. Every 2026 visa rule change explained with the dates that matter.",
     keywords: ["US visa updates 2026", "duration of status rule 2026", "F1 visa changes September 2026", "H1B $100000 fee blocked", "H1B weighted lottery 2026", "EAD automatic extension ended", "new immigration rules 2026", "I-539 extension of stay F1", "USCIS changes 2026"],
     ogTitle: "New US Visa Updates (2026): What Actually Changed",
-    ogDescription: "Duration of status ends Sept 15, the H-1B fee is blocked, EAD auto-extensions are gone. The dates and the details.",
+    ogDescription: "The D/S rule and the H-1B fee are both blocked, EAD auto-extensions are gone. The dates and the details.",
   },
   "ead-renewal-2026-automatic-extension-ended": {
     title: "EAD Renewal 2026: Auto-Extension Gone",
@@ -228,7 +228,7 @@ export const BLOG_SEO: Record<string, BlogSeoEntry> = {
   },
   "how-to-check-your-visa-status-2026": {
     title: "Check Your Visa Status: I-94 and SEVIS",
-    description: "Your visa stamp is not your status. How to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what changes when duration of status ends September 15, 2026.",
+    description: "Your visa stamp is not your status. How to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what the blocked duration of status rule would change.",
     keywords: ["how to check visa status", "check I-94 status online", "SEVIS record status F1", "USCIS case status check 2026", "visa vs status difference", "admit until date I-94", "immigration status check international student", "am I in status F1"],
     ogTitle: "How to Check Your Visa Status in 2026 (I-94, SEVIS, USCIS)",
     ogDescription: "Your visa stamp is not your status. Here is how to verify what actually governs your stay, and the quarterly audit that prevents problems.",

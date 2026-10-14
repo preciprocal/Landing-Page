@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { ALL_ROLES, ALL_COMPANIES, BLOG_POSTS, SITE_URL } from "@/lib/constants";
+import { CONTENT_SNAPSHOTS } from "@/lib/contentFreshness";
+import { OPT_GUIDES } from "@/lib/optGuides";
 
 /**
  * sitemap.ts
@@ -136,6 +138,40 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date("2026-08-30"),
       changeFrequency: "monthly" as const,
       priority: 0.88,
+    })),
+    // ── Audience pages and free tools ───────────────────────────────────────
+    // Added October 2026. The audience pages give the blog clusters (visa
+    // guides especially) a commercial page to link to; the thank-you email
+    // tool works without an account, which is what earns links.
+    ...[
+      "for/international-students",
+      "for/new-grads",
+      "for/career-changers",
+      "for/laid-off",
+      "thank-you-email-after-interview",
+    ].map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
+      lastModified: new Date("2026-10-13"),
+      changeFrequency: "monthly" as const,
+      priority: 0.88,
+    })),
+    // ── Visa rule trackers ───────────────────────────────────────────────────
+    // lastModified follows the date the rules were last re-verified, which is
+    // also the date the page displays, so the two cannot disagree.
+    ...["new-h1b-rules", "new-opt-rules"].map((slug) => ({
+      url: `${SITE_URL}/${slug}`,
+      lastModified: new Date(CONTENT_SNAPSHOTS["visa-rule-trackers"].checkedAt),
+      changeFrequency: "weekly" as const,
+      priority: 0.88,
+    })),
+    // ── OPT guide cluster ────────────────────────────────────────────────────
+    // The hub plus every guide in lib/optGuides.ts (minus the rule tracker,
+    // listed above). Dated by the "opt-guides" re-verification.
+    ...["/opt", ...OPT_GUIDES.map((g) => g.href).filter((h) => h.startsWith("/opt/"))].map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified: new Date(CONTENT_SNAPSHOTS["opt-guides"].checkedAt),
+      changeFrequency: "monthly" as const,
+      priority: path === "/opt" ? 0.88 : 0.85,
     })),
     // ── Interview prep hubs ──────────────────────────────────────────────────
     {
@@ -326,6 +362,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/linkedin-profile-optimizer", "/resume-tailoring", "/job-application-tracker",
     "/interview-study-planner", "/cold-email-generator", "/recruiter-contact-finder",
     "/interview-debrief", "/chrome-extension",
+    "/for/international-students", "/for/new-grads", "/for/career-changers",
+    "/for/laid-off", "/thank-you-email-after-interview",
   ].map((p) => (p === "/" ? SITE_URL : `${SITE_URL}${p}`)));
 
   const isAlternative = (u: string) => u.startsWith(`${SITE_URL}/alternatives`);
@@ -342,7 +380,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Tier 1: blog. The visa guides are the most linkable thing here, and links
   // are what eventually lifts crawl priority for everything else.
-  const tier1 = [...blogPages, ...staticPages.filter((p) => String(p.url) === `${SITE_URL}/blog`)];
+  const tier1 = [
+    ...staticPages.filter(
+      (p) =>
+        [`${SITE_URL}/new-h1b-rules`, `${SITE_URL}/new-opt-rules`].includes(String(p.url)) ||
+        String(p.url) === `${SITE_URL}/opt` ||
+        String(p.url).startsWith(`${SITE_URL}/opt/`)
+    ),
+    ...blogPages,
+    ...staticPages.filter((p) => String(p.url) === `${SITE_URL}/blog`),
+  ];
 
   // Tier 2: company and role interview pages. Real hand-written depth.
   const tier2 = [

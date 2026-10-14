@@ -29,6 +29,10 @@ const FOOTER_COLUMNS = [
       { label: "Contact Finder",    href: "/recruiter-contact-finder" },
       { label: "Cold Email Writer", href: "/cold-email-generator" },
       { label: "Chrome Extension",  href: "/chrome-extension" },
+      { label: "International Students", href: "/for/international-students" },
+      { label: "New Grads",         href: "/for/new-grads" },
+      { label: "Career Changers",   href: "/for/career-changers" },
+      { label: "After a Layoff",    href: "/for/laid-off" },
     ],
   },
   {
@@ -37,6 +41,7 @@ const FOOTER_COLUMNS = [
       { label: "AI Mock Interview", href: "/ai-mock-interview" },
       { label: "Study Planner",     href: "/interview-study-planner" },
       { label: "Interview Debrief", href: "/interview-debrief" },
+      { label: "Thank You Email",   href: "/thank-you-email-after-interview" },
       { label: "All Roles",         href: "/interview-questions" },
       { label: "All Companies",     href: "/interview-prep" },
     ],
@@ -48,6 +53,9 @@ const FOOTER_COLUMNS = [
     title: "Resources",
     links: [
       { label: "Blog",                  href: "/blog" },
+      { label: "New H-1B Rules",        href: "/new-h1b-rules" },
+      { label: "New OPT Rules",         href: "/new-opt-rules" },
+      { label: "OPT Guides",            href: "/opt" },
       { label: "Resume Tips",           href: "/resume-tips" },
       { label: "Salary Guide",          href: "/salary-guide" },
       { label: "Cover Letter Examples", href: "/cover-letter-examples" },

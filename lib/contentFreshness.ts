@@ -17,6 +17,8 @@ export type ContentSnapshot = {
   checkedAt: string;
   /** Where the snapshot renders, so a re-check has an obvious starting point. */
   surface: string;
+  /** Overrides FRESHNESS_WINDOW_DAYS for content that goes stale faster. */
+  windowDays?: number;
 };
 
 /**
@@ -37,6 +39,27 @@ export const CONTENT_SNAPSHOTS = {
     checkedAt: "2026-09-19",
     surface:
       "app/alternatives/{final-round-ai,jobscan,resumeworded}-alternative/page.tsx, inline footnotes",
+  },
+  /**
+   * Immigration rules move monthly: proposed rules finalise, courts block and
+   * unblock. Re-verify every status row and date against the cited sources,
+   * then bump this. The page's visible "last checked" date and its title month
+   * are both read from here.
+   */
+  "visa-rule-trackers": {
+    checkedAt: "2026-10-13",
+    surface: "app/new-h1b-rules/page.tsx, app/new-opt-rules/page.tsx",
+    windowDays: 30,
+  },
+  /**
+   * The /opt guides. The core rules are stable regulation, but fees and the
+   * proposed OPT fee change, so re-check fees against the USCIS G-1055 fee
+   * schedule and the proposal's status on the same pass.
+   */
+  "opt-guides": {
+    checkedAt: "2026-10-13",
+    surface: "app/opt/**/page.tsx",
+    windowDays: 60,
   },
 } as const satisfies Record<string, ContentSnapshot>;
 
@@ -79,16 +102,18 @@ export function formatCheckedAt(id: SnapshotId): string {
  * (see ComparisonTable) so SSR and client markup stay in agreement.
  */
 export function getFreshness(id: SnapshotId, now: Date = new Date()): Freshness {
-  const { checkedAt } = CONTENT_SNAPSHOTS[id];
+  const snapshot: ContentSnapshot = CONTENT_SNAPSHOTS[id];
+  const { checkedAt } = snapshot;
+  const windowDays = snapshot.windowDays ?? FRESHNESS_WINDOW_DAYS;
   const checked = new Date(`${checkedAt}T00:00:00Z`);
   const daysSinceChecked = Math.floor((now.getTime() - checked.getTime()) / DAY_MS);
-  const due = new Date(checked.getTime() + FRESHNESS_WINDOW_DAYS * DAY_MS);
+  const due = new Date(checked.getTime() + windowDays * DAY_MS);
 
   return {
     checkedAt,
     label: formatCheckedAt(id),
     daysSinceChecked,
-    isStale: daysSinceChecked > FRESHNESS_WINDOW_DAYS,
+    isStale: daysSinceChecked > windowDays,
     dueDate: due.toISOString().slice(0, 10),
   };
 }
@@ -112,13 +137,13 @@ export function reportStaleContent(now: Date = new Date()): void {
   if (stale.length === 0) return;
 
   console.warn(
-    `[content-freshness] ${stale.length} pricing snapshot(s) past ${FRESHNESS_WINDOW_DAYS} days:\n` +
+    `[content-freshness] ${stale.length} content snapshot(s) past their freshness window:\n` +
       stale
         .map(
           (s) =>
             `  • ${s.id}: checked ${s.label} (${s.daysSinceChecked} days ago, due ${s.dueDate})\n    ${CONTENT_SNAPSHOTS[s.id].surface}`
         )
         .join("\n") +
-      `\nRe-verify against each competitor's live pricing page, then bump checkedAt in lib/contentFreshness.ts.`
+      `\nRe-verify each against its sources (competitor pricing pages, or the cited rules and rulings), then bump checkedAt in lib/contentFreshness.ts.`
   );
 }

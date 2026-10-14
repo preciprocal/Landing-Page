@@ -1525,134 +1525,125 @@ Start free at app.preciprocal.com. No credit card required.`,
     category: "Visa & Immigration",
     readTime: "13 min read",
     publishedAt: "2026-06-06",
-    updatedAt: "2026-06-06",
+    updatedAt: "2026-10-13",
     featured: true,
-    content: `## What is an EAD card and why does it matter for F1 students
+    content: `> **Updated October 13, 2026:** this guide was re-checked line by line against USCIS's OPT page, the Form I-765 instructions (edition 08/21/25), the USCIS fee schedule (edition 10/07/26) and the USCIS Policy Manual. We corrected the OPT category codes, the 30-day filing rule and the document checklist, and removed processing-time estimates that USCIS does not publish as fixed numbers. Interactive versions of these rules are at preciprocal.com/opt.
 
-An Employment Authorization Document (EAD) is the physical card that proves you are legally allowed to work in the United States. For F1 students, the EAD is issued by USCIS as part of the Optional Practical Training (OPT) process. Without it in hand, you cannot legally start working, even if your employer is ready for you and your OPT has been approved.
+## What is an EAD card and why does it matter for F1 students
 
-The EAD card shows your name, photo, the start and end dates of your work authorization, and the category of authorization (C3A for standard OPT, C3C for STEM OPT extension). You need to show this card to your employer when completing Form I-9 on or before your first day of work.
+An Employment Authorization Document (EAD) is the physical card that proves you are allowed to work in the United States. For F1 students, USCIS issues it when it approves your Optional Practical Training (OPT) application. USCIS is explicit that you may not begin OPT until it has approved your Form I-765 and you have received your EAD.
 
-## OPT: the 12-month work authorization every F1 student gets
+The card shows your name, photo, the start and end dates of your work authorization, and your category. The OPT categories are (c)(3)(A) for pre-completion OPT, (c)(3)(B) for post-completion OPT, and (c)(3)(C) for the 24-month STEM extension. You show the card to your employer as proof of work authorization on Form I-9.
 
-Optional Practical Training (OPT) gives F1 students up to 12 months of work authorization in a field directly related to their major area of study. You can use OPT before graduation (pre-completion OPT) or after graduation (post-completion OPT). Most students use it after graduation.
+## OPT: up to 12 months of work authorization
 
-The 12 months is a lifetime limit per degree level. If you used 3 months of pre-completion OPT, you have 9 months of post-completion OPT remaining.
+OPT gives F1 students up to 12 months of work authorization in a field directly related to their major. You are eligible once you have been lawfully enrolled full time for one full academic year. You can use OPT before graduation (pre-completion OPT) or after it (post-completion OPT), and most students use it after.
+
+The 12 months are per education level. Moving to a higher education level gives you a new 12 months.
+
+**Pre-completion OPT is deducted from post-completion OPT, and part-time counts at half.** USCIS's own example: one year of part-time (20 hours a week) pre-completion OPT reduces your remaining OPT by 6 months, leaving 6 months of post-completion OPT. One year of full-time pre-completion OPT uses all 12 months, leaving none.
+
+One more eligibility rule: if you used one year or more of full-time CPT, you are not eligible for post-completion OPT.
 
 ## STEM OPT: the 24-month extension for STEM graduates
 
-If your degree is in a STEM field (Science, Technology, Engineering, or Mathematics) with a qualifying CIP code on the DHS STEM Designated Degree Program List, you can apply for a 24-month STEM OPT extension after your initial 12 months of OPT. This gives you up to 36 months total of post-graduation work authorization.
+If your degree is on the DHS STEM Designated Degree Program List, you can apply for a 24-month STEM OPT extension while you are in your initial period of post-completion OPT. That gives you up to 36 months of work authorization after graduation in total.
 
-STEM OPT has stricter requirements than standard OPT. Your employer must be enrolled in E-Verify, your role must be directly related to your STEM degree, you must complete a formal training plan (Form I-983) with your employer, and you must report to your DSO every 6 months throughout the extension period.
+STEM OPT has stricter requirements than regular OPT. Your employer must be enrolled in E-Verify, the training must relate directly to your STEM degree, you and your employer must complete a training plan (Form I-983), and you must report to your DSO every 6 months.
 
-## The full step-by-step process to get your EAD card
+## The step-by-step process to get your EAD card
 
-### Step 1: Apply to your DSO for an OPT recommendation (4 to 6 weeks before you want to start)
+### Step 1: Ask your DSO for an OPT recommendation
 
-Your university's Designated School Official (DSO) at the international students office must first recommend you for OPT in SEVIS and issue you a new I-20 with the OPT recommendation before you can apply to USCIS. You cannot skip this step or do it simultaneously with the USCIS application.
+Your Designated School Official (DSO) at the international student office must recommend you for OPT in SEVIS before you can apply to USCIS. Each school has its own request process and processing time, so ask yours early.
 
-You can apply to your DSO no earlier than 90 days before your program completion date. Submit your request through your university's international student portal (ISS Connect, iServices, MyISSS, or equivalent). Most universities take 5 to 10 business days to process the request and issue your OPT recommendation I-20.
+Choose your requested start date at this stage. For post-completion OPT it can be any day from the day after your program ends up to 60 days after: USCIS does not allow a requested start date more than 60 days after your program end date. Think about it carefully, because your unemployment count starts on the start date printed on your EAD.
 
-Choose your OPT start date carefully at this stage. Once submitted, you cannot change it. The start date must be within 60 days of your program completion date. It can be as early as the day after completion or as late as 60 days after.
+### Step 2: Receive your updated I-20
 
-### Step 2: Receive your OPT recommendation I-20
+Once your DSO enters the recommendation in SEVIS, they issue an updated I-20 endorsed with the OPT recommendation. The date the recommendation was entered matters: you must file with USCIS within 30 days of it. The Form I-765 instructions say plainly that if you do not, USCIS will deny your OPT request.
 
-Once your DSO approves your request, they will update your SEVIS record and issue a new I-20 that shows the OPT recommendation and your requested start and end dates. This I-20 will have a new Date Issued printed on it. Note this date carefully: you must file with USCIS within 30 days of this Date Issued.
+### Step 3: File Form I-765 with USCIS
 
-### Step 3: File Form I-765 with USCIS (within 30 days of the Date Issued on your I-20)
+File Form I-765, Application for Employment Authorization, online through a USCIS account or by mail.
 
-Form I-765 is the Application for Employment Authorization. This is the form that results in your EAD card. You file it directly with USCIS, either online at my.uscis.gov or by mail to the designated USCIS lockbox.
+**What the Form I-765 instructions require for post-completion OPT:**
 
-**Required documents for your I-765 package:**
+- The filing fee: $470 online or $520 on paper (USCIS fee schedule, edition 10/07/26)
+- Your Form I-20 endorsed by your DSO with the OPT recommendation
+- A copy of at least one of: your Form I-94 (or the printout from cbp.gov/i94), your passport, or another travel document
+- A copy of your last EAD, front and back. If you have never had one, a copy of a government-issued photo ID such as your passport
+- Two identical color passport-style photos, 2 by 2 inches
+- In Part 6 of the form, all SEVIS numbers you have had, and evidence of any CPT or OPT you were previously authorized, with the academic level for each
 
-- Completed and signed Form I-765
-- Filing fee: $470 (online) or $520 (paper) as of 2026
-- Copy of your current OPT recommendation I-20 (all pages)
-- Copy of your most recent prior I-20 showing your program of study (all pages)
-- Copy of your passport biographical page (valid for at least 6 months beyond your OPT start date)
-- Copy of your F1 visa stamp
-- Copy of your most recent I-94 (download from the CBP website, not the paper card)
-- Two passport-style photos if filing by mail (not required for online filing)
-- Copies of all previous EAD cards if you have had prior OPT
+Check the current instructions on uscis.gov before you file, since USCIS updates them.
 
-**Filing deadline:** USCIS must receive your application no earlier than 90 days before your program completion date and no later than 30 days after the Date Issued on your OPT I-20. Missing either deadline means starting over.
+**Filing window:** USCIS must receive your application no earlier than 90 days before your program end date and no later than 60 days after it, and within 30 days of your DSO's recommendation. The 30-day limit is often the one that actually decides your deadline.
 
 ### Step 4: Receive your receipt notice (I-797C)
 
-Within 2 to 4 weeks of USCIS receiving your application, they will mail you a Receipt Notice (Form I-797C). This confirms your application was received and gives you your receipt number (format: EAC, WAC, LIN, or SRC followed by numbers). Save this. You use the receipt number to track your case on the USCIS website.
+USCIS sends a receipt notice (Form I-797C) with your receipt number. Save it: you use it to track your case. If you file online, the receipt appears in your USCIS account.
 
-Filing online gives you immediate digital confirmation and access to your case in your USCIS online account.
+### Step 5: Wait while USCIS processes your application
 
-### Step 5: USCIS processes your application (90 to 150 days)
-
-This is the waiting period. USCIS currently takes 3 to 5 months to process standard OPT EAD applications. Premium processing is available for $1,780 and reduces the timeline to 30 business days. Many students pay for premium processing to ensure their EAD arrives before their intended start date.
+Processing times change, so check USCIS's Check Case Processing Times page for the current estimate rather than relying on a number from a blog. If you need an answer faster, premium processing is available for OPT and STEM OPT applications: it costs $1,780 on top of the filing fee, and USCIS commits to acting within 30 business days. You can request it when you file or afterwards, using Form I-907.
 
 During this period:
-- Track your case at egov.uscis.gov using your receipt number
-- If your address changes, update it with USCIS immediately using their online change of address tool. USPS cannot forward official government mail including your EAD card.
-- If USCIS sends a Request for Evidence (RFE), respond immediately with the requested documents. An RFE can add significant time to your processing.
+- Track your case with USCIS's Case Status Online tool using your receipt number
+- If you move, update your address with USCIS through its online change of address tool
+- If USCIS sends a Request for Evidence (RFE), respond by the deadline it gives
 
 ### Step 6: Receive your approval notice and EAD card
 
-USCIS will mail an approval notice (I-797) and your physical EAD card separately. They often arrive days apart. The card shows your authorized start and end dates, your photo, and your authorization category. Inspect it immediately for errors in your name, date of birth, or dates. If there is an error not your fault, contact USCIS for a free replacement.
+USCIS sends an approval notice and your EAD card. Check the card for errors in your name, date of birth, category and dates as soon as it arrives.
 
 **You cannot begin work until:**
-1. You have the physical EAD card in hand
+1. USCIS has approved your Form I-765 and you have received your EAD
 2. The start date printed on the card has arrived
 
-Working before either condition is met is a serious immigration violation.
+If USCIS approves your application after the start date you requested, your OPT starts on the approval date instead. Your end date still cannot go past the 14-month limit: all post-completion OPT must be completed within 14 months of your program end date.
 
-## STEM OPT: additional steps on top of standard OPT
+## STEM OPT: what the extension adds
 
-If you qualify for the 24-month STEM extension, here is what the process adds:
+**File in the right window.** You can file up to 90 days before your current OPT expires, and you must file within 60 days of your DSO's STEM recommendation. You cannot apply during the 60-day grace period after OPT ends. If you file on time and your OPT expires while the application is pending, USCIS automatically extends your work authorization for up to 180 days.
 
-**Apply 90 days before your OPT expires.** If you wait until the last minute, you risk a gap in work authorization. USCIS will automatically extend your work authorization by 180 days while your STEM OPT application is pending, but only if you file on time before your OPT expires.
+**Complete Form I-983 with your employer.** The training plan describes your duties, how the role relates to your STEM degree, and your learning objectives. Your employer signs it, and you cannot sign the employer attestation yourself.
 
-**Complete Form I-983 with your employer.** This Training Plan for STEM OPT Students is a multi-section form that you and your employer fill out together. It describes your job duties, how the role relates to your STEM degree, your compensation, and the learning objectives for the training period. Your employer must sign it. Both you and your employer are subject to the terms of this plan for the full 24 months.
+**Your employer must be E-Verify enrolled.** This is a hard requirement. On Form I-765 you give your employer's name as listed in E-Verify and its E-Verify company identification number.
 
-**Your employer must be E-Verify enrolled.** This is a hard requirement. If your employer is not in E-Verify, you are not eligible for STEM OPT with them regardless of how well your role fits your degree.
-
-**Report to your DSO every 6 months.** Throughout your STEM OPT period, you must submit a validation report to your DSO every 6 months confirming your employment details have not materially changed. At 12 months and 24 months, you and your employer must complete formal evaluations on Form I-983.
+**Report while you are on STEM OPT.** Report to your DSO every 6 months to confirm your details. Complete a self-evaluation within the first 12 months and a final one before the extension ends. Report material changes to your training plan as soon as possible.
 
 ## Timeline summary
 
-| Stage | Timeframe |
+| Stage | Rule |
 |---|---|
-| Apply to DSO for OPT recommendation | 90 days before program completion |
-| DSO issues OPT I-20 | 5 to 10 business days after DSO request |
-| File I-765 with USCIS | Within 30 days of OPT I-20 Date Issued |
-| USCIS receipt notice | 2 to 4 weeks after filing |
-| Standard USCIS processing | 90 to 150 days |
-| Premium processing | 30 business days ($1,780 additional fee) |
-| Total time from DSO application to EAD | 4 to 6 months without premium processing |
+| Earliest filing for post-completion OPT | 90 days before your program end date |
+| File after DSO recommendation | Within 30 days of the recommendation |
+| Latest filing for post-completion OPT | 60 days after your program end date |
+| Latest start date you can request | 60 days after your program end date |
+| Complete all post-completion OPT by | 14 months after your program end date |
+| Earliest STEM OPT filing | 90 days before your current OPT expires |
+| Premium processing | $1,780, USCIS acts within 30 business days |
 
-## Critical rules that catch students off guard
+## Rules that catch students off guard
 
-**The 90-day unemployment rule.** During your OPT period, you cannot accumulate more than 90 days of unemployment. During STEM OPT, that limit is 150 days cumulative across both periods. Weekends count. Days between jobs count. Exceeding this limit is a violation of your F1 status.
+**The unemployment limit.** On post-completion OPT you may not accrue more than 90 days of unemployment. With a STEM extension, the limit is 150 days across both periods combined. Every day without qualifying work counts, including weekends, starting from the start date on your EAD. Days abroad count too unless you were employed at the time.
 
-**Employment must start within 90 days of your EAD start date.** If USCIS approves your OPT after your requested start date, they may adjust the start date forward, but the end date will not be extended beyond 14 months from your I-20 completion date.
+**A job has to start soon after your EAD start date.** There is no separate start deadline, but every day from your EAD start date without qualifying work comes out of your 90 days. Qualifying work is at least 20 hours a week and directly related to your degree.
 
-**Your SEVIS record must remain active.** If your SEVIS record is terminated for any reason during OPT, your EAD is automatically invalidated. Keep your DSO informed of any changes to your employment or address.
+**Starting a new program ends OPT.** USCIS says that starting study at a new education level, or transferring to another school, automatically terminates your OPT authorization. Talk to your DSO before you enroll.
 
-**Report new employment within 10 days.** Whenever you start a new job during OPT, you must report it to your DSO within 10 days through your university's portal.
+**Report employment within 10 days.** Report your employer, and any change of employer, address or name, within 10 days through the SEVP Portal or to your DSO. SEVIS treats every day with no employer on your record as a day of unemployment, so an unreported job does not stop the count.
 
-## How to check your EAD processing status
+## How to check your EAD case status
 
-Go to egov.uscis.gov and enter your receipt number. The case status will show one of the following:
-
-- Case Received: USCIS has your application
-- Case Is Being Actively Reviewed: normal processing
-- Request for Evidence: action required from you
-- Card Was Mailed To Me: EAD is on the way (usually arrives within 10 business days)
-- Case Was Approved: approval notice issued
-
-If your application has been pending longer than the published processing time for your service center, you can submit a service request (e-Request) through your USCIS online account or contact the USCIS Contact Center.
+Use USCIS's Case Status Online tool with your receipt number, or your USCIS online account if you filed online. If your case is outside the normal processing time USCIS publishes for it, you can submit a case inquiry through the USCIS website or contact the USCIS Contact Center.
 
 ## What Preciprocal can help with
 
-While USCIS processes your EAD, use the time to get job-ready. Most international students on OPT have a 4 to 6 month window between applying to USCIS and starting work. That window is the best time to prepare systematically.
+While USCIS processes your EAD, use the time to get job-ready, because your unemployment count starts on your EAD start date whether or not you have a job.
 
-Preciprocal's mock interview tool runs voice-based interviews tailored to your target role and industry. The resume analysis shows your ATS score and tells you exactly which keywords to add for each job you apply to. The cover letter generator writes personalised letters that address your work authorization status naturally and professionally. The job tracker helps you manage applications across companies that sponsor international candidates, so nothing falls through the gap while you are waiting on USCIS.
+Preciprocal's mock interview tool runs voice-based interviews tailored to your target role. The resume analysis shows your ATS score against each job description and tells you which keywords are missing. The cover letter generator addresses your work authorization status clearly and professionally. The job tracker keeps every application and follow-up in one place.
 
 Start free at app.preciprocal.com. No credit card required.`,
   },
@@ -1784,9 +1775,11 @@ Start free at app.preciprocal.com. No credit card required.`,
     category: "Visa & Immigration",
     readTime: "14 min read",
     publishedAt: "2026-06-06",
-    updatedAt: "2026-06-06",
+    updatedAt: "2026-10-13",
     featured: true,
-    content: `## What the H-1B visa is and who it is for
+    content: `> **Update, October 13, 2026:** the $100,000 fee described below has been blocked by two federal courts and cannot be collected today, even though it was extended to September 2027. DHS has also proposed a separate $103,265 fee on cap-subject petitions that, unlike the $100,000 fee, would apply to F-1 students changing status inside the US. Neither is collectible now. The live status of every H-1B rule is at preciprocal.com/new-h1b-rules.
+
+## What the H-1B visa is and who it is for
 
 The H-1B is a nonimmigrant work visa that allows US employers to temporarily employ foreign nationals in specialty occupations. A specialty occupation requires the theoretical and practical application of highly specialised knowledge and at minimum a bachelor's degree (or equivalent) in a specific field directly related to the job.
 
@@ -2373,26 +2366,28 @@ Start free at app.preciprocal.com. No credit card required.`,
   },
   {
     slug: "us-visa-policy-updates-2026",
-    title: "New US Visa Updates (2026): Duration of Status Ends, the H-1B Fee Is Blocked, EAD Extensions Are Gone",
+    title: "New US Visa Updates (2026): Duration of Status Rule Blocked, the H-1B Fee Is Blocked, EAD Extensions Are Gone",
     description: "Four rule changes reshaped US work and student visas in 2026. What actually changed, what is still in litigation, the dates that matter, and what each change means for your job search.",
     category: "Visa & Immigration",
     readTime: "13 min read",
     publishedAt: "2026-08-30",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-10-13",
     featured: true,
-    content: `## Why this year is different
+    content: `> **Update, October 13, 2026:** three things changed after this guide was published. A federal court blocked the duration of status rule nationwide on September 14, 2026, so D/S still applies. The $100,000 H-1B fee was extended to September 21, 2027 on September 18, then blocked again by a second court on September 30. And on October 8, DHS proposed new $70,000 and $30,000 fees on OPT. The live status of each rule is at preciprocal.com/new-opt-rules and preciprocal.com/new-h1b-rules.
+
+## Why this year is different
 
 Most years bring incremental immigration changes: a fee adjustment here, a form revision there. 2026 did not work that way. Four separate changes landed within twelve months, and together they alter how long international students can stay, how work permits are renewed, how the H-1B lottery picks winners, and how much it costs to bring someone in from abroad.
 
 This guide covers what changed, what is confirmed versus still being fought in court, and the specific dates you need on your calendar. It is a summary of public policy, not legal advice. Confirm anything that affects your own case with your DSO or an immigration attorney before you act on it.
 
-## Update 1: Duration of status ends on September 15, 2026
+## Update 1: The rule ending duration of status (now blocked by a court)
 
 This is the biggest structural change to student visas in decades.
 
 **What it was.** For decades, F and J nonimmigrants were admitted for "duration of status" (D/S). Your I-94 said D/S rather than a date. As long as you kept making normal progress in your program, your status kept up with you. Program extended by a semester? Your DSO issued a new I-20 and that was the end of it.
 
-**What it is now.** DHS published the final rule on July 17, 2026, and it takes effect September 15, 2026. New admissions get a fixed admit-until date on the I-94, tied to the program end date on the I-20, and capped at four years regardless of how long the program actually runs. When you need more time, you file with USCIS instead of handling it entirely through your school.
+**What the rule would do.** DHS published the final rule on July 17, 2026, with an effective date of September 15, 2026. On September 14, a federal court in Massachusetts blocked it nationwide, so none of what follows applies unless the rule is reinstated on appeal. Under it, new admissions would get a fixed admit-until date on the I-94, tied to the program end date on the I-20, and capped at four years regardless of how long the program actually runs. When you needed more time, you would file with USCIS instead of handling it entirely through your school.
 
 **The mechanics that matter:**
 
@@ -2407,7 +2402,7 @@ If you were properly maintaining F status and admitted for D/S before the effect
 
 More importantly for anyone graduating soon: F-1 students who were admitted for D/S, are present in the US on the effective date, and who timely file Form I-765 for post-completion OPT or a STEM OPT extension **on or before March 18, 2027** do not need to file a separate I-539 extension of stay for that OPT period. File after that window and the extension of stay becomes a separate application, with its own fee and its own processing time.
 
-**Travel ends your transition treatment.** If you leave the US and re-enter after September 15, 2026, CBP issues a new I-94 with a fixed admit-until date based on your current program dates. You are then on the new system. Plan international travel around this deliberately, especially if you are mid-program with more than a year remaining.
+**Travel would end your transition treatment.** If the rule is reinstated and you leave the US and re-enter after it takes effect, CBP would issue a new I-94 with a fixed admit-until date based on your current program dates. You are then on the new system. Plan international travel around this deliberately, especially if you are mid-program with more than a year remaining.
 
 ## Update 2: the 540-day automatic EAD extension is gone
 
@@ -2453,7 +2448,7 @@ Proclamation 10973 introduced a $100,000 payment tied to certain H-1B beneficiar
 - On July 24, 2026, the First Circuit denied the government's motion to stay the district court judgment, finding the government unlikely to succeed on appeal. The vacatur stands while the appeal proceeds.
 - The fee is not currently collectible. The merits appeal continues, and a separate case in Washington, DC that reached the opposite conclusion is still pending.
 - The proclamation itself was not vacated, only the policy implementing it, which leaves room for re-implementation on a different legal basis.
-- The 12-month restriction in Proclamation 10973 is scheduled to expire on September 20, 2026 unless it is extended, renewed, or reissued.
+- On September 18, 2026, the proclamation was extended to September 21, 2027. A second federal court, in California, blocked the renewed version on September 30, 2026, so the fee is still not collectible.
 
 **What it meant in practice.** The fee applied to beneficiaries entering from abroad, not to workers already in the US changing status. That distinction drove a lot of 2026 hiring behavior: employers strongly preferred candidates already in the US on F-1 OPT or another status over candidates who would need consular processing.
 
@@ -2463,9 +2458,9 @@ Proclamation 10973 introduced a $100,000 payment tied to certain H-1B beneficiar
 
 | Date | What happens |
 |---|---|
-| September 15, 2026 | Duration of status ends; fixed admission periods begin for new F and J admissions |
-| September 20, 2026 | Proclamation 10973's 12-month H-1B entry restriction is scheduled to expire unless extended |
-| March 18, 2027 | Last day D/S-admitted F-1 students can timely file I-765 for OPT or STEM OPT without a separate I-539 extension of stay |
+| September 14, 2026 | Federal court blocks the duration of status rule nationwide, the day before it was due to start |
+| September 18, 2026 | Proclamation 10973 extended to September 21, 2027; blocked again by a second court on September 30 |
+| March 18, 2027 | Transition filing date for OPT and STEM OPT, relevant only if the blocked duration of status rule is reinstated |
 | March 2027 (expected) | FY2028 H-1B cap registration, under wage-weighted selection |
 
 ## What this means if you are job searching right now
@@ -2493,7 +2488,7 @@ Start free at app.preciprocal.com. No credit card required.`,
     category: "Visa & Immigration",
     readTime: "12 min read",
     publishedAt: "2026-08-30",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-10-13",
     content: `## The rule that quietly changed everything
 
 For years, EAD renewals had a safety net. File your Form I-765 renewal on time, and your expired card kept working, first for 180 days, later for up to 540 days, while USCIS processed the new one. Employers could keep you on payroll using your expired card plus your receipt notice. Processing delays were annoying, not catastrophic.
@@ -2525,7 +2520,7 @@ If you are in one of these categories, your renewal timing is now the single mos
 
 **Initial OPT applicants were never covered.** Post-completion OPT is an initial grant, not a renewal, so there was never an automatic extension to lose. What matters there is filing early enough that the card arrives before you want to start.
 
-Note that F-1 students face a separate change: the duration of status rule taking effect September 15, 2026 alters how long you are admitted for and when you need to file Form I-539. That is a different rule with different deadlines, and it interacts with your OPT filing.
+Note that F-1 students faced a separate change: the duration of status rule, which would alter how long you are admitted for and when you need to file Form I-539. A federal court blocked it nationwide on September 14, 2026, the day before it was due to start, and the government has appealed, so D/S still applies for now.
 
 ## What this means in practice
 
@@ -2614,12 +2609,14 @@ Start free at app.preciprocal.com. No credit card required.`,
   {
     slug: "how-to-check-your-visa-status-2026",
     title: "How to Check Your Visa Status in 2026 (I-94, SEVIS, USCIS Case Status)",
-    description: "Your visa stamp is not your status. Here is how to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what changes when duration of status ends on September 15, 2026.",
+    description: "Your visa stamp is not your status. Here is how to verify your actual immigration status using your I-94, SEVIS record, and USCIS case tracking, plus what the blocked duration of status rule would change.",
     category: "Visa & Immigration",
     readTime: "10 min read",
     publishedAt: "2026-08-30",
-    updatedAt: "2026-08-30",
-    content: `## The distinction that trips up almost everyone
+    updatedAt: "2026-10-13",
+    content: `> **Update, October 13, 2026:** a federal court in Massachusetts blocked the duration of status rule nationwide on September 14, 2026, the day before it was due to start, and the government has appealed. D/S still applies for now. The current status of every rule is tracked at preciprocal.com/new-opt-rules and preciprocal.com/new-h1b-rules.
+
+## The distinction that trips up almost everyone
 
 Your visa is not your status. They are two different things issued by two different agencies, and confusing them is the single most common reason people accidentally fall out of status.
 
@@ -2640,14 +2637,14 @@ The Form I-94 arrival record is the authoritative record of your admission. It s
 **What to verify on it, every single time:**
 
 - **Class of admission:** F1, H1B, L1, J1, and so on. Confirm it matches what you expect. Data-entry errors happen at the port of entry and are far easier to fix in the first weeks than a year later.
-- **Admit until date:** this is the date your authorized stay ends. Historically F and J records showed "D/S" here. Under the rule taking effect September 15, 2026, new admissions show an actual date.
+- **Admit until date:** this is the date your authorized stay ends. Historically F and J records showed "D/S" here. Under the duration of status rule, new admissions would show an actual date, but a court blocked that rule on September 14, 2026, so D/S still appears for now.
 - **Name spelling and date of birth:** errors here cascade into every subsequent filing.
 
 **Check your I-94 after every single entry to the US.** Not once a year. Every entry generates a new record, and every entry is an opportunity for an error that only you will catch.
 
 **If something is wrong:** for errors made at an airport or seaport, contact a CBP Deferred Inspection Site. For land border errors, return to the port of entry. Do not wait, and do not assume your school or employer will notice.
 
-## What changes on September 15, 2026
+## What would change if the duration of status rule takes effect
 
 The duration of status framework for F and J nonimmigrants ends on that date, and it directly changes what you will see on your I-94.
 
@@ -2657,11 +2654,11 @@ Under D/S, your I-94 said "D/S" and your status tracked your program. Under the 
 
 **Two consequences worth internalising:**
 
-First, if you travel and re-enter the US after September 15, 2026, you receive a new I-94 with a fixed admit-until date based on your current program dates. The transition treatment ends at that point.
+First, if the rule is reinstated and you travel and re-enter the US after it takes effect, you would receive a new I-94 with a fixed admit-until date based on your current program dates. The transition treatment ends at that point.
 
 Second, extending your stay is now a USCIS filing. To stay beyond your admit-until date, whether to finish a longer program, begin a new one, or engage in OPT or STEM OPT, you file Form I-539, Application to Extend/Change Nonimmigrant Status, currently $420 online or $470 by mail. One important carve-out: F-1 students admitted for D/S who timely file Form I-765 for post-completion OPT or STEM OPT on or before March 18, 2027 are not required to file a separate I-539 for that OPT period.
 
-After September 15, 2026, checking your I-94 stops being an occasional formality and becomes the thing that tells you your actual deadline.
+If the rule takes effect, checking your I-94 stops being an occasional formality and becomes the thing that tells you your actual deadline.
 
 ## Check 2: your SEVIS record, if you are on F or J status
 

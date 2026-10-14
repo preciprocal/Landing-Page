@@ -55,6 +55,12 @@ export interface ToolPageProps {
   ctaTool: string;
   ctaLabel: string;
   ctaMicrocopy: string;
+  /**
+   * Optional interactive tool rendered directly under the hero. Free tools that
+   * work without signing up are what earn links; the page still converts on
+   * the CTAs around it.
+   */
+  tool?: React.ReactNode;
   featuresTitle: string;
   featuresSubtitle: string;
   features: ToolFeature[];
@@ -80,6 +86,7 @@ export default function ToolPage({
   ctaTool,
   ctaLabel,
   ctaMicrocopy,
+  tool,
   featuresTitle,
   featuresSubtitle,
   features,
@@ -141,6 +148,12 @@ export default function ToolPage({
               </div>
             </div>
           </section>
+
+          {tool && (
+            <section className="pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+              <div className="w-full max-w-4xl mx-auto">{tool}</div>
+            </section>
+          )}
 
           {/* ── Feature grid ───────────────────────────────────────────── */}
           <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
