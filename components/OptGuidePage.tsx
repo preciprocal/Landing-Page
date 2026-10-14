@@ -103,7 +103,7 @@ export default function OptGuidePage(props: OptGuideProps) {
 
         <main>
           {/* ── Hero ─────────────────────────────────────────────────────── */}
-          <section className="relative pt-32 pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 overflow-hidden">
+          <section data-section="hero" data-section-name="Hero" className="relative pt-32 pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
             <div className="relative w-full max-w-4xl">
               {!isHub && (
@@ -133,7 +133,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           </section>
 
           {/* ── Key facts ──────────────────────────────────────────────── */}
-          <section className="pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+          <section data-section="key-facts" data-section-name="Key facts" className="pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
             <div className="w-full max-w-4xl grid grid-cols-2 lg:grid-cols-4 gap-3">
               {props.keyFacts.map((f) => (
                 <div key={f.label} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
@@ -145,20 +145,20 @@ export default function OptGuidePage(props: OptGuideProps) {
           </section>
 
           {props.tool && (
-            <section className="pb-14 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+            <section data-section="tool" data-section-name="Interactive tool" className="pb-14 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
               <div className="w-full max-w-4xl">{props.tool}</div>
             </section>
           )}
 
           {/* ── Body ───────────────────────────────────────────────────── */}
-          <section className={section}>
+          <section data-section="content" data-section-name="Guide content" className={section}>
             <div className="w-full max-w-4xl space-y-6 text-slate-400 leading-relaxed [&_h2]:text-white [&_h2]:text-2xl [&_h2]:font-extrabold [&_h2]:pt-6 [&_h2]:scroll-mt-28 [&_h3]:text-white [&_h3]:font-semibold [&_strong]:text-slate-200 [&_a]:text-indigo-300 [&_a]:underline [&_a]:underline-offset-2">
               {props.body}
             </div>
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section className={section}>
+          <section data-section="faq" data-section-name="FAQ" className={section}>
             <div className="w-full max-w-4xl">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">Frequently asked questions</h2>
               <div className="space-y-4">
@@ -175,7 +175,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           </section>
 
           {/* ── Sources ────────────────────────────────────────────────── */}
-          <section className={section}>
+          <section data-section="sources" data-section-name="Sources" className={section}>
             <div className="w-full max-w-4xl">
               <h2 className="text-lg font-semibold text-white mb-4">Sources</h2>
               <ul className="space-y-2">
@@ -196,7 +196,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           </section>
 
           {/* ── Guide nav ──────────────────────────────────────────────── */}
-          <section className={section}>
+          <section data-section="guide-nav" data-section-name="More OPT guides" className={section}>
             <div className="w-full">
               <h2 className="text-lg font-semibold text-white mb-6">More OPT guides</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -215,7 +215,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           </section>
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
-          <section className="py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 text-center border-t border-white/[0.04]">
+          <section data-section="final-cta" data-section-name="Final CTA" className="py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 text-center border-t border-white/[0.04]">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">{props.bottomTitle}</h2>
             <p className="text-slate-400 max-w-md mx-auto mb-8">{props.bottomBody}</p>
             <a

@@ -116,7 +116,7 @@ export default function ToolPage({
 
         <main>
           {/* ── Hero ─────────────────────────────────────────────────────── */}
-          <section className="relative pt-32 pb-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 overflow-hidden">
+          <section data-section="hero" data-section-name="Hero" className="relative pt-32 pb-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
             <div className="relative w-full text-center">
@@ -150,13 +150,13 @@ export default function ToolPage({
           </section>
 
           {tool && (
-            <section className="pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+            <section data-section="tool" data-section-name="Interactive tool" className="pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
               <div className="w-full max-w-4xl mx-auto">{tool}</div>
             </section>
           )}
 
           {/* ── Feature grid ───────────────────────────────────────────── */}
-          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+          <section data-section="features" data-section-name="Features" className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
             <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-4">
                 {featuresTitle}
@@ -184,7 +184,7 @@ export default function ToolPage({
           </section>
 
           {/* ── How it works ───────────────────────────────────────────── */}
-          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+          <section data-section="how-it-works" data-section-name="How it works" className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
             <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center mb-12">
                 How it works
@@ -204,7 +204,7 @@ export default function ToolPage({
           </section>
 
           {/* ── SEO content body ───────────────────────────────────────── */}
-          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+          <section data-section="content" data-section-name="Guide content" className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
             <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-8">
                 {bodyTitle}
@@ -214,7 +214,7 @@ export default function ToolPage({
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+          <section data-section="faq" data-section-name="FAQ" className="py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
             <div className="w-full">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-10 text-center">
                 {faqTitle}
@@ -249,7 +249,7 @@ export default function ToolPage({
           </section>
 
           {/* ── Internal links ─────────────────────────────────────────── */}
-          <section className="py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
+          <section data-section="related-links" data-section-name="Related links" className="py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 border-t border-white/[0.04]">
             <div className="w-full">
               <h2 className="text-lg font-semibold text-white mb-6">Also useful for your job search</h2>
               <div className="flex flex-wrap gap-3">
@@ -267,7 +267,7 @@ export default function ToolPage({
           </section>
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
-          <section className="py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 text-center border-t border-white/[0.04]">
+          <section data-section="final-cta" data-section-name="Final CTA" className="py-20 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 text-center border-t border-white/[0.04]">
             <h2 className="text-2xl sm:text-3xl font-extrabold text-white mb-4">{bottomTitle}</h2>
             <p className="text-slate-400 max-w-md mx-auto mb-8">{bottomBody}</p>
             <a

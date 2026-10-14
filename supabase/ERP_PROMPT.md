@@ -132,6 +132,58 @@ These are not style preferences. Breaking them produces wrong numbers.
    beyond what is described in the public privacy policy, and do not add a column that
    stores an IP.
 
+## Page groups
+
+The views report raw paths. There is no group column, so derive one in the ERP from the path
+and use it as a filter and a roll-up on the Pages, Sections and Traffic sources screens. Match
+in this order; the first rule that matches wins.
+
+| Group | Path rule | Pages |
+|---|---|---|
+| Home | `/` | Homepage |
+| OPT guides | `/opt` or starts with `/opt/` | Hub, fees, how-to-apply, unemployment-calculator, stem-opt-extension, self-employment, cap-gap |
+| Visa rule trackers | `/new-h1b-rules`, `/new-opt-rules` | Dated status pages for H-1B and OPT rule changes |
+| Audience pages | starts with `/for/` | international-students, new-grads, career-changers, laid-off |
+| Free tools | `/thank-you-email-after-interview` | Thank-you email generator |
+| Product tools | `/ai-mock-interview`, `/cover-letter-generator`, `/free-ats-checker`, `/linkedin-profile-optimizer`, `/resume-tailoring`, `/job-application-tracker`, `/interview-study-planner`, `/cold-email-generator`, `/recruiter-contact-finder`, `/interview-debrief`, `/chrome-extension` | One page per product feature |
+| Product and pricing | `/features`, `/pricing` | |
+| Comparisons | `/alternatives` or starts with `/alternatives/` | Competitor comparison pages |
+| Programmatic | starts with `/interview-questions`, `/interview-prep`, `/resume-tips`, `/salary-guide`, `/cover-letter-examples` | Role and company pages |
+| Blog | `/blog` or starts with `/blog/` | Posts; visa posts are the category the OPT and visa groups link from |
+| Company | `/about`, `/contact`, `/faq`, `/roadmap`, `/privacy`, `/terms` | |
+| Other | anything else | Should be near empty; a growing Other means a new section of the site needs a rule here |
+
+Put this mapping in one place (a SQL `case` expression in a view, or one TypeScript function)
+so a new page group is a one-line change. The OPT guides, visa rule trackers, audience pages
+and the free tool went live on October 13 and 14, 2026, so they have no history before then.
+Do not show them as zero for earlier dates; start their series on their first event.
+
+### Section ids by page template
+
+Sections on these templates use the same `section_id` on every page that uses the template,
+so you can compare, say, `faq` view rates across all OPT guides. Section tracking on these
+templates started with the October 14, 2026 deploy.
+
+| Template | Pages | `section_id`s in document order |
+|---|---|---|
+| OPT guide | `/opt`, `/opt/*` | `hero`, `key-facts`, `tool` (only pages with a calculator or checker), `content`, `faq`, `sources`, `guide-nav`, `final-cta` |
+| Rule tracker | `/new-h1b-rules`, `/new-opt-rules` | `hero`, `status`, `content`, `timeline`, `faq`, `sources`, `related-links`, `final-cta` |
+| Tool page | Product tools except `/ai-mock-interview`, `/cover-letter-generator`, `/free-ats-checker`; plus `/for/*` and `/thank-you-email-after-interview` | `hero`, `tool` (only `/thank-you-email-after-interview`), `features`, `how-it-works`, `content`, `faq`, `related-links`, `final-cta` |
+| Homepage, `/features`, `/pricing` | | Their own ids, already tracked; read them from `web_section_stats` |
+
+Pages not listed here (comparisons, programmatic pages, blog, company pages and the three
+custom tool pages) do not mark sections yet. They still report page views, time on page,
+scroll depth and clicks; only the Sections view will be empty for them. Show that as "no
+section tracking on this page", not as zero attention.
+
+The calculators on the OPT guides (`/opt/fees`, `/opt/how-to-apply`,
+`/opt/unemployment-calculator`, `/opt/stem-opt-extension`) and the thank-you email generator
+run entirely in the visitor's browser and send nothing about what was typed. Two signals of
+tool use exist: dwell on the `tool` section, and, on `/thank-you-email-after-interview` only,
+a click event with `metadata->>'track' = 'thank-you-email-copy'` when the visitor copies the
+generated email (the strongest sign the tool was actually used). Do not imply you can see
+inputs or results.
+
 ## What to build
 
 Use the ERP's existing MUI + MUI X Charts conventions and match the look of the pages

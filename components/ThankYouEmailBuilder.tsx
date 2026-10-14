@@ -138,6 +138,7 @@ export default function ThankYouEmailBuilder() {
           <p className="text-white font-semibold">Your email</p>
           <button
             type="button"
+            data-track="thank-you-email-copy"
             onClick={copy}
             className="px-3 py-1.5 rounded-lg text-[12px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90"
           >
