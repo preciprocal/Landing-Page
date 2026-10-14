@@ -1,8 +1,8 @@
 /**
  * scripts/indexnow.mjs
  *
- * Tells IndexNow search engines (Bing, Yandex, Seznam, Naver and others that
- * share submissions through api.indexnow.org) which URLs changed, so they
+ * Tells IndexNow search engines (Bing, and the engines it shares IndexNow
+ * submissions with, such as Yandex, Seznam and Naver) which URLs changed, so they
  * recrawl in minutes instead of waiting to rediscover the sitemap.
  *
  * Usage (after the deploy is live, since engines fetch the key file and the
@@ -19,7 +19,11 @@
 const HOST = "preciprocal.com";
 const SITE = `https://${HOST}`;
 const KEY = "a8e2ec9cab095d89d70ee7aa1554afcd";
-const ENDPOINT = "https://api.indexnow.org/indexnow";
+// Bing's endpoint rather than api.indexnow.org: participating engines share
+// submissions with each other, and on first setup the shared endpoint kept
+// returning 403 (most likely a cached miss from before the key file went
+// live) while Bing accepted the same key.
+const ENDPOINT = "https://www.bing.com/indexnow";
 const MAX_PER_REQUEST = 10_000;
 
 const RESPONSES = {
