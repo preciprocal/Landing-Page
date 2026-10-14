@@ -12,7 +12,11 @@ import type { MetadataRoute } from "next";
  *    which is exactly your content.
  *  • Kept GPTBot blocked (OpenAI training crawler).
  *  • Added ClaudeBot block (Anthropic training crawler) for consistency.
- *  • Added explicit /api/ and /_next/ blocks which are correct.
+ *  • Blocks /api/ only. /_next/ used to be blocked too, which stopped
+ *    Googlebot fetching the CSS, JS and /_next/image files every page loads
+ *    (23 static files and 3 images on the homepage alone). Google renders
+ *    pages with those resources to judge layout and mobile usability, and
+ *    its guidance is not to block them.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -23,7 +27,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",     // Next.js API routes - not meant for indexing
-          "/_next/",   // Next.js build artifacts
           "/admin/",   // Any admin routes
         ],
       },
