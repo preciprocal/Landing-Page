@@ -75,14 +75,29 @@ const FOOTER_COLUMNS = [
   },
 ];
 
-const socials = [
+// A profile with an href links out; one without shows the "Coming soon"
+// tooltip. Keep these in step with sameAs in components/JsonLd.tsx.
+const socials: { label: string; href?: string }[] = [
   { label: "Twitter" },
-  { label: "LinkedIn" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/preciprocal-ai" },
   { label: "GitHub" },
 ];
 
-function SocialLink({ label }: { label: string }) {
+function SocialLink({ label, href }: { label: string; href?: string }) {
   const [show, setShow] = useState(false);
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-[13px] text-slate-600 hover:text-slate-300 transition-colors"
+      >
+        {label}
+      </a>
+    );
+  }
 
   return (
     <div
@@ -209,7 +224,7 @@ export default function Footer() {
           </div>
           <div className="flex gap-5" style={{ overflow: "visible" }}>
             {socials.map((s) => (
-              <SocialLink key={s.label} label={s.label} />
+              <SocialLink key={s.label} label={s.label} href={s.href} />
             ))}
           </div>
         </div>

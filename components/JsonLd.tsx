@@ -81,7 +81,7 @@ export function OrganizationJsonLd() {
     // -----------------------------------------------------------------------
     sameAs: [
       // "https://twitter.com/preciprocal",          // uncomment once live
-      // "https://linkedin.com/company/preciprocal", // uncomment once live
+      "https://www.linkedin.com/company/preciprocal-ai",
       // "https://github.com/preciprocal",           // uncomment once live
       "https://www.producthunt.com/products/preciprocal",
     ],
