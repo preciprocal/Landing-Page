@@ -33,7 +33,7 @@ import ChromeExtensionBanner from "@/components/ChromeExtensionBanner";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
-  title: "Preciprocal | AI-Powered Job Search Operating System",
+  title: "Preciprocal | AI Career Prep Platform for Students",
 
   // 155 chars - specific, keyword-rich, includes price/guarantee for CTR
   description:
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "AI mock interview",
     "resume ATS scorer",
     "cover letter generator",
-    "job search tool for students",
+    "career prep tool for students",
     "interview prep platform",
     "career prep AI",
     "ATS resume checker free",
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
         url: "https://preciprocal.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Preciprocal | AI Job Search Operating System",
+        alt: "Preciprocal | AI Career Prep Platform",
       },
     ],
     type: "website",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Preciprocal | AI Job Search OS",
+    title: "Preciprocal | AI Career Prep Platform",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans & job tracking. $9.99/mo.",
     images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal" }],

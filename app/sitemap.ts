@@ -84,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Core ────────────────────────────────────────────────────────────────
     {
       url: SITE_URL,
-      lastModified: new Date("2026-06-06"),
+      lastModified: new Date("2026-10-14"),
       changeFrequency: "weekly",
       priority: 1.0,
     },
@@ -214,7 +214,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/faq`,
-      lastModified: new Date("2026-06-05"),
+      lastModified: new Date("2026-10-14"),
       changeFrequency: "monthly",
       priority: 0.72,
     },

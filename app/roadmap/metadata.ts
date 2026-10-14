@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords: [
     "preciprocal roadmap",
     "preciprocal new features",
-    "AI job search tool updates",
+    "AI career prep tool updates",
     "preciprocal changelog",
     "career prep platform features",
     "preciprocal upcoming features",

@@ -85,7 +85,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Jobscan doesn't?",
-    a: "AI mock interviews (3/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full job search platform.",
+    a: "AI mock interviews (3/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full career prep platform.",
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",
@@ -181,7 +181,7 @@ export default function JobscanAlternativePage() {
         <div className="grid sm:grid-cols-2 gap-4 mb-12">
           {[
             { label: "Jobscan Pro", price: "$49.95/mo", note: "ATS scanning only", highlight: false },
-            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full job search platform", highlight: true },
+            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
           ].map(({ label, price, note, highlight }) => (
             <div
               key={label}

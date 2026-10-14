@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Every Preciprocal tool in one place: resume scoring against real postings, tailored cover letters, voice mock interviews, a study plan built to your interview date, contact finding, and application tracking. Built for students and early-career job seekers.",
   keywords: [
     "job search tools",
-    "all in one job search platform",
+    "all in one career prep platform",
     "job search tools for students",
     "job search tools for new grads",
     "resume and interview prep tools",

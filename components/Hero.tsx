@@ -233,7 +233,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-400/70"
         >
-          AI Job Search Platform
+          AI Career Prep Platform
         </motion.p>
 
         {/* Main headline */}

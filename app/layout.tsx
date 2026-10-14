@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://preciprocal.com"),
 
   title: {
-    default: "Preciprocal: AI Job Search Platform for Students and New Grads",
+    default: "Preciprocal: AI Career Prep Platform for Students and New Grads",
     template: "%s | Preciprocal",
   },
 
   description:
-    "The all-in-one AI job search platform built for students and new grads. AI mock interviews, ATS resume scoring, cover letter generator, study planner, and job tracker. From $9.99/mo.",
+    "The all-in-one AI career prep platform built for students and new grads. AI mock interviews, ATS resume scoring, cover letter generator, study planner, and job tracker. From $9.99/mo.",
 
   keywords: [
     // Core product
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "interview preparation for new grads",
     "AI interview practice",
     "cover letter generator",
-    "job search platform for students",
+    "career prep platform for students",
     "career preparation",
     "job tracker",
     "interview simulator",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://preciprocal.com",
     siteName: "Preciprocal",
-    title: "Preciprocal: AI Job Search Platform for Students and New Grads",
+    title: "Preciprocal: AI Career Prep Platform for Students and New Grads",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans and job tracking. Built for students and new grads. From $9.99/mo.",
     images: [
@@ -92,7 +92,7 @@ export const metadata: Metadata = {
         url: "https://preciprocal.com/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Preciprocal: AI Job Search Platform for Students",
+        alt: "Preciprocal: AI Career Prep Platform for Students",
         type: "image/png",
       },
     ],
@@ -102,10 +102,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@preciprocal",
     creator: "@preciprocal",
-    title: "Preciprocal: AI Job Search Platform for Students and New Grads",
+    title: "Preciprocal: AI Career Prep Platform for Students and New Grads",
     description:
       "AI mock interviews, ATS resume scoring, cover letters, study plans and job tracking. $9.99/mo.",
-    images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal - AI Job Search for Students" }],
+    images: [{ url: "https://preciprocal.com/og-image.png", alt: "Preciprocal: AI Career Prep for Students" }],
   },
 
   alternates: {

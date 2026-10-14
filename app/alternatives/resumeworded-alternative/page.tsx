@@ -88,7 +88,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Resume Worded doesn't?",
-    a: "AI mock interviews (3/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full job search operating system.",
+    a: "AI mock interviews (3/mo on Pro with a 3-agent panel and 5-dimension scoring), cover letter generation with real-time company research, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full career prep platform.",
   },
   {
     q: "How much does Resume Worded cost vs Preciprocal?",
@@ -185,7 +185,7 @@ export default function ResumeWordedAlternativePage() {
         <div className="grid sm:grid-cols-2 gap-4 mb-12">
           {[
             { label: "Resume Worded", price: "$49/mo", note: "Resume review only", highlight: false },
-            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full job search platform", highlight: true },
+            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
           ].map(({ label, price, note, highlight }) => (
             <div
               key={label}

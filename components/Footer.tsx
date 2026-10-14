@@ -161,7 +161,7 @@ export default function Footer() {
               <span className="text-lg font-bold text-white">Preciprocal</span>
             </Link>
             <p className="text-sm text-slate-500 leading-relaxed max-w-[260px]">
-              The AI-powered job search operating system. Prepare smarter, apply
+              The AI-powered career prep platform. Prepare smarter, apply
               faster, land offers.
             </p>
             <p className="text-[12px] text-slate-600 mt-4">

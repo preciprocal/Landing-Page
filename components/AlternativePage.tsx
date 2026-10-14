@@ -152,7 +152,7 @@ export default function AlternativePage({
         <div className="grid sm:grid-cols-2 gap-4 mb-12">
           {[
             { label: theirPlanLabel, price: theirPrice, note: theirPriceNote, highlight: false },
-            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full job search platform", highlight: true },
+            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
           ].map(({ label, price, note, highlight }) => (
             <div
               key={label}

@@ -52,7 +52,7 @@ function PricingJsonLd() {
     "@id": "https://preciprocal.com/pricing#offercatalog",
     name: "Preciprocal Pricing Plans",
     url: "https://preciprocal.com/pricing",
-    description: `AI-powered job search platform plans, Free, Pro (${tierPriceWithPeriod("pro")}), and Premium (${tierPriceWithPeriod("premium")}).`,
+    description: `AI career prep platform plans, Free, Pro (${tierPriceWithPeriod("pro")}), and Premium (${tierPriceWithPeriod("premium")}).`,
     provider: { "@id": "https://preciprocal.com/#organization" },
     // Derived from lib/pricing.ts so the structured-data price and quota claims
     // cannot drift from what the cards below actually render.

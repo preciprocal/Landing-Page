@@ -158,7 +158,7 @@ export default function KickresumeAlternativePage() {
       theirPrice="$24/mo"
       theirPriceNote="Resume and cover letter builder"
       intro="Kickresume is a design-led resume builder with a large template library and a genuinely strong visual editor. If your priority is producing a resume that looks polished, it does that better than most tools, and its annual plan at roughly $8 a month is one of the cheaper long-term options on the market."
-      positioning="Preciprocal is a job search platform rather than a document builder. It scores your resume against specific postings, runs voice mock interviews, generates cover letters and tracks applications, at $9.99/mo."
+      positioning="Preciprocal is a career prep platform rather than a document builder. It scores your resume against specific postings, runs voice mock interviews, generates cover letters and tracks applications, at $9.99/mo."
       verdictTheirs="you mainly need a well-designed resume and cover letter, value template variety, and can commit to the annual plan where it becomes very cheap."
       verdictOurs="you need the resume to pass ATS against specific postings and want interview preparation, tracking and outreach in the same tool."
       rows={ROWS}

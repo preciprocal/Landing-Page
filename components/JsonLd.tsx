@@ -44,7 +44,7 @@ export function OrganizationJsonLd() {
     name: "Preciprocal",
     // alternateName and legalName help Google understand "Preciprocal" is an
     // intentional proper noun and not a misspelling of "reciprocal".
-    alternateName: ["Preciprocal AI", "Preciprocal Job Search"],
+    alternateName: ["Preciprocal AI", "Preciprocal Career Prep"],
     legalName: "Preciprocal",
     url: "https://preciprocal.com",
     logo: {
@@ -59,7 +59,7 @@ export function OrganizationJsonLd() {
     // image at the top level reinforces the logo association
     image: "https://preciprocal.com/logo.png",
     description:
-      "Preciprocal is an AI-powered job search platform with mock interviews, resume analysis, cover letter generation, study planning, and job tracking. Built for students and early-career professionals.",
+      "Preciprocal is an AI-powered career prep platform with mock interviews, resume analysis, cover letter generation, study planning, and job tracking. Built for students and early-career professionals.",
     foundingDate: "2024",
     // numberOfEmployees removed: it published a specific headcount of 5, which
     // is not a figure we can substantiate. Do not re-add unverifiable
@@ -129,7 +129,7 @@ export function SoftwareAppJsonLd() {
     operatingSystem: "Web",
     url: "https://preciprocal.com",
     description:
-      "AI-powered job search operating system with mock interviews, resume ATS scoring, cover letter generation, study planning, and job tracking.",
+      "AI-powered career prep platform with mock interviews, resume ATS scoring, cover letter generation, study planning, and job tracking.",
     screenshot: "https://preciprocal.com/og-image.png",
     featureList: [
       "AI Mock Interviews with multi-agent panel",
@@ -193,10 +193,10 @@ export function WebSiteJsonLd() {
     "@type": "WebSite",
     "@id": "https://preciprocal.com/#website",
     name: "Preciprocal",
-    alternateName: "Preciprocal AI Job Search Platform",
+    alternateName: "Preciprocal AI Career Prep Platform",
     url: "https://preciprocal.com",
     description:
-      "AI-powered job search operating system: mock interviews, resume analysis, cover letters, study planner, job tracker.",
+      "AI-powered career prep platform: mock interviews, resume analysis, cover letters, study planner, job tracker.",
     publisher: { "@id": "https://preciprocal.com/#organization" },
     // SearchAction removed: potentialAction requires a live server-side search
     // endpoint at the urlTemplate. Preciprocal uses static programmatic pages,

@@ -122,7 +122,7 @@ const WHAT_MAKES_IT_DIFFERENT = [
     body: "Most cover letter generators assume you have 3-5 years of professional experience to reference. Preciprocal understands entry-level positioning: how to write about projects, internships, coursework, and transferable skills in a way that reads as capability, not inexperience.",
   },
   {
-    title: "Part of a complete job search platform",
+    title: "Part of a complete career prep platform",
     body: "Your cover letter doesn't exist in isolation. After generating it, your application gets tracked automatically in your job tracker. The job description feeds into your resume ATS check. Your interview prep gets queued for this company. Everything connects.",
   },
 ];

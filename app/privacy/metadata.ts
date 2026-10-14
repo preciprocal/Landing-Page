@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   keywords: [
     "preciprocal privacy policy",
     "preciprocal data privacy",
-    "AI job search tool privacy",
+    "AI career prep tool privacy",
     "GDPR compliance career app",
     "CCPA rights preciprocal",
     "resume data privacy",
