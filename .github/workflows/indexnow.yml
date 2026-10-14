@@ -1,0 +1,68 @@
+# Submits changed URLs to IndexNow (Bing and the engines it shares with)
+# after every successful Production deploy.
+#
+# Vercel's GitHub integration posts a GitHub deployment with environment
+# "Production" for each deploy of main, which triggers this workflow once the
+# new code is actually live. The script compares the live sitemap against the
+# snapshot from the previous run (kept in the Actions cache) and submits only
+# URLs that are new or whose lastmod changed. If the cache is empty (first run,
+# or evicted after 7 days without a run), it records a fresh baseline and
+# submits nothing.
+#
+# Manual run: Actions -> IndexNow -> Run workflow, optionally with paths.
+
+name: IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "Space-separated paths or URLs to submit (empty = only changed URLs)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore previous sitemap snapshot
+        uses: actions/cache/restore@v4
+        with:
+          path: .indexnow/sitemap-snapshot.json
+          key: indexnow-snapshot-${{ github.run_id }}
+          restore-keys: indexnow-snapshot-
+
+      - name: Submit to IndexNow
+        env:
+          PATHS: ${{ github.event.inputs.paths }}
+        run: |
+          if [ -n "$PATHS" ]; then
+            node scripts/indexnow.mjs $PATHS
+          else
+            node scripts/indexnow.mjs --changed .indexnow/sitemap-snapshot.json
+          fi
+
+      - name: Save sitemap snapshot
+        if: always() && hashFiles('.indexnow/sitemap-snapshot.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: .indexnow/sitemap-snapshot.json
+          key: indexnow-snapshot-${{ github.run_id }}
