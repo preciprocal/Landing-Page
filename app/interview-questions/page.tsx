@@ -98,8 +98,19 @@ export default function InterviewQuestionsIndexPage() {
           ))}
         </div>
 
+        {/* Job-description predictor cross-link */}
+        <div className="mt-16 p-6 rounded-2xl border" style={{ background: "rgba(99,102,241,0.06)", borderColor: "rgba(99,102,241,0.25)" }}>
+          <h2 style={{ color: "#ffffff" }} className="font-semibold mb-2">Have a specific job posting?</h2>
+          <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
+            Paste it into the free predictor to get the 5 questions that posting is most likely to lead to, and practice your answers out loud. No sign-up.
+          </p>
+          <Link href="/interview-question-predictor" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
+            Predict questions from a job description →
+          </Link>
+        </div>
+
         {/* Company prep cross-link */}
-        <div className="mt-16 p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
+        <div className="mt-6 p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
           <h2 style={{ color: "#ffffff" }} className="font-semibold mb-2">Preparing for a specific company?</h2>
           <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
             We also have company-specific prep guides covering the interview process, culture, difficulty, and what each company actually looks for.
