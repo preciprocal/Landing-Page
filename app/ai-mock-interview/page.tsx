@@ -369,6 +369,28 @@ export default function AIMockInterviewPage() {
           </div>
         </section>
 
+        {/* ── Free taste of the product: no sign-up ───────────────────────── */}
+        <section
+          aria-label="Free interview question predictor"
+          className="mb-8 p-6 rounded-xl border"
+          style={{ borderColor: "rgba(99,102,241,0.3)", background: "rgba(99,102,241,0.06)" }}
+        >
+          <h2 className="text-xl font-bold mb-2" style={{ color: "#ffffff" }}>
+            Try it first, no account needed
+          </h2>
+          <p className="text-sm mb-4" style={{ color: "#94a3b8" }}>
+            Paste a job description to get the 5 questions you are most likely to be asked, then say your answer out
+            loud and get your pace, filler words and a score out of 10.
+          </p>
+          <Link
+            href="/interview-question-predictor"
+            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
+            style={{ color: "#818cf8" }}
+          >
+            Open the free interview question predictor →
+          </Link>
+        </section>
+
         {/* ── Complement with ATS Checker ─────────────────────────────────── */}
         <section
           aria-label="Pair with ATS resume checker"

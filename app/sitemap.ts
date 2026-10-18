@@ -149,6 +149,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "for/career-changers",
       "for/laid-off",
       "thank-you-email-after-interview",
+      "interview-question-predictor",
     ].map((slug) => ({
       url: `${SITE_URL}/${slug}`,
       lastModified: new Date("2026-10-13"),
@@ -363,7 +364,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/interview-study-planner", "/cold-email-generator", "/recruiter-contact-finder",
     "/interview-debrief", "/chrome-extension",
     "/for/international-students", "/for/new-grads", "/for/career-changers",
-    "/for/laid-off", "/thank-you-email-after-interview",
+    "/for/laid-off", "/thank-you-email-after-interview", "/interview-question-predictor",
   ].map((p) => (p === "/" ? SITE_URL : `${SITE_URL}${p}`)));
 
   const isAlternative = (u: string) => u.startsWith(`${SITE_URL}/alternatives`);

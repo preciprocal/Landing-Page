@@ -112,6 +112,17 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
           ))}
         </div>
 
+        {/* Job-description predictor cross-link */}
+        <div className="mt-12 p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.08)" }}>
+          <h2 style={{ color: "#ffffff" }} className="font-semibold mb-2">Interviewing for a specific {roleLabel} job?</h2>
+          <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
+            These are the common questions. Paste the actual job posting into the free predictor to get the 5 questions that role is most likely to ask, then practice your answers out loud.
+          </p>
+          <Link href="/interview-question-predictor" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
+            Predict questions from your job description →
+          </Link>
+        </div>
+
         {/* Related roles */}
         {meta.relatedRoles.length > 0 && (
           <section className="mt-16 pt-10" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>

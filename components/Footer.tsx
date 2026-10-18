@@ -39,6 +39,7 @@ const FOOTER_COLUMNS = [
     title: "Interview Prep",
     links: [
       { label: "AI Mock Interview", href: "/ai-mock-interview" },
+      { label: "Question Predictor", href: "/interview-question-predictor" },
       { label: "Study Planner",     href: "/interview-study-planner" },
       { label: "Interview Debrief", href: "/interview-debrief" },
       { label: "Thank You Email",   href: "/thank-you-email-after-interview" },
