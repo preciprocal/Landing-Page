@@ -168,7 +168,6 @@ export default function Footer() {
             <p className="text-[12px] text-slate-600 mt-4">
               Built by students, for students.
             </p>
-            <PreferredSourceBadge className="mt-5" />
           </div>
 
           {/* Link columns */}
@@ -204,7 +203,7 @@ export default function Footer() {
 
         {/* Bottom bar, overflow visible so tooltips aren't clipped */}
         <div
-          className="pt-6 border-t border-white/[0.04] flex flex-col sm:flex-row justify-between items-center gap-4"
+          className="pt-6 border-t border-white/[0.04] flex flex-col lg:flex-row justify-between items-center gap-4"
           style={{ overflow: "visible" }}
         >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 justify-center sm:justify-start">
@@ -224,10 +223,15 @@ export default function Footer() {
               Cookie preferences
             </button>
           </div>
-          <div className="flex gap-5" style={{ overflow: "visible" }}>
-            {socials.map((s) => (
-              <SocialLink key={s.label} label={s.label} href={s.href} />
-            ))}
+          <div className="flex flex-col sm:flex-row items-center gap-5" style={{ overflow: "visible" }}>
+            {/* In the bottom bar rather than the brand column: the column is
+                too narrow for the badge to sit on one line. */}
+            <PreferredSourceBadge />
+            <div className="flex gap-5" style={{ overflow: "visible" }}>
+              {socials.map((s) => (
+                <SocialLink key={s.label} label={s.label} href={s.href} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
