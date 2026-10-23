@@ -14,6 +14,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
@@ -193,6 +194,11 @@ export default function OptGuidePage(props: OptGuideProps) {
                 ))}
               </ul>
             </div>
+          </section>
+
+          {/* ── Follow in Google ───────────────────────────────────────── */}
+          <section data-section="preferred-source" data-section-name="Preferred source" className="pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
+            <PreferredSourceCallout text="OPT rules and USCIS processing change. Follow our updates in Google:" />
           </section>
 
           {/* ── Guide nav ──────────────────────────────────────────────── */}

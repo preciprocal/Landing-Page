@@ -5,7 +5,7 @@ import { useParams, notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
-import PreferredSourceBadge from "@/components/PreferredSourceBadge";
+import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 
 // ─── Sidebar CTA ──────────────────────────────────────────────────────────────
 
@@ -356,10 +356,7 @@ export default function BlogArticlePage() {
               </div>
 
               {/* Google preferred source: readers who liked the post see more of ours in Top Stories */}
-              <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
-                <p className="text-sm text-slate-400">Want more guides like this in your Google results?</p>
-                <PreferredSourceBadge width={190} />
-              </div>
+              <PreferredSourceCallout className="mt-10" text="Want more guides like this in your Google results?" />
 
               {/* Footer CTA */}
               <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-indigo-600/15 to-purple-600/15 border border-indigo-500/20 text-center">

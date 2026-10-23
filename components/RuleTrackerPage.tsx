@@ -18,6 +18,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
@@ -144,6 +145,10 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 A summary of public rules and court rulings, not legal advice. Confirm anything about your own case with
                 your DSO or an immigration attorney.
               </p>
+              <PreferredSourceCallout
+                className="mt-6"
+                text="These rules keep changing. See our updates more often in Google's Top Stories:"
+              />
             </div>
           </section>
 

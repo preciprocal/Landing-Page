@@ -50,3 +50,18 @@ export default function PreferredSourceBadge({
     </a>
   );
 }
+
+/**
+ * One line of context plus the badge, for pages whose content changes often
+ * enough to be worth following in Google: the visa rule trackers, the OPT
+ * guides, the blog. Commercial pages keep only the footer badge, so it never
+ * competes with their sign-up CTA.
+ */
+export function PreferredSourceCallout({ text, className = "" }: { text: string; className?: string }) {
+  return (
+    <div className={`flex flex-col sm:flex-row sm:items-center gap-3 ${className}`}>
+      <p className="text-sm text-slate-400">{text}</p>
+      <PreferredSourceBadge width={190} />
+    </div>
+  );
+}

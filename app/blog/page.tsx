@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 
@@ -56,7 +57,8 @@ export default function BlogIndexPage() {
         </nav>
 
         <h1 style={{ color: "#ffffff" }} className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">Career advice &amp; interview prep</h1>
-        <p style={{ color: "#94a3b8" }} className="text-lg mb-12 max-w-2xl">Practical guides on landing interviews, acing them, and negotiating the offer.</p>
+        <p style={{ color: "#94a3b8" }} className="text-lg mb-6 max-w-2xl">Practical guides on landing interviews, acing them, and negotiating the offer.</p>
+        <PreferredSourceCallout className="mb-12" text="Get our new guides in your Google results:" />
 
         {/* Featured */}
         {featured.length > 0 && (
