@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import PreferredSourceBadge from "@/components/PreferredSourceBadge";
 import { useState } from "react";
 import { resetConsent } from "@/lib/consent";
 
@@ -167,6 +168,7 @@ export default function Footer() {
             <p className="text-[12px] text-slate-600 mt-4">
               Built by students, for students.
             </p>
+            <PreferredSourceBadge className="mt-5" />
           </div>
 
           {/* Link columns */}

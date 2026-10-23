@@ -5,6 +5,7 @@ import { useParams, notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
+import PreferredSourceBadge from "@/components/PreferredSourceBadge";
 
 // ─── Sidebar CTA ──────────────────────────────────────────────────────────────
 
@@ -352,6 +353,12 @@ export default function BlogArticlePage() {
               {/* Article body rendered from markdown */}
               <div className="prose-article">
                 {renderMarkdown(post.content)}
+              </div>
+
+              {/* Google preferred source: readers who liked the post see more of ours in Top Stories */}
+              <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-3">
+                <p className="text-sm text-slate-400">Want more guides like this in your Google results?</p>
+                <PreferredSourceBadge width={190} />
               </div>
 
               {/* Footer CTA */}
