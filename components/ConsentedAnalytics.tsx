@@ -6,8 +6,8 @@
  * Loads every analytics script, and only after consent is given.
  *
  * WHY EVERYTHING IS GATED HERE
- * Sectira was added later under the same rule: no third-party analytics script
- * goes in the root layout's <head>, every one loads from here.
+ * Sectira is the exception, and is not loaded here: it runs for every visitor
+ * from the root layout. See the note there.
  *
  * Google Analytics and Microsoft Clarity both used to load unconditionally from
  * the root layout's <head>, which contradicted the privacy policy's statement
@@ -31,7 +31,6 @@ import { CONSENT_EVENT, CONSENT_STORAGE_KEY, hasAnalyticsConsent } from "@/lib/c
 
 const GA_MEASUREMENT_ID = "G-XJVD3DYG25";
 const CLARITY_PROJECT_ID = "wojqnrrn0s";
-const SECTIRA_SITE_ID = "pw_jkWaJfrL7xck";
 
 declare global {
   interface Window {
@@ -87,30 +86,12 @@ function loadClarity() {
   document.head.appendChild(script);
 }
 
-/**
- * Injects Sectira (page and section-level web analytics). Safe to call
- * repeatedly. Equivalent to Sectira's install snippet,
- * <script defer src="https://app.sectira.com/t.js" data-site="...">, but
- * loaded here so it waits for consent like the other two.
- */
-function loadSectira() {
-  if (document.getElementById("sectira-tag")) return;
-
-  const script = document.createElement("script");
-  script.id = "sectira-tag";
-  script.defer = true;
-  script.src = "https://app.sectira.com/t.js";
-  script.dataset.site = SECTIRA_SITE_ID;
-  document.head.appendChild(script);
-}
-
 export default function ConsentedAnalytics() {
   useEffect(() => {
     const apply = () => {
       if (!hasAnalyticsConsent()) return;
       loadGoogleAnalytics();
       loadClarity();
-      loadSectira();
     };
 
     apply();

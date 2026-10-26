@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { OrganizationJsonLd, SoftwareAppJsonLd } from "@/components/JsonLd";
 import CookieBanner from "@/components/CookieBanner";
 import GoogleOneTap from "@/components/GoogleOneTap";
+import Script from "next/script";
 import ConsentedAnalytics from "@/components/ConsentedAnalytics";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import StickyBanner from "@/components/StickyBanner";
@@ -134,7 +135,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/*
           NO ANALYTICS ARE LOADED HERE, deliberately.
 
-          Google Analytics, Microsoft Clarity and Sectira are all injected by
+          Google Analytics and Microsoft Clarity are both injected by
           components/ConsentedAnalytics.tsx, and only after the user opts in via
           CookieBanner. Previously both loaded unconditionally from this head,
           which contradicted the privacy policy's statement that analytics
@@ -159,7 +160,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StickyBanner />
         {children}
         {/* Consent gate. CookieBanner records the decision; ConsentedAnalytics
-            acts on it by granting GA storage and loading Clarity and Sectira. */}
+            acts on it by granting GA storage and loading Clarity. */}
         <CookieBanner />
         <ConsentedAnalytics />
         <GoogleOneTap />
@@ -169,6 +170,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             ConsentedAnalytics on purpose: that one loads third-party scripts
             which must stay fully gated. */}
         <AnalyticsTracker />
+        {/* Sectira web analytics, for every visitor rather than behind the
+            consent gate: Sectira says it sets no cookies and stores nothing
+            in the browser by default, and its install check looks for this
+            tag in the page. Placed in <body> with afterInteractive, as
+            Sectira's Next.js instructions give it; route changes are tracked
+            by the script itself. Served from t.preciprocal.com, a CNAME to
+            Sectira. The privacy policy (Section 2, the provider list and
+            Section 11) describes it as running without consent; keep the
+            two in step if this ever moves. */}
+        <Script
+          src="https://t.preciprocal.com/t.js"
+          data-site="pw_jkWaJfrL7xck"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
