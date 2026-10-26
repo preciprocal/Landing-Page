@@ -53,6 +53,8 @@ Usage and Analytics Data: We automatically collect information about how you int
 
 Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft Clarity applies automatic masking to text you type into form fields, and we do not use it to capture the content of your resumes, cover letters or interview responses. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
 
+Page and Section Analytics: If you consent to analytics cookies, we also use **Sectira** to measure which pages and which sections of each page are viewed, where visitors arrive from, and which visits lead to a sign-up. Sectira does not record video or session replays. Sectira processes this data to provide our reports and, according to Sectira, does not sell it or use it for advertising.
+
 Recruiter and Hiring Contact Information: The contact finder returns business contact details for recruiters and hiring managers, such as a name, employer, job title and work email address. That information concerns people who are not our users. We obtain it from commercial business-contact sources, we hold it as business rather than personal-life information, and we make it available to you strictly so you can make a job-related approach. You may not use it for bulk messaging, marketing unrelated to your own application, resale, or any purpose the recipient would not reasonably expect. If you are such a contact and want your details removed, email support@preciprocal.com and we will remove them.
 
 Browser Extension Data: If you install our browser extension, it reads the job posting on the page you are viewing when you choose to save it, and fills application forms from the profile you have already given us. It runs on job boards and application pages, and only when you act. It does not track your general browsing, and it does not read pages you have not asked it to act on.
@@ -170,8 +172,9 @@ Service Providers: We share information with trusted third-party service provide
 - **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may retain it for a limited period, typically up to 30 days, for abuse and misuse monitoring before deleting it. We have not opted in to any data sharing or model improvement programme offered by these providers. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
+- **Sectira** (page and section-level web analytics, loaded only after you consent)
 
-Google Analytics and Microsoft Clarity are the only third-party analytics providers we use, and both are gated behind your cookie consent choice as described in Section 11. We also operate our own first-party measurement, which sends nothing to any third party and is described in Section 6.
+Google Analytics, Microsoft Clarity and Sectira are the only third-party analytics providers we use, and all three are gated behind your cookie consent choice as described in Section 11. We also operate our own first-party measurement, which sends nothing to any third party and is described in Section 6.
 
 Public Publication of Testimonials: If you claim a Success Refund, we may publish the testimonial you provide on our website and in our marketing. What appears is governed by the permissions you choose when you submit it, each of which is independent: you may allow your words to be quoted without your name, allow or withhold your role and employer, and allow or withhold a link to your public post. If you withhold your name, we also suppress the link to your public post, because that post would identify you and publishing it would undo the anonymity you asked for. Your offer letter is never published. You may withdraw permission at any time by contacting support@preciprocal.com.
 
@@ -253,9 +256,9 @@ Categories of cookies we use:
 
 Strictly Necessary Cookies: Essential for the Service to function. These cookies enable core features such as user authentication, session management, and security. They cannot be disabled without impairing Service functionality.
 
-Analytics Cookies: Help us understand how users interact with the Service. We use **Google Analytics 4** for aggregate usage measurement and **Microsoft Clarity** for session replay and interaction analytics, as described in Section 2.
+Analytics Cookies: Help us understand how users interact with the Service. We use **Google Analytics 4** for aggregate usage measurement **Microsoft Clarity** for session replay and interaction analytics, and **Sectira** for page and section-level analytics, as described in Section 2.
 
-**These are set only if you consent.** Neither Google Analytics nor Microsoft Clarity is loaded until you opt in. Until you accept analytics cookies, no third-party analytics script runs and no request is made to Google or Microsoft. Choosing "Essential only" on our cookie banner, or dismissing it without choosing, means neither is ever loaded.
+**These are set only if you consent.** None of Google Analytics, Microsoft Clarity or Sectira is loaded until you opt in. Until you accept analytics cookies, no third-party analytics script runs and no request is made to Google, Microsoft or Sectira. Choosing "Essential only" on our cookie banner, or dismissing it without choosing, means none of them is ever loaded.
 
 Our own first-party measurement, described in Section 6, is different and you should understand the distinction. It continues whether or not you accept, because when you decline it uses no cookie and no persistent identifier at all: it writes nothing to your device and relies on an identifier that is regenerated every day and cannot be traced to you. Accepting analytics cookies adds a single stored identifier that lets us recognise a returning visitor. Declining removes that identifier and leaves only same-day, anonymous counting.
 
@@ -352,7 +355,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 11, 2026. Effective date: October 11, 2026.
+                Last updated: October 25, 2026. Effective date: October 25, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

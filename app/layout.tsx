@@ -134,7 +134,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/*
           NO ANALYTICS ARE LOADED HERE, deliberately.
 
-          Google Analytics and Microsoft Clarity are both injected by
+          Google Analytics, Microsoft Clarity and Sectira are all injected by
           components/ConsentedAnalytics.tsx, and only after the user opts in via
           CookieBanner. Previously both loaded unconditionally from this head,
           which contradicted the privacy policy's statement that analytics
@@ -159,7 +159,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StickyBanner />
         {children}
         {/* Consent gate. CookieBanner records the decision; ConsentedAnalytics
-            acts on it by granting GA storage and loading Clarity. */}
+            acts on it by granting GA storage and loading Clarity and Sectira. */}
         <CookieBanner />
         <ConsentedAnalytics />
         <GoogleOneTap />
