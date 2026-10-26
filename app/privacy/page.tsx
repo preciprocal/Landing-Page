@@ -326,7 +326,8 @@ We encourage you to review this Policy periodically to stay informed about how w
 For questions, concerns, or requests regarding this Policy or our data practices, please contact us at:
 
 Preciprocal
-Email (privacy and general inquiries): support@preciprocal.com
+Privacy inquiries: support@preciprocal.com
+General inquiries: hello@preciprocal.com
 
 If you require our full registered details or a postal address for a formal data protection request, email support@preciprocal.com and we will provide them.
 

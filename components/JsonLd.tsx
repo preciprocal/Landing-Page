@@ -93,6 +93,12 @@ export function OrganizationJsonLd() {
         availableLanguage: "English",
         areaServed: "Worldwide",
       },
+      {
+        "@type": "ContactPoint",
+        email: "hello@preciprocal.com",
+        contactType: "sales",
+        availableLanguage: "English",
+      },
     ],
     address: {
       "@type": "PostalAddress",

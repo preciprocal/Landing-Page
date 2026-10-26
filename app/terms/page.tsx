@@ -243,7 +243,8 @@ Notices: All notices to us must be sent to support@preciprocal.com. We may provi
     content: `If you have any questions about these Terms, please contact us at:
 
 Preciprocal
-Email (including legal inquiries): support@preciprocal.com
+Email: support@preciprocal.com
+Legal inquiries: hello@preciprocal.com
 
 We will respond to all inquiries within 5 business days.`,
   },
