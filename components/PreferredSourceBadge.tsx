@@ -8,19 +8,16 @@
  * The deeplink is documented at
  * https://developers.google.com/search/docs/appearance/preferred-sources
  * (checked 2026-10-22, page last updated 2026-09-18). The same page allows a
- * custom-designed badge as long as it links to that URL, so this one is drawn
- * in the site's own style (the glass card used for secondary actions) rather
- * than Google's black or white PNG. It keeps Google's multicolour "G" so it
- * still reads as a Google action at a glance. The gradient is left to the
- * sign-up CTAs, so this never competes with them.
+ * custom-designed badge as long as it links to that URL. This one is drawn to
+ * Google's own dark button spec, so it reads as a control Google provides
+ * rather than a Preciprocal one, which is what makes readers trust the click.
+ * The site's gradient stays reserved for the sign-up CTAs.
  *
  * Deliberately a plain link, not Google's JavaScript button. The button loads
  * news.google.com/swg/js/v1/publisher.js on every page view, and this site
  * loads no Google script before cookie consent. A link sends nothing to Google
  * until the reader clicks it.
  */
-
-import { Plus } from "lucide-react";
 
 const PREFERRED_SOURCE_URL = "https://www.google.com/preferences/source?q=preciprocal.com";
 
@@ -43,18 +40,15 @@ export default function PreferredSourceBadge({ className = "" }: { className?: s
       rel="noopener noreferrer"
       data-track="google-preferred-source"
       aria-label="Add Preciprocal as a preferred source on Google (opens Google)"
-      className={`group inline-flex w-fit shrink-0 items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] py-2.5 pl-2.5 pr-3.5 transition-all hover:-translate-y-0.5 hover:border-indigo-400/40 hover:bg-indigo-500/[0.08] hover:shadow-[0_12px_30px_rgba(99,102,241,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${className}`}
+      // Google's own dark button spec (the "Sign in with Google" dark theme):
+      // #131314 surface, 1px #8E918F outline, #E3E3E3 label, pill shape, 40px
+      // high, G mark on the surface itself. Hover lays an 8% white tint over
+      // the surface, as Google's buttons do.
+      style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}
+      className={`relative inline-flex h-10 w-fit shrink-0 items-center gap-2.5 overflow-hidden rounded-full border border-[#8E918F] bg-[#131314] pl-3 pr-4 text-sm font-medium tracking-[0.25px] text-[#E3E3E3] transition-colors before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity hover:before:opacity-[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB4F8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810] ${className}`}
     >
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white">
-        <GoogleG className="h-5 w-5" />
-      </span>
-      <span className="flex flex-col whitespace-nowrap leading-tight text-left">
-        <span className="text-[11px] font-medium text-slate-500">Add as a preferred source</span>
-        <span className="text-sm font-semibold text-white">on Google</span>
-      </span>
-      <span className="ml-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-indigo-500/15 text-indigo-300 transition-colors group-hover:bg-indigo-500/30 group-hover:text-white">
-        <Plus className="h-3.5 w-3.5" strokeWidth={2.5} />
-      </span>
+      <GoogleG className="relative h-5 w-5 shrink-0" />
+      <span className="relative whitespace-nowrap">Add as a preferred source on Google</span>
     </a>
   );
 }
