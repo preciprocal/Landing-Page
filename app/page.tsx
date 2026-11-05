@@ -30,6 +30,7 @@ import Footer from "@/components/Footer";
 import ScrollToast from "@/components/ScrollToast";
 import HeroProductDemo from "@/components/HeroProductDemo";
 import ChromeExtensionBanner from "@/components/ChromeExtensionBanner";
+import FreeToolsStrip from "@/components/FreeToolsStrip";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
@@ -120,6 +121,12 @@ export default function Home() {
         {/* 6. Process - 3 steps */}
         <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" aria-label="How Preciprocal works">
           <HowItWorks />
+        </section>
+
+        {/* 6b. Free tools and guide hubs - a no-account way in, and the
+            homepage's only contextual internal links */}
+        <section data-section="free-tools" data-section-name="Free tools" aria-label="Free tools and guides">
+          <FreeToolsStrip />
         </section>
 
         {/* 7. Differentiation - comparison table */}

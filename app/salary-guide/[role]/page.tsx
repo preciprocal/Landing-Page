@@ -12,6 +12,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RoleGuideLinks from "@/components/RoleGuideLinks";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
@@ -497,21 +498,8 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
         {/* Sources */}
         <p style={{ color: "#374151" }} className="text-xs mb-10">{salaryData.sources}</p>
 
-        {/* Cross-links */}
-        <div className="mb-10 grid sm:grid-cols-3 gap-4">
-          <Link href={`/resume-tips/${role}`} className="p-4 rounded-xl border transition-all hover:border-emerald-500/30" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Resume tips</p>
-            <p style={{ color: "#475569" }} className="text-xs">{display.name} resume guide →</p>
-          </Link>
-          <Link href={`/cover-letter-examples/${role}`} className="p-4 rounded-xl border transition-all hover:border-emerald-500/30" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Cover letter</p>
-            <p style={{ color: "#475569" }} className="text-xs">{display.name} examples →</p>
-          </Link>
-          <Link href={`/interview-questions/${role}`} className="p-4 rounded-xl border transition-all hover:border-emerald-500/30" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Interview prep</p>
-            <p style={{ color: "#475569" }} className="text-xs">Practice questions →</p>
-          </Link>
-        </div>
+        {/* Sibling guides for this role, plus the question predictor */}
+        <RoleGuideLinks role={role} roleName={display.name} current="salary-guide" className="mb-10" />
 
         {/* CTA */}
         <div className="p-8 text-center rounded-2xl border" style={{ background: "rgba(16,185,129,0.05)", borderColor: "rgba(16,185,129,0.2)" }}>

@@ -29,6 +29,70 @@ function SidebarCTA() {
   );
 }
 
+// ─── Put this into practice ───────────────────────────────────────────────────
+// The tools and guides that let a reader act on a post, by category. Blog
+// posts otherwise linked only to other posts, so the tool pages got no
+// contextual links from the blog at all.
+
+const PRACTICE_LINKS: Record<string, { href: string; label: string }[]> = {
+  Resume: [
+    { href: "/free-ats-checker", label: "Free ATS resume checker" },
+    { href: "/resume-tailoring", label: "Tailor your resume to a job" },
+    { href: "/resume-tips", label: "Resume tips by role" },
+  ],
+  "Interview Prep": [
+    { href: "/interview-question-predictor", label: "Predict your interview questions" },
+    { href: "/ai-mock-interview", label: "AI mock interview" },
+    { href: "/interview-questions", label: "Interview questions by role" },
+  ],
+  Behavioral: [
+    { href: "/interview-question-predictor", label: "Practice answers out loud, free" },
+    { href: "/ai-mock-interview", label: "AI mock interview" },
+    { href: "/interview-debrief", label: "Interview debrief journal" },
+  ],
+  Technical: [
+    { href: "/interview-question-predictor", label: "Predict your interview questions" },
+    { href: "/interview-study-planner", label: "Interview study planner" },
+    { href: "/interview-questions", label: "Interview questions by role" },
+  ],
+  "Company Guides": [
+    { href: "/interview-prep", label: "Company interview guides" },
+    { href: "/interview-question-predictor", label: "Predict questions from the job posting" },
+    { href: "/ai-mock-interview", label: "AI mock interview" },
+  ],
+  "Career Strategy": [
+    { href: "/job-application-tracker", label: "Job application tracker" },
+    { href: "/cold-email-generator", label: "Cold email writer" },
+    { href: "/salary-guide", label: "Salary guides by role" },
+  ],
+  "Visa & Immigration": [
+    { href: "/opt", label: "OPT guides and calculators" },
+    { href: "/new-h1b-rules", label: "H-1B rule tracker" },
+    { href: "/for/international-students", label: "Preciprocal for international students" },
+  ],
+};
+
+function PracticeLinks({ category }: { category: string }) {
+  const links = PRACTICE_LINKS[category];
+  if (!links) return null;
+  return (
+    <div className="mt-10 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+      <p className="text-sm font-semibold text-white mb-3">Put this into practice</p>
+      <div className="flex flex-wrap gap-2">
+        {links.map((l) => (
+          <Link
+            key={l.href}
+            href={l.href}
+            className="px-3.5 py-2 rounded-xl border border-white/[0.08] text-sm text-slate-300 hover:text-white hover:border-indigo-400/40 transition-all"
+          >
+            {l.label} →
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── Related posts ────────────────────────────────────────────────────────────
 
 /** Rotates an array so it starts `by` places in, wrapping around. */
@@ -354,6 +418,8 @@ export default function BlogArticlePage() {
               <div className="prose-article">
                 {renderMarkdown(post.content)}
               </div>
+
+              <PracticeLinks category={post.category} />
 
               {/* Google preferred source: readers who liked the post see more of ours in Top Stories */}
               <PreferredSourceCallout className="mt-10" text="Want more guides like this in your Google results?" />

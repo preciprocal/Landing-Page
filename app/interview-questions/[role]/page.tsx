@@ -10,6 +10,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RoleGuideLinks from "@/components/RoleGuideLinks";
 import { InterviewPageJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand, titleField } from "@/lib/seoTitle";
@@ -122,6 +123,9 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
             Predict questions from your job description →
           </Link>
         </div>
+
+        {/* Sibling guides for this role (resume, salary, cover letters) */}
+        <RoleGuideLinks role={role} roleName={ROLE_DISPLAY[role]?.name ?? roleLabel} current="interview-questions" />
 
         {/* Related roles */}
         {meta.relatedRoles.length > 0 && (

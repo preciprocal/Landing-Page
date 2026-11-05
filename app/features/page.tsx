@@ -122,6 +122,13 @@ const STAGES: Stage[] = [
           "Practise out loud with a panel that asks follow-ups and pushes back, then scores you and tells you precisely where it went wrong.",
       },
       {
+        name: "Question prediction",
+        href: "/interview-question-predictor",
+        pain: "Generic question lists are the same for every job.",
+        promise:
+          "Paste the posting and get the five questions it is most likely to lead to, then answer out loud and get scored. Free, no account needed.",
+      },
+      {
         name: "Study planning",
         href: "/interview-study-planner",
         pain: "Two weeks to prepare and no idea what to do first.",
@@ -261,7 +268,7 @@ export default function FeaturesPage() {
                 <p className="text-[14px] text-slate-400 leading-relaxed">{stage.intro}</p>
               </RevealOnScroll>
 
-              <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+              <StaggerChildren className={`grid grid-cols-1 md:grid-cols-2 ${stage.features.length === 4 ? "" : "lg:grid-cols-3"} gap-4 items-stretch`}>
                 {stage.features.map((feature) => (
                   <StaggerItem key={feature.href} className="flex flex-col">
                     <Link

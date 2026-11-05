@@ -16,6 +16,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RoleGuideLinks from "@/components/RoleGuideLinks";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, titleField } from "@/lib/seoTitle";
@@ -478,6 +479,9 @@ export default async function CoverLetterExampleRolePage({
             ))}
           </div>
         </section>
+
+        {/* Sibling guides for this role, plus the question predictor */}
+        <RoleGuideLinks role={role} roleName={display.name} current="cover-letter-examples" className="mb-10" />
 
         {/* Cross-links: interview questions + resume tips */}
         <section

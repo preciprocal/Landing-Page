@@ -12,6 +12,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RoleGuideLinks from "@/components/RoleGuideLinks";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
@@ -323,33 +324,8 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
           </ul>
         </section>
 
-        {/* Internal cross-links */}
-        <div className="mt-12 grid sm:grid-cols-3 gap-4">
-          <Link
-            href={`/interview-questions/${role}`}
-            className="p-4 rounded-xl border transition-all hover:border-indigo-500/30"
-            style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}
-          >
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Interview questions</p>
-            <p style={{ color: "#475569" }} className="text-xs">Prep for {display.name} interviews →</p>
-          </Link>
-          <Link
-            href={`/cover-letter-examples/${role}`}
-            className="p-4 rounded-xl border transition-all hover:border-indigo-500/30"
-            style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}
-          >
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Cover letter examples</p>
-            <p style={{ color: "#475569" }} className="text-xs">{display.name} cover letters →</p>
-          </Link>
-          <Link
-            href={`/salary-guide/${role}`}
-            className="p-4 rounded-xl border transition-all hover:border-indigo-500/30"
-            style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}
-          >
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1">Salary guide</p>
-            <p style={{ color: "#475569" }} className="text-xs">{display.name} salary data →</p>
-          </Link>
-        </div>
+        {/* Sibling guides for this role, plus the question predictor */}
+        <RoleGuideLinks role={role} roleName={display.name} current="resume-tips" />
 
         {/* CTA */}
         <div className="mt-12 p-8 text-center rounded-2xl border" style={{ background: "rgba(99,102,241,0.05)", borderColor: "rgba(99,102,241,0.2)" }}>
