@@ -7,8 +7,9 @@
  * gives the homepage contextual links into the site. Before this, every
  * internal link on the homepage was in the navbar or footer.
  *
- * Only tools that run on the page without signing up belong in TOOLS.
- * /free-ats-checker is a sign-up page, not an in-page tool, so it is not here.
+ * Only tools that run on the page without signing up belong in TOOLS. The
+ * ATS checker qualifies since it runs its preview in the page (the full
+ * report needs an account).
  */
 
 import Link from "next/link";
@@ -19,6 +20,11 @@ const TOOLS = [
     title: "Interview question predictor",
     body: "Paste a job description, get the 5 questions you will likely be asked, then answer out loud and get scored.",
     tag: "New",
+  },
+  {
+    href: "/free-ats-checker",
+    title: "Free ATS resume checker",
+    body: "Upload your resume for an honest score out of 100 and your top fixes, with rewrites.",
   },
   {
     href: "/opt/unemployment-calculator",
@@ -52,7 +58,7 @@ export default function FreeToolsStrip() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
         {TOOLS.map((t) => (
           <Link
             key={t.href}
