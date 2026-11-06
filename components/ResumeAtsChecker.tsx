@@ -20,7 +20,17 @@
  * shared IP may be someone else.
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  AnimatePresence,
+  MotionConfig,
+  animate,
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 import { APP_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics/client";
 import type { ResumeCheckResult } from "@/lib/resumeCheck/analysis";
@@ -43,6 +53,63 @@ function band(score: number) {
 
 function barTone(score: number) {
   return score >= 70 ? "bg-emerald-400" : score >= 50 ? "bg-amber-400" : "bg-rose-400";
+}
+
+// ─── Motion ─────────────────────────────────────────────────────────────────
+// Restrained on purpose: motion here explains state (a file landed, the check
+// is running, the score filled in), it is not decoration. MotionConfig with
+// reducedMotion="user" turns it off for visitors who ask their system for
+// less motion.
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+const rise: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
+/** A card with a soft light that follows the cursor (Aceternity's card spotlight). */
+function SpotlightCard({ children, className = "" }: { children: ReactNode; className?: string }) {
+  const x = useMotionValue(-400);
+  const y = useMotionValue(-400);
+  const glow = useMotionTemplate`radial-gradient(460px circle at ${x}px ${y}px, rgba(129,140,248,0.10), transparent 70%)`;
+  return (
+    <div
+      className={`relative overflow-hidden ${className}`}
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        x.set(e.clientX - r.left);
+        y.set(e.clientY - r.top);
+      }}
+      onMouseLeave={() => {
+        x.set(-400);
+        y.set(-400);
+      }}
+    >
+      <motion.div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: glow }} />
+      <div className="relative">{children}</div>
+    </div>
+  );
+}
+
+/** Counts from 0 to `to` once, when it mounts. */
+function CountUp({ to, duration = 1.2 }: { to: number; duration?: number }) {
+  const reduce = useReducedMotion();
+  const [n, setN] = useState(reduce ? to : 0);
+  useEffect(() => {
+    if (reduce) {
+      setN(to);
+      return;
+    }
+    const c = animate(0, to, { duration, ease: EASE, onUpdate: (v) => setN(Math.round(v)) });
+    return () => c.stop();
+  }, [to, duration, reduce]);
+  return <>{n}</>;
 }
 
 const inputClass =
@@ -125,12 +192,13 @@ export default function ResumeAtsChecker() {
   const returning = Boolean(result?.restored);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="text-left space-y-6">
       {returning && result && <WelcomeBack result={result} />}
 
       {/* ── Upload ───────────────────────────────────────────────────── */}
       {!returning && (
-      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
+      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -144,25 +212,64 @@ export default function ResumeAtsChecker() {
             setDragging(false);
             pick(e.dataTransfer.files?.[0]);
           }}
-          className={`w-full rounded-xl border-2 border-dashed px-6 py-10 text-center transition-colors ${
-            dragging ? "border-indigo-400/70 bg-indigo-500/[0.08]" : file ? "border-emerald-400/40 bg-emerald-500/[0.04]" : "border-white/[0.12] hover:border-indigo-400/40 hover:bg-white/[0.02]"
+          className={`relative w-full overflow-hidden rounded-xl border border-dashed px-6 py-11 text-center transition-colors duration-300 ${
+            dragging ? "border-indigo-400/70 bg-indigo-500/[0.07]" : file ? "border-emerald-400/40 bg-emerald-500/[0.035]" : "border-white/[0.14] hover:border-indigo-400/40"
           }`}
         >
-          <svg className="mx-auto mb-3 h-9 w-9 text-indigo-300" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
-            <path d="M14 3v5h5M12 17v-6M9.5 13.5 12 11l2.5 2.5" />
-          </svg>
-          {file ? (
-            <>
-              <p className="font-semibold text-white">{file.name}</p>
-              <p className="mt-1 text-[12px] text-slate-500">{(file.size / 1024).toFixed(0)} KB · Click to choose a different file</p>
-            </>
-          ) : (
-            <>
-              <p className="font-semibold text-white">Drop your resume here, or click to upload</p>
-              <p className="mt-1 text-[12px] text-slate-500">PDF or Word (.docx), up to 4 MB</p>
-            </>
-          )}
+          {/* Faint grid, fading out from the centre. */}
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+          <motion.span
+            aria-hidden="true"
+            className={`relative mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl border ${
+              file ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-300" : "border-indigo-400/25 bg-indigo-500/10 text-indigo-300"
+            }`}
+            animate={dragging ? { y: -6, scale: 1.06 } : { y: 0, scale: 1 }}
+            whileHover={{ y: -3 }}
+            transition={{ type: "spring", stiffness: 320, damping: 20 }}
+          >
+            {file ? (
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M5 12.5l4.5 4.5L19 7.5" />
+              </svg>
+            ) : (
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5M12 17v-6M9.5 13.5 12 11l2.5 2.5" />
+              </svg>
+            )}
+          </motion.span>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={file ? file.name : dragging ? "drop" : "empty"}
+              className="relative block"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.22, ease: EASE }}
+            >
+              {file ? (
+                <>
+                  <span className="block font-semibold text-white">{file.name}</span>
+                  <span className="mt-1 block text-[12px] text-slate-500">{(file.size / 1024).toFixed(0)} KB · Click to choose a different file</span>
+                </>
+              ) : dragging ? (
+                <span className="block font-semibold text-indigo-200">Drop it to upload</span>
+              ) : (
+                <>
+                  <span className="block font-semibold text-white">Drop your resume here, or click to upload</span>
+                  <span className="mt-1 block text-[12px] text-slate-500">PDF or Word (.docx), up to 4 MB</span>
+                </>
+              )}
+            </motion.span>
+          </AnimatePresence>
         </button>
         <input ref={inputRef} type="file" accept={ACCEPT} className="hidden" onChange={(e) => pick(e.target.files?.[0])} />
 
@@ -181,8 +288,16 @@ export default function ResumeAtsChecker() {
             )}
           </div>
         </div>
+        <AnimatePresence initial={false}>
         {showJd && (
-          <div className="mt-4">
+          <motion.div
+            className="overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE }}
+          >
+          <div className="pt-4">
             <label htmlFor="ats-jd" className="mb-1.5 block text-[12px] text-slate-400">
               Job description (optional, recommended)
             </label>
@@ -195,7 +310,9 @@ export default function ResumeAtsChecker() {
               placeholder="Paste the posting. The ATS and skills scores are then measured against it."
             />
           </div>
+          </motion.div>
         )}
+        </AnimatePresence>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-[11px] text-slate-600">No account needed. The file is not stored; your result is kept for 30 days so you can come back to it.</p>
@@ -219,20 +336,31 @@ export default function ResumeAtsChecker() {
             Create free account <Chevron />
           </a>
         )}
-      </div>
+      </SpotlightCard>
       )}
 
-      {loading && <Progress />}
+      <AnimatePresence>{loading && <Progress key="progress" />}</AnimatePresence>
 
       {result && (
-        <div ref={resultsRef} className="scroll-mt-28 space-y-6">
-          <ScoreCard result={result} />
-          {result.strengths.length > 0 && <Strengths items={result.strengths} />}
-          <Fixes result={result} />
-          <Locked result={result} />
-        </div>
+        <motion.div ref={resultsRef} className="scroll-mt-28 space-y-6" variants={stagger} initial="hidden" animate="show">
+          <motion.div variants={rise}>
+            <ScoreCard result={result} />
+          </motion.div>
+          {result.strengths.length > 0 && (
+            <motion.div variants={rise}>
+              <Strengths items={result.strengths} />
+            </motion.div>
+          )}
+          <motion.div variants={rise}>
+            <Fixes result={result} />
+          </motion.div>
+          <motion.div variants={rise}>
+            <Locked result={result} />
+          </motion.div>
+        </motion.div>
       )}
     </div>
+    </MotionConfig>
   );
 }
 
@@ -269,20 +397,61 @@ function WelcomeBack({ result }: { result: Shown }) {
 }
 
 function Progress() {
-  const steps = ["Reading your resume", "Checking ATS compatibility", "Scoring content and impact", "Reviewing skills and structure", "Writing your fixes"];
+  const dims = ["ATS compatibility", "Content and impact", "Skills", "Structure", "Tone and style"];
+  const [secs, setSecs] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setSecs((n) => n + 1), 1000);
+    return () => clearInterval(t);
+  }, []);
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6" aria-live="polite">
-      <p className="mb-4 text-sm font-semibold text-white">Five reviews running at once</p>
-      <ul className="space-y-3">
-        {steps.map((s, i) => (
-          <li key={s} className="flex animate-pulse items-center gap-3 text-sm text-slate-400" style={{ animationDelay: `${i * 250}ms` }}>
-            <span className="h-1.5 w-1.5 rounded-full bg-indigo-400" />
-            {s}
-          </li>
-        ))}
-      </ul>
-      <p className="mt-4 text-[11px] text-slate-600">This usually takes 15 to 30 seconds.</p>
-    </div>
+    <motion.div
+      className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6"
+      aria-live="polite"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.35, ease: EASE }}
+    >
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
+        {/* A page being read: skeleton lines with a light passing over them. */}
+        <div aria-hidden="true" className="relative mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-white/[0.08] bg-[#0a0f1c] p-3 sm:mx-0">
+          <div className="mb-2 h-2 w-16 rounded bg-white/20" />
+          <div className="mb-3 h-1.5 w-20 rounded bg-white/10" />
+          {[88, 72, 80, 64, 76, 58, 70, 82].map((w, i) => (
+            <div key={i} className={`h-1.5 rounded bg-white/[0.08] ${i === 3 ? "mb-3" : "mb-1.5"}`} style={{ width: `${w}%` }} />
+          ))}
+          <motion.div
+            className="absolute inset-x-0 h-10 bg-gradient-to-b from-transparent via-indigo-400/25 to-transparent"
+            initial={{ top: "-25%" }}
+            animate={{ top: ["-25%", "100%"] }}
+            transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity, repeatDelay: 0.2 }}
+          />
+        </div>
+
+        <div className="flex-1">
+          <div className="mb-4 flex items-baseline justify-between">
+            <p className="text-sm font-semibold text-white">Five reviews running at once</p>
+            <p className="font-mono text-[12px] tabular-nums text-slate-500">{secs}s</p>
+          </div>
+          <ul className="space-y-3">
+            {dims.map((d, i) => (
+              <li key={d}>
+                <p className="mb-1.5 text-[12px] text-slate-400">{d}</p>
+                <div className="relative h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
+                  <motion.div
+                    className="absolute inset-y-0 w-1/3 rounded-full bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent"
+                    initial={{ left: "-35%" }}
+                    animate={{ left: ["-35%", "105%"] }}
+                    transition={{ duration: 1.6, ease: "easeInOut", repeat: Infinity, delay: i * 0.18 }}
+                  />
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-[11px] text-slate-600">This usually takes 15 to 30 seconds.</p>
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -296,7 +465,7 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
         <div className="flex shrink-0 flex-col items-center text-center md:w-56">
           <svg viewBox="0 0 120 120" className="h-36 w-36" role="img" aria-label={`ATS resume score ${result.overallScore} out of 100`}>
             <circle cx="60" cy="60" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" />
-            <circle
+            <motion.circle
               cx="60"
               cy="60"
               r={r}
@@ -305,11 +474,13 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
               strokeWidth="10"
               strokeLinecap="round"
               strokeDasharray={c}
-              strokeDashoffset={c * (1 - result.overallScore / 100)}
+              initial={{ strokeDashoffset: c }}
+              animate={{ strokeDashoffset: c * (1 - result.overallScore / 100) }}
+              transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}
               transform="rotate(-90 60 60)"
             />
             <text x="60" y="58" textAnchor="middle" className="fill-white" style={{ fontSize: 32, fontWeight: 800 }}>
-              {result.overallScore}
+              <CountUp to={result.overallScore} />
             </text>
             <text x="60" y="78" textAnchor="middle" className="fill-slate-500" style={{ fontSize: 11 }}>
               out of 100
@@ -325,7 +496,7 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
           <p className="text-sm text-slate-400">
             Scored the way recruiters do: honestly. An honest 55 is worth more than a padded 80, because it tells you what to fix.
           </p>
-          {result.sections.map((s) => (
+          {result.sections.map((s, i) => (
             <div key={s.key}>
               <div className="mb-1.5 flex items-baseline justify-between text-sm">
                 <span className="text-slate-200">
@@ -334,7 +505,12 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
                 <span className="font-semibold text-white">{s.score}</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full bg-white/[0.06]">
-                <div className={`h-full rounded-full ${barTone(s.score)}`} style={{ width: `${s.score}%` }} />
+                <motion.div
+                  className={`h-full rounded-full ${barTone(s.score)}`}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${s.score}%` }}
+                  transition={{ duration: 0.9, ease: EASE, delay: 0.35 + i * 0.1 }}
+                />
               </div>
             </div>
           ))}
@@ -372,11 +548,13 @@ function Fixes({ result }: { result: ResumeCheckResult }) {
           {result.fixes.length} of {result.fixes.length + result.locked.length}
         </p>
       </div>
-      <div className="space-y-4">
+      <motion.div className="space-y-4" variants={stagger}>
         {result.fixes.map((f, i) => (
-          <FixCard key={i} fix={f} index={i} />
+          <motion.div key={i} variants={rise}>
+            <FixCard fix={f} index={i} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -384,7 +562,7 @@ function Fixes({ result }: { result: ResumeCheckResult }) {
 function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; index: number }) {
   const [copied, setCopied] = useState(false);
   return (
-    <article className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
+    <article className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="mb-3 flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-[11px] font-bold text-white">{index + 1}</span>
         <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-slate-400">{fix.section}</span>
@@ -451,7 +629,13 @@ function Locked({ result }: { result: ResumeCheckResult }) {
 
       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-[#050810]/5 via-[#050810]/75 to-[#050810]/95 p-6">
         <div className="max-w-md rounded-2xl border border-white/[0.08] bg-[#0a0f1c]/90 p-6 text-center shadow-[0_30px_80px_rgba(0,0,0,0.5)] backdrop-blur-sm">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-indigo-400/30 bg-indigo-500/15">
+          <div className="relative mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-indigo-400/30 bg-indigo-500/15">
+            <motion.span
+              aria-hidden="true"
+              className="absolute inset-0 rounded-full border border-indigo-400/40"
+              animate={{ scale: [1, 1.5], opacity: [0.6, 0] }}
+              transition={{ duration: 2.2, ease: "easeOut", repeat: Infinity }}
+            />
             <svg className="h-5 w-5 text-indigo-200" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="4" y="11" width="16" height="10" rx="2" />
               <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -479,9 +663,18 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             href={SIGN_UP_URL}
             data-track="ats-check-unlock"
             onClick={() => trackEvent("ats-check-unlock-click", { locked: n, score: result.overallScore }, "tool")}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
+            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
           >
-            Unlock my full analysis, free <Chevron />
+            <motion.span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent"
+              initial={{ left: "-40%" }}
+              animate={{ left: ["-40%", "130%"] }}
+              transition={{ duration: 1.4, ease: "easeInOut", repeat: Infinity, repeatDelay: 2.6 }}
+            />
+            <span className="relative inline-flex items-center gap-2">
+              Unlock my full analysis, free <Chevron />
+            </span>
           </a>
           <p className="mt-3 text-[11px] text-slate-500">
             Free account · No credit card · Opens straight to resume analysis, upload the same file to see every fix
