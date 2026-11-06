@@ -14,6 +14,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import InternationalStudentsVisual from "@/components/page/visuals/InternationalStudentsVisual";
 
 export const metadata: Metadata = {
   title: "Job Search for International Students (F-1)",
@@ -104,6 +105,8 @@ export default function InternationalStudentsPage() {
     <ToolPage
       breadcrumbName="For International Students"
       canonicalPath="/for/international-students"
+      accent="sky"
+      visual={<InternationalStudentsVisual />}
       badge="Built by students, for students"
       h1="The job search for international students"
       h1Accent="built around the OPT clock"
@@ -172,7 +175,7 @@ export default function InternationalStudentsPage() {
             <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {VISA_GUIDES.map((g) => (
                 <li key={g.href}>
-                  <a href={g.href} className="text-sm text-indigo-300 hover:text-indigo-200 underline-offset-2 hover:underline">
+                  <a href={g.href} className="text-sm text-accent-soft hover:text-accent underline-offset-2 hover:underline">
                     {g.label}
                   </a>
                 </li>

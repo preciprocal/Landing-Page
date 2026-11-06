@@ -15,6 +15,9 @@
  * Your angle: built for students/new grads, $9.99 vs Final Round's pricing,
  * all-in-one vs single-tool.
  *
+ * Layout: PageHero, the quick verdict, then the feature table and the
+ * remaining sections on the shared page kit (components/page), accent indigo.
+ *
  * File path: app/alternatives/final-round-ai-alternative/page.tsx
  */
 
@@ -25,6 +28,9 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqList } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import CompareTable, { Verdict, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
 
 export const metadata: Metadata = {
   title: { absolute: "Final Round AI Alternative: Preciprocal Compared" },
@@ -103,7 +109,7 @@ export default function FinalRoundAIAlternativePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -118,199 +124,145 @@ export default function FinalRoundAIAlternativePage() {
 
       <Navbar />
 
-      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Alternatives</span>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Final Round AI Alternative</span>
-        </nav>
-
+      <main>
         {/* ── H1 ──────────────────────────────────────────────────────────── */}
-        <div
-          className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-5"
-          style={{ background: "#1e293b", color: "#6366f1" }}
-        >
-          Comparison · Updated May 2026
-        </div>
-        <h1
-          className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight tracking-tight"
-          style={{ color: "#ffffff" }}
-        >
-          The Best Final Round AI Alternative in 2026
-        </h1>
-        <p className="text-lg mb-10 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          Final Round AI is a solid interview prep tool. But if you're a student or new grad who also
-          needs to fix your resume, generate cover letters, and track applications. You will need more
-          than one tool, or a platform that does all of it.{" "}
-          <strong style={{ color: "#e2e8f0" }}>Preciprocal</strong> covers the full job search pipeline
-          at $9.99/mo.
-        </p>
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Alternatives</span>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Final Round AI Alternative</span>
+            </nav>
+          }
+          badge="Comparison · Updated May 2026"
+          title="The Best Final Round AI Alternative "
+          accent="in 2026"
+          subhead={
+            <p>
+              Final Round AI is a solid interview prep tool. But if you&apos;re a student or new grad who also
+              needs to fix your resume, generate cover letters, and track applications. You will need more
+              than one tool, or a platform that does all of it.{" "}
+              <strong className="font-semibold text-slate-200">Preciprocal</strong> covers the full job search pipeline
+              at $9.99/mo.
+            </p>
+          }
+        />
 
         {/* ── Quick verdict ───────────────────────────────────────────────── */}
-        <div
-          className="p-6 rounded-xl border mb-12"
-          style={{ borderColor: "#6366f1", background: "#0a0f1e" }}
-        >
-          <p className="text-sm font-semibold mb-1" style={{ color: "#6366f1" }}>Quick verdict</p>
-          <p className="leading-relaxed" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Final Round AI</strong> if you only need interview practice with a real-time
-            browser extension for live interview support.
-          </p>
-          <p className="leading-relaxed mt-2" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Preciprocal</strong> if you want AI mock interviews <em>plus</em> ATS
-            resume scoring, cover letter generation, job tracking, and a study planner, all in one
-            platform built for students and new grads, at $9.99/mo.
-          </p>
+        <div className={`${PAD} pb-4 pt-14`}>
+          <Reveal className={INNER}>
+            <Verdict
+              competitor={
+                <>
+                  Choose <strong className="font-semibold text-white">Final Round AI</strong> if you only need interview practice with a real-time
+                  browser extension for live interview support.
+                </>
+              }
+              preciprocal={
+                <>
+                  Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want AI mock interviews <em>plus</em> ATS
+                  resume scoring, cover letter generation, job tracking, and a study planner, all in one
+                  platform built for students and new grads, at $9.99/mo.
+                </>
+              }
+            />
+          </Reveal>
         </div>
 
         {/* ── Comparison table ────────────────────────────────────────────── */}
-        <section aria-label="Feature comparison table" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Preciprocal vs Final Round AI: feature comparison
-          </h2>
-          <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "#1e293b" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ background: "#0a0f1e", borderBottom: "1px solid #1e293b" }}>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Feature</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#6366f1" }}>Preciprocal</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Final Round AI</th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row, i) => (
-                  <tr
-                    key={row.feature}
-                    style={{
-                      background: i % 2 === 0 ? "#050810" : "#0a0f1e",
-                      borderBottom: "1px solid #1e293b",
-                    }}
-                  >
-                    <td className="px-4 py-3 font-medium" style={{ color: "#e2e8f0" }}>{row.feature}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.preciprocal}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.finalRound}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section aria-label="Feature comparison table" className={`${PAD} py-16`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Feature by feature" title="Preciprocal vs Final Round AI: feature comparison" className="mb-8" />
+            </Reveal>
+            <CompareTable
+              competitor="Final Round AI"
+              caption="Preciprocal vs Final Round AI: feature comparison"
+              rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.finalRound }))}
+            />
+            <p className="mt-4 text-xs text-slate-400">
+              Information based on publicly available feature lists as of September 2026. Features may change. Always verify on each tool&apos;s pricing page.
+            </p>
           </div>
-          <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Information based on publicly available feature lists as of September 2026. Features may change. Always verify on each tool's pricing page.
-          </p>
         </section>
 
         {/* ── Why students choose Preciprocal ─────────────────────────────── */}
-        <section aria-label="Why students choose Preciprocal" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Why students and new grads choose Preciprocal
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                title: "One platform for the entire job search",
-                body: "Resume, applications, interviews, offers. Most tools pick one stage. Preciprocal covers all four, so you're not juggling 4 subscriptions.",
-              },
-              {
-                title: "Built for entry-level, not just senior engineers",
-                body: "The AI understands you might not have 5 years of STAR stories. It calibrates question difficulty and story-building expectations for new grads and early-career candidates.",
-              },
-              {
-                title: "Honest pricing for students",
-                body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land a job while subscribed and we refund that month.",
-              },
-              {
-                title: "ATS resume scoring included",
-                body: "Your resume has to get past ATS before you can interview. Most interview-only tools ignore this entirely. Preciprocal's ATS checker scores your resume against the job description and gives you a fix list.",
-              },
-            ].map(({ title, body }) => (
-              <div
-                key={title}
-                className="flex gap-4 p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <div
-                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff" }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: "#e2e8f0" }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{body}</p>
-                </div>
-              </div>
-            ))}
+        <section aria-label="Why students choose Preciprocal" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Why switch" title="Why students and new grads choose Preciprocal" />
+            </Reveal>
+            <ReasonGrid
+              items={[
+                {
+                  title: "One platform for the entire job search",
+                  body: "Resume, applications, interviews, offers. Most tools pick one stage. Preciprocal covers all four, so you're not juggling 4 subscriptions.",
+                },
+                {
+                  title: "Built for entry-level, not just senior engineers",
+                  body: "The AI understands you might not have 5 years of STAR stories. It calibrates question difficulty and story-building expectations for new grads and early-career candidates.",
+                },
+                {
+                  title: "Honest pricing for students",
+                  body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land a job while subscribed and we refund that month.",
+                },
+                {
+                  title: "ATS resume scoring included",
+                  body: "Your resume has to get past ATS before you can interview. Most interview-only tools ignore this entirely. Preciprocal's ATS checker scores your resume against the job description and gives you a fix list.",
+                },
+              ]}
+            />
           </div>
         </section>
 
         {/* ── FAQ ─────────────────────────────────────────────────────────── */}
-        <section aria-label="Frequently asked questions" className="mb-16">
-          <h2 className="text-2xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            Frequently asked questions
-          </h2>
-          <div className="space-y-5">
-            {FAQS.map(({ q, a }) => (
-              <div
-                key={q}
-                className="p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>{q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{a}</p>
-              </div>
-            ))}
+        <section aria-label="Frequently asked questions" className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
+            <Reveal>
+              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
+            </Reveal>
+            <Reveal>
+              <FaqList items={FAQS} />
+            </Reveal>
           </div>
         </section>
 
         {/* ── Internal links ──────────────────────────────────────────────── */}
-        <section aria-label="Related resources" className="mb-16">
-          <h2 className="text-xl font-bold mb-4" style={{ color: "#ffffff" }}>Related resources</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
-              { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
-              { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
-              { label: "Google Interview Prep Guide", href: "/interview-prep/google" },
-              { label: "STAR Method Behavioral Interviews", href: "/blog/star-method-behavioral-interviews" },
-              { label: "System Design Interview Tips", href: "/blog/system-design-interview-tips" },
-            ].map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-indigo-500/50 hover:text-white"
-                style={{ borderColor: "#1e293b", color: "#94a3b8" }}
-              >
-                <span style={{ color: "#6366f1" }}><Chevron /></span>
-                {label}
-              </Link>
-            ))}
+        <section aria-label="Related resources" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <RelatedLinks
+              links={[
+                { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
+                { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
+                { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
+                { label: "Google Interview Prep Guide", href: "/interview-prep/google" },
+                { label: "STAR Method Behavioral Interviews", href: "/blog/star-method-behavioral-interviews" },
+                { label: "System Design Interview Tips", href: "/blog/system-design-interview-tips" },
+              ]}
+            />
           </div>
         </section>
 
         {/* ── CTA ─────────────────────────────────────────────────────────── */}
-        <section
-          aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            Try Preciprocal free. No card required.
-          </h2>
-          <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            1 mock interview, 3 resume analyses, and 5 cover letters per month on the free plan.
-            Students with a .edu email get 1 month of Pro free.
-          </p>
-          <Link
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
-          >
-            Start free <Chevron />
-          </Link>
+        <section aria-label="Try Preciprocal free" className={`${PAD} pb-24`}>
+          <Reveal>
+            <CtaPanel
+              title="Try Preciprocal free. No card required."
+              body={
+                <p>
+                  1 mock interview, 3 resume analyses, and 5 cover letters per month on the free plan.
+                  Students with a .edu email get 1 month of Pro free.
+                </p>
+              }
+              action={
+                <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                  Start free <Chevron />
+                </Link>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

@@ -1,33 +1,21 @@
-"use client";
-
 /**
  * app/roadmap/page.tsx
  * Fully self-contained. No separate component needed.
+ *
+ * Layout (accent amber): PageHero with the live counts, then the roadmap as
+ * a vertical timeline (components/page/RoadmapTimeline.tsx) whose accent
+ * line draws as you scroll, then the feature idea CTA.
  */
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Circle, Clock, Rocket, ChevronRight } from "lucide-react";
-import {
-  RevealOnScroll,
-  FloatingDots,
-  SpotlightCard,
-  GlowDivider,
-} from "@/components/LandingAnimations";
-import { APP_URL } from "@/lib/constants";
 import Link from "next/link";
+import { Rocket } from "lucide-react";
+import { APP_URL } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-type Status = "shipped" | "in-progress" | "planned";
-
-interface RoadmapItem {
-  title: string;
-  description: string;
-  status: Status;
-  date?: string;
-  tag?: string;
-}
+import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, PageHero, CtaPanel } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import RoadmapTimeline, { type RoadmapItem } from "@/components/page/RoadmapTimeline";
 
 const ITEMS: RoadmapItem[] = [
   {
@@ -191,203 +179,83 @@ const ITEMS: RoadmapItem[] = [
   },
 ];
 
-const STATUS_CONFIG: Record<
-  Status,
-  { label: string; icon: typeof CheckCircle2; color: string; bg: string; border: string }
-> = {
-  shipped: {
-    label: "Shipped",
-    icon: CheckCircle2,
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/20",
-  },
-  "in-progress": {
-    label: "In progress",
-    icon: Clock,
-    color: "text-yellow-400",
-    bg: "bg-yellow-500/10",
-    border: "border-yellow-500/20",
-  },
-  planned: {
-    label: "Planned",
-    icon: Circle,
-    color: "text-slate-400",
-    bg: "bg-white/[0.04]",
-    border: "border-white/[0.08]",
-  },
-};
-
-const ALL_STATUSES: Status[] = ["shipped", "in-progress", "planned"];
-
-function StatusBadge({ status }: { status: Status }) {
-  const cfg = STATUS_CONFIG[status];
-  const Icon = cfg.icon;
-  return (
-    <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold ${cfg.bg} ${cfg.color} border ${cfg.border}`}
-    >
-      <Icon className="w-3 h-3" />
-      {cfg.label}
-    </span>
-  );
-}
-
 export default function RoadmapPage() {
-  const [activeFilter, setActiveFilter] = useState<Status | "all">("all");
-
-  const filtered =
-    activeFilter === "all" ? ITEMS : ITEMS.filter((i) => i.status === activeFilter);
-
   const shippedCount    = ITEMS.filter((i) => i.status === "shipped").length;
   const inProgressCount = ITEMS.filter((i) => i.status === "in-progress").length;
   const plannedCount    = ITEMS.filter((i) => i.status === "planned").length;
 
+  const counts = [
+    { value: shippedCount, label: "Shipped", dot: "bg-emerald-400" },
+    { value: inProgressCount, label: "In progress", dot: "bg-accent" },
+    { value: plannedCount, label: "Planned", dot: "border-2 border-slate-500" },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="amber" className="min-h-screen bg-[#050810]">
       <Navbar />
 
       <main className="relative overflow-hidden">
-        <FloatingDots count={20} />
-
         {/* Hero */}
-        <section className="relative pt-32 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full text-center">
-            <RevealOnScroll>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-slate-400 font-medium mb-6">
-                <Rocket className="w-3 h-3 text-indigo-400" />
-                Updated as we ship
+        <PageHero
+          badge={
+            <>
+              <Rocket aria-hidden="true" className="h-3 w-3" />
+              Updated as we ship
+            </>
+          }
+          title={"Roadmap & "}
+          accent="Changelog"
+          subhead={
+            <p>
+              Everything we&apos;ve shipped, what&apos;s being built right now, and what&apos;s
+              coming next. No vaporware. If it&apos;s here, it&apos;s real.
+            </p>
+          }
+        >
+          {/* Live counts */}
+          <dl className="grid max-w-xl grid-cols-3 divide-x divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025]">
+            {counts.map((c) => (
+              <div key={c.label} className="flex flex-col-reverse gap-1 px-4 py-4 sm:px-6">
+                <dt className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
+                  <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${c.dot}`} />
+                  {c.label}
+                </dt>
+                <dd className="text-2xl font-extrabold text-white sm:text-3xl">{c.value}</dd>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                Roadmap &amp;{" "}
-                <span className="text-gradient">Changelog</span>
-              </h1>
-              <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                Everything we&apos;ve shipped, what&apos;s being built right now, and what&apos;s
-                coming next. No vaporware. If it&apos;s here, it&apos;s real.
-              </p>
-            </RevealOnScroll>
+            ))}
+          </dl>
+        </PageHero>
 
-            {/* Live counts */}
-            <RevealOnScroll delay={0.1} className="mt-10">
-              <div className="inline-flex items-center gap-6 flex-wrap justify-center">
-                <div className="text-center">
-                  <div className="text-2xl font-extrabold text-white">{shippedCount}</div>
-                  <div className="text-xs text-emerald-400 font-medium">Shipped</div>
-                </div>
-                <div className="w-px h-8 bg-white/[0.06]" />
-                <div className="text-center">
-                  <div className="text-2xl font-extrabold text-white">{inProgressCount}</div>
-                  <div className="text-xs text-yellow-400 font-medium">In progress</div>
-                </div>
-                <div className="w-px h-8 bg-white/[0.06]" />
-                <div className="text-center">
-                  <div className="text-2xl font-extrabold text-white">{plannedCount}</div>
-                  <div className="text-xs text-slate-400 font-medium">Planned</div>
-                </div>
-              </div>
-            </RevealOnScroll>
-          </div>
-        </section>
-
-        {/* Filter tabs */}
-        <section className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 pb-8">
-          <div className="w-full">
-            <GlowDivider />
-            <div className="mt-8 flex flex-wrap gap-2">
-              {(["all", ...ALL_STATUSES] as const).map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setActiveFilter(f)}
-                  className={`px-4 py-2 rounded-full text-[12px] font-semibold border transition-all ${
-                    activeFilter === f
-                      ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-300"
-                      : "bg-white/[0.03] border-white/[0.06] text-slate-400 hover:text-white hover:border-white/[0.12]"
-                  }`}
-                >
-                  {f === "all" ? "All" : STATUS_CONFIG[f].label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Items list */}
-        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full">
-            <AnimatePresence mode="popLayout">
-              <motion.div layout className="space-y-3">
-                {filtered.map((item) => (
-                  <motion.div
-                    key={item.title}
-                    layout
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    <SpotlightCard className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 p-5">
-                      <div className="flex items-start justify-between gap-4 flex-wrap">
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 flex-wrap mb-1">
-                            <h3 className="text-[15px] font-bold text-white">{item.title}</h3>
-                            {item.tag && (
-                              <span className="text-[10px] font-semibold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-full">
-                                {item.tag}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-slate-400 leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-                        <div className="flex flex-col items-end gap-2 flex-shrink-0">
-                          <StatusBadge status={item.status} />
-                          {item.date && (
-                            <span className="text-[11px] text-slate-600">{item.date}</span>
-                          )}
-                        </div>
-                      </div>
-                    </SpotlightCard>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+        {/* Timeline */}
+        <section className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <RoadmapTimeline items={ITEMS} />
           </div>
         </section>
 
         {/* Suggest a feature */}
-        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="max-w-2xl mx-auto">
-            <RevealOnScroll>
-              <SpotlightCard
-                className="rounded-2xl border border-indigo-500/20 bg-indigo-500/[0.04] p-8 text-center"
-                spotlightColor="rgba(99,102,241,0.08)"
-              >
-                <h2 className="text-xl font-bold text-white mb-2">
-                  Have a feature idea?
-                </h2>
-                <p className="text-slate-400 text-sm mb-6">
+        <section className={`pb-24 pt-4 ${PAD}`}>
+          <Reveal>
+            <CtaPanel
+              title="Have a feature idea?"
+              body={
+                <p>
                   Every item on this roadmap started as a user request. If you want
                   something built, tell us. We actually listen.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <a
-                    href="mailto:support@preciprocal.com?subject=Feature Idea: "
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white/[0.06] border border-white/[0.08] text-white font-semibold rounded-lg text-sm hover:bg-white/[0.1] transition-all"
-                  >
+              }
+              action={
+                <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+                  <a href="mailto:support@preciprocal.com?subject=Feature Idea: " className={BTN_SECONDARY}>
                     Suggest a feature
                   </a>
-                  <Link
-                    href={`${APP_URL}/sign-up`}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
-                  >
-                    Try what&apos;s live now <ChevronRight className="w-4 h-4" />
+                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                    Try what&apos;s live now <Chevron />
                   </Link>
                 </div>
-              </SpotlightCard>
-            </RevealOnScroll>
-          </div>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

@@ -2,12 +2,17 @@
  * app/not-found.tsx
  * Branded 404 page, helpful links, no dead ends.
  * Next.js automatically uses this for any unmatched route.
+ *
+ * Layout: one calm centred column over a masked grid and an accent glow, a
+ * large 404 in the accent gradient, then the helpful links as a ruled grid.
  */
 
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
+import { ACCENT_TEXT, BTN_PRIMARY, GRID_BG, HoverRule, PAD } from "@/components/page/Layout";
 
 export default function NotFound() {
   const links = [
@@ -21,62 +26,61 @@ export default function NotFound() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#050810] flex flex-col">
+    <div data-accent="indigo" className="flex min-h-screen flex-col bg-[#050810]">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center px-6 py-24">
-        <div className="max-w-xl mx-auto text-center">
-          {/* Glowing 404 */}
-          <div className="relative inline-block mb-8">
-            <span
-              className="text-[120px] sm:text-[160px] font-extrabold leading-none select-none"
-              style={{
-                background: "linear-gradient(135deg, rgba(99,102,241,0.15), rgba(192,132,252,0.15))",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              404
-            </span>
-            {/* Glow behind */}
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: "radial-gradient(ellipse at center, rgba(99,102,241,0.12) 0%, transparent 70%)",
-                filter: "blur(20px)",
-              }}
-            />
-          </div>
+      <main className={`relative flex flex-1 items-center justify-center overflow-hidden py-28 sm:py-32 ${PAD}`}>
+        {/* Grid and glow */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_55%_50%_at_50%_42%,black,transparent)]"
+          style={GRID_BG}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[38%] h-[360px] w-[560px] max-w-full -translate-x-1/2 -translate-y-1/2 animate-drift rounded-full bg-accent-deep/[0.16] blur-[110px]"
+        />
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-            Page not found
-          </h1>
-          <p className="text-slate-400 text-base mb-10 max-w-sm mx-auto">
-            This page doesn't exist or may have moved. Here are some places
+        <div className="relative mx-auto w-full max-w-2xl animate-fade-up text-center opacity-0">
+          <p
+            aria-hidden="true"
+            className={`select-none font-mono text-[112px] font-bold leading-none tracking-tight sm:text-[168px] ${ACCENT_TEXT}`}
+          >
+            404
+          </p>
+          <div aria-hidden="true" className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+
+          <h1 className="mt-8 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Page not found</h1>
+          <p className="mx-auto mt-3 max-w-sm text-base leading-relaxed text-slate-400">
+            This page doesn&apos;t exist or may have moved. Here are some places
             that do:
           </p>
 
           {/* Quick links */}
-          <div className="flex flex-wrap gap-2 justify-center mb-10">
-            {links.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 bg-white/[0.04] border border-white/[0.06] hover:bg-white/[0.08] hover:text-white transition-all"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
+          <nav aria-label="Helpful links" className="mt-10">
+            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] text-left sm:grid-cols-3">
+              {links.map((l, i) => (
+                <li key={l.label} className={`bg-[#070b16] ${i === links.length - 1 ? "col-span-2 sm:col-span-3" : ""}`}>
+                  <Link
+                    href={l.href}
+                    className="group relative flex min-h-[48px] items-center justify-between gap-3 px-4 py-3 text-sm font-medium text-slate-300 transition-colors duration-300 hover:bg-[#0a1020] hover:text-white focus-visible:bg-[#0a1020] focus-visible:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
+                  >
+                    {l.label}
+                    <Chevron className="text-slate-500 group-hover:text-accent-soft" />
+                    <HoverRule className="inset-x-4" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           {/* Primary CTA */}
-          <Link
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
-          >
-            Get started free, it's the right page
-          </Link>
+          <div className="mt-10">
+            <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+              Get started free, it&apos;s the right page
+              <Chevron />
+            </Link>
+          </div>
         </div>
       </main>
 

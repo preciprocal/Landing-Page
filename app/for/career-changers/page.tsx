@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import CareerChangersVisual from "@/components/page/visuals/CareerChangersVisual";
 
 export const metadata: Metadata = {
   title: "Career Change Job Search: Resume to Interview",
@@ -84,6 +85,8 @@ export default function CareerChangersPage() {
     <ToolPage
       breadcrumbName="For Career Changers"
       canonicalPath="/for/career-changers"
+      accent="amber"
+      visual={<CareerChangersVisual />}
       badge="For career changers"
       h1="Changing careers?"
       h1Accent="Make your experience translate"

@@ -1,32 +1,80 @@
-"use client";
-
 /**
  * app/terms/page.tsx
- * Fully self-contained Terms of Service page. No separate component needed.
+ *
+ * Terms of Service. Metadata lives in ./layout.tsx.
+ *
+ * Layout: a compact hero, then the terms beside a sticky table of contents
+ * (a collapsible list above the text on small screens). The text is set in a
+ * ~70ch measure for long reading. Presentation only: the wording in SECTIONS
+ * is the agreement and must not be edited here for layout reasons.
  */
 
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { RevealOnScroll, FloatingDots } from "@/components/LandingAnimations";
+import { PAD, INNER, PageHero, pad2 } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import TocNav from "@/components/page/TocNav";
 
+/** Parses **bold** markers into <strong>. */
+function inline(text: string) {
+  return text.split(/(\*\*[^*]+\*\*)/g).map((part, j) =>
+    part.startsWith("**") && part.endsWith("**") ? (
+      <strong key={j} className="font-semibold text-slate-100">
+        {part.slice(2, -2)}
+      </strong>
+    ) : (
+      part
+    ),
+  );
+}
 
-// Renders content strings, parses **bold** markers into <strong> tags
+/** "Label: text" at the start of a paragraph; the label is set in a stronger weight. */
+const LABEL = /^([A-Z][^:.\n]{1,70}): ([\s\S]+)$/;
+
+/**
+ * Renders a section's text: blank lines separate paragraphs, "- " lines
+ * become a list, other multi-line blocks keep their line breaks, and a short
+ * leading "Label:" is emphasised. The words themselves are untouched.
+ */
 function renderContent(text: string) {
-  return text.split("\n").map((line, i) => {
-    const parts = line.split(/(\*\*[^*]+\*\*)/g);
-    return (
-      <span key={i}>
-        {parts.map((part, j) =>
-          part.startsWith("**") && part.endsWith("**")
-            ? <strong key={j} className="text-slate-200 font-semibold">{part.slice(2, -2)}</strong>
-            : part
-        )}
-        {i < text.split("\n").length - 1 && "\n"}
-      </span>
-    );
+  return text.split("\n\n").map((block, b) => {
+    const lines = block.split("\n");
+    if (lines.every((l) => l.startsWith("- "))) {
+      return (
+        <ul key={b} className="space-y-2 pl-1">
+          {lines.map((l, i) => (
+            <li key={i} className="flex gap-3">
+              <span aria-hidden="true" className="mt-[0.7em] h-1 w-1 shrink-0 rounded-full bg-accent" />
+              <span>{inline(l.slice(2))}</span>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    if (lines.length > 1) {
+      return (
+        <p key={b} className="space-y-1.5">
+          {lines.map((l, i) => (
+            <span key={i} className="block">
+              {inline(l)}
+            </span>
+          ))}
+        </p>
+      );
+    }
+    const m = block.match(LABEL);
+    if (m && m[1].split(" ").length <= 8 && (m[1].match(/\*\*/g)?.length ?? 0) % 2 === 0) {
+      return (
+        <p key={b}>
+          <span className="font-semibold text-slate-100">{inline(m[1])}:</span> {inline(m[2])}
+        </p>
+      );
+    }
+    return <p key={b}>{inline(block)}</p>;
   });
 }
+
+const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const SECTIONS = [
   {
@@ -249,78 +297,67 @@ We will respond to all inquiries within 5 business days.`,
   },
 ];
 
+const TOC = SECTIONS.map((s) => ({ id: slug(s.title), title: s.title }));
+
 export default function TermsPage() {
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <Navbar />
 
-      <main className="relative overflow-hidden">
-        <FloatingDots count={15} />
-
-        {/* Header */}
-        <section className="relative pt-32 pb-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full">
-            <RevealOnScroll>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-                Terms of Service
-              </h1>
-              <p className="text-slate-500 text-base mb-2">
-                Last updated: October 11, 2026. Effective date: October 11, 2026.
-              </p>
-              <p className="text-slate-600 text-sm">
+      <main>
+        <PageHero
+          title={"Terms of "}
+          accent="Service"
+          subhead={
+            <>
+              <p>
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
               </p>
-            </RevealOnScroll>
-          </div>
-        </section>
-
-        {/* Sections */}
-        <section className="relative pb-24 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full">
-            <div className="space-y-10">
-              {SECTIONS.map((section, i) => (
-                <motion.div
-                  key={section.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ delay: i * 0.05, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-3">
-                    <span className="text-[11px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {section.title}
-                  </h2>
-                  <div className="text-slate-400 text-sm leading-[1.85] whitespace-pre-line pl-9">
-                    {renderContent(section.content)}
-                  </div>
-                  {i < SECTIONS.length - 1 && (
-                    <div className="mt-10 h-px bg-white/[0.04]" />
-                  )}
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Contact footer */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-16 p-6 rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 text-center"
-            >
-              <p className="text-slate-400 text-sm">
-                Questions about these Terms? Email us at{" "}
-                <a
-                  href="mailto:support@preciprocal.com"
-                  className="text-indigo-400 hover:text-indigo-300 transition-colors"
-                >
-                  support@preciprocal.com
-                </a>{" "}
-                and we will respond within 5 business days.
+              <p className="mt-4 font-mono text-[12px] text-slate-400">
+                Last updated: October 11, 2026. Effective date: October 11, 2026.
               </p>
-            </motion.div>
+            </>
+          }
+        />
+
+        <section className={`border-t border-white/[0.05] pb-24 pt-10 lg:pt-16 ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[260px_minmax(0,1fr)] xl:gap-20`}>
+            <aside className="lg:sticky lg:top-28 lg:self-start">
+              <TocNav items={TOC} />
+            </aside>
+
+            <div className="min-w-0 max-w-[70ch]">
+              {SECTIONS.map((section, i) => (
+                <section
+                  key={section.title}
+                  id={TOC[i].id}
+                  aria-labelledby={`${TOC[i].id}-h`}
+                  className="scroll-mt-28 border-b border-white/[0.05] py-10 first:pt-0 last:border-b-0"
+                >
+                  <Reveal>
+                    <h2 id={`${TOC[i].id}-h`} className="flex items-baseline gap-3 text-xl font-semibold tracking-tight text-white sm:text-[1.375rem]">
+                      <span className="font-mono text-[12px] font-medium text-accent-soft">{pad2(i + 1)}</span>
+                      {section.title}
+                    </h2>
+                    <div className="mt-5 space-y-5 text-[15px] leading-[1.8] text-slate-300">{renderContent(section.content)}</div>
+                  </Reveal>
+                </section>
+              ))}
+
+              {/* Contact footer */}
+              <Reveal className="mt-6 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+                <p className="text-[15px] leading-relaxed text-slate-300">
+                  Questions about these Terms? Email us at{" "}
+                  <a
+                    href="mailto:support@preciprocal.com"
+                    className="font-medium text-accent-soft underline decoration-accent/40 underline-offset-4 transition-colors hover:text-white"
+                  >
+                    support@preciprocal.com
+                  </a>{" "}
+                  and we will respond within 5 business days.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
       </main>

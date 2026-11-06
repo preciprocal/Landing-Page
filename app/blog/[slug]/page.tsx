@@ -7,12 +7,27 @@ import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, HeroBackdrop } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import ReadingProgress from "@/components/page/ReadingProgress";
+
+/**
+ * app/blog/[slug]/page.tsx
+ *
+ * Blog post template. The article stays at reading width (max-w-3xl),
+ * centred in a full-width layout, with a sticky aside (CTA, more posts) on
+ * wide screens; on phones the aside follows the article.
+ */
+
+/** Shared by the header and the body so the title lines up with the text. */
+const COLUMNS =
+  "grid gap-12 lg:grid-cols-[minmax(0,48rem)_280px] lg:justify-center lg:gap-14 xl:gap-16 2xl:grid-cols-[minmax(0,1fr)_48rem_minmax(260px,1fr)]";
 
 // ─── Sidebar CTA ──────────────────────────────────────────────────────────────
 
 function SidebarCTA() {
   return (
-    <div className="rounded-2xl bg-gradient-to-br from-indigo-600/20 to-purple-600/20 border border-indigo-500/20 p-6">
+    <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
       <h3 className="text-base font-semibold text-white mb-2 leading-snug">
         Practice what you read
       </h3>
@@ -22,7 +37,7 @@ function SidebarCTA() {
       </p>
       <a
         href="https://app.preciprocal.com/sign-up"
-        className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(99,102,241,0.35)]"
+        className="group flex items-center justify-center gap-1.5 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-bold transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)]"
       >
         Start free <Chevron />
       </a>
@@ -77,16 +92,20 @@ function PracticeLinks({ category }: { category: string }) {
   const links = PRACTICE_LINKS[category];
   if (!links) return null;
   return (
-    <div className="mt-10 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
-      <p className="text-sm font-semibold text-white mb-3">Put this into practice</p>
-      <div className="flex flex-wrap gap-2">
-        {links.map((l) => (
+    <div className="mt-12 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+      <p className="border-b border-white/[0.06] px-6 py-4 text-sm font-semibold text-white">Put this into practice</p>
+      <div className="grid gap-px bg-white/[0.06] sm:grid-cols-3">
+        {links.map((l, i) => (
           <Link
             key={l.href}
             href={l.href}
-            className="px-3.5 py-2 rounded-xl border border-white/[0.08] text-sm text-slate-300 hover:text-white hover:border-indigo-400/40 transition-all"
+            className="group flex items-end justify-between gap-3 bg-[#070b16] px-6 py-5 text-sm text-slate-300 transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
           >
-            {l.label} <Chevron />
+            <span>
+              <span className="mb-2 block font-mono text-[11px] text-accent-soft/60">{String(i + 1).padStart(2, "0")}</span>
+              {l.label}
+            </span>
+            <Chevron className="mb-0.5 text-slate-600 group-hover:text-accent-soft" />
           </Link>
         ))}
       </div>
@@ -132,13 +151,13 @@ function RelatedPosts({ currentSlug }: { currentSlug: string }) {
   }
   return (
     <div>
-      <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-slate-500 mb-4">
+      <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-500 mb-3">
         More Posts
       </p>
-      <ul className="space-y-5">
+      <ul className="divide-y divide-white/[0.05] border-y border-white/[0.05]">
         {related.map((post) => (
-          <li key={post.slug}>
-            <p className="text-[10px] font-semibold tracking-[0.1em] uppercase text-indigo-400 mb-1">
+          <li key={post.slug} className="py-4">
+            <p className="text-[10px] font-semibold tracking-[0.1em] uppercase text-accent-soft/90 mb-1.5">
               {post.category.toUpperCase()}
             </p>
             <Link
@@ -147,7 +166,7 @@ function RelatedPosts({ currentSlug }: { currentSlug: string }) {
             >
               {post.title}
             </Link>
-            <p className="text-xs text-slate-600 mt-1">{post.readTime}</p>
+            <p className="font-mono text-[11px] text-slate-600 mt-1.5">{post.readTime}</p>
           </li>
         ))}
       </ul>
@@ -178,7 +197,7 @@ function renderMarkdown(content: string) {
         return <em key={idx}>{part.slice(1, -1)}</em>;
       }
       if (part.startsWith("`") && part.endsWith("`")) {
-        return <code key={idx} className="bg-white/[0.06] text-indigo-300 px-1.5 py-0.5 rounded text-[0.85em] font-mono">{part.slice(1, -1)}</code>;
+        return <code key={idx}>{part.slice(1, -1)}</code>;
       }
       return part;
     });
@@ -309,58 +328,95 @@ export default function BlogArticlePage() {
   if (!post) return notFound();
 
   const updatedDate = post.updatedAt
-    ? new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", year: "numeric" })
-    : new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    ? new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })
+    : new Date(post.publishedAt).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
 
   return (
     <>
       <style>{`
         .prose-article {
           color: #cbd5e1;
-          font-size: 1rem;
+          font-size: 1.0625rem;
           line-height: 1.8;
           font-weight: 400;
+          text-wrap: pretty;
         }
-        .prose-article p { margin: 0 0 1.25rem; }
+        .prose-article > :is(p, ul, ol, blockquote, h2, h3) { max-width: 70ch; }
+        .prose-article p { margin: 0 0 1.4rem; }
         .prose-article h2 {
-          font-size: 1.5rem;
+          position: relative;
+          font-size: 1.625rem;
           font-weight: 700;
-          color: #f1f5f9;
-          margin: 2.5rem 0 0.875rem;
+          color: #f8fafc;
+          margin: 3.25rem 0 1rem;
+          padding-top: 2.25rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
           letter-spacing: -0.02em;
           line-height: 1.3;
+          text-wrap: balance;
+          scroll-margin-top: 7rem;
         }
+        .prose-article h2::before {
+          content: "";
+          position: absolute;
+          top: -1px;
+          left: 0;
+          width: 2.5rem;
+          height: 1px;
+          background: linear-gradient(90deg, rgb(var(--accent)), rgb(var(--accent-2) / 0));
+        }
+        .prose-article > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+        .prose-article > h2:first-child::before { display: none; }
         .prose-article h3 {
-          font-size: 1.125rem;
+          font-size: 1.1875rem;
           font-weight: 600;
           color: #e2e8f0;
-          margin: 1.875rem 0 0.625rem;
+          margin: 2.25rem 0 0.625rem;
           letter-spacing: -0.01em;
           line-height: 1.4;
+          text-wrap: balance;
+          scroll-margin-top: 7rem;
         }
+        .prose-article h2 + h3 { margin-top: 1.25rem; }
         .prose-article ul,
         .prose-article ol {
           padding-left: 1.5rem;
-          margin: 0 0 1.25rem;
+          margin: 0 0 1.4rem;
         }
-        .prose-article li { margin-bottom: 0.5rem; }
+        .prose-article ul { list-style: disc; }
+        .prose-article ol { list-style: decimal; }
+        .prose-article li { margin-bottom: 0.55rem; padding-left: 0.35rem; }
+        .prose-article li::marker { color: rgb(var(--accent)); }
+        .prose-article ol > li::marker { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.875em; }
         .prose-article li strong { color: #e2e8f0; }
-        .prose-article strong { color: #e2e8f0; }
+        .prose-article strong { color: #f1f5f9; font-weight: 600; }
         .prose-article em { font-style: italic; }
+        .prose-article code {
+          font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+          font-size: 0.85em;
+          color: rgb(var(--accent-soft));
+          background: rgb(var(--accent-deep) / 0.1);
+          border: 1px solid rgb(var(--accent) / 0.18);
+          border-radius: 0.375rem;
+          padding: 0.1em 0.4em;
+          overflow-wrap: anywhere;
+        }
         .prose-article blockquote {
-          border-left: 3px solid #6366f1;
-          background: rgba(99,102,241,0.07);
-          padding: 1rem 1.25rem;
-          margin: 1.5rem 0;
-          border-radius: 0 0.75rem 0.75rem 0;
+          position: relative;
+          border-left: 2px solid rgb(var(--accent));
+          background: linear-gradient(90deg, rgb(var(--accent-deep) / 0.1), rgb(var(--accent-deep) / 0.02));
+          padding: 1.1rem 1.4rem;
+          margin: 2rem 0;
+          border-radius: 0 0.875rem 0.875rem 0;
           font-style: italic;
-          color: #c7d2fe;
-          font-size: 0.95rem;
-          line-height: 1.7;
+          color: #e2e8f0;
+          font-size: 1rem;
+          line-height: 1.75;
         }
-        @media (max-width: 1024px) {
-          .article-sidebar { display: none; }
-        }
+        .prose-article blockquote strong { color: rgb(var(--accent-soft)); }
+        .prose-article hr { max-width: 70ch; }
+        .prose-article table { font-variant-numeric: tabular-nums; }
+        .prose-article thead th { color: rgb(var(--accent-soft)); border-bottom-color: rgb(var(--accent) / 0.3); }
       `}</style>
 
       <BlogPostJsonLd
@@ -372,41 +428,40 @@ export default function BlogArticlePage() {
       />
       <Navbar />
 
-      <div style={{ background: "#050810", minHeight: "100vh" }} className="pt-[72px]">
-        <div className="w-full pt-8 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-xs text-slate-500 mb-8">
-            <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
-            <span>/</span>
-            <Link href="/blog" className="hover:text-slate-300 transition-colors">Blog</Link>
-            <span>/</span>
-            <span className="text-slate-400 truncate max-w-[200px]">{post.title}</span>
-          </nav>
-
-          <div className="flex gap-14 items-start">
-
-            {/* Main column */}
-            <article className="flex-1 min-w-0">
+      <div data-accent="violet" className="min-h-screen bg-[#050810]">
+        <ReadingProgress />
+        {/* Header: breadcrumb, meta, H1 and author, aligned to the article column */}
+        <header className={`relative overflow-hidden pb-12 pt-24 sm:pt-28 ${PAD}`}>
+          <HeroBackdrop />
+          <div className={`relative ${INNER} ${COLUMNS}`}>
+            <div className="max-w-3xl animate-fade-up opacity-0 2xl:col-start-2">
+              {/* Breadcrumb */}
+              <nav aria-label="Breadcrumb" className="mb-8 flex min-w-0 items-center gap-1.5 text-xs text-slate-500">
+                <Link href="/" className="shrink-0 hover:text-slate-300 transition-colors">Home</Link>
+                <span aria-hidden="true">/</span>
+                <Link href="/blog" className="shrink-0 hover:text-slate-300 transition-colors">Blog</Link>
+                <span aria-hidden="true">/</span>
+                <span className="min-w-0 truncate text-slate-400 sm:max-w-[360px]">{post.title}</span>
+              </nav>
 
               {/* Meta row */}
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full">
+              <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                <span className="rounded-full border border-accent/25 bg-accent-deep/[0.08] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-accent-soft">
                   {post.category}
                 </span>
                 <span className="text-xs text-slate-500">{post.readTime}</span>
-                <span className="text-slate-700">·</span>
+                <span className="text-slate-700" aria-hidden="true">·</span>
                 <span className="text-xs text-slate-500">Updated {updatedDate}</span>
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight tracking-tight mb-5">
+              <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-[2.75rem]">
                 {post.title}
               </h1>
 
               {/* Author row */}
-              <div className="flex items-center gap-3 pb-8 border-b border-white/[0.06] mb-8">
-                <div className="w-8 h-8 rounded-full bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-xs font-bold text-indigo-300">
+              <div className="mt-8 flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-accent-deep/20 text-xs font-bold text-accent-soft">
                   P
                 </div>
                 <div>
@@ -414,61 +469,83 @@ export default function BlogArticlePage() {
                   <p className="text-xs text-slate-600">preciprocal.com</p>
                 </div>
               </div>
+            </div>
+          </div>
+        </header>
+
+        <div className={`border-t border-white/[0.05] pb-24 pt-12 sm:pt-14 ${PAD}`}>
+          <div className={`${INNER} ${COLUMNS}`}>
+
+            {/* Main column, kept at reading width */}
+            <article className="min-w-0 max-w-3xl 2xl:col-start-2">
 
               {/* Article body rendered from markdown */}
               <div className="prose-article">
                 {renderMarkdown(post.content)}
               </div>
 
-              <PracticeLinks category={post.category} />
+              <Reveal>
+                <PracticeLinks category={post.category} />
+              </Reveal>
 
               {/* Google preferred source: readers who liked the post see more of ours in Top Stories */}
               <PreferredSourceCallout className="mt-10" text="Want more guides like this in your Google results?" />
 
               {/* Footer CTA */}
-              <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-indigo-600/15 to-purple-600/15 border border-indigo-500/20 text-center">
-                <p className="text-lg font-semibold text-white mb-2">
-                  Ready to land the role?
-                </p>
-                <p className="text-sm text-slate-400 mb-5 max-w-sm mx-auto">
-                  Resume analysis, mock interviews, cover letters, and job tracking, all in one place. Free to start.
-                </p>
-                <a
-                  href="https://app.preciprocal.com/sign-up"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-sm transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(99,102,241,0.35)]"
-                >
-                  Start free <Chevron />
-                </a>
-                {post.category === "Visa & Immigration" && (
-                  <p className="text-[12px] text-slate-500 mt-4">
-                    On F-1 or OPT?{" "}
-                    <Link href="/for/international-students" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
-                      See how Preciprocal works for international students
-                    </Link>
-                    <br />
-                    <Link href="/opt" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
-                      OPT guides and calculators
-                    </Link>
-                    {" · "}Latest rule status:{" "}
-                    <Link href="/new-opt-rules" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
-                      OPT
-                    </Link>
-                    {" · "}
-                    <Link href="/new-h1b-rules" className="text-indigo-300 hover:text-indigo-200 underline underline-offset-2">
-                      H-1B
-                    </Link>
-                  </p>
-                )}
-              </div>
+              <Reveal>
+                <div className="relative mt-12 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] p-8 text-center sm:p-10">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_90%_at_50%_100%,black,transparent)]"
+                    style={GRID_BG}
+                  />
+                  <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 left-1/2 h-[220px] w-[420px] -translate-x-1/2 rounded-full bg-accent-deep/15 blur-[100px]" />
+                  <div className="relative">
+                    <p className="text-xl font-semibold text-white mb-2">
+                      Ready to land the role?
+                    </p>
+                    <p className="text-sm text-slate-400 mb-6 max-w-sm mx-auto">
+                      Resume analysis, mock interviews, cover letters, and job tracking, all in one place. Free to start.
+                    </p>
+                    <a
+                      href="https://app.preciprocal.com/sign-up"
+                      className={`${BTN_PRIMARY} w-full sm:w-auto`}
+                    >
+                      Start free <Chevron />
+                    </a>
+                    {post.category === "Visa & Immigration" && (
+                      <p className="text-[12px] text-slate-500 mt-5">
+                        On F-1 or OPT?{" "}
+                        <Link href="/for/international-students" className="text-accent-soft hover:text-white underline underline-offset-2">
+                          See how Preciprocal works for international students
+                        </Link>
+                        <br />
+                        <Link href="/opt" className="text-accent-soft hover:text-white underline underline-offset-2">
+                          OPT guides and calculators
+                        </Link>
+                        {" · "}Latest rule status:{" "}
+                        <Link href="/new-opt-rules" className="text-accent-soft hover:text-white underline underline-offset-2">
+                          OPT
+                        </Link>
+                        {" · "}
+                        <Link href="/new-h1b-rules" className="text-accent-soft hover:text-white underline underline-offset-2">
+                          H-1B
+                        </Link>
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </Reveal>
             </article>
 
-            {/* Sidebar */}
-            <aside
-              className="article-sidebar w-[280px] flex-shrink-0 flex flex-col gap-8"
-              style={{ position: "sticky", top: "104px" }}
-            >
-              <SidebarCTA />
-              <RelatedPosts currentSlug={post.slug} />
+            {/* Sidebar: sticky beside the article on wide screens, below it on phones */}
+            <aside className="flex w-full flex-col gap-10 lg:sticky lg:top-28 lg:self-start 2xl:col-start-3 2xl:max-w-[300px]">
+              <Reveal className="hidden lg:block">
+                <SidebarCTA />
+              </Reveal>
+              <Reveal delay={0.08}>
+                <RelatedPosts currentSlug={post.slug} />
+              </Reveal>
             </aside>
 
           </div>

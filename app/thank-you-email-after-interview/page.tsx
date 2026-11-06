@@ -13,6 +13,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import ThankYouEmailVisual from "@/components/page/visuals/ThankYouEmailVisual";
 import ThankYouEmailBuilder from "@/components/ThankYouEmailBuilder";
 
 export const metadata: Metadata = {
@@ -127,6 +128,8 @@ export default function ThankYouEmailPage() {
     <ToolPage
       breadcrumbName="Thank You Email Generator"
       canonicalPath="/thank-you-email-after-interview"
+      accent="indigo"
+      visual={<ThankYouEmailVisual />}
       badge="Free tool, no sign-up"
       h1="Thank you email after an interview"
       h1Accent="written in under a minute"

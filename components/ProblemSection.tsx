@@ -15,8 +15,8 @@ const AtsTooltip = () => (
     <p className="text-xs font-bold text-white mb-1">What is an ATS?</p>
     <p className="text-[11px] text-neutral-400 leading-relaxed">
       Applicant Tracking Systems (like Workday, Greenhouse & Lever) automatically
-      parse and score resumes before any human sees them. If your resume isn't
-      formatted for ATS, it's invisible.
+      parse and score resumes before any human sees them. If your resume isn&apos;t
+      formatted for ATS, it&apos;s invisible.
     </p>
     <div className="mt-3 flex flex-wrap gap-1">
       {["Workday", "Greenhouse", "Lever", "iCIMS", "Taleo"].map((name) => (

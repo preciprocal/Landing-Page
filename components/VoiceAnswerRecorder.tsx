@@ -16,11 +16,15 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { analyseDelivery, type DeliveryStats, type Status } from "@/lib/interviewTools/delivery";
 import { trackEvent } from "@/lib/analytics/client";
 import Chevron from "@/components/Chevron";
 
 const MAX_SECONDS = 150;
+const EASE = [0.22, 1, 0.36, 1] as const;
+const FOCUS =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810]";
 /** A gap this long between recognition events, while recording, counts as a long pause. */
 const LONG_PAUSE_MS = 3000;
 
@@ -193,17 +197,24 @@ export default function VoiceAnswerRecorder({
             type="button"
             data-track="question-predictor-record-stop"
             onClick={finish}
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-rose-500 text-white hover:bg-rose-400"
+            className={`relative inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-rose-500 text-white transition-colors hover:bg-rose-400 ${FOCUS}`}
           >
+            <motion.span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 rounded-xl border border-rose-400"
+              initial={{ opacity: 0.7, scale: 1 }}
+              animate={{ opacity: 0, scale: 1.12 }}
+              transition={{ duration: 1.4, ease: "easeOut", repeat: Infinity }}
+            />
             <span className="w-2.5 h-2.5 rounded-sm bg-white" />
-            Stop ({formatTime(elapsed)})
+            <span className="tabular-nums">Stop ({formatTime(elapsed)})</span>
           </button>
         ) : (
           <button
             type="button"
             data-track="question-predictor-record-start"
             onClick={start}
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90"
+            className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)] ${FOCUS}`}
           >
             <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
             {stats ? "Record again" : "Record my answer"}
@@ -217,16 +228,42 @@ export default function VoiceAnswerRecorder({
       </div>
 
       {recording && (
-        <div className="rounded-xl bg-white/[0.03] border border-white/[0.06] p-4" aria-live="polite">
-          <div className="flex items-center gap-2 text-[12px] text-rose-300 mb-2">
-            <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
-            Listening
+        <motion.div
+          className="rounded-xl bg-[#070b16] border border-white/[0.07] p-4"
+          aria-live="polite"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35, ease: EASE }}
+        >
+          <div className="flex items-center justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2 text-[12px] text-rose-300">
+              <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
+              Listening
+            </div>
+            {/* A quiet level meter, decorative only. */}
+            <div aria-hidden="true" className="flex h-4 items-end gap-[3px]">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <motion.span
+                  key={i}
+                  className="w-[3px] rounded-full bg-rose-300/70"
+                  initial={{ height: "30%" }}
+                  animate={{ height: ["30%", "100%", "45%", "80%", "30%"] }}
+                  transition={{ duration: 1.1, ease: "easeInOut", repeat: Infinity, delay: i * 0.12 }}
+                />
+              ))}
+            </div>
           </div>
           <p className="text-sm text-slate-300 leading-relaxed min-h-[3rem]">{live || "Start speaking..."}</p>
-        </div>
+          <div aria-hidden="true" className="mt-3 h-1 overflow-hidden rounded-full bg-white/[0.05]">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-rose-400/70 to-rose-300/40 transition-[width] duration-300 ease-linear"
+              style={{ width: `${Math.min(100, (elapsed / MAX_SECONDS) * 100)}%` }}
+            />
+          </div>
+        </motion.div>
       )}
 
-      {error && <p className="text-sm text-rose-300">{error}</p>}
+      {error && <p role="alert" className="text-sm text-rose-300">{error}</p>}
       {stats && <DeliveryView stats={stats} />}
     </div>
   );
@@ -237,9 +274,9 @@ function formatTime(s: number) {
 }
 
 const STATUS_STYLES: Record<Status, string> = {
-  good: "border-emerald-400/30 text-emerald-300",
-  warn: "border-amber-400/30 text-amber-300",
-  bad: "border-rose-400/30 text-rose-300",
+  good: "text-emerald-300 [--dot:theme(colors.emerald.400)]",
+  warn: "text-amber-300 [--dot:theme(colors.amber.400)]",
+  bad: "text-rose-300 [--dot:theme(colors.rose.400)]",
 };
 
 function DeliveryView({ stats }: { stats: DeliveryStats }) {
@@ -264,13 +301,18 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
   if (stats.trailedOff) tips.push("You trailed off at the end. Finish on your result or on why you want this role, then stop.");
 
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#0a0f1c] p-5 space-y-4">
+    <motion.div
+      className="rounded-2xl border border-white/[0.08] bg-[#070b16] p-5 sm:p-6 space-y-5"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, ease: EASE }}
+    >
       <div>
-        <p className="text-[12px] uppercase tracking-wider text-emerald-300 font-semibold mb-1">Your delivery</p>
+        <p className="text-[11px] uppercase tracking-[0.18em] text-emerald-300 font-semibold mb-1.5">Your delivery</p>
         <p className="text-white font-semibold">{headline}</p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-4">
         <Stat label="Pace" value={`${stats.wpm} wpm`} hint="120 to 170 is ideal" status={stats.paceStatus} />
         <Stat label="Length" value={formatTime(stats.seconds)} hint="0:45 to 2:00" status={stats.lengthStatus} />
         <Stat label="Filler words" value={String(stats.fillerTotal)} hint="Fewer is better" status={stats.fillerStatus} />
@@ -303,15 +345,18 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
         Speech recognition often leaves out &ldquo;um&rdquo; and &ldquo;uh&rdquo;, so your real filler count may be
         higher. Pauses are estimated.
       </p>
-    </div>
+    </motion.div>
   );
 }
 
 function Stat({ label, value, hint, status }: { label: string; value: string; hint: string; status: Status }) {
   return (
-    <div className={`rounded-xl border bg-white/[0.02] p-3 ${STATUS_STYLES[status]}`}>
-      <p className="text-[11px] text-slate-500">{label}</p>
-      <p className="text-lg font-bold">{value}</p>
+    <div className={`bg-[#070b16] p-4 ${STATUS_STYLES[status]}`}>
+      <p className="flex items-center gap-1.5 text-[11px] text-slate-500">
+        <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--dot)]" />
+        {label}
+      </p>
+      <p className="mt-1 text-xl font-bold tabular-nums">{value}</p>
       <p className="text-[10px] text-slate-600">{hint}</p>
     </div>
   );

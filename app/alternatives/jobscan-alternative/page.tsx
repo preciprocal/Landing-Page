@@ -8,6 +8,9 @@
  *   "cheaper than Jobscan"
  *   "Jobscan for students"
  *
+ * Layout: PageHero, the quick verdict, then the feature table and the
+ * remaining sections on the shared page kit (components/page), accent indigo.
+ *
  * File path: app/alternatives/jobscan-alternative/page.tsx
  */
 
@@ -18,6 +21,9 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import CompareTable, { Verdict, PriceCompare, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
 
 export const metadata: Metadata = {
   title: { absolute: "Jobscan Alternative: Preciprocal vs Jobscan" },
@@ -110,7 +116,7 @@ export default function JobscanAlternativePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -125,233 +131,164 @@ export default function JobscanAlternativePage() {
 
       <Navbar />
 
-      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Alternatives</span>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Jobscan Alternative</span>
-        </nav>
-
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-5"
-          style={{ background: "#1e293b", color: "#6366f1" }}
-        >
-          Comparison · Updated May 2026
-        </div>
-
+      <main>
         {/* H1 */}
-        <h1
-          className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight tracking-tight"
-          style={{ color: "#ffffff" }}
-        >
-          The Best Jobscan Alternative in 2026
-        </h1>
-        <p className="text-lg mb-6 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          Jobscan does one thing well: ATS resume scanning. But at $49.95/mo, you're paying enterprise
-          pricing for a single tool. If you're a student or new grad who also needs to prepare for
-          interviews, write cover letters, and track applications, you need more for less.
-        </p>
-        <p className="text-lg mb-10 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          <strong style={{ color: "#e2e8f0" }}>Preciprocal</strong> covers ATS scoring plus the
-          entire job search pipeline at $9.99/mo. Here's an honest comparison.
-        </p>
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Alternatives</span>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Jobscan Alternative</span>
+            </nav>
+          }
+          badge="Comparison · Updated May 2026"
+          title="The Best Jobscan Alternative "
+          accent="in 2026"
+          subhead={
+            <>
+              <p>
+                Jobscan does one thing well: ATS resume scanning. But at $49.95/mo, you&apos;re paying enterprise
+                pricing for a single tool. If you&apos;re a student or new grad who also needs to prepare for
+                interviews, write cover letters, and track applications, you need more for less.
+              </p>
+              <p className="mt-4">
+                <strong className="font-semibold text-slate-200">Preciprocal</strong> covers ATS scoring plus the
+                entire job search pipeline at $9.99/mo. Here&apos;s an honest comparison.
+              </p>
+            </>
+          }
+        />
 
-        {/* Quick verdict */}
-        <div
-          className="p-6 rounded-xl border mb-12"
-          style={{ borderColor: "#6366f1", background: "#0a0f1e" }}
-        >
-          <p className="text-sm font-semibold mb-1" style={{ color: "#6366f1" }}>Quick verdict</p>
-          <p className="leading-relaxed mb-2" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Jobscan</strong> if you only need ATS resume scanning and already have
-            separate tools for everything else, and price isn't a concern.
-          </p>
-          <p className="leading-relaxed" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Preciprocal</strong> if you want ATS scoring plus AI mock interviews,
-            cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
-            Especially if you're a student or new grad.
-          </p>
-        </div>
-
-        {/* Price callout */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-12">
-          {[
-            { label: "Jobscan Pro", price: "$49.95/mo", note: "ATS scanning only", highlight: false },
-            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
-          ].map(({ label, price, note, highlight }) => (
-            <div
-              key={label}
-              className="p-6 rounded-xl border text-center"
-              style={{
-                borderColor: highlight ? "#6366f1" : "#1e293b",
-                background: highlight ? "rgba(99,102,241,0.08)" : "#0a0f1e",
-              }}
-            >
-              <p className="text-sm mb-2" style={{ color: "#64748b" }}>{label}</p>
-              <p className="text-3xl font-extrabold mb-1" style={{ color: highlight ? "#6366f1" : "#e2e8f0" }}>{price}</p>
-              <p className="text-sm" style={{ color: "#64748b" }}>{note}</p>
-            </div>
-          ))}
+        {/* Quick verdict + price callout */}
+        <div className={`${PAD} pb-4 pt-14`}>
+          <div className={`${INNER} grid gap-4 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]`}>
+            <Reveal>
+              <Verdict
+                competitor={
+                  <>
+                    Choose <strong className="font-semibold text-white">Jobscan</strong> if you only need ATS resume scanning and already have
+                    separate tools for everything else, and price isn&apos;t a concern.
+                  </>
+                }
+                preciprocal={
+                  <>
+                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want ATS scoring plus AI mock interviews,
+                    cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
+                    Especially if you&apos;re a student or new grad.
+                  </>
+                }
+              />
+            </Reveal>
+            <Reveal delay={0.08}>
+              <PriceCompare
+                items={[
+                  { label: "Jobscan Pro", price: "$49.95/mo", note: "ATS scanning only", highlight: false },
+                  { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
+                ]}
+              />
+            </Reveal>
+          </div>
         </div>
 
         {/* Comparison table */}
-        <section aria-label="Feature comparison table" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Preciprocal vs Jobscan: feature comparison
-          </h2>
-          <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "#1e293b" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ background: "#0a0f1e", borderBottom: "1px solid #1e293b" }}>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Feature</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#6366f1" }}>Preciprocal</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Jobscan</th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row, i) => (
-                  <tr
-                    key={row.feature}
-                    style={{
-                      background: i % 2 === 0 ? "#050810" : "#0a0f1e",
-                      borderBottom: "1px solid #1e293b",
-                    }}
-                  >
-                    <td className="px-4 py-3 font-medium" style={{ color: "#e2e8f0" }}>{row.feature}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.preciprocal}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.jobscan}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section aria-label="Feature comparison table" className={`${PAD} py-16`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Feature by feature" title="Preciprocal vs Jobscan: feature comparison" className="mb-8" />
+            </Reveal>
+            <CompareTable
+              competitor="Jobscan"
+              caption="Preciprocal vs Jobscan: feature comparison"
+              rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.jobscan }))}
+            />
+            <p className="mt-4 text-xs text-slate-400">
+              Based on publicly available feature lists as of September 2026. Always verify on each tool&apos;s pricing page.
+            </p>
           </div>
-          <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Based on publicly available feature lists as of September 2026. Always verify on each tool's pricing page.
-          </p>
         </section>
 
         {/* Why students choose Preciprocal */}
-        <section aria-label="Why students choose Preciprocal over Jobscan" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Why students and new grads choose Preciprocal over Jobscan
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                title: "80% cheaper for more coverage",
-                body: "Jobscan Pro is $49.95/mo for ATS scanning. Preciprocal Pro is $9.99/mo for ATS scanning, mock interviews, cover letters, job tracking, and a study planner. The math is straightforward.",
-              },
-              {
-                title: "ATS is just the first problem",
-                body: "Getting your resume past ATS gets you a callback. Then you need to interview well, write a compelling cover letter, and manage 20 applications at once. Jobscan stops at the resume. Preciprocal carries you through the whole process.",
-              },
-              {
-                title: "Built for entry-level, not just senior candidates",
-                body: "Jobscan's keyword analysis is calibrated for people with years of work experience. Preciprocal understands new grad resumes: how to present internships, projects, coursework, and transferable skills in a way that scores well against entry-level job descriptions.",
-              },
-              {
-                title: "Free ATS checker with no credit card",
-                body: "Preciprocal's free plan includes 3 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
-              },
-            ].map(({ title, body }) => (
-              <div
-                key={title}
-                className="flex gap-4 p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <div
-                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff" }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: "#e2e8f0" }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{body}</p>
-                </div>
-              </div>
-            ))}
+        <section aria-label="Why students choose Preciprocal over Jobscan" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Jobscan" />
+            </Reveal>
+            <ReasonGrid
+              items={[
+                {
+                  title: "80% cheaper for more coverage",
+                  body: "Jobscan Pro is $49.95/mo for ATS scanning. Preciprocal Pro is $9.99/mo for ATS scanning, mock interviews, cover letters, job tracking, and a study planner. The math is straightforward.",
+                },
+                {
+                  title: "ATS is just the first problem",
+                  body: "Getting your resume past ATS gets you a callback. Then you need to interview well, write a compelling cover letter, and manage 20 applications at once. Jobscan stops at the resume. Preciprocal carries you through the whole process.",
+                },
+                {
+                  title: "Built for entry-level, not just senior candidates",
+                  body: "Jobscan's keyword analysis is calibrated for people with years of work experience. Preciprocal understands new grad resumes: how to present internships, projects, coursework, and transferable skills in a way that scores well against entry-level job descriptions.",
+                },
+                {
+                  title: "Free ATS checker with no credit card",
+                  body: "Preciprocal's free plan includes 3 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
+                },
+              ]}
+            />
           </div>
         </section>
 
         {/* FAQ */}
-        <section aria-label="Jobscan alternative FAQ" className="mb-16">
-          <h2 className="text-2xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            Frequently asked questions
-          </h2>
-          <div className="space-y-5">
-            {FAQS.map(({ q, a }) => (
-              <div
-                key={q}
-                className="p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>{q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{a}</p>
-              </div>
-            ))}
+        <section aria-label="Jobscan alternative FAQ" className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
+            <Reveal>
+              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
+            </Reveal>
+            <Reveal>
+              <FaqList items={FAQS} />
+            </Reveal>
           </div>
         </section>
 
         {/* Internal links */}
-        <section aria-label="Related resources" className="mb-16">
-          <h2 className="text-xl font-bold mb-4" style={{ color: "#ffffff" }}>Related resources</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
-              { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
-              { label: "How to Pass ATS Resume Screening", href: "/blog/how-to-pass-ats-resume-screening" },
-              { label: "Resume Keywords That Get Past ATS", href: "/blog/resume-keywords-that-get-past-ats" },
-              { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
-              { label: "Final Round AI Alternative", href: "/alternatives/final-round-ai-alternative" },
-            ].map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-indigo-500/50 hover:text-white"
-                style={{ borderColor: "#1e293b", color: "#94a3b8" }}
-              >
-                <span style={{ color: "#6366f1" }}><Chevron /></span>
-                {label}
-              </Link>
-            ))}
+        <section aria-label="Related resources" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <RelatedLinks
+              links={[
+                { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
+                { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
+                { label: "How to Pass ATS Resume Screening", href: "/blog/how-to-pass-ats-resume-screening" },
+                { label: "Resume Keywords That Get Past ATS", href: "/blog/resume-keywords-that-get-past-ats" },
+                { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
+                { label: "Final Round AI Alternative", href: "/alternatives/final-round-ai-alternative" },
+              ]}
+            />
           </div>
         </section>
 
         {/* CTA */}
-        <section
-          aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            Try Preciprocal free. No credit card needed.
-          </h2>
-          <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
-            Students with a .edu email get 1 month of Pro free.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
-            >
-              Start free <Chevron />
-            </Link>
-            <Link
-              href="/free-ats-checker"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border transition-colors hover:border-indigo-500/50"
-              style={{ color: "#94a3b8", borderColor: "#1e293b" }}
-            >
-              Try free ATS checker
-            </Link>
-          </div>
+        <section aria-label="Try Preciprocal free" className={`${PAD} pb-24`}>
+          <Reveal>
+            <CtaPanel
+              title="Try Preciprocal free. No credit card needed."
+              body={
+                <p>
+                  3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
+                  Students with a .edu email get 1 month of Pro free.
+                </p>
+              }
+              action={
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                    Start free <Chevron />
+                  </Link>
+                  <Link href="/free-ats-checker" className={BTN_SECONDARY}>
+                    Try free ATS checker
+                  </Link>
+                </div>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

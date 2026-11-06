@@ -4,6 +4,10 @@
  * Dynamic resume tips guide for each role.
  * Targets: "software engineer resume tips", "product manager resume guide", etc.
  *
+ * Layout: hero with the salary range, then the guide in a wide column beside
+ * a sticky aside (jump list and ATS checker) on wide screens, sibling guides,
+ * and a CTA panel. Built on components/page/Layout.tsx.
+ *
  * File path: app/resume-tips/[role]/page.tsx
  */
 
@@ -18,6 +22,20 @@ import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
+import {
+  PAD,
+  INNER,
+  SECTION,
+  CARD,
+  CARD_SOLID,
+  BTN_PRIMARY,
+  Eyebrow,
+  SectionHead,
+  PageHero,
+  CtaPanel,
+  pad2,
+} from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
 
 interface ResumeTipData {
   salaryRange: string;
@@ -237,8 +255,17 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
     mainEntityOfPage: `https://preciprocal.com/resume-tips/${role}`,
   };
 
+  // Jump list for the sticky aside; ids match the sections below.
+  const toc = [
+    { id: "keywords", label: "ATS keywords" },
+    { id: "bullet-formula", label: "Bullet formula" },
+    ...tipData.sections.map((s, i) => ({ id: `tip-${i + 1}`, label: s.title })),
+    { id: "mistakes", label: "Common mistakes" },
+  ];
+  const formulaParts = tipData.bulletFormula.split(" + ");
+
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="emerald" className="min-h-screen overflow-x-hidden bg-[#050810]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <BreadcrumbJsonLd
         items={[
@@ -249,99 +276,187 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
       />
       <Navbar />
 
-      <main className="w-full page-main px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center flex-wrap">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <Link href="/resume-tips" className="hover:text-white transition-colors">Resume Tips</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>{display.name}</span>
-        </nav>
+      <main>
+        {/* Hero: breadcrumb, H1, subhead, salary range */}
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <span aria-hidden="true">›</span>
+              <Link href="/resume-tips" className="transition-colors hover:text-white">Resume Tips</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">{display.name}</span>
+            </nav>
+          }
+          badge={
+            <>
+              <span aria-hidden="true">{display.icon}</span> Resume guide
+            </>
+          }
+          badgeTone="accent"
+          title={`${display.name} `}
+          accent="resume tips"
+          subhead={
+            <p>
+              How to write a {display.name.toLowerCase()} resume that passes ATS, survives the 6-second recruiter scan, and gets you interviews in 2026.
+            </p>
+          }
+          aside={
+            <div className={`${CARD} px-6 py-5 text-left lg:min-w-[280px]`}>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Typical salary range</p>
+              <p className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">{tipData.salaryRange}</p>
+            </div>
+          }
+        />
 
-        {/* H1 */}
-        <div className="mb-10">
-          <span className="text-3xl mr-3">{display.icon}</span>
-          <h1 style={{ color: "#ffffff" }} className="text-4xl sm:text-5xl font-extrabold mt-3 mb-4 tracking-tight leading-tight">
-            {display.name} resume tips
-          </h1>
-          <p style={{ color: "#94a3b8" }} className="text-lg leading-relaxed">
-            How to write a {display.name.toLowerCase()} resume that passes ATS, survives the 6-second recruiter scan, and gets you interviews in 2026.
-          </p>
-          <p style={{ color: "#64748b" }} className="text-sm mt-3">
-            Typical salary range: <span style={{ color: "#a5b4fc" }} className="font-medium">{tipData.salaryRange}</span>
-          </p>
-        </div>
+        {/* Guide body with a sticky jump list and checker CTA */}
+        <section className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px] xl:gap-24`}>
+            <div className="min-w-0 space-y-20">
+              {/* ATS keywords */}
+              <section id="keywords" className="scroll-mt-28">
+                <Reveal>
+                  <SectionHead
+                    eyebrow="ATS keywords"
+                    title={`Top ATS keywords for ${display.name}s`}
+                    subtitle={`These terms appear in most ${display.name.toLowerCase()} job descriptions. Include them naturally in your bullets and skills section.`}
+                    className="mb-8"
+                  />
+                </Reveal>
+                <RevealGroup as="ul" className="flex flex-wrap gap-2.5">
+                  {tipData.topAtsKeywords.map((kw, i) => (
+                    <RevealItem
+                      as="li"
+                      key={kw}
+                      className="inline-flex items-center gap-2 rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3 py-1.5 text-[13px] font-medium text-accent-soft"
+                    >
+                      <span aria-hidden="true" className="font-mono text-[10px] text-accent-soft/60">{pad2(i + 1)}</span>
+                      {kw}
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
 
-        {/* ATS Keywords */}
-        <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(99,102,241,0.04)", borderColor: "rgba(99,102,241,0.15)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-3">Top ATS keywords for {display.name}s</h2>
-          <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
-            These terms appear in most {display.name.toLowerCase()} job descriptions. Include them naturally in your bullets and skills section.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {tipData.topAtsKeywords.map((kw) => (
-              <span
-                key={kw}
-                className="text-xs px-2.5 py-1 rounded-full font-medium"
-                style={{ background: "rgba(99,102,241,0.1)", color: "#a5b4fc", border: "1px solid rgba(99,102,241,0.2)" }}
-              >
-                {kw}
-              </span>
-            ))}
+              {/* Bullet formula and example, side by side */}
+              <section id="bullet-formula" className="scroll-mt-28">
+                <Reveal>
+                  <SectionHead eyebrow="Bullet formula" title="The bullet formula that works" className="mb-8" />
+                </Reveal>
+                <RevealGroup className="grid gap-4 md:grid-cols-2">
+                  <RevealItem className={`${CARD_SOLID} p-6 sm:p-7`}>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Formula</p>
+                    <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[13px] leading-relaxed text-accent-soft">
+                      {formulaParts.map((part, i) => (
+                        <span key={i} className="contents">
+                          {i > 0 && <span className="text-accent/70"> + </span>}
+                          <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1">{part}</span>
+                        </span>
+                      ))}
+                    </p>
+                  </RevealItem>
+                  <RevealItem className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-6 sm:p-7">
+                    <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      Real example
+                    </p>
+                    <p className="mt-4 text-[15px] leading-relaxed text-slate-200">{tipData.bulletExample}</p>
+                  </RevealItem>
+                </RevealGroup>
+              </section>
+
+              {/* Main tip sections, numbered */}
+              <div>
+                <Eyebrow>The guide</Eyebrow>
+                <div className="mt-2 divide-y divide-white/[0.06] border-y border-white/[0.06]">
+                  {tipData.sections.map((section, i) => (
+                    <Reveal key={i}>
+                      <section id={`tip-${i + 1}`} className="grid scroll-mt-28 gap-3 py-9 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
+                        <span aria-hidden="true" className="font-mono text-[12px] text-accent-soft/70 sm:pt-1.5">{pad2(i + 1)}</span>
+                        <div>
+                          <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{section.title}</h2>
+                          <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-400">{section.body}</p>
+                        </div>
+                      </section>
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+
+              {/* Common mistakes */}
+              <section id="mistakes" className="scroll-mt-28">
+                <Reveal>
+                  <SectionHead eyebrow="Avoid these" title={`5 common ${display.name.toLowerCase()} resume mistakes`} className="mb-8" />
+                </Reveal>
+                <RevealGroup
+                  as="ul"
+                  className="divide-y divide-white/[0.05] overflow-hidden rounded-2xl border border-rose-500/15 bg-rose-500/[0.03]"
+                >
+                  {tipData.commonMistakes.map((mistake, i) => (
+                    <RevealItem as="li" key={i} className="flex items-start gap-4 px-5 py-4 sm:px-6">
+                      <span className="mt-0.5 shrink-0 font-mono text-[12px] font-semibold text-rose-300/80">{pad2(i + 1)}</span>
+                      <p className="text-sm leading-relaxed text-slate-300">{mistake}</p>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+            </div>
+
+            <aside aria-label="On this page" className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
+              <nav aria-label="Sections">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
+                <ol className="border-l border-white/[0.07]">
+                  {toc.map((item, i) => (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        className="-ml-px flex gap-3 border-l border-transparent py-1.5 pl-4 text-[13px] leading-snug text-slate-400 transition-colors hover:border-accent hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
+                      >
+                        <span aria-hidden="true" className="font-mono text-[10px] leading-5 text-slate-600">{pad2(i + 1)}</span>
+                        <span>{item.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+
+              <SpotlightCard className="mt-8 rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free tool</p>
+                <p className="mt-3 text-lg font-semibold leading-snug text-white">Check your resume&apos;s ATS score</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">Free score and top fixes for your {display.name} resume</p>
+                <Link href="/free-ats-checker" className={`${BTN_PRIMARY} mt-5 w-full px-5 py-3`}>
+                  Check my resume <Chevron />
+                </Link>
+              </SpotlightCard>
+            </aside>
           </div>
-        </section>
-
-        {/* Bullet formula */}
-        <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(16,185,129,0.04)", borderColor: "rgba(16,185,129,0.15)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-3">The bullet formula that works</h2>
-          <p style={{ color: "#6ee7b7" }} className="text-sm font-mono mb-3">{tipData.bulletFormula}</p>
-          <div className="p-3 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
-            <p style={{ color: "#64748b" }} className="text-xs mb-1 uppercase tracking-wider font-semibold">Real example</p>
-            <p style={{ color: "#e2e8f0" }} className="text-sm leading-relaxed">{tipData.bulletExample}</p>
-          </div>
-        </section>
-
-        {/* Main tip sections */}
-        <div className="space-y-8">
-          {tipData.sections.map((section, i) => (
-            <section key={i}>
-              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-3">{section.title}</h2>
-              <p style={{ color: "#94a3b8" }} className="text-base leading-relaxed">{section.body}</p>
-            </section>
-          ))}
-        </div>
-
-        {/* Common mistakes */}
-        <section className="mt-10 p-5 rounded-2xl border" style={{ background: "rgba(239,68,68,0.04)", borderColor: "rgba(239,68,68,0.15)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-4">5 common {display.name.toLowerCase()} resume mistakes</h2>
-          <ul className="space-y-3">
-            {tipData.commonMistakes.map((mistake, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span className="text-red-400 font-bold text-sm mt-0.5 flex-shrink-0">{i + 1}.</span>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">{mistake}</p>
-              </li>
-            ))}
-          </ul>
         </section>
 
         {/* Sibling guides for this role, plus the question predictor */}
-        <RoleGuideLinks role={role} roleName={display.name} current="resume-tips" />
+        <section className={`${SECTION} ${PAD}`}>
+          <Reveal className={INNER}>
+            <RoleGuideLinks role={role} roleName={display.name} current="resume-tips" className="" />
+          </Reveal>
+        </section>
 
         {/* CTA */}
-        <div className="mt-12 p-8 text-center rounded-2xl border" style={{ background: "rgba(99,102,241,0.05)", borderColor: "rgba(99,102,241,0.2)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-2">Get your resume scored in 30 seconds</h2>
-          <p style={{ color: "#94a3b8" }} className="text-sm mb-6 max-w-sm mx-auto">
-            Upload your {display.name.toLowerCase()} resume and see your ATS score, missing keywords, and line-by-line improvement suggestions.
-          </p>
-          <a
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
-          >
-            Analyze my resume free <Chevron />
-          </a>
-          <p style={{ color: "#475569" }} className="text-xs mt-3">No credit card required · Free plan available</p>
-        </div>
+        <section className={`pb-24 pt-4 ${PAD}`}>
+          <Reveal>
+            <CtaPanel
+              title="Get your resume scored in 30 seconds"
+              body={
+                <p className="max-w-xl text-sm leading-relaxed sm:text-base">
+                  Upload your {display.name.toLowerCase()} resume and see your ATS score, missing keywords, and line-by-line improvement suggestions.
+                </p>
+              }
+              action={
+                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                  Analyze my resume free <Chevron />
+                </a>
+              }
+              note="No credit card required · Free plan available"
+            />
+          </Reveal>
+        </section>
       </main>
 
       <Footer />

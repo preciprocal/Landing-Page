@@ -1,9 +1,7 @@
-"use client";
-
 /**
  * app/features/page.tsx
  *
- * Hub for every tool on the platform.
+ * Hub for every tool on the platform. Metadata lives in ./layout.tsx.
  *
  * Copy rules for this page:
  *   • Lead with the reader's problem, then the tool. Nobody wakes up wanting a
@@ -17,21 +15,21 @@
  * groupings, so a reader can find themselves in it: get past the filter, reach
  * a human, win the interview, stay in control. Each stage links out to the tool
  * page that owns that head term.
+ *
+ * Layout: PageHero with the tool-orbit illustration and a four-stage index,
+ * then each stage as a sticky stage label beside a ruled bento grid of its
+ * tools. The interview stage sits in a SpotlightCard.
  */
 
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import {
-  RevealOnScroll,
-  StaggerChildren,
-  StaggerItem,
-  MagneticHover,
-  GlowDivider,
-} from "@/components/LandingAnimations";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HoverRule, PageHero, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import FeaturesVisual from "@/components/page/visuals/FeaturesVisual";
 
 type Feature = {
   name: string;
@@ -194,9 +192,66 @@ function FeaturesJsonLd() {
   );
 }
 
-export default function FeaturesPage() {
+/** Running tool number at the start of each stage, so cards count 01..n across the page. */
+const STAGE_START = STAGES.map((_, i) => STAGES.slice(0, i).reduce((sum, s) => sum + s.features.length, 0));
+
+const stageSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+/**
+ * Borders for a ruled grid: one column on mobile, two from sm. With an odd
+ * count the first card spans both columns.
+ */
+function cellBorders(i: number, n: number) {
+  const wide = n % 2 === 1;
+  const mobile = i > 0 ? "border-t sm:border-t-0" : "";
+  if (wide && i === 0) return `sm:col-span-2 ${n > 1 ? "sm:border-b" : ""}`;
+  const k = wide ? i - 1 : i;
+  const rest = wide ? n - 1 : n;
+  const lastRow = Math.floor((rest - 1) / 2);
+  return [mobile, k % 2 === 0 ? "sm:border-r" : "", Math.floor(k / 2) < lastRow ? "sm:border-b" : ""].join(" ");
+}
+
+function ToolCard({ feature, index, wide }: { feature: Feature; index: number; wide: boolean }) {
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <Link
+      href={feature.href}
+      className="group relative flex h-full flex-col p-6 transition-colors duration-300 hover:bg-white/[0.025] focus-visible:bg-white/[0.025] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60 sm:p-7"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <span className="font-mono text-[11px] text-accent-soft/70">{pad2(index)}</span>
+        <span
+          aria-hidden="true"
+          className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors duration-300 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent-soft"
+        >
+          <Chevron />
+        </span>
+      </div>
+
+      <div className={wide ? "mt-5 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10" : "mt-5 flex flex-1 flex-col"}>
+        <p className={`border-l-2 border-accent/40 pl-3 italic leading-snug text-slate-400 ${wide ? "text-[15px] lg:text-base" : "text-[14px]"}`}>
+          {feature.pain}
+        </p>
+        <div className={wide ? "mt-5 lg:mt-0" : "mt-5 flex flex-1 flex-col"}>
+          <h3 className={`font-semibold leading-tight text-white transition-colors group-hover:text-accent-soft ${wide ? "text-xl" : "text-lg"}`}>
+            {feature.name}
+          </h3>
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{feature.promise}</p>
+        </div>
+      </div>
+
+      <span className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-soft">
+        See how it works
+        <Chevron />
+      </span>
+      <HoverRule />
+    </Link>
+  );
+}
+
+export default function FeaturesPage() {
+
+  return (
+    <div data-accent="violet" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -206,141 +261,139 @@ export default function FeaturesPage() {
       <FeaturesJsonLd />
       <Navbar />
 
-      <main className="relative overflow-hidden">
-        {/* ── Breadcrumb ── */}
-        <nav
-          aria-label="Breadcrumb"
-          className="w-full pt-28 pb-0 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48"
-        >
-          <ol className="flex items-center gap-2 text-xs text-slate-500">
-            <li>
-              <Link href="/" className="hover:text-slate-300 transition-colors">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li className="text-slate-400">Features</li>
-          </ol>
-        </nav>
-
+      <main>
         {/* ── Hero ── */}
-        <section data-section="features-overview" data-section-name="Features overview" aria-label="Overview" className="relative">
-          <div className="w-full pt-14 pb-4 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-            <GlowDivider />
-
-            <RevealOnScroll className="text-center max-w-2xl mx-auto mt-10">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-400 mb-4">
-                Everything included
-              </p>
-              <h1 className="text-3xl sm:text-4xl md:text-[44px] font-extrabold text-white tracking-tight leading-[1.1] mb-5">
-                The job search asks for eleven different things.{" "}
-                {/* Break only once there is room for two lines; the space above
-                    keeps the sentences apart when this <br> is hidden. */}
-                <br className="hidden sm:block" />
-                <span className="text-gradient">You get all of them here.</span>
-              </h1>
-              <p className="text-[15px] text-slate-400 leading-relaxed">
-                Applying is only one part of it. You also have to get past a filter, find
-                the right person, say the right thing, perform under pressure, and keep
-                track of all of it for months. Here is what handles each part.
-              </p>
-            </RevealOnScroll>
-          </div>
-        </section>
+        <PageHero
+          sectionProps={{ "data-section": "features-overview", "data-section-name": "Features overview", "aria-label": "Overview" }}
+          breadcrumb={
+            <nav aria-label="Breadcrumb">
+              <ol className="flex items-center gap-2">
+                <li>
+                  <Link href="/" className="transition-colors hover:text-white">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">›</li>
+                <li className="text-slate-300">Features</li>
+              </ol>
+            </nav>
+          }
+          badge="Everything included"
+          title={
+            <span className="block lg:text-[3.35rem] lg:leading-[1.06]">
+              The job search asks for twelve different things.{" "}
+              <span className={`block pb-1 ${ACCENT_TEXT}`}>You get all of them here.</span>
+            </span>
+          }
+          subhead={
+            <p>
+              Applying is only one part of it. You also have to get past a filter, find
+              the right person, say the right thing, perform under pressure, and keep
+              track of all of it for months. Here is what handles each part.
+            </p>
+          }
+          visual={<FeaturesVisual />}
+        >
+          <nav aria-label="Search stages">
+            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+              {STAGES.map((stage, i) => (
+                <li key={stage.title} className="bg-[#070b16]">
+                  <a
+                    href={`#stage-${stageSlug(stage.title)}`}
+                    className="group relative flex h-full min-h-[64px] items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
+                  >
+                    <span className="font-mono text-[12px] text-accent-soft">{pad2(i + 1)}</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-medium text-white transition-colors group-hover:text-accent-soft">{stage.title}</span>
+                      <span className="block text-[12px] text-slate-400">{stage.features.length} tools</span>
+                    </span>
+                    <Chevron className="text-slate-500 group-hover:text-accent-soft" />
+                    <HoverRule className="inset-x-5" />
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </PageHero>
 
         {/* ── Stages ── */}
-        {STAGES.map((stage, stageIndex) => (
-          <section
-            key={stage.title}
-            data-section={`feature-stage-${stage.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-            data-section-name={stage.title}
-            aria-label={stage.title}
-            className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 py-14 sm:py-16"
-          >
-            <div className="w-full">
-              <RevealOnScroll className="max-w-2xl mb-10">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-400 mb-3">
-                  {stage.eyebrow}
-                </p>
-                <h2 className="text-2xl sm:text-[28px] font-extrabold text-white tracking-tight mb-3">
-                  {stage.title}
-                </h2>
-                <p className="text-[14px] text-slate-400 leading-relaxed">{stage.intro}</p>
-              </RevealOnScroll>
+        {STAGES.map((stage, stageIndex) => {
+          const start = STAGE_START[stageIndex];
+          const spotlight = stageIndex === 2;
+          const grid = (
+            <RevealGroup className="grid grid-cols-1 sm:grid-cols-2">
+              {stage.features.map((feature, i) => (
+                <RevealItem key={feature.href} className={`border-white/[0.07] ${cellBorders(i, stage.features.length)}`}>
+                  <ToolCard feature={feature} index={start + i + 1} wide={stage.features.length % 2 === 1 && i === 0} />
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          );
 
-              <StaggerChildren className={`grid grid-cols-1 md:grid-cols-2 ${stage.features.length === 4 ? "" : "lg:grid-cols-3"} gap-4 items-stretch`}>
-                {stage.features.map((feature) => (
-                  <StaggerItem key={feature.href} className="flex flex-col">
-                    <Link
-                      href={feature.href}
-                      className="group flex flex-col flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6
-                                 hover:border-indigo-500/30 hover:bg-white/[0.035] transition-all duration-300"
-                    >
-                      <p className="text-[13px] text-slate-500 leading-snug italic">
-                        {feature.pain}
-                      </p>
+          return (
+            <section
+              key={stage.title}
+              id={`stage-${stageSlug(stage.title)}`}
+              data-section={`feature-stage-${stageSlug(stage.title)}`}
+              data-section-name={stage.title}
+              aria-label={stage.title}
+              className={`scroll-mt-24 border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}
+            >
+              <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] xl:gap-16`}>
+                <Reveal className="lg:sticky lg:top-28 lg:self-start">
+                  <p aria-hidden="true" className={`mb-5 font-mono text-5xl font-bold leading-none sm:text-6xl ${ACCENT_TEXT}`}>
+                    {pad2(stageIndex + 1)}
+                  </p>
+                  <Eyebrow>{stage.eyebrow}</Eyebrow>
+                  <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{stage.title}</h2>
+                  <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-400">{stage.intro}</p>
+                </Reveal>
 
-                      <div className="h-px bg-white/[0.06] my-4" />
-
-                      <h3 className="text-[15px] font-semibold text-white leading-tight mb-2">
-                        {feature.name}
-                      </h3>
-                      <p className="text-[13px] text-slate-400 leading-relaxed flex-1">
-                        {feature.promise}
-                      </p>
-
-                      <span className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors">
-                        See how it works
-                        <ChevronRight
-                          className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
-                          aria-hidden="true"
-                        />
-                      </span>
-                    </Link>
-                  </StaggerItem>
-                ))}
-              </StaggerChildren>
-
-              {stageIndex < STAGES.length - 1 && (
-                <div className="h-px bg-white/[0.04] mt-14 sm:mt-16" />
-              )}
-            </div>
-          </section>
-        ))}
+                {spotlight ? (
+                  <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-[#070b16]">{grid}</SpotlightCard>
+                ) : (
+                  <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">{grid}</div>
+                )}
+              </div>
+            </section>
+          );
+        })}
 
         {/* ── Closing CTA ── */}
-        <section data-section="features-cta" data-section-name="Features CTA" aria-label="Get started" className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 pb-24 pt-4">
-          <RevealOnScroll className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-[28px] font-extrabold text-white tracking-tight mb-4">
-              Start with whichever part is hurting most
-            </h2>
-            <p className="text-[14px] text-slate-400 leading-relaxed mb-8">
-              The free plan needs no card. Run your resume through it, do one mock
-              interview, and decide from there.
-            </p>
-
-            <MagneticHover>
-              <a
-                href={`${APP_URL}/sign-up`}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-white text-[15px]
-                           bg-gradient-to-r from-indigo-500 to-purple-500
-                           hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all duration-300"
-              >
-                Get started free
-                <ChevronRight className="w-4 h-4" aria-hidden="true" />
-              </a>
-            </MagneticHover>
-
-            <p className="mt-6 text-[12px] text-slate-600">
-              Want the numbers instead?{" "}
-              <Link
-                href="/pricing"
-                className="text-slate-400 hover:text-slate-300 transition-colors underline underline-offset-2"
-              >
-                See plans and limits
-              </Link>
-            </p>
-          </RevealOnScroll>
+        <section
+          data-section="features-cta"
+          data-section-name="Features CTA"
+          aria-label="Get started"
+          className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}
+        >
+          <Reveal>
+            <CtaPanel
+              title="Start with whichever part is hurting most"
+              body={
+                <p className="text-[15px] leading-relaxed">
+                  The free plan needs no card. Run your resume through it, do one mock
+                  interview, and decide from there.
+                </p>
+              }
+              action={
+                <a href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                  Get started free
+                  <Chevron />
+                </a>
+              }
+              note={
+                <span className="text-slate-400">
+                  Want the numbers instead?{" "}
+                  <Link
+                    href="/pricing"
+                    className="text-slate-300 underline underline-offset-2 transition-colors hover:text-white"
+                  >
+                    See plans and limits
+                  </Link>
+                </span>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

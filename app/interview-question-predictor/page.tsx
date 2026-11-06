@@ -14,6 +14,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import QuestionPredictorVisual from "@/components/page/visuals/QuestionPredictorVisual";
 import InterviewQuestionPredictor from "@/components/InterviewQuestionPredictor";
 
 export const metadata: Metadata = {
@@ -106,6 +107,8 @@ export default function InterviewQuestionPredictorPage() {
     <ToolPage
       breadcrumbName="Interview Question Predictor"
       canonicalPath="/interview-question-predictor"
+      accent="violet"
+      visual={<QuestionPredictorVisual />}
       badge="Free AI tool, no sign-up"
       h1="Paste a job description."
       h1Accent="Get the 5 questions you'll be asked."

@@ -9,8 +9,8 @@
  * shell here means a layout fix lands on all of them at once, while each
  * page.tsx still owns its own metadata, keywords, and body content.
  *
- * Layout: full width, with one shared gutter (PAD) and a 1600px cap so lines
- * stay readable on very wide screens. Section headings are left-aligned with
+ * Layout: full width, with the gutter the navbar and footer use (PAD), so
+ * every edge lines up with them. Section headings are left-aligned with
  * a small eyebrow label, which reads as a product page rather than a stack of
  * centred blocks.
  *
@@ -24,6 +24,8 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, pad2, type Accent } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export interface ToolFaq {
   q: string;
@@ -50,6 +52,13 @@ export interface ToolPageProps {
   /** Breadcrumb label and canonical path, e.g. "LinkedIn Optimizer" + "/linkedin-profile-optimizer" */
   breadcrumbName: string;
   canonicalPath: string;
+  /** The page's hue (see components/page/Layout.tsx); each tool page picks its own. */
+  accent?: Accent;
+  /**
+   * Animated illustration of the tool, shown beside the hero text on wide
+   * screens (components/page/visuals). Decorative.
+   */
+  visual?: React.ReactNode;
   /** Pill above the H1 */
   badge: string;
   /** H1 renders as two lines: plain text, then a gradient accent line */
@@ -87,40 +96,11 @@ export interface ToolPageProps {
   bottomMicrocopy: string;
 }
 
-/** The one horizontal gutter every section shares. */
-const PAD = "px-5 sm:px-8 lg:px-12 xl:px-16";
-const INNER = "mx-auto w-full max-w-[1600px]";
-
-const GRID_BG = {
-  backgroundImage:
-    "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
-  backgroundSize: "56px 56px",
-};
-
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-300/90">
-      <span className="h-px w-5 bg-gradient-to-r from-indigo-400 to-transparent" />
-      {children}
-    </p>
-  );
-}
-
-function SectionHead({ eyebrow, title, subtitle }: { eyebrow: string; title: string; subtitle?: string }) {
-  return (
-    <div className="mb-10 max-w-3xl">
-      <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</h2>
-      {subtitle && <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{subtitle}</p>}
-    </div>
-  );
-}
-
-const pad2 = (n: number) => String(n).padStart(2, "0");
-
 export default function ToolPage({
   breadcrumbName,
   canonicalPath,
+  accent = "indigo",
+  visual,
   badge,
   h1,
   h1Accent,
@@ -154,54 +134,29 @@ export default function ToolPage({
         ]}
       />
 
-      <div className="min-h-screen bg-[#050810]">
+      <div data-accent={accent} className="min-h-screen bg-[#050810]">
         <Navbar />
 
         <main>
           {/* ── Hero ─────────────────────────────────────────────────────── */}
-          <section data-section="hero" data-section-name="Hero" className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
-              style={GRID_BG}
-            />
-            <div aria-hidden="true" className="pointer-events-none absolute -top-40 left-1/4 h-[420px] w-[620px] rounded-full bg-indigo-600/10 blur-[120px]" />
-            <div aria-hidden="true" className="pointer-events-none absolute -top-20 right-0 h-[360px] w-[480px] rounded-full bg-purple-600/[0.07] blur-[120px]" />
-
-            <div className={`relative ${INNER}`}>
-              <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
-                <div className="max-w-4xl animate-fade-up opacity-0">
-                  <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-emerald-300">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
-                    {badge}
-                  </div>
-                  <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.25rem]">
-                    {h1}
-                    <span className="block bg-gradient-to-r from-indigo-300 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                      {h1Accent}
-                    </span>
-                  </h1>
-                  <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">{subhead}</p>
-                </div>
-
-                <div className="animate-fade-up opacity-0 lg:pb-2 lg:text-right" style={{ animationDelay: "120ms" }}>
-                  {/* With a tool on the page, the tool is the primary action and
-                      this is the quieter way in; without one, it is the CTA. */}
-                  <a
-                    href={signUpUrl}
-                    className={
-                      tool
-                        ? "group inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/[0.07] sm:w-auto"
-                        : "group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-4 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
-                    }
-                  >
-                    {ctaLabel} <Chevron />
-                  </a>
-                  <p className="mt-3 text-[12px] text-slate-500">{ctaMicrocopy}</p>
-                </div>
-              </div>
-            </div>
-          </section>
+          <PageHero
+            sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
+            badge={badge}
+            title={h1}
+            accent={h1Accent}
+            subhead={<p>{subhead}</p>}
+            visual={visual}
+            aside={
+              <>
+                {/* With a tool on the page, the tool is the primary action and
+                    this is the quieter way in; without one, it is the CTA. */}
+                <a href={signUpUrl} className={`${tool ? BTN_SECONDARY : `${BTN_PRIMARY} py-4`} w-full sm:w-auto`}>
+                  {ctaLabel} <Chevron />
+                </a>
+                <p className="mt-3 text-[12px] text-slate-500">{ctaMicrocopy}</p>
+              </>
+            }
+          />
 
           {tool && (
             <section data-section="tool" data-section-name="Interactive tool" className={`pb-20 ${PAD}`}>
@@ -215,19 +170,16 @@ export default function ToolPage({
           <section data-section="features" data-section-name="Features" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
             <div className={INNER}>
               <SectionHead eyebrow="What you get" title={featuresTitle} subtitle={featuresSubtitle} />
-              <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((item, i) => (
-                  <div key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
-                    <span className="font-mono text-[11px] text-indigo-300/70">{pad2(i + 1)}</span>
+                  <RevealItem key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
+                    <span className="font-mono text-[11px] text-accent-soft/70 transition-colors group-hover:text-accent">{pad2(i + 1)}</span>
                     <p className="mt-4 font-semibold text-white">{item.label}</p>
                     <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-7 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-indigo-400 to-purple-400 transition-transform duration-500 group-hover:scale-x-100"
-                    />
-                  </div>
+                    <HoverRule className="inset-x-7" />
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </div>
           </section>
 
@@ -235,19 +187,19 @@ export default function ToolPage({
           <section data-section="how-it-works" data-section-name="How it works" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
             <div className={INNER}>
               <SectionHead eyebrow="How it works" title={`${steps.length} steps, start to finish`} />
-              <ol className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+              <RevealGroup as="ol" className="grid gap-10 sm:grid-cols-3 sm:gap-8">
                 {steps.map((step, i) => (
-                  <li key={step.step} className="relative border-t border-white/[0.08] pt-6">
+                  <RevealItem as="li" key={step.step} className="group relative border-t border-white/[0.08] pt-6">
                     <span
                       aria-hidden="true"
-                      className="absolute -top-px left-0 h-px w-16 bg-gradient-to-r from-indigo-400 to-purple-400"
+                      className="absolute -top-px left-0 h-px w-16 bg-gradient-to-r from-accent to-accent-2 transition-[width] duration-700 group-hover:w-full"
                     />
                     <p className="font-mono text-[12px] text-slate-500">Step {pad2(i + 1)}</p>
                     <h3 className="mt-3 text-lg font-semibold text-white">{step.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.body}</p>
-                  </li>
+                  </RevealItem>
                 ))}
-              </ol>
+              </RevealGroup>
             </div>
           </section>
 
@@ -257,12 +209,30 @@ export default function ToolPage({
               <div className="max-w-3xl">
                 <Eyebrow>Guide</Eyebrow>
                 <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{bodyTitle}</h2>
-                <div className="space-y-6 leading-relaxed text-slate-400">{body}</div>
+                {/* Each page writes its guide as paragraphs plus boxed lists (a div
+                    holding an h3 and a ul/ol). These rules style that pattern in one
+                    place: a lead paragraph, callout panels with an accent edge and
+                    ruled rows, so every tool page's guide matches. */}
+                <div
+                  className={[
+                    "space-y-6 text-[15px] leading-[1.85] text-slate-400",
+                    "[&>p:first-of-type]:text-lg [&>p:first-of-type]:leading-relaxed [&>p:first-of-type]:text-slate-300",
+                    "[&_strong]:font-semibold [&_strong]:text-white",
+                    "[&>div]:relative [&>div]:!my-10 [&>div]:overflow-hidden [&>div]:rounded-2xl [&>div]:border [&>div]:border-white/[0.07] [&>div]:bg-[#070b16] [&>div]:p-7 [&>div]:pl-8 sm:[&>div]:p-8 sm:[&>div]:pl-10",
+                    "[&>div]:before:absolute [&>div]:before:inset-y-0 [&>div]:before:left-0 [&>div]:before:w-[3px] [&>div]:before:bg-gradient-to-b [&>div]:before:from-accent [&>div]:before:to-accent-deep-2 [&>div]:before:content-['']",
+                    "[&>div>h3]:mb-5 [&>div>h3]:text-lg [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
+                    "[&>div>ul]:space-y-0 [&>div>ol]:space-y-0",
+                    "[&>div_li]:border-t [&>div_li]:border-white/[0.05] [&>div_li]:py-3.5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
+                    "[&>div_li:first-child]:border-t-0 [&>div_li:first-child]:pt-0 [&>div_li:last-child]:pb-0",
+                  ].join(" ")}
+                >
+                  {body}
+                </div>
               </div>
 
               <aside className="lg:sticky lg:top-28 lg:self-start">
-                <div className="relative overflow-hidden rounded-2xl border border-indigo-400/20 bg-gradient-to-b from-indigo-500/[0.08] to-transparent p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-300/90">Free account</p>
+                <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.09] to-transparent p-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free account</p>
                   <p className="mt-3 text-lg font-semibold leading-snug text-white">{bottomTitle}</p>
                   <a
                     href={signUpUrl}
@@ -283,7 +253,7 @@ export default function ToolPage({
                           className="group flex items-center justify-between py-3 text-sm text-slate-400 transition-colors hover:text-white"
                         >
                           {link.label}
-                          <Chevron className="text-slate-600 group-hover:text-indigo-300" />
+                          <Chevron className="text-slate-600 group-hover:text-accent" />
                         </Link>
                       </li>
                     ))}
@@ -322,35 +292,20 @@ export default function ToolPage({
                 </p>
               </div>
 
-              <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-                {faqs.map((faq, i) => (
-                  <details key={i} className="group" open={i === 0}>
-                    <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
-                      <h3 className="font-medium text-white transition-colors group-hover:text-indigo-100">{faq.q}</h3>
-                      <span
-                        aria-hidden="true"
-                        className="relative mt-1 h-4 w-4 shrink-0 text-slate-500 transition-transform duration-300 group-open:rotate-45"
-                      >
-                        <span className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current" />
-                        <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
-                      </span>
-                    </summary>
-                    <p className="max-w-3xl pb-6 pr-10 text-sm leading-relaxed text-slate-400">{faq.a}</p>
-                  </details>
-                ))}
-              </div>
+              <FaqList items={faqs} />
             </div>
           </section>
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
           <section data-section="final-cta" data-section-name="Final CTA" className={`pb-24 pt-4 ${PAD}`}>
-            <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
+            <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
                 style={GRID_BG}
               />
-              <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/2 h-[320px] w-[520px] -translate-y-1/2 rounded-full bg-indigo-600/15 blur-[110px]" />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/2 h-[320px] w-[520px] -translate-y-1/2 animate-drift rounded-full bg-accent-deep/[0.16] blur-[110px]" />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
               <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
                 <div className="max-w-2xl">
                   <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{bottomTitle}</h2>
@@ -366,7 +321,7 @@ export default function ToolPage({
                   <p className="mt-3 text-[12px] text-slate-500">{bottomMicrocopy}</p>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </section>
         </main>
 

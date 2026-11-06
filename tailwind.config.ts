@@ -23,6 +23,14 @@ const config: Config = {
           dark: "#4f46e5",
           purple: "#8b5cf6",
         },
+        // Per-page accent, set by data-accent (see globals.css).
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          soft: "rgb(var(--accent-soft) / <alpha-value>)",
+          2: "rgb(var(--accent-2) / <alpha-value>)",
+          deep: "rgb(var(--accent-deep) / <alpha-value>)",
+          "deep-2": "rgb(var(--accent-deep-2) / <alpha-value>)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
@@ -37,8 +45,20 @@ const config: Config = {
         particle: "particle 12s ease-in-out infinite",
         spotlight: "spotlight 2s ease 0.75s 1 forwards",
         "meteor-effect": "meteor 5s linear infinite",
+        drift: "drift 18s ease-in-out infinite",
+        "drift-slow": "drift 26s ease-in-out infinite reverse",
+        "fade-in": "fade-in 0.9s ease forwards",
       },
       keyframes: {
+        drift: {
+          "0%, 100%": { transform: "translate3d(0,0,0) scale(1)" },
+          "33%": { transform: "translate3d(40px,-24px,0) scale(1.06)" },
+          "66%": { transform: "translate3d(-30px,18px,0) scale(0.96)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-12px)" },

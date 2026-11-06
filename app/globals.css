@@ -75,3 +75,90 @@ body {
   padding-top: calc(72px + var(--banner-h, 0px) + 2rem);
   padding-bottom: 4rem;
 }
+/* ── Page accents ─────────────────────────────────────────────────────────
+ * Content pages set data-accent on their root so each one carries its own
+ * hue through the hero, eyebrows, highlights and illustration, while the
+ * primary buttons stay on the brand indigo everywhere. Values are RGB
+ * triples for Tailwind's `accent` colours (tailwind.config.ts):
+ *   soft = 300 (text), accent = 400, accent-2 = 400 of the partner hue,
+ *   deep / deep-2 = 500 (glows, fills).
+ */
+:root,
+[data-accent="indigo"] {
+  --accent-soft: 165 180 252;
+  --accent: 129 140 248;
+  --accent-2: 192 132 252;
+  --accent-deep: 99 102 241;
+  --accent-deep-2: 168 85 247;
+}
+[data-accent="emerald"] {
+  --accent-soft: 110 231 183;
+  --accent: 52 211 153;
+  --accent-2: 45 212 191;
+  --accent-deep: 16 185 129;
+  --accent-deep-2: 20 184 166;
+}
+[data-accent="sky"] {
+  --accent-soft: 125 211 252;
+  --accent: 56 189 248;
+  --accent-2: 34 211 238;
+  --accent-deep: 14 165 233;
+  --accent-deep-2: 6 182 212;
+}
+[data-accent="amber"] {
+  --accent-soft: 252 211 77;
+  --accent: 251 191 36;
+  --accent-2: 251 146 60;
+  --accent-deep: 245 158 11;
+  --accent-deep-2: 249 115 22;
+}
+[data-accent="rose"] {
+  --accent-soft: 253 164 175;
+  --accent: 251 113 133;
+  --accent-2: 244 114 182;
+  --accent-deep: 244 63 94;
+  --accent-deep-2: 236 72 153;
+}
+[data-accent="violet"] {
+  --accent-soft: 196 181 253;
+  --accent: 167 139 250;
+  --accent-2: 232 121 249;
+  --accent-deep: 139 92 246;
+  --accent-deep-2: 217 70 239;
+}
+[data-accent="blue"] {
+  --accent-soft: 147 197 253;
+  --accent: 96 165 250;
+  --accent-2: 129 140 248;
+  --accent-deep: 59 130 246;
+  --accent-deep-2: 99 102 241;
+}
+
+/* ── Keyboard focus ───────────────────────────────────────────────────────
+ * A visible ring for anything focusable that does not draw its own.
+ * Utilities (focus-visible:outline-none, rings) still win, being a later layer.
+ */
+@layer base {
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid rgb(var(--accent) / 0.85);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────────────────────
+ * Entrance animations start from opacity 0, so they must still end visible.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

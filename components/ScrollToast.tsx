@@ -16,7 +16,6 @@ export default function ScrollToast() {
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
 
-    let timer: NodeJS.Timeout;
     let shown = false;
 
     const checkScroll = () => {
@@ -29,7 +28,7 @@ export default function ScrollToast() {
       }
     };
 
-    timer = setTimeout(() => {
+    const timer = setTimeout(() => {
       window.addEventListener("scroll", checkScroll, { passive: true });
       checkScroll();
     }, 20000);

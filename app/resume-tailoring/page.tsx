@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import ResumeTailoringVisual from "@/components/page/visuals/ResumeTailoringVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -94,6 +95,8 @@ export default function ResumeTailoringPage() {
   return (
     <ToolPage
       breadcrumbName="Resume Tailoring"
+      accent="violet"
+      visual={<ResumeTailoringVisual />}
       canonicalPath="/resume-tailoring"
       badge="Free, 3 analyses per month"
       h1="Tailor your resume"
@@ -152,7 +155,7 @@ export default function ResumeTailoringPage() {
                 "Acronyms, spelled out once so both the acronym and the full term are indexed",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
+                  <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

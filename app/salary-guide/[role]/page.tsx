@@ -4,6 +4,9 @@
  * Dynamic salary guide for each role.
  * Targets: "software engineer salary 2026", "data scientist salary NYC", "product manager salary levels", etc.
  *
+ * Layout: hero with the median figures as a stat panel, then the guide
+ * beside a sticky aside (jump list and CTA) on wide screens, then a CTA panel.
+ *
  * File path: app/salary-guide/[role]/page.tsx
  */
 
@@ -18,6 +21,8 @@ import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, BTN_PRIMARY, HeroBackdrop, SectionHead, CtaPanel, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Static params ────────────────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -268,6 +273,28 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
   };
 }
 
+// ─── Layout helpers ───────────────────────────────────────────────────────────
+/** Low and high of a "$95,000 - $130,000" style band, for the range chart. */
+function bounds(range: string): [number, number] | null {
+  const nums = range.match(/\$[\d,]+/g)?.map((n) => Number(n.replace(/[$,]/g, "")));
+  if (!nums || nums.length < 2) return null;
+  return [nums[0], nums[1]];
+}
+
+const BLOCK = "scroll-mt-28 border-t border-white/[0.05] pt-14";
+const PROSE = "space-y-5 text-[15px] leading-relaxed text-slate-400";
+
+const JUMP = [
+  { id: "levels", label: "Salary by level" },
+  { id: "cities", label: "Top paying cities" },
+  { id: "factors", label: "What determines pay" },
+  { id: "reading-an-offer", label: "Reading an offer", prose: true },
+  { id: "moving-an-offer", label: "What moves an offer", prose: true },
+  { id: "mistakes", label: "Mistakes to avoid", prose: true },
+  { id: "script", label: "Negotiation script" },
+  { id: "more-guides", label: "More guides" },
+];
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default async function SalaryGuideRolePage({ params }: { params: Promise<{ role: string }> }) {
   const { role } = await params;
@@ -294,8 +321,17 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
     dateModified: new Date().toISOString().split("T")[0],
   };
 
+  // Shared scale for the range chart: zero to the highest total comp figure.
+  const chart = salaryData.levels.map((l) => ({ level: l.level, base: bounds(l.baseSalary), total: bounds(l.totalComp) }));
+  const chartMax = Math.max(1, ...chart.flatMap((c) => [c.base?.[1] ?? 0, c.total?.[1] ?? 0]));
+  const barStyle = (b: [number, number] | null) =>
+    b ? { left: `${(b[0] / chartMax) * 100}%`, width: `${Math.max(1.5, ((b[1] - b[0]) / chartMax) * 100)}%` } : { display: "none" };
+
+  const jump = JUMP.filter((j) => content || !j.prose);
+  const signUp = `${APP_URL}/sign-up`;
+
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="amber" className="min-h-screen bg-[#050810]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <BreadcrumbJsonLd
         items={[
@@ -306,213 +342,294 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
       />
       <Navbar />
 
-      <main className="w-full page-main px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center flex-wrap">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <Link href="/salary-guide" className="hover:text-white transition-colors">Salary Guide</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>{display.name}</span>
-        </nav>
+      <main>
+        {/* Hero, with the two headline figures as a stat panel */}
+        <section className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
+          <HeroBackdrop />
+          <div className={`relative ${INNER}`}>
+            <nav aria-label="Breadcrumb" className="mb-8 flex animate-fade-up flex-wrap items-center gap-2 text-[12px] text-slate-500 opacity-0">
+              <Link href="/" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Home</Link>
+              <span aria-hidden="true">›</span>
+              <Link href="/salary-guide" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Salary Guide</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">{display.name}</span>
+            </nav>
 
-        {/* H1 */}
-        <div className="mb-10">
-          <span className="text-3xl">{display.icon}</span>
-          <h1 style={{ color: "#ffffff" }} className="text-4xl sm:text-5xl font-extrabold mt-3 mb-4 tracking-tight leading-tight">
-            {display.name} salary guide 2026
-          </h1>
-          <p style={{ color: "#94a3b8" }} className="text-lg leading-relaxed">
-            Real salary data for {display.name.toLowerCase()}s, base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
-          </p>
+            <div className="max-w-4xl animate-fade-up opacity-0">
+              <span aria-hidden="true" className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-3xl">
+                {display.icon}
+              </span>
+              <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.25rem]">
+                {display.name} salary guide 2026
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
+                Real salary data for {display.name.toLowerCase()}s, base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
+              </p>
+            </div>
+
+            <div className="mt-12 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-2" style={{ animationDelay: "200ms" }}>
+              <div className="relative bg-[#070b16] p-6 sm:p-8">
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-400/60 to-transparent" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Median Base Salary</p>
+                <p className="mt-3 break-words font-mono text-2xl font-semibold tabular-nums text-white sm:text-3xl xl:text-4xl">{salaryData.medianBase}</p>
+              </div>
+              <div className="relative bg-[#070b16] p-6 sm:p-8">
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/60 to-transparent" />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft">Median Total Comp</p>
+                <p className="mt-3 break-words font-mono text-2xl font-semibold tabular-nums text-white sm:text-3xl xl:text-4xl">{salaryData.medianTotal}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Guide body with a sticky jump list and CTA */}
+        <div className={`${PAD} pb-20`}>
+          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] xl:gap-20`}>
+            <div className="min-w-0 space-y-14">
+              {/* Salary by level */}
+              <section id="levels" className="scroll-mt-28 pt-2">
+                <SectionHead eyebrow="Salary bands" title={`${display.name} salary by level`} className="mb-8" />
+                <Reveal>
+                  <div className="overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16]">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b border-white/[0.07] bg-white/[0.02]">
+                          <th scope="col" className="p-4 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">Level</th>
+                          <th scope="col" className="p-4 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">Experience</th>
+                          <th scope="col" className="p-4 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">Base Salary</th>
+                          <th scope="col" className="hidden p-4 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 sm:table-cell">Total Comp</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-white/[0.05]">
+                        {salaryData.levels.map((level, i) => (
+                          <tr key={i} className="transition-colors hover:bg-white/[0.02]">
+                            <th scope="row" className="p-4 text-left font-medium text-slate-200">{level.level}</th>
+                            <td className="whitespace-nowrap p-4 font-mono text-xs tabular-nums text-slate-500">{level.yearsExp}</td>
+                            <td className="whitespace-nowrap p-4 font-mono tabular-nums text-emerald-300">{level.baseSalary}</td>
+                            <td className="hidden whitespace-nowrap p-4 font-mono tabular-nums text-accent-soft sm:table-cell">{level.totalComp}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </Reveal>
+
+                {/* Range chart: the table above drawn on one scale. Decorative, the table carries the data. */}
+                <div aria-hidden="true" className="mt-4 rounded-2xl border border-white/[0.07] bg-white/[0.015] p-5 sm:p-6">
+                  <div className="mb-5 flex flex-wrap gap-5 text-[11px] text-slate-500">
+                    <span className="inline-flex items-center gap-2"><span className="h-1.5 w-4 rounded-full bg-emerald-400/80" />Base Salary</span>
+                    <span className="inline-flex items-center gap-2"><span className="h-1.5 w-4 rounded-full bg-accent/80" />Total Comp</span>
+                  </div>
+                  <RevealGroup className="space-y-4">
+                    {chart.map((c, i) => (
+                      <RevealItem key={i} className="grid items-center gap-2 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-5">
+                        <span className="truncate text-xs text-slate-400">{c.level}</span>
+                        <div className="space-y-1.5">
+                          <div className="relative h-1.5 rounded-full bg-white/[0.04]">
+                            <span className="absolute inset-y-0 rounded-full bg-gradient-to-r from-emerald-500/70 to-emerald-300/90" style={barStyle(c.base)} />
+                          </div>
+                          <div className="relative h-1.5 rounded-full bg-white/[0.04]">
+                            <span className="absolute inset-y-0 rounded-full bg-gradient-to-r from-accent-deep/70 to-accent-2/90" style={barStyle(c.total)} />
+                          </div>
+                        </div>
+                      </RevealItem>
+                    ))}
+                  </RevealGroup>
+                </div>
+
+                <p className="mt-8 text-xs text-slate-500">Equity notes and total comp details below each level.</p>
+                <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2">
+                  {salaryData.levels.map((level, i) => (
+                    <RevealItem key={i} className="bg-[#070b16] p-5">
+                      <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
+                      <p className="mt-2 text-sm leading-relaxed">
+                        <span className="font-semibold text-accent-soft">{level.level}:</span>{" "}
+                        <span className="text-slate-400">{level.equityNote}</span>
+                      </p>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+
+              {/* Top paying cities */}
+              <section id="cities" className={BLOCK}>
+                <SectionHead eyebrow="Location" title={`Top paying cities for ${display.name.toLowerCase()}s`} className="mb-8" />
+                <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-5">
+                  {salaryData.topPayingCities.map((city, i) => (
+                    <RevealItem as="li" key={i} className="flex items-center gap-4 bg-[#070b16] p-5 xl:flex-col xl:items-start xl:gap-6">
+                      <span className="font-mono text-sm tabular-nums text-accent-soft">{pad2(i + 1)}</span>
+                      <span className="text-sm font-medium text-slate-200">{city}</span>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+
+              {/* What factors affect salary */}
+              <section id="factors" className={BLOCK}>
+                <SectionHead eyebrow="Pay drivers" title={`What determines your ${display.name.toLowerCase()} salary`} className="mb-8" />
+                <RevealGroup as="ul" className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+                  {salaryData.salaryFactors.map((factor, i) => (
+                    <RevealItem as="li" key={i} className="flex items-start gap-4 py-4">
+                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-accent/20 bg-accent-deep/[0.08] text-sm text-accent-soft">
+                        <Chevron />
+                      </span>
+                      <p className="text-[15px] leading-relaxed text-slate-400">{factor}</p>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+
+              {/*
+                Role-specific prose.
+
+                These salary pages were the thinnest and most duplicated section of
+                the site: roughly 540 to 600 words at 62% average overlap against a
+                24% site-chrome baseline, and Search Console reported them as
+                crawled but not indexed. Tables and bullet lists carry very little
+                unique text, so the sections below add substance drawn from the
+                role's own keyword set, positioning note and category profile.
+              */}
+              {content && (
+                <>
+                  <section id="reading-an-offer" className={BLOCK}>
+                    <SectionHead eyebrow="The offer" title={<>How to read a {display.name.toLowerCase()} offer</>} className="mb-6" />
+                    <Reveal className={`max-w-3xl ${PROSE}`}>
+                      <p>
+                        {content.note.positioning} That shapes the offer as much as it shapes the job.
+                        The headline base salary is the number most candidates fixate on, but for{" "}
+                        {display.name.toLowerCase()} roles the total package is where the real variation
+                        sits: {content.note.payNote.charAt(0).toLowerCase() + content.note.payNote.slice(1)}
+                      </p>
+                      <p>
+                        A {display.name.toLowerCase()} package is typically {content.offerShape}. That
+                        structure is why comparing two offers on base alone is unreliable in this field,
+                        and why the components below are worth asking about explicitly before you accept.
+                      </p>
+                      <p>
+                        Compare offers at the same level rather than by title. Titles are inconsistent
+                        between employers, and a senior title at a smaller organisation frequently maps
+                        to a mid-level band at a larger one. Ask which level the offer sits at and what
+                        the range for that level is; many employers will simply tell you.
+                      </p>
+                    </Reveal>
+                  </section>
+
+                  <section id="moving-an-offer" className={BLOCK}>
+                    <SectionHead eyebrow="Leverage" title={<>What actually moves a {display.name.toLowerCase()} offer</>} className="mb-6" />
+                    <Reveal className={`max-w-3xl ${PROSE}`}>
+                      <p>
+                        Employers hiring for this role are assessing {content.note.screened}. The
+                        candidates who land at the top of the {content.salaryRange} range are not
+                        necessarily the ones with the most years behind them, they are the ones who can
+                        evidence that specific thing concretely and early in the process.
+                      </p>
+                      <p>
+                        Depth in the areas this field actually pays for is the most reliable lever you
+                        control. For {display.name.toLowerCase()} roles those cluster around{" "}
+                        {content.keywords.slice(0, 5).join(", ")}. Being genuinely strong in two or three
+                        of them, with results you can quantify, is worth considerably more at the offer
+                        stage than passing familiarity with all of them.
+                      </p>
+                      <p>
+                        Employer choice matters at least as much as skill. {display.name}s concentrate at
+                        organisations like {content.topCompanies.slice(0, 4).join(", ")}, and the spread
+                        between the top and bottom of the band above is driven more by which employer you
+                        join than by any single thing you do in the interview.
+                      </p>
+                    </Reveal>
+                  </section>
+
+                  <section id="mistakes" className={BLOCK}>
+                    <SectionHead eyebrow="Avoid" title={<>Negotiation mistakes that cost {display.name.toLowerCase()}s money</>} className="mb-8" />
+                    <RevealGroup as="ul" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07]">
+                      {[
+                        ...content.negotiationMistakes,
+                        `Giving a number first. If asked for expectations before an offer exists, redirect once and say you would like to understand the full scope first. If a form forces a figure, anchor to the upper half of ${content.salaryRange} and note that it is negotiable.`,
+                      ].map((m, i) => (
+                        <RevealItem as="li" key={i} className="flex items-start gap-4 bg-[#070b16] p-5">
+                          <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-red-500/20 bg-red-500/[0.08] text-xs font-bold text-red-400">✕</span>
+                          <p className="text-[15px] leading-relaxed text-slate-400">{m}</p>
+                        </RevealItem>
+                      ))}
+                    </RevealGroup>
+                  </section>
+                </>
+              )}
+
+              {/* Negotiation script */}
+              <section id="script" className={BLOCK}>
+                <SectionHead
+                  eyebrow="Script"
+                  title="Negotiation script that works"
+                  subtitle={<>Use this exact script when you receive a {display.name.toLowerCase()} offer. Most hiring managers expect negotiation and have 5-15% room above the first offer.</>}
+                  className="mb-8"
+                />
+                <Reveal>
+                  <div className="relative overflow-hidden rounded-2xl border border-accent/15 bg-accent-deep/[0.03]">
+                    <span aria-hidden="true" className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-accent-soft/70 via-accent/30 to-transparent" />
+                    <div className="p-6 sm:p-8">
+                      <p className="max-w-3xl font-mono text-sm leading-[1.85] text-accent-soft/90">{salaryData.negotiationScript}</p>
+                    </div>
+                    <p className="border-t border-accent/10 px-6 py-4 text-xs text-slate-500 sm:px-8">Replace [$X] with your target number. Research Levels.fyi, Glassdoor, and LinkedIn Salary before the conversation.</p>
+                  </div>
+                </Reveal>
+              </section>
+
+              {/* Sources */}
+              <p className="max-w-3xl border-t border-white/[0.05] pt-6 text-xs leading-relaxed text-slate-600">{salaryData.sources}</p>
+
+              {/* Sibling guides for this role, plus the question predictor */}
+              <div id="more-guides" className="scroll-mt-28">
+                <RoleGuideLinks role={role} roleName={display.name} current="salary-guide" className="mb-10" />
+              </div>
+            </div>
+
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 space-y-8">
+                <nav aria-label="On this page">
+                  <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
+                  <ol className="border-l border-white/[0.07]">
+                    {jump.map((j, i) => (
+                      <li key={j.id}>
+                        <a
+                          href={`#${j.id}`}
+                          className="-ml-px flex items-center gap-3 border-l border-transparent py-2 pl-4 text-sm text-slate-400 transition-colors hover:border-accent hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
+                        >
+                          <span className="font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
+                          {j.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+
+                <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
+                  <p className="text-lg font-semibold leading-snug text-white">Land the interview first</p>
+                  <a href={signUp} className={`${BTN_PRIMARY} mt-5 w-full px-5 py-3`}>
+                    Start preparing free <Chevron />
+                  </a>
+                  <p className="mt-3 text-center text-[11px] text-slate-500">No credit card required · Free plan available</p>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
-
-        {/* Summary cards */}
-        <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="p-5 rounded-2xl border text-center" style={{ background: "rgba(16,185,129,0.05)", borderColor: "rgba(16,185,129,0.2)" }}>
-            <p style={{ color: "#6ee7b7" }} className="text-xs font-semibold uppercase tracking-wider mb-1">Median Base Salary</p>
-            <p style={{ color: "#ffffff" }} className="text-2xl font-extrabold">{salaryData.medianBase}</p>
-          </div>
-          <div className="p-5 rounded-2xl border text-center" style={{ background: "rgba(99,102,241,0.05)", borderColor: "rgba(99,102,241,0.2)" }}>
-            <p style={{ color: "#a5b4fc" }} className="text-xs font-semibold uppercase tracking-wider mb-1">Median Total Comp</p>
-            <p style={{ color: "#ffffff" }} className="text-2xl font-extrabold">{salaryData.medianTotal}</p>
-          </div>
-        </div>
-
-        {/* Salary by level table */}
-        <section className="mb-10">
-          <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">{display.name} salary by level</h2>
-          <div className="overflow-x-auto rounded-2xl border" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ background: "rgba(255,255,255,0.04)", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-                  <th style={{ color: "#94a3b8" }} className="text-left p-3 font-semibold text-xs uppercase tracking-wider">Level</th>
-                  <th style={{ color: "#94a3b8" }} className="text-left p-3 font-semibold text-xs uppercase tracking-wider">Experience</th>
-                  <th style={{ color: "#94a3b8" }} className="text-left p-3 font-semibold text-xs uppercase tracking-wider">Base Salary</th>
-                  <th style={{ color: "#94a3b8" }} className="text-left p-3 font-semibold text-xs uppercase tracking-wider hidden sm:table-cell">Total Comp</th>
-                </tr>
-              </thead>
-              <tbody>
-                {salaryData.levels.map((level, i) => (
-                  <tr key={i} style={{ borderBottom: i < salaryData.levels.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none", background: i % 2 === 0 ? "rgba(255,255,255,0.01)" : "transparent" }}>
-                    <td style={{ color: "#e2e8f0" }} className="p-3 font-medium">{level.level}</td>
-                    <td style={{ color: "#64748b" }} className="p-3 text-xs">{level.yearsExp}</td>
-                    <td style={{ color: "#6ee7b7" }} className="p-3 font-medium">{level.baseSalary}</td>
-                    <td style={{ color: "#a5b4fc" }} className="p-3 font-medium hidden sm:table-cell">{level.totalComp}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p style={{ color: "#475569" }} className="text-xs mt-3">Equity notes and total comp details below each level.</p>
-          <div className="mt-4 space-y-2">
-            {salaryData.levels.map((level, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <span style={{ color: "#a5b4fc" }} className="text-xs font-bold mt-0.5 min-w-fit">{level.level}:</span>
-                <p style={{ color: "#64748b" }} className="text-xs">{level.equityNote}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Top paying cities */}
-        <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-4">Top paying cities for {display.name.toLowerCase()}s</h2>
-          <ol className="space-y-2">
-            {salaryData.topPayingCities.map((city, i) => (
-              <li key={i} className="flex items-center gap-3">
-                <span style={{ color: "#a5b4fc" }} className="text-sm font-bold w-5">{i + 1}.</span>
-                <span style={{ color: "#e2e8f0" }} className="text-sm">{city}</span>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        {/* What factors affect salary */}
-        <section className="mb-10">
-          <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-5">What determines your {display.name.toLowerCase()} salary</h2>
-          <ul className="space-y-3">
-            {salaryData.salaryFactors.map((factor, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <span style={{ color: "#6ee7b7" }} className="text-sm font-bold mt-0.5 flex-shrink-0"><Chevron /></span>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">{factor}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/*
-          Role-specific prose.
-
-          These salary pages were the thinnest and most duplicated section of
-          the site: roughly 540 to 600 words at 62% average overlap against a
-          24% site-chrome baseline, and Search Console reported them as
-          crawled but not indexed. Tables and bullet lists carry very little
-          unique text, so the sections below add substance drawn from the
-          role's own keyword set, positioning note and category profile.
-        */}
-        {content && (
-          <>
-            <section className="mb-10">
-              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
-                How to read a {display.name.toLowerCase()} offer
-              </h2>
-              <div className="space-y-4">
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  {content.note.positioning} That shapes the offer as much as it shapes the job.
-                  The headline base salary is the number most candidates fixate on, but for{" "}
-                  {display.name.toLowerCase()} roles the total package is where the real variation
-                  sits: {content.note.payNote.charAt(0).toLowerCase() + content.note.payNote.slice(1)}
-                </p>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  A {display.name.toLowerCase()} package is typically {content.offerShape}. That
-                  structure is why comparing two offers on base alone is unreliable in this field,
-                  and why the components below are worth asking about explicitly before you accept.
-                </p>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  Compare offers at the same level rather than by title. Titles are inconsistent
-                  between employers, and a senior title at a smaller organisation frequently maps
-                  to a mid-level band at a larger one. Ask which level the offer sits at and what
-                  the range for that level is; many employers will simply tell you.
-                </p>
-              </div>
-            </section>
-
-            <section className="mb-10">
-              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
-                What actually moves a {display.name.toLowerCase()} offer
-              </h2>
-              <div className="space-y-4">
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  Employers hiring for this role are assessing {content.note.screened}. The
-                  candidates who land at the top of the {content.salaryRange} range are not
-                  necessarily the ones with the most years behind them, they are the ones who can
-                  evidence that specific thing concretely and early in the process.
-                </p>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  Depth in the areas this field actually pays for is the most reliable lever you
-                  control. For {display.name.toLowerCase()} roles those cluster around{" "}
-                  {content.keywords.slice(0, 5).join(", ")}. Being genuinely strong in two or three
-                  of them, with results you can quantify, is worth considerably more at the offer
-                  stage than passing familiarity with all of them.
-                </p>
-                <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">
-                  Employer choice matters at least as much as skill. {display.name}s concentrate at
-                  organisations like {content.topCompanies.slice(0, 4).join(", ")}, and the spread
-                  between the top and bottom of the band above is driven more by which employer you
-                  join than by any single thing you do in the interview.
-                </p>
-              </div>
-            </section>
-
-            <section className="mb-10">
-              <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-4">
-                Negotiation mistakes that cost {display.name.toLowerCase()}s money
-              </h2>
-              <ul className="space-y-3">
-                {[
-                  ...content.negotiationMistakes,
-                  `Giving a number first. If asked for expectations before an offer exists, redirect once and say you would like to understand the full scope first. If a form forces a figure, anchor to the upper half of ${content.salaryRange} and note that it is negotiable.`,
-                ].map((m, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span style={{ color: "#f87171" }} className="text-sm font-bold mt-0.5 flex-shrink-0">✕</span>
-                    <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">{m}</p>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </>
-        )}
-
-        {/* Negotiation script */}
-        <section className="mb-10 p-5 rounded-2xl border" style={{ background: "rgba(245,158,11,0.04)", borderColor: "rgba(245,158,11,0.15)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-lg font-bold mb-3">Negotiation script that works</h2>
-          <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
-            Use this exact script when you receive a {display.name.toLowerCase()} offer. Most hiring managers expect negotiation and have 5-15% room above the first offer.
-          </p>
-          <div className="p-4 rounded-xl font-mono text-sm leading-relaxed" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", color: "#fcd34d" }}>
-            {salaryData.negotiationScript}
-          </div>
-          <p style={{ color: "#64748b" }} className="text-xs mt-3">Replace [$X] with your target number. Research Levels.fyi, Glassdoor, and LinkedIn Salary before the conversation.</p>
-        </section>
-
-        {/* Sources */}
-        <p style={{ color: "#374151" }} className="text-xs mb-10">{salaryData.sources}</p>
-
-        {/* Sibling guides for this role, plus the question predictor */}
-        <RoleGuideLinks role={role} roleName={display.name} current="salary-guide" className="mb-10" />
 
         {/* CTA */}
-        <div className="p-8 text-center rounded-2xl border" style={{ background: "rgba(16,185,129,0.05)", borderColor: "rgba(16,185,129,0.2)" }}>
-          <h2 style={{ color: "#ffffff" }} className="text-xl font-bold mb-2">Land the interview first</h2>
-          <p style={{ color: "#94a3b8" }} className="text-sm mb-6 max-w-sm mx-auto">
-            You can't negotiate a salary you haven't been offered. Get your resume past ATS and practice your interview with Preciprocal.
-          </p>
-          <a href={`${APP_URL}/sign-up`} className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity">
-            Start preparing free <Chevron />
-          </a>
-          <p style={{ color: "#475569" }} className="text-xs mt-3">No credit card required · Free plan available</p>
-        </div>
+        <section className={`${PAD} pb-24 pt-4`}>
+          <Reveal>
+            <CtaPanel
+              title="Land the interview first"
+              body={<p>You can&apos;t negotiate a salary you haven&apos;t been offered. Get your resume past ATS and practice your interview with Preciprocal.</p>}
+              action={
+                <a href={signUp} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                  Start preparing free <Chevron />
+                </a>
+              }
+              note="No credit card required · Free plan available"
+            />
+          </Reveal>
+        </section>
       </main>
 
       <Footer />

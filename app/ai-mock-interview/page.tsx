@@ -18,6 +18,9 @@
  *   Internal links → role pages, company pages, /free-ats-checker
  *   CTAs → app.preciprocal.com sign-up (free tier first)
  *
+ * Layout: PageHero with a voice-interview illustration and the stats strip,
+ * then the sections on the shared page kit (components/page), accent rose.
+ *
  * File path: app/ai-mock-interview/page.tsx
  */
 
@@ -28,6 +31,24 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import {
+  PAD,
+  INNER,
+  SECTION,
+  CARD,
+  BTN_PRIMARY,
+  BTN_SECONDARY,
+  ACCENT_TEXT,
+  Eyebrow,
+  SectionHead,
+  PageHero,
+  CtaPanel,
+  FaqList,
+  HoverRule,
+  pad2,
+} from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import MockInterviewVisual from "@/components/page/visuals/MockInterviewVisual";
 
 export const metadata: Metadata = {
   title: "AI Mock Interviews: Free Practice + Feedback",
@@ -153,7 +174,7 @@ export default function AIMockInterviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="rose" className="min-h-screen bg-[#050810]">
       {/* Structured Data */}
       <BreadcrumbJsonLd
         items={[
@@ -168,300 +189,263 @@ export default function AIMockInterviewPage() {
 
       <Navbar />
 
-      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center" style={{ color: "#64748b" }}>
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>AI Mock Interview</span>
-        </nav>
-
+      <main>
         {/* ── H1 + Intro ──────────────────────────────────────────────────── */}
-        <h1
-          className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight tracking-tight"
-          style={{ color: "#ffffff" }}
-        >
-          AI Mock Interview Practice:<br />
-          <span style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-            Realistic. Instant. Free to Start.
-          </span>
-        </h1>
-
-        <p className="text-lg mb-4 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          Most candidates lose offers in the interview room, not on paper. Preciprocal's AI mock
-          interview platform puts you in front of a realistic 3-agent panel for any role or company,
-          scores your answers across 5 dimensions, and tells you exactly what to fix before the
-          real thing.
-        </p>
-        <p className="text-lg mb-10 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          Built specifically for <strong style={{ color: "#e2e8f0" }}>students and new grads</strong>{" "}
-          entering the job market, not generic career coaching for people who've done it before.
-        </p>
-
-        {/* ── Primary CTA ─────────────────────────────────────────────────── */}
-        <div className="flex flex-wrap gap-4 mb-16">
-          <Link
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white text-base transition-all hover:opacity-90 hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
-          >
-            Start your free mock interview <Chevron />
-          </Link>
-          <Link
-            href={`${APP_URL}/sign-up?plan=pro`}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-base border transition-colors"
-            style={{ color: "#94a3b8", borderColor: "#1e293b" }}
-          >
-            View all plans
-          </Link>
-        </div>
-
-        {/* ── Social proof strip ──────────────────────────────────────────── */}
-        <div
-          className="flex flex-wrap gap-6 mb-16 py-5 px-6 rounded-xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          {[
-            { stat: "30+", label: "interviews / month on Pro" },
-            { stat: "5", label: "scoring dimensions per session" },
-            { stat: "40+", label: "roles supported" },
-            { stat: "20+", label: "company-specific prep packs" },
-          ].map(({ stat, label }) => (
-            <div key={stat} className="flex flex-col">
-              <span className="text-2xl font-extrabold" style={{ color: "#6366f1" }}>{stat}</span>
-              <span className="text-sm" style={{ color: "#64748b" }}>{label}</span>
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">AI Mock Interview</span>
+            </nav>
+          }
+          title="AI Mock Interview Practice: "
+          accent="Realistic. Instant. Free to Start."
+          subhead={
+            <>
+              <p>
+                Most candidates lose offers in the interview room, not on paper. Preciprocal&apos;s AI mock
+                interview platform puts you in front of a realistic 3-agent panel for any role or company,
+                scores your answers across 5 dimensions, and tells you exactly what to fix before the
+                real thing.
+              </p>
+              <p className="mt-4">
+                Built specifically for <strong className="font-semibold text-slate-200">students and new grads</strong>{" "}
+                entering the job market, not generic career coaching for people who&apos;ve done it before.
+              </p>
+            </>
+          }
+          aside={
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                Start your free mock interview <Chevron />
+              </Link>
+              <Link href={`${APP_URL}/sign-up?plan=pro`} className={BTN_SECONDARY}>
+                View all plans
+              </Link>
             </div>
-          ))}
-        </div>
-
-        {/* ── How It Works ────────────────────────────────────────────────── */}
-        <section aria-label="How AI mock interviews work" className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            How AI mock interview practice works
-          </h2>
-          <div className="space-y-8">
-            {STEPS.map((step) => (
-              <div key={step.number} className="flex gap-6 items-start">
-                <div
-                  className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-extrabold text-sm"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff" }}
-                >
-                  {step.number}
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1" style={{ color: "#e2e8f0" }}>
-                    {step.title}
-                  </h3>
-                  <p className="leading-relaxed" style={{ color: "#94a3b8" }}>
-                    {step.description}
-                  </p>
-                </div>
+          }
+          visual={<MockInterviewVisual />}
+        >
+          {/* ── Social proof strip ──────────────────────────────────────────── */}
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4">
+            {[
+              { stat: "30+", label: "interviews / month on Pro" },
+              { stat: "5", label: "scoring dimensions per session" },
+              { stat: "40+", label: "roles supported" },
+              { stat: "20+", label: "company-specific prep packs" },
+            ].map(({ stat, label }) => (
+              <div key={stat} className="flex flex-col-reverse bg-[#070b16] px-5 py-5 sm:px-6">
+                <dt className="mt-1 text-[13px] text-slate-400">{label}</dt>
+                <dd className={`text-2xl font-extrabold tracking-tight sm:text-3xl ${ACCENT_TEXT}`}>{stat}</dd>
               </div>
             ))}
+          </dl>
+        </PageHero>
+
+        {/* ── How It Works ────────────────────────────────────────────────── */}
+        <section aria-label="How AI mock interviews work" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="How it works" title="How AI mock interview practice works" />
+            </Reveal>
+            <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-3">
+              {STEPS.map((step) => (
+                <RevealItem as="li" key={step.number} className="relative bg-[#070b16] p-7 sm:p-8">
+                  <span className={`font-mono text-4xl font-bold tracking-tight ${ACCENT_TEXT}`}>{step.number}</span>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.description}</p>
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
         </section>
 
         {/* ── Interview Types ─────────────────────────────────────────────── */}
-        <section aria-label="Interview types you can practice" className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: "#ffffff" }}>
-            Practice every type of interview
-          </h2>
-          <p className="mb-8" style={{ color: "#94a3b8" }}>
-            Not just technical interviews. The AI adapts to whichever format your target company uses.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {INTERVIEW_TYPES.map((item) => (
-              <Link
-                key={item.type}
-                href={item.href}
-                className="block p-5 rounded-xl border transition-colors hover:border-indigo-500/50"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>
-                  {item.type}
-                </h3>
-                <p className="text-sm mb-3 leading-relaxed" style={{ color: "#64748b" }}>
-                  {item.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {item.roles.map((role) => (
-                    <span
-                      key={role}
-                      className="text-xs px-2 py-0.5 rounded-full"
-                      style={{ background: "#1e293b", color: "#94a3b8" }}
-                    >
-                      {role}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            ))}
+        <section aria-label="Interview types you can practice" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead
+                eyebrow="Formats"
+                title="Practice every type of interview"
+                subtitle="Not just technical interviews. The AI adapts to whichever format your target company uses."
+              />
+            </Reveal>
+            <RevealGroup className="grid gap-4 sm:grid-cols-2">
+              {INTERVIEW_TYPES.map((item) => (
+                <RevealItem key={item.type}>
+                  <SpotlightCard className={`${CARD} h-full transition-colors hover:border-accent/30`}>
+                    <Link href={item.href} className="group relative flex h-full flex-col p-6 sm:p-7">
+                      <h3 className="flex items-center justify-between gap-3 font-semibold text-white transition-colors group-hover:text-accent-soft">
+                        {item.type}
+                        <Chevron className="text-slate-500 group-hover:text-accent" />
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {item.roles.map((role) => (
+                          <span key={role} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-xs text-slate-400">
+                            {role}
+                          </span>
+                        ))}
+                      </div>
+                      <HoverRule />
+                    </Link>
+                  </SpotlightCard>
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
         </section>
 
         {/* ── Who It's For ────────────────────────────────────────────────── */}
-        <section aria-label="Who AI mock interviews are for" className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4" style={{ color: "#ffffff" }}>
-            Built specifically for students and new grads
-          </h2>
-          <p className="leading-relaxed mb-6" style={{ color: "#94a3b8" }}>
-            Most interview prep tools are built for mid-career professionals switching companies. They
-            assume you have 5 years of STAR stories and prior offer negotiation experience. Preciprocal
-            is built for the version of you that's entering the market for the first time.
-          </p>
-          <div className="grid sm:grid-cols-3 gap-4">
-            {[
-              {
-                title: "Computer Science students",
-                body: "Technical interviews, system design, and LeetCode-adjacent questions, without pretending you have 3 years of production experience.",
-              },
-              {
-                title: "Business & finance students",
-                body: "Case interviews, behavioural rounds, and finance technicals for consulting, IB, and corporate roles.",
-              },
-              {
-                title: "Career switchers breaking into tech",
-                body: "Transferable skills framing, gap-bridging stories, and how to answer 'why tech, why now?' without sounding desperate.",
-              },
-            ].map(({ title, body }) => (
-              <div
-                key={title}
-                className="p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>{title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#64748b" }}>{body}</p>
-              </div>
-            ))}
+        <section aria-label="Who AI mock interviews are for" className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16`}>
+            <Reveal>
+              <SectionHead
+                eyebrow="Who it's for"
+                title="Built specifically for students and new grads"
+                subtitle="Most interview prep tools are built for mid-career professionals switching companies. They assume you have 5 years of STAR stories and prior offer negotiation experience. Preciprocal is built for the version of you that's entering the market for the first time."
+                className="lg:sticky lg:top-28"
+              />
+            </Reveal>
+            <RevealGroup className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+              {[
+                {
+                  title: "Computer Science students",
+                  body: "Technical interviews, system design, and LeetCode-adjacent questions, without pretending you have 3 years of production experience.",
+                },
+                {
+                  title: "Business & finance students",
+                  body: "Case interviews, behavioural rounds, and finance technicals for consulting, IB, and corporate roles.",
+                },
+                {
+                  title: "Career switchers breaking into tech",
+                  body: "Transferable skills framing, gap-bridging stories, and how to answer 'why tech, why now?' without sounding desperate.",
+                },
+              ].map(({ title, body }, i) => (
+                <RevealItem key={title} className="grid gap-2 py-7 sm:grid-cols-[56px_minmax(0,1fr)]">
+                  <span className="font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
+                  <div>
+                    <h3 className="font-semibold text-white">{title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+                  </div>
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
         </section>
 
         {/* ── Company-specific prep cross-link ────────────────────────────── */}
-        <section
-          aria-label="Company-specific interview practice"
-          className="mb-16 p-6 rounded-xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-xl font-bold mb-2" style={{ color: "#ffffff" }}>
-            Practice for a specific company
-          </h2>
-          <p className="text-sm mb-5" style={{ color: "#94a3b8" }}>
-            Select a target company and the AI tailors its questions to their known format, values, and difficulty.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {["Google","Amazon","Meta","Microsoft","Apple","Stripe","Airbnb","Netflix","Uber","Spotify"].map((company) => (
-              <Link
-                key={company}
-                href={`/interview-prep/${company.toLowerCase()}`}
-                className="text-sm px-3 py-1.5 rounded-lg border transition-colors hover:border-indigo-500/50 hover:text-white"
-                style={{ borderColor: "#1e293b", color: "#94a3b8" }}
+        <section aria-label="Company-specific interview practice" className={`${SECTION} ${PAD}`}>
+          <Reveal className={`${INNER} ${CARD} p-7 sm:p-9`}>
+            <div className="grid gap-6 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center lg:gap-12">
+              <div>
+                <Eyebrow>By company</Eyebrow>
+                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">Practice for a specific company</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  Select a target company and the AI tailors its questions to their known format, values, and difficulty.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Google","Amazon","Meta","Microsoft","Apple","Stripe","Airbnb","Netflix","Uber","Spotify"].map((company) => (
+                  <Link
+                    key={company}
+                    href={`/interview-prep/${company.toLowerCase()}`}
+                    className="inline-flex min-h-[40px] items-center rounded-lg border border-white/[0.08] bg-white/[0.02] px-3.5 text-sm text-slate-300 transition-colors hover:border-accent/40 hover:text-white"
+                  >
+                    {company}
+                  </Link>
+                ))}
+                <Link
+                  href="/interview-prep"
+                  className="group inline-flex min-h-[40px] items-center gap-1 rounded-lg border border-accent/30 bg-accent/[0.06] px-3.5 text-sm font-medium text-accent-soft transition-colors hover:border-accent/50 hover:text-white"
+                >
+                  All 20+ companies <Chevron />
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </section>
+
+        <div className={`${PAD} pb-20`}>
+          <RevealGroup className={`${INNER} grid gap-4 lg:grid-cols-2`}>
+            {/* ── Free taste of the product: no sign-up ───────────────────────── */}
+            <RevealItem className="h-full">
+              <section
+                aria-label="Free interview question predictor"
+                className="relative h-full overflow-hidden rounded-2xl border border-accent/25 bg-accent/[0.05] p-7 sm:p-8"
               >
-                {company}
-              </Link>
-            ))}
-            <Link
-              href="/interview-prep"
-              className="text-sm px-3 py-1.5 rounded-lg border transition-colors hover:border-indigo-500/50"
-              style={{ borderColor: "#1e293b", color: "#6366f1" }}
-            >
-              All 20+ companies <Chevron />
-            </Link>
-          </div>
-        </section>
+                <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+                <Eyebrow>No sign-up</Eyebrow>
+                <h2 className="text-xl font-semibold tracking-tight text-white">Try it first, no account needed</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  Paste a job description to get the 5 questions you are most likely to be asked, then say your answer out
+                  loud and get your pace, filler words and a score out of 10.
+                </p>
+                <Link
+                  href="/interview-question-predictor"
+                  className="group mt-5 inline-flex min-h-[40px] items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white"
+                >
+                  Open the free interview question predictor <Chevron />
+                </Link>
+              </section>
+            </RevealItem>
 
-        {/* ── Free taste of the product: no sign-up ───────────────────────── */}
-        <section
-          aria-label="Free interview question predictor"
-          className="mb-8 p-6 rounded-xl border"
-          style={{ borderColor: "rgba(99,102,241,0.3)", background: "rgba(99,102,241,0.06)" }}
-        >
-          <h2 className="text-xl font-bold mb-2" style={{ color: "#ffffff" }}>
-            Try it first, no account needed
-          </h2>
-          <p className="text-sm mb-4" style={{ color: "#94a3b8" }}>
-            Paste a job description to get the 5 questions you are most likely to be asked, then say your answer out
-            loud and get your pace, filler words and a score out of 10.
-          </p>
-          <Link
-            href="/interview-question-predictor"
-            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
-            style={{ color: "#818cf8" }}
-          >
-            Open the free interview question predictor <Chevron />
-          </Link>
-        </section>
-
-        {/* ── Complement with ATS Checker ─────────────────────────────────── */}
-        <section
-          aria-label="Pair with ATS resume checker"
-          className="mb-16 p-6 rounded-xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-xl font-bold mb-2" style={{ color: "#ffffff" }}>
-            Don't forget your resume
-          </h2>
-          <p className="text-sm mb-4" style={{ color: "#94a3b8" }}>
-            A great interview performance means nothing if your resume never makes it past the ATS filter.
-            Check your score before you apply.
-          </p>
-          <Link
-            href="/free-ats-checker"
-            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
-            style={{ color: "#6366f1" }}
-          >
-            Run your free ATS resume check <Chevron />
-          </Link>
-        </section>
+            {/* ── Complement with ATS Checker ─────────────────────────────────── */}
+            <RevealItem className="h-full">
+              <section aria-label="Pair with ATS resume checker" className={`${CARD} h-full p-7 sm:p-8`}>
+                <Eyebrow>Before you apply</Eyebrow>
+                <h2 className="text-xl font-semibold tracking-tight text-white">Don&apos;t forget your resume</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  A great interview performance means nothing if your resume never makes it past the ATS filter.
+                  Check your score before you apply.
+                </p>
+                <Link
+                  href="/free-ats-checker"
+                  className="group mt-5 inline-flex min-h-[40px] items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white"
+                >
+                  Run your free ATS resume check <Chevron />
+                </Link>
+              </section>
+            </RevealItem>
+          </RevealGroup>
+        </div>
 
         {/* ── FAQ ─────────────────────────────────────────────────────────── */}
-        <section aria-label="AI mock interview FAQ" className="mb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            Frequently asked questions
-          </h2>
-          <div className="space-y-6">
-            {FAQS.map(({ q, a }) => (
-              <div
-                key={q}
-                className="p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>{q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{a}</p>
-              </div>
-            ))}
+        <section aria-label="AI mock interview FAQ" className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
+            <Reveal>
+              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
+            </Reveal>
+            <Reveal>
+              <FaqList items={FAQS} />
+            </Reveal>
           </div>
         </section>
 
         {/* ── Final CTA ───────────────────────────────────────────────────── */}
-        <section
-          aria-label="Get started with AI mock interviews"
-          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            Start practicing today. It is free.
-          </h2>
-          <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            1 mock interview per month on the free plan, no credit card required. Students with a .edu
-            email get 1 month of Pro free.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
-            >
-              Start free <Chevron />
-            </Link>
-            <Link
-              href="/#pricing"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border transition-colors hover:border-indigo-500/50"
-              style={{ color: "#94a3b8", borderColor: "#1e293b" }}
-            >
-              See all plans
-            </Link>
-          </div>
+        <section aria-label="Get started with AI mock interviews" className={`${PAD} pb-24`}>
+          <Reveal>
+            <CtaPanel
+              title="Start practicing today. It is free."
+              body={
+                <p>
+                  1 mock interview per month on the free plan, no credit card required. Students with a .edu
+                  email get 1 month of Pro free.
+                </p>
+              }
+              action={
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                    Start free <Chevron />
+                  </Link>
+                  <Link href="/#pricing" className={BTN_SECONDARY}>
+                    See all plans
+                  </Link>
+                </div>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

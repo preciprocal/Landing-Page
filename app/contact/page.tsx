@@ -1,20 +1,19 @@
-"use client";
-
 /**
  * app/contact/page.tsx
  * Self-contained Contact page. No separate component needed.
+ *
+ * Layout (accent sky): PageHero with an email thread illustration, then the
+ * inbox card and what to expect on the left, and the pre-filled email cards
+ * on the right, each one a large tap target that opens a mailto link.
  */
 
 import { Mail, MessageSquare, Bug, CreditCard, Lightbulb, Clock } from "lucide-react";
-import {
-  RevealOnScroll,
-  StaggerChildren,
-  StaggerItem,
-  FloatingDots,
-  SpotlightCard,
-} from "@/components/LandingAnimations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, BTN_PRIMARY, Eyebrow, PageHero, HoverRule } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import ContactVisual from "@/components/page/visuals/ContactVisual";
 
 const CONTACT_TYPES = [
   {
@@ -23,8 +22,6 @@ const CONTACT_TYPES = [
     description: "Something broken? Tell us exactly what happened and we'll fix it fast.",
     email: "support@preciprocal.com",
     subject: "Bug Report: ",
-    color: "text-red-400",
-    bg: "bg-red-500/10",
   },
   {
     icon: CreditCard,
@@ -32,8 +29,6 @@ const CONTACT_TYPES = [
     description: "Charge you didn't recognize, cancellation help, or refund request.",
     email: "support@preciprocal.com",
     subject: "Billing: ",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
   },
   {
     icon: Lightbulb,
@@ -41,8 +36,6 @@ const CONTACT_TYPES = [
     description: "Have an idea that would make Preciprocal better? We genuinely want to hear it.",
     email: "support@preciprocal.com",
     subject: "Feature Idea: ",
-    color: "text-yellow-400",
-    bg: "bg-yellow-500/10",
   },
   {
     icon: MessageSquare,
@@ -50,131 +43,126 @@ const CONTACT_TYPES = [
     description: "Something you love, something you hate, or just want to share your experience.",
     email: "support@preciprocal.com",
     subject: "Feedback: ",
-    color: "text-indigo-400",
-    bg: "bg-indigo-500/10",
   },
+];
+
+const EXPECTATIONS = [
+  { label: "Weekday emails", value: "Within 24 hours" },
+  { label: "Weekend / holiday emails", value: "First weekday reply" },
+  { label: "Billing / refund requests", value: "Same day when possible" },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="sky" className="min-h-screen bg-[#050810]">
       <Navbar />
 
       <main className="relative overflow-hidden">
-        <FloatingDots count={20} />
-
         {/* ── Hero ── */}
-        <section className="relative pt-32 pb-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full text-center">
-            <RevealOnScroll>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.06] text-[11px] text-slate-400 font-medium mb-6">
-                <Clock className="w-3 h-3 text-emerald-400" />
-                We reply within 24 hours
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6">
-                We're a real team.{" "}
-                <span className="text-gradient">Talk to us.</span>
-              </h1>
-              <p className="text-lg text-slate-400 max-w-xl mx-auto">
-                No support ticket queue, no chatbot runaround. Email goes straight to
-                the people who built this. We read every single one.
-              </p>
-            </RevealOnScroll>
-          </div>
-        </section>
+        <PageHero
+          badge={
+            <>
+              <Clock aria-hidden="true" className="h-3 w-3" />
+              We reply within 24 hours
+            </>
+          }
+          title={"We're a real team. "}
+          accent="Talk to us."
+          subhead={
+            <p>
+              No support ticket queue, no chatbot runaround. Email goes straight to
+              the people who built this. We read every single one.
+            </p>
+          }
+          visual={<ContactVisual />}
+        />
 
-        {/* ── Main email card ── */}
-        <section className="relative py-8 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="max-w-2xl mx-auto">
-            <RevealOnScroll>
-              <SpotlightCard
-                className="rounded-2xl border border-indigo-500/20 bg-indigo-500/[0.04] p-8 text-center"
-                spotlightColor="rgba(99,102,241,0.08)"
-              >
-                <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-4">
-                  <Mail className="w-5 h-5 text-indigo-400" />
+        <section className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] xl:gap-20`}>
+            {/* ── Main email card and what to expect ── */}
+            <div className="space-y-6 lg:sticky lg:top-28 lg:self-start">
+              <Reveal>
+                <SpotlightCard className="rounded-2xl border border-accent/20 bg-[#070b16] p-7 sm:p-8">
+                  <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+                  <span className="mb-5 grid h-11 w-11 place-items-center rounded-xl border border-accent/25 bg-accent/10">
+                    <Mail aria-hidden="true" className="h-5 w-5 text-accent" />
+                  </span>
+                  <h2 className="break-words text-xl font-bold text-white sm:text-2xl">
+                    support@preciprocal.com
+                  </h2>
+                  <p className="mb-7 mt-2 text-sm leading-relaxed text-slate-400">
+                    One inbox. Real humans. Average response time under 24 hours on weekdays.
+                  </p>
+                  <a href="mailto:support@preciprocal.com" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                    Send us an email <Chevron />
+                  </a>
+                </SpotlightCard>
+              </Reveal>
+
+              {/* ── Response time breakdown ── */}
+              <Reveal delay={0.06}>
+                <div className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+                  <h3 className="mb-4 flex items-center gap-2 text-sm font-semibold text-white">
+                    <Clock aria-hidden="true" className="h-4 w-4 text-accent" />
+                    What to expect
+                  </h3>
+                  <dl className="divide-y divide-white/[0.06] text-sm">
+                    {EXPECTATIONS.map((e) => (
+                      <div key={e.label} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 py-3 first:pt-0 last:pb-0">
+                        <dt className="text-slate-400">{e.label}</dt>
+                        <dd className="font-medium text-accent-soft">{e.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </div>
-                <h2 className="text-xl font-bold text-white mb-2">
-                  support@preciprocal.com
+              </Reveal>
+            </div>
+
+            {/* ── Contact type cards ── */}
+            <div>
+              <Reveal className="mb-8">
+                <Eyebrow>Pre-filled emails</Eyebrow>
+                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">
+                  What do you need help with?
                 </h2>
-                <p className="text-slate-400 text-sm mb-6">
-                  One inbox. Real humans. Average response time under 24 hours on weekdays.
+                <p className="mt-3 text-[15px] leading-relaxed text-slate-400">
+                  Click any card to open a pre-filled email, saves you a few seconds.
                 </p>
-                <a
-                  href="mailto:support@preciprocal.com"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
-                >
-                  Send us an email
-                </a>
-              </SpotlightCard>
-            </RevealOnScroll>
-          </div>
-        </section>
+              </Reveal>
 
-        {/* ── Contact type cards ── */}
-        <section className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="w-full">
-            <RevealOnScroll className="text-center mb-10">
-              <h2 className="text-2xl font-extrabold text-white mb-2">
-                What do you need help with?
-              </h2>
-              <p className="text-slate-500 text-sm">
-                Click any card to open a pre-filled email, saves you a few seconds.
-              </p>
-            </RevealOnScroll>
-
-            <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {CONTACT_TYPES.map((c) => {
-                const Icon = c.icon;
-                const href = `mailto:${c.email}?subject=${encodeURIComponent(c.subject)}`;
-                return (
-                  <StaggerItem key={c.title}>
-                    <a href={href}>
-                      <SpotlightCard className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 p-6 h-full hover:border-white/[0.12] transition-colors cursor-pointer group">
-                        <div className={`w-9 h-9 rounded-lg ${c.bg} flex items-center justify-center mb-4`}>
-                          <Icon className={`w-4 h-4 ${c.color}`} />
+              <RevealGroup className="grid gap-4 sm:grid-cols-2">
+                {CONTACT_TYPES.map((c) => {
+                  const Icon = c.icon;
+                  const href = `mailto:${c.email}?subject=${encodeURIComponent(c.subject)}`;
+                  return (
+                    <RevealItem key={c.title}>
+                      <a
+                        href={href}
+                        className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors duration-300 hover:border-accent/30 hover:bg-[#0a1020] focus-visible:border-accent/40"
+                      >
+                        <div className="mb-5 flex items-center justify-between">
+                          <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent/10">
+                            <Icon aria-hidden="true" className="h-4 w-4 text-accent" />
+                          </span>
+                          <Mail aria-hidden="true" className="h-4 w-4 text-slate-500 transition-colors group-hover:text-accent" />
                         </div>
-                        <h3 className="text-[15px] font-bold text-white mb-1 group-hover:text-indigo-300 transition-colors">
+                        <h3 className="mb-1.5 text-[15px] font-bold text-white transition-colors group-hover:text-accent-soft">
                           {c.title}
                         </h3>
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                          {c.description}
+                        <p className="mb-5 text-sm leading-relaxed text-slate-400">{c.description}</p>
+                        <p className="mt-auto flex items-center justify-between gap-3 border-t border-white/[0.06] pt-4 text-[12px] text-slate-400">
+                          <span className="truncate font-mono">Subject: {c.subject.trim()}</span>
+                          <span className="inline-flex shrink-0 items-center gap-1 font-medium text-accent-soft">
+                            Email <Chevron />
+                          </span>
                         </p>
-                      </SpotlightCard>
-                    </a>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerChildren>
-          </div>
-        </section>
-
-        {/* ── Response time breakdown ── */}
-        <section className="relative py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="max-w-2xl mx-auto">
-            <RevealOnScroll>
-              <div className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/60 p-6">
-                <h3 className="text-sm font-semibold text-white mb-4">
-                  What to expect
-                </h3>
-                <div className="space-y-3 text-sm text-slate-400">
-                  <div className="flex justify-between items-center">
-                    <span>Weekday emails</span>
-                    <span className="text-emerald-400 font-medium">Within 24 hours</span>
-                  </div>
-                  <div className="h-px bg-white/[0.04]" />
-                  <div className="flex justify-between items-center">
-                    <span>Weekend / holiday emails</span>
-                    <span className="text-yellow-400 font-medium">First weekday reply</span>
-                  </div>
-                  <div className="h-px bg-white/[0.04]" />
-                  <div className="flex justify-between items-center">
-                    <span>Billing / refund requests</span>
-                    <span className="text-emerald-400 font-medium">Same day when possible</span>
-                  </div>
-                </div>
-              </div>
-            </RevealOnScroll>
+                        <HoverRule />
+                      </a>
+                    </RevealItem>
+                  );
+                })}
+              </RevealGroup>
+            </div>
           </div>
         </section>
       </main>

@@ -11,6 +11,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import RecruiterFinderVisual from "@/components/page/visuals/RecruiterFinderVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -93,6 +94,8 @@ export default function RecruiterContactFinderPage() {
   return (
     <ToolPage
       breadcrumbName="Recruiter Contact Finder"
+      accent="sky"
+      visual={<RecruiterFinderVisual />}
       canonicalPath="/recruiter-contact-finder"
       badge="Free, 3 lookups per month"
       h1="Recruiter contact finder"
@@ -151,7 +154,7 @@ export default function RecruiterContactFinderPage() {
                 "Recruiter, the most contacted and most saturated inbox, but still better than the portal",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
+                  <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

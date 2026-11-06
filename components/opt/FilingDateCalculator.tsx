@@ -14,21 +14,27 @@
  */
 
 import { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { addDays, addMonths, formatDay, minDate, parseDay } from "@/lib/optDates";
 
 type Mode = "initial" | "stem";
 
 const input =
-  "w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-400/60 [color-scheme:dark]";
+  "min-h-[44px] w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-3.5 py-2.5 text-sm text-white transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25 [color-scheme:dark]";
 
-function Row({ label, value, note }: { label: string; value: string; note?: string }) {
+const pad2 = (n: number) => String(n).padStart(2, "0");
+
+function Row({ index, label, value, note }: { index: number; label: string; value: string; note?: string }) {
   return (
-    <div className="py-3 border-t border-white/[0.06] first:border-t-0">
-      <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
-        <p className="text-sm text-slate-400">{label}</p>
-        <p className="text-sm font-semibold text-white">{value}</p>
+    <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 border-t border-white/[0.06] py-4 first:border-t-0">
+      <span className="pt-0.5 font-mono text-[11px] text-accent-soft/70">{pad2(index)}</span>
+      <div>
+        <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+          <p className="text-sm text-slate-400">{label}</p>
+          <p className="text-sm font-semibold text-white sm:text-right">{value}</p>
+        </div>
+        {note && <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">{note}</p>}
       </div>
-      {note && <p className="text-[11px] text-slate-600 mt-1">{note}</p>}
     </div>
   );
 }
@@ -37,6 +43,7 @@ export default function FilingDateCalculator() {
   const [mode, setMode] = useState<Mode>("initial");
   const [anchor, setAnchor] = useState("");
   const [rec, setRec] = useState("");
+  const reduce = useReducedMotion();
 
   const a = parseDay(anchor);
   const r = parseDay(rec);
@@ -75,57 +82,84 @@ export default function FilingDateCalculator() {
   }
 
   return (
-    <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
-      <p className="text-white font-semibold mb-1">OPT filing deadline calculator</p>
-      <p className="text-[12px] text-slate-500 mb-5">Runs in your browser. Nothing you enter is sent anywhere.</p>
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-deep/10 blur-[90px]" />
+      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 sm:p-8 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-lg font-semibold text-white">OPT filing deadline calculator</p>
+          <p className="mt-1.5 text-[12px] text-slate-400">Runs in your browser. Nothing you enter is sent anywhere.</p>
+        </div>
 
-      <div className="flex flex-wrap gap-2 mb-5">
-        {(
-          [
-            ["initial", "Post-completion OPT"],
-            ["stem", "STEM OPT extension"],
-          ] as const
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => setMode(id)}
-            className={`px-3 py-1.5 rounded-lg text-[12px] border transition-colors ${
-              mode === id ? "bg-indigo-500/20 border-indigo-400/50 text-white" : "border-white/[0.08] text-slate-400 hover:text-white"
-            }`}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-        <label className="block">
-          <span className="block text-[12px] text-slate-400 mb-1.5">
-            {mode === "initial" ? "Program end date (on your I-20)" : "Current OPT EAD end date"}
-          </span>
-          <input type="date" className={input} value={anchor} onChange={(e) => setAnchor(e.target.value)} />
-        </label>
-        <label className="block">
-          <span className="block text-[12px] text-slate-400 mb-1.5">DSO recommendation date (optional)</span>
-          <input type="date" className={input} value={rec} onChange={(e) => setRec(e.target.value)} />
-        </label>
-      </div>
-
-      {rows.length ? (
-        <div className="rounded-xl border border-white/[0.08] px-5 py-2">
-          {rows.map((row) => (
-            <Row key={row.label} {...row} />
+        <div role="group" aria-label="OPT type" className="inline-flex w-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-1 md:w-auto">
+          {(
+            [
+              ["initial", "Post-completion OPT"],
+              ["stem", "STEM OPT extension"],
+            ] as const
+          ).map(([id, label]) => (
+            <button
+              key={id}
+              type="button"
+              aria-pressed={mode === id}
+              onClick={() => setMode(id)}
+              className={`min-h-[40px] flex-1 rounded-lg sm:whitespace-nowrap px-3.5 py-2 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 md:flex-none ${
+                mode === id ? "bg-accent/15 text-white shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.45)]" : "text-slate-400 hover:text-white"
+              }`}
+            >
+              {label}
+            </button>
           ))}
         </div>
-      ) : (
-        <p className="text-sm text-slate-500">Enter a date to see your filing window.</p>
-      )}
+      </div>
 
-      <p className="text-[11px] text-slate-600 mt-4 leading-relaxed">
-        Based on the filing rules on USCIS&apos;s OPT and Form I-765 pages. USCIS goes by the date it receives your
-        application, not the date you send it, so do not leave it to the last day. Confirm your dates with your DSO.
-      </p>
+      <div className="relative p-6 sm:p-8">
+        <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <label className="block">
+            <span className="mb-2 block text-[12px] font-medium text-slate-300">
+              {mode === "initial" ? "Program end date (on your I-20)" : "Current OPT EAD end date"}
+            </span>
+            <input type="date" className={input} value={anchor} onChange={(e) => setAnchor(e.target.value)} />
+          </label>
+          <label className="block">
+            <span className="mb-2 block text-[12px] font-medium text-slate-300">DSO recommendation date (optional)</span>
+            <input type="date" className={input} value={rec} onChange={(e) => setRec(e.target.value)} />
+          </label>
+        </div>
+
+        <div aria-live="polite">
+          <AnimatePresence mode="wait" initial={false}>
+            {rows.length ? (
+              <motion.div
+                key={`rows-${mode}`}
+                initial={reduce ? false : { opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={reduce ? undefined : { opacity: 0, y: -4 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-5 py-1"
+              >
+                {rows.map((row, i) => (
+                  <Row key={row.label} index={i + 1} {...row} />
+                ))}
+              </motion.div>
+            ) : (
+              <motion.p
+                key="empty"
+                initial={reduce ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={reduce ? undefined : { opacity: 0 }}
+                className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-sm text-slate-400"
+              >
+                Enter a date to see your filing window.
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
+
+        <p className="mt-5 text-[11px] leading-relaxed text-slate-400">
+          Based on the filing rules on USCIS&apos;s OPT and Form I-765 pages. USCIS goes by the date it receives your
+          application, not the date you send it, so do not leave it to the last day. Confirm your dates with your DSO.
+        </p>
+      </div>
     </div>
   );
 }

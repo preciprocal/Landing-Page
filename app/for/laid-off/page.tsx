@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import LaidOffVisual from "@/components/page/visuals/LaidOffVisual";
 
 export const metadata: Metadata = {
   title: "Laid Off? A Job Search Plan That Works",
@@ -83,6 +84,8 @@ export default function LaidOffPage() {
     <ToolPage
       breadcrumbName="After a Layoff"
       canonicalPath="/for/laid-off"
+      accent="rose"
+      visual={<LaidOffVisual />}
       badge="For anyone recently laid off"
       h1="Laid off?"
       h1Accent="Here is a plan for what comes next"

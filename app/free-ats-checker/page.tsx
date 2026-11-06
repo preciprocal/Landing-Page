@@ -18,6 +18,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import AtsCheckerVisual from "@/components/page/visuals/AtsCheckerVisual";
 import ResumeAtsChecker from "@/components/ResumeAtsChecker";
 
 export const metadata: Metadata = {
@@ -106,6 +107,8 @@ export default function FreeATSCheckerPage() {
     <ToolPage
       breadcrumbName="Free ATS Checker"
       canonicalPath="/free-ats-checker"
+      accent="blue"
+      visual={<AtsCheckerVisual />}
       badge="Free, no sign-up to see your score"
       h1="Free ATS resume checker"
       h1Accent="your score and top fixes"

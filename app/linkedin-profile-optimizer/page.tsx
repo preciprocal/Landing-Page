@@ -15,6 +15,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import LinkedInProfileVisual from "@/components/page/visuals/LinkedInProfileVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -102,6 +103,8 @@ export default function LinkedInProfileOptimizerPage() {
   return (
     <ToolPage
       breadcrumbName="LinkedIn Profile Optimizer"
+      accent="sky"
+      visual={<LinkedInProfileVisual />}
       canonicalPath="/linkedin-profile-optimizer"
       badge="Free, 2 optimisations per month"
       h1="Free LinkedIn profile optimizer"
@@ -162,7 +165,7 @@ export default function LinkedInProfileOptimizerPage() {
                 "Experience descriptions, indexed, and where your keywords earn their credibility",
               ].map((field, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
+                  <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{field}</span>
                 </li>
               ))}

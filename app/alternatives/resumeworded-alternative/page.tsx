@@ -7,6 +7,9 @@
  *   "free resume feedback tool"
  *   "Resume Worded for students"
  *
+ * Layout: PageHero, the quick verdict, then the feature table and the
+ * remaining sections on the shared page kit (components/page), accent indigo.
+ *
  * File path: app/alternatives/resume-worded-alternative/page.tsx
  */
 
@@ -17,6 +20,9 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
+import CompareTable, { Verdict, PriceCompare, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
 
 export const metadata: Metadata = {
   title: { absolute: "Resume Worded Alternative: Preciprocal Compared" },
@@ -113,7 +119,7 @@ export default function ResumeWordedAlternativePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -128,234 +134,165 @@ export default function ResumeWordedAlternativePage() {
 
       <Navbar />
 
-      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="text-sm mb-8 flex gap-2 items-center flex-wrap" style={{ color: "#64748b" }}>
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Alternatives</span>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Resume Worded Alternative</span>
-        </nav>
-
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1 rounded-full mb-5"
-          style={{ background: "#1e293b", color: "#6366f1" }}
-        >
-          Comparison · Updated May 2026
-        </div>
-
+      <main>
         {/* H1 */}
-        <h1
-          className="text-3xl sm:text-4xl font-extrabold mb-5 leading-tight tracking-tight"
-          style={{ color: "#ffffff" }}
-        >
-          The Best Resume Worded Alternative in 2026
-        </h1>
-        <p className="text-lg mb-6 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          Resume Worded gives solid line-by-line resume feedback. But once your resume is polished,
-          you still need to prepare for interviews, write cover letters, and manage your applications.
-          That means paying for more tools.
-        </p>
-        <p className="text-lg mb-10 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          <strong style={{ color: "#e2e8f0" }}>Preciprocal</strong> covers resume scoring plus the
-          rest of the job search at $9.99/mo, built specifically for students and new grads.
-        </p>
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
+              <Link href="/" className="transition-colors hover:text-white">Home</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Alternatives</span>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Resume Worded Alternative</span>
+            </nav>
+          }
+          badge="Comparison · Updated May 2026"
+          title="The Best Resume Worded Alternative "
+          accent="in 2026"
+          subhead={
+            <>
+              <p>
+                Resume Worded gives solid line-by-line resume feedback. But once your resume is polished,
+                you still need to prepare for interviews, write cover letters, and manage your applications.
+                That means paying for more tools.
+              </p>
+              <p className="mt-4">
+                <strong className="font-semibold text-slate-200">Preciprocal</strong> covers resume scoring plus the
+                rest of the job search at $9.99/mo, built specifically for students and new grads.
+              </p>
+            </>
+          }
+        />
 
-        {/* Quick verdict */}
-        <div
-          className="p-6 rounded-xl border mb-12"
-          style={{ borderColor: "#6366f1", background: "#0a0f1e" }}
-        >
-          <p className="text-sm font-semibold mb-1" style={{ color: "#6366f1" }}>Quick verdict</p>
-          <p className="leading-relaxed mb-2" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Resume Worded</strong> if you specifically want detailed line-by-line
-            resume coaching with years of feedback data, and you already have separate tools for
-            everything else.
-          </p>
-          <p className="leading-relaxed" style={{ color: "#e2e8f0" }}>
-            Choose <strong>Preciprocal</strong> if you want resume scoring plus AI mock interviews,
-            cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
-            Especially if you're a student or breaking into the job market for the first time.
-          </p>
-        </div>
-
-        {/* Price callout */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-12">
-          {[
-            { label: "Resume Worded", price: "$49/mo", note: "Resume review only", highlight: false },
-            { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
-          ].map(({ label, price, note, highlight }) => (
-            <div
-              key={label}
-              className="p-6 rounded-xl border text-center"
-              style={{
-                borderColor: highlight ? "#6366f1" : "#1e293b",
-                background: highlight ? "rgba(99,102,241,0.08)" : "#0a0f1e",
-              }}
-            >
-              <p className="text-sm mb-2" style={{ color: "#64748b" }}>{label}</p>
-              <p className="text-3xl font-extrabold mb-1" style={{ color: highlight ? "#6366f1" : "#e2e8f0" }}>{price}</p>
-              <p className="text-sm" style={{ color: "#64748b" }}>{note}</p>
-            </div>
-          ))}
+        {/* Quick verdict + price callout */}
+        <div className={`${PAD} pb-4 pt-14`}>
+          <div className={`${INNER} grid gap-4 xl:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]`}>
+            <Reveal>
+              <Verdict
+                competitor={
+                  <>
+                    Choose <strong className="font-semibold text-white">Resume Worded</strong> if you specifically want detailed line-by-line
+                    resume coaching with years of feedback data, and you already have separate tools for
+                    everything else.
+                  </>
+                }
+                preciprocal={
+                  <>
+                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want resume scoring plus AI mock interviews,
+                    cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
+                    Especially if you&apos;re a student or breaking into the job market for the first time.
+                  </>
+                }
+              />
+            </Reveal>
+            <Reveal delay={0.08}>
+              <PriceCompare
+                items={[
+                  { label: "Resume Worded", price: "$49/mo", note: "Resume review only", highlight: false },
+                  { label: "Preciprocal Pro", price: "$9.99/mo", note: "Full career prep platform", highlight: true },
+                ]}
+              />
+            </Reveal>
+          </div>
         </div>
 
         {/* Comparison table */}
-        <section aria-label="Feature comparison table" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Preciprocal vs Resume Worded: feature comparison
-          </h2>
-          <div className="overflow-x-auto rounded-xl border" style={{ borderColor: "#1e293b" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ background: "#0a0f1e", borderBottom: "1px solid #1e293b" }}>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Feature</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#6366f1" }}>Preciprocal</th>
-                  <th className="text-left px-4 py-3 font-semibold" style={{ color: "#64748b" }}>Resume Worded</th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row, i) => (
-                  <tr
-                    key={row.feature}
-                    style={{
-                      background: i % 2 === 0 ? "#050810" : "#0a0f1e",
-                      borderBottom: "1px solid #1e293b",
-                    }}
-                  >
-                    <td className="px-4 py-3 font-medium" style={{ color: "#e2e8f0" }}>{row.feature}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.preciprocal}</td>
-                    <td className="px-4 py-3" style={{ color: "#94a3b8" }}>{row.resumeWorded}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        <section aria-label="Feature comparison table" className={`${PAD} py-16`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Feature by feature" title="Preciprocal vs Resume Worded: feature comparison" className="mb-8" />
+            </Reveal>
+            <CompareTable
+              competitor="Resume Worded"
+              caption="Preciprocal vs Resume Worded: feature comparison"
+              rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.resumeWorded }))}
+            />
+            <p className="mt-4 text-xs text-slate-400">
+              Based on publicly available feature lists as of September 2026. Always verify on each tool&apos;s pricing page.
+            </p>
           </div>
-          <p className="text-xs mt-3" style={{ color: "#475569" }}>
-            Based on publicly available feature lists as of September 2026. Always verify on each tool's pricing page.
-          </p>
         </section>
 
         {/* Why students choose Preciprocal */}
-        <section aria-label="Why students choose Preciprocal over Resume Worded" className="mb-16">
-          <h2 className="text-2xl font-bold mb-6" style={{ color: "#ffffff" }}>
-            Why students and new grads choose Preciprocal over Resume Worded
-          </h2>
-          <div className="space-y-4">
-            {[
-              {
-                title: "Resume feedback is step one, not the whole job",
-                body: "Resume Worded helps you get a callback. After that, you still need to interview, write cover letters, and stay organised across 20+ applications. Preciprocal handles all of it so you're not paying for 4 tools separately.",
-              },
-              {
-                title: "More affordable for students",
-                body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, with nothing charged for 30 days.",
-              },
-              {
-                title: "Built for people without extensive work history",
-                body: "Most resume tools assume you have 5+ years of jobs to score against. Preciprocal understands new grad resumes: projects, internships, coursework, and how to frame limited experience in a way that ATS and recruiters actually respond to.",
-              },
-              {
-                title: "Interview intelligence closes the loop",
-                body: "Preciprocal's resume analysis includes Interview Intel, which flags which bullet points on your resume are likely to generate interview questions. So you prepare for the exact topics your resume raises, not random questions.",
-              },
-            ].map(({ title, body }) => (
-              <div
-                key={title}
-                className="flex gap-4 p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <div
-                  className="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)", color: "#fff" }}
-                >
-                  ✓
-                </div>
-                <div>
-                  <p className="font-semibold mb-1" style={{ color: "#e2e8f0" }}>{title}</p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{body}</p>
-                </div>
-              </div>
-            ))}
+        <section aria-label="Why students choose Preciprocal over Resume Worded" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Resume Worded" />
+            </Reveal>
+            <ReasonGrid
+              items={[
+                {
+                  title: "Resume feedback is step one, not the whole job",
+                  body: "Resume Worded helps you get a callback. After that, you still need to interview, write cover letters, and stay organised across 20+ applications. Preciprocal handles all of it so you're not paying for 4 tools separately.",
+                },
+                {
+                  title: "More affordable for students",
+                  body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, with nothing charged for 30 days.",
+                },
+                {
+                  title: "Built for people without extensive work history",
+                  body: "Most resume tools assume you have 5+ years of jobs to score against. Preciprocal understands new grad resumes: projects, internships, coursework, and how to frame limited experience in a way that ATS and recruiters actually respond to.",
+                },
+                {
+                  title: "Interview intelligence closes the loop",
+                  body: "Preciprocal's resume analysis includes Interview Intel, which flags which bullet points on your resume are likely to generate interview questions. So you prepare for the exact topics your resume raises, not random questions.",
+                },
+              ]}
+            />
           </div>
         </section>
 
         {/* FAQ */}
-        <section aria-label="Resume Worded alternative FAQ" className="mb-16">
-          <h2 className="text-2xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            Frequently asked questions
-          </h2>
-          <div className="space-y-5">
-            {FAQS.map(({ q, a }) => (
-              <div
-                key={q}
-                className="p-5 rounded-xl border"
-                style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-              >
-                <h3 className="font-semibold mb-2" style={{ color: "#e2e8f0" }}>{q}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>{a}</p>
-              </div>
-            ))}
+        <section aria-label="Resume Worded alternative FAQ" className={`${SECTION} ${PAD}`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
+            <Reveal>
+              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
+            </Reveal>
+            <Reveal>
+              <FaqList items={FAQS} />
+            </Reveal>
           </div>
         </section>
 
         {/* Internal links */}
-        <section aria-label="Related resources" className="mb-16">
-          <h2 className="text-xl font-bold mb-4" style={{ color: "#ffffff" }}>Related resources</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
-            {[
-              { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
-              { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
-              { label: "How to Pass ATS Resume Screening", href: "/blog/how-to-pass-ats-resume-screening" },
-              { label: "Resume Keywords That Get Past ATS", href: "/blog/resume-keywords-that-get-past-ats" },
-              { label: "Jobscan Alternative", href: "/alternatives/jobscan-alternative" },
-              { label: "Final Round AI Alternative", href: "/alternatives/final-round-ai-alternative" },
-            ].map(({ label, href }) => (
-              <Link
-                key={href}
-                href={href}
-                className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-indigo-500/50 hover:text-white"
-                style={{ borderColor: "#1e293b", color: "#94a3b8" }}
-              >
-                <span style={{ color: "#6366f1" }}><Chevron /></span>
-                {label}
-              </Link>
-            ))}
+        <section aria-label="Related resources" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <RelatedLinks
+              links={[
+                { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
+                { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
+                { label: "How to Pass ATS Resume Screening", href: "/blog/how-to-pass-ats-resume-screening" },
+                { label: "Resume Keywords That Get Past ATS", href: "/blog/resume-keywords-that-get-past-ats" },
+                { label: "Jobscan Alternative", href: "/alternatives/jobscan-alternative" },
+                { label: "Final Round AI Alternative", href: "/alternatives/final-round-ai-alternative" },
+              ]}
+            />
           </div>
         </section>
 
         {/* CTA */}
-        <section
-          aria-label="Try Preciprocal free"
-          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl border"
-          style={{ borderColor: "#1e293b", background: "#0a0f1e" }}
-        >
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            Try Preciprocal free. No credit card needed.
-          </h2>
-          <p className="mb-8 max-w-lg mx-auto" style={{ color: "#94a3b8" }}>
-            3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
-            Students with a .edu email get 1 month of Pro free.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
-            >
-              Start free <Chevron />
-            </Link>
-            <Link
-              href="/free-ats-checker"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border transition-colors hover:border-indigo-500/50"
-              style={{ color: "#94a3b8", borderColor: "#1e293b" }}
-            >
-              Try free resume checker
-            </Link>
-          </div>
+        <section aria-label="Try Preciprocal free" className={`${PAD} pb-24`}>
+          <Reveal>
+            <CtaPanel
+              title="Try Preciprocal free. No credit card needed."
+              body={
+                <p>
+                  3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
+                  Students with a .edu email get 1 month of Pro free.
+                </p>
+              }
+              action={
+                <div className="flex flex-col gap-3 sm:flex-row">
+                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                    Start free <Chevron />
+                  </Link>
+                  <Link href="/free-ats-checker" className={BTN_SECONDARY}>
+                    Try free resume checker
+                  </Link>
+                </div>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

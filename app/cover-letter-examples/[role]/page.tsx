@@ -7,6 +7,8 @@
  *
  * Data source: lib/constants.ts (ROLE_META, ROLE_DISPLAY, ALL_ROLES)
  * Pattern: mirrors app/interview-questions/[role]/page.tsx
+ * Layout: hero with a meta stat strip, the annotated letter on a paper card,
+ * the guide beside a sticky aside (jump list and CTA), then a CTA panel.
  *
  * File path: app/cover-letter-examples/[role]/page.tsx
  */
@@ -22,6 +24,8 @@ import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, titleField } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList, pad2, HoverRule } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
 
 // ── Static params ─────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -35,7 +39,7 @@ export async function generateMetadata({
   params: Promise<{ role: string }>;
 }): Promise<Metadata> {
   const { role } = await params;
-  if (!ALL_ROLES.includes(role as any)) return {};
+  if (!(ALL_ROLES as readonly string[]).includes(role)) return {};
 
   const meta = getRoleMeta(role);
   const display = ROLE_DISPLAY[role];
@@ -90,21 +94,21 @@ function getCoverLetterSections(
     {
       label: "Opening paragraph",
       badge: "Hook",
-      badgeColor: "#6366f1",
+      badgeColor: "#38bdf8",
       guidance: `Lead with something specific, not 'I am writing to express my interest.' For ${roleName} roles the strongest opening establishes ${proves} immediately. Your first sentence determines whether the hiring manager reads the second.`,
       example: `I have spent the past two years working on ${k1} and ${k2}, and when I saw the ${roleName} opening at ${company}, it was exactly the kind of problem I have been preparing to work on. [One sentence on why this company specifically, not generic enthusiasm.]`,
     },
     {
       label: "Paragraph 2",
       badge: "Relevance",
-      badgeColor: "#8b5cf6",
+      badgeColor: "#60a5fa",
       guidance: `Connect your most relevant experience to their most important requirement, using their exact language. ${roleName} postings tend to lean on terms like ${k1}, ${k2} and ${k3}, mirror the phrasing rather than paraphrasing it. One concrete example with a result beats three paragraphs of general claims.`,
       example: `In my role at [Company/Project], I [specific action involving ${k1}] that resulted in [quantified outcome]. This is directly relevant to what you described as [specific requirement from the posting] because [connection].`,
     },
     {
       label: "Paragraph 3",
       badge: "Fit",
-      badgeColor: "#a855f7",
+      badgeColor: "#818cf8",
       guidance:
         "Show you understand what makes this company different from its competitors. One specific detail about their product, culture, or recent work that genuinely interests you. Hiring managers can tell the difference between research and flattery.",
       example: `What draws me specifically to ${company} is [specific detail about their product, approach, or culture that you actually find interesting and why it connects to your work]. I have followed [relevant work/product/initiative] and believe my experience with [your relevant area] would directly contribute to that direction.`,
@@ -112,7 +116,7 @@ function getCoverLetterSections(
     {
       label: "Closing paragraph",
       badge: "Close",
-      badgeColor: "#ec4899",
+      badgeColor: "#a78bfa",
       guidance:
         "Short, direct, and confident. State that you would welcome a conversation. Do not beg for an interview or over-explain. One to two sentences.",
       example: `I would welcome the opportunity to discuss how my background in [key skill] aligns with what you are building. Thank you for your time.`,
@@ -214,6 +218,10 @@ function getCoverLetterFAQs(roleName: string, content: ReturnType<typeof getRole
   ];
 }
 
+// ── Layout helpers ────────────────────────────────────────────────────────────
+const BLOCK = "scroll-mt-28 border-t border-white/[0.05] pt-14";
+const FOCUS = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
+
 // ── Page component ────────────────────────────────────────────────────────────
 export default async function CoverLetterExampleRolePage({
   params,
@@ -221,7 +229,7 @@ export default async function CoverLetterExampleRolePage({
   params: Promise<{ role: string }>;
 }) {
   const { role } = await params;
-  if (!ALL_ROLES.includes(role as any)) notFound();
+  if (!(ALL_ROLES as readonly string[]).includes(role)) notFound();
 
   const meta = getRoleMeta(role);
   const display = ROLE_DISPLAY[role];
@@ -259,8 +267,17 @@ export default async function CoverLetterExampleRolePage({
     publisher: { "@id": "https://preciprocal.com/#organization" },
   };
 
+  const jump = [
+    { id: "structure", label: "Letter structure" },
+    { id: "tips", label: "Writing tips" },
+    { id: "more-guides", label: "More guides" },
+    ...(meta.topCompanies.length > 0 ? [{ id: "companies", label: "Top companies" }] : []),
+    { id: "faq", label: "FAQ" },
+    ...(meta.relatedRoles.length > 0 ? [{ id: "related", label: "Related examples" }] : []),
+  ];
+
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="blue" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -282,382 +299,275 @@ export default async function CoverLetterExampleRolePage({
 
       <Navbar />
 
-      <main className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-
-        {/* Breadcrumb */}
-        <nav
-          aria-label="Breadcrumb"
-          className="text-sm mb-8 flex gap-2 items-center flex-wrap"
-          style={{ color: "#64748b" }}
+      <main>
+        <PageHero
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-slate-500">
+              <Link href="/" className={`rounded transition-colors hover:text-white ${FOCUS}`}>Home</Link>
+              <span aria-hidden="true">›</span>
+              <Link href="/cover-letter-examples" className={`rounded transition-colors hover:text-white ${FOCUS}`}>
+                Cover Letter Examples
+              </Link>
+              <span aria-hidden="true">›</span>
+              <span className="capitalize text-slate-300">{roleName}</span>
+            </nav>
+          }
+          title={<>{roleName} Cover Letter Example (2026)</>}
+          subhead={
+            <p>
+              A free {roleName} cover letter example, annotated template, and writing guide for 2026.
+              What to include, what to avoid, and exactly how to structure a letter that gets past ATS
+              and makes hiring managers keep reading.
+            </p>
+          }
         >
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <Link href="/cover-letter-examples" className="hover:text-white transition-colors">
-            Cover Letter Examples
-          </Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }} className="capitalize">
-            {roleName}
-          </span>
-        </nav>
+          {/* Meta strip */}
+          <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3">
+            {[
+              { label: "Avg. Salary", value: meta.salaryRange, mono: true },
+              { label: "Top Employers", value: meta.topCompanies.slice(0, 3).join(", "), mono: false },
+              { label: "Ideal Length", value: "250-350 words", mono: true },
+            ].map((item) => (
+              <div key={item.label} className="relative bg-[#070b16] p-6">
+                <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent-2/50 to-transparent" />
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
+                <dd className={`mt-2 text-base font-semibold text-accent-soft ${item.mono ? "font-mono tabular-nums" : ""}`}>{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </PageHero>
 
-        {/* H1 */}
-        <h1
-          className="text-3xl sm:text-4xl font-extrabold mb-4 leading-tight tracking-tight"
-          style={{ color: "#ffffff" }}
-        >
-          {roleName} Cover Letter Example (2026)
-        </h1>
-        <p className="text-lg mb-4 leading-relaxed max-w-3xl" style={{ color: "#94a3b8" }}>
-          A free {roleName} cover letter example, annotated template, and writing guide for 2026.
-          What to include, what to avoid, and exactly how to structure a letter that gets past ATS
-          and makes hiring managers keep reading.
-        </p>
+        {/* Guide body with a sticky jump list and CTA */}
+        <div className={`${PAD} pb-20`}>
+          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] xl:gap-20`}>
+            <div className="min-w-0 space-y-14">
+              {/* Cover letter structure: annotations beside the letter, which reads as one document */}
+              <section id="structure" aria-label={`${roleName} cover letter structure and example`} className="scroll-mt-28 pt-2">
+                <SectionHead
+                  eyebrow="Annotated example"
+                  title={`${roleName} cover letter structure`}
+                  subtitle={`Every strong ${roleName} cover letter follows the same four-part structure. Below is the guidance for each section plus an example of what it looks like in practice.`}
+                  className="mb-10"
+                />
 
-        {/* Meta strip */}
-        <div className="flex flex-wrap gap-3 mb-10">
-          {[
-            { label: "Avg. Salary", value: meta.salaryRange },
-            { label: "Top Employers", value: meta.topCompanies.slice(0, 3).join(", ") },
-            { label: "Ideal Length", value: "250-350 words" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="px-4 py-2 rounded-xl"
-              style={{
-                background: "rgba(139,92,246,0.08)",
-                border: "1px solid rgba(139,92,246,0.2)",
-              }}
-            >
-              <span style={{ color: "#64748b" }} className="text-xs mr-2">
-                {item.label}
-              </span>
-              <span style={{ color: "#c4b5fd" }} className="text-sm font-semibold">
-                {item.value}
-              </span>
-            </div>
-          ))}
-        </div>
+                <Reveal>
+                  <div>
+                    {sections.map((section, i) => {
+                      const first = i === 0;
+                      const last = i === sections.length - 1;
+                      return (
+                        <article key={i} className="mb-8 last:mb-0 xl:mb-0 xl:grid xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.3fr)]">
+                          {/* Annotation */}
+                          <div className="pb-4 xl:border-t xl:border-white/[0.06] xl:py-8 xl:pr-10">
+                            <div className="flex items-center gap-3">
+                              <span
+                                className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold"
+                                style={{ background: section.badgeColor + "14", borderColor: section.badgeColor + "40", color: section.badgeColor }}
+                              >
+                                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full" style={{ background: section.badgeColor }} />
+                                {section.badge}
+                              </span>
+                              <h3 className="text-base font-semibold text-white">{section.label}</h3>
+                            </div>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-400">{section.guidance}</p>
+                          </div>
 
-        {/* Divider */}
-        <div className="mb-10 h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
-
-        {/* Cover letter structure */}
-        <section aria-label={`${roleName} cover letter structure and example`} className="mb-14">
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            {roleName} cover letter structure
-          </h2>
-          <p className="mb-8 leading-relaxed" style={{ color: "#94a3b8" }}>
-            Every strong {roleName} cover letter follows the same four-part structure. Below is
-            the guidance for each section plus an example of what it looks like in practice.
-          </p>
-
-          <div className="space-y-6">
-            {sections.map((section, i) => (
-              <article
-                key={i}
-                className="rounded-2xl overflow-hidden"
-                style={{
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                }}
-              >
-                {/* Section header */}
-                <div
-                  className="px-6 py-4 flex items-center gap-3"
-                  style={{
-                    background: "rgba(255,255,255,0.03)",
-                    borderBottom: "1px solid rgba(255,255,255,0.06)",
-                  }}
-                >
-                  <span
-                    className="text-xs font-bold px-2.5 py-1 rounded-full"
-                    style={{ background: section.badgeColor + "20", color: section.badgeColor }}
-                  >
-                    {section.badge}
-                  </span>
-                  <h3 className="font-semibold text-base" style={{ color: "#ffffff" }}>
-                    {section.label}
-                  </h3>
-                </div>
-
-                <div className="px-6 py-5 space-y-4">
-                  {/* Guidance */}
-                  <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-                    {section.guidance}
-                  </p>
-
-                  {/* Example */}
-                  <div
-                    className="rounded-xl p-4"
-                    style={{
-                      background: "rgba(139,92,246,0.06)",
-                      border: "1px solid rgba(139,92,246,0.15)",
-                    }}
-                  >
-                    <p
-                      className="text-xs font-semibold uppercase tracking-widest mb-2"
-                      style={{ color: "#8b5cf6" }}
-                    >
-                      Example
-                    </p>
-                    <p className="text-sm leading-relaxed italic" style={{ color: "#cbd5e1" }}>
-                      {section.example}
-                    </p>
+                          {/* The letter itself, on paper */}
+                          <div
+                            className={`relative rounded-2xl bg-[#f6f4ef] px-6 py-6 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6)] sm:px-10 xl:rounded-none xl:px-12 ${
+                              first ? "xl:rounded-t-2xl xl:pt-12" : ""
+                            } ${last ? "xl:rounded-b-2xl xl:pb-12" : ""}`}
+                          >
+                            <span
+                              aria-hidden="true"
+                              className="absolute left-0 top-6 h-8 w-[3px] rounded-r xl:top-9"
+                              style={{ background: section.badgeColor }}
+                            />
+                            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">Example</p>
+                            <p className="font-serif text-[16px] leading-[1.8] text-slate-800">{section.example}</p>
+                          </div>
+                        </article>
+                      );
+                    })}
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+                </Reveal>
+              </section>
 
-        {/* Generate CTA */}
-        <div
-          className="rounded-2xl p-6 mb-14"
-          style={{
-            background: "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(236,72,153,0.1))",
-            border: "1px solid rgba(139,92,246,0.25)",
-          }}
-        >
-          <h2 className="font-bold text-lg mb-2" style={{ color: "#ffffff" }}>
-            Generate a tailored {roleName} cover letter in 60 seconds
-          </h2>
-          <p className="text-sm mb-4 leading-relaxed" style={{ color: "#94a3b8" }}>
-            Paste your job description and Preciprocal's AI researches the company, matches your
-            resume to the role, and writes a personalised letter. Free to start, no credit card
-            required.
-          </p>
-          <a
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center gap-2 px-6 py-2.5 font-semibold rounded-xl text-sm transition-opacity hover:opacity-90"
-            style={{
-              background: "linear-gradient(135deg, #8b5cf6, #ec4899)",
-              color: "#ffffff",
-            }}
-          >
-            Generate my cover letter free <Chevron />
-          </a>
+              {/* Generate CTA */}
+              <Reveal>
+                <SpotlightCard className="rounded-2xl border border-accent/20 bg-gradient-to-r from-accent-deep-2/[0.08] via-accent-deep/[0.05] to-transparent">
+                  <div className="flex flex-col gap-6 p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
+                    <div className="max-w-2xl">
+                      <h2 className="text-lg font-bold text-white">
+                        Generate a tailored {roleName} cover letter in 60 seconds
+                      </h2>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                        Paste your job description and Preciprocal&apos;s AI researches the company, matches your
+                        resume to the role, and writes a personalised letter. Free to start, no credit card
+                        required.
+                      </p>
+                    </div>
+                    <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 px-6 py-3 md:w-auto`}>
+                      Generate my cover letter free <Chevron />
+                    </a>
+                  </div>
+                </SpotlightCard>
+              </Reveal>
+
+              {/* Writing tips */}
+              <section id="tips" aria-label={`${roleName} cover letter writing tips`} className={BLOCK}>
+                <SectionHead
+                  eyebrow="Writing tips"
+                  title={`${roleName} cover letter tips`}
+                  subtitle={`Six things that separate ${roleName} cover letters that get callbacks from ones that get ignored.`}
+                  className="mb-8"
+                />
+                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+                  {tips.map((tip, i) => (
+                    <RevealItem key={i} className={`group relative bg-[#070b16] p-6 transition-colors duration-300 hover:bg-[#0a1020] ${i === tips.length - 1 && tips.length % 2 === 1 ? "md:col-span-2" : ""}`}>
+                      <span className="font-mono text-[11px] text-accent-soft/80">{pad2(i + 1)}</span>
+                      <p className="mt-3 text-[15px] font-semibold text-slate-100">{tip.title}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-slate-400">{tip.body}</p>
+                      <HoverRule className="inset-x-6" />
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </section>
+
+              {/* Sibling guides for this role, plus the question predictor */}
+              <div id="more-guides" className={BLOCK}>
+                <RoleGuideLinks role={role} roleName={display.name} current="cover-letter-examples" className="mb-10" />
+
+                {/* Cross-links: interview questions + resume tips */}
+                <section aria-label="Related guides" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+                  <SpotlightCard className="bg-[#070b16] p-6">
+                    <h2 className="text-sm font-semibold text-white">Prepare for the interview next</h2>
+                    <p className="mb-4 mt-2 text-xs leading-relaxed text-slate-500">
+                      Once your cover letter gets you a callback, you need to be ready for the interview.
+                      Real questions, detailed answers, and AI mock interview practice.
+                    </p>
+                    <Link href={`/interview-questions/${role}`} className={`group rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}>
+                      {roleName} interview questions <Chevron />
+                    </Link>
+                  </SpotlightCard>
+                  <SpotlightCard className="bg-[#070b16] p-6">
+                    <h2 className="text-sm font-semibold text-white">Fix your resume before you apply</h2>
+                    <p className="mb-4 mt-2 text-xs leading-relaxed text-slate-500">
+                      A strong cover letter won&apos;t save a resume that fails ATS. Check your score against
+                      the job description before submitting.
+                    </p>
+                    <Link href="/free-ats-checker" className={`group rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}>
+                      Free ATS resume checker <Chevron />
+                    </Link>
+                  </SpotlightCard>
+                </section>
+              </div>
+
+              {/* Top companies */}
+              {meta.topCompanies.length > 0 && (
+                <section id="companies" aria-label={`Top companies hiring ${roleName}s`} className={BLOCK}>
+                  <SectionHead
+                    eyebrow="Where to apply"
+                    title={`Top companies hiring ${roleName}s`}
+                    subtitle="Tailor your cover letter for each company. Reference something specific about their product, culture, or recent work."
+                    className="mb-6"
+                  />
+                  <RevealGroup className="flex flex-wrap gap-2">
+                    {meta.topCompanies.map((company) => {
+                      const companySlug = company.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+                      return (
+                        <RevealItem key={company} className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-sm text-slate-300">
+                          {company}
+                        </RevealItem>
+                      );
+                    })}
+                  </RevealGroup>
+                </section>
+              )}
+
+              {/* FAQ */}
+              <section id="faq" aria-label={`${roleName} cover letter FAQ`} className={BLOCK}>
+                <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="mb-6" />
+                <FaqList items={faqs} />
+              </section>
+
+              {/* Related roles */}
+              {meta.relatedRoles.length > 0 && (
+                <section id="related" aria-label="Related cover letter examples" className={BLOCK}>
+                  <h2 className="mb-5 text-xl font-bold text-white">Related cover letter examples</h2>
+                  <div className="flex flex-wrap gap-3">
+                    {meta.relatedRoles.map((r) => (
+                      <Link
+                        key={r}
+                        href={`/cover-letter-examples/${r}`}
+                        className={`group inline-flex items-center gap-1 rounded-xl border border-white/[0.1] px-4 py-2 text-sm text-slate-400 transition-colors hover:border-accent/50 hover:text-white ${FOCUS}`}
+                      >
+                        {r
+                          .split("-")
+                          .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+                          .join(" ")}{" "}
+                        Cover Letter
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 space-y-8">
+                <nav aria-label="On this page">
+                  <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
+                  <ol className="border-l border-white/[0.07]">
+                    {jump.map((j, i) => (
+                      <li key={j.id}>
+                        <a
+                          href={`#${j.id}`}
+                          className="-ml-px flex items-center gap-3 border-l border-transparent py-2 pl-4 text-sm text-slate-400 transition-colors hover:border-accent hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
+                        >
+                          <span className="font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
+                          {j.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </nav>
+
+                <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep-2/[0.08] to-transparent p-6">
+                  <p className="text-lg font-semibold leading-snug text-white">Generate your {roleName} cover letter free</p>
+                  <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} mt-5 w-full px-5 py-3`}>
+                    Generate free <Chevron />
+                  </a>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
-
-        {/* Writing tips */}
-        <section aria-label={`${roleName} cover letter writing tips`} className="mb-14">
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            {roleName} cover letter tips
-          </h2>
-          <p className="mb-8" style={{ color: "#94a3b8" }}>
-            Six things that separate {roleName} cover letters that get callbacks from ones that
-            get ignored.
-          </p>
-          <div className="space-y-4">
-            {tips.map((tip, i) => (
-              <div
-                key={i}
-                className="flex gap-4 p-5 rounded-xl"
-                style={{
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                }}
-              >
-                <div
-                  className="flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{
-                    background: "rgba(139,92,246,0.15)",
-                    color: "#a78bfa",
-                    border: "1px solid rgba(139,92,246,0.25)",
-                  }}
-                >
-                  {i + 1}
-                </div>
-                <div>
-                  <p className="font-semibold mb-1.5 text-sm" style={{ color: "#e2e8f0" }}>
-                    {tip.title}
-                  </p>
-                  <p className="text-sm leading-relaxed" style={{ color: "#64748b" }}>
-                    {tip.body}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Sibling guides for this role, plus the question predictor */}
-        <RoleGuideLinks role={role} roleName={display.name} current="cover-letter-examples" className="mb-10" />
-
-        {/* Cross-links: interview questions + resume tips */}
-        <section
-          aria-label="Related guides"
-          className="mb-14 grid sm:grid-cols-2 gap-4"
-        >
-          <div
-            className="p-5 rounded-xl"
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.07)",
-            }}
-          >
-            <h2 className="font-semibold mb-2 text-sm" style={{ color: "#ffffff" }}>
-              Prepare for the interview next
-            </h2>
-            <p className="text-xs leading-relaxed mb-3" style={{ color: "#64748b" }}>
-              Once your cover letter gets you a callback, you need to be ready for the interview.
-              Real questions, detailed answers, and AI mock interview practice.
-            </p>
-            <Link
-              href={`/interview-questions/${role}`}
-              className="text-sm font-semibold transition-colors hover:text-indigo-300"
-              style={{ color: "#6366f1" }}
-            >
-              {roleName} interview questions <Chevron />
-            </Link>
-          </div>
-
-          <div
-            className="p-5 rounded-xl"
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.07)",
-            }}
-          >
-            <h2 className="font-semibold mb-2 text-sm" style={{ color: "#ffffff" }}>
-              Fix your resume before you apply
-            </h2>
-            <p className="text-xs leading-relaxed mb-3" style={{ color: "#64748b" }}>
-              A strong cover letter won't save a resume that fails ATS. Check your score against
-              the job description before submitting.
-            </p>
-            <Link
-              href="/free-ats-checker"
-              className="text-sm font-semibold transition-colors hover:text-indigo-300"
-              style={{ color: "#6366f1" }}
-            >
-              Free ATS resume checker <Chevron />
-            </Link>
-          </div>
-        </section>
-
-        {/* Top companies */}
-        {meta.topCompanies.length > 0 && (
-          <section
-            aria-label={`Top companies hiring ${roleName}s`}
-            className="mb-14"
-          >
-            <h2 className="text-xl font-bold mb-4" style={{ color: "#ffffff" }}>
-              Top companies hiring {roleName}s
-            </h2>
-            <p className="text-sm mb-5" style={{ color: "#94a3b8" }}>
-              Tailor your cover letter for each company. Reference something specific about their
-              product, culture, or recent work.
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {meta.topCompanies.map((company) => {
-                const companySlug = company.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
-                return (
-                  <span
-                    key={company}
-                    className="px-3 py-1.5 rounded-lg text-sm"
-                    style={{
-                      background: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "#94a3b8",
-                    }}
-                  >
-                    {company}
-                  </span>
-                );
-              })}
-            </div>
-          </section>
-        )}
-
-        {/* FAQ */}
-        <section aria-label={`${roleName} cover letter FAQ`} className="mb-14">
-          <h2 className="text-2xl font-bold mb-8" style={{ color: "#ffffff" }}>
-            Frequently asked questions
-          </h2>
-          <div className="space-y-5">
-            {faqs.map(({ q, a }) => (
-              <div
-                key={q}
-                className="p-5 rounded-xl"
-                style={{
-                  background: "rgba(255,255,255,0.02)",
-                  border: "1px solid rgba(255,255,255,0.07)",
-                }}
-              >
-                <h3 className="font-semibold mb-2 text-sm" style={{ color: "#e2e8f0" }}>
-                  {q}
-                </h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#94a3b8" }}>
-                  {a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Related roles */}
-        {meta.relatedRoles.length > 0 && (
-          <section
-            aria-label="Related cover letter examples"
-            className="mb-14 pt-10"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-          >
-            <h2 className="text-xl font-bold mb-5" style={{ color: "#ffffff" }}>
-              Related cover letter examples
-            </h2>
-            <div className="flex flex-wrap gap-3">
-              {meta.relatedRoles.map((r) => (
-                <Link
-                  key={r}
-                  href={`/cover-letter-examples/${r}`}
-                  className="px-4 py-2 rounded-xl border text-sm transition-colors hover:text-white hover:border-purple-500/50"
-                  style={{ color: "#94a3b8", borderColor: "rgba(255,255,255,0.1)" }}
-                >
-                  {r
-                    .split("-")
-                    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-                    .join(" ")}{" "}
-                  Cover Letter
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
 
         {/* Final CTA */}
-        <section
-          aria-label="Generate cover letter free"
-          className="text-center py-12 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 rounded-2xl"
-          style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.07)",
-          }}
-        >
-          <h2 className="text-2xl font-bold mb-3" style={{ color: "#ffffff" }}>
-            Generate your {roleName} cover letter free
-          </h2>
-          <p className="mb-8 max-w-lg mx-auto text-sm" style={{ color: "#94a3b8" }}>
-            Paste the job description and our AI researches the company, matches your resume to the
-            role, and writes a personalised letter in under 60 seconds. 5 cover letters per month
-            free, no credit card required.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
-              style={{ background: "linear-gradient(135deg, #8b5cf6, #ec4899)" }}
-            >
-              Generate free <Chevron />
-            </a>
-            <Link
-              href="/cover-letter-examples"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border transition-colors hover:border-purple-500/50"
-              style={{ color: "#94a3b8", borderColor: "rgba(255,255,255,0.1)" }}
-            >
-              Browse all examples
-            </Link>
-          </div>
+        <section aria-label="Generate cover letter free" className={`${PAD} pb-24 pt-4`}>
+          <Reveal>
+            <CtaPanel
+              title={<>Generate your {roleName} cover letter free</>}
+              body={
+                <p className="max-w-lg text-sm">
+                  Paste the job description and our AI researches the company, matches your resume to the
+                  role, and writes a personalised letter in under 60 seconds. 5 cover letters per month
+                  free, no credit card required.
+                </p>
+              }
+              action={
+                <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+                  <a href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                    Generate free <Chevron />
+                  </a>
+                  <Link href="/cover-letter-examples" className={`${BTN_SECONDARY} ${FOCUS}`}>
+                    Browse all examples
+                  </Link>
+                </div>
+              }
+            />
+          </Reveal>
         </section>
       </main>
 

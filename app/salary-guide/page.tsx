@@ -4,6 +4,9 @@
  * Hub page for all role-specific salary guides.
  * Targets: "software engineer salary 2026", "product manager salary guide", etc.
  *
+ * Layout: hero, then one row per category (sticky label on the left, a ruled
+ * grid of role links on the right), cross-links, and a CTA panel.
+ *
  * File path: app/salary-guide/page.tsx
  */
 
@@ -14,6 +17,9 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import { PAD, INNER, SECTION, GRID_BG, BTN_PRIMARY, Eyebrow, PageHero, pad2, HoverRule } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import SalaryGuideVisual from "@/components/page/visuals/SalaryGuideVisual";
 
 export const metadata: Metadata = {
   title: "Salary Guide by Role: 2026 Data & Negotiation",
@@ -36,7 +42,7 @@ export default function SalaryGuideIndexPage() {
   })).filter((g) => g.roles.length > 0);
 
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="amber" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
         items={[
           { name: "Home", url: "https://preciprocal.com" },
@@ -45,98 +51,127 @@ export default function SalaryGuideIndexPage() {
       />
       <Navbar />
 
-      <main className="w-full page-main px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-        {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" style={{ color: "#64748b" }} className="text-sm mb-8 flex gap-2 items-center">
-          <Link href="/" className="hover:text-white transition-colors">Home</Link>
-          <span>›</span>
-          <span style={{ color: "#cbd5e1" }}>Salary Guide</span>
-        </nav>
+      <main>
+        <PageHero
+          visual={<SalaryGuideVisual />}
+          breadcrumb={
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-slate-500">
+              <Link href="/" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Home</Link>
+              <span aria-hidden="true">›</span>
+              <span className="text-slate-300">Salary Guide</span>
+            </nav>
+          }
+          title="2026 salary guide by role"
+          subhead={
+            <p>
+              Real salary data, equity benchmarks, total compensation breakdowns, and proven negotiation scripts
+              for every major career path, updated for 2026.
+            </p>
+          }
+          aside={
+            <p className="font-mono text-[13px] tabular-nums text-slate-500">
+              {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
+            </p>
+          }
+        />
 
-        {/* H1 */}
-        <h1 style={{ color: "#ffffff" }} className="text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight">
-          2026 salary guide by role
-        </h1>
-        <p style={{ color: "#94a3b8" }} className="text-lg mb-3 max-w-2xl leading-relaxed">
-          Real salary data, equity benchmarks, total compensation breakdowns, and proven negotiation scripts
-          for every major career path, updated for 2026.
-        </p>
-        <p style={{ color: "#475569" }} className="text-sm mb-12">
-          {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
-        </p>
-
-        {/* Role grid by category */}
-        <div className="space-y-12">
-          {grouped.map(({ category, roles }) => (
-            <section key={category}>
-              <h2
-                className="text-xs font-semibold uppercase tracking-widest mb-5"
-                style={{ color: "#64748b", borderBottom: "1px solid rgba(255,255,255,0.06)", paddingBottom: "0.75rem" }}
-              >
-                {category} · {roles.length} guide{roles.length !== 1 ? "s" : ""}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {roles.map((role) => {
-                  const display = ROLE_DISPLAY[role];
-                  if (!display) return null;
-                  return (
-                    <Link
-                      key={role}
-                      href={`/salary-guide/${role}`}
-                      className="group flex items-center gap-3 p-4 rounded-xl border transition-all"
-                      style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.06)" }}
-                    >
-                      <span className="text-xl flex-shrink-0">{display.icon}</span>
-                      <div className="min-w-0">
-                        <p style={{ color: "#e2e8f0" }} className="font-medium text-sm truncate group-hover:text-emerald-300 transition-colors">
-                          {display.name}
-                        </p>
-                        <p style={{ color: "#475569" }} className="text-[11px] mt-0.5">
-                          2026 salary data <Chevron />
-                        </p>
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-            </section>
-          ))}
-        </div>
+        {/* Role directory, one row per category */}
+        <section className={`${PAD} pb-20`}>
+          <div className={`${INNER} divide-y divide-white/[0.06] border-y border-white/[0.06]`}>
+            {grouped.map(({ category, roles }) => (
+              <section key={category} className="grid gap-6 py-10 lg:grid-cols-[260px_minmax(0,1fr)] xl:gap-16">
+                <div className="lg:sticky lg:top-28 lg:self-start">
+                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    {category} · {roles.length} guide{roles.length !== 1 ? "s" : ""}
+                  </h2>
+                </div>
+                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3">
+                  {roles.map((role) => {
+                    const display = ROLE_DISPLAY[role];
+                    if (!display) return null;
+                    return (
+                      <RevealItem key={role} className="bg-[#070b16]">
+                        <Link
+                          href={`/salary-guide/${role}`}
+                          className="group relative flex h-full items-center gap-4 p-5 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60"
+                        >
+                          <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.03] text-xl">
+                            {display.icon}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-medium text-slate-200 transition-colors group-hover:text-accent-soft">
+                              {display.name}
+                            </p>
+                            <p className="mt-0.5 text-[11px] text-slate-500">
+                              2026 salary data <Chevron />
+                            </p>
+                          </div>
+                          <HoverRule className="inset-x-5" />
+                        </Link>
+                      </RevealItem>
+                    );
+                  })}
+                </RevealGroup>
+              </section>
+            ))}
+          </div>
+        </section>
 
         {/* Cross-links */}
-        <div className="mt-16 grid sm:grid-cols-2 gap-4">
-          <div className="p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-            <h2 style={{ color: "#ffffff" }} className="font-semibold mb-2">Prepare for the interview first</h2>
-            <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
-              You need to get the offer before you can negotiate it. Role-specific interview prep guides.
-            </p>
-            <Link href="/interview-questions" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse interview guides <Chevron />
-            </Link>
+        <section className={`${PAD} ${SECTION}`}>
+          <div className={INNER}>
+            <Eyebrow>Before the offer</Eyebrow>
+            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+              {[
+                {
+                  title: "Prepare for the interview first",
+                  body: "You need to get the offer before you can negotiate it. Role-specific interview prep guides.",
+                  href: "/interview-questions",
+                  link: "Browse interview guides",
+                },
+                {
+                  title: "Get your resume past ATS first",
+                  body: "Role-specific resume guides with ATS keywords, bullet formulas, and format tips.",
+                  href: "/resume-tips",
+                  link: "Browse resume tips",
+                },
+              ].map((c, i) => (
+                <RevealItem key={c.href} className="bg-[#070b16]">
+                  <SpotlightCard className="h-full p-8">
+                    <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
+                    <h2 className="mt-4 text-lg font-semibold text-white">{c.title}</h2>
+                    <p className="mb-5 mt-2 max-w-md text-sm leading-relaxed text-slate-400">{c.body}</p>
+                    <Link href={c.href} className="group inline-flex items-center gap-1 rounded text-sm font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">
+                      {c.link} <Chevron />
+                    </Link>
+                  </SpotlightCard>
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
-          <div className="p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
-            <h2 style={{ color: "#ffffff" }} className="font-semibold mb-2">Get your resume past ATS first</h2>
-            <p style={{ color: "#94a3b8" }} className="text-sm mb-4">
-              Role-specific resume guides with ATS keywords, bullet formulas, and format tips.
-            </p>
-            <Link href="/resume-tips" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse resume tips <Chevron />
-            </Link>
-          </div>
-        </div>
+        </section>
 
         {/* CTA */}
-        <div className="mt-10 text-center">
-          <p style={{ color: "#475569" }} className="text-sm mb-4">
-            Once you know your number, let us help you get the interview that leads to it.
-          </p>
-          <a
-            href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
-          >
-            Start preparing free <Chevron />
-          </a>
-        </div>
+        <section className={`${PAD} pb-24 pt-4`}>
+          <Reveal>
+            <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
+                style={GRID_BG}
+              />
+              <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/2 h-[320px] w-[520px] -translate-y-1/2 rounded-full bg-accent-deep/15 blur-[110px]" />
+              <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+                <p className="max-w-2xl text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl">
+                  Once you know your number, let us help you get the interview that leads to it.
+                </p>
+                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 sm:w-auto`}>
+                  Start preparing free <Chevron />
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </section>
       </main>
 
       <Footer />

@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import InterviewDebriefVisual from "@/components/page/visuals/InterviewDebriefVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -94,6 +95,8 @@ export default function InterviewDebriefPage() {
   return (
     <ToolPage
       breadcrumbName="Interview Debrief Journal"
+      accent="rose"
+      visual={<InterviewDebriefVisual />}
       canonicalPath="/interview-debrief"
       badge="Free, 2 debriefs per month"
       h1="Interview debrief journal"
@@ -152,7 +155,7 @@ export default function InterviewDebriefPage() {
                 "Your read on how it went, so you can later calibrate that read against the outcome",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
+                  <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}
