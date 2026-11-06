@@ -67,9 +67,9 @@ export interface ToolPageProps {
    */
   tool?: React.ReactNode;
   /**
-   * "full" gives the tool the whole content width, for tools laid out in
-   * columns (the ATS checker). The default keeps a wide but bounded column
-   * for tools designed as a single column.
+   * "full" (the default) gives the tool the whole content width, for tools
+   * laid out in columns. "contained" centres a bounded column, for a tool
+   * that only works as a single narrow column.
    */
   toolWidth?: "full" | "contained";
   featuresTitle: string;
@@ -129,7 +129,7 @@ export default function ToolPage({
   ctaLabel,
   ctaMicrocopy,
   tool,
-  toolWidth = "contained",
+  toolWidth = "full",
   featuresTitle,
   featuresSubtitle,
   features,
@@ -206,7 +206,7 @@ export default function ToolPage({
           {tool && (
             <section data-section="tool" data-section-name="Interactive tool" className={`pb-20 ${PAD}`}>
               <div className={`${INNER} animate-fade-up opacity-0`} style={{ animationDelay: "200ms" }}>
-                <div className={toolWidth === "full" ? "" : "max-w-5xl"}>{tool}</div>
+                <div className={toolWidth === "full" ? "" : "mx-auto max-w-5xl"}>{tool}</div>
               </div>
             </section>
           )}
