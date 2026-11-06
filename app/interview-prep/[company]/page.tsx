@@ -168,12 +168,28 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                   <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">The interview process</h2>
                 </Reveal>
                 <RevealGroup as="ol" className="relative space-y-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07]">
-                  {meta.interviewProcess.map((step, i) => (
-                    <RevealItem as="li" key={i} className="flex items-start gap-5 bg-[#070b16] p-5 sm:p-6">
-                      <span className="mt-0.5 font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
-                      <p className="text-sm leading-relaxed text-slate-300">{step}</p>
-                    </RevealItem>
-                  ))}
+                  {/* The data marks the parts of a round with a leading "->"
+                      ("  -> 2 coding rounds" under the onsite). Those render as
+                      indented sub-steps, and only main steps are numbered. */}
+                  {(() => {
+                    let n = 0;
+                    return meta.interviewProcess.map((step, i) => {
+                      const sub = /^\s*->\s*/.test(step);
+                      const text = step.replace(/^\s*->\s*/, "");
+                      if (!sub) n += 1;
+                      return sub ? (
+                        <RevealItem as="li" key={i} className="flex items-start gap-3 bg-[#070b16] py-3.5 pl-[4.25rem] pr-5 sm:pr-6">
+                          <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-accent-soft/60" />
+                          <p className="text-[13px] leading-relaxed text-slate-400">{text}</p>
+                        </RevealItem>
+                      ) : (
+                        <RevealItem as="li" key={i} className="flex items-start gap-5 bg-[#070b16] p-5 sm:p-6">
+                          <span className="mt-0.5 font-mono text-[12px] text-accent-soft/80">{pad2(n)}</span>
+                          <p className="text-sm leading-relaxed text-slate-300">{text}</p>
+                        </RevealItem>
+                      );
+                    });
+                  })()}
                 </RevealGroup>
               </section>
 
