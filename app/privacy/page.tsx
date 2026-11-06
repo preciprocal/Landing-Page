@@ -158,6 +158,8 @@ We do this on the basis of our legitimate interest in understanding which of our
 
 **Where it goes.** Into our own database, used by our internal business reporting. It is not sold, not shared with advertising networks, and not sent to any analytics company.
 
+**The free ATS resume checker.** When you use the free checker on our website without an account, your resume file is sent to our AI model provider to be scored and is not stored. The result you are shown (your scores and the feedback on your resume) is saved for 30 days so that you see it again when you come back, and so that each visitor gets one free check. To recognise a returning visit we set a cookie holding a random identifier, and we store a one-way hash of your IP address and of your browser's user agent, made with a fixed secret value. The hash cannot be turned back into your IP address. If you return without the cookie, a match on the hash shows only your scores, not the feedback, because an IP address can be shared by many people on the same network. Results older than 30 days are deleted. This cookie and this record exist only to provide the checker you asked to use, so they are not covered by the cookie banner. To have your saved result deleted sooner, email support@preciprocal.com.
+
 **If you would rather not be measured at all**, email support@preciprocal.com and we will tell you how to exclude yourself.`,
   },
   {
@@ -355,7 +357,7 @@ export default function PrivacyPage() {
                 Privacy Policy
               </h1>
               <p className="text-slate-500 text-base mb-2">
-                Last updated: October 25, 2026. Effective date: October 25, 2026.
+                Last updated: November 5, 2026. Effective date: November 5, 2026.
               </p>
               <p className="text-slate-600 text-sm">
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.

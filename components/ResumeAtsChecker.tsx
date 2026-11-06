@@ -12,15 +12,23 @@
  * they are about, without the rewrites (the server never sends those). The
  * unlock CTA goes to sign-up with ?tool=ats-checker, which the app routes to
  * its resume upload page (Dashboard lib/auth/destination.ts).
+ *
+ * One free check per visitor. On load the page asks the server for an
+ * earlier check (lib/resumeCheck/store.ts) and, if there is one, shows it in
+ * place of the upload form. Recognised by cookie it is the full result;
+ * recognised by network only (cookie cleared) it is the scores alone, since a
+ * shared IP may be someone else.
  */
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { APP_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics/client";
 import type { ResumeCheckResult } from "@/lib/resumeCheck/analysis";
 
 const SIGN_UP_URL = `${APP_URL}/sign-up?tool=ats-checker`;
 const MAX_BYTES = 4 * 1024 * 1024;
+
+type Shown = ResumeCheckResult & { restored?: "device" | "network"; checkedAt?: string };
 const ACCEPT = ".pdf,.docx,.doc,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword";
 
 /** The app's own calibration (Dashboard ANALYSIS_SYSTEM, rule 4). */
@@ -47,9 +55,27 @@ export default function ResumeAtsChecker() {
   const [jobDescription, setJobDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState<ResumeCheckResult | null>(null);
+  const [result, setResult] = useState<Shown | null>(null);
+  const [lookedUp, setLookedUp] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+
+  // A returning visitor sees the check they already ran.
+  useEffect(() => {
+    let live = true;
+    fetch("/api/tools/resume-check", { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: Shown | null) => {
+        if (!live || !data || typeof data.overallScore !== "number") return;
+        setResult(data);
+        trackEvent("ats-check-returned", { score: data.overallScore, restored: data.restored ?? "" }, "tool");
+      })
+      .catch(() => {})
+      .finally(() => live && setLookedUp(true));
+    return () => {
+      live = false;
+    };
+  }, []);
 
   function pick(f: File | undefined | null) {
     setError("");
@@ -77,7 +103,7 @@ export default function ResumeAtsChecker() {
     if (jobDescription.trim()) body.append("jobDescription", jobDescription.trim());
     try {
       const res = await fetch("/api/tools/resume-check", { method: "POST", body });
-      const data = (await res.json().catch(() => null)) as (ResumeCheckResult & { error?: string }) | null;
+      const data = (await res.json().catch(() => null)) as (Shown & { error?: string }) | null;
       if (!res.ok || !data || data.error) throw new Error(data?.error || "Something went wrong. Please try again.");
       setResult(data);
       trackEvent("ats-check-scored", { score: data.overallScore, locked: data.locked.length, jd: data.hasJobContext }, "tool");
@@ -89,9 +115,18 @@ export default function ResumeAtsChecker() {
     }
   }
 
+  if (!lookedUp) {
+    return <div className="h-[420px] animate-pulse rounded-2xl border border-white/[0.06] bg-white/[0.03]" aria-busy="true" />;
+  }
+
+  const returning = Boolean(result?.restored);
+
   return (
     <div className="text-left space-y-6">
+      {returning && result && <WelcomeBack result={result} />}
+
       {/* ── Upload ───────────────────────────────────────────────────── */}
+      {!returning && (
       <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
         <button
           type="button"
@@ -160,7 +195,7 @@ export default function ResumeAtsChecker() {
         )}
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] text-slate-600">Sent to our AI model provider to score it. Not stored, no account needed.</p>
+          <p className="text-[11px] text-slate-600">No account needed. The file is not stored; your result is kept for 30 days so you can come back to it.</p>
           <button
             type="button"
             data-track="ats-check-submit"
@@ -173,6 +208,7 @@ export default function ResumeAtsChecker() {
         </div>
         {error && <p className="mt-4 text-sm text-rose-300">{error}</p>}
       </div>
+      )}
 
       {loading && <Progress />}
 
@@ -189,6 +225,36 @@ export default function ResumeAtsChecker() {
 }
 
 // ─── Pieces ─────────────────────────────────────────────────────────────────
+
+function WelcomeBack({ result }: { result: Shown }) {
+  const when = result.checkedAt
+    ? new Date(result.checkedAt).toLocaleDateString(undefined, { month: "long", day: "numeric" })
+    : "";
+  const device = result.restored === "device";
+  return (
+    <div className="flex flex-col gap-4 rounded-2xl border border-indigo-400/25 bg-indigo-500/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p className="font-semibold text-white">
+          {device
+            ? `Welcome back. Here is your resume check${when ? ` from ${when}` : ""}.`
+            : `Welcome back. A free check was already run from this device${when ? ` on ${when}` : ""}.`}
+        </p>
+        <p className="mt-1 text-sm text-slate-400">
+          {device
+            ? "Your free check is used. Create a free account to see every fix and check new versions of your resume, with 3 analyses every month."
+            : "For privacy, the detailed feedback only shows in the browser that ran the check. Create a free account to see every fix, or to check a different resume."}
+        </p>
+      </div>
+      <a
+        href={SIGN_UP_URL}
+        data-track="ats-check-returning-signup"
+        className="shrink-0 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90"
+      >
+        Create free account →
+      </a>
+    </div>
+  );
+}
 
 function Progress() {
   const steps = ["Reading your resume", "Checking ATS compatibility", "Scoring content and impact", "Reviewing skills and structure", "Writing your fixes"];
@@ -341,15 +407,24 @@ function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; inde
   );
 }
 
+/** Shown blurred when there are no real headlines to blur. */
+const PLACEHOLDER_FIXES = [
+  { section: "Content and impact", tip: "Your experience bullets describe duties instead of results." },
+  { section: "ATS compatibility", tip: "Key terms from the role are missing from your experience section." },
+  { section: "Skills", tip: "Several listed skills are not backed by any bullet." },
+];
+
 function Locked({ result }: { result: ResumeCheckResult }) {
-  const n = result.locked.length;
+  // A scores-only result (network match) has no headlines; count from totals.
+  const scoresOnly = result.fixes.length === 0 && result.locked.length === 0;
+  const n = scoresOnly ? result.totals.improvements : result.locked.length;
   const shown = result.locked.slice(0, 3);
   return (
     <div className="relative overflow-hidden rounded-2xl border border-indigo-400/25 bg-white/[0.02]">
       {/* The fixes behind the lock: headlines only from the server, blurred
           here. The rewrites are never sent to the page. */}
       <div aria-hidden="true" className="pointer-events-none select-none space-y-4 p-6 blur-[5px] opacity-90">
-        {(shown.length ? shown : [{ section: "Content and impact", tip: "Your experience bullets describe duties instead of results." }]).map((f, i) => (
+        {(shown.length ? shown : PLACEHOLDER_FIXES).map((f, i) => (
           <div key={i} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
             <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-slate-400">{f.section}</span>
             <p className="mt-3 font-semibold text-white">{f.tip}</p>
@@ -371,7 +446,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             </svg>
           </div>
           <h3 className="mb-2 text-xl font-bold text-white">
-            {n > 0 ? `${n} more ${n === 1 ? "fix" : "fixes"} found in your resume` : "Your full analysis is ready"}
+            {n > 0 ? `${n} ${scoresOnly ? "" : "more "}${n === 1 ? "fix" : "fixes"} found in your resume` : "Your full analysis is ready"}
           </h3>
           <p className="mb-5 text-sm text-slate-400">
             Explore every fix and the deeper analysis in your free account.

@@ -78,7 +78,7 @@ const FAQS = [
   },
   {
     q: "Is my resume stored?",
-    a: "No. Your resume is sent to our AI model provider to be scored and is not saved by Preciprocal or linked to you. If you later create an account and upload it there, it is saved to your account so you can come back to the report.",
+    a: "The file is not. Your resume is sent to our AI model provider to be scored and is not saved by Preciprocal. The result you see is kept for 30 days, so it is still there when you come back, and then deleted. Each visitor gets one free check. If you create an account and upload your resume there, it is saved to your account so you can track your score as you edit.",
   },
   {
     q: "How do I improve my ATS score?",

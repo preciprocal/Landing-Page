@@ -43,3 +43,6 @@ next-env.d.ts
 
 # IndexNow sitemap snapshot (CI cache)
 .indexnow/
+
+# Supabase CLI
+supabase/.temp/

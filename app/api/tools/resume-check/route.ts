@@ -1,14 +1,21 @@
 /**
  * app/api/tools/resume-check/route.ts
  *
- * POST multipart { file, jobTitle?, jobDescription? } -> the free ATS resume
- * check on /free-ats-checker: every score, a few complete fixes, and the
- * headlines of the rest. The analysis itself mirrors the app's; see
- * lib/resumeCheck/analysis.ts. No account, nothing stored.
+ * The free ATS resume check on /free-ats-checker.
+ *
+ *   GET   The visitor's earlier check, if there is one (see
+ *         lib/resumeCheck/store.ts), so the page can show it again.
+ *   POST  multipart { file, jobTitle?, jobDescription? }: every score, a few
+ *         complete fixes, and the headlines of the rest. The analysis mirrors
+ *         the app's; see lib/resumeCheck/analysis.ts. A visitor who already has
+ *         a check gets that one back instead of a new one.
+ *
+ * Both answer with the result plus { restored?, checkedAt? }.
  */
 
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { MAX_JOB_DESC_CHARS, checkResume } from "@/lib/resumeCheck/analysis";
+import { COOKIE, RETENTION_DAYS, findCheck, identify, saveCheck, type StoredCheck } from "@/lib/resumeCheck/store";
 import { allowedOrigin, rateLimit } from "@/lib/interviewTools/server";
 
 export const runtime = "nodejs";
@@ -22,10 +29,25 @@ export const maxDuration = 60;
  */
 const MAX_FILE_BYTES = 4 * 1024 * 1024;
 
-const json = (body: unknown, status = 200) => NextResponse.json(body, { status });
+const json = (body: unknown, status = 200) =>
+  NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store" } });
 
-export async function POST(req: Request) {
+const stored = (s: StoredCheck) => json({ ...s.result, restored: s.restored, checkedAt: s.checkedAt });
+
+export async function GET(req: NextRequest) {
+  const found = await findCheck(identify(req, req.cookies.get(COOKIE)?.value));
+  return found ? stored(found) : json({ result: null });
+}
+
+export async function POST(req: NextRequest) {
   if (!allowedOrigin(req)) return json({ error: "Forbidden" }, 403);
+
+  // One free check per visitor: a returning visitor sees the check they
+  // already ran, and spends no model calls doing so.
+  const visitor = identify(req, req.cookies.get(COOKIE)?.value);
+  const found = await findCheck(visitor);
+  if (found) return stored(found);
+
   // Five model calls per check, so a tighter limit than the question tools.
   if (!rateLimit(req, "resume-check", 3, 60 * 60 * 1000)) {
     return json(
@@ -48,6 +70,18 @@ export async function POST(req: Request) {
     jobTitle: str(form?.get("jobTitle"), 120),
     jobDescription: str(form?.get("jobDescription"), MAX_JOB_DESC_CHARS),
   });
+  if (!outcome.ok) return json({ error: outcome.error }, outcome.status);
 
-  return outcome.ok ? json(outcome.result) : json({ error: outcome.error }, outcome.status);
+  const res = json(outcome.result);
+  const token = await saveCheck(visitor, outcome.result);
+  if (token) {
+    res.cookies.set(COOKIE, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: RETENTION_DAYS * 24 * 60 * 60,
+    });
+  }
+  return res;
 }
