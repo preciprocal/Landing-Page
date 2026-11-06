@@ -20,7 +20,7 @@
  */
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
@@ -291,7 +291,7 @@ export default function FeaturesPage() {
 
                       <span className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium text-indigo-400 group-hover:text-indigo-300 transition-colors">
                         See how it works
-                        <ArrowRight
+                        <ChevronRight
                           className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform"
                           aria-hidden="true"
                         />
@@ -327,7 +327,7 @@ export default function FeaturesPage() {
                            hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all duration-300"
               >
                 Get started free
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                <ChevronRight className="w-4 h-4" aria-hidden="true" />
               </a>
             </MagneticHover>
 

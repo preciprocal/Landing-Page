@@ -102,7 +102,7 @@ export function ResumeRecruiterTab() {
         <div className="space-y-1">
           {[
             'The role at Datadog as Software Engineer Co-op with strong quantified metrics (2M+ events/sec, 40% latency reduction) immediately signals competence.',
-            'Progression from Cognizant → TechVision → Wayfair → Datadog shows clear upward career trajectory.',
+            'Progression from Cognizant to TechVision, Wayfair and Datadog shows clear upward career trajectory.',
             'Project section (SmartHire AI, FinTrack) demonstrates initiative beyond employment.',
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-1.5">

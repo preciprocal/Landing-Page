@@ -10,6 +10,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: { absolute: "Job Search Chrome Extension: Save Jobs in 1 Click" },
@@ -151,7 +152,7 @@ export default function ChromeExtensionPage() {
                 "Duplicate detection, a warning before you apply to the same role twice",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
+                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

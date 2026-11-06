@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Interview Questions by Role: 40+ Careers",
@@ -87,7 +88,7 @@ export default function InterviewQuestionsIndexPage() {
                           {display.name}
                         </p>
                         <p style={{ color: "#475569" }} className="text-[11px] mt-0.5">
-                          Interview questions →
+                          Interview questions <Chevron />
                         </p>
                       </div>
                     </Link>
@@ -105,7 +106,7 @@ export default function InterviewQuestionsIndexPage() {
             Paste it into the free predictor to get the 5 questions that posting is most likely to lead to, and practice your answers out loud. No sign-up.
           </p>
           <Link href="/interview-question-predictor" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-            Predict questions from a job description →
+            Predict questions from a job description <Chevron />
           </Link>
         </div>
 
@@ -116,7 +117,7 @@ export default function InterviewQuestionsIndexPage() {
             We also have company-specific prep guides covering the interview process, culture, difficulty, and what each company actually looks for.
           </p>
           <Link href="/interview-prep" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-            Browse company interview guides →
+            Browse company interview guides <Chevron />
           </Link>
         </div>
 

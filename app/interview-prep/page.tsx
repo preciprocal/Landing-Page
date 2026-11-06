@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Company Interview Prep: 56 Employers",
@@ -126,7 +127,7 @@ export default function InterviewPrepIndexPage() {
                           <p className="text-white font-medium text-sm group-hover:text-indigo-300 transition-colors">
                             {display.name}
                           </p>
-                          <p className="text-slate-600 text-[11px] mt-0.5">Prep guide →</p>
+                          <p className="text-slate-600 text-[11px] mt-0.5">Prep guide <Chevron /></p>
                         </div>
                         <span className={`text-[10px] font-semibold px-2 py-1 rounded-full border ${diffClass}`}>
                           {display.difficulty}
@@ -157,7 +158,7 @@ export default function InterviewPrepIndexPage() {
               href="/interview-questions"
               className="text-indigo-400 hover:text-indigo-300 transition-colors text-sm font-medium"
             >
-              Browse role interview guides →
+              Browse role interview guides <Chevron />
             </Link>
           </div>
 

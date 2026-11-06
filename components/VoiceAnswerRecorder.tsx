@@ -18,6 +18,7 @@
 import { useEffect, useRef, useState } from "react";
 import { analyseDelivery, type DeliveryStats, type Status } from "@/lib/interviewTools/delivery";
 import { trackEvent } from "@/lib/analytics/client";
+import Chevron from "@/components/Chevron";
 
 const MAX_SECONDS = 150;
 /** A gap this long between recognition events, while recording, counts as a long pause. */
@@ -291,7 +292,7 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
         <ul className="space-y-2 text-sm text-slate-400">
           {tips.map((t, i) => (
             <li key={i} className="flex gap-2">
-              <span className="text-amber-300 shrink-0">→</span>
+              <span className="text-amber-300 shrink-0"><Chevron /></span>
               <span>{t}</span>
             </li>
           ))}

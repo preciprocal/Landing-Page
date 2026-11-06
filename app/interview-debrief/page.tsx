@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Interview Debrief Journal for Job Seekers",
@@ -151,7 +152,7 @@ export default function InterviewDebriefPage() {
                 "Your read on how it went, so you can later calibrate that read against the outcome",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
+                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

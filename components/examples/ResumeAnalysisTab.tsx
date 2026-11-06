@@ -40,7 +40,7 @@ const CATEGORIES: Category[] = [
     iconBg: 'bg-orange-500/10',
     iconEl: <Shield className="w-3 h-3 text-orange-400" />,
     tips: [
-      { type: 'warning', title: "The job title 'Software Engineer Co-op' under Datadog does not align with the target role.", desc: "ATS might not prioritize experience that doesn't directly align with the Software Engineer role.", fix: "Change: 'Software Engineer Co-op' → Replace with: 'Software Engineering Intern'" },
+      { type: 'warning', title: "The job title 'Software Engineer Co-op' under Datadog does not align with the target role.", desc: "ATS might not prioritize experience that doesn't directly align with the Software Engineer role.", fix: "Change 'Software Engineer Co-op' to 'Software Engineering Intern'" },
       { type: 'warning', title: "Multiple tools mentioned ('Apache Airflow', 'Spark') without context in Wayfair role.", desc: "An ATS might not fully recognize the relevance of these tools without context of how they are used.", fix: "Add context about the use of 'Apache Airflow' and 'Spark' in driving key metrics." },
       { type: 'good', title: "Skills section lists relevant tools and methodologies such as Python, SQL, Kubernetes, and Docker.", desc: "These are key terms that an ATS will search for in a Software Engineer position." },
       { type: 'good', title: "Use of quantifiable metrics like '40% reduction in alert latency' for Datadog role.", desc: "ATS systems tend to favor resumes with quantifiable achievements, as they align with key performance indicators." },

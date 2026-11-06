@@ -10,7 +10,7 @@
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ArrowLeft, Sparkles } from "lucide-react";
+import { ChevronDown, ChevronLeft, Sparkles } from "lucide-react";
 import { FAQS, FAQ_CATEGORIES, type FAQCategory, type FAQItem } from "@/lib/constants";
 import {
   RevealOnScroll,
@@ -140,7 +140,7 @@ export default function FAQPage() {
           href="/"
           className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-300 transition-colors mb-10"
         >
-          <ArrowLeft className="w-4 h-4" />
+          <ChevronLeft className="w-4 h-4" />
           Back to home
         </Link>
 

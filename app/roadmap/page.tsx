@@ -7,7 +7,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, Circle, Clock, Rocket, ArrowRight } from "lucide-react";
+import { CheckCircle2, Circle, Clock, Rocket, ChevronRight } from "lucide-react";
 import {
   RevealOnScroll,
   FloatingDots,
@@ -382,7 +382,7 @@ export default function RoadmapPage() {
                     href={`${APP_URL}/sign-up`}
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
                   >
-                    Try what&apos;s live now <ArrowRight className="w-4 h-4" />
+                    Try what&apos;s live now <ChevronRight className="w-4 h-4" />
                   </Link>
                 </div>
               </SpotlightCard>

@@ -301,7 +301,7 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
           <FadeIn delay={200}>
             <p className="text-[7px] sm:text-[8px] text-indigo-400 text-center my-1.5 flex-shrink-0 font-medium">
               {isWriter
-                ? '✨ Click a fix to expand → Click Apply Change to update the resume'
+                ? '✨ Click a fix to expand, then click Apply Change to update the resume'
                 : isLocked
                   ? `✨ Viewing ${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} example`
                   : '✨ Click tabs above and scroll to explore the full analysis'}

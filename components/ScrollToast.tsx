@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, GraduationCap, ArrowRight } from "lucide-react";
+import { X, GraduationCap, ChevronRight } from "lucide-react";
 import { APP_URL } from "@/lib/constants";
 
 const STORAGE_KEY = "preciprocal-toast-dismissed";
@@ -134,7 +134,7 @@ export default function ScrollToast() {
                                transition-all duration-300 hover:-translate-y-0.5"
                   >
                     Claim free month
-                    <ArrowRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
+                    <ChevronRight className="w-3 h-3 transition-transform group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </div>

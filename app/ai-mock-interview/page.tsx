@@ -27,6 +27,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "AI Mock Interviews: Free Practice + Feedback",
@@ -205,7 +206,7 @@ export default function AIMockInterviewPage() {
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white text-base transition-all hover:opacity-90 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
           >
-            Start your free mock interview →
+            Start your free mock interview <Chevron />
           </Link>
           <Link
             href={`${APP_URL}/sign-up?plan=pro`}
@@ -364,7 +365,7 @@ export default function AIMockInterviewPage() {
               className="text-sm px-3 py-1.5 rounded-lg border transition-colors hover:border-indigo-500/50"
               style={{ borderColor: "#1e293b", color: "#6366f1" }}
             >
-              All 20+ companies →
+              All 20+ companies <Chevron />
             </Link>
           </div>
         </section>
@@ -387,7 +388,7 @@ export default function AIMockInterviewPage() {
             className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
             style={{ color: "#818cf8" }}
           >
-            Open the free interview question predictor →
+            Open the free interview question predictor <Chevron />
           </Link>
         </section>
 
@@ -409,7 +410,7 @@ export default function AIMockInterviewPage() {
             className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
             style={{ color: "#6366f1" }}
           >
-            Run your free ATS resume check →
+            Run your free ATS resume check <Chevron />
           </Link>
         </section>
 
@@ -451,7 +452,7 @@ export default function AIMockInterviewPage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
               style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
             >
-              Start free →
+              Start free <Chevron />
             </Link>
             <Link
               href="/#pricing"

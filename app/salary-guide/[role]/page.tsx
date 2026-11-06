@@ -17,6 +17,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
+import Chevron from "@/components/Chevron";
 
 // ─── Static params ────────────────────────────────────────────────────────────
 export function generateStaticParams() {
@@ -393,7 +394,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
           <ul className="space-y-3">
             {salaryData.salaryFactors.map((factor, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span style={{ color: "#6ee7b7" }} className="text-sm font-bold mt-0.5 flex-shrink-0">→</span>
+                <span style={{ color: "#6ee7b7" }} className="text-sm font-bold mt-0.5 flex-shrink-0"><Chevron /></span>
                 <p style={{ color: "#94a3b8" }} className="text-sm leading-relaxed">{factor}</p>
               </li>
             ))}
@@ -508,7 +509,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
             You can't negotiate a salary you haven't been offered. Get your resume past ATS and practice your interview with Preciprocal.
           </p>
           <a href={`${APP_URL}/sign-up`} className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity">
-            Start preparing free →
+            Start preparing free <Chevron />
           </a>
           <p style={{ color: "#475569" }} className="text-xs mt-3">No credit card required · Free plan available</p>
         </div>

@@ -21,6 +21,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, titleField } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
+import Chevron from "@/components/Chevron";
 
 // ── Static params ─────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -434,7 +435,7 @@ export default async function CoverLetterExampleRolePage({
               color: "#ffffff",
             }}
           >
-            Generate my cover letter free →
+            Generate my cover letter free <Chevron />
           </a>
         </div>
 
@@ -507,7 +508,7 @@ export default async function CoverLetterExampleRolePage({
               className="text-sm font-semibold transition-colors hover:text-indigo-300"
               style={{ color: "#6366f1" }}
             >
-              {roleName} interview questions →
+              {roleName} interview questions <Chevron />
             </Link>
           </div>
 
@@ -530,7 +531,7 @@ export default async function CoverLetterExampleRolePage({
               className="text-sm font-semibold transition-colors hover:text-indigo-300"
               style={{ color: "#6366f1" }}
             >
-              Free ATS resume checker →
+              Free ATS resume checker <Chevron />
             </Link>
           </div>
         </section>
@@ -647,7 +648,7 @@ export default async function CoverLetterExampleRolePage({
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
               style={{ background: "linear-gradient(135deg, #8b5cf6, #ec4899)" }}
             >
-              Generate free →
+              Generate free <Chevron />
             </a>
             <Link
               href="/cover-letter-examples"

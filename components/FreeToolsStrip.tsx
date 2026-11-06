@@ -13,6 +13,7 @@
  */
 
 import Link from "next/link";
+import Chevron from "@/components/Chevron";
 
 const TOOLS = [
   {
@@ -72,7 +73,7 @@ export default function FreeToolsStrip() {
             )}
             <p className="text-white font-semibold mb-2 pr-12">{t.title}</p>
             <p className="text-sm text-slate-400 leading-relaxed mb-4">{t.body}</p>
-            <span className="text-sm font-semibold text-indigo-300 group-hover:text-indigo-200">Try it free →</span>
+            <span className="text-sm font-semibold text-indigo-300 group-hover:text-indigo-200">Try it free <Chevron /></span>
           </Link>
         ))}
       </div>

@@ -4,11 +4,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Send, Sparkles, Search, Edit3, Users, Zap,
-  CheckCircle2, AlertTriangle, ArrowRight, Copy,
+  CheckCircle2, AlertTriangle, ChevronRight, Copy,
   MessageSquare, Info, RefreshCw, XCircle,
    Mail, Loader2,
 } from 'lucide-react';
 import { FadeIn, TypingText, ScoreRing } from '@/lib/primitives';
+import Chevron from "@/components/Chevron";
 
 // Linkedin icon (removed from lucide-react v0.400+)
 function Linkedin({ className = "" }: { className?: string }) {
@@ -223,7 +224,7 @@ function LinkedInResults() {
             <div className="mt-2.5 pt-2.5 border-t border-white/[0.05]">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[8px] text-slate-500 flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search visibility</span>
-                <span className="text-[8px] text-white font-medium">28 <span className="text-slate-600">→</span> <span className="text-emerald-400">78</span></span>
+                <span className="text-[8px] text-white font-medium">28 <span className="text-slate-600"><Chevron /></span> <span className="text-emerald-400">78</span></span>
               </div>
               <div className="relative h-1 bg-white/[0.06] rounded-full overflow-hidden">
                 <div className="absolute inset-y-0 left-0 bg-white/10 rounded-full" style={{ width: '28%' }} />
@@ -540,7 +541,7 @@ function OutreachResults() {
             <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg">
               <p className="text-[8px] font-bold text-emerald-400 flex items-center gap-1 mb-1.5"><CheckCircle2 className="w-2.5 h-2.5" /> Do This</p>
               {['Reference their specific content', 'Mention the mutual connection early', 'Keep it under 150 words'].map((t, i) => (
-                <div key={i} className="flex items-start gap-1 mb-0.5"><ArrowRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" /><p className="text-[7px] text-slate-300 leading-snug">{t}</p></div>
+                <div key={i} className="flex items-start gap-1 mb-0.5"><ChevronRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" /><p className="text-[7px] text-slate-300 leading-snug">{t}</p></div>
               ))}
             </div>
             <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg">
@@ -654,7 +655,7 @@ function InteractiveView() {
                 <div className="mt-2.5 pt-2.5 border-t border-white/[0.05]">
                   <div className="flex items-center justify-between mb-1">
                     <span className="text-[8px] text-slate-500 flex items-center gap-1"><Search className="w-2.5 h-2.5" /> Search visibility</span>
-                    <span className="text-[8px] text-white font-medium">28 <span className="text-slate-600">→</span> <span className="text-emerald-400">78</span></span>
+                    <span className="text-[8px] text-white font-medium">28 <span className="text-slate-600"><Chevron /></span> <span className="text-emerald-400">78</span></span>
                   </div>
                   <div className="relative h-1 bg-white/[0.06] rounded-full overflow-hidden">
                     <div className="absolute inset-y-0 left-0 bg-white/10 rounded-full" style={{ width: '28%' }} />
@@ -784,7 +785,7 @@ function InteractiveView() {
                 <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg">
                   <p className="text-[8px] font-bold text-emerald-400 flex items-center gap-1 mb-1.5"><CheckCircle2 className="w-2.5 h-2.5" /> Do This</p>
                   {['Reference their specific content', 'Mention the mutual connection early', 'Keep it under 150 words'].map((t, i) => (
-                    <div key={i} className="flex items-start gap-1 mb-0.5"><ArrowRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" /><p className="text-[7px] text-slate-300 leading-snug">{t}</p></div>
+                    <div key={i} className="flex items-start gap-1 mb-0.5"><ChevronRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" /><p className="text-[7px] text-slate-300 leading-snug">{t}</p></div>
                   ))}
                 </div>
                 <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg">

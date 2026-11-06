@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Resume Tips by Role: 41 Career Guides",
@@ -91,7 +92,7 @@ export default function ResumeTipsIndexPage() {
                           {display.name}
                         </p>
                         <p style={{ color: "#475569" }} className="text-[11px] mt-0.5">
-                          Resume tips →
+                          Resume tips <Chevron />
                         </p>
                       </div>
                     </Link>
@@ -110,7 +111,7 @@ export default function ResumeTipsIndexPage() {
               Role-specific cover letter examples and templates for every career path.
             </p>
             <Link href="/cover-letter-examples" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse cover letter examples →
+              Browse cover letter examples <Chevron />
             </Link>
           </div>
           <div className="p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
@@ -119,7 +120,7 @@ export default function ResumeTipsIndexPage() {
               Up-to-date salary data, equity benchmarks, and negotiation tips by role.
             </p>
             <Link href="/salary-guide" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse salary guides →
+              Browse salary guides <Chevron />
             </Link>
           </div>
         </div>

@@ -15,6 +15,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "LinkedIn Profile Optimizer: Get Found",
@@ -161,7 +162,7 @@ export default function LinkedInProfileOptimizerPage() {
                 "Experience descriptions, indexed, and where your keywords earn their credibility",
               ].map((field, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
+                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{field}</span>
                 </li>
               ))}

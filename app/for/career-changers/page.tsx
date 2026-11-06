@@ -123,9 +123,9 @@ export default function CareerChangersPage() {
             <h3 className="text-white font-semibold mb-4">Translating, not inventing</h3>
             <ul className="space-y-3 text-sm">
               {[
-                ["Retail store manager → operations", "'Ran a store' becomes 'managed a $2M P&L, scheduling for 18 staff, and inventory forecasting'"],
-                ["Teacher → instructional design", "'Taught 9th grade' becomes 'designed, delivered and evaluated curricula for 120 learners a year'"],
-                ["Accountant → data analyst", "'Prepared reports' becomes 'built the monthly variance model in SQL and Excel used by finance leadership'"],
+                ["Retail store manager to operations", "'Ran a store' becomes 'managed a $2M P&L, scheduling for 18 staff, and inventory forecasting'"],
+                ["Teacher to instructional design", "'Taught 9th grade' becomes 'designed, delivered and evaluated curricula for 120 learners a year'"],
+                ["Accountant to data analyst", "'Prepared reports' becomes 'built the monthly variance model in SQL and Excel used by finance leadership'"],
               ].map(([move, line]) => (
                 <li key={move}>
                   <p className="text-slate-200 font-medium">{move}</p>

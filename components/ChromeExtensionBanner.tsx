@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, BookmarkPlus, FileText, ArrowRight, ShieldCheck, CheckCircle2, RotateCcw } from "lucide-react";
+import { Zap, BookmarkPlus, FileText, ChevronRight, ShieldCheck, CheckCircle2, RotateCcw } from "lucide-react";
 
 import {
   U, STEPS, STEP_LABELS, TOTAL_FIELDS, TIMELINE, JOB_META,
@@ -12,6 +12,7 @@ import { WorkdayPage, PreciprocalPanel } from "@/components/demo/WorkdayDemo";
 import { LinkedInScreen } from "@/components/demo/LinkedinDemo";
 import { JobTrackerView } from "@/components/demo/JobTracker";
 import { CoverLetterView } from "@/components/demo/CoverLetterDemo";
+import Chevron from "@/components/Chevron";
 
 // ── Chrome logo (official 4-colour) ──────────────────────────────────────────
 function ChromeLogo({ size = 40 }: { size?: number }) {
@@ -54,7 +55,7 @@ function SaveToast({ company, visible, onViewTracker }: {
                 onClick={onViewTracker}
                 className="text-[11px] text-indigo-400 font-medium mt-0.5 cursor-pointer hover:text-indigo-300 transition-colors block"
               >
-                View Tracker →
+                View Tracker <Chevron />
               </button>
             </div>
           </div>
@@ -310,7 +311,7 @@ export default function ChromeExtensionBanner() {
                     animate={{ x: [0, 3, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ArrowRight size={14} />
+                    <ChevronRight size={14} />
                   </motion.span>
                 </motion.a>
 

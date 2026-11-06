@@ -12,6 +12,7 @@ import Footer from "@/components/Footer";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Career Advice: Interviews, Resumes, Jobs",
@@ -110,11 +111,11 @@ export default function BlogIndexPage() {
         {/* Cross-links */}
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Link href="/interview-questions" className="p-5 rounded-xl border transition-all hover:border-white/20" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-            <p style={{ color: "#ffffff" }} className="font-semibold text-sm mb-1">Interview questions by role →</p>
+            <p style={{ color: "#ffffff" }} className="font-semibold text-sm mb-1">Interview questions by role <Chevron /></p>
             <p style={{ color: "#475569" }} className="text-xs">Q&amp;As for 20+ roles with detailed answers</p>
           </Link>
           <Link href="/interview-prep" className="p-5 rounded-xl border transition-all hover:border-white/20" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-            <p style={{ color: "#ffffff" }} className="font-semibold text-sm mb-1">Company prep guides →</p>
+            <p style={{ color: "#ffffff" }} className="font-semibold text-sm mb-1">Company prep guides <Chevron /></p>
             <p style={{ color: "#475569" }} className="text-xs">Google, Amazon, Meta, Stripe, and 16 more</p>
           </Link>
         </div>

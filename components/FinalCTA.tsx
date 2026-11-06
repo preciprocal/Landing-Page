@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRightIcon } from "@/components/Icons";
+import { ChevronRightIcon } from "@/components/Icons";
 import { APP_URL } from "@/lib/constants";
 import { MagneticHover } from "@/components/LandingAnimations";
 
@@ -55,7 +55,7 @@ export default function FinalCTA() {
             <a href={`${APP_URL}/sign-up`}
               className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-lg transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] group">
               Start Preparing, It&apos;s Free
-              <ArrowRightIcon className="transition-transform group-hover:translate-x-1" />
+              <ChevronRightIcon className="transition-transform group-hover:translate-x-1" />
             </a>
           </MagneticHover>
           <p className="text-[12px] text-slate-600 mt-3">

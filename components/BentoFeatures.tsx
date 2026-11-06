@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Zap, Shield, Target, Users, TrendingUp, Clock,
-  CheckCircle2, ArrowRight, Lock, Star,
+  CheckCircle2, ChevronRight, Lock, Star,
   BarChart3, Brain, Mic, FileText, Sparkles, Award,
   Globe, Briefcase, GraduationCap, MonitorSmartphone,
 } from "lucide-react";

@@ -11,7 +11,7 @@
  */
 
 import Link from "next/link";
-import { ArrowRight, Heart, Zap, Shield, Users } from "lucide-react";
+import { ChevronRight, Heart, Zap, Shield, Users } from "lucide-react";
 import {
   RevealOnScroll,
   StaggerChildren,
@@ -379,7 +379,7 @@ export default function AboutPage() {
                   href={`${APP_URL}/sign-up`}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] transition-all"
                 >
-                  Try Preciprocal free <ArrowRight className="w-4 h-4" />
+                  Try Preciprocal free <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
             </RevealOnScroll>

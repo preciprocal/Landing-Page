@@ -8,6 +8,7 @@ import {
   RefreshCw, Briefcase, Target,
 } from 'lucide-react';
 import { ScoreRing, AnimatedBar } from '@/lib/primitives';
+import Chevron from "@/components/Chevron";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -247,7 +248,7 @@ export function ResumeWriterTab({ onHighlight, onApplyFix }: ResumeWriterTabProp
           <div className="p-2.5 bg-white/[0.02] border border-white/[0.06] rounded-lg">
             <div className="flex items-center justify-between mb-1.5">
               <p className="text-[8px] text-slate-500 uppercase font-bold">Top Quick Wins</p>
-              <button onClick={() => setSubTab('quickwins')} className="text-[7px] text-indigo-400 font-semibold cursor-pointer hover:text-indigo-300">See all →</button>
+              <button onClick={() => setSubTab('quickwins')} className="text-[7px] text-indigo-400 font-semibold cursor-pointer hover:text-indigo-300">See all <Chevron /></button>
             </div>
             <div className="p-2 bg-white/[0.02] border border-white/[0.06] rounded-lg flex items-start gap-2">
               <span className="w-4 h-4 rounded-full bg-slate-700 text-[7px] font-bold text-white flex items-center justify-center flex-shrink-0">1</span>

@@ -12,6 +12,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Resume Tailoring: Match Any Job Description",
@@ -151,7 +152,7 @@ export default function ResumeTailoringPage() {
                 "Acronyms, spelled out once so both the acronym and the full term are indexed",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
+                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

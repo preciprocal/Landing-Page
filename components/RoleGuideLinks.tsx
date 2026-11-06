@@ -8,13 +8,14 @@
  * guides and the cover letter pages to only one, so a reader on one guide had
  * no path to the others for the same role.
  *
- * Links the three sibling guides for the role, plus the free interview
- * question predictor, which is the most useful next step from any of them.
- * The interview questions template already has its own predictor callout, so
- * the predictor card is left out there.
+ * Links the three sibling guides for the role, plus one free tool: the ATS
+ * resume checker, which is the site's main hook, or on the cover letter pages
+ * (which already link the checker in their body) the interview question
+ * predictor.
  */
 
 import Link from "next/link";
+import Chevron from "@/components/Chevron";
 
 export type RoleGuideSection = "interview-questions" | "resume-tips" | "salary-guide" | "cover-letter-examples";
 
@@ -42,38 +43,39 @@ export default function RoleGuideLinks({
   className?: string;
 }) {
   const siblings = GUIDES.filter((g) => g.section !== current);
-  const showPredictor = current !== "interview-questions";
+  const tool =
+    current === "cover-letter-examples"
+      ? { href: "/interview-question-predictor", title: "Predict your interview questions", blurb: `Paste a ${roleName} job description, free` }
+      : { href: "/free-ats-checker", title: "Check your resume's ATS score", blurb: `Free score and top fixes for your ${roleName} resume` };
 
   return (
     <section aria-label={`More ${roleName} guides`} className={className}>
       <h2 style={{ color: "#ffffff" }} className="font-semibold text-lg mb-4">
         More {roleName} guides
       </h2>
-      <div className={`grid gap-3 sm:grid-cols-2 ${showPredictor ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {siblings.map((g) => (
           <Link key={g.section} href={`/${g.section}/${role}`} className={card} style={cardStyle}>
             <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1 group-hover:text-white">
               {roleName} {g.title.toLowerCase()}
             </p>
             <p style={{ color: "#64748b" }} className="text-xs leading-relaxed">
-              {g.blurb(roleName)} →
+              {g.blurb(roleName)} <Chevron />
             </p>
           </Link>
         ))}
-        {showPredictor && (
-          <Link
-            href="/interview-question-predictor"
-            className={`${card} hover:border-indigo-400/40`}
-            style={{ background: "rgba(99,102,241,0.06)", borderColor: "rgba(99,102,241,0.25)" }}
-          >
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1 group-hover:text-white">
-              Predict your interview questions
-            </p>
-            <p style={{ color: "#94a3b8" }} className="text-xs leading-relaxed">
-              Paste a {roleName} job description, free →
-            </p>
-          </Link>
-        )}
+        <Link
+          href={tool.href}
+          className={`${card} hover:border-indigo-400/40`}
+          style={{ background: "rgba(99,102,241,0.06)", borderColor: "rgba(99,102,241,0.25)" }}
+        >
+          <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1 group-hover:text-white">
+            {tool.title}
+          </p>
+          <p style={{ color: "#94a3b8" }} className="text-xs leading-relaxed">
+            {tool.blurb} <Chevron />
+          </p>
+        </Link>
       </div>
     </section>
   );

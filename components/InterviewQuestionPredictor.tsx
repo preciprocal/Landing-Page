@@ -27,6 +27,7 @@ import { trackEvent } from "@/lib/analytics/client";
 import VoiceAnswerRecorder, { speechSupported } from "@/components/VoiceAnswerRecorder";
 import { INPUT_LIMITS } from "@/lib/interviewTools/limits";
 import type { PredictedQuestion, Prediction, Rating, ToolError } from "@/lib/interviewTools/schemas";
+import Chevron from "@/components/Chevron";
 
 type Mode = "predict" | "tmay";
 
@@ -509,7 +510,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
             href={signUpUrl(role)}
             className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90"
           >
-            Answer it in a free mock interview →
+            Answer it in a free mock interview <Chevron />
           </a>
           <p className="text-[11px] text-slate-500 mt-2">Free plan includes an AI mock interview · No credit card</p>
         </div>
@@ -532,7 +533,7 @@ function ConversionBanner({ role }: { role: string }) {
         href={signUpUrl(role)}
         className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:opacity-90"
       >
-        Start a free mock interview →
+        Start a free mock interview <Chevron />
       </a>
       <p className="text-[11px] text-slate-500 mt-2">Free plan includes an AI mock interview · No credit card</p>
     </div>

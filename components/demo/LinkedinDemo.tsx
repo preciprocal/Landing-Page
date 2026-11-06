@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, ArrowRight } from "lucide-react";
+import { Zap, ChevronRight } from "lucide-react";
 import { U } from "@/lib/demo";
 
 // ── Chrome logo (official 4-colour) ──────────────────────────────────────────
@@ -404,7 +404,7 @@ export function LinkedInScreen({ onAutoApply, onCoverLetter, appliedJobs, savedJ
             className="flex items-center justify-center gap-1.5 py-3 border-t border-white/[0.05]"
           >
             <span className="text-[10px] text-indigo-400 font-medium">Click Auto Apply to watch Preciprocal fill the entire form</span>
-            <ArrowRight size={9} className="text-indigo-400" />
+            <ChevronRight size={9} className="text-indigo-400" />
           </motion.div>
         </motion.div>
       </AnimatePresence>

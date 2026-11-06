@@ -22,6 +22,7 @@ import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
+import Chevron from "@/components/Chevron";
 
 export type RuleStatus = "in-effect" | "blocked" | "proposed" | "unchanged";
 
@@ -268,7 +269,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
               href={signUpUrl}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-xl text-base hover:opacity-90 transition-opacity"
             >
-              Start free →
+              Start free <Chevron />
             </a>
             <p className="text-[12px] text-slate-600 mt-4">Free plan · .edu email gets 1 month of Pro free</p>
           </section>

@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Salary Guide by Role: 2026 Data & Negotiation",
@@ -91,7 +92,7 @@ export default function SalaryGuideIndexPage() {
                           {display.name}
                         </p>
                         <p style={{ color: "#475569" }} className="text-[11px] mt-0.5">
-                          2026 salary data →
+                          2026 salary data <Chevron />
                         </p>
                       </div>
                     </Link>
@@ -110,7 +111,7 @@ export default function SalaryGuideIndexPage() {
               You need to get the offer before you can negotiate it. Role-specific interview prep guides.
             </p>
             <Link href="/interview-questions" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse interview guides →
+              Browse interview guides <Chevron />
             </Link>
           </div>
           <div className="p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
@@ -119,7 +120,7 @@ export default function SalaryGuideIndexPage() {
               Role-specific resume guides with ATS keywords, bullet formulas, and format tips.
             </p>
             <Link href="/resume-tips" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse resume tips →
+              Browse resume tips <Chevron />
             </Link>
           </div>
         </div>
@@ -133,7 +134,7 @@ export default function SalaryGuideIndexPage() {
             href={`${APP_URL}/sign-up`}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Start preparing free →
+            Start preparing free <Chevron />
           </a>
         </div>
       </main>

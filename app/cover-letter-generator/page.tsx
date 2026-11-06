@@ -21,6 +21,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "AI Cover Letter Generator: Free, in 60 Seconds",
@@ -189,7 +190,7 @@ export default function CoverLetterGeneratorPage() {
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white text-base transition-all hover:opacity-90 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #8b5cf6, #ec4899)" }}
           >
-            Generate your cover letter free →
+            Generate your cover letter free <Chevron />
           </Link>
           <Link
             href="/#pricing"
@@ -325,14 +326,14 @@ export default function CoverLetterGeneratorPage() {
               className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-white"
               style={{ color: "#8b5cf6" }}
             >
-              Run your free ATS resume check →
+              Run your free ATS resume check <Chevron />
             </Link>
             <Link
               href="/ai-mock-interview"
               className="inline-flex items-center gap-2 text-sm transition-colors hover:text-white"
               style={{ color: "#64748b" }}
             >
-              Then prepare for the interview →
+              Then prepare for the interview <Chevron />
             </Link>
           </div>
         </section>
@@ -374,7 +375,7 @@ export default function CoverLetterGeneratorPage() {
                 className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-purple-500/50 hover:text-white"
                 style={{ borderColor: "#1e293b", color: "#94a3b8" }}
               >
-                <span style={{ color: "#8b5cf6" }}>→</span>
+                <span style={{ color: "#8b5cf6" }}><Chevron /></span>
                 {label}
               </Link>
             ))}
@@ -400,7 +401,7 @@ export default function CoverLetterGeneratorPage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
               style={{ background: "linear-gradient(135deg, #8b5cf6, #ec4899)" }}
             >
-              Start free →
+              Start free <Chevron />
             </Link>
             <Link
               href="/#pricing"

@@ -23,6 +23,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export interface ComparisonRow {
   feature: string;
@@ -277,7 +278,7 @@ export default function AlternativePage({
             })()}
           </div>
           <Link href="/alternatives" className="text-sm font-medium hover:text-indigo-300 transition-colors" style={{ color: "#818cf8" }}>
-            See all Preciprocal comparisons →
+            See all Preciprocal comparisons <Chevron />
           </Link>
         </section>
 

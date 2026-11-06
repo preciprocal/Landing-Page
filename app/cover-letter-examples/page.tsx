@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Cover Letter Examples by Role: 41 Templates",
@@ -91,7 +92,7 @@ export default function CoverLetterExamplesIndexPage() {
                           {display.name}
                         </p>
                         <p style={{ color: "#475569" }} className="text-[11px] mt-0.5">
-                          Cover letter example →
+                          Cover letter example <Chevron />
                         </p>
                       </div>
                     </Link>
@@ -110,7 +111,7 @@ export default function CoverLetterExamplesIndexPage() {
               Role-specific resume guides with ATS keywords and bullet formulas.
             </p>
             <Link href="/resume-tips" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse resume tips →
+              Browse resume tips <Chevron />
             </Link>
           </div>
           <div className="p-6 rounded-2xl border" style={{ background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" }}>
@@ -119,7 +120,7 @@ export default function CoverLetterExamplesIndexPage() {
               Role-specific Q&As, real interview questions, and AI mock interview practice.
             </p>
             <Link href="/interview-questions" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-              Browse interview guides →
+              Browse interview guides <Chevron />
             </Link>
           </div>
         </div>
@@ -133,7 +134,7 @@ export default function CoverLetterExamplesIndexPage() {
             href={`${APP_URL}/sign-up`}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Generate my cover letter free →
+            Generate my cover letter free <Chevron />
           </a>
         </div>
       </main>

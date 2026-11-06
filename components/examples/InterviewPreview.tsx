@@ -4,7 +4,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import {
   Video, VideoOff, Mic, MicOff, Volume2, Settings, PhoneOff,
-  Users, Clock, CheckCircle2, Crown, Camera, ArrowRight,
+  Users, Clock, CheckCircle2, Crown, Camera, ChevronRight,
   Loader2, Headphones, Target, AlertCircle, BarChart3,
   MessageSquare, Star, TrendingUp, Zap,
 } from 'lucide-react';
@@ -133,7 +133,7 @@ function WaitingRoom({ step, onJoin }: { step: number; onJoin?: () => void }) {
               <FadeIn delay={400}>
                 <button onClick={onJoin}
                   className="mt-2.5 w-full py-2.5 rounded-lg text-center text-[10px] font-semibold bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse text-white flex items-center justify-center gap-2 cursor-pointer hover:bg-purple-500 transition-all">
-                  <ArrowRight className="w-3.5 h-3.5" /> Join Interview
+                  <ChevronRight className="w-3.5 h-3.5" /> Join Interview
                 </button>
               </FadeIn>
             )}
@@ -584,7 +584,7 @@ function FeedbackReport() {
           </p>
           <div className="flex items-center gap-2.5">
             {[
-              { label: 'Nearly Ready', sub: 'Readiness Level', icon: <ArrowRight className="w-4 h-4 text-emerald-400" />, bg: 'border-emerald-500/20' },
+              { label: 'Nearly Ready', sub: 'Readiness Level', icon: <ChevronRight className="w-4 h-4 text-emerald-400" />, bg: 'border-emerald-500/20' },
               { label: 'Top Tier', sub: 'Competitive Edge', icon: <Star className="w-4 h-4 text-amber-400" />, bg: 'border-amber-500/20' },
               { label: 'Strong', sub: 'Growth Trajectory', icon: <TrendingUp className="w-4 h-4 text-indigo-400" />, bg: 'border-indigo-500/20' },
             ].map(b => (

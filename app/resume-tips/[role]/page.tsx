@@ -17,6 +17,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
+import Chevron from "@/components/Chevron";
 
 interface ResumeTipData {
   salaryRange: string;
@@ -127,7 +128,7 @@ const RESUME_TIP_DATA: Record<string, {
     bulletFormula: "Action verb + financial analysis/model + business decision supported + dollar impact",
     bulletExample: "Built a 3-statement LBO model for a $240M acquisition target, surfacing a 2.1x MOIC scenario that informed the final bid strategy.",
     sections: [
-      { title: "Lead with the analysis and the decision it drove", body: "Finance bullets should follow this structure: what you analyzed → what you built → what decision it supported → what happened as a result. 'Developed a 5-year revenue forecast' is weak. 'Built a bottoms-up 5-year forecast used by the CFO to secure $40M Series C at a $2.4x revenue multiple' is strong." },
+      { title: "Lead with the analysis and the decision it drove", body: "Finance bullets should follow this structure: what you analyzed, what you built, the decision it supported, and what happened as a result. 'Developed a 5-year revenue forecast' is weak. 'Built a bottoms-up 5-year forecast used by the CFO to secure $40M Series C at a $2.4x revenue multiple' is strong." },
       { title: "Quantify the size of everything", body: "Finance resumes need scale signals: deal sizes, portfolio values, budget sizes, savings identified, forecasting accuracy percentages. These numbers tell the interviewer the complexity of the problems you've worked on. '$3M budget' and '$3B portfolio' require very different skill levels." },
       { title: "Model types are keywords", body: "Explicitly name the models you've built: DCF, LBO, merger/accretion-dilution, 3-statement, sensitivity analysis, scenario analysis, Monte Carlo. These are parsed by ATS and screened by analysts reviewing your resume. If you've built complex models, say so explicitly." },
       { title: "Show your tools fluency", body: "Excel is table stakes, mention specific skills (pivot tables, VBA, Power Query). Beyond Excel: SQL, Python (pandas, numpy), Bloomberg Terminal, FactSet, Capital IQ, Tableau/Power BI. For FP&A roles, add your ERP experience: SAP, Oracle, Workday Adaptive." },
@@ -337,7 +338,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
             href={`${APP_URL}/sign-up`}
             className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:opacity-90 transition-opacity"
           >
-            Analyze my resume free →
+            Analyze my resume free <Chevron />
           </a>
           <p style={{ color: "#475569" }} className="text-xs mt-3">No credit card required · Free plan available</p>
         </div>

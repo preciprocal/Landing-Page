@@ -43,6 +43,7 @@ import {
   tierPriceWithPeriod,
   tierSchemaPrice,
 } from "@/lib/pricing";
+import Chevron from "@/components/Chevron";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -323,7 +324,7 @@ export default function PricingPage() {
               <p className="text-[13px] text-slate-600">
                 More questions?{" "}
                 <Link href="/faq" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
-                  Read the full FAQ →
+                  Read the full FAQ <Chevron />
                 </Link>
                 {" "}or{" "}
                 <a href="mailto:support@preciprocal.com" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">

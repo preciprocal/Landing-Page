@@ -7,7 +7,7 @@ import {
   CheckCircle2, UserSearch, CalendarPlus, Mail,
   Sparkles, Copy, ExternalLink, Edit3, Trash2, ChevronDown,
   Loader2, Check, Shield, Building2,
-  Search, Filter, SlidersHorizontal, X, ArrowLeft,
+  Search, Filter, SlidersHorizontal, X, ChevronLeft,
 } from 'lucide-react';
 import { FadeIn, TypingText } from '@/lib/primitives';
 
@@ -293,7 +293,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
             <div className="flex items-center gap-2">
               <button onClick={handleBackToDashboard} className="text-slate-500 hover:text-white transition-colors">
-                <ArrowLeft className="w-3.5 h-3.5" />
+                <ChevronLeft className="w-3.5 h-3.5" />
               </button>
               <div className="w-6 h-6 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center">
                 <UserSearch className="w-3 h-3 text-white" />

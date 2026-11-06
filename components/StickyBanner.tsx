@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, GraduationCap } from "lucide-react";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // STICKY BANNER, Dismissible announcement bar
@@ -69,7 +70,7 @@ export default function StickyBanner() {
                     href={`${APP_URL}/sign-up`}
                     className="underline underline-offset-2 font-semibold hover:text-white/90 transition-colors"
                   >
-                    Claim now →
+                    Claim now <Chevron />
                   </a>
                 </p>
                 <button

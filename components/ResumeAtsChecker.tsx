@@ -24,6 +24,7 @@ import { useEffect, useRef, useState } from "react";
 import { APP_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics/client";
 import type { ResumeCheckResult } from "@/lib/resumeCheck/analysis";
+import Chevron from "@/components/Chevron";
 
 const SIGN_UP_URL = `${APP_URL}/sign-up?tool=ats-checker`;
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -215,7 +216,7 @@ export default function ResumeAtsChecker() {
             data-track="ats-check-limit-signup"
             className="mt-3 inline-flex rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
-            Create free account →
+            Create free account <Chevron />
           </a>
         )}
       </div>
@@ -261,7 +262,7 @@ function WelcomeBack({ result }: { result: Shown }) {
         data-track="ats-check-returning-signup"
         className="shrink-0 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90"
       >
-        Create free account →
+        Create free account <Chevron />
       </a>
     </div>
   );
@@ -480,7 +481,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             onClick={() => trackEvent("ats-check-unlock-click", { locked: n, score: result.overallScore }, "tool")}
             className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
           >
-            Unlock my full analysis, free →
+            Unlock my full analysis, free <Chevron />
           </a>
           <p className="mt-3 text-[11px] text-slate-500">
             Free account · No credit card · Opens straight to resume analysis, upload the same file to see every fix

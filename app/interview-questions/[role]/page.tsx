@@ -15,6 +15,7 @@ import { InterviewPageJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand, titleField } from "@/lib/seoTitle";
 import { getRoleInterviewQuestions } from "@/lib/roleContent";
+import Chevron from "@/components/Chevron";
 
 export async function generateStaticParams() {
   return ALL_ROLES.map((role) => ({ role }));
@@ -92,7 +93,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
           <h2 style={{ color: "#ffffff" }} className="font-bold text-lg mb-2">Practice these questions with AI mock interviews</h2>
           <p style={{ color: "#94a3b8" }} className="text-sm mb-4">Reading answers is good. Being grilled by an AI interviewer that follows up, pushes back, and scores your response is 10× better.</p>
           <a href={`${APP_URL}/sign-up`} style={{ background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#ffffff" }} className="inline-flex items-center gap-2 px-6 py-2.5 font-semibold rounded-xl text-sm hover:opacity-90 transition-opacity">
-            Start practicing free →
+            Start practicing free <Chevron />
           </a>
         </div>
 
@@ -120,7 +121,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
             These are the common questions. Paste the actual job posting into the free predictor to get the 5 questions that role is most likely to ask, then practice your answers out loud.
           </p>
           <Link href="/interview-question-predictor" style={{ color: "#818cf8" }} className="text-sm font-medium hover:text-indigo-300 transition-colors">
-            Predict questions from your job description →
+            Predict questions from your job description <Chevron />
           </Link>
         </div>
 

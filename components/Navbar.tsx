@@ -9,6 +9,7 @@ import { MenuIcon, CloseIcon } from "@/components/Icons";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
+import Chevron from "@/components/Chevron";
 
 // ─── Dropdown menu data ───────────────────────────────────────────────────────
 
@@ -23,7 +24,7 @@ const PREP_LINKS = [
       { label: "ML Engineer",         href: "/interview-questions/machine-learning-engineer" },
       { label: "DevOps Engineer",     href: "/interview-questions/devops-engineer" },
     ],
-    seeAllLabel: "All 40+ roles →",
+    seeAllLabel: "All 40+ roles",
     seeAllHref: "/interview-questions",
   },
   {
@@ -36,7 +37,7 @@ const PREP_LINKS = [
       { label: "Sales Manager",          href: "/interview-questions/sales-manager" },
       { label: "HR Manager",             href: "/interview-questions/hr-manager" },
     ],
-    seeAllLabel: "Browse all roles →",
+    seeAllLabel: "Browse all roles",
     seeAllHref: "/interview-questions",
   },
   {
@@ -49,7 +50,7 @@ const PREP_LINKS = [
       { label: "Stripe",    href: "/interview-prep/stripe" },
       { label: "Apple",     href: "/interview-prep/apple" },
     ],
-    seeAllLabel: "All companies →",
+    seeAllLabel: "All companies",
     seeAllHref: "/interview-prep",
   },
 ];
@@ -127,9 +128,9 @@ function PrepDropdown({ active, setActive }: MenuProps) {
             </ul>
             <Link
               href={group.seeAllHref}
-              className="inline-block mt-3 text-[12px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors px-2"
+              className="group inline-flex items-center gap-0.5 mt-3 text-[12px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors px-2"
             >
-              {group.seeAllLabel}
+              {group.seeAllLabel} <Chevron />
             </Link>
           </div>
         ))}
@@ -318,7 +319,7 @@ export default function Navbar() {
                         onClick={() => setMobileOpen(false)}
                         className="block text-[13px] text-indigo-400 py-1.5 pl-2 font-medium"
                       >
-                        {group.seeAllLabel}
+                        {group.seeAllLabel} <Chevron />
                       </Link>
                     </div>
                   </div>

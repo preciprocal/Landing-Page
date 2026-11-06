@@ -11,6 +11,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: "Recruiter Contact Finder: Who to Email",
@@ -150,7 +151,7 @@ export default function RecruiterContactFinderPage() {
                 "Recruiter, the most contacted and most saturated inbox, but still better than the portal",
               ].map((item, i) => (
                 <li key={i} className="flex gap-3 text-sm">
-                  <span className="text-indigo-400 flex-shrink-0 mt-0.5">→</span>
+                  <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>
               ))}

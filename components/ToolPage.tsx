@@ -19,6 +19,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export interface ToolFaq {
   q: string;
@@ -142,7 +143,7 @@ export default function ToolPage({
                   href={signUpUrl}
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-xl text-base transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]"
                 >
-                  {ctaLabel} →
+                  {ctaLabel} <Chevron />
                 </a>
                 <p className="text-[12px] text-slate-500">{ctaMicrocopy}</p>
               </div>
@@ -274,7 +275,7 @@ export default function ToolPage({
               href={signUpUrl}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold rounded-xl text-base hover:opacity-90 transition-opacity"
             >
-              {ctaLabel} →
+              {ctaLabel} <Chevron />
             </a>
             <p className="text-[12px] text-slate-600 mt-4">{bottomMicrocopy}</p>
           </section>

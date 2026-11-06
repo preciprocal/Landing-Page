@@ -6,10 +6,11 @@ import {
   BookOpen, Building2, Calendar, Clock, Star,  Save,
   CheckCircle2, AlertTriangle, Brain, MessageSquare, Target,
   BarChart3, Lightbulb, Heart, Zap, Award, TrendingUp,
-  Activity, Users, MapPin, Flame, ArrowRight, Loader2, 
+  Activity, Users, MapPin, Flame, ChevronRight, Loader2, 
   ChevronDown, ChevronUp,
 } from 'lucide-react';
 import { FadeIn, TypingText } from '@/lib/primitives';
+import Chevron from "@/components/Chevron";
 
 // ─── Scrollbar ────────────────────────────────────────────────────────────────
 
@@ -327,7 +328,7 @@ function JournalLogPhase() {
                         <span className="flex items-center gap-0.5 text-[7px] text-slate-600"><Calendar className="w-2 h-2" />{entry.date}</span>
                         <span className="flex items-center gap-0.5 text-[7px] text-slate-600"><Clock className="w-2 h-2" />{entry.duration}</span>
                         <span className="flex items-center gap-0.5 text-[7px] text-slate-600"><Star className="w-2 h-2" />{entry.score}%</span>
-                        <span className="text-[9px]">{entry.before} → {entry.after}</span>
+                        <span className="text-[9px]">{entry.before} <Chevron /> {entry.after}</span>
                         <span className="text-amber-400 text-[7px]">{'★'.repeat(entry.difficulty)}</span>
                       </div>
                     </div>
@@ -514,7 +515,7 @@ function AIAnalysisPhase() {
                 <p className="text-[9px] font-semibold text-emerald-300 mb-0.5">{s.area}</p>
                 <p className="text-[7px] text-slate-500 mb-1">{s.evidence}</p>
                 <div className="flex items-start gap-1">
-                  <ArrowRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" />
+                  <ChevronRight className="w-2 h-2 text-emerald-400 flex-shrink-0 mt-0.5" />
                   <p className="text-[7px] text-emerald-400">{s.leverage}</p>
                 </div>
               </div>

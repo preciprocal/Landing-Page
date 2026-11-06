@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   Calendar, Target, TrendingUp, MessageSquare, Clock,
   Brain, CheckCircle2, Sparkles, Flame, BookOpen,
-   ArrowRight, Briefcase, BarChart3,
+   ChevronRight, Briefcase, BarChart3,
   Circle, Code, FileText, ExternalLink, Loader2,
 } from 'lucide-react';
 import { FadeIn, TypingText } from '@/lib/primitives';
@@ -676,7 +676,7 @@ function AiCoachView() {
                 Ask your AI coach anything...
               </div>
               <div className="w-7 h-7 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <ArrowRight className="w-3 h-3 text-white" />
+                <ChevronRight className="w-3 h-3 text-white" />
               </div>
             </div>
           </FadeIn>
@@ -1004,7 +1004,7 @@ function InteractiveView() {
               </div>
               <div className="flex items-center gap-2 p-2 bg-white/[0.02] border border-white/[0.06] rounded-lg flex-shrink-0">
                 <div className="flex-1 px-2.5 py-1.5 bg-white/[0.03] border border-white/[0.06] rounded-lg text-[9px] text-slate-600">Ask your AI coach anything...</div>
-                <div className="w-7 h-7 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0"><ArrowRight className="w-3 h-3 text-white" /></div>
+                <div className="w-7 h-7 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0"><ChevronRight className="w-3 h-3 text-white" /></div>
               </div>
             </div>
           )}

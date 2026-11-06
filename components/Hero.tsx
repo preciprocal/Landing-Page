@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { APP_URL } from "@/lib/constants";
-import { ArrowRightIcon } from "@/components/Icons";
+import { ChevronRightIcon } from "@/components/Icons";
 import { FlipWords } from "@/components/ui/FlipWords";
 import { SpotlightNew } from "@/components/ui/SpotlightNew";
 
@@ -303,7 +303,7 @@ export default function Hero() {
             }}
           >
             Start Preparing Free
-            <ArrowRightIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+            <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
 
           <a

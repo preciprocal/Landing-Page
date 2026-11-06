@@ -16,6 +16,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: { absolute: "Resume Worded Alternative: Preciprocal Compared" },
@@ -319,7 +320,7 @@ export default function ResumeWordedAlternativePage() {
                 className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-indigo-500/50 hover:text-white"
                 style={{ borderColor: "#1e293b", color: "#94a3b8" }}
               >
-                <span style={{ color: "#6366f1" }}>→</span>
+                <span style={{ color: "#6366f1" }}><Chevron /></span>
                 {label}
               </Link>
             ))}
@@ -345,7 +346,7 @@ export default function ResumeWordedAlternativePage() {
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
               style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
             >
-              Start free →
+              Start free <Chevron />
             </Link>
             <Link
               href="/free-ats-checker"

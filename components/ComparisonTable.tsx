@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Check, X, Crown, ArrowRight } from "lucide-react";
+import { Check, X, Crown, ChevronRight } from "lucide-react";
 import { reportStaleContent } from "@/lib/contentFreshness";
 import {
   SpotlightCard,
@@ -175,7 +175,7 @@ export default function ComparisonTable() {
                          shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
             >
               Get all 13 features for $9.99
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </MagneticHover>
         </RevealOnScroll>

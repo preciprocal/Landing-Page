@@ -24,6 +24,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
+import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
   title: { absolute: "Final Round AI Alternative: Preciprocal Compared" },
@@ -211,7 +212,7 @@ export default function FinalRoundAIAlternativePage() {
             {[
               {
                 title: "One platform for the entire job search",
-                body: "Resume → Applications → Interviews → Offers. Most tools pick one stage. Preciprocal covers all four, so you're not juggling 4 subscriptions.",
+                body: "Resume, applications, interviews, offers. Most tools pick one stage. Preciprocal covers all four, so you're not juggling 4 subscriptions.",
               },
               {
                 title: "Built for entry-level, not just senior engineers",
@@ -283,7 +284,7 @@ export default function FinalRoundAIAlternativePage() {
                 className="flex items-center gap-2 p-3 rounded-lg border text-sm transition-colors hover:border-indigo-500/50 hover:text-white"
                 style={{ borderColor: "#1e293b", color: "#94a3b8" }}
               >
-                <span style={{ color: "#6366f1" }}>→</span>
+                <span style={{ color: "#6366f1" }}><Chevron /></span>
                 {label}
               </Link>
             ))}
@@ -308,7 +309,7 @@ export default function FinalRoundAIAlternativePage() {
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all hover:opacity-90 hover:scale-105"
             style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}
           >
-            Start free →
+            Start free <Chevron />
           </Link>
         </section>
       </main>

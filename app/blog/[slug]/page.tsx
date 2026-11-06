@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
+import Chevron from "@/components/Chevron";
 
 // ─── Sidebar CTA ──────────────────────────────────────────────────────────────
 
@@ -23,7 +24,7 @@ function SidebarCTA() {
         href="https://app.preciprocal.com/sign-up"
         className="flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(99,102,241,0.35)]"
       >
-        Start free →
+        Start free <Chevron />
       </a>
     </div>
   );
@@ -85,7 +86,7 @@ function PracticeLinks({ category }: { category: string }) {
             href={l.href}
             className="px-3.5 py-2 rounded-xl border border-white/[0.08] text-sm text-slate-300 hover:text-white hover:border-indigo-400/40 transition-all"
           >
-            {l.label} →
+            {l.label} <Chevron />
           </Link>
         ))}
       </div>
@@ -436,7 +437,7 @@ export default function BlogArticlePage() {
                   href="https://app.preciprocal.com/sign-up"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-sm transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(99,102,241,0.35)]"
                 >
-                  Start free →
+                  Start free <Chevron />
                 </a>
                 {post.category === "Visa & Immigration" && (
                   <p className="text-[12px] text-slate-500 mt-4">
