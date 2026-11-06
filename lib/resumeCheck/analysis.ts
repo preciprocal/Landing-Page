@@ -122,8 +122,40 @@ const tipSchema = z.object({
 
 const sectionSchema = z.object({
   score: z.number().min(0).max(100),
-  tips: z.array(tipSchema).min(4).max(6),
+  // The prompt asks for exactly 5, but on a short resume a dimension can
+  // honestly have only two things to say (structure, most often). Accept any
+  // number rather than fail the whole check; extras are sliced off before
+  // parsing.
+  tips: z.array(tipSchema).min(1).max(6),
 });
+
+/**
+ * The same shape as sectionSchema, as JSON Schema for structured output.
+ * Structured output does not support number or array-length constraints, so
+ * those stay in sectionSchema, which still validates every reply.
+ */
+const SECTION_JSON_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  required: ["score", "tips"],
+  properties: {
+    score: { type: "integer" },
+    tips: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["type", "tip", "explanation", "solution"],
+        properties: {
+          type: { type: "string", enum: ["good", "improve"] },
+          tip: { type: "string" },
+          explanation: { type: "string" },
+          solution: { type: "string" },
+        },
+      },
+    },
+  },
+} as const;
 
 type Section = z.infer<typeof sectionSchema>;
 
@@ -286,11 +318,17 @@ async function createFast(
     ...params,
     model: ANALYSIS_MODEL,
     thinking: { type: "between_tools" },
-    output_config: { effort: "low" },
+    // Structured output: the API holds the reply to SECTION_JSON_SCHEMA, so
+    // it always parses. Without it, roughly one section in ten came back as
+    // malformed JSON (a tip with no type, three tips, or a "corrected"
+    // second object appended), and two in a row failed the whole check.
+    output_config: { effort: "low", format: { type: "json_schema", schema: SECTION_JSON_SCHEMA } },
   });
   if (response.stop_reason !== "refusal") return response;
   // Sonnet 5.5 declined. Retry on the fallback model with the request as the
-  // app sends it: without between_tools, which only Sonnet 5.5 accepts.
+  // app sends it: without between_tools, which only Sonnet 5.5 accepts, and
+  // without the output format, which Sonnet 4.6 does not support. That reply
+  // is parsed from text as before.
   return client.messages.create({ ...params, model: FALLBACK_MODEL });
 }
 
