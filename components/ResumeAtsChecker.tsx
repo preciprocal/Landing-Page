@@ -198,7 +198,8 @@ export default function ResumeAtsChecker() {
 
       {/* ── Upload ───────────────────────────────────────────────────── */}
       {!returning && (
-      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -315,13 +316,13 @@ export default function ResumeAtsChecker() {
         </AnimatePresence>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[11px] text-slate-600">No account needed. The file is not stored; your result is kept for 30 days so you can come back to it.</p>
+          <p className="max-w-sm text-[11px] leading-relaxed text-slate-600">No account needed. Your file is not stored; the result is kept for 30 days so you can come back to it.</p>
           <button
             type="button"
             data-track="ats-check-submit"
             onClick={run}
             disabled={!file || loading}
-            className="rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+            className="shrink-0 whitespace-nowrap rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {loading ? "Analysing your resume..." : "Check my resume free"}
           </button>
@@ -337,26 +338,39 @@ export default function ResumeAtsChecker() {
           </a>
         )}
       </SpotlightCard>
+      <WhatYouGet />
+      </div>
       )}
 
       <AnimatePresence>{loading && <Progress key="progress" />}</AnimatePresence>
 
       {result && (
-        <motion.div ref={resultsRef} className="scroll-mt-28 space-y-6" variants={stagger} initial="hidden" animate="show">
-          <motion.div variants={rise}>
-            <ScoreCard result={result} />
-          </motion.div>
-          {result.strengths.length > 0 && (
+        <motion.div
+          ref={resultsRef}
+          className="grid scroll-mt-28 items-start gap-6 lg:grid-cols-[400px_minmax(0,1fr)]"
+          variants={stagger}
+          initial="hidden"
+          animate="show"
+        >
+          {/* Left: the score stays in view while the fixes scroll past. */}
+          <div className="space-y-6 lg:sticky lg:top-28">
             <motion.div variants={rise}>
-              <Strengths items={result.strengths} />
+              <ScoreCard result={result} />
             </motion.div>
-          )}
-          <motion.div variants={rise}>
-            <Fixes result={result} />
-          </motion.div>
-          <motion.div variants={rise}>
-            <Locked result={result} />
-          </motion.div>
+            {result.strengths.length > 0 && (
+              <motion.div variants={rise}>
+                <Strengths items={result.strengths} />
+              </motion.div>
+            )}
+          </div>
+          <div className="min-w-0 space-y-6">
+            <motion.div variants={rise}>
+              <Fixes result={result} />
+            </motion.div>
+            <motion.div variants={rise}>
+              <Locked result={result} />
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </div>
@@ -365,6 +379,55 @@ export default function ResumeAtsChecker() {
 }
 
 // ─── Pieces ─────────────────────────────────────────────────────────────────
+
+/** The five dimensions and their weights, as the app scores them. */
+const DIMENSIONS = [
+  { label: "Content and impact", weight: 30 },
+  { label: "ATS compatibility", weight: 25 },
+  { label: "Skills", weight: 20 },
+  { label: "Structure", weight: 15 },
+  { label: "Tone and style", weight: 10 },
+];
+
+/** Beside the upload: what the check measures and what comes back. */
+function WhatYouGet() {
+  return (
+    <div className="flex flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 sm:p-7">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-300/90">What is scored</p>
+      <p className="mt-2 text-sm text-slate-400">Five dimensions, each reviewed separately and weighted into one score out of 100.</p>
+      <ul className="mt-6 space-y-3.5">
+        {DIMENSIONS.map((d, i) => (
+          <li key={d.label}>
+            <div className="mb-1.5 flex items-baseline justify-between text-[13px]">
+              <span className="text-slate-200">{d.label}</span>
+              <span className="font-mono text-[11px] text-slate-500">{d.weight}%</span>
+            </div>
+            <div className="h-1 overflow-hidden rounded-full bg-white/[0.05]">
+              <motion.div
+                className="h-full rounded-full bg-gradient-to-r from-indigo-400 to-purple-400"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${(d.weight / 30) * 100}%` }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, ease: EASE, delay: 0.2 + i * 0.08 }}
+              />
+            </div>
+          </li>
+        ))}
+      </ul>
+      <ul className="mt-auto space-y-2.5 border-t border-white/[0.06] pt-6 text-[13px] text-slate-400 [&>li]:flex [&>li]:gap-2.5">
+        <li>
+          <span className="text-emerald-400">✓</span>Your score and top 3 fixes, with rewrites, free
+        </li>
+        <li>
+          <span className="text-emerald-400">✓</span>Results in about 30 seconds
+        </li>
+        <li>
+          <span className="text-emerald-400">✓</span>Your file is never stored
+        </li>
+      </ul>
+    </div>
+  );
+}
 
 function WelcomeBack({ result }: { result: Shown }) {
   const when = result.checkedAt
@@ -461,8 +524,8 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
   const c = 2 * Math.PI * r;
   return (
     <div className="rounded-2xl border border-white/[0.08] bg-[#0a0f1c] p-6 sm:p-8">
-      <div className="flex flex-col gap-8 md:flex-row md:items-center">
-        <div className="flex shrink-0 flex-col items-center text-center md:w-56">
+      <div className="flex flex-col gap-7">
+        <div className="flex flex-col items-center text-center">
           <svg viewBox="0 0 120 120" className="h-36 w-36" role="img" aria-label={`ATS resume score ${result.overallScore} out of 100`}>
             <circle cx="60" cy="60" r={r} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="10" />
             <motion.circle
@@ -492,7 +555,7 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
           </p>
         </div>
 
-        <div className="flex-1 space-y-4">
+        <div className="space-y-4 border-t border-white/[0.06] pt-6">
           <p className="text-sm text-slate-400">
             Scored the way recruiters do: honestly. An honest 55 is worth more than a padded 80, because it tells you what to fix.
           </p>

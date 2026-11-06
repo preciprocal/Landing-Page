@@ -114,6 +114,7 @@ export default function FreeATSCheckerPage() {
       ctaLabel="Get the full report free"
       ctaMicrocopy="Free account · 3 resume analyses a month · No credit card"
       tool={<ResumeAtsChecker />}
+      toolWidth="full"
       featuresTitle="What the checker reviews"
       featuresSubtitle="Five dimensions, each reviewed separately and weighted into one score, with fixes tied to specific lines of your resume."
       features={FEATURES}
