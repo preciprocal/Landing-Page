@@ -127,7 +127,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
 
               {/* Quick stats */}
               <dl
-                className="grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-3 lg:grid-cols-1"
+                className="grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-3 lg:grid-cols-1 fill-sm-3 fill-lg-1"
                 style={{ animationDelay: "120ms" }}
               >
                 {[

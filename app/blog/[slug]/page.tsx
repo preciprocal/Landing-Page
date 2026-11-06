@@ -94,7 +94,7 @@ function PracticeLinks({ category }: { category: string }) {
   return (
     <div className="mt-12 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
       <p className="border-b border-white/[0.06] px-6 py-4 text-sm font-semibold text-white">Put this into practice</p>
-      <div className="grid gap-px bg-white/[0.06] sm:grid-cols-3">
+      <div className="grid gap-px bg-white/[0.06] sm:grid-cols-3 fill-sm-3">
         {links.map((l, i) => (
           <Link
             key={l.href}

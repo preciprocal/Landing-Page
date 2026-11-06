@@ -58,7 +58,7 @@ export default function NotFound() {
 
           {/* Quick links */}
           <nav aria-label="Helpful links" className="mt-10">
-            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] text-left sm:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] text-left sm:grid-cols-3 fill-2 fill-sm-3">
               {links.map((l, i) => (
                 <li key={l.label} className={`bg-[#070b16] ${i === links.length - 1 ? "col-span-2 sm:col-span-3" : ""}`}>
                   <Link

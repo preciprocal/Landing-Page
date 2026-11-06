@@ -367,7 +367,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               </p>
             </div>
 
-            <div className="mt-12 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-2" style={{ animationDelay: "200ms" }}>
+            <div className="mt-12 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-2 fill-sm-2" style={{ animationDelay: "200ms" }}>
               <div className="relative bg-[#070b16] p-6 sm:p-8">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-400/60 to-transparent" />
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Median Base Salary</p>
@@ -438,7 +438,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                 </div>
 
                 <p className="mt-8 text-xs text-slate-500">Equity notes and total comp details below each level.</p>
-                <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2">
+                <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 fill-sm-2">
                   {salaryData.levels.map((level, i) => (
                     <RevealItem key={i} className="bg-[#070b16] p-5">
                       <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
@@ -454,7 +454,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               {/* Top paying cities */}
               <section id="cities" className={BLOCK}>
                 <SectionHead eyebrow="Location" title={`Top paying cities for ${display.name.toLowerCase()}s`} className="mb-8" />
-                <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-5">
+                <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-5 fill-sm-2 fill-xl-5">
                   {salaryData.topPayingCities.map((city, i) => (
                     <RevealItem as="li" key={i} className="flex items-center gap-4 bg-[#070b16] p-5 xl:flex-col xl:items-start xl:gap-6">
                       <span className="font-mono text-sm tabular-nums text-accent-soft">{pad2(i + 1)}</span>

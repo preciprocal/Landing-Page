@@ -322,7 +322,7 @@ export default async function CoverLetterExampleRolePage({
           }
         >
           {/* Meta strip */}
-          <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3">
+          <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3 fill-sm-3">
             {[
               { label: "Avg. Salary", value: meta.salaryRange, mono: true },
               { label: "Top Employers", value: meta.topCompanies.slice(0, 3).join(", "), mono: false },
@@ -422,7 +422,7 @@ export default async function CoverLetterExampleRolePage({
                   subtitle={`Six things that separate ${roleName} cover letters that get callbacks from ones that get ignored.`}
                   className="mb-8"
                 />
-                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
                   {tips.map((tip, i) => (
                     <RevealItem key={i} className={`group relative bg-[#070b16] p-6 transition-colors duration-300 hover:bg-[#0a1020] ${i === tips.length - 1 && tips.length % 2 === 1 ? "md:col-span-2" : ""}`}>
                       <span className="font-mono text-[11px] text-accent-soft/80">{pad2(i + 1)}</span>
@@ -439,7 +439,7 @@ export default async function CoverLetterExampleRolePage({
                 <RoleGuideLinks role={role} roleName={display.name} current="cover-letter-examples" className="mb-10" />
 
                 {/* Cross-links: interview questions + resume tips */}
-                <section aria-label="Related guides" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+                <section aria-label="Related guides" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
                   <SpotlightCard className="bg-[#070b16] p-6">
                     <h2 className="text-sm font-semibold text-white">Prepare for the interview next</h2>
                     <p className="mb-4 mt-2 text-xs leading-relaxed text-slate-500">

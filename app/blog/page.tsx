@@ -134,7 +134,7 @@ export default function BlogIndexPage() {
                   <Eyebrow>{cat}</Eyebrow>
                   <span className="font-mono text-[11px] text-slate-600">{pad2(posts.length)}</span>
                 </div>
-                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
                   {posts.map((post) => (
                     <RevealItem key={post.slug} className="bg-[#070b16]">
                       <Link
@@ -161,7 +161,7 @@ export default function BlogIndexPage() {
 
         {/* Cross-links */}
         <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <RevealGroup className={`${INNER} grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2`}>
+          <RevealGroup className={`${INNER} grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 fill-sm-2`}>
             <RevealItem className="bg-[#070b16]">
               <Link href="/interview-questions" className="group block h-full p-7 transition-colors hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60">
                 <p className="mb-1 font-semibold text-white">Interview questions by role <Chevron /></p>

@@ -228,7 +228,7 @@ export default function AIMockInterviewPage() {
           visual={<MockInterviewVisual />}
         >
           {/* ── Social proof strip ──────────────────────────────────────────── */}
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
             {[
               { stat: "30+", label: "interviews / month on Pro" },
               { stat: "5", label: "scoring dimensions per session" },
@@ -249,7 +249,7 @@ export default function AIMockInterviewPage() {
             <Reveal>
               <SectionHead eyebrow="How it works" title="How AI mock interview practice works" />
             </Reveal>
-            <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-3">
+            <RevealGroup as="ol" className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-3 fill-md-3">
               {STEPS.map((step) => (
                 <RevealItem as="li" key={step.number} className="relative bg-[#070b16] p-7 sm:p-8">
                   <span className={`font-mono text-4xl font-bold tracking-tight ${ACCENT_TEXT}`}>{step.number}</span>

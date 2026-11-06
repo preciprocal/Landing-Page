@@ -300,7 +300,7 @@ export default function AboutPage() {
               </p>
             </Reveal>
 
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2">
+            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 fill-sm-2">
               {VALUES.map((v, i) => {
                 const Icon = v.icon;
                 return (

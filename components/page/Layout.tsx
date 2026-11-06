@@ -19,6 +19,7 @@
  */
 
 import type { CSSProperties, ReactNode } from "react";
+import FaqAccordion from "./FaqAccordion";
 
 /** The gutter the navbar and footer use, so every edge lines up. */
 export const PAD = "px-6 sm:px-10 lg:px-16";
@@ -238,25 +239,7 @@ export function CtaPanel({ title, body, action, note }: { title: ReactNode; body
   );
 }
 
-/** FAQ as an accordion beside its heading. Native <details>, so answers stay in the HTML for search. */
+/** FAQ as question cards whose answers open on click (see ./FaqAccordion.tsx). Answers stay in the HTML for search. */
 export function FaqList({ items }: { items: { q: string; a: ReactNode }[] }) {
-  return (
-    <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-      {items.map((faq, i) => (
-        <details key={i} className="group">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
-            <h3 className="font-medium text-white transition-colors group-hover:text-accent-soft">{faq.q}</h3>
-            <span
-              aria-hidden="true"
-              className="relative mt-1 h-4 w-4 shrink-0 text-slate-500 transition-[transform,color] duration-300 group-open:rotate-45 group-open:text-accent"
-            >
-              <span className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current" />
-              <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
-            </span>
-          </summary>
-          <div className="max-w-3xl pb-6 pr-10 text-sm leading-relaxed text-slate-400">{faq.a}</div>
-        </details>
-      ))}
-    </div>
-  );
+  return <FaqAccordion items={items} />;
 }

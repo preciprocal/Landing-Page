@@ -82,7 +82,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
           subhead={<p>{meta.description}</p>}
         >
           {/* Stats */}
-          <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3">
+          <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3 fill-sm-3">
             {[
               { label: "Avg. salary",       value: meta.salaryRange },
               { label: "Top companies",     value: meta.topCompanies.slice(0, 3).join(", ") },

@@ -212,7 +212,7 @@ export default function CoverLetterGeneratorPage() {
           visual={<CoverLetterVisual />}
         >
           {/* Stats strip */}
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
             {[
               { stat: "60s",        label: "average time to generate" },
               { stat: "5/mo",       label: "free cover letters, no card" },
@@ -363,7 +363,7 @@ export default function CoverLetterGeneratorPage() {
               <Eyebrow>Keep going</Eyebrow>
               <h2 className="mb-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">Related tools</h2>
             </Reveal>
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
               {[
                 { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
                 { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },

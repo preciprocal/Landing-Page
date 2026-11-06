@@ -85,7 +85,7 @@ export default function CoverLetterExamplesIndexPage() {
                     {category} · {roles.length} example{roles.length !== 1 ? "s" : ""}
                   </h2>
                 </div>
-                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3">
+                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
                   {roles.map((role) => {
                     const display = ROLE_DISPLAY[role];
                     if (!display) return null;
@@ -121,7 +121,7 @@ export default function CoverLetterExamplesIndexPage() {
         <section className={`${PAD} ${SECTION}`}>
           <div className={INNER}>
             <Eyebrow>Next steps</Eyebrow>
-            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
               {[
                 {
                   title: "Need resume tips too?",

@@ -186,7 +186,7 @@ export function RelatedLinks({ links, title = "Related resources" }: { links: { 
     <>
       <Eyebrow>Keep reading</Eyebrow>
       <h2 className="mb-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h2>
-      <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+      <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
         {links.map(({ label, href }) => (
           <RevealItem key={href} className="bg-[#070b16]">
             <Link

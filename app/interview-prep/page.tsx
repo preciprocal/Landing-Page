@@ -153,7 +153,7 @@ export default function InterviewPrepIndexPage() {
                       <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">{tier}</h2>
                       <span className="font-mono text-[11px] text-slate-600">{pad2(companies.length)}</span>
                     </div>
-                    <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3">
+                    <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
                       {companies.map((company, i) => {
                         const display = COMPANY_DISPLAY[company];
                         if (!display) return null;

@@ -228,7 +228,7 @@ export default function AlternativePage({
         <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
             <Eyebrow>Quick verdict</Eyebrow>
-            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2">
+            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
               <RevealItem className="bg-[#070b16] p-7 sm:p-8">
                 <p className="font-mono text-[11px] text-slate-400">{competitor}</p>
                 <p className="mt-4 text-[15px] leading-relaxed text-slate-300">
@@ -320,7 +320,7 @@ export default function AlternativePage({
         <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
             <SectionHead eyebrow="Why switch" title={`Why students and new grads choose Preciprocal over ${competitor}`} />
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
               {reasons.map(({ title, body }, i) => (
                 <RevealItem key={title} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
                   <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
@@ -366,7 +366,7 @@ export default function AlternativePage({
                 See all Preciprocal comparisons <Chevron />
               </Link>
             </div>
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
               {(() => {
                 const i = ALTERNATIVE_PAGES.findIndex((a) => a.slug === slug);
                 const start = i === -1 ? 0 : i + 1;

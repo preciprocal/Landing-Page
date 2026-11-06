@@ -150,7 +150,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           {/* ── Key facts ──────────────────────────────────────────────── */}
           <section data-section="key-facts" data-section-name="Key facts" className={`pb-16 ${PAD}`}>
             <div className={INNER}>
-              <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4">
+              <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
                 {props.keyFacts.map((f, i) => (
                   <RevealItem
                     key={f.label}
@@ -242,7 +242,7 @@ export default function OptGuidePage(props: OptGuideProps) {
             <div className={INNER}>
               <Eyebrow>OPT guides</Eyebrow>
               <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">More OPT guides</h2>
-              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
                 {OPT_GUIDES.filter((g) => g.href !== props.canonicalPath).map((g, i) => (
                   <RevealItem key={g.href} className="bg-[#070b16]">
                     <Link

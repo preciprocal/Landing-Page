@@ -295,7 +295,7 @@ export default function FeaturesPage() {
           visual={<FeaturesVisual />}
         >
           <nav aria-label="Search stages">
-            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
               {STAGES.map((stage, i) => (
                 <li key={stage.title} className="bg-[#070b16]">
                   <a

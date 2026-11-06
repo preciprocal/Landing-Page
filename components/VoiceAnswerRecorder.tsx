@@ -312,7 +312,7 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
         <p className="text-white font-semibold">{headline}</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-4">
+      <div className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-4 fill-2 fill-sm-4">
         <Stat label="Pace" value={`${stats.wpm} wpm`} hint="120 to 170 is ideal" status={stats.paceStatus} />
         <Stat label="Length" value={formatTime(stats.seconds)} hint="0:45 to 2:00" status={stats.lengthStatus} />
         <Stat label="Filler words" value={String(stats.fillerTotal)} hint="Fewer is better" status={stats.fillerStatus} />

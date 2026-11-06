@@ -24,6 +24,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
+import GuideToc from "@/components/page/GuideToc";
 import { PAD, INNER, GRID_BG, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, pad2, type Accent } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
@@ -170,7 +171,7 @@ export default function ToolPage({
           <section data-section="features" data-section-name="Features" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
             <div className={INNER}>
               <SectionHead eyebrow="What you get" title={featuresTitle} subtitle={featuresSubtitle} />
-              <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3">
+              <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
                 {features.map((item, i) => (
                   <RevealItem key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
                     <span className="font-mono text-[11px] text-accent-soft/70 transition-colors group-hover:text-accent">{pad2(i + 1)}</span>
@@ -205,30 +206,38 @@ export default function ToolPage({
 
           {/* ── SEO content body, with a sticky CTA and related links ───── */}
           <section data-section="content" data-section-name="Guide content" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
-            <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-24`}>
-              <div className="max-w-3xl">
+            {/* Editorial layout: contents on the left (xl and up), the article at
+                reading width in the middle, CTA and related links on the right. */}
+            <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[220px_minmax(0,1fr)_320px] xl:gap-14`}>
+              <div className="hidden xl:sticky xl:top-28 xl:block xl:self-start">
+                <GuideToc articleId="guide-article" title="Overview" />
+              </div>
+
+              <article id="guide-article" className="min-w-0 w-full max-w-[760px] xl:mx-auto">
                 <Eyebrow>Guide</Eyebrow>
-                <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{bodyTitle}</h2>
-                {/* Each page writes its guide as paragraphs plus boxed lists (a div
-                    holding an h3 and a ul/ol). These rules style that pattern in one
-                    place: a lead paragraph, callout panels with an accent edge and
-                    ruled rows, so every tool page's guide matches. */}
+                <h2 className="mb-8 text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{bodyTitle}</h2>
+                {/* Each page writes its guide as paragraphs plus boxed blocks (a div
+                    holding an h3 and a list, or an h3 and paragraphs). These rules
+                    style that pattern in one place: a lead paragraph, and each box
+                    as a key points panel with a header strip and the points in a
+                    ruled grid. */}
                 <div
                   className={[
-                    "space-y-6 text-[15px] leading-[1.85] text-slate-400",
-                    "[&>p:first-of-type]:text-lg [&>p:first-of-type]:leading-relaxed [&>p:first-of-type]:text-slate-300",
+                    "space-y-6 text-[16px] leading-[1.8] text-slate-400",
+                    "[&>p:first-of-type]:text-[19px] [&>p:first-of-type]:leading-[1.7] [&>p:first-of-type]:text-slate-200",
                     "[&_strong]:font-semibold [&_strong]:text-white",
-                    "[&>div]:relative [&>div]:!my-10 [&>div]:overflow-hidden [&>div]:rounded-2xl [&>div]:border [&>div]:border-white/[0.07] [&>div]:bg-[#070b16] [&>div]:p-7 [&>div]:pl-8 sm:[&>div]:p-8 sm:[&>div]:pl-10",
-                    "[&>div]:before:absolute [&>div]:before:inset-y-0 [&>div]:before:left-0 [&>div]:before:w-[3px] [&>div]:before:bg-gradient-to-b [&>div]:before:from-accent [&>div]:before:to-accent-deep-2 [&>div]:before:content-['']",
-                    "[&>div>h3]:mb-5 [&>div>h3]:text-lg [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
-                    "[&>div>ul]:space-y-0 [&>div>ol]:space-y-0",
-                    "[&>div_li]:border-t [&>div_li]:border-white/[0.05] [&>div_li]:py-3.5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
-                    "[&>div_li:first-child]:border-t-0 [&>div_li:first-child]:pt-0 [&>div_li:last-child]:pb-0",
+                    "[&>div]:!my-12 [&>div]:overflow-hidden [&>div]:!rounded-2xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#070b16] [&>div]:!p-0",
+                    "[&>div>h3]:!mb-0 [&>div>h3]:flex [&>div>h3]:items-center [&>div>h3]:gap-3 [&>div>h3]:border-b [&>div>h3]:border-white/[0.06] [&>div>h3]:bg-white/[0.025] [&>div>h3]:px-6 [&>div>h3]:py-4 [&>div>h3]:text-[15px] [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
+                    "[&>div>h3]:before:h-2 [&>div>h3]:before:w-2 [&>div>h3]:before:shrink-0 [&>div>h3]:before:rounded-full [&>div>h3]:before:bg-accent [&>div>h3]:before:content-['']",
+                    "[&>div>ul]:grid [&>div>ol]:grid [&>div>ul]:!space-y-0 [&>div>ol]:!space-y-0 [&>div>ul]:gap-px [&>div>ol]:gap-px [&>div>ul]:bg-white/[0.06] [&>div>ol]:bg-white/[0.06] md:[&>div>ul]:grid-cols-2 md:[&>div>ol]:grid-cols-2",
+                    "md:[&>div>ul>li:last-child:nth-child(odd)]:col-span-2 md:[&>div>ol>li:last-child:nth-child(odd)]:col-span-2",
+                    "[&>div_li]:bg-[#070b16] [&>div_li]:p-5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
+                    "[&>div>p]:px-6 [&>div>h3+p]:pt-5 [&>div>p:last-child]:pb-6",
                   ].join(" ")}
                 >
                   {body}
                 </div>
-              </div>
+              </article>
 
               <aside className="lg:sticky lg:top-28 lg:self-start">
                 <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.09] to-transparent p-6">

@@ -319,7 +319,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
               <h2 className="mb-8 text-lg font-semibold text-white">Sources</h2>
               <RevealGroup
                 as="ol"
-                className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2"
+                className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2"
               >
                 {props.sources.map((s, i) => (
                   <RevealItem as="li" key={s.href} className="bg-[#070b16]">
@@ -343,7 +343,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
             <div className={INNER}>
               <Eyebrow>Keep reading</Eyebrow>
               <h2 className="mb-8 text-lg font-semibold text-white">Related guides</h2>
-              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4">
+              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
                 {props.relatedLinks.map((link) => (
                   <RevealItem key={link.href} className="bg-[#070b16]">
                     <Link
