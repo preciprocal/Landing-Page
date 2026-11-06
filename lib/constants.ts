@@ -727,16 +727,35 @@ export function getCompanyMeta(slug: string): CompanyMeta | null {
   return COMPANY_META[slug] ?? null;
 }
 
+/**
+ * Joins interview process lines for prose. Lines starting with "->" are the
+ * parts of the round above them, so they fold into it ("Onsite (...): 2 coding
+ * rounds (...), 1 system design round") instead of showing the marker.
+ */
+function joinProcess(lines: string[]): string {
+  const out: string[] = [];
+  for (const line of lines) {
+    const sub = line.match(/^\s*->\s*(.*)$/);
+    if (sub && out.length) {
+      const last = out[out.length - 1];
+      out[out.length - 1] = last.includes(": ") ? `${last}, ${sub[1]}` : `${last}: ${sub[1]}`;
+    } else {
+      out.push(sub ? sub[1] : line.trim());
+    }
+  }
+  return out.join("; ");
+}
+
 export function getCompanyQuestions(slug: string): RoleQA[] {
   const meta = COMPANY_META[slug];
   if (!meta) return [];
   const name = meta.displayName;
   return [
     { question: `How hard is it to get a job at ${name}?`,              answer: `${name} is considered ${meta.difficulty.toLowerCase()} to interview at. Acceptance rates at top tech companies average 1-3%. The process takes ${meta.avgDuration}. Preparation depth is the key differentiator, candidates who practice systematically outperform those who rely on talent alone.` },
-    { question: `How many interview rounds does ${name} have?`,         answer: `${name} typically runs ${meta.avgRounds} rounds: ${meta.interviewProcess.slice(0,3).join("; ")}. The total process takes ${meta.avgDuration}. Rounds can split over multiple days for in-person onsites or compress into a single day virtually.` },
+    { question: `How many interview rounds does ${name} have?`,         answer: `${name} typically runs ${meta.avgRounds} rounds: ${joinProcess(meta.interviewProcess.slice(0,3))}. The total process takes ${meta.avgDuration}. Rounds can split over multiple days for in-person onsites or compress into a single day virtually.` },
     { question: `What coding questions does ${name} ask?`,              answer: `${name} typically asks LeetCode medium to hard difficulty problems. Focus areas: arrays and strings, binary trees and graphs, dynamic programming, and system design. The best preparation is solving 80-100 curated problems, focusing on pattern recognition rather than memorizing solutions.` },
     { question: `What behavioral questions does ${name} ask?`,          answer: `${name} asks behavioral questions tied to their culture. ${meta.culture.substring(0, 200)}... Prepare 6-8 STAR stories covering leadership, conflict, failure, cross-functional collaboration, and initiative. Quantify impact in every story.` },
-    { question: `What is the ${name} interview process like in 2026?`,  answer: `The ${name} interview process: ${meta.interviewProcess.slice(0,4).join("; ")}. Most candidates complete the process in ${meta.avgDuration}. Virtual formats have largely replaced in-person onsites, though some teams still offer hybrid options.` },
+    { question: `What is the ${name} interview process like in 2026?`,  answer: `The ${name} interview process: ${joinProcess(meta.interviewProcess.slice(0,4))}. Most candidates complete the process in ${meta.avgDuration}. Virtual formats have largely replaced in-person onsites, though some teams still offer hybrid options.` },
     { question: `What are the top tips for getting a job at ${name}?`,  answer: meta.tips.join(" ") },
     { question: `What roles does ${name} hire most for?`,               answer: `${name}'s highest-volume roles are: ${meta.topRoles.join(", ")}. Engineers focus on coding and system design, PMs on product sense and metrics, data scientists on SQL/statistics/ML.` },
   ];
