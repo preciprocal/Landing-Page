@@ -57,6 +57,7 @@ export default function ResumeAtsChecker() {
   const [error, setError] = useState("");
   const [result, setResult] = useState<Shown | null>(null);
   const [lookedUp, setLookedUp] = useState(false);
+  const [limitHit, setLimitHit] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +104,8 @@ export default function ResumeAtsChecker() {
     if (jobDescription.trim()) body.append("jobDescription", jobDescription.trim());
     try {
       const res = await fetch("/api/tools/resume-check", { method: "POST", body });
-      const data = (await res.json().catch(() => null)) as (Shown & { error?: string }) | null;
+      const data = (await res.json().catch(() => null)) as (Shown & { error?: string; limit?: string }) | null;
+      setLimitHit(data?.limit === "ip-cap" || data?.limit === "daily-cap");
       if (!res.ok || !data || data.error) throw new Error(data?.error || "Something went wrong. Please try again.");
       setResult(data);
       trackEvent("ats-check-scored", { score: data.overallScore, locked: data.locked.length, jd: data.hasJobContext }, "tool");
@@ -207,6 +209,15 @@ export default function ResumeAtsChecker() {
           </button>
         </div>
         {error && <p className="mt-4 text-sm text-rose-300">{error}</p>}
+        {limitHit && (
+          <a
+            href={SIGN_UP_URL}
+            data-track="ats-check-limit-signup"
+            className="mt-3 inline-flex rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+          >
+            Create free account →
+          </a>
+        )}
       </div>
       )}
 

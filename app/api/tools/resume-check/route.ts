@@ -15,7 +15,16 @@
 
 import { NextResponse, type NextRequest } from "next/server";
 import { MAX_JOB_DESC_CHARS, checkResume } from "@/lib/resumeCheck/analysis";
-import { COOKIE, RETENTION_DAYS, findCheck, identify, saveCheck, type StoredCheck } from "@/lib/resumeCheck/store";
+import {
+  COOKIE,
+  RETENTION_DAYS,
+  claimCheck,
+  finishCheck,
+  findCheck,
+  identify,
+  releaseCheck,
+  type StoredCheck,
+} from "@/lib/resumeCheck/store";
 import { allowedOrigin, rateLimit } from "@/lib/interviewTools/server";
 
 export const runtime = "nodejs";
@@ -31,6 +40,12 @@ const MAX_FILE_BYTES = 4 * 1024 * 1024;
 
 const json = (body: unknown, status = 200) =>
   NextResponse.json(body, { status, headers: { "Cache-Control": "private, no-store" } });
+
+const REFUSALS = {
+  "in-flight": "Your resume is already being checked. Give it a few seconds and it will appear here.",
+  "ip-cap": "The free check has already been used from your network. Create a free account to check your resume, with 3 analyses every month.",
+  "daily-cap": "Free checks are used up for today. Create a free account to check your resume now, with 3 analyses every month.",
+} as const;
 
 const stored = (s: StoredCheck) => json({ ...s.result, restored: s.restored, checkedAt: s.checkedAt });
 
@@ -64,16 +79,27 @@ export async function POST(req: NextRequest) {
 
   const str = (v: FormDataEntryValue | null | undefined, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
+  // The free allowance, counted in the database (see claimCheck).
+  const claim = await claimCheck(visitor);
+  if (!claim.ok) return json({ error: REFUSALS[claim.reason], limit: claim.reason }, 429);
+
   const outcome = await checkResume({
     buffer: Buffer.from(await file.arrayBuffer()),
     fileName: file.name,
     jobTitle: str(form?.get("jobTitle"), 120),
     jobDescription: str(form?.get("jobDescription"), MAX_JOB_DESC_CHARS),
+  }).catch((e) => {
+    if (claim.token) void releaseCheck(claim.token);
+    throw e;
   });
-  if (!outcome.ok) return json({ error: outcome.error }, outcome.status);
+  if (!outcome.ok) {
+    // A failed check does not use up the free one.
+    if (claim.token) await releaseCheck(claim.token);
+    return json({ error: outcome.error }, outcome.status);
+  }
 
   const res = json(outcome.result);
-  const token = await saveCheck(visitor, outcome.result);
+  const token = claim.token && (await finishCheck(claim.token, outcome.result)) ? claim.token : null;
   if (token) {
     res.cookies.set(COOKIE, token, {
       httpOnly: true,
