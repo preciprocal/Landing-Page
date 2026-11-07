@@ -204,16 +204,12 @@ export default function ToolPage({
             </div>
           </section>
 
-          {/* ── SEO content body, with a sticky CTA and related links ───── */}
+          {/* ── SEO content body: contents and CTA on the left, the guide on the right ── */}
           <section data-section="content" data-section-name="Guide content" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
-            {/* Editorial layout: contents on the left (xl and up), the article at
-                reading width in the middle, CTA and related links on the right. */}
-            <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_320px] xl:grid-cols-[220px_minmax(0,1fr)_320px] xl:gap-14`}>
-              <div className="hidden xl:sticky xl:top-28 xl:block xl:self-start">
-                <GuideToc articleId="guide-article" title="Overview" />
-              </div>
-
-              <article id="guide-article" className="min-w-0 w-full max-w-[760px] xl:mx-auto">
+            {/* Contents and the sign-up card in a sticky column on the left; the
+                article fills the right. On phones the card follows the article. */}
+            <div className={`${INNER} grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
+              <article id="guide-article" className="min-w-0 w-full max-w-[920px]">
                 <Eyebrow>Guide</Eyebrow>
                 <h2 className="mb-8 text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{bodyTitle}</h2>
                 {/* Each page writes its guide as paragraphs plus boxed blocks (a div
@@ -237,26 +233,11 @@ export default function ToolPage({
                 >
                   {body}
                 </div>
-              </article>
-
-              <aside className="lg:sticky lg:top-28 lg:self-start">
-                <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.09] to-transparent p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free account</p>
-                  <p className="mt-3 text-lg font-semibold leading-snug text-white">{bottomTitle}</p>
-                  <a
-                    href={signUpUrl}
-                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)]"
-                  >
-                    {ctaLabel} <Chevron />
-                  </a>
-                  <p className="mt-3 text-center text-[11px] text-slate-500">{ctaMicrocopy}</p>
-                </div>
-
-                <nav data-section="related-links" data-section-name="Related links" aria-label="Related guides" className="mt-8">
-                  <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
-                  <ul className="divide-y divide-white/[0.05] border-y border-white/[0.05]">
+                <nav data-section="related-links" data-section-name="Related links" aria-label="Related guides" className="mt-16 border-t border-white/[0.06] pt-8">
+                  <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+                  <ul className="grid gap-x-8 sm:grid-cols-2">
                     {relatedLinks.map((link) => (
-                      <li key={link.label}>
+                      <li key={link.label} className="border-b border-white/[0.05]">
                         <Link
                           href={link.href}
                           className="group flex items-center justify-between py-3 text-sm text-slate-400 transition-colors hover:text-white"
@@ -268,6 +249,23 @@ export default function ToolPage({
                     ))}
                   </ul>
                 </nav>
+              </article>
+
+              <aside className="lg:sticky lg:top-28 lg:order-first lg:self-start">
+                <div className="hidden lg:block">
+                  <GuideToc articleId="guide-article" title="Overview" />
+                </div>
+                <div className="relative overflow-hidden rounded-2xl border border-accent/20 lg:mt-10 bg-gradient-to-b from-accent-deep/[0.09] to-transparent p-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free account</p>
+                  <p className="mt-3 text-lg font-semibold leading-snug text-white">{bottomTitle}</p>
+                  <a
+                    href={signUpUrl}
+                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)]"
+                  >
+                    {ctaLabel} <Chevron />
+                  </a>
+                  <p className="mt-3 text-center text-[11px] text-slate-500">{ctaMicrocopy}</p>
+                </div>
               </aside>
             </div>
           </section>

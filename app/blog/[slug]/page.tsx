@@ -15,13 +15,13 @@ import ReadingProgress from "@/components/page/ReadingProgress";
  * app/blog/[slug]/page.tsx
  *
  * Blog post template. The article stays at reading width (max-w-3xl),
- * centred in a full-width layout, with a sticky aside (CTA, more posts) on
- * wide screens; on phones the aside follows the article.
+ * beside a sticky aside (CTA, more posts) on the left on wide screens; on
+ * phones the aside follows the article.
  */
 
 /** Shared by the header and the body so the title lines up with the text. */
 const COLUMNS =
-  "grid gap-12 lg:grid-cols-[minmax(0,48rem)_280px] lg:justify-center lg:gap-14 xl:gap-16 2xl:grid-cols-[minmax(0,1fr)_48rem_minmax(260px,1fr)]";
+  "grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 xl:gap-16";
 
 // ─── Sidebar CTA ──────────────────────────────────────────────────────────────
 
@@ -434,7 +434,7 @@ export default function BlogArticlePage() {
         <header className={`relative overflow-hidden pb-12 pt-24 sm:pt-28 ${PAD}`}>
           <HeroBackdrop />
           <div className={`relative ${INNER} ${COLUMNS}`}>
-            <div className="max-w-3xl animate-fade-up opacity-0 2xl:col-start-2">
+            <div className="max-w-[860px] animate-fade-up opacity-0 lg:col-start-2">
               {/* Breadcrumb */}
               <nav aria-label="Breadcrumb" className="mb-8 flex min-w-0 items-center gap-1.5 text-xs text-slate-500">
                 <Link href="/" className="shrink-0 hover:text-slate-300 transition-colors">Home</Link>
@@ -477,7 +477,7 @@ export default function BlogArticlePage() {
           <div className={`${INNER} ${COLUMNS}`}>
 
             {/* Main column, kept at reading width */}
-            <article className="min-w-0 max-w-3xl 2xl:col-start-2">
+            <article className="min-w-0 max-w-[860px] lg:col-start-2 lg:row-start-1">
 
               {/* Article body rendered from markdown */}
               <div className="prose-article">
@@ -537,8 +537,8 @@ export default function BlogArticlePage() {
               </Reveal>
             </article>
 
-            {/* Sidebar: sticky beside the article on wide screens, below it on phones */}
-            <aside className="flex w-full flex-col gap-10 lg:sticky lg:top-28 lg:self-start 2xl:col-start-3 2xl:max-w-[300px]">
+            {/* Sidebar: sticky to the left of the article on wide screens, below it on phones */}
+            <aside className="flex w-full flex-col gap-10 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
               <Reveal className="hidden lg:block">
                 <SidebarCTA />
               </Reveal>

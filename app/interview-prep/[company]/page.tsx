@@ -148,10 +148,10 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
           </div>
         </section>
 
-        {/* Guide body with a sticky aside on wide screens */}
+        {/* Guide body, with a sticky aside on the left on wide screens */}
         <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-24`}>
-            <div className="min-w-0 max-w-3xl space-y-16">
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-16`}>
+            <div className="min-w-0 max-w-[920px] space-y-16">
               {/* Overview */}
               <Reveal>
                 <section>
@@ -214,7 +214,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
               </section>
             </div>
 
-            <aside className="space-y-10 lg:sticky lg:top-28 lg:self-start">
+            <aside className="space-y-10 lg:sticky lg:top-28 lg:order-first lg:self-start">
               {/* Top roles */}
               <Reveal>
                 <section className={`${CARD} p-6`}>

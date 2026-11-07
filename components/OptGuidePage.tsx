@@ -177,14 +177,14 @@ export default function OptGuidePage(props: OptGuideProps) {
             </section>
           )}
 
-          {/* ── Body, with sources in a sticky aside ───────────────────── */}
+          {/* ── Body: sources in a sticky column on the left, the guide filling the right ── */}
           <div className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-14 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-24`}>
-              <section data-section="content" data-section-name="Guide content" className="min-w-0 max-w-3xl">
+            <div className={`${INNER} grid grid-cols-1 gap-12 lg:grid-cols-[300px_minmax(0,1fr)] xl:gap-16`}>
+              <section data-section="content" data-section-name="Guide content" className="min-w-0 max-w-[920px]">
                 <Reveal className={PROSE}>{props.body}</Reveal>
               </section>
 
-              <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+              <aside className="min-w-0 lg:sticky lg:top-28 lg:order-first lg:self-start">
                 <Reveal>
                   <section
                     data-section="sources"
