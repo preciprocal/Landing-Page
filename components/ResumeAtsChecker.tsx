@@ -77,7 +77,7 @@ const rise: Variants = {
 function SpotlightCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   const x = useMotionValue(-400);
   const y = useMotionValue(-400);
-  const glow = useMotionTemplate`radial-gradient(460px circle at ${x}px ${y}px, rgba(129,140,248,0.10), transparent 70%)`;
+  const glow = useMotionTemplate`radial-gradient(460px circle at ${x}px ${y}px, rgba(129,140,248,0.04), transparent 70%)`;
   return (
     <div
       className={`relative overflow-hidden ${className}`}

@@ -11,10 +11,10 @@
  *   <RevealGroup className="grid ...">       a list; each child is a RevealItem
  *     <RevealItem>...</RevealItem>
  *   </RevealGroup>
- *   <SpotlightCard className="...">          a card with a cursor-following glow
+ *   <SpotlightCard className="...">          a plain card wrapper
  */
 
-import { motion, useMotionTemplate, useMotionValue, useReducedMotion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -59,26 +59,7 @@ export function RevealItem({ children, className, as = "div" }: { children: Reac
   );
 }
 
-/** A card with a soft light that follows the cursor (Aceternity's card spotlight). */
+/** A plain card wrapper. It used to carry a cursor-following glow; that was removed to keep pages quiet, and the name kept so callers need no change. */
 export function SpotlightCard({ children, className = "" }: { children: ReactNode; className?: string }) {
-  const x = useMotionValue(-400);
-  const y = useMotionValue(-400);
-  const glow = useMotionTemplate`radial-gradient(420px circle at ${x}px ${y}px, rgb(var(--accent) / 0.09), transparent 70%)`;
-  return (
-    <div
-      className={`relative overflow-hidden ${className}`}
-      onMouseMove={(e) => {
-        const r = e.currentTarget.getBoundingClientRect();
-        x.set(e.clientX - r.left);
-        y.set(e.clientY - r.top);
-      }}
-      onMouseLeave={() => {
-        x.set(-400);
-        y.set(-400);
-      }}
-    >
-      <motion.div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: glow }} />
-      <div className="relative h-full">{children}</div>
-    </div>
-  );
+  return <div className={`relative overflow-hidden ${className}`}>{children}</div>;
 }

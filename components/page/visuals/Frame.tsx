@@ -49,7 +49,6 @@ export function Stage({ children, className = "" }: { children: ReactNode; class
   const reduce = useReducedMotion();
   return (
     <div className={`relative mx-auto w-full max-w-[520px] ${className}`}>
-      <div aria-hidden="true" className="pointer-events-none absolute -inset-10 rounded-full bg-accent-deep/[0.16] blur-[80px]" />
       <motion.div
         className="relative"
         animate={reduce ? undefined : { y: [0, -8, 0] }}

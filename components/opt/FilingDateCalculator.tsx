@@ -83,7 +83,6 @@ export default function FilingDateCalculator() {
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-deep/10 blur-[90px]" />
       <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 sm:p-8 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-lg font-semibold text-white">OPT filing deadline calculator</p>

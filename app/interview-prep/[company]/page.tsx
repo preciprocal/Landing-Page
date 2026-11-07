@@ -287,7 +287,6 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
               style={GRID_BG}
             />
-            <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/2 h-[320px] w-[520px] -translate-y-1/2 rounded-full bg-accent-deep/15 blur-[110px]" />
             <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <p className="text-lg text-slate-300">Ready to land the {meta.displayName} offer?</p>
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>

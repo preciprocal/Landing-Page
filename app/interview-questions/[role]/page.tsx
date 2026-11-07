@@ -101,9 +101,9 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
 
         {/* Q&A beside a sticky aside */}
         <section className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] xl:gap-20`}>
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[300px_minmax(0,1fr)] xl:gap-16`}>
             {/* The aside comes first in the DOM so the CTA sits above the questions on phones. */}
-            <aside className="lg:sticky lg:top-28 lg:order-2 lg:self-start">
+            <aside className="lg:sticky lg:top-28 lg:order-first lg:self-start">
               <Reveal>
                 <SpotlightCard className="rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.09] to-accent-deep-2/[0.03] p-6">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Practice</p>
@@ -135,7 +135,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               )}
             </aside>
 
-            <div className="min-w-0 lg:order-1">
+            <div className="min-w-0">
               <Reveal>
                 <Eyebrow>Questions and answers</Eyebrow>
                 <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">

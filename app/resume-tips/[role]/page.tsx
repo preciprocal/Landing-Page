@@ -311,7 +311,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
 
         {/* Guide body with a sticky jump list and checker CTA */}
         <section className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] xl:grid-cols-[minmax(0,1fr)_340px] xl:gap-24`}>
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
             <div className="min-w-0 space-y-20">
               {/* ATS keywords */}
               <section id="keywords" className="scroll-mt-28">
@@ -401,7 +401,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
               </section>
             </div>
 
-            <aside aria-label="On this page" className="hidden lg:sticky lg:top-28 lg:block lg:self-start">
+            <aside aria-label="On this page" className="hidden lg:sticky lg:top-28 lg:order-first lg:block lg:self-start">
               <nav aria-label="Sections">
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
                 <ol className="border-l border-white/[0.07]">

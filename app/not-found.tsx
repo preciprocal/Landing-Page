@@ -36,10 +36,6 @@ export default function NotFound() {
           className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_55%_50%_at_50%_42%,black,transparent)]"
           style={GRID_BG}
         />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-[38%] h-[360px] w-[560px] max-w-full -translate-x-1/2 -translate-y-1/2 animate-drift rounded-full bg-accent-deep/[0.16] blur-[110px]"
-        />
 
         <div className="relative mx-auto w-full max-w-2xl animate-fade-up text-center opacity-0">
           <p

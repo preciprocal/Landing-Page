@@ -185,7 +185,6 @@ export default function BlogIndexPage() {
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_50%_50%,black,transparent)]"
               style={GRID_BG}
             />
-            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 h-[280px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent-deep/15 blur-[110px]" />
             <div className="relative flex justify-center">
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                 Practice everything you&apos;ve read, free <Chevron />

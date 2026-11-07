@@ -681,7 +681,6 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
           variants={rise}
           className="relative overflow-hidden rounded-xl bg-gradient-to-br from-indigo-500/[0.14] to-purple-500/[0.06] border border-indigo-400/30 p-5 sm:p-6"
         >
-          <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-indigo-500/20 blur-[70px]" />
           <div className="relative">
             <p className={`${LABEL} text-indigo-300 mb-2`}>
               What the interviewer asks next
@@ -716,7 +715,6 @@ function ConversionBanner({ role }: { role: string }) {
           backgroundSize: "40px 40px",
         }}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-16 h-[220px] w-[280px] rounded-full bg-indigo-600/15 blur-[90px]" />
       <div className="relative flex flex-col gap-6">
         <div>
           <h3 className="text-xl font-bold tracking-tight text-white mb-2">Now practice all 5 out loud</h3>

@@ -86,7 +86,6 @@ export default function FeeChecker() {
 
   return (
     <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent-deep/10 blur-[90px]" />
       <div className="relative border-b border-white/[0.06] p-6 sm:p-8">
         <p className="text-lg font-semibold text-white">Would the proposed OPT fee apply to me?</p>
         <p className="mt-1.5 text-[12px] leading-relaxed text-slate-400">

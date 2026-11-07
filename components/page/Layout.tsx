@@ -30,7 +30,7 @@ export const SECTION = "border-t border-white/[0.05] py-20";
 
 export const GRID_BG: CSSProperties = {
   backgroundImage:
-    "linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px)",
+    "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
   backgroundSize: "56px 56px",
 };
 
@@ -94,8 +94,8 @@ export function SectionHead({
 }
 
 /**
- * Masked grid, two slowly drifting glows in the page accent, and a faint
- * horizon line, for the top of a hero. Place inside a `relative overflow-hidden` section.
+ * A faint masked grid and a hairline at the bottom, for the top of a hero.
+ * Deliberately quiet: no glows. Place inside a `relative overflow-hidden` section.
  */
 export function HeroBackdrop() {
   return (
@@ -105,9 +105,7 @@ export function HeroBackdrop() {
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
         style={GRID_BG}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute -top-40 left-1/4 h-[420px] w-[620px] animate-drift rounded-full bg-accent-deep/[0.13] blur-[120px]" />
-      <div aria-hidden="true" className="pointer-events-none absolute -top-20 right-0 h-[360px] w-[480px] animate-drift-slow rounded-full bg-accent-deep-2/[0.09] blur-[120px]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent/25 to-transparent" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/[0.05]" />
     </>
   );
 }
@@ -214,7 +212,7 @@ export function PageHero({
   );
 }
 
-/** A wide CTA panel over a grid and a glow in the page accent. */
+/** A wide CTA panel over a faint grid. */
 export function CtaPanel({ title, body, action, note }: { title: ReactNode; body?: ReactNode; action: ReactNode; note?: ReactNode }) {
   return (
     <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
@@ -223,8 +221,7 @@ export function CtaPanel({ title, body, action, note }: { title: ReactNode; body
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
         style={GRID_BG}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-20 top-1/2 h-[320px] w-[520px] -translate-y-1/2 animate-drift rounded-full bg-accent-deep/[0.16] blur-[110px]" />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+
       <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
           <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</h2>

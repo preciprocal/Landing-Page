@@ -384,7 +384,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
 
         {/* Guide body with a sticky jump list and CTA */}
         <div className={`${PAD} pb-20`}>
-          <div className={`${INNER} grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] xl:gap-20`}>
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
             <div className="min-w-0 space-y-14">
               {/* Salary by level */}
               <section id="levels" className="scroll-mt-28 pt-2">
@@ -584,7 +584,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               </div>
             </div>
 
-            <aside className="hidden lg:block">
+            <aside className="hidden lg:order-first lg:block">
               <div className="sticky top-28 space-y-8">
                 <nav aria-label="On this page">
                   <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>

@@ -499,7 +499,6 @@ export default function BlogArticlePage() {
                     className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_90%_at_50%_100%,black,transparent)]"
                     style={GRID_BG}
                   />
-                  <div aria-hidden="true" className="pointer-events-none absolute -bottom-24 left-1/2 h-[220px] w-[420px] -translate-x-1/2 rounded-full bg-accent-deep/15 blur-[100px]" />
                   <div className="relative">
                     <p className="text-xl font-semibold text-white mb-2">
                       Ready to land the role?
