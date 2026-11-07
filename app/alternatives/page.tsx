@@ -151,7 +151,7 @@ export default function AlternativesIndexPage() {
                   </h2>
                 </div>
               </Reveal>
-              <RevealGroup as="ul" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              <RevealGroup as="ul" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
                 {items.map(({ name, slug, price, note }) => (
                   <RevealItem as="li" key={slug}>
                     <Link

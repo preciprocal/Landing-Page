@@ -418,7 +418,7 @@ export default function PrivacyPage() {
               <TocNav items={TOC} />
             </aside>
 
-            <div className="min-w-0 max-w-[70ch]">
+            <div className="min-w-0">
               {SECTIONS.map((section, i) => (
                 <section
                   key={section.title}

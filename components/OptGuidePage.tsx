@@ -172,7 +172,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           {props.tool && (
             <section data-section="tool" data-section-name="Interactive tool" className={`pb-20 ${PAD}`}>
               <Reveal className={INNER}>
-                <div className="max-w-5xl">{props.tool}</div>
+                {props.tool}
               </Reveal>
             </section>
           )}
