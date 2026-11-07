@@ -67,6 +67,47 @@ export interface RuleRow {
   anchor: string;
 }
 
+/**
+ * The right side of the hero on wide screens: a count per status and every
+ * rule with its status, counted from the same rows as the table below so it
+ * never disagrees with the page. Decorative (PageHero hides its visual from
+ * assistive tech); the status table carries the same information.
+ */
+function StatusBoard({ rows, checkedLabel }: { rows: RuleRow[]; checkedLabel: string }) {
+  const statuses = (Object.keys(STATUS_STYLE) as RuleStatus[]).filter((s) => rows.some((r) => r.status === s));
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+      <div className="flex items-center justify-between gap-4 border-b border-white/[0.06] px-6 py-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Where things stand</p>
+        <p className="text-[11px] text-slate-500">Checked {checkedLabel}</p>
+      </div>
+      <div className={`grid gap-px bg-white/[0.06] grid-cols-2 ${statuses.length >= 4 ? "xl:grid-cols-4" : statuses.length === 3 ? "xl:grid-cols-3" : ""}`}>
+        {statuses.map((s) => (
+          <div key={s} className="bg-[#070b16] px-5 py-5">
+            <p className="font-mono text-3xl font-semibold text-white">{rows.filter((r) => r.status === s).length}</p>
+            <p className="mt-2 flex items-center gap-2 whitespace-nowrap text-[12px] leading-tight text-slate-400">
+              <StatusDot status={s} />
+              {STATUS_STYLE[s].label}
+            </p>
+          </div>
+        ))}
+      </div>
+      <ul className="divide-y divide-white/[0.05] border-t border-white/[0.06]">
+        {rows.map((row) => (
+          <li key={row.anchor} className="flex items-start gap-4 px-6 py-3.5">
+            <StatusDot status={row.status} className="mt-2" />
+            <span className="min-w-0 flex-1 text-[14px] leading-snug text-slate-200">{row.rule}</span>
+            <span className={`shrink-0 rounded-md border px-2 py-0.5 text-[10px] font-semibold ${STATUS_STYLE[row.status].className}`}>
+              {STATUS_STYLE[row.status].label}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
 export interface RuleTrackerProps {
   breadcrumbName: string;
   canonicalPath: string;
@@ -179,9 +220,12 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 />
               </>
             }
+            visual={<StatusBoard rows={props.rows} checkedLabel={rulesCheckedLabel()} />}
           >
-            {/* Live status summary, counted from the rows below */}
-            <ul aria-label="Status summary" className="flex flex-wrap gap-2">
+            {/* Live status summary, counted from the rows below. On wide screens
+                the status board in the hero carries this, so it shows on smaller
+                screens only. */}
+            <ul aria-label="Status summary" className="flex flex-wrap gap-2 lg:hidden">
               {(Object.keys(STATUS_STYLE) as RuleStatus[]).map((s) => {
                 const count = props.rows.filter((r) => r.status === s).length;
                 if (!count) return null;

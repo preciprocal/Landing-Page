@@ -6,7 +6,7 @@
  * Full FAQ page, all categories, search, structured data.
  * The landing page only shows 6 FAQs; this page shows all of them.
  *
- * Layout (accent emerald): PageHero with the search under it, then two
+ * Layout (accent emerald): PageHero with the search on its right, then two
  * columns on wide screens: a sticky category index on the left and the
  * questions, grouped by category, on the right. Answers use native
  * <details>, so every answer is in the server-rendered HTML.
@@ -132,17 +132,18 @@ export default function FAQPage() {
               and we respond within 24 hours.
             </p>
           }
-        >
-          {/* Search */}
-          <div role="search" aria-label="Search FAQs" className="max-w-2xl">
-            <PlaceholdersAndVanishInput
-              key={inputKey}
-              placeholders={searchPlaceholders}
-              onChange={(e) => handleSearchChange(e.target.value)}
-              onSubmit={(e) => e.preventDefault()}
-            />
-          </div>
-        </PageHero>
+          aside={
+            /* Search, on the right of the title on wide screens */
+            <div role="search" aria-label="Search FAQs" className="w-full max-w-2xl text-left lg:w-[460px]">
+              <PlaceholdersAndVanishInput
+                key={inputKey}
+                placeholders={searchPlaceholders}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                onSubmit={(e) => e.preventDefault()}
+              />
+            </div>
+          }
+        />
 
         <section className={`${SECTION} ${PAD} !pt-12 sm:!pt-16`}>
           <div className={`${INNER} grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] xl:gap-20`}>

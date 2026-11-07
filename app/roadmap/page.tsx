@@ -2,7 +2,7 @@
  * app/roadmap/page.tsx
  * Fully self-contained. No separate component needed.
  *
- * Layout (accent amber): PageHero with the live counts, then the roadmap as
+ * Layout (accent amber): PageHero with the live counts on its right, then the roadmap as
  * a vertical timeline (components/page/RoadmapTimeline.tsx) whose accent
  * line draws as you scroll, then the feature idea CTA.
  */
@@ -211,20 +211,21 @@ export default function RoadmapPage() {
               coming next. No vaporware. If it&apos;s here, it&apos;s real.
             </p>
           }
-        >
-          {/* Live counts */}
-          <dl className="grid max-w-xl grid-cols-3 divide-x divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025]">
-            {counts.map((c) => (
-              <div key={c.label} className="flex flex-col-reverse gap-1 px-4 py-4 sm:px-6">
-                <dt className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
-                  <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${c.dot}`} />
-                  {c.label}
-                </dt>
-                <dd className="text-2xl font-extrabold text-white sm:text-3xl">{c.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </PageHero>
+          aside={
+            /* Live counts, on the right of the title on wide screens */
+            <dl className="grid w-full grid-cols-3 text-left lg:w-[520px] divide-x divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025]">
+              {counts.map((c) => (
+                <div key={c.label} className="flex flex-col-reverse gap-1 px-4 py-4 sm:px-6">
+                  <dt className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
+                    <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${c.dot}`} />
+                    {c.label}
+                  </dt>
+                  <dd className="text-2xl font-extrabold text-white sm:text-3xl">{c.value}</dd>
+                </div>
+              ))}
+            </dl>
+          }
+        />
 
         {/* Timeline */}
         <section className={`${SECTION} ${PAD}`}>
