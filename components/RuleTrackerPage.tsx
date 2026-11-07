@@ -284,7 +284,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
           {/* ── Detail, with a sticky contents list ────────────────────── */}
           <section data-section="content" data-section-name="Rule details" className={`${SECTION} ${PAD}`}>
             <div className={`${INNER} grid grid-cols-1 gap-12 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-              <Reveal className={`min-w-0 max-w-[920px] ${PROSE}`}>{props.body}</Reveal>
+              <Reveal className={`min-w-0 ${PROSE}`}>{props.body}</Reveal>
 
               <aside className="hidden lg:sticky lg:top-28 lg:order-first lg:block lg:self-start">
                 <nav aria-label="Rules on this page" className="rounded-2xl border border-white/[0.07] bg-[#070b16] p-6">

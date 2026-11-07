@@ -209,7 +209,7 @@ export default function ToolPage({
             {/* Contents and the sign-up card in a sticky column on the left; the
                 article fills the right. On phones the card follows the article. */}
             <div className={`${INNER} grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-              <article id="guide-article" className="min-w-0 w-full max-w-[920px]">
+              <article id="guide-article" className="min-w-0 w-full">
                 <Eyebrow>Guide</Eyebrow>
                 <h2 className="mb-8 text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{bodyTitle}</h2>
                 {/* Each page writes its guide as paragraphs plus boxed blocks (a div

@@ -180,7 +180,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           {/* ── Body: sources in a sticky column on the left, the guide filling the right ── */}
           <div className={`${SECTION} ${PAD}`}>
             <div className={`${INNER} grid grid-cols-1 gap-12 lg:grid-cols-[300px_minmax(0,1fr)] xl:gap-16`}>
-              <section data-section="content" data-section-name="Guide content" className="min-w-0 max-w-[920px]">
+              <section data-section="content" data-section-name="Guide content" className="min-w-0">
                 <Reveal className={PROSE}>{props.body}</Reveal>
               </section>
 

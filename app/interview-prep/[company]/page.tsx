@@ -151,7 +151,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
         {/* Guide body, with a sticky aside on the left on wide screens */}
         <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={`${INNER} grid gap-12 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-16`}>
-            <div className="min-w-0 max-w-[920px] space-y-16">
+            <div className="min-w-0 space-y-16">
               {/* Overview */}
               <Reveal>
                 <section>
