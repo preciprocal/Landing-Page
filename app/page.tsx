@@ -30,7 +30,7 @@ import Footer from "@/components/Footer";
 import ScrollToast from "@/components/ScrollToast";
 import HeroProductDemo from "@/components/HeroProductDemo";
 import ChromeExtensionBanner from "@/components/ChromeExtensionBanner";
-// import FreeToolsStrip from "@/components/FreeToolsStrip"; // hidden for now, see section 6b
+import FreeToolsStrip from "@/components/FreeToolsStrip";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
@@ -124,12 +124,10 @@ export default function Home() {
         </section>
 
         {/* 6b. Free tools and guide hubs - a no-account way in, and the
-            homepage's only contextual internal links. Hidden for now; to bring
-            it back, restore this block and the FreeToolsStrip import above.
+            homepage's only contextual internal links. */}
         <section data-section="free-tools" data-section-name="Free tools" aria-label="Free tools and guides">
           <FreeToolsStrip />
         </section>
-        */}
 
         {/* 7. Differentiation - comparison table */}
         <section data-section="comparison" data-section-name="Comparison table" aria-label="Competitor comparison">

@@ -13,18 +13,16 @@
  * ATS checker qualifies since it runs its preview in the page (the full
  * report needs an account).
  *
- * Motion, after Aceternity's card hover effect and glowing border: a soft
- * panel slides between cards to follow the cursor (one shared layoutId), and
- * each card's border lights up as the cursor nears it. Cards stagger in on
- * scroll. All of it is off under prefers-reduced-motion.
+ * Layout: the homepage's 1200px column. On phones each tool is a compact row
+ * (the worry, the action) so the four fit in about a screen; from sm up they
+ * are full cards. Hover stays quiet: a brighter border and surface, no glows.
+ * Cards fade up once on scroll, off under prefers-reduced-motion.
  */
 
-import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { MotionConfig, motion } from "framer-motion";
 import { CalendarClock, FileCheck2, Mail, MessageSquareText } from "lucide-react";
 import Chevron from "@/components/Chevron";
-import { GlowingEffect } from "@/components/ui/GlowingEffect";
 
 /**
  * Each card opens on the moment a job seeker is in, then says what the tool
@@ -83,93 +81,84 @@ const GUIDES = [
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function FreeToolsStrip() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
     <MotionConfig reducedMotion="user">
       <div className="border-t border-white/[0.04] px-6 py-20 sm:px-10 lg:px-16">
-        <div className="mb-12 text-center">
-          <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-emerald-300">Free, no account needed</p>
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-            The job search is hard enough.
-            <span className="block bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">Start with what is worrying you.</span>
-          </h2>
-          <p className="mx-auto max-w-2xl text-slate-400">
-            The resume nobody answers, the interview you cannot predict, the OPT days you keep counting in your head. Pick one and get an answer in under a minute.
-          </p>
-        </div>
+        <div className="mx-auto w-full max-w-[1200px]">
+          <div className="mb-10 text-center sm:mb-12">
+            <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-emerald-300">Free, no account needed</p>
+            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+              The job search is hard enough.
+              <span className="block bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">Start with what is worrying you.</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-slate-400">
+              The resume nobody answers, the interview you cannot predict, the OPT days you keep counting in your head. Pick one and get an answer in under a minute.
+            </p>
+          </div>
 
-        <motion.div
-          className="mb-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-80px" }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
-          onMouseLeave={() => setHovered(null)}
-        >
-          {TOOLS.map((t, i) => (
-            <motion.div
-              key={t.href}
-              className="relative p-2"
-              variants={{
-                hidden: { opacity: 0, y: 18 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } },
-              }}
-              onMouseEnter={() => setHovered(i)}
-            >
-              {/* The panel that slides between cards. */}
-              <AnimatePresence>
-                {hovered === i && (
-                  <motion.span
-                    aria-hidden="true"
-                    layoutId="free-tools-hover"
-                    className="absolute inset-0 block rounded-3xl border border-indigo-400/15 bg-gradient-to-b from-indigo-500/[0.18] to-purple-500/[0.08]"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { duration: 0.18 } }}
-                    exit={{ opacity: 0, transition: { duration: 0.18, delay: 0.15 } }}
-                  />
-                )}
-              </AnimatePresence>
-
-              <Link
-                href={t.href}
-                className="group relative flex h-full flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors duration-300 hover:border-white/[0.12] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60"
+          <motion.ul
+            className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
+          >
+            {TOOLS.map((t) => (
+              <motion.li
+                key={t.href}
+                variants={{
+                  hidden: { opacity: 0, y: 16 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+                }}
               >
-                <GlowingEffect spread={36} glow proximity={70} />
+                <Link
+                  href={t.href}
+                  className="group flex h-full items-center gap-4 rounded-2xl border border-white/[0.07] bg-[#070b16] p-4 transition-colors duration-300 hover:border-white/[0.16] hover:bg-[#0a0f1d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 sm:flex-col sm:items-stretch sm:gap-0 sm:p-6"
+                >
+                  <div className="flex shrink-0 items-start justify-between sm:mb-5">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/[0.12] text-indigo-200">
+                      <t.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                    {t.tag && (
+                      <span className="hidden rounded-md bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-300 sm:inline">{t.tag}</span>
+                    )}
+                  </div>
 
-                <div className="relative mb-5 flex items-start justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-400/20 bg-gradient-to-br from-indigo-500/20 to-purple-500/10 text-indigo-200 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:scale-105">
-                    <t.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
-                  </span>
-                  {t.tag && (
-                    <span className="rounded-md bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-300">{t.tag}</span>
-                  )}
-                </div>
+                  <div className="min-w-0 flex-1 sm:flex sm:flex-col">
+                    <p className="text-[13px] font-medium text-indigo-200/80 sm:mb-1.5">{t.moment}</p>
+                    <p className="text-[16px] font-semibold leading-snug text-white sm:mb-2.5 sm:text-lg">{t.title}</p>
+                    <p className="hidden text-sm leading-relaxed text-slate-400 sm:mb-6 sm:block">{t.body}</p>
+                    <div className="mt-auto hidden items-center justify-between gap-3 border-t border-white/[0.06] pt-4 sm:flex">
+                      <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-indigo-300 transition-colors group-hover:text-indigo-200">
+                        {t.cta} <Chevron />
+                      </span>
+                      <span className="whitespace-nowrap text-[11px] text-slate-500">{t.time}</span>
+                    </div>
+                  </div>
 
-                <p className="relative mb-1.5 text-[13px] font-medium text-indigo-200/80">{t.moment}</p>
-                <p className="relative mb-2.5 text-lg font-semibold leading-snug text-white">{t.title}</p>
-                <p className="relative mb-6 text-sm leading-relaxed text-slate-400">{t.body}</p>
-                <div className="relative mt-auto flex items-center justify-between gap-3 border-t border-white/[0.06] pt-4">
-                  <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-indigo-300 transition-colors group-hover:text-indigo-200">
-                    {t.cta} <Chevron />
-                  </span>
-                  <span className="whitespace-nowrap text-[11px] text-slate-500">{t.time}</span>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </motion.div>
+                  {/* Phones: the row ends in a chevron instead of the card footer. */}
+                  <Chevron className="shrink-0 text-slate-500 transition-colors group-hover:text-white sm:hidden" />
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
 
-        <div className="flex flex-wrap justify-center gap-3">
-          {GUIDES.map((g) => (
-            <Link
-              key={g.href}
-              href={g.href}
-              className="rounded-xl border border-white/[0.08] px-4 py-2 text-sm text-slate-400 transition-all hover:border-white/[0.15] hover:text-white"
-            >
-              {g.label}
-            </Link>
-          ))}
+          <nav aria-label="Guides" className="mt-12 border-t border-white/[0.06] pt-8">
+            <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Or start with a guide</p>
+            <ul className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+              {GUIDES.map((g) => (
+                <li key={g.href} className="border-b border-white/[0.05]">
+                  <Link
+                    href={g.href}
+                    className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
+                  >
+                    {g.label}
+                    <Chevron className="text-slate-600 transition-colors group-hover:text-slate-300" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </MotionConfig>
