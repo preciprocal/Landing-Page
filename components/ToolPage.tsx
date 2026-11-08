@@ -27,8 +27,11 @@ import Chevron from "@/components/Chevron";
 import GuideToc from "@/components/page/GuideToc";
 import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, CtaPanel, pad2, type Accent } from "@/components/page/Layout";
 
-const COUNT_WORD = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
+import ProductHero from "@/components/ProductHero";
+import type { ChapterId } from "@/lib/demoChapters";
+
+const COUNT_WORD = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];
 
 export interface ToolFaq {
   q: string;
@@ -62,6 +65,13 @@ export interface ToolPageProps {
    * screens (components/page/visuals). Decorative.
    */
   visual?: React.ReactNode;
+  /**
+   * A chapter of the product walkthrough (lib/demoChapters.ts). When set, the
+   * page opens on ProductHero instead: a full-height hero with the real
+   * product preview playing that chapter. Takes precedence over `visual`.
+   * Not for pages with a `tool`, where the tool itself should lead.
+   */
+  demo?: ChapterId;
   /** Pill above the H1 */
   badge: string;
   /** H1 renders as two lines: plain text, then a gradient accent line */
@@ -109,6 +119,7 @@ export default function ToolPage({
   canonicalPath,
   accent = "indigo",
   visual,
+  demo,
   badge,
   h1,
   h1Accent,
@@ -146,6 +157,20 @@ export default function ToolPage({
 
         <main>
           {/* ── Hero ─────────────────────────────────────────────────────── */}
+          {demo ? (
+            <ProductHero
+              chapter={demo}
+              sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
+              breadcrumb={[{ label: "Home", href: "/" }, { label: breadcrumbName }]}
+              badge={badge}
+              title={h1}
+              accent={h1Accent}
+              subhead={<p>{subhead}</p>}
+              ctaHref={signUpUrl}
+              ctaLabel={ctaLabel}
+              secondary={{ href: "#how-it-works", label: "See how it works" }}
+            />
+          ) : (
           <PageHero
             sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
             breadcrumb={[{ label: "Home", href: "/" }, { label: breadcrumbName }]}
@@ -165,6 +190,7 @@ export default function ToolPage({
               </>
             }
           />
+          )}
 
           {tool && (
             <section data-section="tool" data-section-name="Interactive tool" className={`pb-20 ${PAD}`}>
@@ -196,7 +222,7 @@ export default function ToolPage({
           </section>
 
           {/* ── How it works ───────────────────────────────────────────── */}
-          <section data-section="how-it-works" data-section-name="How it works" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
+          <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 border-t border-white/[0.05] py-20 ${PAD}`}>
             <div className={INNER}>
               <SectionHead eyebrow="How it works" title={`${COUNT_WORD[steps.length] ?? steps.length} steps.`} accent="Zero guesswork." />
               <RevealGroup as="ol" className="grid gap-10 sm:grid-cols-3 sm:gap-8">

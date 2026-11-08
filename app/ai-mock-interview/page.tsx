@@ -41,14 +41,13 @@ import {
   ACCENT_TEXT,
   Eyebrow,
   SectionHead,
-  PageHero,
   CtaPanel,
   FaqList,
   HoverRule,
   pad2,
 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
-import MockInterviewVisual from "@/components/page/visuals/MockInterviewVisual";
+import ProductHero from "@/components/ProductHero";
 
 export const metadata: Metadata = {
   title: "AI Mock Interviews: Free Practice + Feedback",
@@ -191,7 +190,8 @@ export default function AIMockInterviewPage() {
 
       <main>
         {/* ── H1 + Intro ──────────────────────────────────────────────────── */}
-        <PageHero
+        <ProductHero
+          chapter="interview"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "AI Mock Interview" }]}
           title="AI Mock Interview Practice: "
           accent="Realistic. Instant. Free to Start."
@@ -209,19 +209,14 @@ export default function AIMockInterviewPage() {
               </p>
             </>
           }
-          aside={
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
-                Start your free mock interview <Chevron />
-              </Link>
-              <Link href={`${APP_URL}/sign-up?plan=pro`} className={BTN_SECONDARY}>
-                View all plans
-              </Link>
-            </div>
-          }
-          visual={<MockInterviewVisual />}
-        >
-          {/* ── Social proof strip ──────────────────────────────────────────── */}
+          ctaHref={`${APP_URL}/sign-up`}
+          ctaLabel="Start your free mock interview"
+          secondary={{ href: `${APP_URL}/sign-up?plan=pro`, label: "View all plans" }}
+        />
+
+        {/* ── Social proof strip ──────────────────────────────────────────── */}
+        <section aria-label="At a glance" className={`${PAD} pb-6`}>
+          <div className={INNER}>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
             {[
               { stat: "30+", label: "interviews / month on Pro" },
@@ -235,7 +230,8 @@ export default function AIMockInterviewPage() {
               </div>
             ))}
           </dl>
-        </PageHero>
+          </div>
+        </section>
 
         {/* ── How It Works ────────────────────────────────────────────────── */}
         <section aria-label="How AI mock interviews work" className={`${SECTION} ${PAD}`}>

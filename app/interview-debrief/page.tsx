@@ -12,7 +12,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import InterviewDebriefVisual from "@/components/page/visuals/InterviewDebriefVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -96,7 +95,7 @@ export default function InterviewDebriefPage() {
     <ToolPage
       breadcrumbName="Interview Debrief Journal"
       accent="rose"
-      visual={<InterviewDebriefVisual />}
+      demo="debrief"
       canonicalPath="/interview-debrief"
       badge="Free, 2 debriefs per month"
       h1="Interview debrief journal"

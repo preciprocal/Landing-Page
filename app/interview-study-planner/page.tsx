@@ -11,7 +11,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import StudyPlannerVisual from "@/components/page/visuals/StudyPlannerVisual";
 
 export const metadata: Metadata = {
   title: "AI Interview Study Planner: Daily Plan",
@@ -94,7 +93,7 @@ export default function InterviewStudyPlannerPage() {
     <ToolPage
       breadcrumbName="Interview Study Planner"
       accent="indigo"
-      visual={<StudyPlannerVisual />}
+      demo="planner"
       canonicalPath="/interview-study-planner"
       badge="Free, full personalised plan"
       h1="AI interview study planner"

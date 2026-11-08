@@ -15,7 +15,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import LinkedInProfileVisual from "@/components/page/visuals/LinkedInProfileVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -104,7 +103,7 @@ export default function LinkedInProfileOptimizerPage() {
     <ToolPage
       breadcrumbName="LinkedIn Profile Optimizer"
       accent="sky"
-      visual={<LinkedInProfileVisual />}
+      demo="career-tools"
       canonicalPath="/linkedin-profile-optimizer"
       badge="Free, 2 optimisations per month"
       h1="Free LinkedIn profile optimizer"

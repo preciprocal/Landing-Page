@@ -11,7 +11,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import RecruiterFinderVisual from "@/components/page/visuals/RecruiterFinderVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -95,7 +94,7 @@ export default function RecruiterContactFinderPage() {
     <ToolPage
       breadcrumbName="Recruiter Contact Finder"
       accent="sky"
-      visual={<RecruiterFinderVisual />}
+      demo="job-tracker"
       canonicalPath="/recruiter-contact-finder"
       badge="Free, 3 lookups per month"
       h1="Recruiter contact finder"

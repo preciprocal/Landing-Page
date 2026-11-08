@@ -14,7 +14,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import InternationalStudentsVisual from "@/components/page/visuals/InternationalStudentsVisual";
 
 export const metadata: Metadata = {
   title: "Job Search for International Students (F-1)",
@@ -106,7 +105,7 @@ export default function InternationalStudentsPage() {
       breadcrumbName="For International Students"
       canonicalPath="/for/international-students"
       accent="sky"
-      visual={<InternationalStudentsVisual />}
+      demo="resume"
       badge="Built by students, for students"
       h1="The job search for international students"
       h1Accent="built around the OPT clock"

@@ -12,7 +12,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import ResumeTailoringVisual from "@/components/page/visuals/ResumeTailoringVisual";
 import Chevron from "@/components/Chevron";
 
 export const metadata: Metadata = {
@@ -96,7 +95,7 @@ export default function ResumeTailoringPage() {
     <ToolPage
       breadcrumbName="Resume Tailoring"
       accent="violet"
-      visual={<ResumeTailoringVisual />}
+      demo="resume"
       canonicalPath="/resume-tailoring"
       badge="Free, 3 analyses per month"
       h1="Tailor your resume"

@@ -11,7 +11,6 @@
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
 import Chevron from "@/components/Chevron";
-import ChromeExtensionVisual from "@/components/page/visuals/ChromeExtensionVisual";
 
 export const metadata: Metadata = {
   title: { absolute: "Job Search Chrome Extension: Save Jobs in 1 Click" },
@@ -92,7 +91,7 @@ export default function ChromeExtensionPage() {
       breadcrumbName="Chrome Extension"
       canonicalPath="/chrome-extension"
       accent="blue"
-      visual={<ChromeExtensionVisual />}
+      demo="job-tracker"
       badge="Free, works with the free plan"
       h1="Preciprocal Chrome extension"
       h1Accent="save any job in one click"

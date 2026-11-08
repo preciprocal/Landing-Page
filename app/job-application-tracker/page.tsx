@@ -12,7 +12,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import ApplicationTrackerVisual from "@/components/page/visuals/ApplicationTrackerVisual";
 
 export const metadata: Metadata = {
   title: "Free Job Application Tracker: All in One Place",
@@ -95,7 +94,7 @@ export default function JobApplicationTrackerPage() {
     <ToolPage
       breadcrumbName="Job Application Tracker"
       accent="emerald"
-      visual={<ApplicationTrackerVisual />}
+      demo="job-tracker"
       canonicalPath="/job-application-tracker"
       badge="Free, track up to 10 jobs"
       h1="Free job application tracker"

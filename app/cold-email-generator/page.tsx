@@ -11,7 +11,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import ColdEmailVisual from "@/components/page/visuals/ColdEmailVisual";
 
 export const metadata: Metadata = {
   title: "Cold Email Generator for Job Outreach",
@@ -94,7 +93,7 @@ export default function ColdEmailGeneratorPage() {
     <ToolPage
       breadcrumbName="Cold Email Generator"
       accent="amber"
-      visual={<ColdEmailVisual />}
+      demo="career-tools"
       canonicalPath="/cold-email-generator"
       badge="Free, outreach included"
       h1="Cold email generator"

@@ -11,7 +11,6 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
-import NewGradsVisual from "@/components/page/visuals/NewGradsVisual";
 
 export const metadata: Metadata = {
   title: "Job Search Tools for New Grads and Students",
@@ -85,7 +84,7 @@ export default function NewGradsPage() {
       breadcrumbName="For New Grads"
       canonicalPath="/for/new-grads"
       accent="emerald"
-      visual={<NewGradsVisual />}
+      demo="resume"
       badge="Built by students, for students"
       h1="Your first job search"
       h1Accent="without the guesswork"

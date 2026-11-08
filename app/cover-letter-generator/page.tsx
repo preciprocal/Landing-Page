@@ -35,14 +35,13 @@ import {
   ACCENT_TEXT,
   Eyebrow,
   SectionHead,
-  PageHero,
   CtaPanel,
   FaqList,
   HoverRule,
   pad2,
 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
-import CoverLetterVisual from "@/components/page/visuals/CoverLetterVisual";
+import ProductHero from "@/components/ProductHero";
 
 export const metadata: Metadata = {
   title: "AI Cover Letter Generator: Free, in 60 Seconds",
@@ -177,7 +176,8 @@ export default function CoverLetterGeneratorPage() {
 
       <main>
         {/* H1 */}
-        <PageHero
+        <ProductHero
+          chapter="cover-letter"
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Cover Letter Generator" }]}
           title="AI Cover Letter Generator: "
           accent="Personalised. Done in 60 Seconds."
@@ -193,19 +193,14 @@ export default function CoverLetterGeneratorPage() {
               </p>
             </>
           }
-          aside={
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
-                Generate your cover letter free <Chevron />
-              </Link>
-              <Link href="/#pricing" className={BTN_SECONDARY}>
-                See all plans
-              </Link>
-            </div>
-          }
-          visual={<CoverLetterVisual />}
-        >
-          {/* Stats strip */}
+          ctaHref={`${APP_URL}/sign-up`}
+          ctaLabel="Generate your cover letter free"
+          secondary={{ href: "/#pricing", label: "See all plans" }}
+        />
+
+        {/* Stats strip */}
+        <section aria-label="At a glance" className={`${PAD} pb-6`}>
+          <div className={INNER}>
           <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
             {[
               { stat: "60s",        label: "average time to generate" },
@@ -219,7 +214,8 @@ export default function CoverLetterGeneratorPage() {
               </div>
             ))}
           </dl>
-        </PageHero>
+          </div>
+        </section>
 
         {/* How it works */}
         <section aria-label="How the cover letter generator works" className={`${SECTION} ${PAD}`}>
