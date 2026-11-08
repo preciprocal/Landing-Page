@@ -16,7 +16,7 @@
  * a human, win the interview, stay in control. Each stage links out to the tool
  * page that owns that head term.
  *
- * Layout: PageHero with the tool-orbit illustration and a four-stage index,
+ * Layout: PageHero with a sign-up aside and a four-stage index,
  * then each stage as a sticky stage label beside a ruled bento grid of its
  * tools. The interview stage sits in a SpotlightCard.
  */
@@ -27,9 +27,8 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HoverRule, PageHero, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HeroSignup, HoverRule, PageHero, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
-import FeaturesVisual from "@/components/page/visuals/FeaturesVisual";
 
 type Feature = {
   name: string;
@@ -281,7 +280,7 @@ export default function FeaturesPage() {
               track of all of it for months. Here is what handles each part.
             </p>
           }
-          visual={<FeaturesVisual />}
+          aside={<HeroSignup href={`${APP_URL}/sign-up`} label="Start free" />}
         >
           <nav aria-label="Search stages">
             <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
