@@ -50,7 +50,7 @@ const RESUME_TIP_DATA: Record<string, {
   commonMistakes: string[];
 }> = {
   "software-engineer": {
-    salaryRange: "$110,000 – $200,000+",
+    salaryRange: "$110,000 - $200,000+",
     topAtsKeywords: ["Python", "JavaScript", "TypeScript", "AWS", "Docker", "Kubernetes", "REST API", "CI/CD", "system design", "microservices"],
     bulletFormula: "Action verb + what you built/did + tech used + measurable outcome",
     bulletExample: "Architected a distributed caching layer using Redis and Go, reducing p99 API latency by 47% for 2M daily active users.",
@@ -70,7 +70,7 @@ const RESUME_TIP_DATA: Record<string, {
     ],
   },
   "product-manager": {
-    salaryRange: "$110,000 – $185,000+",
+    salaryRange: "$110,000 - $185,000+",
     topAtsKeywords: ["product roadmap", "A/B testing", "user research", "OKRs", "KPIs", "go-to-market", "agile", "cross-functional", "DAU", "MAU", "NPS", "stakeholder management"],
     bulletFormula: "Action verb + product/feature + business metric impacted + magnitude",
     bulletExample: "Prioritized and shipped a redesigned onboarding flow that increased D7 retention by 22% and reduced time-to-first-value from 8 minutes to 2.5 minutes.",
@@ -90,7 +90,7 @@ const RESUME_TIP_DATA: Record<string, {
     ],
   },
   "data-scientist": {
-    salaryRange: "$110,000 – $175,000+",
+    salaryRange: "$110,000 - $175,000+",
     topAtsKeywords: ["Python", "SQL", "machine learning", "statistical modeling", "A/B testing", "scikit-learn", "TensorFlow", "PyTorch", "Spark", "feature engineering", "production ML", "MLOps"],
     bulletFormula: "Action verb + model/analysis + business outcome + scale/precision metric",
     bulletExample: "Built a customer churn prediction model using XGBoost and 90-day behavioral features, achieving 84% precision and enabling proactive outreach that reduced churn by 14%.",
@@ -110,7 +110,7 @@ const RESUME_TIP_DATA: Record<string, {
     ],
   },
   "marketing-manager": {
-    salaryRange: "$75,000 – $140,000+",
+    salaryRange: "$75,000 - $140,000+",
     topAtsKeywords: ["go-to-market", "demand generation", "content marketing", "SEO", "SEM", "paid social", "Google Analytics", "HubSpot", "Salesforce", "email marketing", "conversion rate", "attribution"],
     bulletFormula: "Action verb + campaign/initiative + channel/tool + measurable marketing metric",
     bulletExample: "Launched a 3-channel demand gen campaign (paid search, LinkedIn, email) that generated 340 MQLs in Q2, a 67% increase QoQ, at a $42 CAC.",
@@ -130,7 +130,7 @@ const RESUME_TIP_DATA: Record<string, {
     ],
   },
   "financial-analyst": {
-    salaryRange: "$70,000 – $130,000+",
+    salaryRange: "$70,000 - $130,000+",
     topAtsKeywords: ["financial modeling", "DCF", "Excel", "PowerPoint", "variance analysis", "budget", "forecast", "P&L", "EBITDA", "GAAP", "Bloomberg", "SQL", "Tableau"],
     bulletFormula: "Action verb + financial analysis/model + business decision supported + dollar impact",
     bulletExample: "Built a 3-statement LBO model for a $240M acquisition target, surfacing a 2.1x MOIC scenario that informed the final bid strategy.",

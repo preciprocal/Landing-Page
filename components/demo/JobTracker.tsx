@@ -207,7 +207,7 @@ export function EditOverlay({ job, onClose, onSave }: { job: TrackerJob; onClose
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div><label className="text-[11px] text-slate-400 mb-1 block">Salary / Range</label>
-              <input placeholder="e.g. $140k–$170k" className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition-colors" /></div>
+              <input placeholder="e.g. $140k-$170k" className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-white placeholder-slate-600 outline-none focus:border-indigo-500/50 transition-colors" /></div>
             <div><label className="text-[11px] text-slate-400 mb-1 block">Source</label>
               <input value={form.source} onChange={e=>f("source",e.target.value)} className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-white outline-none focus:border-indigo-500/50 transition-colors" /></div>
           </div>

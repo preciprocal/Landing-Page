@@ -57,8 +57,8 @@ export const STEPS: Step[] = [
     fields: [
       { label: "How Did You Hear About Us?",                      value: U.heard,   type: "select" },
       { label: "Have you previously worked at Morgan Stanley? *", value: "No",      type: "select" },
-      { label: "Legal Name – First *",   value: U.first  },
-      { label: "Legal Name – Last *",    value: U.last   },
+      { label: "Legal Name - First *",   value: U.first  },
+      { label: "Legal Name - Last *",    value: U.last   },
       { label: "I have a preferred name",value: "No",    type: "select" },
       { label: "Street Address *",       value: U.address },
       { label: "City *",                 value: U.city   },

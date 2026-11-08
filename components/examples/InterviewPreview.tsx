@@ -580,7 +580,7 @@ function FeedbackReport() {
             <p className="text-[12px] font-bold text-white">AI Assessment Summary</p>
           </div>
           <p className="text-[11px] text-slate-300 leading-relaxed mb-3">
-            Strong data science candidate with solid ML fundamentals and excellent communication. Technical depth in experimentation design and causal inference needs strengthening. With 2–3 weeks of targeted preparation on ML system design and product metrics, this candidate would be very competitive for data scientist roles at Meta and similar companies.
+            Strong data science candidate with solid ML fundamentals and excellent communication. Technical depth in experimentation design and causal inference needs strengthening. With 2-3 weeks of targeted preparation on ML system design and product metrics, this candidate would be very competitive for data scientist roles at Meta and similar companies.
           </p>
           <div className="flex items-center gap-2.5">
             {[

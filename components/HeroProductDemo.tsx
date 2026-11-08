@@ -298,7 +298,7 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
                       <div className="flex items-center gap-3 flex-wrap mb-3">
                         <span className="flex items-center gap-1 text-[11px] text-slate-400"><MapPin className="w-3 h-3" /> Menlo Park, CA</span>
                         <span className="flex items-center gap-1 text-[11px] text-slate-400"><Building2 className="w-3 h-3" /> On-site</span>
-                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><DollarSign className="w-3 h-3" /> $160K – $200K</span>
+                        <span className="flex items-center gap-1 text-[11px] text-slate-400"><DollarSign className="w-3 h-3" /> $160K - $200K</span>
                         <span className="flex items-center gap-1 text-[11px] text-slate-400"><Clock className="w-3 h-3" /> Posted 4 days ago</span>
                       </div>
 

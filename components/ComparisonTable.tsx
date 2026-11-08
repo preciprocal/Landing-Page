@@ -97,7 +97,7 @@ export default function ComparisonTable() {
             <span className="text-gradient">We include.</span>
           </h2>
           <p className="text-slate-500 text-sm max-w-lg mx-auto">
-            Other tools give you one feature for $50–100/mo. Preciprocal gives you the full stack at $9.99.
+            Other tools give you one feature for $50-100/mo. Preciprocal gives you the full stack at $9.99.
           </p>
         </RevealOnScroll>
 

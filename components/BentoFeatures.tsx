@@ -203,7 +203,7 @@ function CoverageCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[9px] text-slate-500">Competitors charge $50–100/mo for one of these tools</span>
+          <span className="text-[9px] text-slate-500">Competitors charge $50-100/mo for one of these tools</span>
         </div>
       </div>
     </Card>
@@ -302,7 +302,7 @@ function StudentPriceCard() {
     <Card delay={0.2}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Built for students.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">Premium career tools usually cost $50–200/month. We built this for people who are still eating ramen.</p>
+        <p className="text-[10px] text-slate-500 mb-3">Premium career tools usually cost $50-200/month. We built this for people who are still eating ramen.</p>
 
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="flex items-baseline gap-1">
