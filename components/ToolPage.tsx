@@ -25,7 +25,9 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
 import GuideToc from "@/components/page/GuideToc";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, pad2, type Accent } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, CtaPanel, pad2, type Accent } from "@/components/page/Layout";
+
+const COUNT_WORD = ["Zero", "One", "Two", "Three", "Four", "Five", "Six"];
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export interface ToolFaq {
@@ -94,7 +96,12 @@ export interface ToolPageProps {
   relatedLinks: ToolRelatedLink[];
   bottomTitle: string;
   bottomBody: string;
-  bottomMicrocopy: string;
+  /**
+   * No longer rendered: the closing panel now carries the shared trust row
+   * (Layout TrustRow), and each tool's allowance is in the hero microcopy.
+   * Kept optional so existing pages still type-check.
+   */
+  bottomMicrocopy?: string;
 }
 
 export default function ToolPage({
@@ -122,7 +129,6 @@ export default function ToolPage({
   relatedLinks,
   bottomTitle,
   bottomBody,
-  bottomMicrocopy,
 }: ToolPageProps) {
   const signUpUrl = `${APP_URL}/sign-up?tool=${ctaTool}`;
 
@@ -172,11 +178,15 @@ export default function ToolPage({
             <div className={INNER}>
               <SectionHead eyebrow="What you get" title={featuresTitle} subtitle={featuresSubtitle} />
               <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
-                {features.map((item, i) => (
+                {features.map((item) => (
                   <RevealItem key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
-                    <span className="font-mono text-[11px] text-accent-soft/70 transition-colors group-hover:text-accent">{pad2(i + 1)}</span>
-                    <p className="mt-4 font-semibold text-white">{item.label}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
+                    <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/25 bg-accent/[0.08] text-accent-soft transition-colors group-hover:border-accent/50 group-hover:text-accent">
+                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                    <p className="mt-5 text-[16px] font-semibold text-white">{item.label}</p>
+                    <p className="mt-2 text-[14.5px] leading-relaxed text-slate-400">{item.description}</p>
                     <HoverRule className="inset-x-7" />
                   </RevealItem>
                 ))}
@@ -187,7 +197,7 @@ export default function ToolPage({
           {/* ── How it works ───────────────────────────────────────────── */}
           <section data-section="how-it-works" data-section-name="How it works" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
             <div className={INNER}>
-              <SectionHead eyebrow="How it works" title={`${steps.length} steps, start to finish`} />
+              <SectionHead eyebrow="How it works" title={`${COUNT_WORD[steps.length] ?? steps.length} steps.`} accent="Zero guesswork." />
               <RevealGroup as="ol" className="grid gap-10 sm:grid-cols-3 sm:gap-8">
                 {steps.map((step, i) => (
                   <RevealItem as="li" key={step.step} className="group relative border-t border-white/[0.08] pt-6">
@@ -219,8 +229,8 @@ export default function ToolPage({
                     ruled grid. */}
                 <div
                   className={[
-                    "space-y-6 text-[16px] leading-[1.8] text-slate-400",
-                    "[&>p:first-of-type]:text-[19px] [&>p:first-of-type]:leading-[1.7] [&>p:first-of-type]:text-slate-200",
+                    "space-y-6 text-[17px] leading-[1.8] text-slate-400",
+                    "[&>p:first-of-type]:text-[20px] [&>p:first-of-type]:leading-[1.65] [&>p:first-of-type]:text-slate-200",
                     "[&_strong]:font-semibold [&_strong]:text-white",
                     "[&>div]:!my-12 [&>div]:overflow-hidden [&>div]:!rounded-2xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#070b16] [&>div]:!p-0",
                     "[&>div>h3]:!mb-0 [&>div>h3]:flex [&>div>h3]:items-center [&>div>h3]:gap-3 [&>div>h3]:border-b [&>div>h3]:border-white/[0.06] [&>div>h3]:bg-white/[0.025] [&>div>h3]:px-6 [&>div>h3]:py-4 [&>div>h3]:text-[15px] [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
@@ -305,28 +315,16 @@ export default function ToolPage({
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
           <section data-section="final-cta" data-section-name="Final CTA" className={`pb-24 pt-4 ${PAD}`}>
-            <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
-                style={GRID_BG}
-              />
-              <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-              <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-                <div className="max-w-2xl">
-                  <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{bottomTitle}</h2>
-                  <p className="mt-3 text-slate-400">{bottomBody}</p>
-                </div>
-                <div className="shrink-0 lg:text-right">
-                  <a
-                    href={signUpUrl}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-8 py-4 text-base font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
-                  >
+            <Reveal>
+              <CtaPanel
+                title={bottomTitle}
+                body={<p>{bottomBody}</p>}
+                action={
+                  <a href={signUpUrl} className={`${BTN_PRIMARY} w-full px-8 py-4 text-base sm:w-auto`}>
                     {ctaLabel} <Chevron />
                   </a>
-                  <p className="mt-3 text-[12px] text-slate-500">{bottomMicrocopy}</p>
-                </div>
-              </div>
+                }
+              />
             </Reveal>
           </section>
         </main>

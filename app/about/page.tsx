@@ -353,6 +353,7 @@ export default function AboutPage() {
           <Reveal>
             <CtaPanel
               title="Have a question or want to talk?"
+              trust={false}
               body={
                 <p>
                   We&apos;re a small team and we actually read every email. Whether it&apos;s

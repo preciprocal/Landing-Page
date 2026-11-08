@@ -21,7 +21,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList, HeroSignup } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import CompareTable, { Verdict, PriceCompare, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
 
@@ -146,6 +146,7 @@ export default function JobscanAlternativePage() {
           badge="Comparison · Updated May 2026"
           title="The Best Jobscan Alternative "
           accent="in 2026"
+          aside={<HeroSignup href={`${APP_URL}/sign-up`} label="Try Preciprocal free" />}
           subhead={
             <>
               <p>

@@ -4,7 +4,7 @@
  * components/page/FaqAccordion.tsx
  *
  * The FAQ on every content page (rendered through FaqList in ./Layout.tsx).
- * Each question is its own card: a number, the question, and a chevron in a
+ * Each question is its own card: the question and a chevron in a
  * circle that turns when the answer opens. All start closed. The answer
  * slides open with a height transition (grid rows 0fr to 1fr) and stays in
  * the HTML while closed, so search engines and the FAQ structured data still
@@ -46,8 +46,7 @@ export default function FaqAccordion({ items }: { items: { q: string; a: ReactNo
                 onClick={() => toggle(i)}
                 className="flex w-full items-center gap-4 rounded-xl px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:px-6"
               >
-                <span className="w-6 shrink-0 font-mono text-[12px] text-accent-soft/70">{String(i + 1).padStart(2, "0")}</span>
-                <span className="flex-1 text-[15px] font-medium leading-snug text-white">{faq.q}</span>
+                <span className="flex-1 text-[15.5px] font-medium leading-snug text-white">{faq.q}</span>
                 <span
                   aria-hidden="true"
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
@@ -70,7 +69,7 @@ export default function FaqAccordion({ items }: { items: { q: string; a: ReactNo
             >
               <div className="overflow-hidden">
                 <div
-                  className={`pb-5 pl-[3.75rem] pr-6 text-sm leading-relaxed text-slate-400 transition-opacity duration-300 sm:pl-[4.25rem] sm:pr-14 ${
+                  className={`max-w-[72ch] pb-5 pl-5 pr-6 text-[15px] leading-relaxed text-slate-400 transition-opacity duration-300 sm:pl-6 sm:pr-14 ${
                     isOpen ? "opacity-100" : "opacity-0"
                   }`}
                 >

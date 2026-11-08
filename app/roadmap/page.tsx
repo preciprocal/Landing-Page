@@ -239,6 +239,7 @@ export default function RoadmapPage() {
           <Reveal>
             <CtaPanel
               title="Have a feature idea?"
+              trust={false}
               body={
                 <p>
                   Every item on this roadmap started as a user request. If you want

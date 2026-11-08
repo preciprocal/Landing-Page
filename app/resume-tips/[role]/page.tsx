@@ -302,9 +302,15 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
             </p>
           }
           aside={
-            <div className={`${CARD} px-6 py-5 text-left lg:min-w-[280px]`}>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Typical salary range</p>
-              <p className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">{tipData.salaryRange}</p>
+            <div className="flex flex-col gap-4 text-left lg:min-w-[300px]">
+              <div className={`${CARD} px-6 py-5`}>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Typical salary range</p>
+                <p className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">{tipData.salaryRange}</p>
+              </div>
+              <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full py-4`}>
+                Check my resume free <Chevron />
+              </a>
+              <p className="-mt-1 text-center text-[12px] text-slate-500">No account needed for your first score</p>
             </div>
           }
         />
@@ -324,13 +330,12 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                   />
                 </Reveal>
                 <RevealGroup as="ul" className="flex flex-wrap gap-2.5">
-                  {tipData.topAtsKeywords.map((kw, i) => (
+                  {tipData.topAtsKeywords.map((kw) => (
                     <RevealItem
                       as="li"
                       key={kw}
-                      className="inline-flex items-center gap-2 rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3 py-1.5 text-[13px] font-medium text-accent-soft"
+                      className="inline-flex items-center rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3.5 py-2 text-[14px] font-medium text-accent-soft"
                     >
-                      <span aria-hidden="true" className="font-mono text-[10px] text-accent-soft/60">{pad2(i + 1)}</span>
                       {kw}
                     </RevealItem>
                   ))}
@@ -453,7 +458,6 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                   Analyze my resume free <Chevron />
                 </a>
               }
-              note="No credit card required · Free plan available"
             />
           </Reveal>
         </section>

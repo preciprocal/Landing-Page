@@ -365,6 +365,12 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
                 Real salary data for {display.name.toLowerCase()}s, base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
               </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a href={signUp} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                  Get the interview that gets you this offer <Chevron />
+                </a>
+                <p className="text-[12px] text-slate-500">Free plan · No credit card</p>
+              </div>
             </div>
 
             <div className="mt-12 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-2 fill-sm-2" style={{ animationDelay: "200ms" }}>
@@ -626,7 +632,6 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                   Start preparing free <Chevron />
                 </a>
               }
-              note="No credit card required · Free plan available"
             />
           </Reveal>
         </section>

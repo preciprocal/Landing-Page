@@ -20,7 +20,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, CARD, BTN_PRIMARY, Eyebrow, HeroBackdrop, FaqList, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, CARD, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, HeroBackdrop, FaqList, CtaPanel, TrustRow, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -74,6 +74,8 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
     return picked;
   })();
   const diffStyle = DIFFICULTY_COLOR[meta.difficulty] ?? DIFFICULTY_COLOR["Hard"];
+  const mockUrl = `${APP_URL}/sign-up?tool=mock-interview`;
+  const H2 = "text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]";
 
   return (
     <div data-accent="rose" className="min-h-screen bg-[#050810]">
@@ -123,6 +125,16 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
                   {meta.description}
                 </p>
+
+                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                  <a href={mockUrl} className={`${BTN_PRIMARY} py-4`}>
+                    Practice a {meta.displayName} mock interview <Chevron />
+                  </a>
+                  <a href="#process" className={BTN_SECONDARY}>
+                    See the rounds
+                  </a>
+                </div>
+                <TrustRow className="mt-5" />
               </div>
 
               {/* Quick stats */}
@@ -134,13 +146,10 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                   { label: "Interview Rounds", value: `${meta.avgRounds} rounds` },
                   { label: "Timeline", value: meta.avgDuration },
                   { label: "Difficulty", value: meta.difficulty },
-                ].map((stat, i) => (
+                ].map((stat) => (
                   <div key={stat.label} className="flex items-baseline justify-between gap-4 bg-[#070b16] px-5 py-4 sm:block lg:flex">
-                    <dt className="text-xs text-slate-500">
-                      <span className="mr-2 font-mono text-[11px] text-accent-soft/60">{pad2(i + 1)}</span>
-                      {stat.label}
-                    </dt>
-                    <dd className="text-sm font-semibold text-slate-100 sm:mt-1 lg:mt-0">{stat.value}</dd>
+                    <dt className="text-[13px] text-slate-500">{stat.label}</dt>
+                    <dd className="text-[15px] font-semibold text-slate-100 sm:mt-1 lg:mt-0">{stat.value}</dd>
                   </div>
                 ))}
               </dl>
@@ -156,16 +165,20 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
               <Reveal>
                 <section>
                   <Eyebrow>Overview</Eyebrow>
-                  <h2 className="mb-5 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">Company overview</h2>
-                  <p className="leading-relaxed text-slate-400">{meta.overview}</p>
+                  <h2 className={`mb-5 ${H2}`}>
+                    Inside the <span className={ACCENT_TEXT}>{meta.displayName} interview</span>
+                  </h2>
+                  <p className="text-[18px] leading-[1.75] text-slate-300">{meta.overview}</p>
                 </section>
               </Reveal>
 
               {/* Interview process */}
-              <section>
+              <section id="process" className="scroll-mt-28">
                 <Reveal>
                   <Eyebrow>Process</Eyebrow>
-                  <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">The interview process</h2>
+                  <h2 className={`mb-8 ${H2}`}>
+                    The interview process, <span className={ACCENT_TEXT}>round by round</span>
+                  </h2>
                 </Reveal>
                 <RevealGroup as="ol" className="relative space-y-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07]">
                   {/* The data marks the parts of a round with a leading "->"
@@ -185,19 +198,39 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                       ) : (
                         <RevealItem as="li" key={i} className="flex items-start gap-5 bg-[#070b16] p-5 sm:p-6">
                           <span className="mt-0.5 font-mono text-[12px] text-accent-soft/80">{pad2(n)}</span>
-                          <p className="text-sm leading-relaxed text-slate-300">{text}</p>
+                          <p className="text-[15px] leading-relaxed text-slate-200">{text}</p>
                         </RevealItem>
                       );
                     });
                   })()}
                 </RevealGroup>
+
+                {/* The bridge from reading about the rounds to rehearsing them. */}
+                <Reveal>
+                  <div className="relative mt-6 overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent-deep/[0.12] via-transparent to-transparent p-6 sm:p-7">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="max-w-xl">
+                        <p className="text-[17px] font-semibold text-white">Rehearse every round before the real one.</p>
+                        <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">
+                          A voice mock interview with an AI panel that asks follow-ups, scored on communication,
+                          technical depth and structure. The nerves fade once you&apos;ve done it out loud.
+                        </p>
+                      </div>
+                      <a href={mockUrl} className={`${BTN_PRIMARY} shrink-0`}>
+                        Start a mock interview <Chevron />
+                      </a>
+                    </div>
+                  </div>
+                </Reveal>
               </section>
 
               {/* Top tips */}
               <section>
                 <Reveal>
                   <Eyebrow>Tips</Eyebrow>
-                  <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">Top tips for getting hired</h2>
+                  <h2 className={`mb-8 ${H2}`}>
+                    How to stand out <span className={ACCENT_TEXT}>at {meta.displayName}</span>
+                  </h2>
                 </Reveal>
                 <RevealGroup as="ul" className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
                   {meta.tips.map((tip, i) => (
@@ -207,7 +240,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                           <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </span>
-                      <p className="text-sm leading-relaxed text-slate-400">{tip}</p>
+                      <p className="text-[15.5px] leading-relaxed text-slate-300">{tip}</p>
                     </RevealItem>
                   ))}
                 </RevealGroup>
@@ -273,7 +306,14 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
           <div className={`${INNER} grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
             <div className="lg:sticky lg:top-28 lg:self-start">
               <Eyebrow>FAQ</Eyebrow>
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{meta.displayName} Interview FAQ</h2>
+              <h2 className={H2}>{meta.displayName} interview questions, answered</h2>
+              <p className="mt-4 text-sm leading-relaxed text-slate-500">
+                Something else? Email{" "}
+                <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
+                  support@preciprocal.com
+                </a>
+                .
+              </p>
             </div>
             <FaqList items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
           </div>
@@ -281,18 +321,21 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
 
         {/* Bottom CTA */}
         <section className={`pb-24 ${PAD}`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-12 sm:px-14`}>
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
-              style={GRID_BG}
+          <Reveal>
+            <CtaPanel
+              title={<>Walk into your {meta.displayName} interview <span className={ACCENT_TEXT}>already having done it.</span></>}
+              body={
+                <p>
+                  Tailor your resume to the role, rehearse each round out loud, and track every application in one
+                  place, for less than a coffee a week.
+                </p>
+              }
+              action={
+                <a href={mockUrl} className={`${BTN_PRIMARY} w-full px-8 py-4 text-base sm:w-auto`}>
+                  Start preparing free <Chevron />
+                </a>
+              }
             />
-            <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-              <p className="text-lg text-slate-300">Ready to land the {meta.displayName} offer?</p>
-              <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                Start practicing free, no credit card required <Chevron />
-              </a>
-            </div>
           </Reveal>
         </section>
       </main>

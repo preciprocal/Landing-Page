@@ -145,19 +145,28 @@ export default function OptGuidePage(props: OptGuideProps) {
                 </p>
               </>
             }
+            aside={
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a href={signUpUrl} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                  Make your OPT days count <Chevron />
+                </a>
+                <p className="text-[12px] leading-snug text-slate-500 sm:max-w-[220px]">
+                  Free plan for the job search itself: tailored resumes, tracking and mock interviews.
+                </p>
+              </div>
+            }
           />
 
           {/* ── Key facts ──────────────────────────────────────────────── */}
           <section data-section="key-facts" data-section-name="Key facts" className={`pb-16 ${PAD}`}>
             <div className={INNER}>
               <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
-                {props.keyFacts.map((f, i) => (
+                {props.keyFacts.map((f) => (
                   <RevealItem
                     key={f.label}
                     className="group relative bg-[#070b16] p-5 transition-colors duration-300 hover:bg-[#0a1020] sm:p-7"
                   >
-                    <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
-                    <p className="mt-4 text-xl font-extrabold tracking-tight text-white sm:text-3xl">{f.value}</p>
+                    <p className="text-xl font-extrabold tracking-tight text-white sm:text-3xl">{f.value}</p>
                     <p className="mt-2 text-[12px] leading-snug text-slate-400 sm:text-[13px]">{f.label}</p>
                     <span
                       aria-hidden="true"
@@ -273,7 +282,6 @@ export default function OptGuidePage(props: OptGuideProps) {
                     Start free <Chevron />
                   </a>
                 }
-                note="Free plan · .edu email gets 1 month of Pro free"
               />
             </Reveal>
           </section>

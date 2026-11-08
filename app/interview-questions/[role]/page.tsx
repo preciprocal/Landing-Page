@@ -80,6 +80,14 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
           }
           title={meta.h1}
           subhead={<p>{meta.description}</p>}
+          aside={
+            <div className="flex flex-col gap-3 lg:items-end">
+              <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto ${FOCUS}`}>
+                Practice these out loud, free <Chevron />
+              </a>
+              <p className="text-[12px] text-slate-500">Voice mock interview · AI follow-ups · No credit card</p>
+            </div>
+          }
         >
           {/* Stats */}
           <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3 fill-sm-3">
@@ -87,12 +95,9 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               { label: "Avg. salary",       value: meta.salaryRange },
               { label: "Top companies",     value: meta.topCompanies.slice(0, 3).join(", ") },
               { label: "Questions covered", value: `${questions.length}+ Q&As` },
-            ].map((s, i) => (
+            ].map((s) => (
               <div key={s.label} className="bg-[#070b16] px-6 py-5">
-                <dt className="flex items-center gap-2 text-[12px] text-slate-500">
-                  <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
-                  {s.label}
-                </dt>
+                <dt className="text-[12px] text-slate-500">{s.label}</dt>
                 <dd className="mt-2 font-semibold text-white">{s.value}</dd>
               </div>
             ))}
@@ -227,10 +232,11 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
         <section className={`${PAD} pb-24 pt-4`}>
           <Reveal>
             <CtaPanel
-              title="Ready to turn preparation into offers?"
+              title="Knowing the questions is half of it. Saying the answers out loud is the other half."
+              body={<p>Run a voice mock interview with an AI panel that asks follow-ups, then see exactly where your answers lost the room.</p>}
               action={
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
-                  Try Preciprocal free, no credit card required <Chevron />
+                <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
+                  Practice out loud, free <Chevron />
                 </a>
               }
             />

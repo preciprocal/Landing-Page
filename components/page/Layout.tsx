@@ -20,11 +20,19 @@
 
 import type { CSSProperties, ReactNode } from "react";
 import FaqAccordion from "./FaqAccordion";
+import Chevron from "@/components/Chevron";
 
 /** The gutter the navbar and footer use, so every edge lines up. */
 export const PAD = "px-6 sm:px-10 lg:px-16";
-/** Full width, edge to edge within the gutter, like the navbar and footer. */
-export const INNER = "w-full";
+/**
+ * The content column: centred and capped at 1200px, the same measure the
+ * homepage sections sit in. Within it, sidebars and grids still fill the
+ * width; only on wide screens does the page gain margins instead of
+ * stretching text across the whole monitor.
+ */
+export const INNER = "mx-auto w-full max-w-[1200px]";
+/** A comfortable reading measure for running prose (about 70 characters). */
+export const PROSE = "max-w-[68ch]";
 /** Section rhythm: top rule and vertical padding. */
 export const SECTION = "border-t border-white/[0.05] py-20";
 
@@ -71,15 +79,23 @@ export function Eyebrow({ children, className = "" }: { children: ReactNode; cla
   );
 }
 
+/**
+ * Section heading. `accent` is an optional second phrase drawn in the page
+ * accent gradient, the two-tone pattern the homepage uses ("Three steps.
+ * Zero guesswork."): the plain part names the topic, the accent part says
+ * what it means for the reader.
+ */
 export function SectionHead({
   eyebrow,
   title,
+  accent,
   subtitle,
   className = "mb-10",
   as: Tag = "h2",
 }: {
   eyebrow: string;
   title: ReactNode;
+  accent?: ReactNode;
   subtitle?: ReactNode;
   className?: string;
   as?: "h2" | "h3";
@@ -87,9 +103,39 @@ export function SectionHead({
   return (
     <div className={`max-w-3xl ${className}`}>
       <Eyebrow>{eyebrow}</Eyebrow>
-      <Tag className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</Tag>
-      {subtitle && <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{subtitle}</p>}
+      <Tag className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+        {title}
+        {accent && <> <span className={ACCENT_TEXT}>{accent}</span></>}
+      </Tag>
+      {subtitle && <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{subtitle}</p>}
     </div>
+  );
+}
+
+/**
+ * The reassurance line that sits under a sign-up button: the same three
+ * promises the homepage makes (Hero, Pricing, the .edu banner), so a visitor
+ * who lands on any page hears them before deciding.
+ */
+export const TRUST_POINTS = [
+  "Free plan, no credit card",
+  ".edu email gets a month of Pro free",
+  "Land a job while subscribed, we refund that month",
+] as const;
+
+export function TrustRow({ className = "", align = "start" }: { className?: string; align?: "start" | "center" | "end" }) {
+  const justify = { start: "justify-start", center: "justify-center", end: "lg:justify-end" }[align];
+  return (
+    <ul className={`flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-slate-400 ${justify} ${className}`}>
+      {TRUST_POINTS.map((t) => (
+        <li key={t} className="inline-flex items-center gap-1.5">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-400">
+            <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          {t}
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -161,7 +207,13 @@ export function PageHero({
           {badge}
         </div>
       )}
-      <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.25rem]">
+      {/* Beside a visual the text column is narrower, so the title steps down
+          a size there rather than wrapping to four lines. */}
+      <h1
+        className={`text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl ${
+          visual ? "lg:text-[3.25rem] xl:text-[3.6rem]" : "lg:text-[4.25rem]"
+        }`}
+      >
         {title}
         {accent && (
           <span className="block animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent">
@@ -212,20 +264,51 @@ export function PageHero({
   );
 }
 
-/** A wide CTA panel over a faint grid. */
-export function CtaPanel({ title, body, action, note }: { title: ReactNode; body?: ReactNode; action: ReactNode; note?: ReactNode }) {
+/** A hero sign-up: the primary button with the trust row beneath it. For PageHero's `aside`. */
+export function HeroSignup({ href, label, align = "end" }: { href: string; label: ReactNode; align?: "start" | "end" }) {
   return (
-    <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
+    <div className={`flex flex-col gap-4 ${align === "end" ? "lg:items-end" : ""}`}>
+      <a href={href} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto`}>
+        {label} <Chevron />
+      </a>
+      <TrustRow align={align} className="max-w-md" />
+    </div>
+  );
+}
+
+/**
+ * The closing CTA panel every content page ends on: a headline that speaks to
+ * where the reader is, the action, and the trust row. Pass `trust={false}`
+ * when the action is not a Preciprocal sign-up.
+ */
+export function CtaPanel({
+  title,
+  body,
+  action,
+  note,
+  trust = true,
+}: {
+  title: ReactNode;
+  body?: ReactNode;
+  action: ReactNode;
+  note?: ReactNode;
+  trust?: boolean;
+}) {
+  return (
+    <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-7 py-12 sm:px-14 sm:py-16`}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
         style={GRID_BG}
       />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+      <div aria-hidden="true" className="pointer-events-none absolute -top-24 left-1/2 h-48 w-2/3 -translate-x-1/2 rounded-full bg-accent/[0.07] blur-3xl" />
 
-      <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+      <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</h2>
-          {body && <div className="mt-3 text-slate-400">{body}</div>}
+          <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{title}</h2>
+          {body && <div className="mt-4 text-[16px] leading-relaxed text-slate-400">{body}</div>}
+          {trust && <TrustRow className="mt-6" />}
         </div>
         <div className="shrink-0 lg:text-right">
           {action}

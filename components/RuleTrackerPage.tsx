@@ -489,7 +489,6 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                     Start free <Chevron />
                   </a>
                 }
-                note="Free plan · .edu email gets 1 month of Pro free"
               />
             </Reveal>
           </section>

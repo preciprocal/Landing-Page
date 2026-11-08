@@ -320,6 +320,14 @@ export default async function CoverLetterExampleRolePage({
               and makes hiring managers keep reading.
             </p>
           }
+          aside={
+            <div className="flex flex-col gap-3 lg:items-end">
+              <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto ${FOCUS}`}>
+                Write mine in 60 seconds <Chevron />
+              </a>
+              <p className="text-[12px] text-slate-500">5 free cover letters a month · No credit card</p>
+            </div>
+          }
         >
           {/* Meta strip */}
           <dl className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-3 fill-sm-3">

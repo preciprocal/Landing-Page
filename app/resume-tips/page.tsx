@@ -16,7 +16,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
+import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, BTN_PRIMARY, Eyebrow, PageHero, CtaPanel, pad2, HoverRule } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
@@ -180,10 +180,11 @@ export default function ResumeTipsIndexPage() {
         <section className={`pb-24 pt-4 ${PAD}`}>
           <Reveal>
             <CtaPanel
-              title="Want your resume scored against real ATS systems right now?"
+              title="Stop guessing why you're not hearing back."
+              body={<p>Run your resume through our free ATS check and see what a screener sees, with the fixes that matter most first.</p>}
               action={
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                  Get your free ATS score, no credit card required
+                <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                  Check my resume free <Chevron />
                 </a>
               }
             />

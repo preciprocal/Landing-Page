@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import CompareVisual from "@/components/page/visuals/CompareVisual";
 import { Check, X } from "lucide-react";
@@ -185,6 +185,12 @@ export default function AlternativePage({
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">{intro}</p>
                 <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-400">{positioning}</p>
+                <div className="mt-9">
+                  <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto`}>
+                    Try Preciprocal free <Chevron />
+                  </a>
+                  <TrustRow className="mt-5" />
+                </div>
               </div>
 
               <div className="flex flex-col gap-10">
@@ -403,7 +409,7 @@ export default function AlternativePage({
               }
               action={
                 <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                  Start free, no credit card required <Chevron />
+                  Start free <Chevron />
                 </a>
               }
             />

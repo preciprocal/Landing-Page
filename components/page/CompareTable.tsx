@@ -153,7 +153,11 @@ export function PriceCompare({ items }: { items: { label: string; price: string;
         >
           {highlight && <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />}
           <p className="text-sm text-slate-400">{label}</p>
-          <p className={`mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl ${highlight ? "text-accent-soft" : "text-slate-200"}`}>{price}</p>
+          {/* "$49.95/mo": the figure large, the period small, as on the homepage pricing cards. */}
+          <p className={`mt-2 whitespace-nowrap text-3xl font-extrabold tracking-tight sm:text-4xl ${highlight ? "text-accent-soft" : "text-slate-200"}`}>
+            {price.split("/")[0]}
+            {price.includes("/") && <span className="ml-0.5 text-base font-medium text-slate-500">/{price.split("/").slice(1).join("/")}</span>}
+          </p>
           <p className="mt-1 text-sm text-slate-400">{note}</p>
         </div>
       ))}
