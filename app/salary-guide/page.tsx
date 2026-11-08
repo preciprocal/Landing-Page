@@ -54,13 +54,7 @@ export default function SalaryGuideIndexPage() {
       <main>
         <PageHero
           visual={<SalaryGuideVisual />}
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-slate-500">
-              <Link href="/" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Salary Guide</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Salary Guide" }]}
           title="2026 salary guide by role"
           subhead={
             <p>

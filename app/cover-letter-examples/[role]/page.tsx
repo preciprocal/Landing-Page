@@ -301,17 +301,7 @@ export default async function CoverLetterExampleRolePage({
 
       <main>
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-slate-500">
-              <Link href="/" className={`rounded transition-colors hover:text-white ${FOCUS}`}>Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/cover-letter-examples" className={`rounded transition-colors hover:text-white ${FOCUS}`}>
-                Cover Letter Examples
-              </Link>
-              <span aria-hidden="true">›</span>
-              <span className="capitalize text-slate-300">{roleName}</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Cover Letter Examples", href: "/cover-letter-examples" }, { label: roleName }]}
           title={<>{roleName} Cover Letter Example (2026)</>}
           subhead={
             <p>

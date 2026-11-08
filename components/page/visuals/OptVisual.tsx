@@ -1,165 +1,150 @@
 "use client";
 
 /**
- * Hero illustration for /opt: a calm application timeline. A marker moves
- * along four generic stages (filing window, receipt, review, approval), the
- * status line underneath follows it, and an approval card slides in at the end.
- * Labels are generic on purpose: no dates, fees or rules are stated here.
- * Steps: 0 filing window, 1 receipt, 2 review, 3 approved.
+ * Hero illustration for /opt: the OPT workspace inside the product. A status
+ * stepper (Preparing, Filed, In review, Approved) advances, the user's own
+ * task list checks off beside it, their documents fill in, and the finished
+ * state shows the EAD card uploaded and an interview prepped.
+ * Only status labels and the user's own tasks appear here: no dates, fees,
+ * day counts or rules are stated (those live in the page text).
+ * Steps: 0 preparing, 1 filed, 2 in review, 3 approved (finished state).
+ * Names, files and companies are fictional examples.
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, FileText, Inbox, Search, ShieldCheck } from "lucide-react";
-import { Chip, EASE, Line, PulseDot, Stage, Window, useLoop } from "./Frame";
+import { BadgeCheck, Check, FileText, IdCard } from "lucide-react";
+import { Chip, EASE, PulseDot, Stage, Window, useLoop } from "./Frame";
 
-const STAGES = [
-  { label: "Filing window", icon: FileText, status: "Preparing the application" },
-  { label: "Receipt", icon: Inbox, status: "Receipt notice received" },
-  { label: "Review", icon: Search, status: "Case under review" },
-  { label: "Approval", icon: ShieldCheck, status: "Case approved" },
-] as const;
+const STATUS = ["Preparing", "Filed", "In review", "Approved"];
 
-/** The calendar strip: 21 day cells with an open window band across the middle. */
-const CELLS = Array.from({ length: 21 }, (_, i) => i);
-const WINDOW_START = 5;
-const WINDOW_END = 15;
+/** The user's own to-do list; task i is done once the status reaches step i. */
+const TASKS = ["Gather documents", "Submit application", "Prep for Northwind screen", "Upload EAD card"];
+
+/** Files in the user's document folder; each appears once the status reaches `at`. */
+const DOCS = [
+  { name: "passport_scan.pdf", at: 0 },
+  { name: "form_i20.pdf", at: 0 },
+  { name: "receipt_notice.pdf", at: 1 },
+  { name: "ead_card.jpg", at: 3 },
+];
 
 export default function OptVisual() {
-  const { ref, step } = useLoop(4, 1900);
-  const current = STAGES[step];
-  const Icon = current.icon;
+  const { ref, step } = useLoop(4, 2100);
   const done = step === 3;
-  // Marker position across the filing window during step 0, then parked at its end.
-  const markerCell = step === 0 ? WINDOW_START + 3 : WINDOW_END - 2;
 
   return (
     <div ref={ref}>
       <Stage>
-        <Window title="OPT application · status">
-          {/* Stage track */}
-          <div className="relative">
-            <div className="absolute left-[12.5%] right-[12.5%] top-4 h-px bg-white/[0.08]" />
-            <motion.div
-              className="absolute left-[12.5%] right-[12.5%] top-4 h-px origin-left bg-gradient-to-r from-accent to-accent-2"
-              initial={false}
-              animate={{ scaleX: step / 3 }}
-              transition={{ duration: 0.8, ease: EASE }}
-            />
-            <ol className="relative grid grid-cols-4">
-              {STAGES.map((s, i) => {
-                const reached = i <= step;
-                const active = i === step;
-                const StageIcon = s.icon;
-                return (
-                  <li key={s.label} className="flex flex-col items-center gap-2 text-center">
-                    <motion.span
-                      initial={false}
-                      animate={{ scale: active ? 1.08 : 1 }}
-                      transition={{ duration: 0.4, ease: EASE }}
-                      className={`grid h-8 w-8 place-items-center rounded-full border transition-colors duration-500 ${
-                        reached ? "border-accent/50 bg-[#0d1830] text-accent-soft" : "border-white/10 bg-[#0a0f1c] text-slate-600"
-                      } ${active ? "shadow-[0_0_0_4px_rgb(var(--accent)/0.12)]" : ""}`}
-                    >
-                      {i < step ? <Check className="h-3.5 w-3.5" /> : <StageIcon className="h-3.5 w-3.5" />}
-                    </motion.span>
-                    <span className={`text-[10px] font-medium transition-colors duration-500 ${reached ? "text-slate-300" : "text-slate-600"}`}>
-                      {s.label}
-                    </span>
-                  </li>
-                );
-              })}
-            </ol>
+        <Window title="app.preciprocal.com/opt" bodyClassName="p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent to-accent-deep text-[11px] font-bold text-white">JL</span>
+              <div>
+                <p className="text-[13px] font-semibold text-white">OPT application</p>
+                <p className="text-[11px] text-slate-400">Jordan Lee · Data Analyst search</p>
+              </div>
+            </div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={step}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.3, ease: EASE }}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${
+                  done ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" : "border-accent/30 bg-accent/10 text-accent-soft"
+                }`}
+              >
+                {done ? <BadgeCheck className="h-3.5 w-3.5" /> : <PulseDot className="scale-75" />}
+                {STATUS[step]}
+              </motion.span>
+            </AnimatePresence>
           </div>
 
-          {/* Calendar strip with the open filing window */}
-          <div className="mt-6 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Filing window</p>
-              <span className="inline-flex items-center gap-1.5 text-[10px] text-slate-400">
-                {step === 0 ? <PulseDot className="scale-75" /> : <Check className="h-3 w-3 text-accent" />}
-                {step === 0 ? "Open" : "Filed"}
-              </span>
-            </div>
-            <div className="relative">
-              <div className="grid grid-cols-[repeat(21,minmax(0,1fr))] gap-[3px]">
-                {CELLS.map((c) => {
-                  const inWindow = c >= WINDOW_START && c <= WINDOW_END;
+          {/* Status stepper */}
+          <div className="mt-4 grid grid-cols-4 gap-1.5">
+            {STATUS.map((s, i) => (
+              <div key={s}>
+                <div className="h-1 overflow-hidden rounded-full bg-white/[0.07]">
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-accent-deep to-accent"
+                    initial={false}
+                    animate={{ width: i <= step ? "100%" : "0%" }}
+                    transition={{ duration: 0.7, ease: EASE }}
+                  />
+                </div>
+                <p className={`mt-1.5 text-[10.5px] font-medium transition-colors duration-500 ${i <= step ? "text-slate-200" : "text-slate-500"}`}>{s}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            {/* Tasks */}
+            <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5">
+              <div className="flex items-center justify-between">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">Your tasks</p>
+                <span className="text-[10.5px] font-medium text-slate-400">{step + 1} of {TASKS.length}</span>
+              </div>
+              <ul className="mt-2.5 space-y-2">
+                {TASKS.map((t, i) => {
+                  const ok = i <= step;
                   return (
-                    <span
-                      key={c}
-                      className={`h-5 rounded-[3px] ${inWindow ? "bg-accent/[0.16]" : "bg-white/[0.04]"}`}
-                    />
+                    <li key={t} className="flex items-center gap-2">
+                      <motion.span
+                        initial={false}
+                        animate={{ scale: i === step ? [1, 1.2, 1] : 1 }}
+                        transition={{ duration: 0.4, ease: EASE }}
+                        className={`grid h-4 w-4 shrink-0 place-items-center rounded-[5px] border transition-colors duration-500 ${
+                          ok ? "border-accent/60 bg-accent/25 text-accent-soft" : "border-white/20 bg-white/[0.02]"
+                        }`}
+                      >
+                        {ok && <Check className="h-2.5 w-2.5" />}
+                      </motion.span>
+                      <span className={`truncate text-[11.5px] transition-colors duration-500 ${ok ? "text-slate-200" : "text-slate-400"}`}>{t}</span>
+                    </li>
                   );
                 })}
-              </div>
-              {/* Marker */}
-              <motion.span
-                className="absolute -top-1.5 h-8 w-[2px] rounded-full bg-accent shadow-[0_0_12px_rgb(var(--accent)/0.7)]"
-                initial={false}
-                animate={{ left: `${((markerCell + 0.5) / CELLS.length) * 100}%` }}
-                transition={{ duration: 1.1, ease: EASE }}
-              />
+              </ul>
             </div>
-          </div>
 
-          {/* Status line */}
-          <div className="mt-5 flex items-center gap-3 rounded-xl border border-white/[0.06] bg-[#0b1222] px-4 py-3">
-            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent/15 text-accent">
-              <Icon className="h-4 w-4" />
-            </span>
-            <div className="min-w-0 flex-1">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.p
-                  key={current.status}
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  transition={{ duration: 0.35, ease: EASE }}
-                  className="text-[12px] font-semibold text-white"
-                >
-                  {current.status}
-                </motion.p>
-              </AnimatePresence>
-              <Line w="w-2/3" className="mt-2" />
+            {/* Documents */}
+            <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">Documents</p>
+              <ul className="mt-2.5 space-y-2">
+                {DOCS.map((d) => {
+                  const has = step >= d.at;
+                  return (
+                    <li key={d.name} className="flex items-center gap-2">
+                      <FileText className={`h-3.5 w-3.5 shrink-0 transition-colors duration-500 ${has ? "text-accent" : "text-slate-500"}`} />
+                      <span className={`min-w-0 flex-1 truncate font-mono text-[10.5px] transition-colors duration-500 ${has ? "text-slate-200" : "text-slate-500"}`}>
+                        {d.name}
+                      </span>
+                      <span className={`shrink-0 text-[10px] font-medium ${has ? "text-emerald-300" : "text-slate-500"}`}>{has ? "Saved" : "To add"}</span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </Window>
 
-        <Chip show={step >= 1} className="-left-6 top-24">
+        <Chip show={step >= 1 && step < 3} className="-left-3 top-[118px]">
           <span className="grid h-5 w-5 place-items-center rounded-full bg-accent/20 text-accent">
-            <Inbox className="h-3 w-3" />
+            <FileText className="h-3 w-3" />
           </span>
-          Receipt notice
+          Receipt notice saved
         </Chip>
 
-        {/* Approval card */}
-        <AnimatePresence>
-          {done && (
-            <motion.div
-              key="card"
-              initial={{ opacity: 0, x: 16, rotate: 2 }}
-              animate={{ opacity: 1, x: 0, rotate: -2 }}
-              exit={{ opacity: 0, x: 16 }}
-              transition={{ duration: 0.55, ease: EASE }}
-              className="absolute -bottom-8 -right-6 w-52 rounded-xl border border-accent/30 bg-gradient-to-br from-[#0f1d33] to-[#0a1222] p-3.5 shadow-[0_24px_60px_-18px_rgba(0,0,0,0.85)]"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-accent-soft">Employment card</p>
-                <span className="grid h-4 w-4 place-items-center rounded-full bg-accent/20 text-accent">
-                  <Check className="h-2.5 w-2.5" />
-                </span>
-              </div>
-              <div className="mt-3 flex gap-3">
-                <div className="h-11 w-9 shrink-0 rounded-md bg-gradient-to-br from-accent-deep/40 to-accent-deep-2/30" />
-                <div className="min-w-0 flex-1 space-y-1.5 pt-0.5">
-                  <p className="text-[11px] font-semibold text-white">Jordan Lee</p>
-                  <Line w="w-full" />
-                  <Line w="w-3/4" />
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Chip show={done} className="-bottom-4 -right-3">
+          <span className="grid h-6 w-6 place-items-center rounded-lg bg-emerald-400/15 text-emerald-300">
+            <IdCard className="h-3.5 w-3.5" />
+          </span>
+          <span className="flex flex-col leading-tight">
+            EAD card uploaded
+            <span className="text-[10.5px] font-normal text-slate-400">Added to your documents</span>
+          </span>
+        </Chip>
       </Stage>
     </div>
   );

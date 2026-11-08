@@ -9,7 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: {
+        // Named "ink", not "base": a colour called "base" makes Tailwind's
+        // `text-base` (the 16px font size) also set the text colour to the
+        // page background, which turned text invisible wherever it won.
+        ink: {
           DEFAULT: "#050810",
           50: "#0a0f1e",
           100: "#0c1222",

@@ -2,16 +2,17 @@
 
 /**
  * Hero illustration for /cover-letter-generator: a letter being written line
- * by line while specifics from the job post beside it are highlighted and
- * pulled into the text.
+ * by line in a document window while specifics from the job post card beside
+ * it are highlighted and pulled into the text, ending with a signed draft.
  * Steps: 0 greeting, 1 the first specific pulled in, 2 the second, 3 the
  * closing line, the third specific and a done chip.
+ * Names, companies and the role are fictional examples.
  */
 
 import { motion } from "framer-motion";
 import { Check, FileText } from "lucide-react";
 import type { ReactNode } from "react";
-import { Chip, EASE, Line, Stage, Window, useLoop } from "./Frame";
+import { Chip, EASE, SURFACE, Stage, Window, useLoop } from "./Frame";
 
 /** A phrase that lights up in the accent once it has been pulled in. */
 function Term({ on, children }: { on: boolean; children: ReactNode }) {
@@ -67,11 +68,12 @@ export default function CoverLetterVisual() {
       <Stage>
         <div className="flex items-start gap-3">
           {/* The job post the specifics come from */}
-          <div className="mt-12 w-40 shrink-0 rounded-xl border border-white/10 bg-[#0d1322]/95 p-3 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] backdrop-blur">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-500">Job post</p>
-            <p className="mt-1 text-[12px] font-semibold leading-snug text-white">Product Designer, Atlas</p>
-            <p className="text-[10px] text-slate-500">Northwind · Hybrid</p>
-            <ul className="mt-2.5 space-y-2 text-[11px] leading-snug text-slate-400">
+          <div className={`mt-10 w-[164px] shrink-0 p-3.5 ${SURFACE}`}>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">Job post</p>
+            <p className="mt-1.5 text-[12.5px] font-semibold leading-snug text-white">Product Designer, Atlas</p>
+            <p className="text-[10.5px] text-slate-400">Northwind · Hybrid</p>
+            <p className="mt-3 text-[10.5px] font-medium text-slate-400">You will</p>
+            <ul className="mt-1.5 space-y-2 text-[11px] leading-snug text-slate-300">
               <li>
                 Own and grow our <Term on={pulled(1)}>design system</Term>
               </li>
@@ -88,7 +90,7 @@ export default function CoverLetterVisual() {
             className="min-w-0 flex-1"
             title={
               <span className="inline-flex items-center gap-1.5">
-                <FileText className="h-3 w-3" /> cover-letter-northwind.docx
+                <FileText className="h-3 w-3" /> northwind-letter.docx
               </span>
             }
           >
@@ -104,9 +106,15 @@ export default function CoverLetterVisual() {
                 </motion.p>
               ))}
             </div>
-            <div className="mt-5 space-y-2">
-              <Line w="w-1/3" />
-            </div>
+            <motion.div
+              initial={false}
+              animate={{ opacity: step >= 3 ? 1 : 0 }}
+              transition={{ duration: 0.5, ease: EASE, delay: step >= 3 ? 0.5 : 0 }}
+              className="mt-4 text-[13px] leading-relaxed text-slate-300"
+            >
+              <p>Best regards,</p>
+              <p className="font-semibold text-white">Jordan Lee</p>
+            </motion.div>
           </Window>
         </div>
 

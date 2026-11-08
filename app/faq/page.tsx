@@ -14,7 +14,6 @@
 
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
 import { FAQS, FAQ_CATEGORIES, type FAQCategory } from "@/lib/constants";
 import { FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
@@ -108,15 +107,7 @@ export default function FAQPage() {
 
       <main>
         <PageHero
-          breadcrumb={
-            <Link
-              href="/"
-              className="inline-flex min-h-10 items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
-            >
-              <ChevronLeft aria-hidden="true" className="h-4 w-4" />
-              Back to home
-            </Link>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
           badge={<>{FAQS.length} answers to everything you need</>}
           title={"Frequently asked "}
           accent="questions"

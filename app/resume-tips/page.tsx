@@ -59,13 +59,7 @@ export default function ResumeTipsIndexPage() {
         {/* Hero: breadcrumb, H1, subhead, counts, category jump row */}
         <PageHero
           visual={<ResumeTipsVisual />}
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Resume Tips</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Resume Tips" }]}
           title="Resume tips "
           accent="by role"
           subhead={

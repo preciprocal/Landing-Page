@@ -7,7 +7,7 @@ import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, HeroBackdrop } from "@/components/page/Layout";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, Breadcrumbs, HeroBackdrop } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import ReadingProgress from "@/components/page/ReadingProgress";
 
@@ -37,7 +37,7 @@ function SidebarCTA() {
       </p>
       <a
         href="https://app.preciprocal.com/sign-up"
-        className="group flex items-center justify-center gap-1.5 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-bold transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)]"
+        className="group flex items-center justify-center gap-1.5 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-bold transition-all hover:brightness-110"
       >
         Start free <Chevron />
       </a>
@@ -430,20 +430,13 @@ export default function BlogArticlePage() {
 
       <div data-accent="violet" className="min-h-screen bg-[#050810]">
         <ReadingProgress />
-        {/* Header: breadcrumb, meta, H1 and author, aligned to the article column */}
-        <header className={`relative overflow-hidden pb-12 pt-24 sm:pt-28 ${PAD}`}>
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Blog", href: "/blog" }, { label: post.title }]} />
+
+        {/* Header: meta, H1 and author, aligned to the article column */}
+        <header className={`relative overflow-hidden pb-12 pt-12 sm:pt-14 ${PAD}`}>
           <HeroBackdrop />
           <div className={`relative ${INNER} ${COLUMNS}`}>
             <div className="max-w-[860px] animate-fade-up opacity-0 lg:col-start-2">
-              {/* Breadcrumb */}
-              <nav aria-label="Breadcrumb" className="mb-8 flex min-w-0 items-center gap-1.5 text-xs text-slate-500">
-                <Link href="/" className="shrink-0 hover:text-slate-300 transition-colors">Home</Link>
-                <span aria-hidden="true">/</span>
-                <Link href="/blog" className="shrink-0 hover:text-slate-300 transition-colors">Blog</Link>
-                <span aria-hidden="true">/</span>
-                <span className="min-w-0 truncate text-slate-400 sm:max-w-[360px]">{post.title}</span>
-              </nav>
-
               {/* Meta row */}
               <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
                 <span className="rounded-full border border-accent/25 bg-accent-deep/[0.08] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-accent-soft">

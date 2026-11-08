@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import CompareVisual from "@/components/page/visuals/CompareVisual";
 import { Check, X } from "lucide-react";
@@ -161,18 +161,14 @@ export default function AlternativePage({
       <Navbar />
 
       <main>
-        {/* Hero: breadcrumb, badge, H1, intro, with the price callout beside it */}
-        <section className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Alternatives", href: "/alternatives" }, { label: `${competitor} Alternative` }]}
+        />
+
+        {/* Hero: badge, H1, intro, with the price callout beside it */}
+        <section className={`relative overflow-hidden pb-14 pt-14 sm:pt-16 ${PAD}`}>
           <HeroBackdrop />
           <div className={`relative ${INNER}`}>
-            <nav aria-label="Breadcrumb" className="mb-6 flex animate-fade-up flex-wrap items-center gap-2 text-[12px] text-slate-400 opacity-0">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/alternatives" className="transition-colors hover:text-white">Alternatives</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">{competitor} Alternative</span>
-            </nav>
-
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_420px] xl:grid-cols-[minmax(0,1fr)_460px] xl:gap-20">
               <div className="max-w-4xl animate-fade-up opacity-0">
                 <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-accent-soft">

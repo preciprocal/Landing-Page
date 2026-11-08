@@ -132,19 +132,7 @@ export default function AboutPage() {
         {/* Hero */}
         <PageHero
           sectionProps={{ "aria-label": "About Preciprocal" }}
-          breadcrumb={
-            <nav aria-label="Breadcrumb">
-              <ol className="flex items-center gap-2">
-                <li>
-                  <Link href="/" className="transition-colors hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">›</li>
-                <li className="text-slate-300">About</li>
-              </ol>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "About" }]}
           badge="Our story"
           title={"We built the tool we "}
           accent="wish existed"

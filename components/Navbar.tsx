@@ -250,7 +250,7 @@ export default function Navbar() {
           </a>
           <a
             href={`${APP_URL}/sign-up`}
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]"
+            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-lg text-sm transition-all hover:brightness-110"
           >
             Get Started Free
           </a>

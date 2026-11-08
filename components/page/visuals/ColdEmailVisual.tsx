@@ -1,15 +1,18 @@
 "use client";
 
 /**
- * Hero illustration for /cold-email-generator: a compose window. The subject
- * types in, the body fills with a personalised line highlighted, the email
- * sends, and a reply notification arrives.
- * Steps: 0 subject, 1 body, 2 personalised line highlighted, 3 sent and replied.
+ * Hero illustration for /cold-email-generator: a compose window with a full,
+ * short cold email. The subject types in and the body writes in, the
+ * personalised line is highlighted and tagged, the email sends, and a reply
+ * notification arrives.
+ * Steps: 0 subject and body, 1 personalised line highlighted, 2 tagged,
+ * 3 sent and replied.
+ * Names, companies and details are fictional examples.
  */
 
 import { motion } from "framer-motion";
-import { CornerUpLeft, Send, Sparkles } from "lucide-react";
-import { Chip, EASE, Line, Stage, Window, useLoop } from "./Frame";
+import { CornerUpLeft, Paperclip, Send, Sparkles } from "lucide-react";
+import { Chip, EASE, Stage, Window, useLoop } from "./Frame";
 
 /** Text that reveals left to right, like it is being typed, while `typing`. */
 function Typed({ text, typing, className = "" }: { text: string; typing: boolean; className?: string }) {
@@ -28,8 +31,9 @@ function Typed({ text, typing, className = "" }: { text: string; typing: boolean
 
 export default function ColdEmailVisual() {
   const { ref, step } = useLoop(4, 1700);
-  const body = step >= 1;
-  const highlight = step >= 2;
+  const fresh = step === 0;
+  const highlight = step >= 1;
+  const tagged = step >= 2;
   const sent = step >= 3;
 
   return (
@@ -38,30 +42,29 @@ export default function ColdEmailVisual() {
         <Window title="New message" bodyClassName="p-0">
           <div className="divide-y divide-white/[0.06] text-[12px]">
             <div className="flex items-center gap-3 px-5 py-2.5">
-              <span className="w-12 text-slate-500">To</span>
-              <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-slate-300">Priya Shah · Northwind</span>
+              <span className="w-12 text-slate-400">To</span>
+              <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-slate-200">
+                Priya Shah <span className="font-mono text-[10.5px] text-slate-400">priya@northwind.example</span>
+              </span>
             </div>
             <div className="flex items-center gap-3 px-5 py-2.5">
-              <span className="w-12 text-slate-500">Subject</span>
+              <span className="w-12 text-slate-400">Subject</span>
               <Typed text="Your design systems talk, and a question" typing={step === 0} className="min-w-0 truncate font-medium text-white" />
             </div>
           </div>
 
-          <div className="space-y-3 px-5 py-5">
-            <motion.p
-              initial={false}
-              animate={{ opacity: body ? 1 : 0 }}
-              transition={{ duration: 0.4 }}
-              className="text-[12px] text-slate-300"
-            >
-              Hi Priya,
-            </motion.p>
-            <motion.div
-              initial={false}
-              animate={body ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
-              transition={{ duration: 0.45, ease: EASE, delay: body ? 0.1 : 0 }}
-              className={`relative rounded-lg border px-3 py-2 text-[12px] leading-relaxed transition-colors duration-500 ${
-                highlight ? "border-accent/40 bg-accent/[0.08] text-slate-100" : "border-transparent text-slate-400"
+          {/* The body writes in once the subject is typed, then stays for the rest of the loop */}
+          <motion.div
+            key={fresh ? "fresh" : "stay"}
+            initial={fresh ? { opacity: 0, y: 6 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: EASE, delay: fresh ? 1.05 : 0 }}
+            className="space-y-2.5 px-5 py-4 text-[12px] leading-relaxed text-slate-300"
+          >
+            <p>Hi Priya,</p>
+            <div
+              className={`relative -mx-3 rounded-lg border px-3 py-2 transition-colors duration-500 ${
+                highlight ? "border-accent/40 bg-accent/[0.08] text-slate-100" : "border-transparent"
               }`}
             >
               I watched your talk on rebuilding the{" "}
@@ -71,30 +74,32 @@ export default function ColdEmailVisual() {
               and the part on token naming stuck with me.
               <motion.span
                 initial={false}
-                animate={highlight ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                animate={tagged ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: EASE }}
-                className="absolute -top-2.5 right-3 inline-flex items-center gap-1 rounded-full border border-accent/40 bg-[#0d1322] px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-accent-soft"
+                className="absolute -top-2.5 right-3 inline-flex items-center gap-1 rounded-full border border-accent/40 bg-[#0d1322] px-2 py-0.5 text-[10px] font-semibold text-accent-soft"
               >
                 <Sparkles className="h-2.5 w-2.5" />
                 Personalised
               </motion.span>
-            </motion.div>
-            <motion.div
-              initial={false}
-              animate={{ opacity: body ? 1 : 0 }}
-              transition={{ duration: 0.4, delay: body ? 0.25 : 0 }}
-              className="space-y-2.5 pt-1"
-            >
-              <Line w="w-full" />
-              <Line w="w-10/12" />
-              <Line w="w-7/12" />
-            </motion.div>
-          </div>
+            </div>
+            <p>
+              I am a frontend engineer at Lumen and about to start a similar migration. Would you be open to a 15-minute
+              call next week? I would value your advice on what you would do differently.
+            </p>
+            <p>
+              Thanks,
+              <br />
+              <span className="font-semibold text-white">Jordan Lee</span>
+            </p>
+          </motion.div>
 
           <div className="flex items-center justify-between border-t border-white/[0.06] px-5 py-3">
-            <div className="flex gap-2">
-              <span className="h-2 w-6 rounded-full bg-white/[0.06]" />
-              <span className="h-2 w-4 rounded-full bg-white/[0.06]" />
+            <div className="flex items-center gap-3 text-[11px] text-slate-400">
+              <Paperclip className="h-3.5 w-3.5" />
+              <span className="inline-flex items-center gap-1 rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-medium text-slate-300">
+                <Sparkles className="h-3 w-3 text-accent" /> Rewrite
+              </span>
+              <span>86 words</span>
             </div>
             <motion.div
               initial={false}
@@ -110,7 +115,7 @@ export default function ColdEmailVisual() {
           </div>
         </Window>
 
-        <Chip show={sent} className="-right-4 -top-5">
+        <Chip show={sent} className="-right-3 -top-4">
           <span className="grid h-6 w-6 place-items-center rounded-full bg-accent/20 text-accent">
             <CornerUpLeft className="h-3 w-3" />
           </span>

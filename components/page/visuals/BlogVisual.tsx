@@ -2,26 +2,45 @@
 
 /**
  * Hero illustration for /blog: a small stack of article cards, each with a
- * category and a reading-time chip, the front card moving to the back so the
- * next guide comes forward. Fictional titles only.
+ * category, a reading-time chip, a real title and excerpt, and a byline row.
+ * The front card moves to the back so the next guide comes forward.
  * Steps: 0, 1, 2 (which card is in front). Reduced motion holds step 2.
+ * Titles, excerpts and dates are fictional examples.
  */
 
 import { motion } from "framer-motion";
-import { Clock } from "lucide-react";
-import { Chip, EASE, Line, PulseDot, Stage, useLoop } from "./Frame";
+import { ArrowUpRight, Clock } from "lucide-react";
+import { Chip, EASE, PulseDot, SURFACE, Stage, useLoop } from "./Frame";
 
 const CARDS = [
-  { cat: "Interview Prep", title: "How to structure a behavioural answer", mins: "7 min read", lines: ["w-full", "w-11/12", "w-3/4"] },
-  { cat: "Resume", title: "Writing bullets that show impact", mins: "5 min read", lines: ["w-full", "w-4/5", "w-2/3"] },
-  { cat: "Career Strategy", title: "Following up after the final round", mins: "6 min read", lines: ["w-11/12", "w-full", "w-3/5"] },
+  {
+    cat: "Interview Prep",
+    title: "How to structure a behavioural answer",
+    excerpt: "Set the scene in one line, spend most of your time on what you did, and end with a result you can measure.",
+    mins: "7 min read",
+    date: "Oct 28",
+  },
+  {
+    cat: "Resume",
+    title: "Writing bullets that show impact",
+    excerpt: "Start with a strong verb, name the scope, then close on the number that changed because of your work.",
+    mins: "5 min read",
+    date: "Nov 3",
+  },
+  {
+    cat: "Career Strategy",
+    title: "Following up after the final round",
+    excerpt: "A short note within a day keeps you top of mind. Here is what to say, and when to send a second one.",
+    mins: "6 min read",
+    date: "Nov 5",
+  },
 ];
 
 /** Where a card sits for a given depth: 0 is the front. */
 const DEPTH = [
   { y: 0, scale: 1, opacity: 1 },
-  { y: -26, scale: 0.95, opacity: 0.7 },
-  { y: -50, scale: 0.9, opacity: 0.4 },
+  { y: -24, scale: 0.95, opacity: 0.75 },
+  { y: -46, scale: 0.9, opacity: 0.5 },
 ];
 
 export default function BlogVisual() {
@@ -29,8 +48,8 @@ export default function BlogVisual() {
 
   return (
     <div ref={ref}>
-      <Stage className="pt-14">
-        <div className="relative h-[300px]">
+      <Stage className="pt-12">
+        <div className="relative h-[276px]">
           {CARDS.map((card, i) => {
             const depth = (i - step + CARDS.length) % CARDS.length;
             const d = DEPTH[depth];
@@ -38,30 +57,31 @@ export default function BlogVisual() {
               <motion.div
                 key={card.title}
                 initial={false}
-                animate={{ y: d.y, scale: d.scale, opacity: d.opacity }}
-                transition={{ duration: 0.7, ease: EASE }}
-                style={{ zIndex: CARDS.length - depth }}
-                className="absolute inset-x-0 bottom-0 origin-top overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0a0f1c] p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]"
+                animate={{ y: d.y, scale: d.scale, opacity: d.opacity, zIndex: CARDS.length - depth }}
+                transition={{ duration: 0.7, ease: EASE, zIndex: { duration: 0 } }}
+                className={`absolute inset-x-0 bottom-0 flex h-[230px] origin-top flex-col overflow-hidden p-6 ${SURFACE}`}
               >
                 <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
                 <div className="flex items-center justify-between gap-3">
                   <span className="rounded-full border border-accent/25 bg-accent/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-accent-soft">
                     {card.cat}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 font-mono text-[10px] text-slate-300">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium text-slate-300">
                     <Clock className="h-3 w-3 text-accent" />
                     {card.mins}
                   </span>
                 </div>
-                <p className="mt-5 text-lg font-semibold leading-snug tracking-tight text-white">{card.title}</p>
-                <div className="mt-5 space-y-2.5">
-                  {card.lines.map((w, j) => (
-                    <Line key={j} w={w} />
-                  ))}
-                </div>
-                <div className="mt-6 flex items-center gap-3 border-t border-white/[0.06] pt-4">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-accent/20 text-[10px] font-bold text-accent-soft">P</span>
-                  <Line w="w-24" />
+                <p className="mt-4 text-lg font-semibold leading-snug tracking-tight text-white">{card.title}</p>
+                <p className="mt-2 text-[12.5px] leading-relaxed text-slate-400">{card.excerpt}</p>
+                <div className="mt-auto flex items-center gap-3 border-t border-white/[0.06] pt-4">
+                  <span className="grid h-7 w-7 place-items-center rounded-full bg-accent/20 text-[11px] font-bold text-accent-soft">P</span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[11.5px] font-semibold text-slate-200">Preciprocal Guides</p>
+                    <p className="text-[10.5px] text-slate-400">Updated {card.date}</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-[11.5px] font-semibold text-accent-soft">
+                    Read guide <ArrowUpRight className="h-3.5 w-3.5" />
+                  </span>
                 </div>
               </motion.div>
             );

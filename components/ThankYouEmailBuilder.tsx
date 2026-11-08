@@ -161,7 +161,7 @@ export default function ThankYouEmailBuilder() {
             className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3.5 py-2 text-[12px] font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${
               copied
                 ? "bg-emerald-500/20 shadow-[inset_0_0_0_1px_rgba(52,211,153,0.45)]"
-                : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(99,102,241,0.28)]"
+                : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:brightness-110"
             }`}
           >
             {copied ? <Check aria-hidden="true" className="h-3.5 w-3.5" /> : <Copy aria-hidden="true" className="h-3.5 w-3.5" />}

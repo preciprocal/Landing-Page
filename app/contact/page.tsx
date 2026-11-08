@@ -60,6 +60,7 @@ export default function ContactPage() {
       <main className="relative overflow-hidden">
         {/* ── Hero ── */}
         <PageHero
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Contact" }]}
           badge={
             <>
               <Clock aria-hidden="true" className="h-3 w-3" />

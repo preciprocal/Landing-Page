@@ -279,15 +279,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
       <main>
         {/* Hero: breadcrumb, H1, subhead, salary range */}
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/resume-tips" className="transition-colors hover:text-white">Resume Tips</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">{display.name}</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Resume Tips", href: "/resume-tips" }, { label: display.name }]}
           badge={
             <>
               <span aria-hidden="true">{display.icon}</span> Resume guide

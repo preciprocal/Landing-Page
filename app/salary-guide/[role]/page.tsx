@@ -11,7 +11,6 @@
  */
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -21,7 +20,7 @@ import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, HeroBackdrop, SectionHead, CtaPanel, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Static params ────────────────────────────────────────────────────────────
@@ -343,18 +342,12 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
       <Navbar />
 
       <main>
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Salary Guide", href: "/salary-guide" }, { label: display.name }]} />
+
         {/* Hero, with the two headline figures as a stat panel */}
-        <section className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
+        <section className={`relative overflow-hidden pb-14 pt-14 sm:pt-16 ${PAD}`}>
           <HeroBackdrop />
           <div className={`relative ${INNER}`}>
-            <nav aria-label="Breadcrumb" className="mb-8 flex animate-fade-up flex-wrap items-center gap-2 text-[12px] text-slate-500 opacity-0">
-              <Link href="/" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/salary-guide" className="rounded transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">Salary Guide</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">{display.name}</span>
-            </nav>
-
             <div className="max-w-4xl animate-fade-up opacity-0">
               <span aria-hidden="true" className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-3xl">
                 {display.icon}

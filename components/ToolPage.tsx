@@ -148,6 +148,7 @@ export default function ToolPage({
           {/* ── Hero ─────────────────────────────────────────────────────── */}
           <PageHero
             sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
+            breadcrumb={[{ label: "Home", href: "/" }, { label: breadcrumbName }]}
             badge={badge}
             title={h1}
             accent={h1Accent}
@@ -180,7 +181,7 @@ export default function ToolPage({
               <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
                 {features.map((item) => (
                   <RevealItem key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
-                    <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/25 bg-accent/[0.08] text-accent-soft transition-colors group-hover:border-accent/50 group-hover:text-accent">
+                    <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/25 bg-accent/[0.08] text-accent-soft transition-colors group-hover:border-white/25 group-hover:text-accent">
                       <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                         <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
@@ -270,7 +271,7 @@ export default function ToolPage({
                   <p className="mt-3 text-lg font-semibold leading-snug text-white">{bottomTitle}</p>
                   <a
                     href={signUpUrl}
-                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(99,102,241,0.28)]"
+                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
                   >
                     {ctaLabel} <Chevron />
                   </a>

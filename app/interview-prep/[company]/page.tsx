@@ -20,7 +20,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, CARD, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, HeroBackdrop, FaqList, CtaPanel, TrustRow, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, CARD, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, Eyebrow, HeroBackdrop, FaqList, CtaPanel, TrustRow, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -88,18 +88,14 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
       <Navbar />
 
       <main>
-        {/* Hero: breadcrumb, tier and difficulty, H1, quick stats */}
-        <section className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
+        <Breadcrumbs
+          items={[{ label: "Home", href: "/" }, { label: "Interview Prep", href: "/interview-prep" }, { label: meta.displayName }]}
+        />
+
+        {/* Hero: tier and difficulty, H1, quick stats */}
+        <section className={`relative overflow-hidden pb-14 pt-14 sm:pt-16 ${PAD}`}>
           <HeroBackdrop />
           <div className={`relative ${INNER}`}>
-            <nav aria-label="Breadcrumb" className="mb-6 flex animate-fade-up flex-wrap items-center gap-2 text-[12px] text-slate-500 opacity-0">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/interview-prep" className="transition-colors hover:text-white">Interview Prep</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">{meta.displayName}</span>
-            </nav>
-
             <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_380px] xl:gap-20">
               <div className="max-w-4xl animate-fade-up opacity-0">
                 <div className="mb-7 flex flex-wrap items-center gap-2">

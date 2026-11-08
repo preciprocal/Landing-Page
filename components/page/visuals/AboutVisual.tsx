@@ -1,118 +1,91 @@
 "use client";
 
 /**
- * Hero illustration for /about: the story so far as a small constellation.
- * Four stars, one per milestone on the page, joined one after another by a
- * line that draws in as each chapter lights up.
- * Steps: 0 first star, 1 second, 2 third, 3 all four and the closing chip.
+ * Hero illustration for /about: the story so far as a milestone timeline
+ * card. Four milestones from the page (Early 2024 the reality check, Mid
+ * 2024 reverse-engineering, Late 2024 Preciprocal is born, 2025 onwards
+ * growing with users), each with a short line of what happened, lighting up
+ * one after another along an accent rail.
+ * Steps: 0 first milestone, 1 second, 2 third, 3 all four and the closing
+ * chip (finished state). No figures or results are shown.
  */
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import { Chip, EASE, Stage, useLoop } from "./Frame";
+import { Compass, Rocket, Search, Sparkles, Users } from "lucide-react";
+import { Chip, EASE, Stage, Window, useLoop } from "./Frame";
 
-// Positions in the 480 x 320 viewBox, labels from the page's milestones.
-const STARS = [
-  { x: 64, y: 248, date: "Early 2024", title: "The reality check", align: "left" },
-  { x: 178, y: 150, date: "Mid 2024", title: "Reverse-engineering", align: "left" },
-  { x: 302, y: 204, date: "Late 2024", title: "Preciprocal is born", align: "left" },
-  { x: 410, y: 84, date: "2025 onwards", title: "Growing with users", align: "right" },
-] as const;
-
-// Faint background stars, fixed so server and client agree.
-const DUST = [
-  [32, 40], [96, 92], [140, 36], [226, 66], [254, 280], [346, 118], [380, 262], [446, 190], [120, 300], [452, 30], [210, 226], [30, 160],
-] as const;
+// Wording follows the MILESTONES on app/about/page.tsx.
+const MILESTONES = [
+  { date: "Early 2024", title: "The reality check", text: "Strong records, real skills, and most applications disappeared.", icon: Compass },
+  { date: "Mid 2024", title: "Reverse-engineering", text: "Studied how resumes get scored and turned the answers into tools.", icon: Search },
+  { date: "Late 2024", title: "Preciprocal is born", text: "The tools became a real product, built in public from day one.", icon: Rocket },
+  { date: "2025 onwards", title: "Growing with users", text: "Every feature on the roadmap starts with a conversation.", icon: Users },
+];
 
 export default function AboutVisual() {
-  const { ref, step } = useLoop(4, 1700);
+  const { ref, step } = useLoop(4, 1800);
 
   return (
     <div ref={ref}>
       <Stage>
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0a0f1c]/90 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur">
-          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">How we got here</p>
-            <p className="font-mono text-[10px] text-slate-500">
-              {String(step + 1).padStart(2, "0")} / 04
-            </p>
+        <Window title="preciprocal.com/about" bodyClassName="p-5">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-[14px] font-semibold text-white">How we got here</p>
+              <p className="text-[11px] text-slate-400">From a few job hunts to a product</p>
+            </div>
+            <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[10.5px] font-semibold text-accent-soft">
+              {MILESTONES[step].date}
+            </span>
           </div>
 
-          <div className="relative aspect-[3/2]">
-            <svg viewBox="0 0 480 320" className="absolute inset-0 h-full w-full" fill="none">
-              {DUST.map(([x, y]) => (
-                <circle key={`${x}-${y}`} cx={x} cy={y} r="1.2" fill="rgba(255,255,255,0.18)" />
-              ))}
-              {/* Faint full path, then the lit path on top */}
-              <polyline
-                points={STARS.map((s) => `${s.x},${s.y}`).join(" ")}
-                stroke="rgba(255,255,255,0.08)"
-                strokeWidth="1.5"
-                strokeDasharray="3 5"
-              />
-              {STARS.slice(1).map((s, i) => {
-                const from = STARS[i];
-                return (
-                  <motion.line
-                    key={s.date}
-                    x1={from.x}
-                    y1={from.y}
-                    x2={s.x}
-                    y2={s.y}
-                    stroke="rgb(var(--accent))"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
+          <ol className="relative mt-4">
+            {/* Rail and its accent fill */}
+            <span aria-hidden="true" className="absolute bottom-[34px] left-[17px] top-[34px] w-px bg-white/[0.08]" />
+            <motion.span
+              aria-hidden="true"
+              className="absolute left-[17px] top-[34px] w-px origin-top bg-gradient-to-b from-accent to-accent-2"
+              style={{ height: "calc(100% - 68px)" }}
+              initial={false}
+              animate={{ scaleY: step / (MILESTONES.length - 1) }}
+              transition={{ duration: 0.7, ease: EASE }}
+            />
+            {MILESTONES.map((m, i) => {
+              const lit = i <= step;
+              const current = i === step;
+              const Icon = m.icon;
+              return (
+                <li key={m.date} className="relative flex items-center gap-3 py-1">
+                  <motion.span
                     initial={false}
-                    animate={{ pathLength: step > i ? 1 : 0, opacity: step > i ? 0.9 : 0 }}
-                    transition={{ duration: 0.8, ease: EASE }}
-                  />
-                );
-              })}
-              {STARS.map((s, i) => {
-                const lit = step >= i;
-                return (
-                  <g key={s.date}>
-                    <motion.circle
-                      cx={s.x}
-                      cy={s.y}
-                      initial={false}
-                      animate={{ r: lit ? 14 : 6, opacity: lit ? 0.22 : 0 }}
-                      transition={{ duration: 0.6, ease: EASE }}
-                      fill="rgb(var(--accent))"
-                    />
-                    <motion.circle
-                      cx={s.x}
-                      cy={s.y}
-                      r="5"
-                      initial={false}
-                      animate={{ fill: lit ? "rgb(var(--accent-soft))" : "rgba(255,255,255,0.14)" }}
-                      transition={{ duration: 0.4 }}
-                    />
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* Labels as HTML so the type stays crisp */}
-            {STARS.map((s, i) => (
-              <motion.div
-                key={s.date}
-                className={`absolute w-36 ${s.align === "right" ? "-translate-x-full text-right" : ""}`}
-                style={{
-                  left: `${((s.x + (s.align === "right" ? -14 : 14)) / 480) * 100}%`,
-                  top: `${((s.y + 12) / 320) * 100}%`,
-                }}
-                initial={false}
-                animate={{ opacity: step >= i ? 1 : 0.35 }}
-                transition={{ duration: 0.4 }}
-              >
-                <p className="font-mono text-[10px] text-accent-soft/80">{s.date}</p>
-                <p className="text-[11px] font-semibold leading-tight text-white">{s.title}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                    animate={{ scale: current ? 1.08 : 1 }}
+                    transition={{ duration: 0.4, ease: EASE }}
+                    className={`relative z-10 grid h-9 w-9 shrink-0 place-items-center rounded-full border transition-colors duration-500 ${
+                      current
+                        ? "border-accent bg-accent text-[#0a0f1c] shadow-[0_0_0_5px_rgb(var(--accent)/0.15)]"
+                        : lit
+                          ? "border-accent/50 bg-[#101727] text-accent-soft"
+                          : "border-white/15 bg-[#101727] text-slate-400"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </motion.span>
+                  <div
+                    className={`min-w-0 flex-1 rounded-xl border px-3.5 py-2.5 transition-colors duration-500 ${
+                      current ? "border-accent/35 bg-accent/[0.08]" : "border-white/[0.06] bg-white/[0.02]"
+                    }`}
+                  >
+                    <div className="flex items-baseline justify-between gap-3">
+                      <p className={`text-[12.5px] font-semibold transition-colors duration-500 ${lit ? "text-white" : "text-slate-300"}`}>{m.title}</p>
+                      <p className={`shrink-0 text-[10.5px] font-medium ${lit ? "text-accent-soft" : "text-slate-400"}`}>{m.date}</p>
+                    </div>
+                    <p className="mt-0.5 text-[11px] leading-snug text-slate-400">{m.text}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </Window>
 
         <Chip show={step === 3} className="-bottom-5 right-8">
           <span className="grid h-5 w-5 place-items-center rounded-full bg-accent/20 text-accent">

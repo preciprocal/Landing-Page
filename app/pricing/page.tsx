@@ -44,6 +44,7 @@ import {
   tierSchemaPrice,
 } from "@/lib/pricing";
 import Chevron from "@/components/Chevron";
+import { Breadcrumbs } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -175,15 +176,7 @@ export default function PricingPage() {
       <main className="relative overflow-hidden">
 
         {/* ── Breadcrumb ── */}
-        <nav aria-label="Breadcrumb" className="w-full pt-28 pb-0 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <ol className="flex items-center gap-2 text-xs text-slate-500">
-            <li>
-              <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li className="text-slate-400">Pricing</li>
-          </ol>
-        </nav>
+        <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
 
         {/* ── Hero ── */}
         <section data-section="pricing-plans" data-section-name="Pricing plans" aria-label="Pricing plans" className="relative">
@@ -251,7 +244,7 @@ export default function PricingPage() {
                           <a
                             href={`${APP_URL}/sign-up?plan=${plan.id}`}
                             className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                       bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]"
+                                       bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110"
                           >
                             {plan.cta}
                           </a>

@@ -2,30 +2,32 @@
 
 /**
  * Hero illustration for /thank-you-email-after-interview: a preview of the
- * result. An email draft where the interviewer's name and one specific detail
- * from the conversation get highlighted, and a "send within 24 hours" clock
- * chip ticks down beside it.
+ * result. A complete thank-you email in a mail window where the interviewer's
+ * name and one specific detail from the conversation get highlighted, and a
+ * "send within 24 hours" clock chip ticks down beside it.
  * Steps: 0 draft, 1 name highlighted, 2 detail highlighted, 3 ready to send
  * (finished state).
+ * Names, companies and details are fictional examples.
  */
 
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { Clock, Send } from "lucide-react";
-import { EASE, Line, Stage, useLoop } from "./Frame";
+import { EASE, Stage, Window, useLoop } from "./Frame";
 
 function Mark({ on, children }: { on: boolean; children: ReactNode }) {
   return (
-    <span className="relative inline-block">
-      <motion.span
-        aria-hidden="true"
-        className="absolute -inset-x-1 inset-y-0 origin-left rounded bg-accent/20"
-        initial={false}
-        animate={{ scaleX: on ? 1 : 0 }}
-        transition={{ duration: 0.5, ease: EASE }}
-      />
-      <span className={`relative transition-colors duration-500 ${on ? "text-accent-soft" : "text-slate-300"}`}>{children}</span>
-    </span>
+    <motion.span
+      initial={false}
+      animate={{
+        backgroundColor: on ? "rgb(var(--accent) / 0.2)" : "rgb(var(--accent) / 0)",
+        color: on ? "rgb(var(--accent-soft))" : "rgb(203 213 225)",
+      }}
+      transition={{ duration: 0.5, ease: EASE }}
+      className="rounded px-0.5 [box-decoration-break:clone]"
+    >
+      {children}
+    </motion.span>
   );
 }
 
@@ -38,57 +40,56 @@ export default function ThankYouEmailVisual() {
   return (
     <div ref={ref}>
       <Stage>
-        <div className="relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0a0f1c]/90 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur">
-          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3">
-            <p className="text-[12px] font-semibold text-white">New message</p>
-            <p className="text-[10px] text-slate-500">Draft saved</p>
-          </div>
-
-          <div className="divide-y divide-white/[0.05] px-5 text-[11.5px]">
-            <div className="flex gap-3 py-2.5">
-              <span className="w-12 text-slate-500">To</span>
-              <span className="text-slate-300">Priya Shah</span>
+        <Window title="New message" bodyClassName="p-0">
+          <div className="divide-y divide-white/[0.06] px-5 text-[11.5px]">
+            <div className="flex items-center gap-3 py-2.5">
+              <span className="w-12 text-slate-400">To</span>
+              <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-slate-200">
+                Priya Shah <span className="font-mono text-[10.5px] text-slate-400">priya@northwind.example</span>
+              </span>
             </div>
-            <div className="flex gap-3 py-2.5">
-              <span className="w-12 text-slate-500">Subject</span>
-              <span className="text-slate-200">Thank you for today, Priya</span>
+            <div className="flex items-center gap-3 py-2.5">
+              <span className="w-12 text-slate-400">Subject</span>
+              <span className="font-medium text-white">Thank you for today, Priya</span>
             </div>
           </div>
 
-          <div className="px-5 pb-5 pt-4 text-[12px] leading-relaxed text-slate-300">
+          <div className="border-t border-white/[0.06] px-5 pb-4 pt-4 text-[12px] leading-relaxed text-slate-300">
             <p>
               Hi <Mark on={step >= 1}>Priya</Mark>,
             </p>
-            <p className="mt-3">
+            <p className="mt-2.5">
               Thank you for the conversation this afternoon. I kept thinking about{" "}
-              <Mark on={step >= 2}>the onboarding redesign you described</Mark>, and how the second-week drop-off
-              shaped it.
+              <Mark on={step >= 2}>the onboarding redesign you described</Mark>, and how the second-week drop-off shaped it.
             </p>
-            <div className="mt-4 space-y-2">
-              <Line w="w-full" />
-              <Line w="w-10/12" />
-              <Line w="w-1/3" />
-            </div>
-
-            <div className="mt-5 flex items-center justify-between">
-              <span className="font-mono text-[10px] text-slate-500">112 words</span>
-              <motion.span
-                initial={false}
-                animate={{ scale: ready ? [1, 1.05, 1] : 1 }}
-                transition={{ duration: 0.4, ease: EASE }}
-                className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[11px] font-semibold transition-colors duration-500 ${
-                  ready ? "bg-accent/20 text-accent-soft" : "bg-white/[0.05] text-slate-500"
-                }`}
-              >
-                <Send className="h-3 w-3" /> Send
-              </motion.span>
-            </div>
+            <p className="mt-2.5">
+              It made me even more excited about the Product Analyst role. At Lumen I traced a similar drop-off to one
+              confusing step, and I would love to bring that to your team.
+            </p>
+            <p className="mt-2.5">
+              Best,
+              <br />
+              <span className="font-semibold text-white">Jordan Lee</span>
+            </p>
           </div>
-        </div>
+
+          <div className="flex items-center justify-between border-t border-white/[0.06] px-5 py-3">
+            <span className="text-[11px] text-slate-400">112 words · Draft saved</span>
+            <motion.span
+              initial={false}
+              animate={{ scale: ready ? [1, 1.05, 1] : 1 }}
+              transition={{ duration: 0.4, ease: EASE }}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[11.5px] font-semibold transition-colors duration-500 ${
+                ready ? "bg-accent/20 text-accent-soft" : "bg-white/[0.06] text-slate-300"
+              }`}
+            >
+              <Send className="h-3.5 w-3.5" /> Send
+            </motion.span>
+          </div>
+        </Window>
 
         {/* Send within 24 hours: a clock chip */}
-        <div className="absolute -right-6 -top-5 z-10 flex items-center gap-2.5 rounded-xl border border-white/[0.1] bg-[#0d1322]/95 px-3 py-2 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.8)] backdrop-blur">
+        <div className="absolute -right-3 -top-4 z-10 flex items-center gap-2.5 rounded-xl border border-white/[0.14] bg-gradient-to-b from-[#161d30]/95 to-[#0e1424]/95 px-3 py-2 shadow-[0_24px_50px_-14px_rgba(0,0,0,0.9),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md">
           <div className="relative h-7 w-7 rounded-full border border-accent/40">
             <motion.span
               className="absolute bottom-1/2 left-1/2 h-2.5 w-px origin-bottom -translate-x-1/2 rounded-full bg-accent"

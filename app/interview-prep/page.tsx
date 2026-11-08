@@ -100,13 +100,7 @@ export default function InterviewPrepIndexPage() {
         <main>
           <PageHero
             visual={<InterviewPrepVisual />}
-            breadcrumb={
-              <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-                <Link href="/" className="transition-colors hover:text-white">Home</Link>
-                <span aria-hidden="true">›</span>
-                <span className="text-slate-300">Interview Prep</span>
-              </nav>
-            }
+            breadcrumb={[{ label: "Home", href: "/" }, { label: "Interview Prep" }]}
             title={"Company interview "}
             accent="prep guides"
             subhead={

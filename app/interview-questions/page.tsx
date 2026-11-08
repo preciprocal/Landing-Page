@@ -56,13 +56,7 @@ export default function InterviewQuestionsIndexPage() {
       <main>
         <PageHero
           visual={<InterviewQuestionsVisual />}
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-slate-500">
-              <Link href="/" className={`rounded transition-colors hover:text-white ${FOCUS}`}>Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Interview Questions</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Interview Questions" }]}
           title={<>Interview questions{" "}</>}
           accent="by role"
           subhead={

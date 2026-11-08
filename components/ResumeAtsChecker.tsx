@@ -726,7 +726,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             href={SIGN_UP_URL}
             data-track="ats-check-unlock"
             onClick={() => trackEvent("ats-check-unlock-click", { locked: n, score: result.overallScore }, "tool")}
-            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)] sm:w-auto"
+            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110 sm:w-auto"
           >
             <motion.span
               aria-hidden="true"

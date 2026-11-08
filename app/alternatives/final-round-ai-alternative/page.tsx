@@ -127,15 +127,7 @@ export default function FinalRoundAIAlternativePage() {
       <main>
         {/* ── H1 ──────────────────────────────────────────────────────────── */}
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Alternatives</span>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Final Round AI Alternative</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Alternatives", href: "/alternatives" }, { label: "Final Round AI Alternative" }]}
           badge="Comparison · Updated May 2026"
           title="The Best Final Round AI Alternative "
           accent="in 2026"

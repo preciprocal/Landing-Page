@@ -134,15 +134,7 @@ export default function JobscanAlternativePage() {
       <main>
         {/* H1 */}
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Alternatives</span>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Jobscan Alternative</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Alternatives", href: "/alternatives" }, { label: "Jobscan Alternative" }]}
           badge="Comparison · Updated May 2026"
           title="The Best Jobscan Alternative "
           accent="in 2026"

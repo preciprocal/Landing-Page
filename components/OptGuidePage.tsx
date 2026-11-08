@@ -118,15 +118,9 @@ export default function OptGuidePage(props: OptGuideProps) {
           <PageHero
             sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
             breadcrumb={
-              isHub ? undefined : (
-                <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <Link href="/opt" className="transition-colors hover:text-slate-300">
-                    OPT guides
-                  </Link>
-                  <span aria-hidden="true" className="text-slate-700">/</span>
-                  <span className="text-slate-400">{props.breadcrumbName}</span>
-                </nav>
-              )
+              isHub
+                ? [{ label: "Home", href: "/" }, { label: props.breadcrumbName }]
+                : [{ label: "Home", href: "/" }, { label: "OPT guides", href: "/opt" }, { label: props.breadcrumbName }]
             }
             badge={
               <span>

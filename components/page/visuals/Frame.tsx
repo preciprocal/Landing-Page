@@ -44,11 +44,18 @@ export function useLoop(steps: number, ms = 1600) {
   return { ref, step: reduce ? steps - 1 : step, reduce: !!reduce };
 }
 
-/** The stage an illustration sits on: an accent glow behind it and a slow float. */
+/**
+ * The stage an illustration sits on: a soft accent glow behind it, the way a
+ * product shot sits on a lit backdrop in an ad, and a slow float.
+ */
 export function Stage({ children, className = "" }: { children: ReactNode; className?: string }) {
   const reduce = useReducedMotion();
   return (
     <div className={`relative mx-auto w-full max-w-[520px] ${className}`}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-10 -inset-y-12 rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent)/0.16),transparent)] blur-2xl"
+      />
       <motion.div
         className="relative"
         animate={reduce ? undefined : { y: [0, -8, 0] }}
@@ -60,7 +67,14 @@ export function Stage({ children, className = "" }: { children: ReactNode; class
   );
 }
 
-/** A window card: traffic lights and a title bar, then the content. */
+/** The surface every product card shares: a lit top edge, an inner highlight and a deep, layered shadow. */
+export const SURFACE =
+  "rounded-2xl border border-white/[0.1] bg-gradient-to-b from-[#111829] to-[#0a0f1c] shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9),0_12px_30px_-12px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.06)]";
+
+/**
+ * A product window: real window chrome (traffic lights and a centred address
+ * pill), then the content. Reads as a screenshot of the product, not a diagram.
+ */
 export function Window({
   title,
   children,
@@ -73,24 +87,32 @@ export function Window({
   bodyClassName?: string;
 }) {
   return (
-    <div
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.09] bg-[#0a0f1c]/90 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur ${className}`}
-    >
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-      <div className="flex items-center gap-3 border-b border-white/[0.06] px-4 py-3">
-        <div className="flex gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
-          <span className="h-2.5 w-2.5 rounded-full bg-white/10" />
+    <div className={`relative overflow-hidden ${SURFACE} ${className}`}>
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+      <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.015] px-4 py-2.5">
+        <div className="flex w-12 shrink-0 gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]/75" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/75" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]/75" />
         </div>
-        {title && <div className="min-w-0 flex-1 truncate font-mono text-[11px] text-slate-500">{title}</div>}
+        <div className="min-w-0 flex-1">
+          {title && (
+            <div className="mx-auto w-fit max-w-full truncate rounded-md border border-white/[0.06] bg-white/[0.035] px-3 py-1 text-center text-[11px] font-medium text-slate-400">
+              {title}
+            </div>
+          )}
+        </div>
+        <div className="w-12 shrink-0" />
       </div>
       <div className={bodyClassName}>{children}</div>
     </div>
   );
 }
 
-/** A grey placeholder line for text, `w` as a Tailwind width class. */
+/**
+ * A grey placeholder line. Avoid in new work: product shots read as real only
+ * with real copy, so write the text instead. Kept for anything still using it.
+ */
 export function Line({ w = "w-full", className = "" }: { w?: string; className?: string }) {
   return <div className={`h-2 rounded-full bg-white/[0.07] ${w} ${className}`} />;
 }
@@ -102,7 +124,7 @@ export function Chip({ children, show = true, className = "" }: { children: Reac
       initial={false}
       animate={show ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 8, scale: 0.96 }}
       transition={{ duration: 0.45, ease: EASE }}
-      className={`absolute z-10 inline-flex items-center gap-2 rounded-xl border border-white/[0.1] bg-[#0d1322]/95 px-3 py-2 text-[12px] font-medium text-slate-200 shadow-[0_16px_40px_-12px_rgba(0,0,0,0.8)] backdrop-blur ${className}`}
+      className={`absolute z-10 inline-flex items-center gap-2 rounded-xl border border-white/[0.14] bg-gradient-to-b from-[#161d30]/95 to-[#0e1424]/95 px-3.5 py-2.5 text-[12px] font-semibold text-white shadow-[0_24px_50px_-14px_rgba(0,0,0,0.9),0_0_0_1px_rgb(var(--accent)/0.08),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md ${className}`}
     >
       {children}
     </motion.div>

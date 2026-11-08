@@ -38,7 +38,7 @@ export function MovingBorder({
       </div>
       <div
         className={cn(
-          "relative z-10 flex items-center justify-center gap-2 bg-base-50 backdrop-blur-xl",
+          "relative z-10 flex items-center justify-center gap-2 bg-ink-50 backdrop-blur-xl",
           className
         )}
         style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}

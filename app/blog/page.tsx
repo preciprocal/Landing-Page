@@ -62,13 +62,7 @@ export default function BlogIndexPage() {
       <main>
         <PageHero
           visual={<BlogVisual />}
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Blog</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Blog" }]}
           title={"Career advice & "}
           accent="interview prep"
           subhead={

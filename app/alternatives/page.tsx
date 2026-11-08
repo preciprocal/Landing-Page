@@ -104,13 +104,7 @@ export default function AlternativesIndexPage() {
 
       <main>
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Alternatives</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Alternatives" }]}
           title="Job search tool "
           accent="comparisons"
           subhead={

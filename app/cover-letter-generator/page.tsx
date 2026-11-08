@@ -178,13 +178,7 @@ export default function CoverLetterGeneratorPage() {
       <main>
         {/* H1 */}
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">Cover Letter Generator</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Cover Letter Generator" }]}
           title="AI Cover Letter Generator: "
           accent="Personalised. Done in 60 Seconds."
           subhead={

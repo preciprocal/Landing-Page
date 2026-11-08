@@ -192,13 +192,7 @@ export default function AIMockInterviewPage() {
       <main>
         {/* ── H1 + Intro ──────────────────────────────────────────────────── */}
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex items-center gap-2">
-              <Link href="/" className="transition-colors hover:text-white">Home</Link>
-              <span aria-hidden="true">›</span>
-              <span className="text-slate-300">AI Mock Interview</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "AI Mock Interview" }]}
           title="AI Mock Interview Practice: "
           accent="Realistic. Instant. Free to Start."
           subhead={

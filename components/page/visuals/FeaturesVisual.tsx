@@ -1,148 +1,231 @@
 "use client";
 
 /**
- * Hero illustration for /features: the tools as nodes orbiting one search,
- * lit up a stage at a time as the search moves forward.
- * Steps: 0 filter, 1 reach a human, 2 interview, 3 stay in control (all lit).
+ * Hero illustration for /features: the product itself. An app window with
+ * every tool in the sidebar, a four-stage tracker along the top, and the
+ * main panel showing what the tools of the current stage produce. The stage
+ * advances on a loop and the sidebar lights the tools in use.
+ * Steps: 0 get noticed, 1 reach people, 2 win the interview, 3 stay on track.
+ * Names, scores and counts are fictional examples.
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { EASE, PulseDot, Stage, useLoop } from "./Frame";
+import { BadgeCheck, Bookmark, Check, FileText, Inbox, MessageSquare, Mic, Search, Send, Sparkles } from "lucide-react";
+import type { ReactNode } from "react";
+import { EASE, Stage, Window, useLoop } from "./Frame";
 
-const STAGES = ["Get past the filter", "Reach an actual human", "Win the interview", "Stay in control of it"];
+const STAGES = ["Get noticed", "Reach people", "Interview", "Stay on track"];
 
-const r2 = (n: number) => Math.round(n * 100) / 100;
+const TOOLS = [
+  { label: "Resume score", icon: FileText, stage: 0 },
+  { label: "Tailoring", icon: Sparkles, stage: 0 },
+  { label: "Cover letter", icon: Send, stage: 1 },
+  { label: "Contacts", icon: Search, stage: 1 },
+  { label: "Mock interview", icon: Mic, stage: 2 },
+  { label: "Predictor", icon: MessageSquare, stage: 2 },
+  { label: "Tracker", icon: Inbox, stage: 3 },
+  { label: "Extension", icon: Bookmark, stage: 3 },
+];
 
-const NODES = [
-  { label: "Resume score", stage: 0, a: -67.5 },
-  { label: "Tailoring", stage: 0, a: -22.5 },
-  { label: "Cover letter", stage: 1, a: 22.5 },
-  { label: "Contacts", stage: 1, a: 67.5 },
-  { label: "Mock interview", stage: 2, a: 112.5 },
-  { label: "Predictor", stage: 2, a: 157.5 },
-  { label: "Tracker", stage: 3, a: 202.5 },
-  { label: "Extension", stage: 3, a: 247.5 },
-].map((n) => ({
-  ...n,
-  x: r2(50 + 35 * Math.cos((n.a * Math.PI) / 180)),
-  y: r2(46 + 34 * Math.sin((n.a * Math.PI) / 180)),
-}));
+function Panel({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+      <div className="mt-2">{children}</div>
+    </div>
+  );
+}
 
-const HUB = { x: 50, y: 46 };
+const R = 20;
+const C = 2 * Math.PI * R;
+
+function StageContent({ step }: { step: number }) {
+  if (step === 0)
+    return (
+      <>
+        <Panel label="Resume score">
+          <div className="flex items-center gap-3">
+            <div className="relative h-12 w-12 shrink-0">
+              <svg viewBox="0 0 48 48" className="h-full w-full -rotate-90">
+                <circle cx="24" cy="24" r={R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
+                <motion.circle
+                  cx="24" cy="24" r={R} fill="none" stroke="rgb(var(--accent))" strokeWidth="4" strokeLinecap="round"
+                  strokeDasharray={C} initial={{ strokeDashoffset: C }} animate={{ strokeDashoffset: C * 0.14 }}
+                  transition={{ duration: 1, ease: EASE }}
+                />
+              </svg>
+              <span className="absolute inset-0 grid place-items-center text-[13px] font-bold text-white">86</span>
+            </div>
+            <div>
+              <p className="text-[12.5px] font-semibold text-white">Ready to send</p>
+              <p className="text-[11px] text-slate-400">Up from 61 after 4 fixes</p>
+            </div>
+          </div>
+        </Panel>
+        <Panel label="Tailored to Frontend Engineer, Northwind">
+          <div className="flex flex-wrap gap-1.5">
+            {["TypeScript", "Design systems", "A/B testing", "Accessibility"].map((k) => (
+              <span key={k} className="inline-flex items-center gap-1 rounded-md bg-emerald-400/10 px-2 py-0.5 text-[10.5px] font-medium text-emerald-300">
+                <Check className="h-2.5 w-2.5" /> {k}
+              </span>
+            ))}
+          </div>
+        </Panel>
+      </>
+    );
+  if (step === 1)
+    return (
+      <>
+        <Panel label="Hiring contact">
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-gradient-to-br from-sky-400 to-indigo-500 text-[11px] font-bold text-white">PS</span>
+            <div className="min-w-0 flex-1">
+              <p className="text-[12.5px] font-semibold text-white">Priya Shah</p>
+              <p className="truncate text-[11px] text-slate-400">Technical Recruiter, Northwind</p>
+            </div>
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-400/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
+              <BadgeCheck className="h-3 w-3" /> Verified
+            </span>
+          </div>
+        </Panel>
+        <Panel label="Cover letter">
+          <p className="text-[11.5px] leading-relaxed text-slate-300">
+            &ldquo;Your post asks for someone who can grow a <span className="rounded bg-accent/15 px-1 text-accent-soft">design system</span> across products. In my capstone I built one&hellip;&rdquo;
+          </p>
+        </Panel>
+      </>
+    );
+  if (step === 2)
+    return (
+      <>
+        <Panel label="Mock interview · Behavioural">
+          <div className="space-y-1.5">
+            {[
+              { k: "Structure", v: 88 },
+              { k: "Communication", v: 81 },
+              { k: "Technical depth", v: 74 },
+            ].map((r, i) => (
+              <div key={r.k} className="flex items-center gap-2.5">
+                <span className="w-24 text-[11px] text-slate-300">{r.k}</span>
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/[0.07]">
+                  <motion.div
+                    className="h-full rounded-full bg-gradient-to-r from-accent-deep to-accent"
+                    initial={{ width: 0 }} animate={{ width: `${r.v}%` }}
+                    transition={{ duration: 0.8, delay: i * 0.1, ease: EASE }}
+                  />
+                </div>
+                <span className="w-6 text-right text-[11px] font-semibold text-white">{r.v}</span>
+              </div>
+            ))}
+          </div>
+        </Panel>
+        <Panel label="Likely question">
+          <p className="text-[12px] font-medium leading-snug text-white">Tell me about a time you led a cross-functional launch.</p>
+          <p className="mt-1 text-[10.5px] font-medium text-accent-soft">Very likely for this role</p>
+        </Panel>
+      </>
+    );
+  return (
+    <>
+      <Panel label="Pipeline">
+        <div className="grid grid-cols-4 gap-1.5 text-center">
+          {[
+            { k: "Saved", v: 8 },
+            { k: "Applied", v: 12 },
+            { k: "Interview", v: 3 },
+            { k: "Offer", v: 1 },
+          ].map((c) => (
+            <div key={c.k} className={`rounded-lg py-2 ${c.k === "Offer" ? "bg-emerald-400/10" : "bg-white/[0.035]"}`}>
+              <p className={`text-[15px] font-bold ${c.k === "Offer" ? "text-emerald-300" : "text-white"}`}>{c.v}</p>
+              <p className="text-[9.5px] text-slate-400">{c.k}</p>
+            </div>
+          ))}
+        </div>
+      </Panel>
+      <Panel label="Saved from LinkedIn">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[12px] font-semibold text-white">Product Analyst · Lumen</p>
+          <span className="text-[10.5px] text-slate-400">Follow up Thu</span>
+        </div>
+      </Panel>
+    </>
+  );
+}
 
 export default function FeaturesVisual() {
-  const { ref, step, reduce } = useLoop(4, 1900);
+  const { ref, step } = useLoop(4, 2600);
 
   return (
     <div ref={ref}>
       <Stage>
-        <div className="relative aspect-[1/0.95] w-full overflow-hidden rounded-3xl border border-white/[0.09] bg-[#0a0f1c]/90 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)]">
-          <div
-            className="absolute inset-0 [mask-image:radial-gradient(circle_at_50%_46%,black,transparent_75%)]"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
-          />
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+        <Window title="app.preciprocal.com" bodyClassName="grid grid-cols-[148px_minmax(0,1fr)]">
+          {/* Sidebar: every tool, the ones in use lit */}
+          <aside className="border-r border-white/[0.06] bg-black/[0.15] px-2.5 py-4">
+            <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">Tools</p>
+            <ul className="mt-2 space-y-0.5">
+              {TOOLS.map(({ label, icon: Icon, stage }) => {
+                const on = stage === step;
+                const done = stage < step;
+                return (
+                  <li
+                    key={label}
+                    className={`flex items-center gap-2 rounded-lg px-2 py-1.5 text-[11px] font-medium transition-colors duration-500 ${
+                      on ? "bg-accent/15 text-white" : "text-slate-400"
+                    }`}
+                  >
+                    <Icon className={`h-3.5 w-3.5 shrink-0 transition-colors duration-500 ${on ? "text-accent" : done ? "text-emerald-400/80" : "text-slate-500"}`} />
+                    <span className="truncate">{label}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </aside>
 
-          {/* Orbit rings */}
-          <div
-            className="absolute aspect-square w-[64%] -translate-x-1/2 -translate-y-1/2 animate-[spin_70s_linear_infinite] rounded-full border border-dashed border-white/[0.08]"
-            style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}
-          />
-          <div
-            className="absolute aspect-square w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-accent/15"
-            style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}
-          />
-
-          {/* Spokes from the hub to every tool */}
-          <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
-            {NODES.map((n) => {
-              const on = n.stage === step;
-              const done = n.stage < step;
-              return (
-                <motion.line
-                  key={n.label}
-                  x1={HUB.x}
-                  y1={HUB.y}
-                  x2={n.x}
-                  y2={n.y}
-                  vectorEffect="non-scaling-stroke"
-                  strokeWidth={on ? 1.5 : 1}
-                  initial={false}
-                  animate={{
-                    stroke: on ? "rgb(var(--accent) / 0.75)" : done ? "rgb(var(--accent) / 0.3)" : "rgba(255,255,255,0.08)",
-                  }}
-                  transition={{ duration: 0.5, ease: EASE }}
-                />
-              );
-            })}
-          </svg>
-
-          {/* A pulse travelling out to the tools of the current stage */}
-          {!reduce &&
-            NODES.filter((n) => n.stage === step).map((n) => (
-              <motion.span
-                key={`${step}-${n.label}`}
-                className="absolute h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--accent))]"
-                initial={{ left: `${HUB.x}%`, top: `${HUB.y}%`, opacity: 0 }}
-                animate={{ left: `${n.x}%`, top: `${n.y}%`, opacity: [0, 1, 1, 0] }}
-                transition={{ duration: 1.1, ease: EASE }}
-              />
-            ))}
-
-          {/* Hub */}
-          <div
-            className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 rounded-2xl border border-accent/30 bg-[#0d1322] px-4 py-3 shadow-[0_0_40px_-8px_rgb(var(--accent-deep)/0.6)]"
-            style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}
-          >
-            <span className="flex items-center gap-2 text-[12px] font-semibold text-white">
-              <PulseDot />
-              Your search
-            </span>
-            <span className="font-mono text-[10px] text-slate-500">Stage 0{step + 1} of 04</span>
-          </div>
-
-          {/* Tool nodes */}
-          {NODES.map((n) => {
-            const on = n.stage === step;
-            const done = n.stage < step;
-            return (
-              <div
-                key={n.label}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-lg border px-2.5 py-1.5 text-[11px] font-medium transition-[color,background-color,border-color,box-shadow] duration-500 ${
-                  on
-                    ? "border-accent/50 bg-accent/15 text-white shadow-[0_8px_24px_-8px_rgb(var(--accent-deep)/0.7)]"
-                    : done
-                      ? "border-accent/25 bg-[#0d1322] text-slate-200"
-                      : "border-white/[0.09] bg-[#0d1322] text-slate-500"
-                }`}
-                style={{ left: `${n.x}%`, top: `${n.y}%` }}
-              >
-                {n.label}
+          {/* Main panel */}
+          <div className="min-w-0 p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[13px] font-semibold text-white">Your job search</p>
+                <p className="text-[10.5px] text-slate-400">Frontend Engineer · 4 active roles</p>
               </div>
-            );
-          })}
-
-          {/* Current stage caption */}
-          <div className="absolute inset-x-0 bottom-4 flex justify-center">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={step}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.35, ease: EASE }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-[#0d1322]/95 px-3 py-1.5 text-[11px] text-slate-300"
-              >
-                <span className="font-mono text-accent-soft">0{step + 1}</span>
+              <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[10px] font-semibold text-accent-soft">
                 {STAGES[step]}
-              </motion.div>
-            </AnimatePresence>
+              </span>
+            </div>
+
+            {/* Stage tracker */}
+            <div className="mt-3.5 grid grid-cols-4 gap-1.5">
+              {STAGES.map((s, i) => (
+                <div key={s}>
+                  <div className="h-1 overflow-hidden rounded-full bg-white/[0.07]">
+                    <motion.div
+                      className="h-full rounded-full bg-gradient-to-r from-accent-deep to-accent"
+                      initial={false}
+                      animate={{ width: i <= step ? "100%" : "0%" }}
+                      transition={{ duration: 0.7, ease: EASE }}
+                    />
+                  </div>
+                  <p className={`mt-1.5 truncate text-[9.5px] font-medium transition-colors duration-500 ${i <= step ? "text-slate-200" : "text-slate-500"}`}>{s}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="relative mt-3.5 min-h-[178px]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.4, ease: EASE }}
+                  className="space-y-2.5"
+                >
+                  <StageContent step={step} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
-        </div>
+        </Window>
       </Stage>
     </div>
   );

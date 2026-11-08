@@ -282,6 +282,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
           {/* ── Hero ─────────────────────────────────────────────────────── */}
           <PageHero
             sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
+            breadcrumb={[{ label: "Home", href: "/" }, { label: props.breadcrumbName }]}
             badge={
               <span>
                 Last checked <time dateTime={checkedAt}>{rulesCheckedLabel()}</time>

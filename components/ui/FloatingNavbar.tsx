@@ -77,11 +77,11 @@ export function FloatingNavbar({
           {children}
         </motion.nav>
       </AnimatePresence>
-      {/* Spacer: navbar height (72px) + banner height (--banner-h, defaults to
-          0px). Skipped when the page draws its own full-height first section. */}
-      {!overlayContent && (
-        <div style={{ height: "calc(72px + var(--banner-h, 0px))" }} />
-      )}
+      {/* Spacer: the navbar's own height only. The promo banner reserves its
+          own height with a spacer in StickyBanner, so adding --banner-h here
+          too left an empty strip under the bar on every inner page. Skipped
+          when the page draws its own full-height first section. */}
+      {!overlayContent && <div style={{ height: "72px" }} />}
     </>
   );
 }

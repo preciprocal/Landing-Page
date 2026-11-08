@@ -19,6 +19,7 @@
  */
 
 import type { CSSProperties, ReactNode } from "react";
+import Link from "next/link";
 import FaqAccordion from "./FaqAccordion";
 import Chevron from "@/components/Chevron";
 
@@ -33,6 +34,52 @@ export const PAD = "px-6 sm:px-10 lg:px-16";
 export const INNER = "mx-auto w-full max-w-[1200px]";
 /** A comfortable reading measure for running prose (about 70 characters). */
 export const PROSE = "max-w-[68ch]";
+
+export type Crumb = { label: string; href?: string };
+
+/**
+ * The breadcrumb bar: a slim strip directly under the navbar, aligned to the
+ * content column, with a hairline beneath, so it reads as page navigation
+ * rather than text floating in the hero. The last item is the current page.
+ * Every content page uses this one component, so they all look the same.
+ */
+export function Breadcrumbs({ items }: { items: Crumb[] }) {
+  return (
+    <nav aria-label="Breadcrumb" className={`relative z-10 border-b border-white/[0.06] bg-white/[0.012] ${PAD}`}>
+      <ol className={`${INNER} flex min-w-0 items-center gap-0.5 overflow-x-auto py-2.5 text-[13px] [scrollbar-width:none]`}>
+        {items.map((c, i) => {
+          const last = i === items.length - 1;
+          return (
+            <li key={`${i}-${c.label}`} className={`flex items-center gap-0.5 ${last ? "min-w-0" : "shrink-0"}`}>
+              {i > 0 && (
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5 shrink-0 text-slate-600" fill="none">
+                  <path d="M6 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              )}
+              {c.href && !last ? (
+                <Link
+                  href={c.href}
+                  className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-1 text-slate-400 transition-colors hover:bg-white/[0.04] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                >
+                  {i === 0 && c.href === "/" && (
+                    <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5" fill="none">
+                      <path d="M2.5 7.2L8 2.8l5.5 4.4V13a.5.5 0 01-.5.5H9.5V10h-3v3.5H3a.5.5 0 01-.5-.5V7.2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                  {c.label}
+                </Link>
+              ) : (
+                <span aria-current="page" className="truncate px-1.5 py-1 font-medium text-slate-200">
+                  {c.label}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
 /** Section rhythm: top rule and vertical padding. */
 export const SECTION = "border-t border-white/[0.05] py-20";
 
@@ -48,7 +95,7 @@ export const CARD_SOLID = "rounded-2xl border border-white/[0.07] bg-[#070b16]";
 
 /** Buttons. The primary stays brand indigo on every page, whatever the accent. */
 export const BTN_PRIMARY =
-  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-3.5 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]";
+  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110";
 export const BTN_SECONDARY =
   "group inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/[0.07]";
 
@@ -60,14 +107,14 @@ export type Accent = "indigo" | "emerald" | "sky" | "amber" | "rose" | "violet" 
 /** Gradient text in the page accent. */
 export const ACCENT_TEXT = "bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent";
 
-/** A hairline that draws in under a hovered card; put it inside a `group relative` element. */
-export function HoverRule({ className = "inset-x-6" }: { className?: string }) {
-  return (
-    <span
-      aria-hidden="true"
-      className={`absolute bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:scale-x-100 ${className}`}
-    />
-  );
+/**
+ * Formerly a gradient hairline that swept in under a hovered card. Retired:
+ * hover states stay quiet (a slightly lighter surface, a brighter border),
+ * with no glows or sweeps. Renders nothing; kept so existing callers compile.
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function HoverRule(_props: { className?: string }) {
+  return null;
 }
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -180,7 +227,8 @@ export function PageHero({
 }: {
   badge?: ReactNode;
   badgeTone?: "accent" | "emerald" | "indigo" | "amber";
-  breadcrumb?: ReactNode;
+  /** The trail to this page; rendered as the breadcrumb bar above the hero. */
+  breadcrumb?: Crumb[];
   title: ReactNode;
   accent?: ReactNode;
   subhead?: ReactNode;
@@ -226,10 +274,11 @@ export function PageHero({
   );
 
   return (
-    <section {...sectionProps} className={`relative overflow-hidden pb-14 pt-24 sm:pt-28 ${PAD}`}>
+    <>
+    {breadcrumb && <Breadcrumbs items={breadcrumb} />}
+    <section {...sectionProps} className={`relative overflow-hidden pb-14 ${breadcrumb ? "pt-14 sm:pt-16" : "pt-24 sm:pt-28"} ${PAD}`}>
       <HeroBackdrop />
       <div className={`relative ${INNER}`}>
-        {breadcrumb && <div className="mb-6 animate-fade-up text-[12px] text-slate-500 opacity-0">{breadcrumb}</div>}
         {visual ? (
           <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] xl:gap-20">
             <div>
@@ -261,6 +310,7 @@ export function PageHero({
         )}
       </div>
     </section>
+    </>
   );
 }
 

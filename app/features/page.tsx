@@ -221,18 +221,19 @@ function ToolCard({ feature, index, wide }: { feature: Feature; index: number; w
         <span className="font-mono text-[11px] text-accent-soft/70">{pad2(index)}</span>
         <span
           aria-hidden="true"
-          className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors duration-300 group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent-soft"
+          className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors duration-300 group-hover:border-white/25 group-hover:text-accent-soft"
         >
           <Chevron />
         </span>
       </div>
 
       <div className={wide ? "mt-5 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10" : "mt-5 flex flex-1 flex-col"}>
-        <p className={`border-l-2 border-accent/40 pl-3 italic leading-snug text-slate-400 ${wide ? "text-[15px] lg:text-base" : "text-[14px]"}`}>
-          {feature.pain}
-        </p>
+        <div className="self-start rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3.5">
+          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-500">The problem</p>
+          <p className={`mt-1.5 leading-snug text-slate-200 ${wide ? "text-[15px] lg:text-base" : "text-[14.5px]"}`}>{feature.pain}</p>
+        </div>
         <div className={wide ? "mt-5 lg:mt-0" : "mt-5 flex flex-1 flex-col"}>
-          <h3 className={`font-semibold leading-tight text-white transition-colors group-hover:text-accent-soft ${wide ? "text-xl" : "text-lg"}`}>
+          <h3 className={`font-semibold leading-tight text-white ${wide ? "text-xl" : "text-lg"}`}>
             {feature.name}
           </h3>
           <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{feature.promise}</p>
@@ -265,19 +266,7 @@ export default function FeaturesPage() {
         {/* ── Hero ── */}
         <PageHero
           sectionProps={{ "data-section": "features-overview", "data-section-name": "Features overview", "aria-label": "Overview" }}
-          breadcrumb={
-            <nav aria-label="Breadcrumb">
-              <ol className="flex items-center gap-2">
-                <li>
-                  <Link href="/" className="transition-colors hover:text-white">
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">›</li>
-                <li className="text-slate-300">Features</li>
-              </ol>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Features" }]}
           badge="Everything included"
           title={
             <span className="block lg:text-[3.35rem] lg:leading-[1.06]">

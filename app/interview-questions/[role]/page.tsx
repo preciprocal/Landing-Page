@@ -69,15 +69,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
 
       <main>
         <PageHero
-          breadcrumb={
-            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-sm text-slate-500">
-              <Link href="/" className={`rounded transition-colors hover:text-white ${FOCUS}`}>Home</Link>
-              <span aria-hidden="true">›</span>
-              <Link href="/interview-questions" className={`rounded transition-colors hover:text-white ${FOCUS}`}>Interview Questions</Link>
-              <span aria-hidden="true">›</span>
-              <span className="capitalize text-slate-300">{role.replace(/-/g, " ")}</span>
-            </nav>
-          }
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Interview Questions", href: "/interview-questions" }, { label: role.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()) }]}
           title={meta.h1}
           subhead={<p>{meta.description}</p>}
           aside={

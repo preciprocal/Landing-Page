@@ -1,41 +1,129 @@
 "use client";
 
 /**
- * Hero illustration for /for/new-grads: a path from first resume to first
- * offer. Four milestone nodes light up in turn along a track, the panel below
- * describes the current milestone, and an offer card lands at the end.
+ * Hero illustration for /for/new-grads: a first job search inside the
+ * product. Four milestones (Resume, Applied, Interview, Offer) light up along
+ * a track, and the panel below shows what that milestone looks like in the
+ * app: a resume score, the applications sent, the interview booked, and
+ * finally the offer.
  * Steps: 0 resume, 1 applied, 2 interview, 3 offer (finished state).
+ * Names, companies, scores and dates are fictional examples.
  */
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, FileText, MessageSquare, Send, Sparkles } from "lucide-react";
-import { Chip, EASE, Line, Stage, useLoop } from "./Frame";
+import type { ReactNode } from "react";
+import { Chip, EASE, Stage, Window, useLoop } from "./Frame";
 
 const MILESTONES = [
-  { label: "Resume", Icon: FileText, detail: "First resume, one page", note: "Projects and coursework up top" },
-  { label: "Applied", Icon: Send, detail: "Applications out", note: "Tailored to each posting" },
-  { label: "Interview", Icon: MessageSquare, detail: "First interview booked", note: "Practised out loud" },
-  { label: "Offer", Icon: Sparkles, detail: "First offer", note: "Associate Analyst at Northwind" },
+  { label: "Resume", Icon: FileText },
+  { label: "Applied", Icon: Send },
+  { label: "Interview", Icon: MessageSquare },
+  { label: "Offer", Icon: Sparkles },
 ];
 
+const R = 18;
+const C = 2 * Math.PI * R;
+
+function Panel({ label, aside, children }: { label: string; aside?: string; children: ReactNode }) {
+  return (
+    <div className="rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5">
+      <div className="flex items-center justify-between">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-500">{label}</p>
+        {aside && <span className="text-[10.5px] font-medium text-slate-400">{aside}</span>}
+      </div>
+      <div className="mt-2.5">{children}</div>
+    </div>
+  );
+}
+
+function MilestoneContent({ step }: { step: number }) {
+  if (step === 0)
+    return (
+      <Panel label="Resume score" aside="One page">
+        <div className="flex items-center gap-3.5">
+          <div className="relative h-11 w-11 shrink-0">
+            <svg viewBox="0 0 44 44" className="h-full w-full -rotate-90">
+              <circle cx="22" cy="22" r={R} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
+              <motion.circle
+                cx="22" cy="22" r={R} fill="none" stroke="rgb(var(--accent))" strokeWidth="4" strokeLinecap="round"
+                strokeDasharray={C} initial={{ strokeDashoffset: C }} animate={{ strokeDashoffset: C * 0.18 }}
+                transition={{ duration: 1, ease: EASE }}
+              />
+            </svg>
+            <span className="absolute inset-0 grid place-items-center text-[12.5px] font-bold text-white">82</span>
+          </div>
+          <div className="min-w-0">
+            <p className="text-[12.5px] font-semibold text-white">Projects moved above coursework</p>
+            <p className="text-[11px] text-slate-400">Capstone and internship now lead the page</p>
+          </div>
+        </div>
+      </Panel>
+    );
+  if (step === 1)
+    return (
+      <Panel label="Applications" aside="3 sent this week">
+        <ul className="space-y-1.5">
+          {[
+            { role: "Associate Analyst", co: "Northwind" },
+            { role: "Junior Data Analyst", co: "Lumen" },
+            { role: "Operations Associate", co: "Halcyon" },
+          ].map((a) => (
+            <li key={a.role} className="flex items-center justify-between gap-2">
+              <span className="truncate text-[12px] text-slate-200">
+                {a.role} <span className="text-slate-400">· {a.co}</span>
+              </span>
+              <span className="shrink-0 rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-semibold text-accent-soft">Applied</span>
+            </li>
+          ))}
+        </ul>
+      </Panel>
+    );
+  if (step === 2)
+    return (
+      <Panel label="Interview booked" aside="Tue, 10:00 AM">
+        <p className="text-[12.5px] font-semibold text-white">Phone screen · Associate Analyst, Northwind</p>
+        <div className="mt-2 flex items-center gap-2 rounded-lg bg-white/[0.035] px-2.5 py-2">
+          <MessageSquare className="h-3.5 w-3.5 shrink-0 text-accent" />
+          <span className="truncate text-[11.5px] text-slate-300">Practised: &ldquo;Walk me through your capstone.&rdquo;</span>
+        </div>
+      </Panel>
+    );
+  return (
+    <Panel label="Offer letter" aside="Received today">
+      <div className="flex items-center justify-between gap-3">
+        <div className="min-w-0">
+          <p className="text-[13px] font-semibold text-white">Associate Analyst</p>
+          <p className="text-[11px] text-slate-400">Northwind · Full-time</p>
+        </div>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <span className="rounded-md border border-white/10 px-2.5 py-1 text-[10.5px] font-medium text-slate-300">Review</span>
+          <span className="rounded-md bg-accent px-2.5 py-1 text-[10.5px] font-semibold text-[#050810]">Accept</span>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
 export default function NewGradsVisual() {
-  const { ref, step } = useLoop(MILESTONES.length, 1700);
-  const current = MILESTONES[step];
+  const { ref, step } = useLoop(MILESTONES.length, 2000);
 
   return (
     <div ref={ref}>
       <Stage>
-        <div className="relative rounded-2xl border border-white/[0.09] bg-[#0a0f1c]/90 p-6 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.7)] backdrop-blur">
-          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+        <Window title="app.preciprocal.com/first-job" bodyClassName="p-5">
           <div className="flex items-center justify-between">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">Your first job search</p>
-            <p className="font-mono text-[11px] text-accent-soft">
-              {step + 1}/{MILESTONES.length}
-            </p>
+            <div>
+              <p className="text-[13px] font-semibold text-white">Your first job search</p>
+              <p className="text-[11px] text-slate-400">Jordan Lee · Class of 2026</p>
+            </div>
+            <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 text-[10.5px] font-semibold text-accent-soft">
+              Step {step + 1} of {MILESTONES.length}
+            </span>
           </div>
 
           {/* Track */}
-          <div className="relative mt-7 px-4">
+          <div className="relative mt-5 px-4">
             <div className="absolute left-[34px] right-[34px] top-[17px] h-[2px] rounded-full bg-white/[0.07]" />
             <motion.div
               className="absolute left-[34px] right-[34px] top-[17px] h-[2px] origin-left rounded-full bg-gradient-to-r from-accent-deep to-accent"
@@ -58,12 +146,12 @@ export default function NewGradsVisual() {
                           ? "border-accent bg-accent/20 text-accent-soft shadow-[0_0_24px_-4px_rgb(var(--accent)/0.7)]"
                           : done
                             ? "border-accent/50 bg-accent/10 text-accent"
-                            : "border-white/10 bg-[#0d1322] text-slate-600"
+                            : "border-white/15 bg-[#0d1322] text-slate-400"
                       }`}
                     >
                       {done ? <Check className="h-4 w-4" /> : <Icon className="h-4 w-4" />}
                     </motion.div>
-                    <span className={`mt-2 text-[11px] font-medium transition-colors duration-500 ${i <= step ? "text-slate-200" : "text-slate-600"}`}>
+                    <span className={`mt-2 text-[11px] font-medium transition-colors duration-500 ${i <= step ? "text-slate-200" : "text-slate-400"}`}>
                       {label}
                     </span>
                   </div>
@@ -72,54 +160,33 @@ export default function NewGradsVisual() {
             </div>
           </div>
 
-          {/* Current milestone */}
-          <div className="mt-7 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+          {/* Current milestone, as it looks in the app */}
+          <div className="relative mt-5 min-h-[112px]">
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={step}
-                initial={{ opacity: 0, y: 6 }}
+                initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.35, ease: EASE }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.4, ease: EASE }}
               >
-                <p className="text-sm font-semibold text-white">{current.detail}</p>
-                <p className="mt-1 text-[11px] text-slate-400">{current.note}</p>
+                <MilestoneContent step={step} />
               </motion.div>
             </AnimatePresence>
-            <div className="mt-4 space-y-2">
-              <Line w="w-11/12" />
-              <Line w="w-3/4" />
-            </div>
           </div>
-        </div>
+        </Window>
 
-        {/* The offer, at the end of the path */}
-        <AnimatePresence>
-          {step === MILESTONES.length - 1 && (
-            <motion.div
-              key="offer"
-              initial={{ opacity: 0, y: 14, rotate: 0 }}
-              animate={{ opacity: 1, y: 0, rotate: -3 }}
-              exit={{ opacity: 0, y: 14 }}
-              transition={{ duration: 0.55, ease: EASE }}
-              className="absolute -bottom-10 -right-6 w-52 rounded-xl border border-accent/30 bg-[#0d1322]/95 p-3.5 shadow-[0_24px_60px_-15px_rgba(0,0,0,0.85)] backdrop-blur"
-            >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-accent-soft">Offer letter</p>
-              <p className="mt-1.5 text-[12px] font-semibold text-white">Associate Analyst</p>
-              <p className="text-[10px] text-slate-400">Northwind · Full-time</p>
-              <div className="mt-3 flex items-center gap-2">
-                <span className="rounded-md bg-accent/15 px-2 py-1 text-[10px] font-semibold text-accent-soft">Accept</span>
-                <span className="rounded-md border border-white/10 px-2 py-1 text-[10px] text-slate-400">Review</span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <Chip show={step === 1} className="-top-4 left-8">
+        <Chip show={step === 1} className="-bottom-4 left-6">
           <span className="grid h-5 w-5 place-items-center rounded-full bg-accent/20 text-accent">
             <Send className="h-3 w-3" />
           </span>
           Application sent
+        </Chip>
+        <Chip show={step === 3} className="-bottom-4 left-6">
+          <span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-400/15 text-emerald-300">
+            <Sparkles className="h-3 w-3" />
+          </span>
+          First offer
         </Chip>
       </Stage>
     </div>

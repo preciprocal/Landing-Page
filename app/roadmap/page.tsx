@@ -197,6 +197,7 @@ export default function RoadmapPage() {
       <main className="relative overflow-hidden">
         {/* Hero */}
         <PageHero
+          breadcrumb={[{ label: "Home", href: "/" }, { label: "Roadmap" }]}
           badge={
             <>
               <Rocket aria-hidden="true" className="h-3 w-3" />
