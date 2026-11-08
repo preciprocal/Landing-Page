@@ -24,8 +24,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import GuideToc from "@/components/page/GuideToc";
-import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, FaqList, HoverRule, CtaPanel, pad2, type Accent } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, FaqList, CtaPanel, type Accent } from "@/components/page/Layout";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
@@ -200,115 +199,61 @@ export default function ToolPage({
             </section>
           )}
 
-          {/* ── Feature grid ───────────────────────────────────────────── */}
-          <section data-section="features" data-section-name="Features" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
+          {/* ── How it works: the flow comes first, as three connected stages ── */}
+          <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 border-t border-white/[0.05] py-24 ${PAD}`}>
             <div className={INNER}>
-              <SectionHead eyebrow="What you get" title={featuresTitle} subtitle={featuresSubtitle} />
-              <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
+              <div className="mx-auto max-w-2xl text-center">
+                <Eyebrow>How it works</Eyebrow>
+                <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">
+                  {COUNT_WORD[steps.length] ?? steps.length} steps. <span className={ACCENT_TEXT}>Zero guesswork.</span>
+                </h2>
+              </div>
+              <RevealGroup as="ol" className="relative mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-[16.7%] right-[16.7%] top-6 hidden h-px bg-gradient-to-r from-accent/50 via-white/[0.12] to-accent/50 md:block"
+                />
+                {steps.map((step, i) => (
+                  <RevealItem as="li" key={step.step} className="relative text-center">
+                    <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft">
+                      {i + 1}
+                    </span>
+                    <h3 className="mt-6 text-lg font-semibold text-white">{step.title}</h3>
+                    <p className="mx-auto mt-2 max-w-xs text-[15px] leading-relaxed text-slate-400">{step.body}</p>
+                  </RevealItem>
+                ))}
+              </RevealGroup>
+            </div>
+          </section>
+
+          {/* ── What you get: an open list, one line each ── */}
+          <section data-section="features" data-section-name="Features" className={`border-t border-white/[0.05] py-24 ${PAD}`}>
+            <div className={INNER}>
+              <div className="mx-auto max-w-2xl text-center">
+                <Eyebrow>What you get</Eyebrow>
+                <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{featuresTitle}</h2>
+                <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{featuresSubtitle}</p>
+              </div>
+              <RevealGroup className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((item) => (
-                  <RevealItem key={item.label} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
-                    <span aria-hidden="true" className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/25 bg-accent/[0.08] text-accent-soft transition-colors group-hover:border-white/25 group-hover:text-accent">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+                  <RevealItem key={item.label} className="flex gap-4">
+                    <span aria-hidden="true" className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/[0.12] text-accent-soft">
+                      <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                        <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
-                    <p className="mt-5 text-[16px] font-semibold text-white">{item.label}</p>
-                    <p className="mt-2 text-[14.5px] leading-relaxed text-slate-400">{item.description}</p>
-                    <HoverRule className="inset-x-7" />
+                    <div>
+                      <p className="text-[16px] font-semibold text-white">{item.label}</p>
+                      <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">{item.description}</p>
+                    </div>
                   </RevealItem>
                 ))}
               </RevealGroup>
-            </div>
-          </section>
-
-          {/* ── How it works ───────────────────────────────────────────── */}
-          <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 border-t border-white/[0.05] py-20 ${PAD}`}>
-            <div className={INNER}>
-              <SectionHead eyebrow="How it works" title={`${COUNT_WORD[steps.length] ?? steps.length} steps.`} accent="Zero guesswork." />
-              <RevealGroup as="ol" className="grid gap-10 sm:grid-cols-3 sm:gap-8">
-                {steps.map((step, i) => (
-                  <RevealItem as="li" key={step.step} className="group relative border-t border-white/[0.08] pt-6">
-                    <span
-                      aria-hidden="true"
-                      className="absolute -top-px left-0 h-px w-16 bg-gradient-to-r from-accent to-accent-2 transition-[width] duration-700 group-hover:w-full"
-                    />
-                    <p className="font-mono text-[12px] text-slate-500">Step {pad2(i + 1)}</p>
-                    <h3 className="mt-3 text-lg font-semibold text-white">{step.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.body}</p>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
-            </div>
-          </section>
-
-          {/* ── SEO content body: contents and CTA on the left, the guide on the right ── */}
-          <section data-section="content" data-section-name="Guide content" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
-            {/* Contents and the sign-up card in a sticky column on the left; the
-                article fills the right. On phones the card follows the article. */}
-            <div className={`${INNER} grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-              <article id="guide-article" className="min-w-0 w-full">
-                <Eyebrow>Guide</Eyebrow>
-                <h2 className="mb-8 text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{bodyTitle}</h2>
-                {/* Each page writes its guide as paragraphs plus boxed blocks (a div
-                    holding an h3 and a list, or an h3 and paragraphs). These rules
-                    style that pattern in one place: a lead paragraph, and each box
-                    as a key points panel with a header strip and the points in a
-                    ruled grid. */}
-                <div
-                  className={[
-                    "space-y-6 text-[17px] leading-[1.8] text-slate-400",
-                    "[&>p:first-of-type]:text-[20px] [&>p:first-of-type]:leading-[1.65] [&>p:first-of-type]:text-slate-200",
-                    "[&_strong]:font-semibold [&_strong]:text-white",
-                    "[&>div]:!my-12 [&>div]:overflow-hidden [&>div]:!rounded-2xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#070b16] [&>div]:!p-0",
-                    "[&>div>h3]:!mb-0 [&>div>h3]:flex [&>div>h3]:items-center [&>div>h3]:gap-3 [&>div>h3]:border-b [&>div>h3]:border-white/[0.06] [&>div>h3]:bg-white/[0.025] [&>div>h3]:px-6 [&>div>h3]:py-4 [&>div>h3]:text-[15px] [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
-                    "[&>div>h3]:before:h-2 [&>div>h3]:before:w-2 [&>div>h3]:before:shrink-0 [&>div>h3]:before:rounded-full [&>div>h3]:before:bg-accent [&>div>h3]:before:content-['']",
-                    "[&>div>ul]:grid [&>div>ol]:grid [&>div>ul]:!space-y-0 [&>div>ol]:!space-y-0 [&>div>ul]:gap-px [&>div>ol]:gap-px [&>div>ul]:bg-white/[0.06] [&>div>ol]:bg-white/[0.06] md:[&>div>ul]:grid-cols-2 md:[&>div>ol]:grid-cols-2",
-                    "md:[&>div>ul>li:last-child:nth-child(odd)]:col-span-2 md:[&>div>ol>li:last-child:nth-child(odd)]:col-span-2",
-                    "[&>div_li]:bg-[#070b16] [&>div_li]:p-5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
-                    "[&>div>p]:px-6 [&>div>h3+p]:pt-5 [&>div>p:last-child]:pb-6",
-                  ].join(" ")}
-                >
-                  {body}
-                </div>
-                <nav data-section="related-links" data-section-name="Related links" aria-label="Related guides" className="mt-16 border-t border-white/[0.06] pt-8">
-                  <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
-                  <ul className="grid gap-x-8 sm:grid-cols-2">
-                    {relatedLinks.map((link) => (
-                      <li key={link.label} className="border-b border-white/[0.05]">
-                        <Link
-                          href={link.href}
-                          className="group flex items-center justify-between py-3 text-sm text-slate-400 transition-colors hover:text-white"
-                        >
-                          {link.label}
-                          <Chevron className="text-slate-600 group-hover:text-accent" />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </article>
-
-              <aside className="lg:sticky lg:top-28 lg:order-first lg:self-start">
-                <div className="hidden lg:block">
-                  <GuideToc articleId="guide-article" title="Overview" />
-                </div>
-                <div className="relative overflow-hidden rounded-2xl border border-accent/20 lg:mt-10 bg-gradient-to-b from-accent-deep/[0.09] to-transparent p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free account</p>
-                  <p className="mt-3 text-lg font-semibold leading-snug text-white">{bottomTitle}</p>
-                  <a
-                    href={signUpUrl}
-                    className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-sm font-bold text-white transition-all hover:brightness-110"
-                  >
-                    {ctaLabel} <Chevron />
-                  </a>
-                  <p className="mt-3 text-center text-[11px] text-slate-500">{ctaMicrocopy}</p>
-                </div>
-              </aside>
             </div>
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section data-section="faq" data-section-name="FAQ" className={`border-t border-white/[0.05] py-20 ${PAD}`}>
+          <section data-section="faq" data-section-name="FAQ" className={`border-t border-white/[0.05] py-24 ${PAD}`}>
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
@@ -323,7 +268,7 @@ export default function ToolPage({
                 }),
               }}
             />
-            <div className={`${INNER} grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
+            <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>FAQ</Eyebrow>
                 <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{faqTitle}</h2>
@@ -337,6 +282,66 @@ export default function ToolPage({
               </div>
 
               <FaqList items={faqs} />
+            </div>
+          </section>
+
+          {/* ── The full guide, folded away ─────────────────────────────────
+              The long-form guide is what these pages rank on, so it stays in
+              the HTML, but readers who came for the tool should not have to
+              scroll through it. It sits closed in a <details> panel; search
+              engines index content in collapsed panels. */}
+          <section data-section="content" data-section-name="Guide content" className={`border-t border-white/[0.05] py-16 ${PAD}`}>
+            <div className={INNER}>
+              <details className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] open:border-white/[0.12]">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] sm:p-8 [&::-webkit-details-marker]:hidden">
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">The full guide</p>
+                    <h2 className="mt-2 text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl">{bodyTitle}</h2>
+                  </div>
+                  <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/[0.12] text-slate-300 transition-transform duration-300 group-open:rotate-180">
+                    <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </summary>
+                <article className="border-t border-white/[0.06] px-6 pb-12 pt-10 sm:px-8">
+                  {/* Each page writes its guide as paragraphs plus boxed blocks (a div
+                      holding an h3 and a list, or an h3 and paragraphs). These rules
+                      style that pattern in one place: a lead paragraph, and each box
+                      as a key points panel with a header strip and the points in a
+                      ruled grid. */}
+                  <div
+                    className={[
+                      "mx-auto max-w-[860px] space-y-6 text-[17px] leading-[1.8] text-slate-400",
+                      "[&>p:first-of-type]:text-[19px] [&>p:first-of-type]:leading-[1.65] [&>p:first-of-type]:text-slate-200",
+                      "[&_strong]:font-semibold [&_strong]:text-white",
+                      "[&>div]:!my-10 [&>div]:overflow-hidden [&>div]:!rounded-2xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#050810] [&>div]:!p-0",
+                      "[&>div>h3]:!mb-0 [&>div>h3]:flex [&>div>h3]:items-center [&>div>h3]:gap-3 [&>div>h3]:border-b [&>div>h3]:border-white/[0.06] [&>div>h3]:bg-white/[0.025] [&>div>h3]:px-6 [&>div>h3]:py-4 [&>div>h3]:text-[15px] [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
+                      "[&>div>h3]:before:h-2 [&>div>h3]:before:w-2 [&>div>h3]:before:shrink-0 [&>div>h3]:before:rounded-full [&>div>h3]:before:bg-accent [&>div>h3]:before:content-['']",
+                      "[&>div>ul]:grid [&>div>ol]:grid [&>div>ul]:!space-y-0 [&>div>ol]:!space-y-0 [&>div>ul]:gap-px [&>div>ol]:gap-px [&>div>ul]:bg-white/[0.06] [&>div>ol]:bg-white/[0.06] md:[&>div>ul]:grid-cols-2 md:[&>div>ol]:grid-cols-2",
+                      "md:[&>div>ul>li:last-child:nth-child(odd)]:col-span-2 md:[&>div>ol>li:last-child:nth-child(odd)]:col-span-2",
+                      "[&>div_li]:bg-[#050810] [&>div_li]:p-5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
+                      "[&>div>p]:px-6 [&>div>h3+p]:pt-5 [&>div>p:last-child]:pb-6",
+                    ].join(" ")}
+                  >
+                    {body}
+                  </div>
+                </article>
+              </details>
+
+              <nav data-section="related-links" data-section-name="Related links" aria-label="Related guides" className="mt-10">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+                <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+                  {relatedLinks.map((link) => (
+                    <li key={link.label} className="border-b border-white/[0.05]">
+                      <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                        {link.label}
+                        <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           </section>
 

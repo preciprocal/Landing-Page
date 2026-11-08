@@ -26,12 +26,12 @@ import Chevron from "@/components/Chevron";
 /** The gutter the navbar and footer use, so every edge lines up. */
 export const PAD = "px-6 sm:px-10 lg:px-16";
 /**
- * The content column: centred and capped at 1200px, the same measure the
- * homepage sections sit in. Within it, sidebars and grids still fill the
+ * The content column: centred and capped at 1400px, wide enough to use a
+ * large screen while keeping lines and grids in proportion. Within it, sidebars and grids still fill the
  * width; only on wide screens does the page gain margins instead of
  * stretching text across the whole monitor.
  */
-export const INNER = "mx-auto w-full max-w-[1200px]";
+export const INNER = "mx-auto w-full max-w-[1400px]";
 /** A comfortable reading measure for running prose (about 70 characters). */
 export const PROSE = "max-w-[68ch]";
 

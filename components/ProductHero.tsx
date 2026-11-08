@@ -93,7 +93,7 @@ export default function ProductHero({ chapter, breadcrumb, badge, title, accent,
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#050810]" />
         </div>
 
-        <div className="relative mx-auto w-full max-w-[1200px]">
+        <div className="relative mx-auto w-full max-w-[1400px]">
           {/* Headline block */}
           <div className="mx-auto max-w-5xl animate-fade-up text-center opacity-0">
             {badge && (
