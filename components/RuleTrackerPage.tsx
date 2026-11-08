@@ -30,7 +30,6 @@ import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import Chevron from "@/components/Chevron";
 import { BTN_PRIMARY, CtaPanel, Eyebrow, FaqList, INNER, PAD, PageHero, SECTION, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import TimelineRail from "@/components/page/visuals/TimelineRail";
 
 export type RuleStatus = "in-effect" | "blocked" | "proposed" | "unchanged";
 
@@ -142,6 +141,89 @@ export function rulesCheckedAt(): string {
 
 export function rulesCheckedLabel(): string {
   return LONG_DATE.format(new Date(`${rulesCheckedAt()}T00:00:00Z`));
+}
+
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+/**
+ * Reads the sortable start of a free-text timeline date ("March 4 to 19, 2026",
+ * "August 2026", "March 2027 (expected)") as YYYY-MM-DD, or null when it names
+ * no year ("Final rule + 60 days"). Only used to place the Today marker.
+ */
+function dateKey(text: string): string | null {
+  const year = text.match(/\b(20\d{2})\b/)?.[1];
+  if (!year) return null;
+  const lower = text.toLowerCase();
+  const m = MONTHS.findIndex((name) => lower.includes(name));
+  const day = m >= 0 ? lower.slice(lower.indexOf(MONTHS[m]) + MONTHS[m].length).match(/^\s+(\d{1,2})\b/)?.[1] : undefined;
+  return `${year}-${String(m >= 0 ? m + 1 : 1).padStart(2, "0")}-${String(day ?? 1).padStart(2, "0")}`;
+}
+
+/**
+ * Key dates, grouped by year under a heading, with a Today marker at the
+ * date the page was last checked. Events up to that date have a filled dot;
+ * later or undated ones have a hollow dot and an Upcoming tag. The year
+ * heading carries the year, so each row shows the date without it.
+ */
+function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; event: string }[]; checkedAt: string; checkedLabel: string }) {
+  type Row = { date: string; event: string; upcoming: boolean };
+  const groups: { label: string; rows: Row[] }[] = [];
+  for (const it of items) {
+    const key = dateKey(it.date);
+    const label = key ? key.slice(0, 4) : "When finalised";
+    const shown = key ? it.date.replace(`, ${label}`, "").replace(` ${label}`, "").trim() : it.date;
+    let g = groups[groups.length - 1];
+    if (!g || g.label !== label) groups.push((g = { label, rows: [] }));
+    g.rows.push({ date: shown, event: it.event, upcoming: !key || key > checkedAt });
+  }
+  const firstUpcoming = groups.flatMap((g) => g.rows).find((r) => r.upcoming);
+
+  return (
+    <div className="min-w-0 space-y-10">
+      {groups.map((g) => (
+        <section key={g.label} aria-label={g.label}>
+          <div className="mb-4 flex items-center gap-4">
+            <h3 className="font-mono text-sm font-semibold tracking-wider text-white">{g.label}</h3>
+            <span aria-hidden="true" className="h-px flex-1 bg-white/[0.07]" />
+            <span className="text-[11px] text-slate-500">
+              {g.rows.length} {g.rows.length === 1 ? "date" : "dates"}
+            </span>
+          </div>
+          <RevealGroup as="ol" className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+            {g.rows.map((r) => (
+              <RevealItem as="li" key={r.date + r.event} className="border-t border-white/[0.05] first:border-t-0">
+                {r === firstUpcoming && (
+                  <div className="flex items-center gap-3 border-b border-accent/20 bg-accent/[0.06] px-5 py-2.5 sm:px-6">
+                    <span aria-hidden="true" className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50 motion-reduce:animate-none" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                    </span>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-soft">Today</span>
+                    <span className="text-[12px] text-slate-400">as of {checkedLabel}</span>
+                  </div>
+                )}
+                <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 gap-y-1 px-5 py-4 sm:grid-cols-[auto_200px_minmax(0,1fr)_auto] sm:gap-x-6 sm:px-6">
+                  <span
+                    aria-hidden="true"
+                    className={`mt-1.5 h-2.5 w-2.5 rounded-full ${r.upcoming ? "border-2 border-accent/70" : "bg-accent"}`}
+                  />
+                  <p className={`text-[14px] font-semibold ${r.upcoming ? "text-slate-300" : "text-white"}`}>{r.date}</p>
+                  <p className="col-start-2 text-[14px] leading-relaxed text-slate-400 sm:col-start-auto">{r.event}</p>
+                  {r.upcoming ? (
+                    <span className="col-start-2 justify-self-start rounded-md border border-accent/25 bg-accent/[0.08] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent-soft sm:col-start-auto sm:mt-0.5">
+                      Upcoming
+                    </span>
+                  ) : (
+                    <span className="sr-only">Happened</span>
+                  )}
+                </div>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </section>
+      ))}
+    </div>
+  );
 }
 
 /** Prose styles for the per-page body, which arrives as plain h2, p, ul and table markup. */
@@ -321,25 +403,18 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>Timeline</Eyebrow>
                 <h2 className={H2}>Key dates</h2>
+                <ul className="mt-6 space-y-2.5 text-[13px] text-slate-400">
+                  <li className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-accent" />
+                    Happened
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full border-2 border-accent/70" />
+                    Upcoming or expected
+                  </li>
+                </ul>
               </div>
-              <TimelineRail className="min-w-0 sm:ml-2">
-              <RevealGroup as="ol" className="relative min-w-0">
-                {props.timeline.map((t) => (
-                  <RevealItem
-                    as="li"
-                    key={t.date + t.event}
-                    className="relative grid grid-cols-1 gap-1 pb-8 pl-6 last:pb-0 sm:grid-cols-[180px_minmax(0,1fr)] sm:gap-8 sm:pl-8"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-[#050810]"
-                    />
-                    <p className="font-mono text-[12px] font-semibold text-accent-soft sm:pt-px">{t.date}</p>
-                    <p className="text-sm leading-relaxed text-slate-400">{t.event}</p>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
-              </TimelineRail>
+              <KeyDates items={props.timeline} checkedAt={checkedAt} checkedLabel={rulesCheckedLabel()} />
             </div>
           </section>
 
