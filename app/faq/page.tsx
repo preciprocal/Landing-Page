@@ -6,9 +6,9 @@
  * Full FAQ page, all categories, search, structured data.
  * The landing page only shows 6 FAQs; this page shows all of them.
  *
- * Layout (accent emerald): PageHero with the search on its right, then two
- * columns on wide screens: a sticky category index on the left and the
- * questions, grouped by category, on the right. Answers use native
+ * Layout (accent emerald): PageHero with the search on its right, then the
+ * category filter as one row of pills, then each category as a row: its name
+ * on the left on wide screens, its questions on the right. Answers use native
  * <details>, so every answer is in the server-rendered HTML.
  */
 
@@ -51,10 +51,10 @@ function CategoryButton({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`flex min-h-10 items-center justify-between gap-3 rounded-full border px-4 text-[13px] font-medium transition-colors lg:-ml-px lg:w-full lg:rounded-none lg:border-0 lg:border-l-2 lg:py-1.5 lg:pl-4 lg:pr-0 lg:text-left ${
+      className={`flex min-h-10 items-center justify-between gap-3 rounded-full border px-4 text-[13px] font-medium transition-colors ${
         active
-          ? "border-accent/40 bg-accent/10 text-white lg:border-accent lg:bg-transparent"
-          : "border-white/[0.08] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white lg:border-transparent lg:bg-transparent"
+          ? "border-accent/40 bg-accent/10 text-white"
+          : "border-white/[0.08] bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-white"
       }`}
     >
       {label}
@@ -137,56 +137,50 @@ export default function FAQPage() {
         />
 
         <section className={`${SECTION} ${PAD} !pt-12 sm:!pt-16`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)] xl:gap-20`}>
-            {/* Category index */}
-            <aside className="lg:sticky lg:top-28 lg:self-start">
-              <nav aria-label="FAQ categories">
-                <p className="mb-3 hidden text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 lg:block">
-                  Categories
-                </p>
-                <ul className="flex flex-wrap gap-2 lg:block lg:space-y-0.5 lg:border-l lg:border-white/[0.07]">
-                  <li>
+          <div className={INNER}>
+            {/* Category filter: one row of pills above the questions */}
+            <nav aria-label="FAQ categories" className="flex flex-col items-center gap-4">
+              <ul className="flex flex-wrap justify-center gap-2">
+                <li>
+                  <CategoryButton
+                    active={activeCategory === "all"}
+                    onClick={() => handleCategoryChange("all")}
+                    label="All"
+                    count={FAQS.length}
+                  />
+                </li>
+                {FAQ_CATEGORIES.map((cat) => (
+                  <li key={cat.id}>
                     <CategoryButton
-                      active={activeCategory === "all"}
-                      onClick={() => handleCategoryChange("all")}
-                      label="All"
-                      count={FAQS.length}
+                      active={activeCategory === cat.id}
+                      onClick={() => handleCategoryChange(cat.id)}
+                      label={cat.label}
+                      count={COUNTS[cat.id] ?? 0}
                     />
                   </li>
-                  {FAQ_CATEGORIES.map((cat) => (
-                    <li key={cat.id}>
-                      <CategoryButton
-                        active={activeCategory === cat.id}
-                        onClick={() => handleCategoryChange(cat.id)}
-                        label={cat.label}
-                        count={COUNTS[cat.id] ?? 0}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </aside>
-
-            {/* Questions */}
-            <div className="min-w-0">
+                ))}
+              </ul>
               {/* Results count when searching */}
-              <p aria-live="polite" className="mb-6 min-h-[1.25rem] text-[12px] text-slate-400">
+              <p aria-live="polite" className="min-h-[1.25rem] text-[12px] text-slate-400">
                 {(search || activeCategory !== "all") &&
                   (filtered.length === 0
                     ? "No results found."
                     : `${filtered.length} result${filtered.length === 1 ? "" : "s"}`)}
               </p>
+            </nav>
 
+            {/* Questions: each category as a row, its name on the left on wide screens */}
+            <div className="mt-8">
               {filtered.length > 0 ? (
                 <div className="space-y-14">
                   {grouped.map(({ cat, items }) => (
                     <Reveal key={cat.id}>
-                      <section aria-labelledby={`faq-${cat.id}`}>
-                        <div className="mb-2 flex items-baseline justify-between gap-4">
+                      <section aria-labelledby={`faq-${cat.id}`} className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
+                        <div className="flex items-baseline justify-between gap-4 lg:block lg:pt-5">
                           <h2 id={`faq-${cat.id}`} className="text-lg font-semibold tracking-tight text-white sm:text-xl">
                             {cat.label}
                           </h2>
-                          <span className="font-mono text-[11px] text-slate-500">{pad2(items.length)}</span>
+                          <span className="font-mono text-[11px] text-slate-500 lg:mt-1 lg:block">{pad2(items.length)}</span>
                         </div>
                         <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
                           {items.map((faq) => (
@@ -213,7 +207,7 @@ export default function FAQPage() {
                   ))}
                 </div>
               ) : (
-                <div className="rounded-2xl border border-dashed border-white/[0.1] py-16 text-center">
+                <div className="mx-auto max-w-3xl rounded-2xl border border-dashed border-white/[0.1] py-16 text-center">
                   <p className="mb-3 text-sm text-slate-400">No questions match your search.</p>
                   <button
                     type="button"

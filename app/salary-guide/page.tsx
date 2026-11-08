@@ -4,8 +4,8 @@
  * Hub page for all role-specific salary guides.
  * Targets: "software engineer salary 2026", "product manager salary guide", etc.
  *
- * Layout: hero, then one row per category (sticky label on the left, a ruled
- * grid of role links on the right), cross-links, and a CTA panel.
+ * Layout: hero, then the role directory as one open list per category, a
+ * compact "Also useful" links list, and a CTA panel.
  *
  * File path: app/salary-guide/page.tsx
  */
@@ -17,8 +17,8 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, GRID_BG, BTN_PRIMARY, Eyebrow, PageHero, pad2, HoverRule } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, BTN_PRIMARY, PageHero, CtaPanel } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
 import SalaryGuideVisual from "@/components/page/visuals/SalaryGuideVisual";
 
 export const metadata: Metadata = {
@@ -69,100 +69,68 @@ export default function SalaryGuideIndexPage() {
           }
         />
 
-        {/* Role directory, one row per category */}
+        {/* Role directory: one open list per category */}
         <section className={`${PAD} pb-20`}>
-          <div className={`${INNER} divide-y divide-white/[0.06] border-y border-white/[0.06]`}>
+          <div className={`${INNER} space-y-14 border-t border-white/[0.05] pt-16`}>
             {grouped.map(({ category, roles }) => (
-              <section key={category} className="grid gap-6 py-10 lg:grid-cols-[260px_minmax(0,1fr)] xl:gap-16">
-                <div className="lg:sticky lg:top-28 lg:self-start">
-                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    {category} · {roles.length} guide{roles.length !== 1 ? "s" : ""}
-                  </h2>
-                </div>
-                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
+              <section key={category}>
+                <h2 className="mb-3 flex items-baseline gap-3 text-lg font-semibold tracking-tight text-white">
+                  {category}
+                  <span className="text-sm font-normal text-slate-500">
+                    {roles.length} guide{roles.length !== 1 ? "s" : ""}
+                  </span>
+                </h2>
+                <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {roles.map((role) => {
                     const display = ROLE_DISPLAY[role];
                     if (!display) return null;
                     return (
-                      <RevealItem key={role} className="bg-[#070b16]">
+                      <li key={role} className="border-b border-white/[0.05]">
                         <Link
                           href={`/salary-guide/${role}`}
-                          className="group relative flex h-full items-center gap-4 p-5 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60"
+                          className="group flex items-center gap-3 py-3 text-[15px] text-slate-300 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                         >
-                          <span aria-hidden="true" className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.03] text-xl">
-                            {display.icon}
-                          </span>
-                          <div className="min-w-0">
-                            <p className="truncate text-sm font-medium text-slate-200 transition-colors group-hover:text-accent-soft">
-                              {display.name}
-                            </p>
-                            <p className="mt-0.5 text-[11px] text-slate-500">
-                              2026 salary data <Chevron />
-                            </p>
-                          </div>
-                          <HoverRule className="inset-x-5" />
+                          <span aria-hidden="true" className="text-base">{display.icon}</span>
+                          <span className="min-w-0 flex-1 truncate">{display.name}</span>
+                          <Chevron className="text-slate-600 group-hover:text-slate-300" />
                         </Link>
-                      </RevealItem>
+                      </li>
                     );
                   })}
-                </RevealGroup>
+                </ul>
               </section>
             ))}
-          </div>
-        </section>
 
-        {/* Cross-links */}
-        <section className={`${PAD} ${SECTION}`}>
-          <div className={INNER}>
-            <Eyebrow>Before the offer</Eyebrow>
-            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
-              {[
-                {
-                  title: "Prepare for the interview first",
-                  body: "You need to get the offer before you can negotiate it. Role-specific interview prep guides.",
-                  href: "/interview-questions",
-                  link: "Browse interview guides",
-                },
-                {
-                  title: "Get your resume past ATS first",
-                  body: "Role-specific resume guides with ATS keywords, bullet formulas, and format tips.",
-                  href: "/resume-tips",
-                  link: "Browse resume tips",
-                },
-              ].map((c, i) => (
-                <RevealItem key={c.href} className="bg-[#070b16]">
-                  <SpotlightCard className="h-full p-8">
-                    <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
-                    <h2 className="mt-4 text-lg font-semibold text-white">{c.title}</h2>
-                    <p className="mb-5 mt-2 max-w-md text-sm leading-relaxed text-slate-400">{c.body}</p>
-                    <Link href={c.href} className="group inline-flex items-center gap-1 rounded text-sm font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60">
-                      {c.link} <Chevron />
+            <nav aria-label="Related guides" className="pt-4">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {[
+                  { href: "/interview-questions", label: "Browse interview guides" },
+                  { href: "/resume-tips", label: "Browse resume tips" },
+                ].map((link) => (
+                  <li key={link.href} className="border-b border-white/[0.05]">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      {link.label}
+                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
                     </Link>
-                  </SpotlightCard>
-                </RevealItem>
-              ))}
-            </RevealGroup>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </section>
 
         {/* CTA */}
         <section className={`${PAD} pb-24 pt-4`}>
           <Reveal>
-            <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-14 sm:px-14`}>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
-                style={GRID_BG}
-              />
-              <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-                <p className="max-w-2xl text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl">
-                  Once you know your number, let us help you get the interview that leads to it.
-                </p>
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 sm:w-auto`}>
+            <CtaPanel
+              title="Once you know your number, let us help you get the interview that leads to it."
+              action={
+                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   Start preparing free <Chevron />
                 </a>
-              </div>
-            </div>
+              }
+            />
           </Reveal>
         </section>
       </main>

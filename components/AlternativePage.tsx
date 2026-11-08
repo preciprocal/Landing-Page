@@ -17,9 +17,9 @@
  * page states what the competitor is genuinely good at and carries a dated
  * disclaimer. Pricing moves; verify before relying on any figure here.
  *
- * Layout: hero with the price callout beside it, verdict as a two-cell ruled
- * panel, the feature table with the Preciprocal column highlighted, reasons
- * grid, FAQ beside a sticky heading, sibling comparisons, CTA panel.
+ * Layout: one flow, leading with what the reader came for. Hero with the
+ * price callout beside it, the quick verdict, the feature table, the reasons
+ * as an open list, the FAQ, a compact list of sibling comparisons, the CTA.
  */
 
 import Link from "next/link";
@@ -28,9 +28,8 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import CompareVisual from "@/components/page/visuals/CompareVisual";
 import { Check, X } from "lucide-react";
 
 /**
@@ -73,6 +72,62 @@ function Cell({ text, ours }: { text: string; ours?: boolean }) {
       )}
       <span className="min-w-0">{text}</span>
     </span>
+  );
+}
+
+/**
+ * The reasons to choose Preciprocal as an open two-column list (a tick, a
+ * title, one paragraph), shared with the hand-built comparison pages.
+ */
+export function ReasonList({ items }: { items: { title: string; body: string }[] }) {
+  return (
+    <RevealGroup className="grid gap-x-14 gap-y-10 md:grid-cols-2">
+      {items.map(({ title, body }) => (
+        <RevealItem key={title} className="flex gap-4">
+          <span aria-hidden="true" className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-accent/[0.12] text-accent-soft">
+            <Check className="h-3.5 w-3.5" strokeWidth={2.75} />
+          </span>
+          <div>
+            <h3 className="text-[16px] font-semibold text-white">{title}</h3>
+            <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">{body}</p>
+          </div>
+        </RevealItem>
+      ))}
+    </RevealGroup>
+  );
+}
+
+/** A compact, ruled list of links near the end of a page ("Also useful"). */
+export function LinkList({
+  title,
+  links,
+  more,
+}: {
+  title: string;
+  links: { label: string; href: string }[];
+  more?: { label: string; href: string };
+}) {
+  return (
+    <>
+      <div className="mb-3 flex items-baseline justify-between gap-4">
+        <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{title}</h2>
+        {more && (
+          <Link href={more.href} className="text-[13px] text-slate-400 transition-colors hover:text-white">
+            {more.label}
+          </Link>
+        )}
+      </div>
+      <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+        {links.map((link) => (
+          <li key={link.href} className="border-b border-white/[0.05]">
+            <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+              {link.label}
+              <Chevron className="text-slate-600 group-hover:text-slate-300" />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 
@@ -189,13 +244,9 @@ export default function AlternativePage({
                 </div>
               </div>
 
-              <div className="flex flex-col gap-10">
-              {/* Decorative comparison sheet, wide screens only */}
-              <div aria-hidden="true" className="hidden animate-fade-up px-6 opacity-0 lg:block" style={{ animationDelay: "180ms" }}>
-                <CompareVisual />
-              </div>
-
-              {/* Price callout */}
+              <div className="flex flex-col gap-3">
+              {/* Price callout: the price difference is half of what the reader came for */}
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Monthly price</p>
               <div
                 className="relative z-10 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0"
                 style={{ animationDelay: "120ms" }}
@@ -226,21 +277,21 @@ export default function AlternativePage({
           </div>
         </section>
 
-        {/* Quick verdict */}
+        {/* Quick verdict: two short answers side by side */}
         <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
-            <Eyebrow>Quick verdict</Eyebrow>
-            <RevealGroup className="mt-4 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
-              <RevealItem className="bg-[#070b16] p-7 sm:p-8">
-                <p className="font-mono text-[11px] text-slate-400">{competitor}</p>
-                <p className="mt-4 text-[15px] leading-relaxed text-slate-300">
+            <SectionHead align="center" eyebrow="Quick verdict" title={`Preciprocal or ${competitor}?`} />
+            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
+              <RevealItem className="bg-[#070b16] p-7 sm:p-9">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{competitor}</p>
+                <p className="mt-4 text-[16px] leading-relaxed text-slate-300">
                   Choose <strong className="text-white">{competitor}</strong> if {verdictTheirs}
                 </p>
               </RevealItem>
-              <RevealItem className="relative bg-[#0b1024] p-7 sm:p-8">
+              <RevealItem className="relative bg-[#0b1024] p-7 sm:p-9">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent via-accent-2 to-transparent" />
-                <p className="font-mono text-[11px] text-accent-soft/80">Preciprocal</p>
-                <p className="mt-4 text-[15px] leading-relaxed text-slate-200">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft">Preciprocal</p>
+                <p className="mt-4 text-[16px] leading-relaxed text-slate-200">
                   Choose <strong className="text-white">Preciprocal</strong> if {verdictOurs}
                 </p>
               </RevealItem>
@@ -251,7 +302,7 @@ export default function AlternativePage({
         {/* Comparison table */}
         <section aria-label="Feature comparison table" className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
-            <SectionHead eyebrow="Side by side" title={`Preciprocal vs ${competitor}: feature comparison`} />
+            <SectionHead align="center" eyebrow="Side by side" title={`Preciprocal vs ${competitor}: feature comparison`} />
             <Reveal>
               {/* Scrolls sideways on small screens; from lg the wrapper stops clipping so the header row can stick under the navbar. */}
               <div className="overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16] lg:overflow-visible">
@@ -311,36 +362,24 @@ export default function AlternativePage({
                 </table>
               </div>
             </Reveal>
-            <p className="mt-4 max-w-3xl text-xs leading-relaxed text-slate-400">
+            <p className="mx-auto mt-4 max-w-3xl text-center text-xs leading-relaxed text-slate-400">
               Based on publicly available feature lists and pricing as of {pricingChecked}. Plans and
               prices change, so verify on {competitor}&apos;s own pricing page before deciding.
             </p>
           </div>
         </section>
 
-        {/* Reasons */}
+        {/* Reasons: an open list, one short paragraph each */}
         <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
-            <SectionHead eyebrow="Why switch" title={`Why students and new grads choose Preciprocal over ${competitor}`} />
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
-              {reasons.map(({ title, body }, i) => (
-                <RevealItem key={title} className="group relative bg-[#070b16] p-7 transition-colors duration-300 hover:bg-[#0a1020]">
-                  <span className="font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
-                  <h3 className="mt-4 font-semibold text-white">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{body}</p>
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-x-7 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:scale-x-100"
-                  />
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            <SectionHead align="center" eyebrow="Why switch" title={`Why students and new grads choose Preciprocal over ${competitor}`} className="mb-12" />
+            <ReasonList items={reasons} />
           </div>
         </section>
 
         {/* FAQ as closed dropdowns. Answers stay in the HTML (native <details>), so the FAQ structured data still matches the page. */}
         <section aria-label={`${competitor} alternative FAQ`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
             <div className="lg:sticky lg:top-28 lg:self-start">
               <Eyebrow>FAQ</Eyebrow>
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">
@@ -351,46 +390,29 @@ export default function AlternativePage({
           </div>
         </section>
 
-        {/* Other comparisons.
+        {/* Other comparisons, as a compact list.
 
-            This block used to link only to the /alternatives hub, which left
-            every comparison page with exactly one inbound internal link. Linking
-            to siblings spreads equity between them and matches how people
-            shortlist: someone reading "vs Teal" is usually weighing Huntr and
-            Simplify too. Rotating by this page's own position means each page
-            surfaces a different set rather than all of them pointing at the
-            same few. */}
-        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+            Linking to siblings spreads equity between them and matches how
+            people shortlist: someone reading "vs Teal" is usually weighing
+            Huntr and Simplify too. Rotating by this page's own position means
+            each page surfaces a different set rather than all of them pointing
+            at the same few. */}
+        <nav aria-label="Compare other tools" className={`pb-16 ${PAD}`}>
           <div className={INNER}>
-            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="text-xl font-semibold tracking-tight text-white">Compare other tools</h2>
-              <Link href="/alternatives" className="group inline-flex items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white">
-                See all Preciprocal comparisons <Chevron />
-              </Link>
-            </div>
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
-              {(() => {
+            <LinkList
+              title="Compare other tools"
+              more={{ label: "See all comparisons", href: "/alternatives" }}
+              links={(() => {
                 const i = ALTERNATIVE_PAGES.findIndex((a) => a.slug === slug);
                 const start = i === -1 ? 0 : i + 1;
-                const ordered = [
-                  ...ALTERNATIVE_PAGES.slice(start),
-                  ...ALTERNATIVE_PAGES.slice(0, start),
-                ].filter((a) => a.slug !== slug);
-                return ordered.slice(0, 6).map((a) => (
-                  <RevealItem key={a.slug} className="bg-[#070b16]">
-                    <Link
-                      href={`/alternatives/${a.slug}`}
-                      className="group flex h-full items-center justify-between gap-3 px-5 py-4 text-sm text-slate-300 transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/70"
-                    >
-                      Preciprocal vs {a.name}
-                      <Chevron className="text-slate-500 group-hover:text-accent-soft" />
-                    </Link>
-                  </RevealItem>
-                ));
+                return [...ALTERNATIVE_PAGES.slice(start), ...ALTERNATIVE_PAGES.slice(0, start)]
+                  .filter((a) => a.slug !== slug)
+                  .slice(0, 6)
+                  .map((a) => ({ label: `Preciprocal vs ${a.name}`, href: `/alternatives/${a.slug}` }));
               })()}
-            </RevealGroup>
+            />
           </div>
-        </section>
+        </nav>
 
         {/* CTA */}
         <section className={`pb-24 ${PAD}`}>

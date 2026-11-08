@@ -28,9 +28,10 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqList, HeroSignup } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, Eyebrow, PageHero, CtaPanel, FaqList, HeroSignup } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
-import CompareTable, { Verdict, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
+import CompareTable, { Verdict } from "@/components/page/CompareTable";
+import { ReasonList, LinkList } from "@/components/AlternativePage";
 
 export const metadata: Metadata = {
   title: { absolute: "Final Round AI Alternative: Preciprocal Compared" },
@@ -168,14 +169,14 @@ export default function FinalRoundAIAlternativePage() {
         <section aria-label="Feature comparison table" className={`${PAD} py-16`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead eyebrow="Feature by feature" title="Preciprocal vs Final Round AI: feature comparison" className="mb-8" />
+              <SectionHead align="center" eyebrow="Feature by feature" title="Preciprocal vs Final Round AI: feature comparison" className="mb-8" />
             </Reveal>
             <CompareTable
               competitor="Final Round AI"
               caption="Preciprocal vs Final Round AI: feature comparison"
               rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.finalRound }))}
             />
-            <p className="mt-4 text-xs text-slate-400">
+            <p className="mt-4 text-center text-xs text-slate-400">
               Information based on publicly available feature lists as of September 2026. Features may change. Always verify on each tool&apos;s pricing page.
             </p>
           </div>
@@ -185,9 +186,9 @@ export default function FinalRoundAIAlternativePage() {
         <section aria-label="Why students choose Preciprocal" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead eyebrow="Why switch" title="Why students and new grads choose Preciprocal" />
+              <SectionHead align="center" eyebrow="Why switch" title="Why students and new grads choose Preciprocal" className="mb-12" />
             </Reveal>
-            <ReasonGrid
+            <ReasonList
               items={[
                 {
                   title: "One platform for the entire job search",
@@ -212,20 +213,20 @@ export default function FinalRoundAIAlternativePage() {
 
         {/* ── FAQ ─────────────────────────────────────────────────────────── */}
         <section aria-label="Frequently asked questions" className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
-            <Reveal>
-              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
-            </Reveal>
-            <Reveal>
-              <FaqList items={FAQS} />
-            </Reveal>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <Eyebrow>FAQ</Eyebrow>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">Frequently asked questions</h2>
+            </div>
+            <FaqList items={FAQS} />
           </div>
         </section>
 
         {/* ── Internal links ──────────────────────────────────────────────── */}
-        <section aria-label="Related resources" className={`${SECTION} ${PAD}`}>
+        <section aria-label="Related resources" className={`pb-16 ${PAD}`}>
           <div className={INNER}>
-            <RelatedLinks
+            <LinkList
+              title="Also useful"
               links={[
                 { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
                 { label: "Free ATS Resume Checker", href: "/free-ats-checker" },

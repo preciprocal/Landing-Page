@@ -11,8 +11,9 @@
  * Targets: "Preciprocal alternatives", "best job search tool comparison",
  * "AI resume tool comparison".
  *
- * Layout: PageHero with category jump links, then each group as a grid of
- * comparison cards on the shared page kit (components/page), accent indigo.
+ * Layout: PageHero with category jump links, then each group as a compact
+ * ruled list (name, what the tool is for, its price) using the full width,
+ * then the closing panel. Accent indigo.
  */
 
 import type { Metadata } from "next";
@@ -22,7 +23,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, CARD, BTN_PRIMARY, PageHero, HoverRule, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -135,36 +136,31 @@ export default function AlternativesIndexPage() {
           }
         />
 
-        <div className={`${PAD} space-y-16 border-t border-white/[0.05] py-16 sm:py-20`}>
+        <div className={`${PAD} space-y-14 border-t border-white/[0.05] py-16 sm:py-20`}>
           {GROUPS.map(({ group, items }) => (
             <section key={group} id={groupId(group)} className={`${INNER} scroll-mt-28`}>
               <Reveal>
-                <div className="mb-6 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
+                <div className="mb-2 flex items-baseline justify-between gap-4">
                   <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
                     {group} <span className="font-mono text-[12px] font-normal text-slate-500">· {items.length}</span>
                   </h2>
                 </div>
               </Reveal>
-              <RevealGroup as="ul" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
+              <RevealGroup as="ul" className="grid gap-x-12 md:grid-cols-2 xl:grid-cols-3">
                 {items.map(({ name, slug, price, note }) => (
-                  <RevealItem as="li" key={slug}>
+                  <RevealItem as="li" key={slug} className="border-b border-white/[0.05]">
                     <Link
                       href={`/alternatives/${slug}`}
-                      className={`${CARD} group relative flex h-full flex-col overflow-hidden p-6 transition-colors duration-300 hover:border-accent/30 hover:bg-white/[0.04]`}
+                      className="group flex items-center justify-between gap-4 py-4 transition-colors"
                     >
-                      <p className="font-semibold text-white transition-colors group-hover:text-accent-soft">
-                        Preciprocal vs {name}
-                      </p>
-                      <p className="mt-1 text-sm text-slate-400">{note}</p>
-                      <div className="mt-6 flex flex-1 items-end justify-between gap-3">
-                        <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1 font-mono text-[12px] text-slate-300">
-                          {price}
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-[13px] font-semibold text-accent-soft transition-colors group-hover:text-white">
-                          Compare <Chevron />
-                        </span>
-                      </div>
-                      <HoverRule />
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-white transition-colors group-hover:text-accent-soft">Preciprocal vs {name}</span>
+                        <span className="mt-0.5 block text-[13px] text-slate-400">{note}</span>
+                      </span>
+                      <span className="flex shrink-0 items-center gap-3">
+                        <span className="font-mono text-[12px] text-slate-300">{price}</span>
+                        <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                      </span>
                     </Link>
                   </RevealItem>
                 ))}

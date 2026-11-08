@@ -20,9 +20,10 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList, HeroSignup } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, Eyebrow, PageHero, CtaPanel, FaqList, HeroSignup } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
-import CompareTable, { Verdict, PriceCompare, ReasonGrid, RelatedLinks } from "@/components/page/CompareTable";
+import CompareTable, { Verdict, PriceCompare } from "@/components/page/CompareTable";
+import { ReasonList, LinkList } from "@/components/AlternativePage";
 
 export const metadata: Metadata = {
   title: { absolute: "Resume Worded Alternative: Preciprocal Compared" },
@@ -193,14 +194,14 @@ export default function ResumeWordedAlternativePage() {
         <section aria-label="Feature comparison table" className={`${PAD} py-16`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead eyebrow="Feature by feature" title="Preciprocal vs Resume Worded: feature comparison" className="mb-8" />
+              <SectionHead align="center" eyebrow="Feature by feature" title="Preciprocal vs Resume Worded: feature comparison" className="mb-8" />
             </Reveal>
             <CompareTable
               competitor="Resume Worded"
               caption="Preciprocal vs Resume Worded: feature comparison"
               rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.resumeWorded }))}
             />
-            <p className="mt-4 text-xs text-slate-400">
+            <p className="mt-4 text-center text-xs text-slate-400">
               Based on publicly available feature lists as of September 2026. Always verify on each tool&apos;s pricing page.
             </p>
           </div>
@@ -210,9 +211,9 @@ export default function ResumeWordedAlternativePage() {
         <section aria-label="Why students choose Preciprocal over Resume Worded" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Resume Worded" />
+              <SectionHead align="center" eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Resume Worded" className="mb-12" />
             </Reveal>
-            <ReasonGrid
+            <ReasonList
               items={[
                 {
                   title: "Resume feedback is step one, not the whole job",
@@ -237,20 +238,20 @@ export default function ResumeWordedAlternativePage() {
 
         {/* FAQ */}
         <section aria-label="Resume Worded alternative FAQ" className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
-            <Reveal>
-              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
-            </Reveal>
-            <Reveal>
-              <FaqList items={FAQS} />
-            </Reveal>
+          <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <Eyebrow>FAQ</Eyebrow>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">Frequently asked questions</h2>
+            </div>
+            <FaqList items={FAQS} />
           </div>
         </section>
 
         {/* Internal links */}
-        <section aria-label="Related resources" className={`${SECTION} ${PAD}`}>
+        <section aria-label="Related resources" className={`pb-16 ${PAD}`}>
           <div className={INNER}>
-            <RelatedLinks
+            <LinkList
+              title="Also useful"
               links={[
                 { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
                 { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },

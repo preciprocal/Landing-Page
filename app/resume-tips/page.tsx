@@ -4,8 +4,8 @@
  * Hub page for all role-specific resume tip guides.
  * Targets: "resume tips for [role]", "how to write a [role] resume", "[role] resume guide"
  *
- * Layout: hero with a category jump row, then one full-width band per
- * category (heading left, role cards right), cross-links, and a CTA panel.
+ * Layout: hero with a category jump row, then the role directory as one open
+ * list per category, a compact "Also useful" links list, and a CTA panel.
  * Built on components/page/Layout.tsx.
  *
  * File path: app/resume-tips/page.tsx
@@ -18,8 +18,8 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, Eyebrow, PageHero, CtaPanel, pad2, HoverRule } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { Reveal } from "@/components/page/Reveal";
 import ResumeTipsVisual from "@/components/page/visuals/ResumeTipsVisual";
 
 export const metadata: Metadata = {
@@ -92,81 +92,54 @@ export default function ResumeTipsIndexPage() {
           </nav>
         </PageHero>
 
-        {/* Role grid by category */}
-        {grouped.map(({ category, roles }, gi) => (
-          <section key={category} id={catId(category)} className={`${SECTION} scroll-mt-20 ${PAD}`}>
-            <div className={`${INNER} grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-              <Reveal className="lg:sticky lg:top-28 lg:self-start">
-                <span aria-hidden="true" className="font-mono text-[11px] text-accent-soft/70">{pad2(gi + 1)}</span>
-                <h2 className="mt-3 text-2xl font-bold tracking-tight text-white">
+        {/* Role directory: one open list per category */}
+        <section className={`${PAD} pb-20`}>
+          <div className={`${INNER} space-y-14 border-t border-white/[0.05] pt-16`}>
+            {grouped.map(({ category, roles }) => (
+              <section key={category} id={catId(category)} className="scroll-mt-24">
+                <h2 className="mb-3 flex items-baseline gap-3 text-lg font-semibold tracking-tight text-white">
                   {category}
-                  <span className="mt-1 block text-sm font-normal tracking-normal text-slate-500">
-                    {" "}· {roles.length} guide{roles.length !== 1 ? "s" : ""}
+                  <span className="text-sm font-normal text-slate-500">
+                    {roles.length} guide{roles.length !== 1 ? "s" : ""}
                   </span>
                 </h2>
-              </Reveal>
-              <RevealGroup className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-                {roles.map((role) => {
-                  const display = ROLE_DISPLAY[role];
-                  if (!display) return null;
-                  return (
-                    <RevealItem key={role}>
-                      <Link
-                        href={`/resume-tips/${role}`}
-                        className="group relative flex h-full items-center gap-4 overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.025] p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:bg-white/[0.045] focus-visible:border-accent focus-visible:outline-none"
-                      >
-                        <span
-                          aria-hidden="true"
-                          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.07] bg-[#070b16] text-lg"
+                <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {roles.map((role) => {
+                    const display = ROLE_DISPLAY[role];
+                    if (!display) return null;
+                    return (
+                      <li key={role} className="border-b border-white/[0.05]">
+                        <Link
+                          href={`/resume-tips/${role}`}
+                          className="group flex items-center gap-3 py-3 text-[15px] text-slate-300 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                         >
-                          {display.icon}
-                        </span>
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium text-slate-200 transition-colors group-hover:text-white">
-                            {display.name}
-                          </p>
-                          <p className="mt-0.5 text-[11px] text-slate-500 transition-colors group-hover:text-accent-soft">
-                            Resume tips <Chevron />
-                          </p>
-                        </div>
-                        <HoverRule className="inset-x-4" />
-                      </Link>
-                    </RevealItem>
-                  );
-                })}
-              </RevealGroup>
-            </div>
-          </section>
-        ))}
+                          <span aria-hidden="true" className="text-base">{display.icon}</span>
+                          <span className="min-w-0 flex-1 truncate">{display.name}</span>
+                          <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            ))}
 
-        {/* Cross-links */}
-        <section className={`${SECTION} ${PAD}`}>
-          <div className={INNER}>
-            <Eyebrow>Keep going</Eyebrow>
-            <RevealGroup className="mt-4 grid gap-4 md:grid-cols-2">
-              <RevealItem>
-                <SpotlightCard className="h-full rounded-2xl border border-white/[0.07] bg-[#070b16] p-7">
-                  <h2 className="mb-2 text-lg font-semibold text-white">Need a cover letter too?</h2>
-                  <p className="mb-5 text-sm leading-relaxed text-slate-400">
-                    Role-specific cover letter examples and templates for every career path.
-                  </p>
-                  <Link href="/cover-letter-examples" className="group inline-flex items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white">
-                    Browse cover letter examples <Chevron />
-                  </Link>
-                </SpotlightCard>
-              </RevealItem>
-              <RevealItem>
-                <SpotlightCard className="h-full rounded-2xl border border-white/[0.07] bg-[#070b16] p-7">
-                  <h2 className="mb-2 text-lg font-semibold text-white">Check your salary range</h2>
-                  <p className="mb-5 text-sm leading-relaxed text-slate-400">
-                    Up-to-date salary data, equity benchmarks, and negotiation tips by role.
-                  </p>
-                  <Link href="/salary-guide" className="group inline-flex items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white">
-                    Browse salary guides <Chevron />
-                  </Link>
-                </SpotlightCard>
-              </RevealItem>
-            </RevealGroup>
+            <nav aria-label="Related guides" className="pt-4">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                {[
+                  { href: "/cover-letter-examples", label: "Browse cover letter examples" },
+                  { href: "/salary-guide", label: "Browse salary guides" },
+                ].map((link) => (
+                  <li key={link.href} className="border-b border-white/[0.05]">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      {link.label}
+                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </section>
 

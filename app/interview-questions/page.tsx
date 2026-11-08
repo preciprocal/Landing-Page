@@ -4,9 +4,9 @@
  * Hub page for all role-based interview question guides.
  * ALL_ROLES, ROLE_DISPLAY, and ALL_ROLE_CATEGORIES come from lib/constants.ts.
  *
- * Layout: hero with a jump list of industries, then one band per industry
- * (sticky label on the left, role cards on the right), the two cross-links,
- * and the practice CTA panel. Built on components/page.
+ * Layout: hero with a jump list of industries, then one full-width band per
+ * industry (heading row, role cards beneath), the two cross-links as compact
+ * rows, and the practice CTA panel. Built on components/page.
  */
 
 import type { Metadata } from "next";
@@ -16,8 +16,8 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, CARD, BTN_PRIMARY, Eyebrow, PageHero, CtaPanel, pad2, HoverRule } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, CARD, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import InterviewQuestionsVisual from "@/components/page/visuals/InterviewQuestionsVisual";
 
 export const metadata: Metadata = {
@@ -86,27 +86,26 @@ export default function InterviewQuestionsIndexPage() {
           </nav>
         </PageHero>
 
-        {/* Role grid by category */}
-        <div className={PAD}>
-          <div className={`${INNER} border-t border-white/[0.05]`}>
+        {/* Roles by industry, one full-width grid each */}
+        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+          <div className={`${INNER} space-y-14`}>
             {grouped.map(({ category, roles }) => (
               <section
                 key={category}
                 id={anchor(category)}
                 aria-labelledby={`${anchor(category)}-title`}
-                className="grid scroll-mt-24 gap-6 border-b border-white/[0.05] py-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-12"
+                className="scroll-mt-24"
               >
-                <div className="lg:sticky lg:top-28 lg:self-start">
-                  <h2
-                    id={`${anchor(category)}-title`}
-                    className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400"
-                  >
-                    {category} · {roles.length} guide{roles.length !== 1 ? "s" : ""}
+                <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
+                  <h2 id={`${anchor(category)}-title`} className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                    {category}
                   </h2>
-                  <span aria-hidden="true" className="mt-3 block h-px w-12 bg-gradient-to-r from-accent to-accent-2" />
+                  <span className="font-mono text-[11px] text-slate-500">
+                    {roles.length} guide{roles.length !== 1 ? "s" : ""}
+                  </span>
                 </div>
 
-                <RevealGroup as="ul" className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <RevealGroup as="ul" className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {roles.map((role) => {
                     const display = ROLE_DISPLAY[role];
                     if (!display) return null;
@@ -114,7 +113,7 @@ export default function InterviewQuestionsIndexPage() {
                       <RevealItem as="li" key={role}>
                         <Link
                           href={`/interview-questions/${role}`}
-                          className={`group relative flex h-full items-center gap-4 overflow-hidden ${CARD} p-4 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/30 hover:bg-white/[0.045] ${FOCUS}`}
+                          className={`group relative flex h-full items-center gap-4 overflow-hidden ${CARD} p-4 transition-colors duration-300 hover:border-white/[0.14] hover:bg-white/[0.045] ${FOCUS}`}
                         >
                           <span
                             aria-hidden="true"
@@ -130,7 +129,6 @@ export default function InterviewQuestionsIndexPage() {
                               Interview questions <Chevron />
                             </p>
                           </div>
-                          <HoverRule className="inset-x-4" />
                         </Link>
                       </RevealItem>
                     );
@@ -138,43 +136,34 @@ export default function InterviewQuestionsIndexPage() {
                 </RevealGroup>
               </section>
             ))}
-          </div>
-        </div>
 
-        {/* Cross-links: job-description predictor and company prep */}
-        <section className={`${PAD} py-20`}>
-          <div className={`${INNER} grid gap-5 lg:grid-cols-2`}>
-            <Reveal className="h-full">
-              <SpotlightCard className="h-full rounded-2xl border border-accent/25 bg-gradient-to-br from-accent-deep/[0.09] to-accent-deep-2/[0.04] p-7 sm:p-8">
-                <Eyebrow>Free tool</Eyebrow>
-                <h2 className="text-xl font-semibold text-white">Have a specific job posting?</h2>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-400">
+            {/* Cross-links: job-description predictor and company prep, as two compact rows */}
+            <div className="grid gap-x-12 border-y border-white/[0.06] lg:grid-cols-2">
+              <div className="flex flex-col gap-3 border-b border-white/[0.06] py-6 lg:border-b-0">
+                <h2 className="text-[17px] font-semibold text-white">Have a specific job posting?</h2>
+                <p className="max-w-xl text-sm leading-relaxed text-slate-400">
                   Paste it into the free predictor to get the 5 questions that posting is most likely to lead to, and practice your answers out loud. No sign-up.
                 </p>
                 <Link
                   href="/interview-question-predictor"
-                  className={`group mt-6 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
+                  className={`group inline-flex items-center gap-1.5 self-start rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
                 >
                   Predict questions from a job description <Chevron />
                 </Link>
-              </SpotlightCard>
-            </Reveal>
-
-            <Reveal className="h-full" delay={0.08}>
-              <SpotlightCard className={`h-full ${CARD} p-7 sm:p-8`}>
-                <Eyebrow>Company guides</Eyebrow>
-                <h2 className="text-xl font-semibold text-white">Preparing for a specific company?</h2>
-                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-400">
+              </div>
+              <div className="flex flex-col gap-3 py-6">
+                <h2 className="text-[17px] font-semibold text-white">Preparing for a specific company?</h2>
+                <p className="max-w-xl text-sm leading-relaxed text-slate-400">
                   We also have company-specific prep guides covering the interview process, culture, difficulty, and what each company actually looks for.
                 </p>
                 <Link
                   href="/interview-prep"
-                  className={`group mt-6 inline-flex items-center gap-1.5 rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
+                  className={`group inline-flex items-center gap-1.5 self-start rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
                 >
                   Browse company interview guides <Chevron />
                 </Link>
-              </SpotlightCard>
-            </Reveal>
+              </div>
+            </div>
           </div>
         </section>
 

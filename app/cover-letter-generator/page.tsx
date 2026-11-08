@@ -12,8 +12,10 @@
  *              "free cover letter generator for new grads"
  *              "cover letter for internship generator"
  *
- * Layout: PageHero with a letter-writing illustration and the stats strip,
- * then the sections on the shared page kit (components/page), accent amber.
+ * Layout (accent amber): ProductHero, then a short flow on the shared page
+ * kit (components/page): how it works, what you get, the FAQ with answers
+ * closed, the longer detail (what is different, who it is for) folded into
+ * Fold panels with the related links beneath, and the closing CTA.
  *
  * File path: app/cover-letter-generator/page.tsx
  */
@@ -29,7 +31,6 @@ import {
   PAD,
   INNER,
   SECTION,
-  CARD,
   BTN_PRIMARY,
   BTN_SECONDARY,
   ACCENT_TEXT,
@@ -37,10 +38,10 @@ import {
   SectionHead,
   CtaPanel,
   FaqList,
-  HoverRule,
+  Fold,
   pad2,
 } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
 
 export const metadata: Metadata = {
@@ -198,114 +199,116 @@ export default function CoverLetterGeneratorPage() {
           secondary={{ href: "/#pricing", label: "See all plans" }}
         />
 
-        {/* Stats strip */}
-        <section aria-label="At a glance" className={`${PAD} pb-6`}>
-          <div className={INNER}>
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
-            {[
-              { stat: "60s",        label: "average time to generate" },
-              { stat: "5/mo",       label: "free cover letters, no card" },
-              { stat: "30/mo",      label: "on Pro at $9.99/mo" },
-              { stat: "Any role",   label: "tech, finance, consulting + more" },
-            ].map(({ stat, label }) => (
-              <div key={stat} className="flex flex-col-reverse bg-[#070b16] px-5 py-5 sm:px-6">
-                <dt className="mt-1 text-[13px] text-slate-400">{label}</dt>
-                <dd className={`text-2xl font-extrabold tracking-tight sm:text-3xl ${ACCENT_TEXT}`}>{stat}</dd>
-              </div>
-            ))}
-          </dl>
-          </div>
-        </section>
-
-        {/* How it works */}
-        <section aria-label="How the cover letter generator works" className={`${SECTION} ${PAD}`}>
+        {/* How it works: three connected stages */}
+        <section id="how-it-works" aria-label="How the cover letter generator works" className={`scroll-mt-24 ${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead eyebrow="Three steps" title="How it works" />
+              <SectionHead align="center" className="mb-14" eyebrow="Three steps" title="How it works" />
             </Reveal>
-            <RevealGroup as="ol" className="relative grid gap-10 md:grid-cols-3 md:gap-8">
-              <span aria-hidden="true" className="absolute left-0 right-0 top-5 hidden h-px bg-gradient-to-r from-accent/40 via-white/[0.08] to-transparent md:block" />
-              {STEPS.map((step) => (
-                <RevealItem as="li" key={step.number} className="relative">
-                  <span className="relative grid h-10 w-10 place-items-center rounded-full border border-accent/40 bg-[#050810] font-mono text-[13px] font-semibold text-accent-soft">
-                    {step.number}
+            <RevealGroup as="ol" className="relative grid gap-12 md:grid-cols-3 md:gap-10">
+              <span
+                aria-hidden="true"
+                className="absolute left-[16.7%] right-[16.7%] top-6 hidden h-px bg-gradient-to-r from-accent/50 via-white/[0.12] to-accent/50 md:block"
+              />
+              {STEPS.map((step, i) => (
+                <RevealItem as="li" key={step.number} className="relative text-center">
+                  <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft">
+                    {i + 1}
                   </span>
-                  <h3 className="mt-5 text-lg font-semibold text-white">{step.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">{step.description}</p>
+                  <h3 className="mt-6 text-lg font-semibold text-white">{step.title}</h3>
+                  <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-slate-400">{step.description}</p>
                 </RevealItem>
               ))}
             </RevealGroup>
           </div>
         </section>
 
-        {/* What makes it different */}
-        <section aria-label="What makes Preciprocal's cover letter generator different" className={`${SECTION} ${PAD}`}>
+        {/* What you get: the numbers at a glance */}
+        <section aria-label="At a glance" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead
-                eyebrow="What is different"
-                title="Why this is different from other cover letter generators"
-                subtitle="Most generators fill in a template with your name and job title. Here is what Preciprocal actually does differently."
-              />
+              <SectionHead align="center" className="mb-12" eyebrow="What you get" title="At a glance" />
             </Reveal>
-            <RevealGroup className="grid gap-4 sm:grid-cols-2">
-              {WHAT_MAKES_IT_DIFFERENT.map(({ title, body }, i) => (
-                <RevealItem key={title}>
-                  <SpotlightCard className={`${CARD} group h-full p-6 transition-colors hover:border-accent/25 sm:p-7`}>
-                    <span className="font-mono text-[11px] text-accent-soft/80">{pad2(i + 1)}</span>
-                    <h3 className="mt-3 font-semibold text-white">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{body}</p>
-                    <HoverRule />
-                  </SpotlightCard>
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          </div>
-        </section>
-
-        {/* Who it's for */}
-        <section aria-label="Who the cover letter generator is for" className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:gap-16`}>
-            <Reveal>
-              <SectionHead
-                eyebrow="Who it's for"
-                title="Built for students and new grads specifically"
-                subtitle="Most cover letter tools are built for people who have years of work history to reference. Preciprocal is built for the version of you that is applying to your first or second real job, where your strongest material might be a university project, an internship, or a bootcamp capstone."
-                className="lg:sticky lg:top-28"
-              />
-            </Reveal>
-            <RevealGroup className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
+            <dl className="grid grid-cols-2 gap-x-10 gap-y-8 lg:grid-cols-4">
               {[
-                {
-                  title: "New grads applying to full-time roles",
-                  body: "Frame projects, internships, and coursework as relevant experience. Lead with capability, not apology for limited history.",
-                },
-                {
-                  title: "Students applying for internships",
-                  body: "Internship cover letters have different requirements. The AI knows how to write for learning potential, not just past performance.",
-                },
-                {
-                  title: "Career switchers breaking into tech",
-                  body: "Transferable skills framing. How to connect your previous career to the role you're targeting without underselling yourself.",
-                },
-              ].map(({ title, body }, i) => (
-                <RevealItem key={title} className="grid gap-2 py-7 sm:grid-cols-[56px_minmax(0,1fr)]">
-                  <span className="font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
-                  <div>
-                    <h3 className="font-semibold text-white">{title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
-                  </div>
-                </RevealItem>
+                { stat: "60s",        label: "average time to generate" },
+                { stat: "5/mo",       label: "free cover letters, no card" },
+                { stat: "30/mo",      label: "on Pro at $9.99/mo" },
+                { stat: "Any role",   label: "tech, finance, consulting + more" },
+              ].map(({ stat, label }) => (
+                <div key={stat} className="flex flex-col-reverse border-t border-white/[0.08] pt-5 text-center">
+                  <dt className="mt-1 text-[13px] text-slate-400">{label}</dt>
+                  <dd className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${ACCENT_TEXT}`}>{stat}</dd>
+                </div>
               ))}
-            </RevealGroup>
+            </dl>
           </div>
         </section>
 
-        {/* Cross-link to ATS checker */}
-        <section aria-label="Pair with ATS resume checker" className={`${PAD} pb-20`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-accent/25 bg-accent/[0.05] p-7 sm:p-9`}>
-            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+        {/* FAQ: questions closed */}
+        <section aria-label="Cover letter generator FAQ" className={`${SECTION} ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead align="center" eyebrow="FAQ" title="Frequently asked questions" />
+            </Reveal>
+            <div className="mx-auto max-w-4xl">
+              <FaqList items={FAQS} />
+            </div>
+          </div>
+        </section>
+
+        {/* The longer detail, folded: what is different, who it is for. Kept in
+            the HTML (search engines index collapsed panels), but out of the way
+            of a reader who came to write a letter. */}
+        <section aria-label="More about the cover letter generator" className={`border-t border-white/[0.05] py-16 ${PAD}`}>
+          <div className={`${INNER} space-y-4`}>
+            <Fold eyebrow="What is different" title="Why this is different from other cover letter generators">
+              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+                Most generators fill in a template with your name and job title. Here is what Preciprocal actually does differently.
+              </p>
+              <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                {WHAT_MAKES_IT_DIFFERENT.map(({ title, body }, i) => (
+                  <div key={title} className="border-t border-white/[0.08] pt-5">
+                    <span className="font-mono text-[11px] text-accent-soft/80">{pad2(i + 1)}</span>
+                    <h3 className="mt-2 font-semibold text-white">{title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </Fold>
+
+            <Fold eyebrow="Who it's for" title="Built for students and new grads specifically">
+              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+                Most cover letter tools are built for people who have years of work history to reference. Preciprocal is
+                built for the version of you that is applying to your first or second real job, where your strongest
+                material might be a university project, an internship, or a bootcamp capstone.
+              </p>
+              <ol className="grid gap-x-10 gap-y-8 md:grid-cols-3">
+                {[
+                  {
+                    title: "New grads applying to full-time roles",
+                    body: "Frame projects, internships, and coursework as relevant experience. Lead with capability, not apology for limited history.",
+                  },
+                  {
+                    title: "Students applying for internships",
+                    body: "Internship cover letters have different requirements. The AI knows how to write for learning potential, not just past performance.",
+                  },
+                  {
+                    title: "Career switchers breaking into tech",
+                    body: "Transferable skills framing. How to connect your previous career to the role you're targeting without underselling yourself.",
+                  },
+                ].map(({ title, body }, i) => (
+                  <li key={title} className="border-t border-white/[0.08] pt-5">
+                    <span className="font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
+                    <h3 className="mt-2 font-semibold text-white">{title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+                  </li>
+                ))}
+              </ol>
+            </Fold>
+
+            {/* Pair with the ATS checker */}
+            <section aria-label="Pair with ATS resume checker" className="grid gap-6 border-t border-white/[0.08] pt-8 !mt-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="max-w-2xl">
                 <Eyebrow>Before you submit</Eyebrow>
                 <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
@@ -330,50 +333,29 @@ export default function CoverLetterGeneratorPage() {
                   Then prepare for the interview <Chevron />
                 </Link>
               </div>
-            </div>
-          </Reveal>
-        </section>
+            </section>
 
-        {/* FAQ */}
-        <section aria-label="Cover letter generator FAQ" className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] lg:gap-16`}>
-            <Reveal>
-              <SectionHead eyebrow="FAQ" title="Frequently asked questions" className="lg:sticky lg:top-28" />
-            </Reveal>
-            <Reveal>
-              <FaqList items={FAQS} />
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Internal links */}
-        <section aria-label="Related tools and resources" className={`${SECTION} ${PAD}`}>
-          <div className={INNER}>
-            <Reveal>
-              <Eyebrow>Keep going</Eyebrow>
-              <h2 className="mb-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">Related tools</h2>
-            </Reveal>
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
-              {[
-                { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
-                { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
-                { label: "How to Get Your First Tech Job", href: "/blog/how-to-get-first-tech-job-no-experience" },
-                { label: "ATS Resume Tips for New Grads", href: "/blog/ats-resume-tips-new-grads" },
-                { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
-                { label: "How to Answer Tell Me About Yourself", href: "/blog/how-to-answer-tell-me-about-yourself" },
-              ].map(({ label, href }) => (
-                <RevealItem key={href} className="bg-[#070b16]">
-                  <Link
-                    href={href}
-                    className="group relative flex h-full min-h-[56px] items-center justify-between gap-3 px-5 py-4 text-sm text-slate-300 transition-colors hover:bg-[#0a1020] hover:text-white"
-                  >
-                    {label}
-                    <Chevron className="text-accent" />
-                    <HoverRule className="inset-x-5" />
-                  </Link>
-                </RevealItem>
-              ))}
-            </RevealGroup>
+            {/* Internal links */}
+            <nav aria-label="Related tools and resources" className="!mt-12">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Related tools</p>
+              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+                {[
+                  { label: "Free ATS Resume Checker", href: "/free-ats-checker" },
+                  { label: "AI Mock Interview Practice", href: "/ai-mock-interview" },
+                  { label: "How to Get Your First Tech Job", href: "/blog/how-to-get-first-tech-job-no-experience" },
+                  { label: "ATS Resume Tips for New Grads", href: "/blog/ats-resume-tips-new-grads" },
+                  { label: "Software Engineer Interview Questions", href: "/interview-questions/software-engineer" },
+                  { label: "How to Answer Tell Me About Yourself", href: "/blog/how-to-answer-tell-me-about-yourself" },
+                ].map(({ label, href }) => (
+                  <li key={href} className="border-b border-white/[0.05]">
+                    <Link href={href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      {label}
+                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </section>
 

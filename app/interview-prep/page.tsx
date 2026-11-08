@@ -4,8 +4,9 @@
  * Hub/index page for all company-specific interview prep guides.
  * Targets: "interview prep by company", "how to prepare for [company] interview"
  *
- * Layout: PageHero, then the companies grouped by tier as ruled grids beside
- * a sticky tier index and difficulty legend on wide screens.
+ * Layout: PageHero with a jump list of sectors, then the companies grouped by
+ * tier as full-width ruled grids (difficulty legend above), the role guides
+ * cross-link, and the CTA panel.
  *
  * File path: app/interview-prep/page.tsx
  */
@@ -17,7 +18,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, Eyebrow, PageHero, pad2, HoverRule } from "@/components/page/Layout";
+import { PAD, INNER, CARD_SOLID, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import InterviewPrepVisual from "@/components/page/visuals/InterviewPrepVisual";
 
@@ -109,116 +110,99 @@ export default function InterviewPrepIndexPage() {
                 and retail, covering interview process, culture, difficulty, and what gets you the offer.
               </p>
             }
-          />
+          >
+            {/* Jump list of sectors */}
+            <nav aria-label="Jump to a sector" className="flex flex-wrap gap-2">
+              {grouped.map(({ tier, companies }) => (
+                <a
+                  key={tier}
+                  href={`#${tierId(tier)}`}
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[13px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
+                >
+                  {tier}
+                  <span className="font-mono text-[11px] text-slate-500 group-hover:text-accent-soft">{pad2(companies.length)}</span>
+                </a>
+              ))}
+            </nav>
+          </PageHero>
 
-          {/* Company grid by tier, with a sticky tier index on wide screens */}
+          {/* Companies by sector, one full-width grid each */}
           <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-            <div className={`${INNER} grid gap-12 lg:grid-cols-[240px_minmax(0,1fr)] xl:gap-20`}>
-              <aside className="lg:sticky lg:top-28 lg:self-start">
-                <nav aria-label="Jump to a sector" className="hidden lg:block">
-                  <ul className="space-y-0.5 border-l border-white/[0.07]">
-                    {grouped.map(({ tier, companies }) => (
-                      <li key={tier}>
-                        <a
-                          href={`#${tierId(tier)}`}
-                          className="-ml-px flex items-center justify-between gap-3 border-l border-transparent py-1.5 pl-4 text-[13px] text-slate-400 transition-colors hover:border-accent hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
-                        >
-                          {tier}
-                          <span className="font-mono text-[11px] text-slate-600">{pad2(companies.length)}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-
-                {/* Difficulty legend */}
-                <div className="flex flex-wrap items-center gap-2 text-[11px] lg:mt-10 lg:flex-col lg:items-start">
-                  <span className="mr-2 text-slate-600 lg:mb-1">Difficulty:</span>
-                  {Object.entries(DIFFICULTY_COLOR).map(([label, cls]) => (
-                    <span key={label} className={`rounded-full border px-2 py-1 ${cls}`}>{label}</span>
-                  ))}
-                </div>
-              </aside>
-
-              <div className="min-w-0 space-y-16">
-                {grouped.map(({ tier, companies }) => (
-                  <section key={tier} id={tierId(tier)} className="scroll-mt-28">
-                    <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
-                      <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">{tier}</h2>
-                      <span className="font-mono text-[11px] text-slate-600">{pad2(companies.length)}</span>
-                    </div>
-                    <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 xl:grid-cols-3 fill-sm-2 fill-xl-3">
-                      {companies.map((company, i) => {
-                        const display = COMPANY_DISPLAY[company];
-                        if (!display) return null;
-                        const diffClass = DIFFICULTY_COLOR[display.difficulty] ?? DIFFICULTY_COLOR["Hard"];
-                        return (
-                          <RevealItem key={company} className="bg-[#070b16]">
-                            <Link
-                              href={`/interview-prep/${company}`}
-                              className="group relative flex h-full items-center justify-between gap-4 p-5 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
-                            >
-                              <div className="flex min-w-0 items-start gap-4">
-                                <span className="mt-0.5 font-mono text-[11px] text-accent-soft/60">{pad2(i + 1)}</span>
-                                <div className="min-w-0">
-                                  <p className="text-sm font-medium text-white transition-colors group-hover:text-accent-soft">
-                                    {display.name}
-                                  </p>
-                                  <p className="mt-0.5 text-[11px] text-slate-600 transition-colors group-hover:text-slate-400">Prep guide <Chevron /></p>
-                                </div>
-                              </div>
-                              <span className={`shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${diffClass}`}>
-                                {display.difficulty}
-                              </span>
-                              <HoverRule className="inset-x-5" />
-                            </Link>
-                          </RevealItem>
-                        );
-                      })}
-                    </RevealGroup>
-                  </section>
+            <div className={`${INNER} space-y-14`}>
+              {/* Difficulty legend */}
+              <div className="flex flex-wrap items-center gap-2 text-[11px]">
+                <span className="mr-2 text-slate-500">Difficulty:</span>
+                {Object.entries(DIFFICULTY_COLOR).map(([label, cls]) => (
+                  <span key={label} className={`rounded-full border px-2 py-1 ${cls}`}>{label}</span>
                 ))}
               </div>
-            </div>
-          </section>
 
-          {/* Role questions cross-link */}
-          <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-            <Reveal className={INNER}>
-              <div className="grid gap-6 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-7 sm:p-9 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
+              {grouped.map(({ tier, companies }) => (
+                <section key={tier} id={tierId(tier)} className="scroll-mt-28">
+                  <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
+                    <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">{tier}</h2>
+                    <span className="font-mono text-[11px] text-slate-600">{pad2(companies.length)}</span>
+                  </div>
+                  <RevealGroup className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4">
+                    {companies.map((company, i) => {
+                      const display = COMPANY_DISPLAY[company];
+                      if (!display) return null;
+                      const diffClass = DIFFICULTY_COLOR[display.difficulty] ?? DIFFICULTY_COLOR["Hard"];
+                      return (
+                        <RevealItem key={company}>
+                          <Link
+                            href={`/interview-prep/${company}`}
+                            className={`group relative flex h-full flex-col items-start justify-between gap-3 ${CARD_SOLID} p-3.5 transition-colors duration-300 hover:border-white/[0.14] hover:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:gap-4 sm:p-4`}
+                          >
+                            <div className="flex min-w-0 items-start gap-4">
+                              <span className="mt-0.5 hidden font-mono text-[11px] text-accent-soft/60 sm:inline">{pad2(i + 1)}</span>
+                              <div className="min-w-0">
+                                <p className="truncate text-sm font-medium text-white transition-colors group-hover:text-accent-soft">
+                                  {display.name}
+                                </p>
+                                <p className="mt-0.5 text-[11px] text-slate-500 transition-colors group-hover:text-slate-300">Prep guide <Chevron /></p>
+                              </div>
+                            </div>
+                            <span className={`shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${diffClass}`}>
+                              {display.difficulty}
+                            </span>
+                          </Link>
+                        </RevealItem>
+                      );
+                    })}
+                  </RevealGroup>
+                </section>
+              ))}
+
+              {/* Role questions cross-link */}
+              <nav aria-label="Role interview guides" className="flex flex-col gap-4 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
-                  <Eyebrow>By role</Eyebrow>
-                  <h2 className="mb-2 text-xl font-semibold tracking-tight text-white sm:text-2xl">Looking for role-specific questions?</h2>
-                  <p className="text-sm leading-relaxed text-slate-400">
+                  <h2 className="text-[17px] font-semibold tracking-tight text-white">Looking for role-specific questions?</h2>
+                  <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
                     We also have detailed Q&A guides for 20+ roles, including software engineer, PM, data scientist, and more.
                   </p>
                 </div>
                 <Link
                   href="/interview-questions"
-                  className="group inline-flex items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white"
+                  className="group inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white"
                 >
                   Browse role interview guides <Chevron />
                 </Link>
-              </div>
-            </Reveal>
+              </nav>
+            </div>
           </section>
 
           {/* CTA */}
           <section className={`pb-24 ${PAD}`}>
-            <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-12 sm:px-14`}>
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
-                style={GRID_BG}
+            <Reveal>
+              <CtaPanel
+                title="Practice with an AI that mimics each company's actual interview style."
+                action={
+                  <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
+                    Start practicing free, no credit card required <Chevron />
+                  </a>
+                }
               />
-              <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-                <p className="max-w-xl text-lg leading-relaxed text-slate-300">
-                  Practice with an AI that mimics each company&apos;s actual interview style.
-                </p>
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                  Start practicing free, no credit card required <Chevron />
-                </a>
-              </div>
             </Reveal>
           </section>
         </main>

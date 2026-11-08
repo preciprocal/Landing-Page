@@ -2,9 +2,10 @@
  * app/roadmap/page.tsx
  * Fully self-contained. No separate component needed.
  *
- * Layout (accent amber): PageHero with the live counts on its right, then the roadmap as
- * a vertical timeline (components/page/RoadmapTimeline.tsx) whose accent
- * line draws as you scroll, then the feature idea CTA.
+ * Layout (accent amber): PageHero with the live counts on its right, then a
+ * short flow: what is being built now, what is planned next (each an open
+ * list under a centred head), the shipped changelog folded into one panel,
+ * then the feature idea CTA. Status is always written out in text.
  */
 
 import Link from "next/link";
@@ -13,9 +14,33 @@ import { APP_URL } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, PageHero, CtaPanel } from "@/components/page/Layout";
-import { Reveal } from "@/components/page/Reveal";
-import RoadmapTimeline, { type RoadmapItem } from "@/components/page/RoadmapTimeline";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, Fold, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
+import type { RoadmapItem, RoadmapStatus } from "@/components/page/RoadmapTimeline";
+
+/** The open lanes, in reading order. Shipped items go in the changelog fold. */
+const LANES: { status: RoadmapStatus; label: string; title: string }[] = [
+  { status: "in-progress", label: "In progress", title: "Being built right now" },
+  { status: "planned", label: "Planned", title: "Coming next" },
+];
+
+/** One roadmap entry: its tag and date, then the title and description. */
+function ItemBody({ item }: { item: RoadmapItem }) {
+  return (
+    <>
+      <div className="mb-3 flex flex-wrap items-center gap-2">
+        {item.tag && (
+          <span className="rounded-full border border-white/[0.08] px-2 py-0.5 text-[10px] font-semibold text-slate-300">
+            {item.tag}
+          </span>
+        )}
+        {item.date && <span className="font-mono text-[11px] text-slate-400">{item.date}</span>}
+      </div>
+      <h3 className="mb-1.5 text-[16px] font-bold text-white">{item.title}</h3>
+      <p className="text-sm leading-relaxed text-slate-400">{item.description}</p>
+    </>
+  );
+}
 
 const ITEMS: RoadmapItem[] = [
   {
@@ -228,10 +253,44 @@ export default function RoadmapPage() {
           }
         />
 
-        {/* Timeline */}
-        <section className={`${SECTION} ${PAD}`}>
+        {/* In progress, then planned: what a visitor here wants to know first */}
+        {LANES.map((lane) => {
+          const entries = ITEMS.filter((i) => i.status === lane.status);
+          return (
+            <section key={lane.status} aria-labelledby={`lane-${lane.status}`} className={`${SECTION} ${PAD}`}>
+              <div className={INNER}>
+                <Reveal className="mx-auto mb-12 max-w-2xl text-center">
+                  <Eyebrow>
+                    {lane.label} · {pad2(entries.length)}
+                  </Eyebrow>
+                  <h2 id={`lane-${lane.status}`} className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+                    {lane.title}
+                  </h2>
+                </Reveal>
+                <RevealGroup as="ol" className={`grid gap-x-10 gap-y-10 sm:grid-cols-2 ${entries.length > 2 ? "lg:grid-cols-3" : ""}`}>
+                  {entries.map((item) => (
+                    <RevealItem as="li" key={item.title} className="border-t border-white/[0.08] pt-6">
+                      <ItemBody item={item} />
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </div>
+            </section>
+          );
+        })}
+
+        {/* Shipped: the changelog, folded */}
+        <section aria-label="Changelog" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
-            <RoadmapTimeline items={ITEMS} />
+            <Fold eyebrow={`Shipped · ${pad2(shippedCount)}`} title="Changelog: everything already live" meta="Newest last, with the month each one shipped.">
+              <ol className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+                {ITEMS.filter((i) => i.status === "shipped").map((item) => (
+                  <li key={item.title} className="border-t border-white/[0.08] pt-5">
+                    <ItemBody item={item} />
+                  </li>
+                ))}
+              </ol>
+            </Fold>
           </div>
         </section>
 

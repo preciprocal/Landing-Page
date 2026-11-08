@@ -5,7 +5,8 @@
  * This file is pure rendering logic only.
  *
  * Layout: PageHero with the preferred source callout and a category index,
- * featured posts as large cards, then each category as a ruled grid of cards.
+ * featured posts under a centred head, then each category as an open list of
+ * posts, then related guides and the CTA.
  */
 
 import type { Metadata } from "next";
@@ -16,8 +17,8 @@ import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, Eyebrow, PageHero, pad2, HoverRule } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, SectionHead, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import BlogVisual from "@/components/page/visuals/BlogVisual";
 
 export const metadata: Metadata = {
@@ -40,6 +41,36 @@ function formatDate(iso: string) {
 
 /** Anchor id for a category section, e.g. "Visa & Immigration" to "cat-visa-immigration". */
 const catId = (cat: string) => `cat-${cat.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+
+type Post = (typeof BLOG_POSTS)[number];
+
+/** A post as an open list item: a ruled top edge, the title, two lines of description, date and read time. */
+function PostLink({ post, featured = false }: { post: Post; featured?: boolean }) {
+  return (
+    <Link
+      href={`/blog/${post.slug}`}
+      className="group flex h-full flex-col border-t border-white/[0.08] pt-5 transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+    >
+      {featured && <span className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">{post.category}</span>}
+      <h3
+        className={`font-semibold leading-snug transition-colors group-hover:text-accent-soft ${
+          featured ? "text-lg text-white sm:text-xl" : "text-slate-100"
+        }`}
+      >
+        {post.title}
+      </h3>
+      <p className="mb-4 mt-2 line-clamp-2 text-sm leading-relaxed text-slate-500">{post.description}</p>
+      <div className="mt-auto flex items-center justify-between gap-3 text-xs text-slate-500">
+        <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span>{formatDate(post.publishedAt)}</span>
+          <span aria-hidden="true">·</span>
+          <span>{post.readTime}</span>
+        </span>
+        <Chevron className="text-slate-600 group-hover:text-accent-soft" />
+      </div>
+    </Link>
+  );
+}
 
 export default function BlogIndexPage() {
   const featured = BLOG_POSTS.filter((p) => p.featured);
@@ -91,26 +122,11 @@ export default function BlogIndexPage() {
         {featured.length > 0 && (
           <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
             <div className={INNER}>
-              <Eyebrow>Featured</Eyebrow>
-              <RevealGroup className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2">
+              <SectionHead align="center" className="mb-12" eyebrow="Featured" title="Featured guides" />
+              <RevealGroup className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
                 {featured.map((post) => (
                   <RevealItem key={post.slug} className="h-full">
-                    <SpotlightCard className="h-full rounded-2xl border border-accent/15 bg-gradient-to-br from-accent-deep/[0.06] via-[#070b16] to-accent-deep-2/[0.05] transition-colors hover:border-accent/30">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="group flex h-full flex-col p-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60 sm:p-9"
-                      >
-                        <span className="text-xs font-semibold uppercase tracking-wider text-accent-soft">{post.category}</span>
-                        <h3 className="mb-3 mt-3 text-xl font-bold leading-snug tracking-tight text-white transition-colors group-hover:text-accent-soft sm:text-2xl">{post.title}</h3>
-                        <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-slate-400">{post.description}</p>
-                        <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/[0.06] pt-5 text-xs text-slate-500">
-                          <span className="flex items-center gap-3">
-                            <span>{formatDate(post.publishedAt)}</span><span aria-hidden="true">·</span><span>{post.readTime}</span>
-                          </span>
-                          <Chevron className="text-slate-600 group-hover:text-accent-soft" />
-                        </div>
-                      </Link>
-                    </SpotlightCard>
+                    <PostLink post={post} featured />
                   </RevealItem>
                 ))}
               </RevealGroup>
@@ -124,27 +140,14 @@ export default function BlogIndexPage() {
           return (
             <section key={cat} id={catId(cat)} className={`scroll-mt-24 border-t border-white/[0.05] py-14 sm:py-16 ${PAD}`}>
               <div className={INNER}>
-                <div className="mb-3 flex items-baseline justify-between gap-4">
-                  <Eyebrow>{cat}</Eyebrow>
-                  <span className="font-mono text-[11px] text-slate-600">{pad2(posts.length)}</span>
+                <div className="mb-8 flex items-baseline justify-between gap-4">
+                  <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{cat}</h2>
+                  <span className="font-mono text-[11px] text-slate-500">{pad2(posts.length)}</span>
                 </div>
-                <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
+                <RevealGroup className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
                   {posts.map((post) => (
-                    <RevealItem key={post.slug} className="bg-[#070b16]">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="group relative flex h-full flex-col p-6 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60 sm:p-7"
-                      >
-                        <h3 className="mb-2 font-semibold leading-snug text-slate-100 transition-colors group-hover:text-white">{post.title}</h3>
-                        <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-slate-500">{post.description}</p>
-                        <div className="mt-auto flex items-center justify-between gap-3 text-xs text-slate-500">
-                          <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <span>{formatDate(post.publishedAt)}</span><span>{post.readTime}</span>
-                          </span>
-                          <Chevron className="text-slate-600 group-hover:text-accent-soft" />
-                        </div>
-                        <HoverRule className="inset-x-6 sm:inset-x-7" />
-                      </Link>
+                    <RevealItem key={post.slug} className="h-full">
+                      <PostLink post={post} />
                     </RevealItem>
                   ))}
                 </RevealGroup>
@@ -154,21 +157,30 @@ export default function BlogIndexPage() {
         })}
 
         {/* Cross-links */}
-        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <RevealGroup className={`${INNER} grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 fill-sm-2`}>
-            <RevealItem className="bg-[#070b16]">
-              <Link href="/interview-questions" className="group block h-full p-7 transition-colors hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60">
-                <p className="mb-1 font-semibold text-white">Interview questions by role <Chevron /></p>
-                <p className="text-sm text-slate-500">Q&amp;As for 20+ roles with detailed answers</p>
-              </Link>
-            </RevealItem>
-            <RevealItem className="bg-[#070b16]">
-              <Link href="/interview-prep" className="group block h-full p-7 transition-colors hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60">
-                <p className="mb-1 font-semibold text-white">Company prep guides <Chevron /></p>
-                <p className="text-sm text-slate-500">Google, Amazon, Meta, Stripe, and 16 more</p>
-              </Link>
-            </RevealItem>
-          </RevealGroup>
+        <section className={`border-t border-white/[0.05] py-14 ${PAD}`}>
+          <nav aria-label="More guides" className={INNER}>
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+            <ul className="grid gap-x-10 sm:grid-cols-2">
+              <li className="border-b border-white/[0.05]">
+                <Link href="/interview-questions" className="group flex items-center justify-between gap-3 py-4 transition-colors">
+                  <span>
+                    <span className="block font-semibold text-white">Interview questions by role</span>
+                    <span className="block text-sm text-slate-500">Q&amp;As for 20+ roles with detailed answers</span>
+                  </span>
+                  <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                </Link>
+              </li>
+              <li className="border-b border-white/[0.05]">
+                <Link href="/interview-prep" className="group flex items-center justify-between gap-3 py-4 transition-colors">
+                  <span>
+                    <span className="block font-semibold text-white">Company prep guides</span>
+                    <span className="block text-sm text-slate-500">Google, Amazon, Meta, Stripe, and 16 more</span>
+                  </span>
+                  <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </section>
 
         {/* CTA */}

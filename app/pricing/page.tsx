@@ -20,15 +20,7 @@
 import Link from "next/link";
 import { CheckIcon } from "@/components/Icons";
 import { APP_URL } from "@/lib/constants";
-import { GlowingEffect } from "@/components/ui/GlowingEffect";
-import {
-  RevealOnScroll,
-  StaggerChildren,
-  StaggerItem,
-  MagneticHover,
-  GlowDivider,
-  SpotlightCard,
-} from "@/components/LandingAnimations";
+import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Packs from "@/components/Packs";
@@ -44,7 +36,7 @@ import {
   tierSchemaPrice,
 } from "@/lib/pricing";
 import Chevron from "@/components/Chevron";
-import { Breadcrumbs } from "@/components/page/Layout";
+import { PAD, INNER, Breadcrumbs, FaqList, SectionHead } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -169,7 +161,7 @@ const PRICING_FAQS = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-[#050810]">
+    <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <PricingJsonLd />
       <Navbar />
 
@@ -178,59 +170,55 @@ export default function PricingPage() {
         {/* ── Breadcrumb ── */}
         <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Pricing" }]} />
 
-        {/* ── Hero ── */}
-        <section data-section="pricing-plans" data-section-name="Pricing plans" aria-label="Pricing plans" className="relative">
-          <div className="w-full py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-            <GlowDivider />
-
-            <RevealOnScroll className="text-center mb-16 mt-10">
-              <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
+        {/* ── Plans first: a short head, then the three cards ── */}
+        <section data-section="pricing-plans" data-section-name="Pricing plans" aria-label="Pricing plans" className={`relative pb-6 pt-12 sm:pt-16 ${PAD}`}>
+          <div className={INNER}>
+            <RevealOnScroll className="mx-auto mb-14 max-w-2xl text-center">
+              <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-indigo-400">
                 Pricing
               </p>
-              <h1 className="text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-4">
+              <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-[42px]">
                 Invest in yourself.
                 <br />
                 <span className="text-gradient">It pays back fast.</span>
               </h1>
-              <p className="text-base text-slate-400 max-w-lg mx-auto">
+              <p className="mx-auto max-w-lg text-base text-slate-400">
                 The average job search costs months of lost salary. Preciprocal helps you land
                 offers weeks faster, for less than a single coffee a day.
               </p>
             </RevealOnScroll>
 
             {/* ── Plan cards ── */}
-            <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+            <StaggerChildren className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-5 md:grid-cols-3">
               {TIERS.map((plan) => (
                 <StaggerItem key={plan.name} className="flex flex-col">
                   <div
-                    className={`relative rounded-2xl p-9 flex-1 flex flex-col ${
+                    className={`relative flex flex-1 flex-col rounded-2xl p-8 transition-colors duration-300 lg:p-9 ${
                       plan.mostPopular
-                        ? "bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05] border border-indigo-500/30 md:scale-[1.03]"
-                        : "bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12]"
-                    } transition-all duration-300`}
+                        ? "border border-indigo-500/30 bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05]"
+                        : "border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12]"
+                    }`}
                   >
-                    {plan.mostPopular && <GlowingEffect spread={50} glow proximity={80} />}
-
                     {plan.mostPopular && (
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white whitespace-nowrap z-20">
+                      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-1.5 text-xs font-bold text-white">
                         Most Popular
                       </div>
                     )}
 
-                    <div className="relative z-10 flex flex-col flex-1">
-                      <h2 className="text-xl font-bold text-white mb-1">{plan.name}</h2>
-                      <p className="text-[13px] text-slate-500 mb-4">{plan.tagline}</p>
+                    <div className="relative z-10 flex flex-1 flex-col">
+                      <h2 className="mb-1 text-xl font-bold text-white">{plan.name}</h2>
+                      <p className="mb-4 text-[13px] text-slate-500">{plan.tagline}</p>
 
                       <div className="mb-6">
-                        <span className="text-5xl font-extrabold text-white tracking-tight">
+                        <span className="text-5xl font-extrabold tracking-tight text-white">
                           {tierPriceLabel(plan)}
                         </span>
                         {tierPeriodLabel(plan) && (
-                          <span className="text-[15px] text-slate-500 ml-1">{tierPeriodLabel(plan)}</span>
+                          <span className="ml-1 text-[15px] text-slate-500">{tierPeriodLabel(plan)}</span>
                         )}
                       </div>
 
-                      <div className="flex flex-col gap-3.5 mb-8 flex-1">
+                      <div className="mb-8 flex flex-1 flex-col gap-3.5">
                         {tierFeatureLines(plan).map((feature) => (
                           <div key={feature} className="flex items-center gap-2.5 text-sm text-slate-300">
                             <CheckIcon className="flex-shrink-0 text-indigo-400" />
@@ -239,25 +227,16 @@ export default function PricingPage() {
                         ))}
                       </div>
 
-                      {plan.mostPopular ? (
-                        <MagneticHover>
-                          <a
-                            href={`${APP_URL}/sign-up?plan=${plan.id}`}
-                            className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                       bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110"
-                          >
-                            {plan.cta}
-                          </a>
-                        </MagneticHover>
-                      ) : (
-                        <a
-                          href={plan.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${plan.id}`}
-                          className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                     bg-white/[0.05] border border-white/[0.12] text-slate-200 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5"
-                        >
-                          {plan.cta}
-                        </a>
-                      )}
+                      <a
+                        href={plan.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${plan.id}`}
+                        className={`block w-full rounded-xl py-3.5 text-center text-[15px] font-semibold transition-all duration-300 ${
+                          plan.mostPopular
+                            ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110"
+                            : "border border-white/[0.12] bg-white/[0.05] text-slate-200 hover:border-white/20 hover:bg-white/[0.08]"
+                        }`}
+                      >
+                        {plan.cta}
+                      </a>
                     </div>
                   </div>
                 </StaggerItem>
@@ -269,9 +248,9 @@ export default function PricingPage() {
               <RefundPolicy />
             </div>
 
-            <p className="text-center text-[13px] text-slate-600 mt-5">
+            <p className="mt-5 text-center text-[13px] text-slate-500">
               University student? Verify your .edu email for{" "}
-              <span className="text-slate-400 font-medium">1 month of Pro free</span>. A card is
+              <span className="font-medium text-slate-300">1 month of Pro free</span>. A card is
               required; nothing is charged for 30 days and you can cancel any time.
             </p>
           </div>
@@ -287,44 +266,23 @@ export default function PricingPage() {
           <SuccessStories />
         </div>
 
-        {/* ── Pricing FAQ ── */}
-        <section data-section="pricing-faq" data-section-name="Pricing FAQ" aria-label="Pricing frequently asked questions" className="relative py-16 px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48">
-          <div className="max-w-2xl mx-auto">
-            <RevealOnScroll className="mb-10 text-center">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">
-                Common questions
-              </h2>
-              <p className="text-slate-500 text-sm">
-                Everything you need to know before subscribing.
-              </p>
-            </RevealOnScroll>
-
-            <StaggerChildren className="space-y-3">
-              {PRICING_FAQS.map(({ q, a }) => (
-                <StaggerItem key={q}>
-                  <SpotlightCard
-                    className="rounded-xl border border-white/[0.06] bg-[#0a0f1e]/80 p-6"
-                    spotlightColor="rgba(99,102,241,0.04)"
-                  >
-                    <h3 className="text-[14px] font-semibold text-white mb-2">{q}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">{a}</p>
-                  </SpotlightCard>
-                </StaggerItem>
-              ))}
-            </StaggerChildren>
-
-            <RevealOnScroll className="mt-8 text-center">
-              <p className="text-[13px] text-slate-600">
+        {/* ── Pricing FAQ: questions closed, answers one click away ── */}
+        <section data-section="pricing-faq" data-section-name="Pricing FAQ" aria-label="Pricing frequently asked questions" className={`relative border-t border-white/[0.05] py-20 ${PAD}`}>
+          <div className={INNER}>
+            <SectionHead align="center" eyebrow="FAQ" title="Common questions" />
+            <div className="mx-auto max-w-3xl">
+              <FaqList items={PRICING_FAQS} />
+              <p className="mt-8 text-center text-[13px] text-slate-500">
                 More questions?{" "}
-                <Link href="/faq" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
+                <Link href="/faq" className="font-medium text-indigo-400 transition-colors hover:text-indigo-300">
                   Read the full FAQ <Chevron />
                 </Link>
                 {" "}or{" "}
-                <a href="mailto:support@preciprocal.com" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
+                <a href="mailto:support@preciprocal.com" className="font-medium text-indigo-400 transition-colors hover:text-indigo-300">
                   email us
                 </a>
               </p>
-            </RevealOnScroll>
+            </div>
           </div>
         </section>
 

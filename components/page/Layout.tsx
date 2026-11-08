@@ -139,6 +139,7 @@ export function SectionHead({
   subtitle,
   className = "mb-10",
   as: Tag = "h2",
+  align = "start",
 }: {
   eyebrow: string;
   title: ReactNode;
@@ -146,9 +147,11 @@ export function SectionHead({
   subtitle?: ReactNode;
   className?: string;
   as?: "h2" | "h3";
+  /** "center" for full-width flow sections (how it works, what you get). */
+  align?: "start" | "center";
 }) {
   return (
-    <div className={`max-w-3xl ${className}`}>
+    <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
       <Eyebrow>{eyebrow}</Eyebrow>
       <Tag className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
         {title}
@@ -366,6 +369,49 @@ export function CtaPanel({
         </div>
       </div>
     </div>
+  );
+}
+
+/**
+ * A folded panel for supporting detail: a title row that opens to reveal the
+ * content. Pages lead with what the reader came for and fold the rest in
+ * here, so they read as a short flow. The content stays in the HTML (a native
+ * <details>), so search engines still index it. The title is a real heading.
+ *
+ *   <Fold eyebrow="The full guide" title="Why job searches fall apart">...</Fold>
+ */
+export function Fold({
+  eyebrow,
+  title,
+  meta,
+  children,
+  as: Tag = "h2",
+  className = "",
+}: {
+  eyebrow?: ReactNode;
+  title: ReactNode;
+  /** A short line under the title, e.g. "8 sections" or "5 min read". */
+  meta?: ReactNode;
+  children: ReactNode;
+  as?: "h2" | "h3";
+  className?: string;
+}) {
+  return (
+    <details className={`group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] open:border-white/[0.12] ${className}`}>
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] sm:p-8 [&::-webkit-details-marker]:hidden">
+        <div className="min-w-0">
+          {eyebrow && <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">{eyebrow}</p>}
+          <Tag className={`${eyebrow ? "mt-2 " : ""}text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl`}>{title}</Tag>
+          {meta && <p className="mt-1.5 text-sm text-slate-500">{meta}</p>}
+        </div>
+        <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/[0.12] text-slate-300 transition-transform duration-300 group-open:rotate-180">
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </span>
+      </summary>
+      <div className="border-t border-white/[0.06] px-6 pb-10 pt-8 sm:px-8">{children}</div>
+    </details>
   );
 }
 

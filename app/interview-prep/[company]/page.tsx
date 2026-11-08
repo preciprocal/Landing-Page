@@ -7,8 +7,9 @@
  * Next.js 15 fix: params must be typed as Promise<{company: string}> in both
  * generateMetadata and the default export.
  *
- * Layout: hero with quick stats, guide body beside a sticky aside (top roles,
- * related companies), FAQ beside a sticky heading, CTA panel.
+ * Layout, one centred flow: hero with quick stats, the rounds as connected
+ * stages (overview as the lead-in), how to stand out, FAQ, top roles and
+ * related companies as a compact list, CTA panel.
  */
 
 import type { Metadata } from "next";
@@ -20,7 +21,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, CARD, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, Eyebrow, HeroBackdrop, FaqList, CtaPanel, TrustRow, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, FaqList, CtaPanel, TrustRow } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -45,6 +46,15 @@ export async function generateMetadata({ params }: { params: Promise<{ company: 
     twitter: { card: "summary_large_image", title: stripBrand(meta.title), description: meta.description },
   };
 }
+
+/** Stage columns on wide screens, one per stage (the data has 4 to 6). */
+const STAGE_COLS: Record<number, string> = {
+  3: "lg:grid-cols-3",
+  4: "lg:grid-cols-4",
+  5: "lg:grid-cols-5",
+  6: "lg:grid-cols-6",
+  7: "lg:grid-cols-7",
+};
 
 const DIFFICULTY_COLOR: Record<string, { color: string; bg: string; border: string }> = {
   "Medium":          { color: "#34d399", bg: "rgba(52,211,153,0.08)",  border: "rgba(52,211,153,0.2)" },
@@ -74,8 +84,15 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
     return picked;
   })();
   const diffStyle = DIFFICULTY_COLOR[meta.difficulty] ?? DIFFICULTY_COLOR["Hard"];
+
+  // Group the process into stages: a "->" line is a part of the stage above it.
+  const stages: { text: string; parts: string[] }[] = [];
+  for (const step of meta.interviewProcess) {
+    const text = step.replace(/^\s*->\s*/, "");
+    if (/^\s*->/.test(step) && stages.length > 0) stages[stages.length - 1].parts.push(text);
+    else stages.push({ text, parts: [] });
+  }
   const mockUrl = `${APP_URL}/sign-up?tool=mock-interview`;
-  const H2 = "text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]";
 
   return (
     <div data-accent="rose" className="min-h-screen bg-[#050810]">
@@ -153,165 +170,159 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
           </div>
         </section>
 
-        {/* Guide body, with a sticky aside on the left on wide screens */}
-        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <div className={`${INNER} grid gap-12 lg:grid-cols-[320px_minmax(0,1fr)] xl:gap-16`}>
-            <div className="min-w-0 space-y-16">
-              {/* Overview */}
-              <Reveal>
-                <section>
-                  <Eyebrow>Overview</Eyebrow>
-                  <h2 className={`mb-5 ${H2}`}>
-                    Inside the <span className={ACCENT_TEXT}>{meta.displayName} interview</span>
-                  </h2>
-                  <p className="text-[18px] leading-[1.75] text-slate-300">{meta.overview}</p>
-                </section>
-              </Reveal>
+        {/* The rounds: what the interview looks like, as a flow of stages.
+            The overview sits under the heading as the lead-in. */}
+        <section id="process" className={`scroll-mt-24 border-t border-white/[0.05] py-20 sm:py-24 ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead
+                align="center"
+                className="mb-14"
+                eyebrow="The process"
+                title={<>Inside the {meta.displayName} interview,</>}
+                accent="round by round"
+                subtitle={meta.overview}
+              />
+            </Reveal>
 
-              {/* Interview process */}
-              <section id="process" className="scroll-mt-28">
-                <Reveal>
-                  <Eyebrow>Process</Eyebrow>
-                  <h2 className={`mb-8 ${H2}`}>
-                    The interview process, <span className={ACCENT_TEXT}>round by round</span>
-                  </h2>
-                </Reveal>
-                <RevealGroup as="ol" className="relative space-y-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07]">
-                  {/* The data marks the parts of a round with a leading "->"
-                      ("  -> 2 coding rounds" under the onsite). Those render as
-                      indented sub-steps, and only main steps are numbered. */}
-                  {(() => {
-                    let n = 0;
-                    return meta.interviewProcess.map((step, i) => {
-                      const sub = /^\s*->\s*/.test(step);
-                      const text = step.replace(/^\s*->\s*/, "");
-                      if (!sub) n += 1;
-                      return sub ? (
-                        <RevealItem as="li" key={i} className="flex items-start gap-3 bg-[#070b16] py-3.5 pl-[4.25rem] pr-5 sm:pr-6">
-                          <span aria-hidden="true" className="mt-[0.55rem] h-1 w-1 shrink-0 rounded-full bg-accent-soft/60" />
-                          <p className="text-[13px] leading-relaxed text-slate-400">{text}</p>
-                        </RevealItem>
-                      ) : (
-                        <RevealItem as="li" key={i} className="flex items-start gap-5 bg-[#070b16] p-5 sm:p-6">
-                          <span className="mt-0.5 font-mono text-[12px] text-accent-soft/80">{pad2(n)}</span>
-                          <p className="text-[15px] leading-relaxed text-slate-200">{text}</p>
-                        </RevealItem>
-                      );
-                    });
-                  })()}
-                </RevealGroup>
-
-                {/* The bridge from reading about the rounds to rehearsing them. */}
-                <Reveal>
-                  <div className="relative mt-6 overflow-hidden rounded-2xl border border-accent/25 bg-gradient-to-br from-accent-deep/[0.12] via-transparent to-transparent p-6 sm:p-7">
-                    <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-                      <div className="max-w-xl">
-                        <p className="text-[17px] font-semibold text-white">Rehearse every round before the real one.</p>
-                        <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">
-                          A voice mock interview with an AI panel that asks follow-ups, scored on communication,
-                          technical depth and structure. The nerves fade once you&apos;ve done it out loud.
-                        </p>
-                      </div>
-                      <a href={mockUrl} className={`${BTN_PRIMARY} shrink-0`}>
-                        Start a mock interview <Chevron />
-                      </a>
-                    </div>
-                  </div>
-                </Reveal>
-              </section>
-
-              {/* Top tips */}
-              <section>
-                <Reveal>
-                  <Eyebrow>Tips</Eyebrow>
-                  <h2 className={`mb-8 ${H2}`}>
-                    How to stand out <span className={ACCENT_TEXT}>at {meta.displayName}</span>
-                  </h2>
-                </Reveal>
-                <RevealGroup as="ul" className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-                  {meta.tips.map((tip, i) => (
-                    <RevealItem as="li" key={i} className="flex items-start gap-4 py-4">
-                      <span className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-accent-deep/15 text-accent">
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-                          <path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </span>
-                      <p className="text-[15.5px] leading-relaxed text-slate-300">{tip}</p>
-                    </RevealItem>
-                  ))}
-                </RevealGroup>
-              </section>
-            </div>
-
-            <aside className="space-y-10 lg:sticky lg:top-28 lg:order-first lg:self-start">
-              {/* Top roles */}
-              <Reveal>
-                <section className={`${CARD} p-6`}>
-                  <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Top roles at {meta.displayName}</h2>
-                  <div className="flex flex-wrap gap-2">
-                    {meta.topRoles.map((role) => (
-                      <span
-                        key={role}
-                        className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-sm text-slate-300"
-                      >
-                        {role}
-                      </span>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
-
-              {/* Related companies.
-
-                  The curated relatedCompanies list is used first, then topped up by
-                  rotating through ALL_COMPANIES from this company's own position.
-                  Purely curated, four companies (DoorDash, Figma, Palantir, Tesla)
-                  appeared in nobody else's list and so had a single inbound link from
-                  the hub. The rotation guarantees every company page is reachable from
-                  several others, and being index-based it stays deterministic for SSR. */}
-              {relatedCompanySlugs.length > 0 && (
-                <Reveal delay={0.08}>
-                  <section>
-                    <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also preparing for</h2>
-                    <ul className="divide-y divide-white/[0.05] border-y border-white/[0.05]">
-                      {relatedCompanySlugs.map((slug) => {
-                        const relMeta = COMPANY_META[slug];
-                        const name = relMeta?.displayName ?? slug.charAt(0).toUpperCase() + slug.slice(1);
-                        return (
-                          <li key={slug}>
-                            <Link
-                              href={`/interview-prep/${slug}`}
-                              className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
-                            >
-                              {name} Interview Prep
-                              <Chevron className="text-slate-600 group-hover:text-accent-soft" />
-                            </Link>
+            {/* The data marks the parts of a round with a leading "->" ("  -> 2
+                coding rounds" under the onsite). Those attach to the stage
+                above them, and only the stages are numbered. */}
+            <RevealGroup as="ol" className={`relative grid gap-8 ${STAGE_COLS[stages.length] ?? "lg:grid-cols-4"} lg:gap-8`}>
+              {/* The connecting line: down the numbers on phones, across them on wide screens. */}
+              <span aria-hidden="true" className="absolute bottom-6 left-6 top-6 w-px bg-gradient-to-b from-accent/50 via-white/[0.12] to-accent/50 lg:hidden" />
+              <span
+                aria-hidden="true"
+                className="absolute top-6 hidden h-px bg-gradient-to-r from-accent/50 via-white/[0.12] to-accent/50 lg:block"
+                style={{ left: `${50 / stages.length}%`, right: `${50 / stages.length}%` }}
+              />
+              {stages.map((stage, i) => (
+                <RevealItem as="li" key={i} className="relative flex gap-5 lg:block lg:text-center">
+                  <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft lg:mx-auto">
+                    {i + 1}
+                  </span>
+                  <div className="min-w-0 pt-2.5 lg:pt-0">
+                    <p className="text-[16px] font-semibold leading-snug text-white lg:mt-6">{stage.text}</p>
+                    {stage.parts.length > 0 && (
+                      <ul className="mt-3 space-y-2 lg:mx-auto lg:max-w-[16rem]">
+                        {stage.parts.map((part) => (
+                          <li key={part} className="rounded-lg border border-white/[0.07] bg-white/[0.02] px-3 py-2 text-[13px] leading-snug text-slate-400">
+                            {part}
                           </li>
-                        );
-                      })}
-                    </ul>
-                  </section>
-                </Reveal>
-              )}
-            </aside>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+
+            {/* The bridge from reading about the rounds to rehearsing them. */}
+            <Reveal>
+              <div className="mt-16 flex flex-col gap-5 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="max-w-2xl">
+                  <p className="text-[17px] font-semibold text-white">Rehearse every round before the real one.</p>
+                  <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">
+                    A voice mock interview with an AI panel that asks follow-ups, scored on communication,
+                    technical depth and structure. The nerves fade once you&apos;ve done it out loud.
+                  </p>
+                </div>
+                <a href={mockUrl} className={`${BTN_PRIMARY} shrink-0`}>
+                  Start a mock interview <Chevron />
+                </a>
+              </div>
+            </Reveal>
           </div>
         </section>
 
-        {/* FAQ as closed dropdowns. Answers stay in the HTML (native <details>), so the FAQ structured data still matches the page. */}
-        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <Eyebrow>FAQ</Eyebrow>
-              <h2 className={H2}>{meta.displayName} interview questions, answered</h2>
-              <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                Something else? Email{" "}
-                <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
-                  support@preciprocal.com
-                </a>
-                .
-              </p>
+        {/* How to stand out: an open list, one line each */}
+        <section className={`border-t border-white/[0.05] py-20 sm:py-24 ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead align="center" className="mb-14" eyebrow="Tips" title="How to stand out" accent={`at ${meta.displayName}`} />
+            </Reveal>
+            <RevealGroup as="ul" className="grid gap-x-12 gap-y-8 md:grid-cols-2">
+              {meta.tips.map((tip, i) => (
+                <RevealItem as="li" key={i} className="flex gap-4">
+                  <span aria-hidden="true" className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/[0.12] text-accent-soft">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                      <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <p className="text-[15.5px] leading-relaxed text-slate-300">{tip}</p>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </div>
+        </section>
+
+        {/* FAQ as closed dropdowns. Answers stay in the HTML, so the FAQ structured data still matches the page. */}
+        <section className={`border-t border-white/[0.05] py-20 sm:py-24 ${PAD}`}>
+          <div className={INNER}>
+            <SectionHead
+              align="center"
+              className="mb-12"
+              eyebrow="FAQ"
+              title={`${meta.displayName} interview questions, answered`}
+              subtitle={
+                <>
+                  Something else? Email{" "}
+                  <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
+                    support@preciprocal.com
+                  </a>
+                  .
+                </>
+              }
+            />
+            <div className="mx-auto max-w-4xl">
+              <FaqList items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
             </div>
-            <FaqList items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
+          </div>
+        </section>
+
+        {/* Top roles and related companies, as a compact list.
+
+            The curated relatedCompanies list is used first, then topped up by
+            rotating through ALL_COMPANIES from this company's own position.
+            Purely curated, four companies (DoorDash, Figma, Palantir, Tesla)
+            appeared in nobody else's list and so had a single inbound link from
+            the hub. The rotation guarantees every company page is reachable from
+            several others, and being index-based it stays deterministic for SSR. */}
+        <section className={`border-t border-white/[0.05] py-16 ${PAD}`}>
+          <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16`}>
+            <div>
+              <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Top roles at {meta.displayName}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {meta.topRoles.map((role) => (
+                  <li key={role} className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-sm text-slate-300">
+                    {role}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {relatedCompanySlugs.length > 0 && (
+              <nav aria-labelledby="related-companies">
+                <h2 id="related-companies" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also preparing for</h2>
+                <ul className="grid gap-x-10 sm:grid-cols-2">
+                  {relatedCompanySlugs.map((slug) => {
+                    const relMeta = COMPANY_META[slug];
+                    const name = relMeta?.displayName ?? slug.charAt(0).toUpperCase() + slug.slice(1);
+                    return (
+                      <li key={slug} className="border-b border-white/[0.05]">
+                        <Link
+                          href={`/interview-prep/${slug}`}
+                          className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
+                        >
+                          {name} Interview Prep
+                          <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+            )}
           </div>
         </section>
 

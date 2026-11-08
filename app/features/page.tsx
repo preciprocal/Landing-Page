@@ -16,9 +16,8 @@
  * a human, win the interview, stay in control. Each stage links out to the tool
  * page that owns that head term.
  *
- * Layout: PageHero with a sign-up aside and a four-stage index,
- * then each stage as a sticky stage label beside a ruled bento grid of its
- * tools. The interview stage sits in a SpotlightCard.
+ * Layout: PageHero with a sign-up aside and a four-stage index, then each
+ * stage as one flow section: a centred head and its tools as an open row.
  */
 
 import Link from "next/link";
@@ -27,8 +26,8 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HeroSignup, HoverRule, PageHero, pad2 } from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HeroSignup, PageHero, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 type Feature = {
   name: string;
@@ -191,59 +190,37 @@ function FeaturesJsonLd() {
   );
 }
 
-/** Running tool number at the start of each stage, so cards count 01..n across the page. */
+/** Running tool number at the start of each stage, so tools count 01..n across the page. */
 const STAGE_START = STAGES.map((_, i) => STAGES.slice(0, i).reduce((sum, s) => sum + s.features.length, 0));
 
 const stageSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-/**
- * Borders for a ruled grid: one column on mobile, two from sm. With an odd
- * count the first card spans both columns.
- */
-function cellBorders(i: number, n: number) {
-  const wide = n % 2 === 1;
-  const mobile = i > 0 ? "border-t sm:border-t-0" : "";
-  if (wide && i === 0) return `sm:col-span-2 ${n > 1 ? "sm:border-b" : ""}`;
-  const k = wide ? i - 1 : i;
-  const rest = wide ? n - 1 : n;
-  const lastRow = Math.floor((rest - 1) / 2);
-  return [mobile, k % 2 === 0 ? "sm:border-r" : "", Math.floor(k / 2) < lastRow ? "sm:border-b" : ""].join(" ");
-}
+/** Columns for a stage's tools: as many as it has, up to four, so each stage sits in one row on wide screens. */
+const COLS: Record<number, string> = {
+  1: "",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-2 lg:grid-cols-3",
+  4: "sm:grid-cols-2 lg:grid-cols-4",
+};
 
-function ToolCard({ feature, index, wide }: { feature: Feature; index: number; wide: boolean }) {
+/**
+ * One tool as an open list item: a number and a ruled top edge, the tool
+ * name, the problem it answers in a quieter line, then what it does.
+ */
+function ToolItem({ feature, index }: { feature: Feature; index: number }) {
   return (
     <Link
       href={feature.href}
-      className="group relative flex h-full flex-col p-6 transition-colors duration-300 hover:bg-white/[0.025] focus-visible:bg-white/[0.025] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60 sm:p-7"
+      className="group flex h-full flex-col border-t border-white/[0.08] pt-6 transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
     >
-      <div className="flex items-center justify-between gap-4">
-        <span className="font-mono text-[11px] text-accent-soft/70">{pad2(index)}</span>
-        <span
-          aria-hidden="true"
-          className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-slate-400 transition-colors duration-300 group-hover:border-white/25 group-hover:text-accent-soft"
-        >
-          <Chevron />
-        </span>
-      </div>
-
-      <div className={wide ? "mt-5 lg:grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-10" : "mt-5 flex flex-1 flex-col"}>
-        <div className="self-start rounded-xl border border-white/[0.07] bg-white/[0.025] px-4 py-3.5">
-          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-slate-500">The problem</p>
-          <p className={`mt-1.5 leading-snug text-slate-200 ${wide ? "text-[15px] lg:text-base" : "text-[14.5px]"}`}>{feature.pain}</p>
-        </div>
-        <div className={wide ? "mt-5 lg:mt-0" : "mt-5 flex flex-1 flex-col"}>
-          <h3 className={`font-semibold leading-tight text-white ${wide ? "text-xl" : "text-lg"}`}>
-            {feature.name}
-          </h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{feature.promise}</p>
-        </div>
-      </div>
-
-      <span className="mt-6 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-soft">
+      <span className="font-mono text-[11px] text-accent-soft/80">{pad2(index)}</span>
+      <h3 className="mt-3 text-lg font-semibold leading-tight text-white">{feature.name}</h3>
+      <p className="mt-2 text-[14.5px] italic leading-snug text-slate-300">{feature.pain}</p>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{feature.promise}</p>
+      <span className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-soft transition-colors group-hover:text-white">
         See how it works
         <Chevron />
       </span>
-      <HoverRule />
     </Link>
   );
 }
@@ -296,7 +273,6 @@ export default function FeaturesPage() {
                       <span className="block text-[12px] text-slate-400">{stage.features.length} tools</span>
                     </span>
                     <Chevron className="text-slate-500 group-hover:text-accent-soft" />
-                    <HoverRule className="inset-x-5" />
                   </a>
                 </li>
               ))}
@@ -304,20 +280,9 @@ export default function FeaturesPage() {
           </nav>
         </PageHero>
 
-        {/* ── Stages ── */}
+        {/* ── Stages: one centred head and an open row of tools each ── */}
         {STAGES.map((stage, stageIndex) => {
           const start = STAGE_START[stageIndex];
-          const spotlight = stageIndex === 2;
-          const grid = (
-            <RevealGroup className="grid grid-cols-1 sm:grid-cols-2">
-              {stage.features.map((feature, i) => (
-                <RevealItem key={feature.href} className={`border-white/[0.07] ${cellBorders(i, stage.features.length)}`}>
-                  <ToolCard feature={feature} index={start + i + 1} wide={stage.features.length % 2 === 1 && i === 0} />
-                </RevealItem>
-              ))}
-            </RevealGroup>
-          );
-
           return (
             <section
               key={stage.title}
@@ -327,21 +292,22 @@ export default function FeaturesPage() {
               aria-label={stage.title}
               className={`scroll-mt-24 border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}
             >
-              <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] xl:gap-16`}>
-                <Reveal className="lg:sticky lg:top-28 lg:self-start">
-                  <p aria-hidden="true" className={`mb-5 font-mono text-5xl font-bold leading-none sm:text-6xl ${ACCENT_TEXT}`}>
-                    {pad2(stageIndex + 1)}
-                  </p>
-                  <Eyebrow>{stage.eyebrow}</Eyebrow>
-                  <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{stage.title}</h2>
-                  <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-slate-400">{stage.intro}</p>
+              <div className={INNER}>
+                <Reveal className="mx-auto mb-12 max-w-2xl text-center">
+                  <Eyebrow>
+                    {pad2(stageIndex + 1)} · {stage.eyebrow}
+                  </Eyebrow>
+                  <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{stage.title}</h2>
+                  <p className="mt-4 text-[15.5px] leading-relaxed text-slate-400">{stage.intro}</p>
                 </Reveal>
 
-                {spotlight ? (
-                  <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-[#070b16]">{grid}</SpotlightCard>
-                ) : (
-                  <div className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">{grid}</div>
-                )}
+                <RevealGroup className={`grid grid-cols-1 gap-x-10 gap-y-10 ${COLS[stage.features.length] ?? COLS[4]}`}>
+                  {stage.features.map((feature, i) => (
+                    <RevealItem key={feature.href}>
+                      <ToolItem feature={feature} index={start + i + 1} />
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
               </div>
             </section>
           );

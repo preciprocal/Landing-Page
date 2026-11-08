@@ -4,8 +4,10 @@
  * Dynamic resume tips guide for each role.
  * Targets: "software engineer resume tips", "product manager resume guide", etc.
  *
- * Layout: hero with the salary range, then the guide in a wide column beside
- * a sticky aside (jump list and ATS checker) on wide screens, sibling guides,
+ * Layout: one centred column that reads as a flow. Hero with the salary range,
+ * then what the reader came for: the ATS keywords, the bullet formula with its
+ * example, and the first five numbered tips. Any further tips and the common
+ * mistakes sit in Fold panels (still in the HTML for search), then the role's sibling guides as a compact links list,
  * and a CTA panel. Built on components/page/Layout.tsx.
  *
  * File path: app/resume-tips/[role]/page.tsx
@@ -16,26 +18,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import RoleGuideLinks from "@/components/RoleGuideLinks";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
-import {
-  PAD,
-  INNER,
-  SECTION,
-  CARD,
-  CARD_SOLID,
-  BTN_PRIMARY,
-  Eyebrow,
-  SectionHead,
-  PageHero,
-  CtaPanel,
-  pad2,
-} from "@/components/page/Layout";
-import { Reveal, RevealGroup, RevealItem, SpotlightCard } from "@/components/page/Reveal";
+import { PAD, INNER, SECTION, CARD, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, Fold, pad2 } from "@/components/page/Layout";
+import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 interface ResumeTipData {
   salaryRange: string;
@@ -232,6 +221,24 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
+/** How many tips show open; the rest go in a Fold. */
+const KEY_TIPS = 5;
+
+/** One numbered tip; ids match the old jump-list anchors (#tip-1 ...). */
+function TipBody({ n, title, body }: { n: number; title: string; body: string }) {
+  return (
+    <>
+      <span aria-hidden="true" className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-accent/30 font-mono text-[12px] text-accent-soft">
+        {n}
+      </span>
+      <div id={`tip-${n}`} className="scroll-mt-24">
+        <h3 className="text-[17px] font-semibold leading-snug text-white">{title}</h3>
+        <p className="mt-2 text-[15px] leading-relaxed text-slate-400">{body}</p>
+      </div>
+    </>
+  );
+}
+
 export default async function ResumeTipsRolePage({ params }: { params: Promise<{ role: string }> }) {
   const { role } = await params;
   const display = ROLE_DISPLAY[role];
@@ -255,14 +262,19 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
     mainEntityOfPage: `https://preciprocal.com/resume-tips/${role}`,
   };
 
-  // Jump list for the sticky aside; ids match the sections below.
-  const toc = [
-    { id: "keywords", label: "ATS keywords" },
-    { id: "bullet-formula", label: "Bullet formula" },
-    ...tipData.sections.map((s, i) => ({ id: `tip-${i + 1}`, label: s.title })),
-    { id: "mistakes", label: "Common mistakes" },
-  ];
   const formulaParts = tipData.bulletFormula.split(" + ");
+  // The first tips lead; any beyond them (the longer, composed sections on
+  // most roles) sit in a Fold so the page stays short.
+  const keyTips = tipData.sections.slice(0, KEY_TIPS);
+  const moreTips = tipData.sections.slice(KEY_TIPS);
+
+  // The role's sibling guides and the free checker, as a compact links list.
+  const moreLinks = [
+    { href: `/interview-questions/${role}`, label: `${display.name} interview questions` },
+    { href: `/salary-guide/${role}`, label: `${display.name} salary guide` },
+    { href: `/cover-letter-examples/${role}`, label: `${display.name} cover letter examples` },
+    { href: "/free-ats-checker", label: "Check your resume's ATS score" },
+  ];
 
   return (
     <div data-accent="emerald" className="min-h-screen overflow-x-hidden bg-[#050810]">
@@ -307,132 +319,111 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
           }
         />
 
-        {/* Guide body with a sticky jump list and checker CTA */}
-        <section className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-12 lg:grid-cols-[260px_minmax(0,1fr)] xl:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-            <div className="min-w-0 space-y-20">
-              {/* ATS keywords */}
-              <section id="keywords" className="scroll-mt-28">
-                <Reveal>
-                  <SectionHead
-                    eyebrow="ATS keywords"
-                    title={`Top ATS keywords for ${display.name}s`}
-                    subtitle={`These terms appear in most ${display.name.toLowerCase()} job descriptions. Include them naturally in your bullets and skills section.`}
-                    className="mb-8"
-                  />
-                </Reveal>
-                <RevealGroup as="ul" className="flex flex-wrap gap-2.5">
-                  {tipData.topAtsKeywords.map((kw) => (
-                    <RevealItem
-                      as="li"
-                      key={kw}
-                      className="inline-flex items-center rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3.5 py-2 text-[14px] font-medium text-accent-soft"
-                    >
-                      {kw}
-                    </RevealItem>
-                  ))}
-                </RevealGroup>
-              </section>
-
-              {/* Bullet formula and example, side by side */}
-              <section id="bullet-formula" className="scroll-mt-28">
-                <Reveal>
-                  <SectionHead eyebrow="Bullet formula" title="The bullet formula that works" className="mb-8" />
-                </Reveal>
-                <RevealGroup className="grid gap-4 md:grid-cols-2">
-                  <RevealItem className={`${CARD_SOLID} p-6 sm:p-7`}>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Formula</p>
-                    <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 font-mono text-[13px] leading-relaxed text-accent-soft">
-                      {formulaParts.map((part, i) => (
-                        <span key={i} className="contents">
-                          {i > 0 && <span className="text-accent/70"> + </span>}
-                          <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2 py-1">{part}</span>
-                        </span>
-                      ))}
-                    </p>
-                  </RevealItem>
-                  <RevealItem className="rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-6 sm:p-7">
-                    <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                      Real example
-                    </p>
-                    <p className="mt-4 text-[15px] leading-relaxed text-slate-200">{tipData.bulletExample}</p>
-                  </RevealItem>
-                </RevealGroup>
-              </section>
-
-              {/* Main tip sections, numbered */}
-              <div>
-                <Eyebrow>The guide</Eyebrow>
-                <div className="mt-2 divide-y divide-white/[0.06] border-y border-white/[0.06]">
-                  {tipData.sections.map((section, i) => (
-                    <Reveal key={i}>
-                      <section id={`tip-${i + 1}`} className="grid scroll-mt-28 gap-3 py-9 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-                        <span aria-hidden="true" className="font-mono text-[12px] text-accent-soft/70 sm:pt-1.5">{pad2(i + 1)}</span>
-                        <div>
-                          <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{section.title}</h2>
-                          <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-400">{section.body}</p>
-                        </div>
-                      </section>
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-
-              {/* Common mistakes */}
-              <section id="mistakes" className="scroll-mt-28">
-                <Reveal>
-                  <SectionHead eyebrow="Avoid these" title={`5 common ${display.name.toLowerCase()} resume mistakes`} className="mb-8" />
-                </Reveal>
-                <RevealGroup
-                  as="ul"
-                  className="divide-y divide-white/[0.05] overflow-hidden rounded-2xl border border-rose-500/15 bg-rose-500/[0.03]"
+        {/* 1. ATS keywords: what the reader came for, first */}
+        <section id="keywords" className={`${SECTION} scroll-mt-24 ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead
+                align="center"
+                eyebrow="ATS keywords"
+                title={`Top ATS keywords for ${display.name}s`}
+                subtitle={`These terms appear in most ${display.name.toLowerCase()} job descriptions. Include them naturally in your bullets and skills section.`}
+              />
+            </Reveal>
+            <RevealGroup as="ul" className="mx-auto flex max-w-5xl flex-wrap justify-center gap-2.5">
+              {tipData.topAtsKeywords.map((kw) => (
+                <RevealItem
+                  as="li"
+                  key={kw}
+                  className="inline-flex items-center rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3.5 py-2 text-[14px] font-medium text-accent-soft"
                 >
-                  {tipData.commonMistakes.map((mistake, i) => (
-                    <RevealItem as="li" key={i} className="flex items-start gap-4 px-5 py-4 sm:px-6">
-                      <span className="mt-0.5 shrink-0 font-mono text-[12px] font-semibold text-rose-300/80">{pad2(i + 1)}</span>
-                      <p className="text-sm leading-relaxed text-slate-300">{mistake}</p>
-                    </RevealItem>
-                  ))}
-                </RevealGroup>
-              </section>
-            </div>
-
-            <aside aria-label="On this page" className="hidden lg:sticky lg:top-28 lg:order-first lg:block lg:self-start">
-              <nav aria-label="Sections">
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
-                <ol className="border-l border-white/[0.07]">
-                  {toc.map((item, i) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#${item.id}`}
-                        className="-ml-px flex gap-3 border-l border-transparent py-1.5 pl-4 text-[13px] leading-snug text-slate-400 transition-colors hover:border-accent hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
-                      >
-                        <span aria-hidden="true" className="font-mono text-[10px] leading-5 text-slate-600">{pad2(i + 1)}</span>
-                        <span>{item.label}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-
-              <SpotlightCard className="mt-8 rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">Free tool</p>
-                <p className="mt-3 text-lg font-semibold leading-snug text-white">Check your resume&apos;s ATS score</p>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">Free score and top fixes for your {display.name} resume</p>
-                <Link href="/free-ats-checker" className={`${BTN_PRIMARY} mt-5 w-full px-5 py-3`}>
-                  Check my resume <Chevron />
-                </Link>
-              </SpotlightCard>
-            </aside>
+                  {kw}
+                </RevealItem>
+              ))}
+            </RevealGroup>
           </div>
         </section>
 
-        {/* Sibling guides for this role, plus the question predictor */}
+        {/* 2. The bullet formula, then the example that follows it */}
+        <section id="bullet-formula" className={`${SECTION} scroll-mt-24 ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead align="center" eyebrow="Bullet formula" title="The bullet formula that works" />
+            </Reveal>
+            <Reveal className="mx-auto max-w-4xl text-center">
+              <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-mono text-[13px] leading-relaxed text-accent-soft sm:text-[14px]">
+                {formulaParts.map((part, i) => (
+                  <span key={i} className="contents">
+                    {i > 0 && <span className="text-accent/70"> + </span>}
+                    <span className="rounded-md border border-white/[0.08] bg-white/[0.03] px-2.5 py-1.5">{part}</span>
+                  </span>
+                ))}
+              </p>
+              <figure className="mt-10 border-l-2 border-emerald-400/60 pl-5 text-left sm:pl-7">
+                <figcaption className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">Real example</figcaption>
+                <blockquote className="mt-3 text-lg leading-relaxed text-slate-100 sm:text-xl">{tipData.bulletExample}</blockquote>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 3. The tips, as an open numbered list */}
+        <section id="tips" className={`${SECTION} scroll-mt-24 ${PAD}`}>
+          <div className={INNER}>
+            <Reveal>
+              <SectionHead align="center" eyebrow="The guide" title={`How to write a ${display.name.toLowerCase()} resume`} className="mb-14" />
+            </Reveal>
+            <RevealGroup as="ol" className="grid gap-x-14 gap-y-12 md:grid-cols-2 xl:grid-cols-3">
+              {keyTips.map((section, i) => (
+                <RevealItem as="li" key={i} className="flex gap-4">
+                  <TipBody n={i + 1} title={section.title} body={section.body} />
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </div>
+        </section>
+
+        {/* 4. Mistakes folded, then the related guides */}
         <section className={`${SECTION} ${PAD}`}>
-          <Reveal className={INNER}>
-            <RoleGuideLinks role={role} roleName={display.name} current="resume-tips" className="" />
-          </Reveal>
+          <div className={INNER}>
+            {moreTips.length > 0 && (
+              <Fold eyebrow="The guide" title={`More ${display.name.toLowerCase()} resume tips`} className="mb-4">
+                <ol className="grid gap-x-14 gap-y-10 md:grid-cols-2">
+                  {moreTips.map((section, i) => (
+                    <li key={i} className="flex gap-4">
+                      <TipBody n={KEY_TIPS + i + 1} title={section.title} body={section.body} />
+                    </li>
+                  ))}
+                </ol>
+              </Fold>
+            )}
+            <div id="mistakes" className="scroll-mt-24">
+              <Fold eyebrow="Avoid these" title={`5 common ${display.name.toLowerCase()} resume mistakes`}>
+                <ol className="mx-auto max-w-4xl divide-y divide-white/[0.06]">
+                  {tipData.commonMistakes.map((mistake, i) => (
+                    <li key={i} className="flex items-start gap-4 py-4">
+                      <span className="mt-0.5 shrink-0 font-mono text-[12px] font-semibold text-rose-300/80">{pad2(i + 1)}</span>
+                      <p className="text-[15px] leading-relaxed text-slate-300">{mistake}</p>
+                    </li>
+                  ))}
+                </ol>
+              </Fold>
+            </div>
+
+            <nav aria-label={`More ${display.name} guides`} className="mt-12">
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">More {display.name} guides</h2>
+              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
+                {moreLinks.map((link) => (
+                  <li key={link.href} className="border-b border-white/[0.05]">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      {link.label}
+                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
         </section>
 
         {/* CTA */}

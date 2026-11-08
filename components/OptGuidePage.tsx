@@ -10,11 +10,13 @@
  * university international offices), and a "not legal advice" line. The guide
  * nav links every page in the cluster to every other one.
  *
- * Layout: the shared page language in components/page. Hero, a ruled key facts
- * strip, the tool, then the guide with its sources in a sticky aside on wide
- * screens, the FAQ accordion, the guide nav, and the CTA panel.
+ * Layout: reads as one flow. Hero (with the not-legal-advice line), the key
+ * facts strip, the tool, then the guide in one centred reading column with its
+ * sources and checked date directly under it, the FAQ, a compact list of the
+ * other guides, and the CTA panel. No sidebars.
  */
 
+import { Children, Fragment, cloneElement, isValidElement, type ReactElement, type ReactNode } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -62,7 +64,34 @@ const LONG_DATE = new Intl.DateTimeFormat("en-US", {
 
 /** Prose styles for the per-page body, which arrives as plain h2, p, ul and table markup. */
 const PROSE =
-  "space-y-6 text-[15px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
+  "space-y-6 text-[16px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
+
+type GuideSection = { heading: ReactElement<{ className?: string }> | null; content: ReactNode[] };
+
+/**
+ * Splits the per-page body (a fragment of h2, p, ul, div...) into sections at
+ * each h2, so each one can render as a row: its heading on the left, its
+ * content on the right. Anything before the first h2 becomes a section with
+ * no heading. Returns null when the body is not a fragment, and the page then
+ * renders it as one block.
+ */
+function splitSections(body: ReactNode): GuideSection[] | null {
+  if (!isValidElement<{ children?: ReactNode }>(body) || body.type !== Fragment) return null;
+  const sections: GuideSection[] = [];
+  for (const child of Children.toArray(body.props.children)) {
+    if (isValidElement<{ className?: string }>(child) && child.type === "h2") {
+      sections.push({ heading: child, content: [] });
+    } else {
+      if (!sections.length) sections.push({ heading: null, content: [] });
+      sections[sections.length - 1].content.push(child);
+    }
+  }
+  return sections;
+}
+
+/** One row of the guide: heading left, content right on wide screens, stacked below lg. */
+const ROW = "grid grid-cols-1 gap-5 border-t border-white/[0.06] py-10 first:border-t-0 first:pt-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.4fr)] lg:gap-16";
+const ROW_HEAD = "scroll-mt-28 text-xl font-bold leading-snug tracking-tight text-white sm:text-2xl";
 
 export default function OptGuidePage(props: OptGuideProps) {
   reportStaleContent();
@@ -71,6 +100,7 @@ export default function OptGuidePage(props: OptGuideProps) {
   const checkedLabel = LONG_DATE.format(new Date(`${checkedAt}T00:00:00Z`));
   const pageUrl = `${SITE_URL}${props.canonicalPath}`;
   const signUpUrl = `${APP_URL}/sign-up?tool=${props.ctaTool}`;
+  const sections = splitSections(props.body);
   const isHub = props.canonicalPath === "/opt";
 
   const articleSchema = {
@@ -151,21 +181,14 @@ export default function OptGuidePage(props: OptGuideProps) {
             }
           />
 
-          {/* ── Key facts ──────────────────────────────────────────────── */}
+          {/* ── Key facts: the numbers the reader came for ─────────────── */}
           <section data-section="key-facts" data-section-name="Key facts" className={`pb-16 ${PAD}`}>
             <div className={INNER}>
               <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
                 {props.keyFacts.map((f) => (
-                  <RevealItem
-                    key={f.label}
-                    className="group relative bg-[#070b16] p-5 transition-colors duration-300 hover:bg-[#0a1020] sm:p-7"
-                  >
+                  <RevealItem key={f.label} className="bg-[#070b16] p-5 sm:p-7">
                     <p className="text-xl font-extrabold tracking-tight text-white sm:text-3xl">{f.value}</p>
                     <p className="mt-2 text-[12px] leading-snug text-slate-400 sm:text-[13px]">{f.label}</p>
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-5 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:scale-x-100 sm:inset-x-7"
-                    />
                   </RevealItem>
                 ))}
               </RevealGroup>
@@ -180,54 +203,58 @@ export default function OptGuidePage(props: OptGuideProps) {
             </section>
           )}
 
-          {/* ── Body: sources in a sticky column on the left, the guide filling the right ── */}
+          {/* ── The guide: each section a row (heading left, content right),
+              then the sources and checked date, always visible ── */}
           <div className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-12 lg:grid-cols-[300px_minmax(0,1fr)] xl:gap-16`}>
+            <div className={INNER}>
               <section data-section="content" data-section-name="Guide content" className="min-w-0">
-                <Reveal className={PROSE}>{props.body}</Reveal>
+                {sections ? (
+                  sections.map((sec, i) => (
+                    <div key={i} className={ROW}>
+                      <div>{sec.heading && cloneElement(sec.heading, { className: ROW_HEAD })}</div>
+                      <div className={`min-w-0 max-w-[860px] ${PROSE}`}>{sec.content}</div>
+                    </div>
+                  ))
+                ) : (
+                  <div className={`mx-auto max-w-[860px] ${PROSE}`}>{props.body}</div>
+                )}
               </section>
 
-              <aside className="min-w-0 lg:sticky lg:top-28 lg:order-first lg:self-start">
-                <Reveal>
-                  <section
-                    data-section="sources"
-                    data-section-name="Sources"
-                    className="rounded-2xl border border-white/[0.07] bg-[#070b16] p-6"
-                  >
-                    <Eyebrow>Checked against</Eyebrow>
-                    <h2 className="text-lg font-semibold text-white">Sources</h2>
-                    <ol className="mt-4 divide-y divide-white/[0.05] border-t border-white/[0.05]">
-                      {props.sources.map((s, i) => (
-                        <li key={s.href}>
-                          <a
-                            href={s.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group flex gap-3 py-3 text-sm leading-snug text-accent-soft transition-colors hover:text-white"
-                          >
-                            <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
-                            <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ol>
-                  </section>
-
-                  {/* ── Follow in Google ───────────────────────────────── */}
-                  <section data-section="preferred-source" data-section-name="Preferred source" className="mt-6 px-1">
-                    <PreferredSourceCallout
-                      className="lg:flex-col lg:items-start"
-                      text="OPT rules and USCIS processing change. Follow our updates in Google:"
-                    />
-                  </section>
-                </Reveal>
-              </aside>
+              <section data-section="sources" data-section-name="Sources" className={ROW}>
+                <div>
+                  <h2 className={ROW_HEAD}>Sources</h2>
+                  <p className="mt-2 text-sm text-slate-500">
+                    Checked on <time dateTime={checkedAt}>{checkedLabel}</time>
+                  </p>
+                </div>
+                <div className="min-w-0 max-w-[860px]">
+                  <ol className="border-t border-white/[0.05]">
+                    {props.sources.map((s, i) => (
+                      <li key={s.href} className="border-b border-white/[0.05]">
+                        <a
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex gap-3 py-3 text-sm leading-snug text-accent-soft transition-colors hover:text-white"
+                        >
+                          <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
+                          <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                  <PreferredSourceCallout
+                    className="mt-6"
+                    text="OPT rules and USCIS processing change. Follow our updates in Google:"
+                  />
+                </div>
+              </section>
             </div>
           </div>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
           <section data-section="faq" data-section-name="FAQ" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
+            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>FAQ</Eyebrow>
                 <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">
@@ -240,30 +267,24 @@ export default function OptGuidePage(props: OptGuideProps) {
             </div>
           </section>
 
-          {/* ── Guide nav ──────────────────────────────────────────────── */}
-          <section data-section="guide-nav" data-section-name="More OPT guides" className={`${SECTION} ${PAD}`}>
-            <div className={INNER}>
-              <Eyebrow>OPT guides</Eyebrow>
-              <h2 className="mb-8 text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">More OPT guides</h2>
-              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
-                {OPT_GUIDES.filter((g) => g.href !== props.canonicalPath).map((g, i) => (
-                  <RevealItem key={g.href} className="bg-[#070b16]">
-                    <Link
-                      href={g.href}
-                      className="group flex h-full items-start gap-4 p-6 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/70"
-                    >
-                      <span className="mt-0.5 font-mono text-[11px] text-accent-soft/70">{pad2(i + 1)}</span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-sm font-semibold text-white">{g.label}</span>
-                        <span className="mt-1.5 block text-[13px] leading-snug text-slate-400">{g.blurb}</span>
-                      </span>
-                      <Chevron className="mt-0.5 text-slate-600 group-hover:text-accent-soft" />
-                    </Link>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
-            </div>
-          </section>
+          {/* ── More guides: a compact list (the hub lists them all in its body) ── */}
+          {!isHub && (
+            <nav data-section="guide-nav" data-section-name="More OPT guides" aria-label="More OPT guides" className={`pb-16 ${PAD}`}>
+              <div className={INNER}>
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">More OPT guides</h2>
+                <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+                  {OPT_GUIDES.filter((g) => g.href !== props.canonicalPath).map((g) => (
+                    <li key={g.href} className="border-b border-white/[0.05]">
+                      <Link href={g.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                        {g.label}
+                        <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </nav>
+          )}
 
           {/* ── Bottom CTA ───────────────────────────────────────────── */}
           <section data-section="final-cta" data-section-name="Final CTA" className={`pb-24 pt-4 ${PAD}`}>

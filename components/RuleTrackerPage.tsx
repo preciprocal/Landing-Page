@@ -14,12 +14,13 @@
  * The "last checked" date comes from lib/contentFreshness.ts, which flags the
  * page in development once it is older than its 30 day window.
  *
- * Layout: the shared page language in components/page. The status table is a
- * ruled list; the detail sits beside a sticky contents list built from the
- * same rows on wide screens; the timeline and FAQ keep their heading in a
- * sticky left column.
+ * Layout: one flow. Hero, then the status list: every rule with its status
+ * and summary, each row opening to that rule's full detail (split out of the
+ * body at its h2 anchor). Then the FAQ, the key dates folded into a panel,
+ * the sources (visible, with the checked date), related links, and the CTA.
  */
 
+import { Children, Fragment, isValidElement } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -28,7 +29,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, CtaPanel, Eyebrow, FaqList, INNER, PAD, PageHero, SECTION, pad2 } from "@/components/page/Layout";
+import { BTN_PRIMARY, CtaPanel, Eyebrow, FaqList, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export type RuleStatus = "in-effect" | "blocked" | "proposed" | "unchanged";
@@ -65,47 +66,6 @@ export interface RuleRow {
   /** Anchor id of the detail section below, so the table works as a contents list. */
   anchor: string;
 }
-
-/**
- * The right side of the hero on wide screens: a count per status and every
- * rule with its status, counted from the same rows as the table below so it
- * never disagrees with the page. Decorative (PageHero hides its visual from
- * assistive tech); the status table carries the same information.
- */
-function StatusBoard({ rows, checkedLabel }: { rows: RuleRow[]; checkedLabel: string }) {
-  const statuses = (Object.keys(STATUS_STYLE) as RuleStatus[]).filter((s) => rows.some((r) => r.status === s));
-  return (
-    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
-      <div className="flex items-center justify-between gap-4 border-b border-white/[0.06] px-6 py-4">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Where things stand</p>
-        <p className="text-[11px] text-slate-500">Checked {checkedLabel}</p>
-      </div>
-      <div className={`grid gap-px bg-white/[0.06] grid-cols-2 ${statuses.length >= 4 ? "xl:grid-cols-4" : statuses.length === 3 ? "xl:grid-cols-3" : ""}`}>
-        {statuses.map((s) => (
-          <div key={s} className="bg-[#070b16] px-5 py-5">
-            <p className="font-mono text-3xl font-semibold text-white">{rows.filter((r) => r.status === s).length}</p>
-            <p className="mt-2 flex items-center gap-2 whitespace-nowrap text-[12px] leading-tight text-slate-400">
-              <StatusDot status={s} />
-              {STATUS_STYLE[s].label}
-            </p>
-          </div>
-        ))}
-      </div>
-      <ul className="divide-y divide-white/[0.05] border-t border-white/[0.06]">
-        {rows.map((row) => (
-          <li key={row.anchor} className="flex items-start gap-4 px-6 py-3.5">
-            <StatusDot status={row.status} className="mt-2" />
-            <span className="min-w-0 flex-1 text-[14px] leading-snug text-slate-200">{row.rule}</span>
-            <span className={`shrink-0 rounded-md border px-2 py-0.5 text-[10px] font-semibold ${STATUS_STYLE[row.status].className}`}>
-              {STATUS_STYLE[row.status].label}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 
 export interface RuleTrackerProps {
   breadcrumbName: string;
@@ -230,6 +190,34 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
 const PROSE =
   "space-y-6 text-[15px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
 
+/**
+ * Splits the per-page body into one chunk per rule: each chunk starts at the
+ * h2 whose id matches a row anchor and runs to the next one. Returns null
+ * when the body does not follow that shape, and the page then shows the body
+ * as one block under the status list instead.
+ */
+function splitByRule(body: React.ReactNode, rows: RuleRow[]): Record<string, React.ReactNode[]> | null {
+  if (!isValidElement<{ children?: React.ReactNode }>(body) || body.type !== Fragment) return null;
+  const anchors = new Set(rows.map((r) => r.anchor));
+  const out: Record<string, React.ReactNode[]> = {};
+  let current: string | null = null;
+  for (const child of Children.toArray(body.props.children)) {
+    if (isValidElement<{ id?: string; children?: React.ReactNode }>(child) && child.type === "h2" && child.props.id && anchors.has(child.props.id)) {
+      current = child.props.id;
+      // The anchor id moves to the row; the heading keeps its words, one level down.
+      out[current] = [
+        <h3 key={`${current}-heading`} className="!text-xl !font-bold !tracking-tight sm:!text-2xl">
+          {child.props.children}
+        </h3>,
+      ];
+      continue;
+    }
+    if (!current) return null;
+    out[current].push(child);
+  }
+  return rows.every((r) => out[r.anchor]) ? out : null;
+}
+
 const H2 = "text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight";
 
 export default function RuleTrackerPage(props: RuleTrackerProps) {
@@ -238,6 +226,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
   const pageUrl = `${SITE_URL}${props.canonicalPath}`;
   const checkedAt = rulesCheckedAt();
   const signUpUrl = `${APP_URL}/sign-up?tool=${props.ctaTool}`;
+  const details = splitByRule(props.body, props.rows);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -297,131 +286,103 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                   A summary of public rules and court rulings, not legal advice. Confirm anything about your own case with
                   your DSO or an immigration attorney.
                 </p>
-                <PreferredSourceCallout
-                  className="mt-6"
-                  text="These rules keep changing. See our updates more often in Google's Top Stories:"
-                />
               </>
             }
-            visual={<StatusBoard rows={props.rows} checkedLabel={rulesCheckedLabel()} />}
-          >
-            {/* Live status summary, counted from the rows below. On wide screens
-                the status board in the hero carries this, so it shows on smaller
-                screens only. */}
-            <ul aria-label="Status summary" className="flex flex-wrap gap-2 lg:hidden">
-              {(Object.keys(STATUS_STYLE) as RuleStatus[]).map((s) => {
-                const count = props.rows.filter((r) => r.status === s).length;
-                if (!count) return null;
-                return (
-                  <li
-                    key={s}
-                    className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-slate-300"
-                  >
-                    <StatusDot status={s} />
-                    {STATUS_STYLE[s].label}
-                    <span className="font-mono text-[11px] font-semibold text-white">{count}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </PageHero>
+            aside={
+              <PreferredSourceCallout
+                className="lg:max-w-xs lg:flex-col lg:items-end"
+                text="These rules keep changing. See our updates more often in Google's Top Stories:"
+              />
+            }
+          />
 
-          {/* ── Status at a glance ─────────────────────────────────────── */}
+          {/* ── Status: every rule, its status and the short answer. Each row
+              opens to the full detail for that rule, so the page reads as one
+              scannable list. The detail stays in the HTML (native <details>),
+              and the row carries the anchor id, so #links still land on it. ── */}
           <section data-section="status" data-section-name="Status at a glance" className={`${SECTION} ${PAD}`}>
             <div className={INNER}>
-              <Eyebrow>Status at a glance</Eyebrow>
-              <h2 className={`mb-10 ${H2}`}>What is in force today</h2>
-              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07]">
-                {props.rows.map((row, i) => {
-                  const style = STATUS_STYLE[row.status];
+              <SectionHead align="center" eyebrow="Status at a glance" title="What is in force today" className="mb-6" />
+
+              <ul aria-label="Status summary" className="mb-10 flex flex-wrap justify-center gap-2">
+                {(Object.keys(STATUS_STYLE) as RuleStatus[]).map((s) => {
+                  const count = props.rows.filter((r) => r.status === s).length;
+                  if (!count) return null;
                   return (
-                    <RevealItem key={row.anchor} className="bg-[#070b16]">
-                      <a
-                        href={`#${row.anchor}`}
-                        className="group relative grid grid-cols-1 gap-3 p-5 transition-colors duration-300 hover:bg-[#0a1020] focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/70 sm:p-7 lg:grid-cols-[3rem_200px_minmax(0,1fr)_auto] lg:items-start lg:gap-8"
-                      >
-                        <span className="hidden font-mono text-[11px] text-accent-soft/70 lg:block lg:pt-1.5">{pad2(i + 1)}</span>
-                        <span
-                          className={`inline-flex items-center gap-2 self-start justify-self-start shrink-0 rounded-md border px-2.5 py-1 text-[11px] font-semibold ${style.className}`}
-                        >
-                          <StatusDot status={row.status} />
-                          {style.label}
-                        </span>
-                        <span className="min-w-0">
-                          <span className="block font-semibold text-white">{row.rule}</span>
-                          <span className="mt-1.5 block text-sm leading-relaxed text-slate-400">{row.summary}</span>
-                        </span>
-                        <Chevron className="hidden text-slate-600 group-hover:text-accent-soft lg:mt-1 lg:block" />
-                        <span
-                          aria-hidden="true"
-                          className="absolute inset-x-5 bottom-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:scale-x-100 sm:inset-x-7"
-                        />
-                      </a>
-                    </RevealItem>
+                    <li
+                      key={s}
+                      className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-slate-300"
+                    >
+                      <StatusDot status={s} />
+                      {STATUS_STYLE[s].label}
+                      <span className="font-mono text-[11px] font-semibold text-white">{count}</span>
+                    </li>
                   );
                 })}
-              </RevealGroup>
-            </div>
-          </section>
+              </ul>
 
-          {/* ── Detail, with a sticky contents list ────────────────────── */}
-          <section data-section="content" data-section-name="Rule details" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-12 lg:grid-cols-[280px_minmax(0,1fr)] xl:gap-16`}>
-              <Reveal className={`min-w-0 ${PROSE}`}>{props.body}</Reveal>
-
-              <aside className="hidden lg:sticky lg:top-28 lg:order-first lg:block lg:self-start">
-                <nav aria-label="Rules on this page" className="rounded-2xl border border-white/[0.07] bg-[#070b16] p-6">
-                  <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">On this page</p>
-                  <ol className="space-y-1">
+              {details ? (
+                <div data-section="content" data-section-name="Rule details" className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+                  {props.rows.map((row, i) => {
+                    const style = STATUS_STYLE[row.status];
+                    return (
+                      <details key={row.anchor} id={row.anchor} className="group scroll-mt-28 border-t border-white/[0.06] first:border-t-0">
+                        <summary className="grid cursor-pointer list-none grid-cols-1 gap-3 p-5 transition-colors hover:bg-white/[0.02] sm:p-7 lg:grid-cols-[3rem_200px_minmax(0,1fr)_auto] lg:items-start lg:gap-8 [&::-webkit-details-marker]:hidden">
+                          <span className="hidden font-mono text-[11px] text-accent-soft/70 lg:block lg:pt-1.5">{pad2(i + 1)}</span>
+                          <span
+                            className={`inline-flex items-center gap-2 self-start justify-self-start shrink-0 rounded-md border px-2.5 py-1 text-[11px] font-semibold ${style.className}`}
+                          >
+                            <StatusDot status={row.status} />
+                            {style.label}
+                          </span>
+                          <span className="min-w-0">
+                            <span className="block font-semibold text-white">{row.rule}</span>
+                            <span className="mt-1.5 block text-sm leading-relaxed text-slate-400">{row.summary}</span>
+                          </span>
+                          <span className="inline-flex items-center gap-2 text-[12px] font-medium text-slate-400 lg:mt-0.5">
+                            <span className="group-open:hidden">Full detail</span>
+                            <span className="hidden group-open:inline">Close</span>
+                            <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full border border-white/[0.12] transition-transform duration-300 group-open:rotate-180">
+                              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                <path d="m6 9 6 6 6-6" />
+                              </svg>
+                            </span>
+                          </span>
+                        </summary>
+                        <div className="border-t border-white/[0.05] px-5 pb-10 pt-8 sm:px-7 lg:pl-[calc(8.75rem+200px)]">
+                          <div className={`max-w-[820px] ${PROSE}`}>{details[row.anchor]}</div>
+                        </div>
+                      </details>
+                    );
+                  })}
+                </div>
+              ) : (
+                <>
+                  <ul className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
                     {props.rows.map((row) => (
-                      <li key={row.anchor}>
-                        <a
-                          href={`#${row.anchor}`}
-                          className="group flex items-start gap-3 rounded-lg px-2 py-2 text-[13px] leading-snug text-slate-400 transition-colors hover:bg-white/[0.04] hover:text-white"
-                        >
-                          <StatusDot status={row.status} className="mt-1.5" />
-                          <span className="min-w-0 flex-1">{row.rule}</span>
+                      <li key={row.anchor} className="flex flex-col gap-3 border-t border-white/[0.06] p-5 first:border-t-0 sm:flex-row sm:items-start sm:gap-8 sm:p-7">
+                        <span className={`inline-flex shrink-0 items-center gap-2 self-start rounded-md border px-2.5 py-1 text-[11px] font-semibold ${STATUS_STYLE[row.status].className}`}>
+                          <StatusDot status={row.status} />
+                          {STATUS_STYLE[row.status].label}
+                        </span>
+                        <a href={`#${row.anchor}`} className="min-w-0">
+                          <span className="block font-semibold text-white">{row.rule}</span>
+                          <span className="mt-1.5 block text-sm leading-relaxed text-slate-400">{row.summary}</span>
                         </a>
                       </li>
                     ))}
-                  </ol>
-                  <ul className="mt-5 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-white/[0.05] pt-4 text-[11px] text-slate-400">
-                    {(Object.keys(STATUS_STYLE) as RuleStatus[]).map((s) => (
-                      <li key={s} className="flex items-center gap-2">
-                        <StatusDot status={s} />
-                        {STATUS_STYLE[s].label}
-                      </li>
-                    ))}
                   </ul>
-                </nav>
-              </aside>
-            </div>
-          </section>
-
-          {/* ── Timeline ───────────────────────────────────────────────── */}
-          <section data-section="timeline" data-section-name="Key dates" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>Timeline</Eyebrow>
-                <h2 className={H2}>Key dates</h2>
-                <ul className="mt-6 space-y-2.5 text-[13px] text-slate-400">
-                  <li className="flex items-center gap-3">
-                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-accent" />
-                    Happened
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full border-2 border-accent/70" />
-                    Upcoming or expected
-                  </li>
-                </ul>
-              </div>
-              <KeyDates items={props.timeline} checkedAt={checkedAt} checkedLabel={rulesCheckedLabel()} />
+                  <div data-section="content" data-section-name="Rule details" className={`mx-auto mt-16 max-w-[860px] ${PROSE}`}>
+                    {props.body}
+                  </div>
+                </>
+              )}
             </div>
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
           <section data-section="faq" data-section-name="FAQ" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[340px_minmax(0,1fr)] xl:gap-24`}>
+            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
               <div className="lg:sticky lg:top-28 lg:self-start">
                 <Eyebrow>FAQ</Eyebrow>
                 <h2 className={H2}>Frequently asked questions</h2>
@@ -432,50 +393,61 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
             </div>
           </section>
 
-          {/* ── Sources ────────────────────────────────────────────────── */}
-          <section data-section="sources" data-section-name="Sources" className={`${SECTION} ${PAD}`}>
+          {/* ── Key dates, folded: the sequence, for readers who want it ── */}
+          <section data-section="timeline" data-section-name="Key dates" className={`border-t border-white/[0.05] pt-16 ${PAD}`}>
             <div className={INNER}>
-              <Eyebrow>Checked against</Eyebrow>
-              <h2 className="mb-8 text-lg font-semibold text-white">Sources</h2>
-              <RevealGroup
-                as="ol"
-                className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2"
-              >
-                {props.sources.map((s, i) => (
-                  <RevealItem as="li" key={s.href} className="bg-[#070b16]">
-                    <a
-                      href={s.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex h-full gap-4 p-5 text-sm leading-snug text-accent-soft transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/70"
-                    >
-                      <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
-                      <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
-                    </a>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
+              <Fold eyebrow="Timeline" title="Key dates" meta={`${props.timeline.length} dates, as of ${rulesCheckedLabel()}`}>
+                <ul className="mb-8 flex flex-wrap gap-x-6 gap-y-2 text-[13px] text-slate-400">
+                  <li className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-accent" />
+                    Happened
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full border-2 border-accent/70" />
+                    Upcoming or expected
+                  </li>
+                </ul>
+                <KeyDates items={props.timeline} checkedAt={checkedAt} checkedLabel={rulesCheckedLabel()} />
+              </Fold>
             </div>
           </section>
 
-          {/* ── Internal links ─────────────────────────────────────────── */}
-          <section data-section="related-links" data-section-name="Related guides" className={`${SECTION} ${PAD}`}>
-            <div className={INNER}>
-              <Eyebrow>Keep reading</Eyebrow>
-              <h2 className="mb-8 text-lg font-semibold text-white">Related guides</h2>
-              <RevealGroup className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
-                {props.relatedLinks.map((link) => (
-                  <RevealItem key={link.href} className="bg-[#070b16]">
-                    <Link
-                      href={link.href}
-                      className="group flex h-full items-center justify-between gap-4 px-5 py-4 text-sm text-slate-400 transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/70"
-                    >
-                      <span className="min-w-0">{link.label}</span>
-                      <Chevron className="text-slate-600 group-hover:text-accent-soft" />
-                    </Link>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
+          {/* ── Sources (always visible, with the checked date) and related links ── */}
+          <section data-section="sources" data-section-name="Sources" className={`py-16 ${PAD}`}>
+            <div className={`${INNER} grid gap-12 lg:grid-cols-2 lg:gap-16`}>
+              <div>
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                  Sources, checked on <time dateTime={checkedAt}>{rulesCheckedLabel()}</time>
+                </h2>
+                <ol>
+                  {props.sources.map((s, i) => (
+                    <li key={s.href} className="border-b border-white/[0.05]">
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex gap-3 py-3 text-sm leading-snug text-accent-soft transition-colors hover:text-white"
+                      >
+                        <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
+                        <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <nav data-section="related-links" data-section-name="Related guides" aria-label="Related guides">
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</h2>
+                <ul className="grid gap-x-10 sm:grid-cols-2">
+                  {props.relatedLinks.map((link) => (
+                    <li key={link.href} className="border-b border-white/[0.05]">
+                      <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                        {link.label}
+                        <Chevron className="text-slate-600 group-hover:text-slate-300" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
           </section>
 
