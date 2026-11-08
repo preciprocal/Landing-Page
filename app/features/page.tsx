@@ -26,7 +26,7 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, HeroSignup, PageHero, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, PageHero, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 type Feature = {
@@ -257,7 +257,6 @@ export default function FeaturesPage() {
               track of all of it for months. Here is what handles each part.
             </p>
           }
-          aside={<HeroSignup href={`${APP_URL}/sign-up`} label="Start free" />}
         >
           <nav aria-label="Search stages">
             <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">

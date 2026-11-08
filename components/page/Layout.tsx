@@ -21,7 +21,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import Link from "next/link";
 import FaqAccordion from "./FaqAccordion";
-import Chevron from "@/components/Chevron";
 
 /** The gutter the navbar and footer use, so every edge lines up. */
 export const PAD = "px-6 sm:px-10 lg:px-16";
@@ -247,8 +246,10 @@ export function PageHero({
     amber: "border-amber-500/25 bg-amber-500/[0.08] text-amber-200 [--dot:theme(colors.amber.400)]",
   }[badgeTone];
 
+  // Without a visual the hero is centred, like the product heroes.
+  const centred = !visual;
   const text = (
-    <div className="max-w-4xl animate-fade-up opacity-0">
+    <div className={`max-w-4xl animate-fade-up opacity-0 ${centred ? "mx-auto text-center" : ""}`}>
       {badge && (
         <div className={`mb-7 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[12px] font-medium ${tone}`}>
           <span className="relative flex h-1.5 w-1.5">
@@ -272,7 +273,7 @@ export function PageHero({
           </span>
         )}
       </h1>
-      {subhead && <div className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">{subhead}</div>}
+      {subhead && <div className={`mt-6 max-w-2xl text-lg leading-relaxed text-slate-400 ${centred ? "mx-auto" : ""}`}>{subhead}</div>}
     </div>
   );
 
@@ -297,10 +298,10 @@ export function PageHero({
             </div>
           </div>
         ) : (
-          <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_auto]">
+          <div>
             {text}
             {aside && (
-              <div className="animate-fade-up opacity-0 lg:pb-2 lg:text-right" style={{ animationDelay: "120ms" }}>
+              <div className="mt-9 flex animate-fade-up justify-center text-center opacity-0" style={{ animationDelay: "120ms" }}>
                 {aside}
               </div>
             )}
@@ -314,18 +315,6 @@ export function PageHero({
       </div>
     </section>
     </>
-  );
-}
-
-/** A hero sign-up: the primary button with the trust row beneath it. For PageHero's `aside`. */
-export function HeroSignup({ href, label, align = "end" }: { href: string; label: ReactNode; align?: "start" | "end" }) {
-  return (
-    <div className={`flex flex-col gap-4 ${align === "end" ? "lg:items-end" : ""}`}>
-      <a href={href} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto`}>
-        {label} <Chevron />
-      </a>
-      <TrustRow align={align} className="max-w-md" />
-    </div>
   );
 }
 
