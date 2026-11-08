@@ -127,7 +127,7 @@ export default function ProductHero({ chapter, breadcrumb, badge, title, accent,
           {/* The product, playing one chapter of the story. Decorative for assistive tech: the page text says it. */}
           <div ref={ref} aria-hidden="true" className="relative mt-10 hidden animate-fade-up opacity-0 md:block" style={{ animationDelay: "160ms" }}>
             <p className="mx-auto mb-4 max-w-3xl text-center text-[15px] italic leading-relaxed text-slate-300">
-              <span className="mr-2 not-italic font-semibold text-accent-soft">Arjun&apos;s story:</span>
+              <span className="mr-2 not-italic font-semibold text-accent-soft">Arjun&apos;s story (an illustrative example):</span>
               {data.narration}
             </p>
 

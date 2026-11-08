@@ -183,8 +183,8 @@ export default function PricingPage() {
                 <span className="text-gradient">It pays back fast.</span>
               </h1>
               <p className="mx-auto max-w-lg text-base text-slate-400">
-                The average job search costs months of lost salary. Preciprocal helps you land
-                offers weeks faster, for less than a single coffee a day.
+                On OPT, a slow search costs you more than time. Everything you need to make each
+                application count, for less than a coffee a week.
               </p>
             </RevealOnScroll>
 

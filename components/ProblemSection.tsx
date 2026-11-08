@@ -1,235 +1,115 @@
 "use client";
 
+/**
+ * components/ProblemSection.tsx
+ *
+ * The homepage's "problem" beat, for the audience the product is built
+ * around: F-1 students on OPT. Every figure here is a rule, not a statistic,
+ * and each one is stated on the site's OPT guides, which are checked against
+ * USCIS and DHS (Study in the States) sources. Do not add numbers to this
+ * section unless they come from those guides.
+ *
+ * An earlier version showed "73% auto-rejected by ATS", "45% bomb interviews
+ * from nerves" and "200+ applications per offer". None had a source, and the
+ * first is a well known myth; they were removed.
+ */
+
+import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  RevealOnScroll, StaggerChildren, StaggerItem,
-  SpotlightCard, GlowDivider,
-} from "@/components/LandingAnimations";
+import { RevealOnScroll, StaggerChildren, StaggerItem, GlowDivider } from "@/components/LandingAnimations";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
-import { Tooltip } from "@/components/ui/ToolTipCard";
 
-// ─── Tooltip content cards ────────────────────────────────────────────────────
-
-const AtsTooltip = () => (
-  <div>
-    <p className="text-xs font-bold text-white mb-1">What is an ATS?</p>
-    <p className="text-[11px] text-neutral-400 leading-relaxed">
-      Applicant Tracking Systems (like Workday, Greenhouse & Lever) automatically
-      parse and score resumes before any human sees them. If your resume isn&apos;t
-      formatted for ATS, it&apos;s invisible.
-    </p>
-    <div className="mt-3 flex flex-wrap gap-1">
-      {["Workday", "Greenhouse", "Lever", "iCIMS", "Taleo"].map((name) => (
-        <span key={name} className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.06] text-slate-400 border border-white/[0.08]">
-          {name}
-        </span>
-      ))}
-    </div>
-  </div>
-);
-
-const RecruiterTooltip = () => (
-  <div>
-    <p className="text-xs font-bold text-white mb-1">The 6-second resume scan</p>
-    <p className="text-[11px] text-neutral-400 leading-relaxed">
-      Eye-tracking studies show recruiters spend an average of 6-7 seconds on
-      initial resume review, focusing on job title, company, dates, and education.
-      Everything else is noise unless it jumps out immediately.
-    </p>
-    <p className="text-[10px] text-indigo-400 mt-2">Source: TheLadders eye-tracking study</p>
-  </div>
-);
-
-const NervesTooltip = () => (
-  <div>
-    <p className="text-xs font-bold text-white mb-1">Interview anxiety is real</p>
-    <p className="text-[11px] text-neutral-400 leading-relaxed">
-      Studies find that nearly half of candidates underperform in interviews due to
-      anxiety, not lack of knowledge. Mock practice is the single most effective
-      way to rewire that response before it counts.
-    </p>
-  </div>
-);
-
-const ApplicationsTooltip = () => (
-  <div>
-    <p className="text-xs font-bold text-white mb-1">The spray-and-pray trap</p>
-    <p className="text-[11px] text-neutral-400 leading-relaxed">
-      Most job seekers send the same generic resume to hundreds of roles. A
-      tailored application targeting 20 well-matched roles statistically
-      outperforms 200 untailored ones.
-    </p>
-    <div className="mt-2 flex items-center gap-2">
-      <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
-        <div className="h-full w-[15%] rounded-full bg-emerald-500/60" />
-      </div>
-      <span className="text-[10px] text-emerald-400">Tailored: ~15% response rate</span>
-    </div>
-    <div className="mt-1 flex items-center gap-2">
-      <div className="flex-1 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
-        <div className="h-full w-[2%] rounded-full bg-red-500/60" />
-      </div>
-      <span className="text-[10px] text-red-400">Generic: ~2% response rate</span>
-    </div>
-  </div>
-);
-
-// ─── Pain point data with tooltip content ─────────────────────────────────────
-
-const PAIN_POINTS = [
+const FACTS = [
   {
-    stat: "73%",
-    statTooltip: <AtsTooltip />,
-    pain: (
-      <>
-        of applications get auto-rejected by{" "}
-        <Tooltip
-          containerClassName="text-slate-300"
-          content={<AtsTooltip />}
-        >
-          <span className="font-semibold text-white underline decoration-dotted decoration-slate-500 underline-offset-2 cursor-help">
-            ATS
-          </span>
-        </Tooltip>{" "}
-        before a human sees them
-      </>
-    ),
-    color: "text-red-400",
-    barColor: "bg-red-500",
-    barWidth: "73%",
+    stat: "90",
+    unit: "days",
+    line: "of unemployment allowed on initial OPT, in total. The count runs while you apply.",
+    color: "text-amber-300",
+    bar: "bg-amber-400",
+    width: "60%",
   },
   {
-    stat: "6 sec",
-    statTooltip: <RecruiterTooltip />,
-    pain: (
-      <>
-        is all a{" "}
-        <Tooltip
-          containerClassName="text-slate-300"
-          content={<RecruiterTooltip />}
-        >
-          <span className="font-semibold text-white underline decoration-dotted decoration-slate-500 underline-offset-2 cursor-help">
-            recruiter
-          </span>
-        </Tooltip>{" "}
-        spends scanning your resume
-      </>
-    ),
-    color: "text-amber-400",
-    barColor: "bg-amber-500",
-    barWidth: "6%",
+    stat: "150",
+    unit: "days",
+    line: "in total with the STEM extension. It adds 60 days to what you have used, it does not reset the count.",
+    color: "text-orange-300",
+    bar: "bg-orange-400",
+    width: "100%",
   },
   {
-    stat: "45%",
-    statTooltip: <NervesTooltip />,
-    pain: (
-      <>
-        of candidates bomb interviews from{" "}
-        <Tooltip
-          containerClassName="text-slate-300"
-          content={<NervesTooltip />}
-        >
-          <span className="font-semibold text-white underline decoration-dotted decoration-slate-500 underline-offset-2 cursor-help">
-            nerves
-          </span>
-        </Tooltip>
-        {", not lack of skill"}
-      </>
-    ),
-    color: "text-orange-400",
-    barColor: "bg-orange-500",
-    barWidth: "45%",
+    stat: "I-983",
+    unit: "",
+    line: "To extend, your employer must be enrolled in E-Verify and sign a training plan with you. E-Verify is the requirement most likely to rule an employer out.",
+    color: "text-rose-300",
+    bar: "bg-rose-400",
+    width: "75%",
   },
   {
-    stat: "200+",
-    statTooltip: <ApplicationsTooltip />,
-    pain: (
-      <>
-        applications is the average before landing{" "}
-        <Tooltip
-          containerClassName="text-slate-300"
-          content={<ApplicationsTooltip />}
-        >
-          <span className="font-semibold text-white underline decoration-dotted decoration-slate-500 underline-offset-2 cursor-help">
-            one offer
-          </span>
-        </Tooltip>
-      </>
-    ),
-    color: "text-red-400",
-    barColor: "bg-red-500",
-    barWidth: "85%",
+    stat: "H-1B",
+    unit: "",
+    line: "is a lottery at most employers. Even one that will sponsor you cannot promise you a spot, unless it is cap-exempt.",
+    color: "text-red-300",
+    bar: "bg-red-400",
+    width: "90%",
   },
 ];
 
 export default function ProblemSection() {
   return (
-    <section className="relative py-24 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-red-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-6 relative z-10">
+    <section className="relative overflow-hidden py-24">
+      <div className="relative z-10 mx-auto max-w-4xl px-6">
         <GlowDivider />
 
-        <RevealOnScroll className="text-center mb-16 mt-10">
-          <p className="text-[13px] font-semibold text-red-400/80 uppercase tracking-widest mb-3">
-            The uncomfortable truth
-          </p>
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-5">
-            The job market isn&apos;t broken.
+        <RevealOnScroll className="mb-14 mt-10 text-center">
+          <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-amber-300/90">The OPT reality</p>
+          <h2 className="mb-5 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-[42px]">
+            You are not just job hunting.
             <br />
-            <span className="text-slate-500">Your preparation is.</span>
+            <span className="text-slate-500">You are racing a clock.</span>
           </h2>
           <TextGenerateEffect
-            words="You're not getting rejected because you're not good enough. You're getting rejected because you don't know the rules of a game that's been rigged against you."
-            className="text-base text-slate-500 max-w-xl mx-auto leading-relaxed font-normal"
+            words="Domestic candidates can afford a slow search. On OPT, every week of generic applications is a week off your count. Fewer employers will sponsor, and the ones that do ask harder questions."
+            className="mx-auto max-w-xl text-base font-normal leading-relaxed text-slate-400"
             duration={0.4}
           />
         </RevealOnScroll>
 
-        <StaggerChildren className="space-y-4">
-          {PAIN_POINTS.map((point, i) => (
-            <StaggerItem key={i}>
-              <SpotlightCard
-                className="rounded-2xl border border-white/[0.05] bg-white/[0.02] hover:border-red-500/10 transition-all duration-300"
-                spotlightColor="rgba(239,68,68,0.04)"
-              >
-                <div className="flex items-center gap-5 p-5">
-                  <div className="flex-shrink-0 w-20 text-right">
-                    <Tooltip
-                      containerClassName={point.color}
-                      content={point.statTooltip}
-                    >
-                      <span className={`text-2xl sm:text-3xl font-black tracking-tight cursor-help ${point.color}`}>
-                        {point.stat}
-                      </span>
-                    </Tooltip>
-                  </div>
-                  <div className="w-[1px] h-10 bg-white/[0.06] flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-[15px] text-slate-300 leading-snug mb-2">{point.pain}</p>
-                    <div className="h-1 bg-white/[0.04] rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: point.barWidth }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.12, duration: 0.8, ease: "easeOut" }}
-                        className={`h-full rounded-full ${point.barColor} opacity-40`}
-                      />
-                    </div>
+        <StaggerChildren className="space-y-3">
+          {FACTS.map((f, i) => (
+            <StaggerItem key={f.stat}>
+              <div className="flex items-center gap-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+                <div className="w-24 flex-shrink-0 text-right">
+                  <span className={`text-2xl font-black tracking-tight sm:text-3xl ${f.color}`}>{f.stat}</span>
+                  {f.unit && <span className="ml-1 text-xs font-semibold text-slate-500">{f.unit}</span>}
+                </div>
+                <div className="h-10 w-px flex-shrink-0 bg-white/[0.06]" />
+                <div className="min-w-0 flex-1">
+                  <p className="mb-2 text-[15px] leading-snug text-slate-300">{f.line}</p>
+                  <div className="h-1 overflow-hidden rounded-full bg-white/[0.04]">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: f.width }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.3 + i * 0.12, duration: 0.8, ease: "easeOut" }}
+                      className={`h-full rounded-full ${f.bar} opacity-40`}
+                    />
                   </div>
                 </div>
-              </SpotlightCard>
+              </div>
             </StaggerItem>
           ))}
         </StaggerChildren>
 
-        <RevealOnScroll delay={0.4} className="text-center mt-12">
-          <p className="text-lg text-white font-semibold">
-            What if you could flip every one of those numbers?
-          </p>
-          <p className="text-sm text-slate-500 mt-1">
-            That&apos;s exactly what Preciprocal does. ↓
-          </p>
+        <p className="mt-5 text-center text-[12px] text-slate-500">
+          Rules as published by USCIS and DHS. Not legal advice; your DSO has the final word on your case.{" "}
+          <Link href="/opt" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
+            Read our OPT guides
+          </Link>
+        </p>
+
+        <RevealOnScroll delay={0.4} className="mt-12 text-center">
+          <p className="text-lg font-semibold text-white">So every application has to count.</p>
+          <p className="mt-1 text-sm text-slate-500">That is what Preciprocal is built for. ↓</p>
         </RevealOnScroll>
       </div>
     </section>

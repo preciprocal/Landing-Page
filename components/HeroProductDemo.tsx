@@ -635,7 +635,7 @@ export default function HeroProductDemo() {
             <TextGenerate text="See Preciprocal in action" delay={0.1} />
           </h2>
           <p className="text-[14px] text-slate-400 max-w-lg mx-auto">
-            <TextGenerate text="Follow Arjun from 347 rejections to a Meta offer. Every tool, one candidate, real results." delay={0.6} />
+            <TextGenerate text="Follow Arjun, an F-1 student with 90 days on OPT, from 347 applications to an offer. An illustrative story, played on the real product." delay={0.6} />
           </p>
         </motion.div>
 

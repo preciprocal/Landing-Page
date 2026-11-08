@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { APP_URL } from "@/lib/constants";
 import { ChevronRightIcon } from "@/components/Icons";
-import { FlipWords } from "@/components/ui/FlipWords";
 import { SpotlightNew } from "@/components/ui/SpotlightNew";
 
 // Aurora canvas
@@ -168,7 +167,6 @@ function Aurora() {
 
 // Hero
 
-const WORDS = ["dream job.", "FAANG offer.", "career break.", "next chapter.", "big promotion."];
 
 export default function Hero() {
   return (
@@ -233,7 +231,7 @@ export default function Hero() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="mb-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-400/70"
         >
-          AI Career Prep Platform
+          For F-1 students on OPT
         </motion.p>
 
         {/* Main headline */}
@@ -244,7 +242,7 @@ export default function Hero() {
           className="font-black tracking-[-0.03em] leading-[0.92] text-white select-none"
           style={{ fontSize: "clamp(3.8rem, 10vw, 8.5rem)" }}
         >
-          Stop applying
+          Your OPT clock
           <br />
           <span
             className="relative inline-block"
@@ -255,9 +253,12 @@ export default function Hero() {
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               animation: "shimmer 5s ease-in-out infinite",
+              // Room for descenders ("g"): the gradient is clipped to this box.
+              paddingBottom: "0.14em",
+              marginBottom: "-0.14em",
             }}
           >
-            into the void.
+            is running.
           </span>
         </motion.h1>
 
@@ -268,12 +269,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 text-xl sm:text-2xl font-semibold text-slate-400"
         >
-          Start landing your{" "}
-          <FlipWords
-            words={WORDS}
-            duration={2800}
-            className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent font-bold"
-          />
+          Land the job{" "}
+          <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text font-bold text-transparent">before it runs out.</span>
         </motion.p>
 
         {/* One-liner */}
@@ -281,9 +278,9 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-5 text-[15px] text-slate-500 max-w-sm leading-relaxed font-light tracking-wide"
+          className="mt-5 max-w-xl text-[16px] font-normal leading-relaxed text-slate-400"
         >
-          Mock interviews · Resume analysis · Cover letters · Job tracking
+          Up to 90 days of unemployment on OPT, 150 with the STEM extension. Spend them on applications that get answered: a resume tailored to each role, interviews practised out loud, every lead tracked.
         </motion.p>
 
         {/* CTA row */}
@@ -302,15 +299,15 @@ export default function Hero() {
               animation: "shimmer 4s ease infinite",
             }}
           >
-            Start Preparing Free
+            Start free
             <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
 
           <a
-            href="#features"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-medium text-slate-400 border border-white/10 transition-all duration-300 hover:text-white hover:border-white/25 hover:bg-white/5"
+            href="/opt/unemployment-calculator"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-medium text-slate-300 border border-white/15 transition-all duration-300 hover:text-white hover:border-white/30 hover:bg-white/5"
           >
-            Explore features
+            Count my OPT days
           </a>
         </motion.div>
 
@@ -321,7 +318,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-5 text-[11px] text-slate-600 tracking-wide"
         >
-          No credit card · Cancel anytime
+          Free plan · No credit card · .edu email gets a month of Pro free
         </motion.p>
 
 

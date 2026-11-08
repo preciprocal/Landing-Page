@@ -163,8 +163,8 @@ export default function Footer() {
               <span className="text-lg font-bold text-white">Preciprocal</span>
             </Link>
             <p className="text-sm text-slate-500 leading-relaxed max-w-[260px]">
-              The AI-powered career prep platform. Prepare smarter, apply
-              faster, land offers.
+              Career prep for F-1 students on OPT. Make every application
+              count before the clock runs out.
             </p>
             <p className="text-[12px] text-slate-600 mt-4">
               Built by students, for students.

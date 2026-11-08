@@ -34,13 +34,18 @@ import FreeToolsStrip from "@/components/FreeToolsStrip";
 
 export const metadata: Metadata = {
   // Page-level overrides (layout.tsx handles the base/template)
-  title: "Preciprocal | AI Career Prep Platform for Students",
+  title: "Preciprocal | Land the Job Before Your OPT Clock Runs Out",
 
   // 155 chars - specific, keyword-rich, includes price/guarantee for CTR
   description:
-    "Land your dream job with AI mock interviews, resume ATS scoring, cover letter generation, personalized study plans, and job tracking. $9.99/mo. Land a job while subscribed and we refund that month.",
+    "Career prep for F-1 students on OPT: tailored resumes, AI mock interviews and a job tracker, so every application counts before your unemployment days run out. Free plan.",
 
   keywords: [
+    "OPT job search",
+    "F-1 OPT jobs",
+    "international student job search",
+    "OPT unemployment days",
+    "STEM OPT jobs",
     "AI mock interview",
     "resume ATS scorer",
     "cover letter generator",
@@ -55,9 +60,9 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Preciprocal | Stop Applying Into the Void",
+    title: "Preciprocal | Your OPT Clock Is Running",
     description:
-      "AI mock interviews, resume analysis, cover letters, study plans & job tracking. Built for students at $9.99/mo. Land a job, get that month back.",
+      "Up to 90 days of unemployment on OPT, 150 with STEM. Tailored resumes, interview practice and a tracker that make every application count. Free plan.",
     url: "https://preciprocal.com",
     siteName: "Preciprocal",
     images: [
@@ -73,9 +78,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Preciprocal | AI Career Prep Platform",
+    title: "Preciprocal | Your OPT Clock Is Running",
     description:
-      "AI mock interviews, ATS resume scoring, cover letters, study plans & job tracking. $9.99/mo.",
+      "Career prep for F-1 students on OPT. Make every application count before your unemployment days run out.",
     images: [{ url: "https://preciprocal.com/og-image-v2.png", alt: "Preciprocal" }],
   },
 

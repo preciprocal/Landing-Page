@@ -431,7 +431,7 @@ export default function BentoFeatures() {
             <span className="text-gradient">Here&apos;s why it works.</span>
           </motion.h2>
           <p className="text-base text-slate-400 max-w-lg mx-auto">
-            Every feature is designed around one question: will this get someone hired faster?
+            Every feature is designed around one question: does this help you get hired before your OPT days run out?
           </p>
         </div>
 

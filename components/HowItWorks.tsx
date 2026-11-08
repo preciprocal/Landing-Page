@@ -16,7 +16,7 @@ export default function HowItWorks() {
             Three steps. <span className="text-gradient">Zero guesswork.</span>
           </h2>
           <p className="text-base text-slate-400 max-w-lg mx-auto">
-            Most people fail interviews because they practised the wrong things. We make sure you don&apos;t.
+            When the clock is running, there is no time to practise the wrong things. We make sure you don&apos;t.
           </p>
         </RevealOnScroll>
 

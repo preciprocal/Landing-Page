@@ -31,6 +31,15 @@ import Chevron from "@/components/Chevron";
  */
 const TOOLS = [
   {
+    href: "/opt/unemployment-calculator",
+    moment: "Watching your OPT clock?",
+    title: "Know exactly where you stand",
+    body: "Count your unemployment days against the 90 or 150 day limit and see how many you have left, instead of guessing.",
+    cta: "Count my days",
+    time: "Instant",
+    Icon: CalendarClock,
+  },
+  {
     href: "/interview-question-predictor",
     moment: "Interview coming up?",
     title: "Know what they will ask",
@@ -48,15 +57,6 @@ const TOOLS = [
     cta: "Check my resume",
     time: "30 seconds",
     Icon: FileCheck2,
-  },
-  {
-    href: "/opt/unemployment-calculator",
-    moment: "Watching your OPT clock?",
-    title: "Know exactly where you stand",
-    body: "Count your unemployment days against the 90 or 150 day limit and see how many you have left, instead of guessing.",
-    cta: "Count my days",
-    time: "Instant",
-    Icon: CalendarClock,
   },
   {
     href: "/thank-you-email-after-interview",
