@@ -24,7 +24,7 @@ import Chevron from "@/components/Chevron";
 import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb } from "@/components/page/Layout";
 import { CHAPTER_DATA, type ChapterId } from "@/lib/demoChapters";
 
-const FRAME_H = "h-[600px] xl:h-[640px]";
+const FRAME_H = "h-[660px] xl:h-[720px]";
 
 function Loading() {
   return <div className="h-full w-full animate-pulse bg-white/[0.015]" />;
@@ -97,7 +97,6 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
           <div className="absolute left-[12%] top-[38%] h-[420px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent-2)/0.10),transparent)] blur-3xl" />
           <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_0%,black,transparent)]" style={GRID_BG} />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#050810]" />
-          <div className="dither absolute inset-0" />
         </div>
 
         <div className="relative mx-auto w-full max-w-[1400px]">
@@ -137,10 +136,12 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
               {scene}
             </div>
           ) : (
-          <div ref={ref} aria-hidden="true" className="relative mt-10 hidden animate-fade-up opacity-0 md:block" style={{ animationDelay: "160ms" }}>
-            <p className="mx-auto mb-4 max-w-3xl text-center text-[15px] italic leading-relaxed text-slate-300">
-              <span className="mr-2 not-italic font-semibold text-accent-soft">Arjun&apos;s story (an illustrative example):</span>
-              {data.narration}
+          <div ref={ref} aria-hidden="true" className="relative mx-auto mt-10 hidden max-w-[1240px] animate-fade-up opacity-0 md:block" style={{ animationDelay: "160ms" }}>
+            {/* The chapter narration is a line from the homepage's continuing
+                story and reads as nonsense on its own page, so only a short,
+                honest label sits above the frame. */}
+            <p className="mb-3 text-center text-[12px] font-medium uppercase tracking-[0.16em] text-slate-500">
+              The real app, with example data
             </p>
 
             <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] bg-[#080c18] shadow-[0_50px_120px_-30px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.02),inset_0_1px_0_rgba(255,255,255,0.06)]">
@@ -175,11 +176,16 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
                 </div>
               </div>
 
-              {/* The previews were sized for the home demo (about 520px of content);
-                  --demo-extra grows their panels to fill this taller frame. */}
-              <div className={`relative overflow-hidden ${FRAME_H} [--demo-extra:48px] xl:[--demo-extra:88px]`}>
+              {/* The previews were drawn for the smaller home demo, so at this
+                  width their 7 to 10px text was unreadable. They are zoomed
+                  (--z) so text lands at a readable size, inside a frame tall
+                  enough for it; --demo-extra (in the preview's own units)
+                  stretches their panels to fill what is left. */}
+              <div className={`relative overflow-hidden ${FRAME_H} [--demo-extra:26px] [--z:1.15] xl:[--demo-extra:8px] xl:[--z:1.3]`}>
                 <div className="h-full overflow-hidden p-3 sm:p-4">
-                  <Preview step={step} />
+                  <div style={{ zoom: "var(--z)", height: "calc(100% / var(--z))" }}>
+                    <Preview step={step} />
+                  </div>
                 </div>
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-[#080c18]" />
               </div>

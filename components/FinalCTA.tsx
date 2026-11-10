@@ -4,24 +4,20 @@ import { motion } from "framer-motion";
 import { ChevronRightIcon } from "@/components/Icons";
 import { APP_URL } from "@/lib/constants";
 import { MagneticHover } from "@/components/LandingAnimations";
+import SmoothGlow from "@/components/ui/SmoothGlow";
 
 export default function FinalCTA() {
   return (
     <section className="relative py-32 overflow-hidden">
       {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center">
-        {/* A radial gradient with eased stops instead of a blurred disc: a
-            faint glow on near-black bands into visible rings, and the extra
-            stops plus the dither layer below keep the falloff smooth. */}
-        <motion.div initial={{ opacity: 0, scale: 0.85 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
+        {/* Drawn on a canvas with dithered alpha (components/ui/SmoothGlow), so
+            the falloff is smooth: a CSS gradient this faint bands into rings. */}
+        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="h-[620px] w-[1100px] max-w-none"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(99,102,241,0.17) 0%, rgba(99,102,241,0.145) 12%, rgba(99,102,241,0.115) 25%, rgba(99,102,241,0.085) 38%, rgba(99,102,241,0.058) 50%, rgba(99,102,241,0.036) 62%, rgba(99,102,241,0.019) 74%, rgba(99,102,241,0.008) 86%, rgba(99,102,241,0) 100%)",
-          }} />
-      </div>
-      <div aria-hidden="true" className="dither pointer-events-none absolute inset-0">
+          className="h-[640px] w-[1140px] max-w-none">
+          <SmoothGlow peak={0.22} falloff={1.8} className="h-full w-full" />
+        </motion.div>
       </div>
 
       {/* Top line */}
