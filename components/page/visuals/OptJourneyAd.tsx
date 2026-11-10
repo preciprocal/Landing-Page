@@ -145,16 +145,19 @@ const BEATS: Beat[] = [
   {
     screen: "career",
     label: "Follow up",
-    ms: 7200,
+    ms: 8400,
     points: [
       { at: 900, target: "nav-career" },
       { at: 2000, target: "writeFu" },
     ],
     shots: [
       { at: 2700, dur: 950, target: "fuFocus" },
-      { at: 6100, dur: 850, target: null },
+      { at: 7300, dur: 850, target: null },
     ],
-    caps: [{ from: 2900, to: 6200, text: "Follow up while they still remember you." }],
+    caps: [
+      { from: 2900, to: 4900, text: "A follow-up built from your interview notes." },
+      { from: 5000, to: 7400, text: "Specific to them, specific to you." },
+    ],
   },
   {
     screen: "tracker",
@@ -726,6 +729,12 @@ function Stat({ label, value, tone, sub }: { label: string; value: ReactNode; to
 
 // ─── 01 Resume: upload, fixes pinned to the lines, Auto-fix all ─────────────
 
+const BREAKDOWN = [
+  { label: "ATS match", from: 64, to: 91 },
+  { label: "Impact", from: 58, to: 86 },
+  { label: "Keywords", from: 55, to: 92 },
+];
+
 const FIXES = [
   {
     n: 1,
@@ -806,6 +815,21 @@ function ResumeScreen({ reg, stage, run }: { reg: Reg; stage: number; run: boole
   return <ResumeAnalysis reg={reg} fixed={stage >= 2} run={run} />;
 }
 
+function Meter({ label, from, to, fixed, run }: { label: string; from: number; to: number; fixed: boolean; run: boolean }) {
+  const v = useCount(fixed ? to : from, from, run && fixed, 1.3, 0.3);
+  return (
+    <div className="min-w-0">
+      <div className="mb-1 flex items-center justify-between text-[9.5px]">
+        <span className="text-slate-400">{label}</span>
+        <span className={`font-semibold tabular-nums ${v >= 80 ? "text-emerald-400" : "text-amber-400"}`}>{v}</span>
+      </div>
+      <div className="h-1 overflow-hidden rounded-full bg-white/[0.06]">
+        <div className={`h-full rounded-full transition-colors duration-500 ${v >= 80 ? "bg-emerald-400" : "bg-amber-400"}`} style={{ width: `${v}%` }} />
+      </div>
+    </div>
+  );
+}
+
 function ResumeAnalysis({ reg, fixed, run }: { reg: Reg; fixed: boolean; run: boolean }) {
   const ready = useAfter(1300, run);
   const score = useCount(fixed ? 88 : 62, 62, run && fixed, 1.4, 0.3);
@@ -834,9 +858,19 @@ function ResumeAnalysis({ reg, fixed, run }: { reg: Reg; fixed: boolean; run: bo
               <p>• Developed an automated ETL pipeline with Airflow and Spark, processing 500GB+ of daily data</p>
               <p>• Built a segmentation model over 8M+ profiles, driving a 22% lift in targeted recommendations</p>
             </div>
+            <div className="mt-1.5 flex justify-between"><span className="font-semibold text-gray-800">Cognizant, Software Developer</span><span className="text-[7px] text-gray-500">Jul 2022 - Jul 2024</span></div>
+            <div className="mt-0.5 space-y-0.5 px-1 text-[7.5px] text-gray-600">
+              <p>• Developed REST APIs in Java and Spring Boot serving 50K+ daily requests for an insurance claims platform</p>
+              <p>• Automated weekly claims reporting in SQL, saving the operations team 6 hours a week</p>
+            </div>
+            <p className="mb-1 mt-2 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Projects</p>
+            <div className="space-y-0.5 px-1 text-[7.5px] text-gray-600">
+              <p><span className="font-semibold text-gray-800">SmartHire AI:</span> resume screening model with BERT, 92% accuracy across 1,000+ applications</p>
+              <p><span className="font-semibold text-gray-800">FinTrack:</span> real-time portfolio tracker in React and WebSocket, 500+ active users</p>
+            </div>
             <p className="mb-1 mt-2 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Education</p>
-            <div className="flex justify-between"><span className="font-semibold text-gray-800">Boston University</span><span className="text-[7px] text-gray-500">May 2026</span></div>
-            <p className="text-[7.5px] italic text-gray-600">MS in Computer Science</p>
+            <div className="flex justify-between"><span className="font-semibold text-gray-800">Boston University, MS in Computer Science</span><span className="text-[7px] text-gray-500">May 2026</span></div>
+            <p className="text-[7px] text-gray-500">Coursework: Machine Learning, Distributed Systems, Statistical Inference, Data Visualization</p>
             <p className="mb-1 mt-2 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Technical Skills</p>
             <p className="px-1 text-[7.5px] text-gray-600"><span className="font-semibold text-gray-800">Languages:</span> Python, Java, Go, TypeScript</p>
             <div className="text-[7.5px] text-gray-600">
@@ -859,6 +893,13 @@ function ResumeAnalysis({ reg, fixed, run }: { reg: Reg; fixed: boolean; run: bo
             ))}
           </div>
 
+          {ready && (
+            <div className="mb-2 grid grid-cols-3 gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2">
+              {BREAKDOWN.map((b) => (
+                <Meter key={b.label} {...b} fixed={fixed} run={run} />
+              ))}
+            </div>
+          )}
           {!ready ? (
             <div className={`${CARD} flex flex-1 flex-col items-center justify-center gap-3 p-6`}>
               <span className="h-7 w-7 animate-spin rounded-full border-2 border-white/10 border-t-[#5b6cff]" />
@@ -890,7 +931,7 @@ function ResumeAnalysis({ reg, fixed, run }: { reg: Reg; fixed: boolean; run: bo
                     initial={run ? { opacity: 0, y: 6 } : false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.25, duration: 0.35, ease: EASE }}
-                    className={`rounded-xl border px-3 py-2.5 transition-colors duration-500 ${fixed ? "border-emerald-500/20 bg-emerald-500/[0.05]" : "border-white/[0.07] bg-white/[0.025]"}`}
+                    className={`rounded-xl border px-3 py-2 transition-colors duration-500 ${fixed ? "border-emerald-500/20 bg-emerald-500/[0.05]" : "border-white/[0.07] bg-white/[0.025]"}`}
                   >
                     <div className="flex items-center gap-2">
                       <span className={`grid h-5 w-5 shrink-0 place-items-center rounded-full text-[9px] font-bold text-white ${fixed ? "bg-emerald-500" : "bg-amber-500"}`}>
@@ -901,7 +942,10 @@ function ResumeAnalysis({ reg, fixed, run }: { reg: Reg; fixed: boolean; run: bo
                         {fixed ? "Applied" : f.p}
                       </span>
                     </div>
-                    <p className="mt-1.5 line-clamp-2 pl-7 text-[9.5px] leading-relaxed text-slate-400">{f.after.replace("• ", "")}</p>
+                    <div className="mt-1.5 space-y-1 pl-7 text-[9.5px] leading-snug">
+                      <p className="truncate text-slate-500 line-through decoration-red-400/60">{f.before.replace("• ", "")}</p>
+                      <p className="line-clamp-2 text-slate-200"><span className="mr-1 font-semibold text-emerald-400">Fix:</span>{f.after.replace("• ", "")}</p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -1150,7 +1194,7 @@ function DebriefScreen({ reg, stage, run }: { reg: Reg; stage: number; run: bool
           </div>
           <div className="mt-3">
             <span className={LABEL}>What happened</span>
-            <div className={`${FIELD} min-h-[64px] leading-relaxed`}>Good conversation about the team. When she asked about sponsorship I explained OPT but took too long. The SQL question went well.</div>
+            <div className={`${FIELD} min-h-[64px] leading-relaxed`}>Rachel said the team runs 40+ checkout experiments a quarter. The SQL question went well. When she asked about sponsorship I explained OPT but took too long. Next: technical round with Marcus.</div>
           </div>
           <span ref={reg("logIt")} className={`${BTN_PRIMARY} mt-4`}><Sparkles className="h-3.5 w-3.5" /> Save and analyze</span>
         </div>
@@ -1185,11 +1229,24 @@ function DebriefScreen({ reg, stage, run }: { reg: Reg; stage: number; run: bool
 
 // ─── 05 Follow up: Career Tools, Cold Outreach, After Applying ─────────────
 
+const FU_SUBJECT = "Thank you for yesterday's call, Data Analyst at Northwind";
 const FOLLOW_UP =
-  "Hi Rachel,\n\nThank you for the conversation yesterday about the Data Analyst role. I enjoyed hearing how the team uses experimentation to shape the product, and it made me even more excited about the work.\n\nI am happy to share anything else that would help as you plan next steps.\n\nBest regards,\nArjun Patel";
+  "Hi Rachel,\n\n" +
+  "Thank you for walking me through the Data Analyst role yesterday. What stayed with me was how the team runs more than 40 checkout experiments a quarter and still reviews every result with product.\n\n" +
+  "That is the work I want to do. At Datadog I built the pipeline behind real-time alerting at 2M+ events a second, and at Wayfair I measured a 22% lift from a segmentation model before it shipped.\n\n" +
+  "As we discussed, I am authorised to work now on F-1 OPT, with the STEM extension available. I am looking forward to the technical round with Marcus, and I am glad to send a sample analysis before then if useful.\n\n" +
+  "Best regards,\nArjun Patel\nlinkedin.com/in/arjunpatel · (617) 234-5678";
+
+/** What the message is built from: the Interview Journal note and the resume. */
+const FU_SOURCES = [
+  { from: "Interview Journal", text: "40+ checkout experiments a quarter" },
+  { from: "Interview Journal", text: "Next: technical round with Marcus" },
+  { from: "Resume", text: "Datadog pipeline, 2M+ events/sec" },
+  { from: "Resume", text: "Wayfair model, 22% lift" },
+];
 
 function CareerScreen({ reg, stage, run }: { reg: Reg; stage: number; run: boolean }) {
-  const body = useTyped(FOLLOW_UP, run && stage >= 1, 450, 260);
+  const body = useTyped(FOLLOW_UP, run && stage >= 1, 450, 300);
   const done = stage >= 1 && body.length >= FOLLOW_UP.length;
   return (
     <div className="flex h-full flex-col gap-3">
@@ -1206,13 +1263,19 @@ function CareerScreen({ reg, stage, run }: { reg: Reg; stage: number; run: boole
               <span key={t} className={`rounded-md border px-2 py-1 text-[10px] font-medium ${t === "After Applying" ? "border-[#5b6cff]/40 bg-[#5b6cff]/10 text-indigo-200" : "border-white/[0.07] text-slate-500"}`}>{t}</span>
             ))}
           </div>
-          <div className="grid grid-cols-2 gap-2">
-            <div><span className={LABEL}>Name</span><div className={FIELD}>Rachel Kim</div></div>
-            <div><span className={LABEL}>Their Role</span><div className={FIELD}>HR Manager</div></div>
+          <div><span className={LABEL}>To</span><div className={FIELD}>Rachel Kim, HR Manager · Northwind Analytics</div></div>
+          <div className="mt-2.5">
+            <span className={LABEL}>Details to mention</span>
+            <div className="space-y-1">
+              {FU_SOURCES.map((d) => (
+                <div key={d.text} className="flex items-center gap-2 rounded-md border border-white/[0.06] bg-white/[0.02] px-2 py-1">
+                  <span className={`shrink-0 rounded px-1 py-px text-[8px] font-semibold ${d.from === "Resume" ? "bg-violet-500/15 text-violet-300" : "bg-sky-500/15 text-sky-300"}`}>{d.from}</span>
+                  <span className="truncate text-[10px] text-slate-300">{d.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="mt-2"><span className={LABEL}>Company</span><div className={FIELD}>Northwind Analytics</div></div>
-          <div className="mt-2"><span className={LABEL}>Context</span><div className={FIELD}>Recruiter screen yesterday</div></div>
-          <span ref={reg("writeFu")} className={`${BTN_PRIMARY} mt-3 w-full`}><Sparkles className="h-3.5 w-3.5" /> Write message</span>
+          <span ref={reg("writeFu")} className={`${BTN_PRIMARY} mt-2.5 h-8 w-full`}><Sparkles className="h-3.5 w-3.5" /> Write message</span>
         </div>
         <div className={`${CARD} flex min-h-0 flex-col overflow-hidden`}>
           <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-2.5">
@@ -1221,8 +1284,9 @@ function CareerScreen({ reg, stage, run }: { reg: Reg; stage: number; run: boole
           </div>
           {stage >= 1 ? (
             <div className="min-h-0 flex-1 px-4 py-3">
-              <p className="mb-2 text-[11px] text-slate-400"><span className="text-slate-500">Subject:</span> <span className="text-white">Thank you, Data Analyst conversation</span></p>
-              <p className="whitespace-pre-line text-[11px] leading-relaxed text-slate-200">
+              <p className="mb-2 text-[10.5px] text-slate-400"><span className="text-slate-500">To:</span> <span className="text-slate-200">rachel.kim@northwind.example</span></p>
+              <p className="mb-2.5 border-b border-white/[0.06] pb-2 text-[10.5px] text-slate-400"><span className="text-slate-500">Subject:</span> <span className="font-medium text-white">{FU_SUBJECT}</span></p>
+              <p className="whitespace-pre-line text-[10px] leading-[1.6] text-slate-200">
                 {body}
                 {!done && <span className="ml-px inline-block h-3 w-px translate-y-0.5 bg-white/60" />}
               </p>
