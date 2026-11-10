@@ -24,32 +24,40 @@ const FACTS = [
     stat: "90",
     unit: "days",
     line: "of unemployment allowed on initial OPT, in total. The count runs while you apply.",
-    color: "text-amber-300",
-    bar: "bg-amber-400",
+    color: "text-amber-400",
+    bar: "from-amber-500 to-yellow-300",
+    card: "border-amber-400/20 bg-amber-400/[0.04]",
+    divider: "bg-amber-400/30",
     width: "60%",
   },
   {
     stat: "150",
     unit: "days",
     line: "in total with the STEM extension. It adds 60 days to what you have used, it does not reset the count.",
-    color: "text-orange-300",
-    bar: "bg-orange-400",
+    color: "text-orange-400",
+    bar: "from-orange-500 to-amber-300",
+    card: "border-orange-400/20 bg-orange-400/[0.04]",
+    divider: "bg-orange-400/30",
     width: "100%",
   },
   {
     stat: "I-983",
     unit: "",
     line: "To extend, your employer must be enrolled in E-Verify and sign a training plan with you. E-Verify is the requirement most likely to rule an employer out.",
-    color: "text-rose-300",
-    bar: "bg-rose-400",
+    color: "text-rose-400",
+    bar: "from-rose-500 to-pink-400",
+    card: "border-rose-400/20 bg-rose-400/[0.04]",
+    divider: "bg-rose-400/30",
     width: "75%",
   },
   {
     stat: "H-1B",
     unit: "",
     line: "is a lottery at most employers. Even one that will sponsor you cannot promise you a spot, unless it is cap-exempt.",
-    color: "text-red-300",
-    bar: "bg-red-400",
+    color: "text-red-400",
+    bar: "from-red-500 to-rose-400",
+    card: "border-red-400/20 bg-red-400/[0.04]",
+    divider: "bg-red-400/30",
     width: "90%",
   },
 ];
@@ -61,7 +69,7 @@ export default function ProblemSection() {
         <GlowDivider />
 
         <RevealOnScroll className="mb-14 mt-10 text-center">
-          <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-amber-300/90">The OPT reality</p>
+          <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-amber-400">The OPT reality</p>
           <h2 className="mb-5 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-[42px]">
             You are not just job hunting.
             <br />
@@ -77,21 +85,21 @@ export default function ProblemSection() {
         <StaggerChildren className="space-y-3">
           {FACTS.map((f, i) => (
             <StaggerItem key={f.stat}>
-              <div className="flex items-center gap-5 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5">
+              <div className={`flex items-center gap-5 rounded-2xl border p-5 ${f.card}`}>
                 <div className="w-24 flex-shrink-0 text-right">
                   <span className={`text-2xl font-black tracking-tight sm:text-3xl ${f.color}`}>{f.stat}</span>
                   {f.unit && <span className="ml-1 text-xs font-semibold text-slate-500">{f.unit}</span>}
                 </div>
-                <div className="h-10 w-px flex-shrink-0 bg-white/[0.06]" />
+                <div className={`h-10 w-px flex-shrink-0 ${f.divider}`} />
                 <div className="min-w-0 flex-1">
-                  <p className="mb-2 text-[15px] leading-snug text-slate-300">{f.line}</p>
-                  <div className="h-1 overflow-hidden rounded-full bg-white/[0.04]">
+                  <p className="mb-2.5 text-[15px] leading-snug text-slate-200">{f.line}</p>
+                  <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: f.width }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.12, duration: 0.8, ease: "easeOut" }}
-                      className={`h-full rounded-full ${f.bar} opacity-40`}
+                      className={`h-full rounded-full bg-gradient-to-r ${f.bar}`}
                     />
                   </div>
                 </div>
@@ -107,10 +115,6 @@ export default function ProblemSection() {
           </Link>
         </p>
 
-        <RevealOnScroll delay={0.4} className="mt-12 text-center">
-          <p className="text-lg font-semibold text-white">So every application has to count.</p>
-          <p className="mt-1 text-sm text-slate-500">That is what Preciprocal is built for. ↓</p>
-        </RevealOnScroll>
       </div>
     </section>
   );
