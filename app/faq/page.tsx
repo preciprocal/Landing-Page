@@ -20,7 +20,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { PlaceholdersAndVanishInput } from "@/components/ui/PlaceholdersAndVanishInput";
-import { PAD, INNER, SECTION, GRID_BG, BTN_PRIMARY, PageHero, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, GRID_BG, BTN_PRIMARY, PageHero, FaqList, pad2 } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 
 const searchPlaceholders = [
@@ -176,31 +176,14 @@ export default function FAQPage() {
                   {grouped.map(({ cat, items }) => (
                     <Reveal key={cat.id}>
                       <section aria-labelledby={`faq-${cat.id}`} className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
-                        <div className="flex items-baseline justify-between gap-4 lg:block lg:pt-5">
+                        <div className="flex items-baseline justify-between gap-4 lg:block lg:pt-4">
                           <h2 id={`faq-${cat.id}`} className="text-lg font-semibold tracking-tight text-white sm:text-xl">
                             {cat.label}
                           </h2>
                           <span className="font-mono text-[11px] text-slate-500 lg:mt-1 lg:block">{pad2(items.length)}</span>
                         </div>
-                        <div className="divide-y divide-white/[0.06] border-y border-white/[0.06]">
-                          {items.map((faq) => (
-                            <details key={faq.id} className="group">
-                              <summary className="flex min-h-10 cursor-pointer list-none items-start justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
-                                <h3 className="font-medium text-white transition-colors group-hover:text-accent-soft">{faq.q}</h3>
-                                <span
-                                  aria-hidden="true"
-                                  className="relative mt-1 h-4 w-4 shrink-0 text-slate-500 transition-[transform,color] duration-300 group-open:rotate-45 group-open:text-accent"
-                                >
-                                  <span className="absolute left-1/2 top-0 h-4 w-px -translate-x-1/2 bg-current" />
-                                  <span className="absolute left-0 top-1/2 h-px w-4 -translate-y-1/2 bg-current" />
-                                </span>
-                              </summary>
-                              <div className="max-w-3xl pb-6 pr-10">
-                                <span aria-hidden="true" className="mb-3 block h-0.5 w-8 rounded-full bg-gradient-to-r from-accent to-accent-2" />
-                                <p className="text-sm leading-relaxed text-slate-400">{faq.a}</p>
-                              </div>
-                            </details>
-                          ))}
+                        <div className="min-w-0">
+                          <FaqList items={items.map((f) => ({ q: f.q, a: f.a }))} />
                         </div>
                       </section>
                     </Reveal>

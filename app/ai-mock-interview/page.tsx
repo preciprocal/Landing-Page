@@ -33,20 +33,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import {
-  PAD,
-  INNER,
-  SECTION,
-  BTN_PRIMARY,
-  BTN_SECONDARY,
-  ACCENT_TEXT,
-  Eyebrow,
-  SectionHead,
-  CtaPanel,
-  FaqList,
-  Fold,
-  pad2,
-} from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, SectionHead, CtaPanel, Fold, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
 
@@ -262,16 +249,7 @@ export default function AIMockInterviewPage() {
         </section>
 
         {/* ── FAQ: questions closed ───────────────────────────────────────── */}
-        <section aria-label="AI mock interview FAQ" className={`${SECTION} ${PAD}`}>
-          <div className={INNER}>
-            <Reveal>
-              <SectionHead align="center" eyebrow="FAQ" title="Frequently asked questions" />
-            </Reveal>
-            <div className="mx-auto max-w-4xl">
-              <FaqList items={FAQS} />
-            </div>
-          </div>
-        </section>
+        <FaqSection items={FAQS} sectionProps={{ "aria-label": "AI mock interview FAQ" }} />
 
         {/* ── The longer detail, folded: formats, audience, companies ─────────
             Kept in the HTML (search engines index collapsed panels), but out

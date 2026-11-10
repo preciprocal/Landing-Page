@@ -133,9 +133,9 @@ export default function Home() {
         </section>
 
         {/* 10. FAQ */}
-        <section data-section="faq" data-section-name="FAQ" aria-label="Frequently asked questions">
+        <div data-section="faq" data-section-name="FAQ">
           <FAQSection />
-        </section>
+        </div>
 
         {/* 11. Final CTA */}
         <section data-section="final-cta" data-section-name="Final CTA" aria-label="Get started">

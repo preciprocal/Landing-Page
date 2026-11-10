@@ -411,3 +411,50 @@ export function Fold({
 export function FaqList({ items }: { items: { q: string; a: ReactNode }[] }) {
   return <FaqAccordion items={items} />;
 }
+
+/**
+ * The FAQ section every page uses, so it looks the same everywhere: on wide
+ * screens the label, title and a way to reach a person sit on the left (and
+ * stay in view), the question cards on the right. `more` adds a link under
+ * the title, e.g. to the full FAQ page. Structured data stays with the page.
+ */
+export function FaqSection({
+  items,
+  title = "Frequently asked questions",
+  more,
+  sectionProps,
+  className = "",
+}: {
+  items: { q: string; a: ReactNode }[];
+  title?: ReactNode;
+  more?: { href: string; label: string };
+  sectionProps?: Record<string, string>;
+  className?: string;
+}) {
+  return (
+    <section {...sectionProps} className={`${SECTION} ${PAD} ${className}`}>
+      <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <Eyebrow>FAQ</Eyebrow>
+          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</h2>
+          <p className="mt-4 text-sm leading-relaxed text-slate-500">
+            Something else? Email{" "}
+            <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
+              support@preciprocal.com
+            </a>
+            .
+          </p>
+          {more && (
+            <Link href={more.href} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white">
+              {more.label}
+              <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" /></svg>
+            </Link>
+          )}
+        </div>
+        <div className="min-w-0">
+          <FaqAccordion items={items} />
+        </div>
+      </div>
+    </section>
+  );
+}

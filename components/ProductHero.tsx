@@ -97,6 +97,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
           <div className="absolute left-[12%] top-[38%] h-[420px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent-2)/0.10),transparent)] blur-3xl" />
           <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_0%,black,transparent)]" style={GRID_BG} />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#050810]" />
+          <div className="dither absolute inset-0" />
         </div>
 
         <div className="relative mx-auto w-full max-w-[1400px]">

@@ -36,7 +36,7 @@ import {
   tierSchemaPrice,
 } from "@/lib/pricing";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, Breadcrumbs, FaqList, SectionHead } from "@/components/page/Layout";
+import { PAD, INNER, Breadcrumbs, FaqSection } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -267,24 +267,7 @@ export default function PricingPage() {
         </div>
 
         {/* ── Pricing FAQ: questions closed, answers one click away ── */}
-        <section data-section="pricing-faq" data-section-name="Pricing FAQ" aria-label="Pricing frequently asked questions" className={`relative border-t border-white/[0.05] py-20 ${PAD}`}>
-          <div className={INNER}>
-            <SectionHead align="center" eyebrow="FAQ" title="Common questions" />
-            <div className="mx-auto max-w-3xl">
-              <FaqList items={PRICING_FAQS} />
-              <p className="mt-8 text-center text-[13px] text-slate-500">
-                More questions?{" "}
-                <Link href="/faq" className="font-medium text-indigo-400 transition-colors hover:text-indigo-300">
-                  Read the full FAQ <Chevron />
-                </Link>
-                {" "}or{" "}
-                <a href="mailto:support@preciprocal.com" className="font-medium text-indigo-400 transition-colors hover:text-indigo-300">
-                  email us
-                </a>
-              </p>
-            </div>
-          </div>
-        </section>
+        <FaqSection title="Common questions" items={PRICING_FAQS} sectionProps={{ "data-section": "pricing-faq", "data-section-name": "Pricing FAQ", "aria-label": "Pricing frequently asked questions" }} />
 
       </main>
 

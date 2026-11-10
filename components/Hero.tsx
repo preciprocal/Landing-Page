@@ -197,6 +197,9 @@ export default function Hero() {
         }}
       />
 
+      {/* Dither over the aurora and overlay, so the soft falloff does not band */}
+      <div aria-hidden className="dither pointer-events-none absolute inset-0 z-[3]" />
+
       {/* Vertical rule accent */}
       <div
         aria-hidden

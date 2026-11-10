@@ -21,7 +21,7 @@ import HeroProductDemo from "@/components/HeroProductDemo";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import { TIERS, tierFeatureLines } from "@/lib/pricing";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, FaqList, PageHero, SectionHead, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, PageHero, SectionHead, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -269,14 +269,7 @@ export default function HowItWorksPage() {
         </section>
 
         {/* FAQ */}
-        <section aria-label="Questions" className={`${SECTION} ${PAD}`}>
-          <div className="mx-auto w-full max-w-4xl">
-            <Reveal>
-              <SectionHead align="center" className="mb-10" eyebrow="Questions" title="Before you start" />
-            </Reveal>
-            <FaqList items={FAQS} />
-          </div>
-        </section>
+        <FaqSection title="Before you start" items={FAQS} sectionProps={{ "aria-label": "Questions" }} />
 
         <section aria-label="Get started" className={`pb-24 pt-4 ${PAD}`}>
           <Reveal>

@@ -29,7 +29,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, CtaPanel, Eyebrow, FaqList, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
+import { BTN_PRIMARY, CtaPanel, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export type RuleStatus = "in-effect" | "blocked" | "proposed" | "unchanged";
@@ -381,17 +381,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section data-section="faq" data-section-name="FAQ" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>FAQ</Eyebrow>
-                <h2 className={H2}>Frequently asked questions</h2>
-              </div>
-              <Reveal className="min-w-0">
-                <FaqList items={props.faqs} />
-              </Reveal>
-            </div>
-          </section>
+          <FaqSection items={props.faqs} sectionProps={{ "data-section": "faq", "data-section-name": "FAQ" }} />
 
           {/* ── Key dates, folded: the sequence, for readers who want it ── */}
           <section data-section="timeline" data-section-name="Key dates" className={`border-t border-white/[0.05] pt-16 ${PAD}`}>

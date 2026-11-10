@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, Eyebrow, PageHero, CtaPanel, FaqList } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import CompareTable, { Verdict } from "@/components/page/CompareTable";
 import { ReasonList, LinkList } from "@/components/AlternativePage";
@@ -211,15 +211,7 @@ export default function FinalRoundAIAlternativePage() {
         </section>
 
         {/* ── FAQ ─────────────────────────────────────────────────────────── */}
-        <section aria-label="Frequently asked questions" className={`${SECTION} ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <Eyebrow>FAQ</Eyebrow>
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">Frequently asked questions</h2>
-            </div>
-            <FaqList items={FAQS} />
-          </div>
-        </section>
+        <FaqSection items={FAQS} sectionProps={{ "aria-label": "Frequently asked questions" }} />
 
         {/* ── Internal links ──────────────────────────────────────────────── */}
         <section aria-label="Related resources" className={`pb-16 ${PAD}`}>

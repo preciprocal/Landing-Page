@@ -26,7 +26,7 @@ import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import { OPT_GUIDES } from "@/lib/optGuides";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, CtaPanel, Eyebrow, FaqList, INNER, PAD, PageHero, SECTION, pad2 } from "@/components/page/Layout";
+import { BTN_PRIMARY, CtaPanel, INNER, PAD, PageHero, SECTION, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export interface OptKeyFact {
@@ -253,19 +253,7 @@ export default function OptGuidePage(props: OptGuideProps) {
           </div>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section data-section="faq" data-section-name="FAQ" className={`${SECTION} ${PAD}`}>
-            <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>FAQ</Eyebrow>
-                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">
-                  Frequently asked questions
-                </h2>
-              </div>
-              <Reveal className="min-w-0">
-                <FaqList items={props.faqs} />
-              </Reveal>
-            </div>
-          </section>
+          <FaqSection items={props.faqs} sectionProps={{ "data-section": "faq", "data-section-name": "FAQ" }} />
 
           {/* ── More guides: a compact list (the hub lists them all in its body) ── */}
           {!isHub && (

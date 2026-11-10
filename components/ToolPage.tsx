@@ -24,7 +24,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, FaqList, CtaPanel, type Accent } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection } from "@/components/page/Layout";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
@@ -260,8 +260,7 @@ export default function ToolPage({
           </section>
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
-          <section data-section="faq" data-section-name="FAQ" className={`border-t border-white/[0.05] py-24 ${PAD}`}>
-            <script
+                      <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify({
@@ -275,22 +274,7 @@ export default function ToolPage({
                 }),
               }}
             />
-            <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
-              <div className="lg:sticky lg:top-28 lg:self-start">
-                <Eyebrow>FAQ</Eyebrow>
-                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{faqTitle}</h2>
-                <p className="mt-4 text-sm leading-relaxed text-slate-500">
-                  Something else? Email{" "}
-                  <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
-                    support@preciprocal.com
-                  </a>
-                  .
-                </p>
-              </div>
-
-              <FaqList items={shownFaqs} />
-            </div>
-          </section>
+          <FaqSection title={faqTitle} items={shownFaqs} sectionProps={{ "data-section": "faq", "data-section-name": "FAQ" }} />
 
           {/* ── The full guide, folded away ─────────────────────────────────
               The long-form guide is what these pages rank on, so it stays in

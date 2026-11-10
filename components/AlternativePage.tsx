@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, Eyebrow, SectionHead, HeroBackdrop, CtaPanel, FaqList, TrustRow } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import { Check, X } from "lucide-react";
 
@@ -378,17 +378,7 @@ export default function AlternativePage({
         </section>
 
         {/* FAQ as closed dropdowns. Answers stay in the HTML (native <details>), so the FAQ structured data still matches the page. */}
-        <section aria-label={`${competitor} alternative FAQ`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
-          <div className={`${INNER} grid gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <Eyebrow>FAQ</Eyebrow>
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">
-                {competitor} alternative FAQ
-              </h2>
-            </div>
-            <FaqList items={faqs} />
-          </div>
-        </section>
+        <FaqSection title={`${competitor} alternative FAQ`} items={faqs} sectionProps={{ "aria-label": `${competitor} alternative FAQ` }} />
 
         {/* Other comparisons, as a compact list.
 

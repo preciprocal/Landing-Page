@@ -21,7 +21,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, FaqList, CtaPanel, TrustRow } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, TrustRow, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -257,28 +257,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
         </section>
 
         {/* FAQ as closed dropdowns. Answers stay in the HTML, so the FAQ structured data still matches the page. */}
-        <section className={`border-t border-white/[0.05] py-20 sm:py-24 ${PAD}`}>
-          <div className={INNER}>
-            <SectionHead
-              align="center"
-              className="mb-12"
-              eyebrow="FAQ"
-              title={`${meta.displayName} interview questions, answered`}
-              subtitle={
-                <>
-                  Something else? Email{" "}
-                  <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
-                    support@preciprocal.com
-                  </a>
-                  .
-                </>
-              }
-            />
-            <div className="mx-auto max-w-4xl">
-              <FaqList items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
-            </div>
-          </div>
-        </section>
+        <FaqSection title={`${meta.displayName} interview questions, answered`} items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
 
         {/* Top roles and related companies, as a compact list.
 

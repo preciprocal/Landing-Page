@@ -26,7 +26,7 @@ import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, titleField } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqList, Fold, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, Fold, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ── Static params ─────────────────────────────────────────────────────────────
@@ -428,16 +428,7 @@ export default async function CoverLetterExampleRolePage({
         </section>
 
         {/* 2. FAQ, collapsed */}
-        <section id="faq" aria-label={`${roleName} cover letter FAQ`} className={`${SECTION} scroll-mt-24 ${PAD}`}>
-          <div className={INNER}>
-            <Reveal>
-              <SectionHead align="center" eyebrow="FAQ" title="Frequently asked questions" />
-            </Reveal>
-            <div className="mx-auto max-w-4xl">
-              <FaqList items={faqs} />
-            </div>
-          </div>
-        </section>
+        <FaqSection className="scroll-mt-24" items={faqs} sectionProps={{ "id": "faq", "aria-label": `${roleName} cover letter FAQ` }} />
 
         {/* 3. Writing tips folded, then the related links */}
         <section className={`${SECTION} ${PAD}`}>
