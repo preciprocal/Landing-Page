@@ -18,13 +18,53 @@ import { motion, useMotionValue, useSpring, useTransform, useInView, type Varian
 export function SpotlightCard({
   children,
   className = "",
+  spotlightColor = "rgba(99,102,241,0.08)",
 }: {
   children: React.ReactNode;
   className?: string;
-  /** Kept for existing callers; the cursor glow was retired. */
   spotlightColor?: string;
 }) {
-  return <div className={`relative overflow-hidden ${className}`}>{children}</div>;
+  const ref = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [inside, setInside] = useState(false);
+
+  const handleMove = useCallback((e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseEnter={() => setInside(true)}
+      onMouseLeave={() => setInside(false)}
+      className={`relative overflow-hidden ${className}`}
+    >
+      {/* Spotlight gradient overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+        style={{
+          opacity: inside ? 1 : 0,
+          background: `radial-gradient(400px circle at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 60%)`,
+        }}
+      />
+      {/* Glowing border effect on hover */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 rounded-[inherit] transition-opacity duration-300"
+        style={{
+          opacity: inside ? 1 : 0,
+          background: `radial-gradient(300px circle at ${pos.x}px ${pos.y}px, rgba(99,102,241,0.12), transparent 50%)`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1px",
+        }}
+      />
+      {children}
+    </div>
+  );
 }
 
 

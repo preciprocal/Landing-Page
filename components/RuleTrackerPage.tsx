@@ -155,6 +155,7 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
                 {r === firstUpcoming && (
                   <div className="flex items-center gap-3 border-b border-accent/20 bg-accent/[0.06] px-5 py-2.5 sm:px-6">
                     <span aria-hidden="true" className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-50 motion-reduce:animate-none" />
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                     </span>
                     <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-soft">Today</span>

@@ -322,7 +322,7 @@ export default function ResumeAtsChecker() {
             data-track="ats-check-submit"
             onClick={run}
             disabled={!file || loading}
-            className="shrink-0 whitespace-nowrap rounded-xl bg-[#5b6cff] px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+            className="shrink-0 whitespace-nowrap rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {loading ? "Analysing your resume..." : "Check my resume free"}
           </button>
@@ -332,7 +332,7 @@ export default function ResumeAtsChecker() {
           <a
             href={SIGN_UP_URL}
             data-track="ats-check-limit-signup"
-            className="mt-3 inline-flex rounded-xl bg-[#5b6cff] px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+            className="mt-3 inline-flex rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
             Create free account <Chevron />
           </a>
@@ -451,7 +451,7 @@ function WelcomeBack({ result }: { result: Shown }) {
       <a
         href={SIGN_UP_URL}
         data-track="ats-check-returning-signup"
-        className="shrink-0 rounded-xl bg-[#5b6cff] px-5 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90"
+        className="shrink-0 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-5 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90"
       >
         Create free account <Chevron />
       </a>
@@ -627,7 +627,7 @@ function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; inde
   return (
     <article className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="mb-3 flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#5b6cff] text-[11px] font-bold text-white">{index + 1}</span>
+        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-[11px] font-bold text-white">{index + 1}</span>
         <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-slate-400">{fix.section}</span>
       </div>
       <p className="mb-2 font-semibold leading-snug text-white">{fix.tip}</p>
@@ -726,7 +726,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             href={SIGN_UP_URL}
             data-track="ats-check-unlock"
             onClick={() => trackEvent("ats-check-unlock-click", { locked: n, score: result.overallScore }, "tool")}
-            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#5b6cff] px-6 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110 sm:w-auto"
+            className="group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110 sm:w-auto"
           >
             <motion.span
               aria-hidden="true"

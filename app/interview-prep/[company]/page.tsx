@@ -130,7 +130,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
 
                 <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
                   {"How to Get a Job at "}
-                  <span className="block text-slate-400">
+                  <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">
                     {meta.displayName} (2026)
                   </span>
                 </h1>

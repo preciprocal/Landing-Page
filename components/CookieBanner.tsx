@@ -116,7 +116,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={handleAccept}
-                className="flex-1 py-2 px-3 rounded-lg text-[12px] font-semibold text-white bg-[#5b6cff] hover:opacity-90 transition-all"
+                className="flex-1 py-2 px-3 rounded-lg text-[12px] font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90 transition-all"
               >
                 Accept all
               </button>

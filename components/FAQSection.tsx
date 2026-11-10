@@ -54,7 +54,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
             className="overflow-hidden"
           >
             <div className="px-5 pb-5 pl-14">
-              <div className="w-8 h-0.5 bg-[#5b6cff] rounded-full mb-3" />
+              <div className="w-8 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full mb-3" />
               <p className="text-[13px] text-slate-400 leading-relaxed">{faq.a}</p>
             </div>
           </motion.div>

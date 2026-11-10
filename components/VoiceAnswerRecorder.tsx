@@ -214,7 +214,7 @@ export default function VoiceAnswerRecorder({
             type="button"
             data-track="question-predictor-record-start"
             onClick={start}
-            className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-[#5b6cff] text-white transition-all hover:brightness-110 ${FOCUS}`}
+            className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white transition-all hover:brightness-110 ${FOCUS}`}
           >
             <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
             {stats ? "Record again" : "Record my answer"}

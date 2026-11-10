@@ -53,7 +53,7 @@ export function InfiniteMovingCards({ items, direction = "left", speed = "normal
             <blockquote>
               <div className="relative z-20 text-sm leading-relaxed text-slate-300 font-normal">&ldquo;{item.quote}&rdquo;</div>
               <div className="relative z-20 mt-6 flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-[#5b6cff] flex items-center justify-center text-xs font-bold text-white">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-xs font-bold text-white">
                   {item.name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div className="flex flex-col">

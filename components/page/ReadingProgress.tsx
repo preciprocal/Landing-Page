@@ -19,7 +19,7 @@ export default function ReadingProgress() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-x-0 top-0 z-[5001] h-[3px] origin-left bg-accent shadow-[0_0_12px_rgb(var(--accent)/0.5)]"
+      className="pointer-events-none fixed inset-x-0 top-0 z-[5001] h-[3px] origin-left bg-gradient-to-r from-accent-deep via-accent to-accent-2 shadow-[0_0_12px_rgb(var(--accent)/0.5)]"
       style={{ scaleX: reduce ? scrollYProgress : smooth }}
     />
   );

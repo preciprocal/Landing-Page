@@ -232,7 +232,7 @@ export default function AlternativePage({
                 </div>
                 <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
                   {`The Best ${competitor} Alternative `}
-                  <span className="block text-slate-400">in 2026</span>
+                  <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">in 2026</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">{intro}</p>
                 <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-400">{positioning}</p>

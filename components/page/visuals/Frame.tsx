@@ -52,6 +52,10 @@ export function Stage({ children, className = "" }: { children: ReactNode; class
   const reduce = useReducedMotion();
   return (
     <div className={`relative mx-auto w-full max-w-[520px] ${className}`}>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-10 -inset-y-12 rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent)/0.16),transparent)] blur-2xl"
+      />
       <motion.div
         className="relative"
         animate={reduce ? undefined : { y: [0, -8, 0] }}
@@ -131,7 +135,8 @@ export function Chip({ children, show = true, className = "" }: { children: Reac
 export function PulseDot({ className = "" }: { className?: string }) {
   return (
     <span className={`relative flex h-2 w-2 ${className}`}>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
     </span>
   );
 }

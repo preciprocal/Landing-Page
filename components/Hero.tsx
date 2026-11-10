@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { APP_URL } from "@/lib/constants";
 import { ChevronRightIcon } from "@/components/Icons";
+import { SpotlightNew } from "@/components/ui/SpotlightNew";
 
 // Aurora canvas
 
@@ -174,6 +175,18 @@ export default function Hero() {
       {/* Full-bleed aurora */}
       <Aurora />
 
+      {/* Spotlight, violet, sweeping from top-left */}
+      <SpotlightNew
+        className="-top-40 -left-20 z-[2]"
+        fill="rgba(139,92,246,0.55)"
+      />
+
+      {/* Spotlight, fuchsia, sweeping from top-right (mirrored) */}
+      <SpotlightNew
+        className="-top-40 -right-20 z-[2] scale-x-[-1]"
+        fill="rgba(232,121,249,0.35)"
+      />
+
       {/* Dark overlay */}
       <div
         aria-hidden
@@ -181,6 +194,18 @@ export default function Hero() {
         style={{
           background:
             "radial-gradient(ellipse 70% 65% at 50% 45%, rgba(5,8,16,0.45) 0%, rgba(5,8,16,0.75) 60%, rgba(5,8,16,0.97) 100%)",
+        }}
+      />
+
+      {/* Vertical rule accent */}
+      <div
+        aria-hidden
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-none z-[4]"
+        style={{
+          top: "calc(50% - 240px)",
+          width: "1px",
+          height: "80px",
+          background: "linear-gradient(to bottom, transparent, rgba(139,92,246,0.5), transparent)",
         }}
       />
 
@@ -204,7 +229,7 @@ export default function Hero() {
           initial={{ opacity: 0, letterSpacing: "0.3em" }}
           animate={{ opacity: 1, letterSpacing: "0.2em" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-8 text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400"
+          className="mb-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-400/70"
         >
           For F-1 students on OPT
         </motion.p>
@@ -219,7 +244,22 @@ export default function Hero() {
         >
           Your OPT clock
           <br />
-          <span className="text-slate-400">is running.</span>
+          <span
+            className="relative inline-block"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #e879f9 65%, #a78bfa 100%)",
+              backgroundSize: "200% 100%",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              animation: "shimmer 5s ease-in-out infinite",
+              // Room for descenders ("g"): the gradient is clipped to this box.
+              paddingBottom: "0.14em",
+              marginBottom: "-0.14em",
+            }}
+          >
+            is running.
+          </span>
         </motion.h1>
 
         {/* Flip sub-headline */}
@@ -230,7 +270,7 @@ export default function Hero() {
           className="mt-6 text-xl sm:text-2xl font-semibold text-slate-400"
         >
           Land the job{" "}
-          <span className="font-semibold text-white">before it runs out.</span>
+          <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text font-bold text-transparent">before it runs out.</span>
         </motion.p>
 
         {/* One-liner */}
@@ -252,7 +292,12 @@ export default function Hero() {
         >
           <a
             href={`${APP_URL}/sign-up`}
-            className="group inline-flex items-center gap-2 rounded-full bg-[#5b6cff] px-8 py-3.5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#6c7bff]"
+            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-semibold text-white transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_50px_rgba(139,92,246,0.5)]"
+            style={{
+              background: "linear-gradient(135deg, #7c3aed, #a855f7, #7c3aed)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 4s ease infinite",
+            }}
           >
             Start free
             <ChevronRightIcon className="transition-transform duration-300 group-hover:translate-x-1" />
