@@ -19,7 +19,6 @@ import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/con
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, BTN_PRIMARY, PageHero, CtaPanel } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
-import CoverLetterExamplesVisual from "@/components/page/visuals/CoverLetterExamplesVisual";
 
 export const metadata: Metadata = {
   title: "Cover Letter Examples by Role: 41 Templates",
@@ -53,7 +52,6 @@ export default function CoverLetterExamplesIndexPage() {
 
       <main>
         <PageHero
-          visual={<CoverLetterExamplesVisual />}
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Cover Letter Examples" }]}
           title="Cover letter examples by role"
           subhead={

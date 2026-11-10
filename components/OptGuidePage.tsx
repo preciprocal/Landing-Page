@@ -163,7 +163,7 @@ export default function OptGuidePage(props: OptGuideProps) {
             subhead={
               <>
                 <p>{props.intro}</p>
-                <p className="mt-6 border-l border-white/[0.1] pl-4 text-[12px] leading-relaxed text-slate-400">
+                <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
                   General information from official sources, not legal advice. Your DSO and the record in SEVIS have the final
                   word on your own case.
                 </p>

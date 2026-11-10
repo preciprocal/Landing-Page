@@ -20,7 +20,6 @@ import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, CARD_SOLID, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import InterviewPrepVisual from "@/components/page/visuals/InterviewPrepVisual";
 
 export const metadata: Metadata = {
   title: "Company Interview Prep: 56 Employers",
@@ -100,7 +99,6 @@ export default function InterviewPrepIndexPage() {
 
         <main>
           <PageHero
-            visual={<InterviewPrepVisual />}
             breadcrumb={[{ label: "Home", href: "/" }, { label: "Interview Prep" }]}
             title={"Company interview "}
             accent="prep guides"

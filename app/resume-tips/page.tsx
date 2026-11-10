@@ -20,7 +20,6 @@ import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
-import ResumeTipsVisual from "@/components/page/visuals/ResumeTipsVisual";
 
 export const metadata: Metadata = {
   title: "Resume Tips by Role: 41 Career Guides",
@@ -58,7 +57,6 @@ export default function ResumeTipsIndexPage() {
       <main>
         {/* Hero: breadcrumb, H1, subhead, counts, category jump row */}
         <PageHero
-          visual={<ResumeTipsVisual />}
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Resume Tips" }]}
           title="Resume tips "
           accent="by role"

@@ -19,7 +19,6 @@ import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/con
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, BTN_PRIMARY, PageHero, CtaPanel } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
-import SalaryGuideVisual from "@/components/page/visuals/SalaryGuideVisual";
 
 export const metadata: Metadata = {
   title: "Salary Guide by Role: 2026 Data & Negotiation",
@@ -53,7 +52,6 @@ export default function SalaryGuideIndexPage() {
 
       <main>
         <PageHero
-          visual={<SalaryGuideVisual />}
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Salary Guide" }]}
           title="2026 salary guide by role"
           subhead={

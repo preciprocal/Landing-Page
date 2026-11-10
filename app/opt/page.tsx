@@ -11,7 +11,6 @@ import Link from "next/link";
 import OptGuidePage from "@/components/OptGuidePage";
 import { OPT_GUIDES } from "@/lib/optGuides";
 import { SRC } from "@/lib/optSources";
-import OptVisual from "@/components/page/visuals/OptVisual";
 
 const DESCRIPTION =
   "OPT for F-1 students in one place: how to apply and when, the 90 and 150 day unemployment limits, STEM OPT, self-employment, cap-gap, current fees and the proposed $70,000 fee. Checked against USCIS and DHS.";
@@ -62,7 +61,6 @@ export default function OptHubPage() {
     <OptGuidePage
       breadcrumbName="OPT guides"
       canonicalPath="/opt"
-      visual={<OptVisual />}
       headline="OPT Guide for F-1 Students: Rules, Dates, Fees and Tools"
       description={DESCRIPTION}
       h1="OPT for F-1 students"

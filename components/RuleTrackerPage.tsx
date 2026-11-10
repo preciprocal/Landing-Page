@@ -282,7 +282,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
             subhead={
               <>
                 <p>{props.intro}</p>
-                <p className="mt-6 border-l border-white/[0.1] pl-4 text-[12px] leading-relaxed text-slate-400">
+                <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
                   A summary of public rules and court rulings, not legal advice. Confirm anything about your own case with
                   your DSO or an immigration attorney.
                 </p>

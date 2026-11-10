@@ -18,7 +18,6 @@ import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/con
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, CARD, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import InterviewQuestionsVisual from "@/components/page/visuals/InterviewQuestionsVisual";
 
 export const metadata: Metadata = {
   title: "Interview Questions by Role: 40+ Careers",
@@ -55,7 +54,6 @@ export default function InterviewQuestionsIndexPage() {
 
       <main>
         <PageHero
-          visual={<InterviewQuestionsVisual />}
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Interview Questions" }]}
           title={<>Interview questions{" "}</>}
           accent="by role"

@@ -30,16 +30,28 @@ export default function StickyBanner() {
   // navigating to a route without it left --banner-h at its old value, so the
   // navbar reserved space for a banner that was no longer rendered. Resetting
   // on unmount keeps that from happening again if it is ever moved back.
+  //
+  // It is measured continuously, not once: the banner's height changes after
+  // mount (web fonts loading, the line unwrapping at a new width, browser
+  // zoom), and a stale value left a strip of page showing between the banner
+  // and the navbar, or the navbar overlapping it.
   useEffect(() => {
     const root = document.documentElement;
+    const el = bannerRef.current;
 
-    if (visible && bannerRef.current) {
-      root.style.setProperty("--banner-h", `${bannerRef.current.offsetHeight}px`);
-    } else {
+    if (!visible || !el) {
       root.style.setProperty("--banner-h", "0px");
+      return () => root.style.setProperty("--banner-h", "0px");
     }
 
-    return () => root.style.setProperty("--banner-h", "0px");
+    const sync = () => root.style.setProperty("--banner-h", `${el.getBoundingClientRect().height}px`);
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => {
+      ro.disconnect();
+      root.style.setProperty("--banner-h", "0px");
+    };
   }, [visible]);
 
   const dismiss = () => {
@@ -54,9 +66,11 @@ export default function StickyBanner() {
         {visible && (
           <motion.div
             ref={bannerRef}
-            initial={{ y: -40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -40, opacity: 0 }}
+            // Fades in place rather than sliding down: the navbar is already
+            // positioned under it, so a slide left a gap between the two.
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed top-0 left-0 right-0 z-[70]"
           >

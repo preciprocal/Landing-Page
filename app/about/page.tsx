@@ -20,7 +20,6 @@ import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
 import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, CtaPanel, Fold, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import AboutVisual from "@/components/page/visuals/AboutVisual";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function AboutJsonLd() {
@@ -141,7 +140,6 @@ export default function AboutPage() {
               firsthand and decided to reverse-engineer it instead of accepting it.
             </p>
           }
-          visual={<AboutVisual />}
         />
 
         {/* The story in four beats */}

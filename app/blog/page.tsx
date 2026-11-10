@@ -19,7 +19,6 @@ import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import BlogVisual from "@/components/page/visuals/BlogVisual";
 
 export const metadata: Metadata = {
   title: "Career Advice: Interviews, Resumes, Jobs",
@@ -92,7 +91,6 @@ export default function BlogIndexPage() {
 
       <main>
         <PageHero
-          visual={<BlogVisual />}
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Blog" }]}
           title={"Career advice & "}
           accent="interview prep"

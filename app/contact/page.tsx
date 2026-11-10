@@ -22,7 +22,6 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, PageHero, SectionHead } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
-import ContactVisual from "@/components/page/visuals/ContactVisual";
 
 const EMAIL = "support@preciprocal.com";
 
@@ -74,7 +73,6 @@ export default function ContactPage() {
               Ideas, feedback, partnerships or press: email goes straight to the people who build Preciprocal, and we read every one.
             </p>
           }
-          visual={<ContactVisual />}
         />
 
         {/* Hand-off to Support for account problems */}
