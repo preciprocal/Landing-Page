@@ -398,6 +398,7 @@ export default function PrivacyPage() {
 
       <main>
         <PageHero
+          inlineAccent
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Privacy Policy" }]}
           title={"Privacy "}
           accent="Policy"

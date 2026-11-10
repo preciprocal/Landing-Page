@@ -226,6 +226,7 @@ export function PageHero({
   visual,
   children,
   sectionProps,
+  inlineAccent = false,
 }: {
   badge?: ReactNode;
   badgeTone?: "accent" | "emerald" | "indigo" | "amber";
@@ -238,6 +239,8 @@ export function PageHero({
   visual?: ReactNode;
   children?: ReactNode;
   sectionProps?: Record<string, string>;
+  /** Keep the accent on the same line as the title, for short titles like "Privacy Policy". */
+  inlineAccent?: boolean;
 }) {
   const tone = {
     accent: "border-accent/25 bg-accent/[0.08] text-accent-soft [--dot:rgb(var(--accent))]",
@@ -268,7 +271,7 @@ export function PageHero({
       >
         {title}
         {accent && (
-          <span className="block animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent">
+          <span className={`${inlineAccent ? "inline" : "block"} animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent`}>
             {accent}
           </span>
         )}

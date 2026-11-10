@@ -306,6 +306,7 @@ export default function TermsPage() {
 
       <main>
         <PageHero
+          inlineAccent
           breadcrumb={[{ label: "Home", href: "/" }, { label: "Terms of Service" }]}
           title={"Terms of "}
           accent="Service"
