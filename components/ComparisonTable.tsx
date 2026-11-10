@@ -172,7 +172,7 @@ export default function ComparisonTable() {
               href="https://app.preciprocal.com/sign-up"
               className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-[14px]
                          bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500
-                         shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
+                         hover:shadow-indigo-500/40 transition-all duration-300"
             >
               Get all 13 features for $9.99
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

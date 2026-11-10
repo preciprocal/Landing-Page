@@ -200,7 +200,7 @@ export default function PricingPage() {
                     }`}
                   >
                     {plan.mostPopular && (
-                      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-1.5 text-xs font-bold text-white">
+                      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-[#5b6cff] px-4 py-1.5 text-xs font-bold text-white">
                         Most Popular
                       </div>
                     )}
@@ -231,7 +231,7 @@ export default function PricingPage() {
                         href={plan.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${plan.id}`}
                         className={`block w-full rounded-xl py-3.5 text-center text-[15px] font-semibold transition-all duration-300 ${
                           plan.mostPopular
-                            ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110"
+                            ? "bg-[#5b6cff] text-white hover:brightness-110"
                             : "border border-white/[0.12] bg-white/[0.05] text-slate-200 hover:border-white/20 hover:bg-white/[0.08]"
                         }`}
                       >

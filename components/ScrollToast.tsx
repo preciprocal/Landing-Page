@@ -108,7 +108,7 @@ export default function ScrollToast() {
               <div className="flex items-start gap-3">
                 {/* Icon with pulse ring */}
                 <div className="relative flex-shrink-0">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
+                  <div className="w-10 h-10 rounded-xl bg-[#5b6cff] flex items-center justify-center">
                     <GraduationCap className="w-5 h-5 text-white" />
                   </div>
                   {/* Subtle pulse ring */}
@@ -127,7 +127,7 @@ export default function ScrollToast() {
                   <a
                     href={`${APP_URL}/sign-up`}
                     className="group inline-flex items-center gap-1.5 px-4 py-2 rounded-lg
-                               bg-gradient-to-r from-indigo-500 to-purple-500
+                               bg-[#5b6cff]
                                text-white text-[11px] font-semibold
                               
                                transition-all duration-300 hover:-translate-y-0.5"
@@ -144,7 +144,7 @@ export default function ScrollToast() {
                   initial={{ width: "100%" }}
                   animate={{ width: "0%" }}
                   transition={{ duration: 15, ease: "linear" }}
-                  className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                  className="h-full bg-[#5b6cff] rounded-full"
                 />
               </div>
             </div>

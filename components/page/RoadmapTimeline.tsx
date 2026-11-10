@@ -82,9 +82,6 @@ function Dot({ status, reduce, large = false }: { status: RoadmapStatus; reduce:
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.45, ease: EASE }}
     >
-      {status === "in-progress" && !large && (
-        <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-50" />
-      )}
     </motion.span>
   );
 }

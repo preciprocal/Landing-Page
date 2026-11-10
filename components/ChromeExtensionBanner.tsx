@@ -188,12 +188,12 @@ export default function ChromeExtensionBanner() {
       <motion.div
         animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[8%] top-[20%] w-[420px] h-[420px] bg-indigo-600/5 blur-[120px] rounded-full pointer-events-none"
+        className="absolute left-[8%] top-[20%] w-[420px] h-[420px] hidden rounded-full pointer-events-none"
       />
       <motion.div
         animate={{ x: [0, -25, 0], y: [0, 25, 0] }}
         transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute right-[10%] bottom-[15%] w-[350px] h-[350px] bg-purple-600/5 blur-[100px] rounded-full pointer-events-none"
+        className="absolute right-[10%] bottom-[15%] w-[350px] h-[350px] hidden rounded-full pointer-events-none"
       />
       <motion.div
         animate={{ scale: [1, 1.15, 1] }}
@@ -410,7 +410,7 @@ export default function ChromeExtensionBanner() {
             <motion.div
               animate={{ opacity: [0.4, 0.7, 0.4], scale: [1, 1.02, 1] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -inset-3 bg-indigo-500/8 blur-3xl rounded-3xl pointer-events-none"
+              className="absolute -inset-3 hidden rounded-3xl pointer-events-none"
             />
 
             {/* Label row */}

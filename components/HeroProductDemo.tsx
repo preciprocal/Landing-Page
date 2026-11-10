@@ -216,7 +216,7 @@ function PulseHighlight({ children, active, className = "" }: {
   return (
     <div className={`relative inline-block ${className}`}>
       <div className="absolute -inset-1.5 rounded-2xl bg-purple-500/[0.08] blur-lg pointer-events-none" />
-      <div className="absolute -inset-0.5 rounded-xl border border-purple-500/40 shadow-[0_0_20px_rgba(139,92,246,0.15)] pointer-events-none animate-pulse" />
+      <div className="absolute -inset-0.5 rounded-xl border border-purple-500/40  pointer-events-none animate-pulse" />
       <div className="relative">{children}</div>
     </div>
   );
@@ -253,7 +253,7 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
         <AnimatePresence>
           {showArjun && (
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 flex-shrink-0">
+              <div className="w-10 h-10 rounded-full bg-[#5b6cff] flex items-center justify-center flex-shrink-0">
                 <span className="text-[16px] font-bold text-white">A</span>
               </div>
               <div>
@@ -317,8 +317,8 @@ function LinkedInJobListing({ onApply }: { onApply: () => void }) {
                           <button
                             onClick={onApply}
                             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-[13px] font-semibold text-white
-                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)]
-                              hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer animate-pulse"
+                              bg-[#5b6cff] border border-[#5b6cff] hover:bg-[#6c7bff]
+                              hover:-translate-y-0.5 transition-all duration-300 cursor-pointer animate-pulse"
                           >
                             Apply with Preciprocal <ChevronRight className="w-3.5 h-3.5" />
                           </button>
@@ -418,7 +418,7 @@ function NarrationCard({ chapter, chapterNum, total, onAction }: {
               animate={{ opacity: i < lineIdx ? 1 : 0, y: i < lineIdx ? 0 : 6, filter: i < lineIdx ? "blur(0px)" : "blur(4px)" }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className={`text-[15px] leading-relaxed ${
-                i === lines.length - 1 ? "font-semibold bg-gradient-to-r from-white to-indigo-300 bg-clip-text text-transparent" : "text-slate-400"
+                i === lines.length - 1 ? "font-semibold text-white" : "text-slate-400"
               }`}>
               {line.trim()}
             </motion.p>
@@ -432,8 +432,7 @@ function NarrationCard({ chapter, chapterNum, total, onAction }: {
               <PulseHighlight active={true}>
                 <button onClick={onAction}
                   className={`group inline-flex items-center gap-2.5 px-6 py-3 rounded-xl text-[13px] font-semibold text-white
-                    bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
-                    hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:-translate-y-0.5
+                    bg-[#5b6cff] border border-[#5b6cff] hover:bg-[#6c7bff] animate-pulse hover:-translate-y-0.5
                     transition-all duration-300 cursor-pointer`}>
                   <CtaIcon className="w-4 h-4" />
                   {chapter.ctaLabel}
@@ -721,7 +720,7 @@ export default function HeroProductDemo() {
                     <div className="max-w-md text-center px-6 relative z-10">
                       <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring", damping: 15 }}
-                        className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/20">
+                        className="w-14 h-14 rounded-full bg-[#5b6cff] flex items-center justify-center mx-auto mb-5">
                         <span className="text-[22px] font-bold text-white">A</span>
                       </motion.div>
                       <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
@@ -740,8 +739,8 @@ export default function HeroProductDemo() {
                         <PulseHighlight active={true}>
                           <button onClick={handleBeginStory}
                             className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-[14px] font-semibold text-white
-                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
-                              hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer">
+                              bg-[#5b6cff] border border-[#5b6cff] hover:bg-[#6c7bff]
+                              hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
                             View the Job Listing
                             <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
                           </button>
@@ -789,8 +788,7 @@ export default function HeroProductDemo() {
                             <button
                               onClick={handleContinueFromWait}
                               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[11px] font-semibold text-white
-                                bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)]
-                                hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] hover:-translate-y-0.5
+                                bg-[#5b6cff] border border-[#5b6cff] hover:bg-[#6c7bff] hover:-translate-y-0.5
                                 transition-all duration-300 cursor-pointer"
                             >
                               Continue <ChevronRight className="w-3 h-3" />
@@ -823,7 +821,7 @@ export default function HeroProductDemo() {
                         <motion.a href="https://app.preciprocal.com/sign-up"
                           whileHover={{ scale: 1.04, y: -2 }}
                           whileTap={{ scale: 0.97 }}
-                          className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-[0_8px_30px_rgba(99,102,241,0.25)] hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-shadow">
+                          className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-[#5b6cff] text-white shadow-[0_8px_30px_rgba(99,102,241,0.25)] hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-shadow">
                           Get Started <ChevronRight className="w-4 h-4" />
                         </motion.a>
                         <motion.button onClick={replay}
@@ -843,7 +841,6 @@ export default function HeroProductDemo() {
         </Spotlight>
 
         {/* Ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-indigo-500/[0.03] rounded-full blur-[100px] pointer-events-none -z-10" />
       </div>
     </section>
   );

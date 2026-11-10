@@ -31,13 +31,10 @@ body {
 }
 
 /* ── Gradient text ────────────────────────────────────────────────────────── */
+/* Kept as a class name for existing markup; now the muted second tone of a
+   two-tone heading rather than an animated gradient. */
 .text-gradient {
-  background-image: linear-gradient(135deg, #818cf8, #c084fc, #818cf8);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-shift 4s ease infinite;
+  color: #64748b;
 }
 
 /* ── Infinite scroll (testimonials) ──────────────────────────────────────── */
@@ -84,54 +81,22 @@ body {
  *   deep / deep-2 = 500 (glows, fills).
  */
 :root,
-[data-accent="indigo"] {
-  --accent-soft: 165 180 252;
-  --accent: 129 140 248;
-  --accent-2: 192 132 252;
-  --accent-deep: 99 102 241;
-  --accent-deep-2: 168 85 247;
-}
-[data-accent="emerald"] {
-  --accent-soft: 110 231 183;
-  --accent: 52 211 153;
-  --accent-2: 45 212 191;
-  --accent-deep: 16 185 129;
-  --accent-deep-2: 20 184 166;
-}
-[data-accent="sky"] {
-  --accent-soft: 125 211 252;
-  --accent: 56 189 248;
-  --accent-2: 34 211 238;
-  --accent-deep: 14 165 233;
-  --accent-deep-2: 6 182 212;
-}
-[data-accent="amber"] {
-  --accent-soft: 252 211 77;
-  --accent: 251 191 36;
-  --accent-2: 251 146 60;
-  --accent-deep: 245 158 11;
-  --accent-deep-2: 249 115 22;
-}
-[data-accent="rose"] {
-  --accent-soft: 253 164 175;
-  --accent: 251 113 133;
-  --accent-2: 244 114 182;
-  --accent-deep: 244 63 94;
-  --accent-deep-2: 236 72 153;
-}
-[data-accent="violet"] {
-  --accent-soft: 196 181 253;
-  --accent: 167 139 250;
-  --accent-2: 232 121 249;
-  --accent-deep: 139 92 246;
-  --accent-deep-2: 217 70 239;
-}
+[data-accent="indigo"],
+[data-accent="emerald"],
+[data-accent="sky"],
+[data-accent="amber"],
+[data-accent="rose"],
+[data-accent="violet"],
 [data-accent="blue"] {
-  --accent-soft: 147 197 253;
-  --accent: 96 165 250;
-  --accent-2: 129 140 248;
-  --accent-deep: 59 130 246;
-  --accent-deep-2: 99 102 241;
+  /* One brand colour on every page: the app's indigo (#5b6cff). Pages still
+     set data-accent; a rainbow of per-page hues read as templated, so every
+     value resolves to the same palette. Status colours (green for done,
+     amber for warnings) are separate and unaffected. */
+  --accent-soft: 180 189 255;
+  --accent: 143 155 255;
+  --accent-2: 143 155 255;
+  --accent-deep: 91 108 255;
+  --accent-deep-2: 91 108 255;
 }
 
 /* ── Keyboard focus ───────────────────────────────────────────────────────

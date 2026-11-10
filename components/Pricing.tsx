@@ -54,7 +54,7 @@ export default function Pricing() {
                 {plan.mostPopular && <GlowingEffect spread={50} glow proximity={80} />}
 
                 {plan.mostPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-xs font-bold text-white whitespace-nowrap z-20">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-[#5b6cff] text-xs font-bold text-white whitespace-nowrap z-20">
                     Most Popular
                   </div>
                 )}
@@ -83,7 +83,7 @@ export default function Pricing() {
                     <MagneticHover>
                       <a href={`${APP_URL}/sign-up`}
                         className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                   bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]">
+                                   bg-[#5b6cff] text-white hover:-translate-y-0.5 hover:bg-[#6c7bff]">
                         {plan.cta}
                       </a>
                     </MagneticHover>

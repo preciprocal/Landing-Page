@@ -37,7 +37,7 @@ function SidebarCTA() {
       </p>
       <a
         href="https://app.preciprocal.com/sign-up"
-        className="group flex items-center justify-center gap-1.5 w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-sm font-bold transition-all hover:brightness-110"
+        className="group flex items-center justify-center gap-1.5 w-full py-3 px-4 rounded-xl bg-[#5b6cff] text-white text-sm font-bold transition-all hover:brightness-110"
       >
         Start free <Chevron />
       </a>

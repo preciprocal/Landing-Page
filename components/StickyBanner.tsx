@@ -60,15 +60,14 @@ export default function StickyBanner() {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed top-0 left-0 right-0 z-[70]"
           >
-            <div className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 bg-[length:200%_100%] animate-gradient-x">
+            <div className="border-b border-white/[0.06] bg-[#0b0e18]">
               <div className="max-w-[1200px] mx-auto px-6 py-2 flex items-center justify-center gap-3">
-                <GraduationCap className="w-4 h-4 text-white/80 flex-shrink-0 hidden sm:block" />
-                <p className="text-[13px] text-white font-medium text-center">
-                  <span className="hidden sm:inline">🎓 </span>
-                  Students get <span className="font-bold">1 month free</span> with .edu email.{" "}
+                <GraduationCap className="w-4 h-4 text-indigo-300 flex-shrink-0 hidden sm:block" />
+                <p className="text-[13px] text-slate-300 text-center">
+                  Students get <span className="font-semibold text-white">1 month of Pro free</span> with a .edu email.{" "}
                   <a
                     href={`${APP_URL}/sign-up`}
-                    className="underline underline-offset-2 font-semibold hover:text-white/90 transition-colors"
+                    className="font-semibold text-indigo-300 hover:text-white transition-colors"
                   >
                     Claim now <Chevron />
                   </a>
@@ -89,15 +88,6 @@ export default function StickyBanner() {
       {/* Spacer, pushes page content below the fixed banner */}
       {visible && <div style={{ height: "var(--banner-h, 0px)" }} />}
 
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        .animate-gradient-x {
-          animation: gradient-x 6s ease infinite;
-        }
-      `}} />
     </>
   );
 }

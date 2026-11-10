@@ -8,23 +8,11 @@ import { MagneticHover } from "@/components/LandingAnimations";
 export default function FinalCTA() {
   return (
     <section className="relative py-32 overflow-hidden">
-      {/* Glow */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <motion.div initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="w-[600px] h-[300px] rounded-full blur-[120px] bg-indigo-500/20" />
-      </div>
-
-      {/* Top line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2">
-        <motion.div initial={{ width: 0, opacity: 0 }} whileInView={{ width: 400, opacity: 1 }} viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="h-[1px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
-      </div>
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-white/[0.06]" />
 
       <div className="relative z-10 max-w-[800px] mx-auto px-6 text-center">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-          className="text-[13px] text-indigo-400 font-medium mb-6">
+          className="text-[13px] text-slate-400 font-medium mb-6">
           You read this far. The clock did not stop while you did.
         </motion.p>
 
@@ -53,7 +41,7 @@ export default function FinalCTA() {
           className="flex flex-col items-center">
           <MagneticHover>
             <a href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-lg transition-all hover:brightness-110 group">
+              className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-[#5b6cff] text-white font-semibold rounded-xl text-lg transition-all hover:brightness-110 group">
               Start free
               <ChevronRightIcon className="transition-transform group-hover:translate-x-1" />
             </a>

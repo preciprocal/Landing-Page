@@ -81,7 +81,7 @@ const rise: Variants = {
 const FOCUS =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810]";
 const BTN =
-  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 font-bold text-white transition-all hover:brightness-110 disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none disabled:cursor-not-allowed";
+  "group inline-flex items-center justify-center gap-2 rounded-xl bg-[#5b6cff] font-bold text-white transition-all hover:brightness-110 disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none disabled:cursor-not-allowed";
 const LABEL = "text-[11px] font-semibold uppercase tracking-[0.18em]";
 
 /** Counts from 0 to `to` once, when it mounts. */

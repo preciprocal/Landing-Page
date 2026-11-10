@@ -89,7 +89,7 @@ export default function FreeToolsStrip() {
             <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-emerald-300">Free, no account needed</p>
             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
               The job search is hard enough.
-              <span className="block bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">Start with what is worrying you.</span>
+              <span className="block text-slate-500">Start with what is worrying you.</span>
             </h2>
             <p className="mx-auto max-w-2xl text-slate-400">
               The resume nobody answers, the interview you cannot predict, the OPT days you keep counting in your head. Pick one and get an answer in under a minute.

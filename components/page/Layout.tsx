@@ -94,7 +94,7 @@ export const CARD_SOLID = "rounded-2xl border border-white/[0.07] bg-[#070b16]";
 
 /** Buttons. The primary stays brand indigo on every page, whatever the accent. */
 export const BTN_PRIMARY =
-  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110";
+  "group inline-flex items-center justify-center gap-2 rounded-xl bg-[#5b6cff] px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#6c7bff]";
 export const BTN_SECONDARY =
   "group inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/[0.07]";
 
@@ -103,8 +103,11 @@ export const pad2 = (n: number) => String(n).padStart(2, "0");
 /** The hues a page can pick with data-accent. */
 export type Accent = "indigo" | "emerald" | "sky" | "amber" | "rose" | "violet" | "blue";
 
-/** Gradient text in the page accent. */
-export const ACCENT_TEXT = "bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent";
+/**
+ * The second half of a two-tone heading. Plain muted text, not a gradient:
+ * gradient headlines on every section read as templated.
+ */
+export const ACCENT_TEXT = "text-slate-500";
 
 /**
  * Formerly a gradient hairline that swept in under a hovered card. Retired:
@@ -118,8 +121,7 @@ export function HoverRule(_props: { className?: string }) {
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90 ${className}`}>
-      <span className="h-px w-5 bg-gradient-to-r from-accent to-transparent" />
+    <p className={`mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft ${className}`}>
       {children}
     </p>
   );
@@ -243,7 +245,7 @@ export function PageHero({
   inlineAccent?: boolean;
 }) {
   const tone = {
-    accent: "border-accent/25 bg-accent/[0.08] text-accent-soft [--dot:rgb(var(--accent))]",
+    accent: "border-white/[0.1] bg-white/[0.03] text-slate-300",
     emerald: "border-emerald-500/20 bg-emerald-500/[0.08] text-emerald-300 [--dot:theme(colors.emerald.400)]",
     indigo: "border-indigo-500/25 bg-indigo-500/[0.08] text-indigo-200 [--dot:theme(colors.indigo.400)]",
     amber: "border-amber-500/25 bg-amber-500/[0.08] text-amber-200 [--dot:theme(colors.amber.400)]",
@@ -255,10 +257,6 @@ export function PageHero({
     <div className={`max-w-4xl animate-fade-up opacity-0 ${centred ? "mx-auto text-center" : ""}`}>
       {badge && (
         <div className={`mb-7 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[12px] font-medium ${tone}`}>
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--dot)] opacity-60" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--dot)]" />
-          </span>
           {badge}
         </div>
       )}
@@ -271,7 +269,7 @@ export function PageHero({
       >
         {title}
         {accent && (
-          <span className={`${inlineAccent ? "inline" : "block"} animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent`}>
+          <span className={`${inlineAccent ? "inline" : "block"} text-slate-400`}>
             {accent}
           </span>
         )}
@@ -347,7 +345,6 @@ export function CtaPanel({
         style={GRID_BG}
       />
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-      <div aria-hidden="true" className="pointer-events-none absolute -top-24 left-1/2 h-48 w-2/3 -translate-x-1/2 rounded-full bg-accent/[0.07] blur-3xl" />
 
       <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">

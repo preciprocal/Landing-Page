@@ -93,8 +93,6 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
       <section {...sectionProps} className={`relative overflow-hidden ${PAD} pb-20 pt-10 sm:pt-12 md:min-h-[calc(100svh-72px)]`}>
         {/* Backdrop: a lit accent field behind the headline, a masked grid, and a fade into the page. */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/2 top-[-12%] h-[620px] w-[1100px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent)/0.20),transparent)] blur-2xl" />
-          <div className="absolute left-[12%] top-[38%] h-[420px] w-[520px] rounded-full bg-[radial-gradient(closest-side,rgb(var(--accent-2)/0.10),transparent)] blur-3xl" />
           <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_75%_55%_at_50%_0%,black,transparent)]" style={GRID_BG} />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[#050810]" />
         </div>
@@ -103,15 +101,14 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
           {/* Headline block */}
           <div className="mx-auto max-w-5xl animate-fade-up text-center opacity-0">
             {badge && (
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-accent-soft">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                {badge}
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/[0.1] bg-white/[0.03] px-3.5 py-1.5 text-[12px] font-medium text-slate-300">
+                                {badge}
               </div>
             )}
             <h1 className="text-[clamp(2.4rem,4.6vw,4rem)] font-extrabold leading-[1.05] tracking-[-0.025em] text-white">
               {title}
               {accent && (
-                <span className="block animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent">
+                <span className="block text-slate-400">
                   {accent}
                 </span>
               )}

@@ -171,7 +171,7 @@ function CoverageCard() {
     <Card delay={0.2}>
       <div className="p-6 h-full flex flex-col">
         <div className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-xl bg-[#5b6cff] flex items-center justify-center">
             <Shield className="w-4 h-4 text-white" />
           </div>
           <div>
