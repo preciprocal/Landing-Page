@@ -8,8 +8,8 @@
  * (breadcrumb row, icon, title, description, actions), its stat cards, its
  * status colours and its #5b6cff accent. Three beats:
  *
- *   01 Resume       open Resume, tailor it to a role: 62 to 91
- *   02 Interviews   open Interviews, rehearse the sponsorship question
+ *   01 Resume       the full resume beside the Writer; apply a fix, 75 to 82
+ *   02 Interviews   the live panel; the sponsorship question, then the answer
  *   03 Job Tracker  open Job Tracker, move the application to Phone Screen
  *
  * Each beat follows the same grammar, after the Sectira hero film: the
@@ -28,7 +28,7 @@
  */
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import {
   Award,
   BookOpen,
@@ -42,25 +42,25 @@ import {
   FileText,
   Home,
   Mic,
+  PhoneOff,
   NotebookPen,
   Pen,
   Plus,
   Shield,
   Sparkles,
-  Target,
-  Upload,
   Video,
+  Volume2,
   type LucideIcon,
 } from "lucide-react";
 
 // ─── The film ───────────────────────────────────────────────────────────────
 
-type Screen = "overview" | "resume" | "interviews" | "tracker";
-type Key = "nav-resume" | "nav-interviews" | "nav-tracker" | "tailor" | "feedback" | "status" | "resumeFocus" | "ivFocus" | "row";
+type Screen = "resume" | "interviews" | "tracker";
+type Key = "nav-resume" | "nav-interviews" | "nav-tracker" | "apply" | "mic" | "status" | "resumeFocus" | "ivFocus" | "row";
 
 const BEATS: { screen: Screen; label: string; caption: string; nav: Key; target: Key; focus: Key }[] = [
-  { screen: "resume", label: "Tailor the resume", caption: "Tailor every resume to the role.", nav: "nav-resume", target: "tailor", focus: "resumeFocus" },
-  { screen: "interviews", label: "Rehearse the hard question", caption: "Rehearse the sponsorship question out loud.", nav: "nav-interviews", target: "feedback", focus: "ivFocus" },
+  { screen: "resume", label: "Tailor the resume", caption: "Tailor every resume to the role.", nav: "nav-resume", target: "apply", focus: "resumeFocus" },
+  { screen: "interviews", label: "Rehearse the hard question", caption: "Rehearse the sponsorship question out loud.", nav: "nav-interviews", target: "mic", focus: "ivFocus" },
   { screen: "tracker", label: "Track it to the interview", caption: "Track every application to the interview.", nav: "nav-tracker", target: "status", focus: "row" },
 ];
 
@@ -120,9 +120,10 @@ function locate(T: number) {
 /** Which screen is up and what has been done, at film time T. */
 function stateAt(T: number) {
   const { beat, local } = locate(T);
-  let screen: Screen = "overview";
+  // The film opens and closes on the Job Tracker, so the loop joins up.
+  let screen: Screen = "tracker";
   if (beat >= BEATS.length) screen = BEATS[BEATS.length - 1].screen;
-  else if (beat >= 0) screen = local >= NAV_CLICK ? BEATS[beat].screen : beat > 0 ? BEATS[beat - 1].screen : "overview";
+  else if (beat >= 0) screen = local >= NAV_CLICK ? BEATS[beat].screen : beat > 0 ? BEATS[beat - 1].screen : "tracker";
   const done = (b: number) => beat > b || (beat === b && local >= TGT_CLICK);
   return { beat, screen, tailored: done(0), feedback: done(1), moved: done(2) };
 }
@@ -137,19 +138,6 @@ function frame(r: Rect, W: number, H: number): Cam {
   const x = W / 2 - z * (r.x + r.w / 2);
   const y = safeH / 2 - z * (r.y + r.h / 2);
   return { z, x: Math.min(0, Math.max(W - z * W, x)), y: Math.min(0, Math.max(H - z * H, y)) };
-}
-
-function useCount(to: number, from: number, run: boolean, duration = 1.4) {
-  const [v, setV] = useState(run ? from : to);
-  useEffect(() => {
-    if (!run) {
-      setV(to);
-      return;
-    }
-    const c = animate(from, to, { duration, ease: EASE, onUpdate: (x) => setV(Math.round(x)) });
-    return () => c.stop();
-  }, [to, from, run, duration]);
-  return v;
 }
 
 // ─── Component ──────────────────────────────────────────────────────────────
@@ -444,10 +432,10 @@ export default function OptJourneyAd() {
 
 // ─── The app (Dashboard repo look) ──────────────────────────────────────────
 
-const PATHS: Record<Screen, string> = { overview: "", resume: "/resume", interviews: "/interview", tracker: "/job-tracker" };
+const PATHS: Record<Screen, string> = { resume: "/resume/arjun-patel-resume", interviews: "/interview/northwind-recruiter-screen", tracker: "/job-tracker" };
 
 const NAV: { id: string; label: string; Icon: LucideIcon; screen?: Screen; key?: Key }[] = [
-  { id: "overview", label: "Overview", Icon: Home, screen: "overview" },
+  { id: "overview", label: "Overview", Icon: Home },
   { id: "resume", label: "Resume", Icon: FileText, screen: "resume", key: "nav-resume" },
   { id: "cover-letter", label: "Cover Letter", Icon: Pen },
   { id: "interviews", label: "Interviews", Icon: Video, screen: "interviews", key: "nav-interviews" },
@@ -520,8 +508,7 @@ function AppCanvas({ reg, app, run }: { reg: Reg; app: App; run: boolean }) {
             animate={{ opacity: 1, transition: { duration: 0.3, ease: EASE } }}
             exit={{ opacity: 0, transition: { duration: 0.15, ease: "easeIn" } }}
           >
-            {app.screen === "overview" && <OverviewScreen />}
-            {app.screen === "resume" && <ResumeScreen reg={reg} done={app.tailored} run={run} />}
+            {app.screen === "resume" && <ResumeScreen reg={reg} done={app.tailored} />}
             {app.screen === "interviews" && <InterviewScreen reg={reg} done={app.feedback} run={run} />}
             {app.screen === "tracker" && <TrackerScreen reg={reg} done={app.moved} />}
           </motion.div>
@@ -572,148 +559,240 @@ function Stat({ label, value, tone, sub, Icon }: { label: string; value: ReactNo
   );
 }
 
-function OverviewScreen() {
-  return (
-    <>
-      <PageHeader title="Welcome back, Arjun" description="Here is where your search stands this week" Icon={Home} actions={<span className={BTN_PRIMARY}><Video className="h-3.5 w-3.5" /> Start New Interview</span>} />
-      <div className="grid grid-cols-3 gap-3">
-        <Stat label="Resume score" value="62" tone="text-amber-400" sub="Data Analyst resume" />
-        <Stat label="Mock interviews" value="2" tone="text-blue-400" sub="this month" />
-        <Stat label="Applications" value="12" tone="text-white" sub="5 in progress" />
-      </div>
-      <div className={`${CARD} p-4`}>
-        <p className="mb-3 text-[12px] font-semibold text-white">Suggested next steps</p>
-        {["Tailor your resume for Northwind Analytics", "Practise the sponsorship question", "Follow up with Lumen Health"].map((t, i) => (
-          <div key={t} className="flex items-center gap-3 border-t border-white/[0.05] py-2.5 first:border-t-0">
-            <span className="font-mono text-[10.5px] text-slate-600">0{i + 1}</span>
-            <span className="text-[12px] text-slate-300">{t}</span>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
+// ─── Resume: the analysis page, full resume left, the Writer's fixes right ──
 
-function ResumeScreen({ reg, done, run }: { reg: Reg; done: boolean; run: boolean }) {
-  const score = useCount(done ? 91 : 62, 62, run && done, 1.6);
-  const r = 34, c = 2 * Math.PI * r;
-  return (
-    <>
-      <PageHeader section="Resume" title="Resume Analysis" description="AI feedback on every resume you upload" Icon={FileText} actions={<span className={BTN_PRIMARY}><Upload className="h-3.5 w-3.5" /> Upload Resume</span>} />
-      <div ref={reg("resumeFocus")} className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3">
-        <div className={`${CARD} p-4`}>
-          <div className="mb-3 flex items-center gap-2">
-            <FileText className="h-4 w-4 text-slate-400" strokeWidth={1.75} />
-            <p className="truncate text-[12px] font-semibold text-white">Arjun_Patel_Resume.pdf</p>
-          </div>
-          <div className="flex items-center gap-4">
-            <svg width="84" height="84" viewBox="0 0 84 84" className="shrink-0 -rotate-90">
-              <circle cx="42" cy="42" r={r} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
-              <circle cx="42" cy="42" r={r} fill="none" stroke={score >= 85 ? "#34d399" : "#fbbf24"} strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - score / 100)} />
-            </svg>
-            <div>
-              <p className={`text-[30px] font-bold tabular-nums leading-none ${score >= 85 ? "text-emerald-400" : "text-amber-400"}`}>{score}</p>
-              <p className="mt-1 text-[11px] text-slate-500">ATS score{done ? ", was 62" : ""}</p>
-            </div>
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-1 rounded-lg border border-white/[0.06] bg-white/[0.02] p-1 text-center text-[10.5px]">
-            <span className="rounded-md bg-[#5b6cff] py-1 font-semibold text-white">Analysis</span>
-            <span className="py-1 text-slate-500">Recruiter</span>
-            <span className="py-1 text-slate-500">Writer</span>
-          </div>
-        </div>
-        <div className={`${CARD} flex flex-col p-4`}>
-          <p className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-slate-500">Tailor to a job</p>
-          <p className="mt-1 text-[12.5px] font-semibold text-white">Data Analyst · Northwind Analytics</p>
-          <p className="mb-3 mt-1 text-[11px] text-slate-500">{done ? "Matched to the posting" : "3 keywords from the posting are missing"}</p>
-          <div className="mb-auto flex flex-wrap gap-1.5">
-            {["SQL", "A/B testing", "Stakeholder reporting"].map((k, i) => (
-              <motion.span
-                key={k}
-                initial={false}
-                animate={{ opacity: 1 }}
-                transition={{ delay: done && run ? 0.4 + i * 0.25 : 0 }}
-                className={`inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] font-medium transition-colors duration-500 ${
-                  done ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-300" : "border-white/[0.08] bg-white/[0.03] text-slate-500"
-                }`}
-              >
-                {done && <Check className="h-3 w-3" strokeWidth={2.6} />} {k}
-              </motion.span>
-            ))}
-          </div>
-          <span ref={reg("tailor")} className={`${done ? BTN_PILL : BTN_PRIMARY} mt-4 w-fit`}>
-            {done ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Sparkles className="h-3.5 w-3.5" />}
-            {done ? "Tailored" : "Tailor resume"}
-          </span>
-        </div>
-      </div>
-      <div className={`${CARD} p-4`}>
-        <p className="mb-2 text-[12px] font-semibold text-white">Top fixes</p>
-        {["Add a summary that names the role", "Quantify the Datadog pipeline work", "Move skills above projects"].map((t) => (
-          <div key={t} className="flex items-center gap-2.5 py-1.5 text-[11.5px] text-slate-400">
-            <span className={`h-1.5 w-1.5 rounded-full ${done ? "bg-emerald-400" : "bg-amber-400"}`} />
-            {t}
-          </div>
-        ))}
-      </div>
-    </>
-  );
-}
+const SUMMARY =
+  "Data-focused engineer with 4+ years building pipelines at Datadog and Wayfair. Turns 2M+ events/sec into decisions with SQL, Python and A/B testing. MS Computer Science, Boston University.";
 
-function InterviewScreen({ reg, done, run }: { reg: Reg; done: boolean; run: boolean }) {
-  const score = useCount(86, 0, run && done, 1.2);
+const RTABS = ["Analysis", "Benchmark", "Recruiter", "Intel", "Writer"];
+
+function ResumeScreen({ reg, done }: { reg: Reg; done: boolean }) {
   return (
-    <>
-      <PageHeader section="Interviews" title="Interview Practice" description="Mock interviews with AI feedback and scores" Icon={Video} actions={<span className={BTN_PRIMARY}><Plus className="h-3.5 w-3.5" /> Start New Interview</span>} />
-      <div className="grid grid-cols-4 gap-3">
-        <Stat label="Total Interviews" value={done ? 3 : 2} tone="text-blue-400" Icon={Target} />
-        <Stat label="Average Score" value={done ? "79%" : "76%"} tone="text-emerald-400" Icon={CheckCircle} />
-        <Stat label="Practice Time" value="1.5h" tone="text-violet-400" Icon={Clock} />
-        <Stat label="Completion" value="100%" tone="text-amber-400" Icon={Award} />
+    <div className="flex h-full flex-col gap-3 pb-[60px]">
+      <div className="flex items-center gap-1 text-[11px]">
+        <Home className="h-3 w-3 text-slate-400" />
+        <span className="text-slate-400">Home</span>
+        <ChevronRight className="h-3 w-3 text-slate-600" />
+        <span className="text-slate-400">Resume</span>
+        <ChevronRight className="h-3 w-3 text-slate-600" />
+        <span className="font-medium text-white">Arjun_Patel_Resume_2026.pdf</span>
       </div>
-      <div ref={reg("ivFocus")} className={`${CARD} p-4`}>
-        <div className="mb-3 flex items-center justify-between">
-          <p className="text-[12px] font-semibold text-white">Recruiter screen · Northwind Analytics</p>
-          <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[10px] text-slate-400">Question 3 of 6</span>
+      <div ref={reg("resumeFocus")} className="grid min-h-0 flex-1 grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] gap-3">
+        {/* The full resume */}
+        <div className="flex min-h-0 flex-col rounded-xl border border-white/[0.06] bg-white/[0.03] p-2">
+          <div className="min-h-0 flex-1 overflow-hidden rounded-lg bg-white px-4 py-3.5 text-left text-[8px] leading-[1.5] text-gray-700">
+            <p className="text-center text-[12px] font-bold uppercase tracking-wider text-gray-900">Arjun Patel</p>
+            <p className="mt-0.5 text-center text-[7px] text-gray-500">
+              <span className="text-blue-600">arjun.patel@email.com</span> | +1 (617) 234-5678 | Boston, MA | <span className="text-blue-600">LinkedIn</span> | <span className="text-blue-600">GitHub</span>
+            </p>
+            <AnimatePresence initial={false}>
+              {done && (
+                <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} transition={{ duration: 0.5, ease: EASE }} className="overflow-hidden">
+                  <p className="mb-1 mt-2 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Professional Summary</p>
+                  <p className="rounded bg-emerald-100 px-1 py-0.5 text-[7.5px] leading-relaxed text-emerald-800">{SUMMARY}</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <p className="mb-1 mt-2.5 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Education</p>
+            <div className="flex justify-between"><span className="font-semibold text-gray-800">Boston University, Boston, USA</span><span className="text-[7px] text-gray-500">Sept 2024 - May 2026</span></div>
+            <p className="text-[7.5px] italic text-gray-600">Master of Science in Computer Science</p>
+            <p className="mb-1 mt-2.5 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Professional Experience</p>
+            <div className="flex justify-between"><span className="font-semibold text-gray-800">Datadog, Software Engineer Co-op</span><span className="text-[7px] text-gray-500">Jan 2025 - Aug 2025</span></div>
+            <ul className="ml-1.5 mt-0.5 space-y-0.5 text-[7.5px] text-gray-600">
+              <li>• Built real-time data pipeline processing 2M+ events/sec using Kafka and Spark, reducing alert latency by 40%</li>
+              <li>• Designed Kubernetes-based microservices, cutting deployment time by 3x at 99.8% uptime</li>
+              <li>• Built automated testing suite covering 85% of codebase</li>
+            </ul>
+            <div className="mt-1.5 flex justify-between"><span className="font-semibold text-gray-800">Wayfair, Data Engineering Intern</span><span className="text-[7px] text-gray-500">May 2024 - Aug 2024</span></div>
+            <ul className="ml-1.5 mt-0.5 space-y-0.5 text-[7.5px] text-gray-600">
+              <li>• Developed an automated ETL pipeline with Airflow and Spark, processing 500GB+ of daily data</li>
+              <li>• Created a customer segmentation model over 8M+ profiles, driving a 22% lift in targeted recommendations</li>
+            </ul>
+            <div className="mt-1.5 flex justify-between"><span className="font-semibold text-gray-800">Cognizant, Software Developer</span><span className="text-[7px] text-gray-500">Jul 2022 - Jul 2024</span></div>
+            <ul className="ml-1.5 mt-0.5 text-[7.5px] text-gray-600">
+              <li>• Developed REST APIs in Java and Spring Boot serving 50K+ daily requests</li>
+            </ul>
+            <p className="mb-1 mt-2.5 border-b border-gray-300 pb-0.5 text-[8.5px] font-bold uppercase text-gray-900">Technical Skills</p>
+            <p className="text-[7.5px] text-gray-600"><span className="font-semibold text-gray-800">Languages:</span> Python, Java, Go, TypeScript, SQL</p>
+            <p className="text-[7.5px] text-gray-600"><span className="font-semibold text-gray-800">Data & Cloud:</span> AWS, Snowflake, Kafka, PostgreSQL, Tableau</p>
+          </div>
+          <div className="mt-2 flex gap-1.5">
+            <span className="flex-1 rounded border border-white/[0.06] bg-white/[0.03] py-1 text-center text-[8px] text-slate-500">View PDF</span>
+            <span className="flex-1 rounded border border-white/[0.06] bg-white/[0.03] py-1 text-center text-[8px] text-slate-500">Download</span>
+          </div>
         </div>
-        <div className="mb-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-3">
-          <p className="mb-1 text-[10px] font-semibold text-indigo-300">Interviewer</p>
-          <p className="text-[13px] leading-snug text-white">&ldquo;Will you now or in the future require visa sponsorship?&rdquo;</p>
-        </div>
-        {done ? (
-          <motion.div initial={run ? { opacity: 0, y: 6 } : false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: EASE }} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
-            <div className="mb-1.5 flex items-center justify-between">
-              <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-slate-200">
-                <Sparkles className="h-3.5 w-3.5 text-indigo-300" /> Feedback
-              </p>
-              <p className="text-[17px] font-bold tabular-nums text-emerald-400">
-                {score}
-                <span className="text-[10.5px] font-semibold text-slate-500">/100</span>
-              </p>
-            </div>
-            <p className="text-[11.5px] leading-relaxed text-slate-300">Clear and calm. You named OPT, your dates and the STEM extension in one breath. Next: lead with the role, then the status.</p>
-          </motion.div>
-        ) : (
-          <div className="flex items-center gap-3">
-            <div className="flex h-9 flex-1 items-center gap-[3px] rounded-xl border border-white/[0.06] bg-white/[0.015] px-3">
-              <Mic className="mr-1.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
-              {Array.from({ length: 30 }, (_, i) => (
-                <motion.span
-                  key={i}
-                  className="w-[3px] rounded-full bg-[#5b6cff]/70"
-                  initial={{ height: 4 }}
-                  animate={run ? { height: [4, 5 + ((i * 7) % 16), 4] } : { height: 5 + ((i * 7) % 16) }}
-                  transition={run ? { duration: 0.9, repeat: Infinity, delay: (i % 8) * 0.05, ease: "easeInOut" } : undefined}
-                />
-              ))}
-            </div>
-            <span ref={reg("feedback")} className={BTN_PRIMARY}>
-              <Sparkles className="h-3.5 w-3.5" /> Get feedback
+
+        {/* Header, tabs and the Writer */}
+        <div className="flex min-h-0 min-w-0 flex-col">
+          <div className="mb-2 flex flex-wrap items-center gap-2">
+            <p className="text-[12px] font-bold text-white">Arjun_Patel_Resume_2026.pdf</p>
+            <span className="flex items-center gap-1 rounded border border-white/[0.06] bg-white/[0.04] px-1.5 py-0.5 text-[9px] text-slate-400">
+              <Briefcase className="h-2.5 w-2.5" /> Data Analyst
+            </span>
+            <span className="flex items-center gap-1 rounded border border-amber-500/20 bg-amber-500/10 px-1.5 py-0.5 text-[9px] tabular-nums text-amber-400">
+              <Award className="h-2.5 w-2.5" /> {done ? 82 : 75}/100
             </span>
           </div>
-        )}
+          <div className="mb-2.5 grid grid-cols-5 gap-1 rounded-lg border border-white/[0.06] bg-white/[0.02] p-1 text-center text-[9.5px]">
+            {RTABS.map((t) => (
+              <span key={t} className={`rounded-md py-1 ${t === "Writer" ? "bg-gradient-to-r from-violet-600 to-indigo-600 font-semibold text-white" : "text-slate-500"}`}>{t}</span>
+            ))}
+          </div>
+          <div className="mb-2 flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2">
+            <div className="flex items-center gap-2">
+              <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-violet-500 to-indigo-600">
+                <Sparkles className="h-3.5 w-3.5 text-white" />
+              </span>
+              <div>
+                <p className="text-[11px] font-semibold text-white">Resume Writer</p>
+                <p className="text-[9px] text-emerald-400">Score: {done ? 82 : 75}/100</p>
+              </div>
+            </div>
+            <span className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">{done ? 4 : 5} remaining</span>
+          </div>
+
+          <div className="min-h-0 flex-1 space-y-2 overflow-hidden">
+            {done ? (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2.5 rounded-xl border border-emerald-500/20 bg-emerald-500/[0.06] px-3 py-2.5">
+                <span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-500/15 text-emerald-300"><Check className="h-3 w-3" strokeWidth={3} /></span>
+                <p className="flex-1 text-[11px] font-semibold text-white">Add professional summary</p>
+                <span className="text-[9px] font-semibold text-emerald-300">Applied</span>
+              </motion.div>
+            ) : (
+              <div className="rounded-xl border border-white/[0.08] bg-white/[0.025] p-3">
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="grid h-5 w-5 place-items-center rounded-full bg-white/[0.06] text-[9px] font-bold text-slate-300">1</span>
+                  <p className="text-[11px] font-semibold text-white">Add professional summary</p>
+                  <span className="rounded bg-red-500/15 px-1.5 py-0.5 text-[8px] font-semibold text-red-300">Critical</span>
+                </div>
+                <p className="mb-1 text-[8.5px] font-semibold uppercase text-red-300">Current</p>
+                <p className="mb-2 rounded-md border border-red-500/20 bg-red-500/[0.06] px-2 py-1 text-[9.5px] text-slate-400">N/A: Missing section</p>
+                <p className="mb-1 text-[8.5px] font-semibold uppercase text-emerald-300">Improved</p>
+                <p className="mb-2.5 rounded-md border border-emerald-500/20 bg-emerald-500/[0.06] px-2 py-1.5 text-[9.5px] leading-relaxed text-slate-200">{SUMMARY}</p>
+                <span ref={reg("apply")} className="flex items-center justify-center gap-1.5 rounded-lg bg-gradient-to-r from-violet-600 to-indigo-600 py-1.5 text-[10.5px] font-semibold text-white">
+                  <Check className="h-3 w-3" /> Apply Change
+                </span>
+              </div>
+            )}
+            {[
+              { n: 2, t: "Replace weak 'Built automated testing suite' verb", p: "Critical" },
+              { n: 3, t: "Add SQL and experimentation keywords to Skills", p: "High" },
+              { n: 4, t: "Quantify the Cognizant API work", p: "Medium" },
+            ].map((f) => (
+              <div key={f.n} className="flex items-center gap-2 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3 py-2.5">
+                <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/[0.06] text-[9px] font-bold text-slate-300">{f.n}</span>
+                <p className="min-w-0 flex-1 truncate text-[11px] font-semibold text-white">{f.t}</p>
+                <span className={`rounded px-1.5 py-0.5 text-[8px] font-semibold ${f.p === "Critical" ? "bg-red-500/15 text-red-300" : f.p === "High" ? "bg-amber-500/15 text-amber-300" : "bg-white/[0.06] text-slate-400"}`}>{f.p}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </>
+    </div>
+  );
+}
+
+// ─── Interviews: the live panel ─────────────────────────────────────────────
+
+const PANEL = [
+  { id: "hr", name: "Rachel Kim", initials: "RK", role: "HR Manager", exp: "8+ years", gradient: "from-pink-500 to-rose-600" },
+  { id: "lead", name: "Marcus Rivera", initials: "MR", role: "Analytics Manager", exp: "12+ years", gradient: "from-blue-500 to-indigo-600", lead: true },
+  { id: "jr", name: "Emma Collins", initials: "EC", role: "Data Analyst II", exp: "2 years", gradient: "from-green-500 to-emerald-600" },
+  { id: "you", name: "Arjun Patel", initials: "AP", role: "Interviewee", exp: "Applying for: Data Analyst", gradient: "from-indigo-500 to-purple-600", you: true },
+];
+
+const QUESTION = "Will you now or in the future require visa sponsorship to work for us?";
+const ANSWER =
+  "I am authorised to work now on F-1 OPT, and my degree qualifies for the STEM extension. Longer term I would need H-1B sponsorship, and I am happy to walk you through how that works.";
+
+function InterviewScreen({ reg, done, run }: { reg: Reg; done: boolean; run: boolean }) {
+  const speaker = done ? "you" : "hr";
+  return (
+    <div className="flex h-full flex-col pb-[64px]">
+      <div className="mb-3 flex items-center justify-between px-1">
+        <div className="flex items-center gap-2.5">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-[9px] font-bold text-white">AI</span>
+          <div>
+            <p className="text-[12px] font-semibold text-white">Interview Conference</p>
+            <p className="text-[10px] text-slate-500">Data Analyst · Recruiter screen · Northwind Analytics</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3 text-[10px] text-slate-500">
+          <span className="flex items-center gap-1"><CheckCircle className="h-3 w-3 text-emerald-400" />Excellent</span>
+          <span className="flex items-center gap-1"><Clock className="h-3 w-3" />{done ? "6:48" : "6:31"}</span>
+          <span className="flex items-center gap-1"><span className="h-1.5 w-1.5 rounded-full bg-red-500" />Recording</span>
+        </div>
+      </div>
+
+      <div ref={reg("ivFocus")} className="flex min-h-0 flex-1 flex-col">
+        <div className="grid min-h-0 flex-1 grid-cols-2 gap-3">
+          {PANEL.map((p) => {
+            const speaking = p.id === speaker;
+            return (
+              <div
+                key={p.id}
+                className={`relative flex flex-col items-center justify-center rounded-xl border bg-white/[0.02] text-center transition-colors duration-300 ${
+                  speaking ? (p.you ? "border-purple-500/50" : "border-blue-500/50") : p.lead ? "border-blue-500/25" : p.you ? "border-purple-500/25" : "border-white/[0.06]"
+                }`}
+              >
+                {p.lead && <span className="absolute right-2.5 top-2.5 rounded-full bg-blue-600 px-2 py-0.5 text-[8px] font-medium text-white">Lead</span>}
+                {p.you && <span className="absolute right-2.5 top-2.5 rounded-full bg-purple-600 px-2 py-0.5 text-[8px] font-medium text-white">You</span>}
+                <span className={`relative grid h-14 w-14 place-items-center rounded-full border-2 bg-gradient-to-br ${p.gradient} text-[15px] font-bold text-white transition-colors duration-300 ${speaking ? (p.you ? "border-purple-400" : "border-blue-400") : "border-slate-700"}`}>
+                  {p.initials}
+                  {speaking && run && <span className={`absolute -inset-1 animate-ping rounded-full border ${p.you ? "border-purple-400/50" : "border-blue-400/50"} [animation-duration:1.8s]`} />}
+                </span>
+                <p className={`mt-2 text-[12px] font-semibold ${speaking ? (p.you ? "text-purple-300" : "text-blue-300") : "text-white"}`}>{p.name}</p>
+                <p className="mb-2 text-[10px] text-slate-500">{p.role}</p>
+                <span
+                  className={`rounded-full border px-2.5 py-0.5 text-[9px] font-medium ${
+                    speaking
+                      ? p.you
+                        ? "border-purple-500/20 bg-purple-500/10 text-purple-300"
+                        : "border-blue-500/20 bg-blue-500/10 text-blue-300"
+                      : "border-emerald-500/20 bg-emerald-500/10 text-emerald-400"
+                  }`}
+                >
+                  {speaking ? (p.you ? "Responding" : "Asking") : "Listening"}
+                </span>
+                <p className="mt-1.5 text-[9px] text-slate-600">{p.exp}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-3 space-y-2 rounded-xl border border-white/[0.06] bg-white/[0.02] p-2.5">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 text-[10px]">
+              <span className="flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /><span className="font-medium text-white">Active</span></span>
+              <span className="text-slate-500">Q 3/8</span>
+              <span className={`flex items-center gap-1.5 rounded-full border px-2 py-0.5 ${done ? "border-purple-500/20 bg-purple-500/10 text-purple-300" : "border-blue-500/20 bg-blue-500/10 text-blue-300"}`}>
+                <span className={`h-1 w-1 rounded-full ${done ? "bg-purple-400" : "bg-blue-400"}`} />
+                {done ? "Arjun Patel responding" : "Rachel Kim asking"}
+              </span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span ref={reg("mic")} className={`grid h-7 w-7 place-items-center rounded-full text-white transition-colors duration-200 ${done ? "bg-[#5b6cff]" : "bg-slate-800"}`}>
+                <Mic className="h-3.5 w-3.5" />
+              </span>
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-slate-800 text-white"><Video className="h-3.5 w-3.5" /></span>
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-red-600 text-white"><PhoneOff className="h-3.5 w-3.5" /></span>
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-slate-800 text-white"><Volume2 className="h-3.5 w-3.5" /></span>
+            </div>
+          </div>
+          <div className="rounded-lg border border-white/[0.06] bg-white/[0.02] px-2.5 py-2">
+            <p className="mb-0.5 flex items-center gap-1.5 text-[9px] font-medium text-slate-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+              Live Transcript: {done ? "Arjun Patel" : "Rachel Kim"}
+            </p>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.p key={done ? "a" : "q"} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} className="text-[11px] leading-relaxed text-white">
+                {done ? ANSWER : QUESTION}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
