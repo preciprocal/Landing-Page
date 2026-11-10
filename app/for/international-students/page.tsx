@@ -14,6 +14,7 @@
 
 import type { Metadata } from "next";
 import ToolPage from "@/components/ToolPage";
+import OptJourneyAd from "@/components/page/visuals/OptJourneyAd";
 
 export const metadata: Metadata = {
   title: "Job Search for International Students (F-1)",
@@ -106,6 +107,7 @@ export default function InternationalStudentsPage() {
       canonicalPath="/for/international-students"
       accent="sky"
       demo="resume"
+      heroScene={<OptJourneyAd />}
       badge="Built by students, for students"
       h1="The job search for international students"
       h1Accent="built around the OPT clock"

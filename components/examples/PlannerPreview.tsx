@@ -144,7 +144,7 @@ const SCROLLBAR_CSS = `
 
 function CreatingPlan({ onGenerate }: { onGenerate?: () => void }) {
   return (
-    <div className="space-y-3" style={{ minHeight: 520 }}>
+    <div className="space-y-3" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <FadeIn delay={0}>
         <div className="flex items-center justify-between">
           <div>
@@ -245,7 +245,7 @@ function CreatingPlan({ onGenerate }: { onGenerate?: () => void }) {
 
 function CreatingPlanLoading() {
   return (
-    <div className="flex items-center justify-center" style={{ minHeight: 520 }}>
+    <div className="flex items-center justify-center" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <div className="text-center">
         <div className="w-12 h-12 bg-purple-500/[0.08] border border-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
           <Loader2 className="w-6 h-6 text-purple-400 animate-spin" />
@@ -261,7 +261,7 @@ function CreatingPlanLoading() {
 
 function Sidebar({ checkedCount }: { checkedCount: number }) {
   return (
-    <div className="w-[34%] flex-shrink-0 space-y-2.5 overflow-y-auto pr-0.5 planner-scrollbar" style={{ maxHeight: 520 }}>
+    <div className="w-[34%] flex-shrink-0 space-y-2.5 overflow-y-auto pr-0.5 planner-scrollbar" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style>{SCROLLBAR_CSS}</style>
 
       <FadeIn delay={0}>
@@ -364,11 +364,11 @@ function TabBar({ activeTab }: { activeTab: string }) {
 
 function ScheduleView() {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={4} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={100}><TabBar activeTab="schedule" /></FadeIn>
-        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: 480 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: "calc(480px + var(--demo-extra, 0px))" }}>
           <style>{SCROLLBAR_CSS}</style>
           {DAILY_PLANS.map((dp, i) => {
             const pct = dp.tasks > 0 ? Math.round((dp.done / dp.tasks) * 100) : 0;
@@ -426,7 +426,7 @@ function TasksView() {
   };
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={5} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={100}><TabBar activeTab="tasks" /></FadeIn>
@@ -440,7 +440,7 @@ function TasksView() {
           </div>
         </FadeIn>
 
-        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: 450 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: "calc(450px + var(--demo-extra, 0px))" }}>
           <style>{SCROLLBAR_CSS}</style>
           {TASK_LIST.map((task, i) => {
             const status = getStatusForTask(i, task.status);
@@ -496,11 +496,11 @@ function TasksView() {
 
 function AnalyticsView() {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={5} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={100}><TabBar activeTab="analytics" /></FadeIn>
-        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: 480 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2" style={{ maxHeight: "calc(480px + var(--demo-extra, 0px))" }}>
           <style>{SCROLLBAR_CSS}</style>
 
           <FadeIn delay={200}>
@@ -611,7 +611,7 @@ function AiCoachView() {
   }, []);
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={5} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={100}><TabBar activeTab="chat" /></FadeIn>
@@ -635,7 +635,7 @@ function AiCoachView() {
           </FadeIn>
 
           {/* Messages area */}
-          <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2 mb-2" style={{ maxHeight: 380 }}>
+          <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-2 mb-2" style={{ maxHeight: "calc(380px + var(--demo-extra, 0px))" }}>
             <style>{SCROLLBAR_CSS}</style>
             {FULL_CHAT.slice(0, visibleCount).map((msg, i) => (
               <FadeIn key={i} delay={i === 0 ? 300 : 0}>
@@ -722,12 +722,12 @@ function QuizView() {
   const isCorrect = selected === q.correct;
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={5} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={100}><TabBar activeTab="quiz" /></FadeIn>
 
-        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-3" style={{ maxHeight: 480 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar space-y-3" style={{ maxHeight: "calc(480px + var(--demo-extra, 0px))" }}>
           <style>{SCROLLBAR_CSS}</style>
 
           {/* Score header */}
@@ -868,7 +868,7 @@ function InteractiveView() {
   const [activeTab, setActiveTab] = useState('quiz');
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <Sidebar checkedCount={5} />
       <div className="flex-1 min-w-0 flex flex-col">
         <FadeIn delay={0}>
@@ -876,7 +876,7 @@ function InteractiveView() {
         </FadeIn>
         <InteractiveTabBar activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar" style={{ maxHeight: 460 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 planner-scrollbar" style={{ maxHeight: "calc(460px + var(--demo-extra, 0px))" }}>
           <style>{SCROLLBAR_CSS}</style>
 
           {activeTab === 'schedule' && (

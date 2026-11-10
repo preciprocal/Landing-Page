@@ -196,7 +196,7 @@ export default function CoverLetterGeneratorPage() {
           }
           ctaHref={`${APP_URL}/sign-up`}
           ctaLabel="Generate your cover letter free"
-          secondary={{ href: "/#pricing", label: "See all plans" }}
+          secondary={{ href: "/pricing", label: "See all plans" }}
         />
 
         {/* How it works: three connected stages */}
@@ -375,7 +375,7 @@ export default function CoverLetterGeneratorPage() {
                   <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
                     Start free <Chevron />
                   </Link>
-                  <Link href="/#pricing" className={BTN_SECONDARY}>
+                  <Link href="/pricing" className={BTN_SECONDARY}>
                     See all plans
                   </Link>
                 </div>

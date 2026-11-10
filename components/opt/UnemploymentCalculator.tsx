@@ -16,6 +16,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { X } from "lucide-react";
+import DatePicker from "@/components/ui/DatePicker";
 import { addDays, daysBetween, formatDay, parseDay, toInputValue, todayUtc } from "@/lib/optDates";
 
 type Mode = "opt" | "stem";
@@ -109,14 +110,14 @@ export default function UnemploymentCalculator() {
         {/* Inputs */}
         <div className="p-6 sm:p-8">
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <label className="block">
-              <span className={fieldLabel}>{mode === "stem" ? "STEM OPT EAD start date" : "EAD start date (on the card)"}</span>
-              <input type="date" className={input} value={start} onChange={(e) => setStart(e.target.value)} />
-            </label>
-            <label className="block">
-              <span className={fieldLabel}>Count through</span>
-              <input type="date" className={input} value={through} onChange={(e) => setThrough(e.target.value)} />
-            </label>
+            <div>
+              <span id="opt-start-label" className={fieldLabel}>{mode === "stem" ? "STEM OPT EAD start date" : "EAD start date (on the card)"}</span>
+              <DatePicker labelledBy="opt-start-label" className={input} value={start} onChange={setStart} />
+            </div>
+            <div>
+              <span id="opt-through-label" className={fieldLabel}>Count through</span>
+              <DatePicker labelledBy="opt-through-label" className={input} value={through} onChange={setThrough} />
+            </div>
             {mode === "stem" && (
               <label className="block">
                 <span className={fieldLabel}>Days used on initial OPT</span>
@@ -134,8 +135,8 @@ export default function UnemploymentCalculator() {
           <div role="group" aria-labelledby="opt-jobs-label" className="mb-3 space-y-2">
             {jobs.map((j, i) => (
               <div key={j.id} className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2">
-                <input type="date" aria-label={`Job ${i + 1} start date`} className={input} value={j.start} onChange={(e) => setJob(j.id, "start", e.target.value)} />
-                <input type="date" aria-label={`Job ${i + 1} end date`} className={input} value={j.end} onChange={(e) => setJob(j.id, "end", e.target.value)} />
+                <DatePicker ariaLabel={`Job ${i + 1} start date`} placeholder="Start" className={input} value={j.start} onChange={(v) => setJob(j.id, "start", v)} />
+                <DatePicker ariaLabel={`Job ${i + 1} end date`} placeholder="Still there" className={input} value={j.end} onChange={(v) => setJob(j.id, "end", v)} />
                 <button
                   type="button"
                   onClick={() => setJobs((js) => (js.length > 1 ? js.filter((x) => x.id !== j.id) : [{ id: j.id, start: "", end: "" }]))}

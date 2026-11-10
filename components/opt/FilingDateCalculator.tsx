@@ -16,6 +16,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { addDays, addMonths, formatDay, minDate, parseDay } from "@/lib/optDates";
+import DatePicker from "@/components/ui/DatePicker";
 
 type Mode = "initial" | "stem";
 
@@ -113,16 +114,16 @@ export default function FilingDateCalculator() {
 
       <div className="relative p-6 sm:p-8">
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <label className="block">
-            <span className="mb-2 block text-[12px] font-medium text-slate-300">
+          <div>
+            <span id="filing-anchor-label" className="mb-2 block text-[12px] font-medium text-slate-300">
               {mode === "initial" ? "Program end date (on your I-20)" : "Current OPT EAD end date"}
             </span>
-            <input type="date" className={input} value={anchor} onChange={(e) => setAnchor(e.target.value)} />
-          </label>
-          <label className="block">
-            <span className="mb-2 block text-[12px] font-medium text-slate-300">DSO recommendation date (optional)</span>
-            <input type="date" className={input} value={rec} onChange={(e) => setRec(e.target.value)} />
-          </label>
+            <DatePicker labelledBy="filing-anchor-label" className={input} value={anchor} onChange={setAnchor} />
+          </div>
+          <div>
+            <span id="filing-rec-label" className="mb-2 block text-[12px] font-medium text-slate-300">DSO recommendation date (optional)</span>
+            <DatePicker labelledBy="filing-rec-label" className={input} value={rec} onChange={setRec} />
+          </div>
         </div>
 
         <div aria-live="polite">

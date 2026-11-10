@@ -260,7 +260,7 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
   ];
 
   return (
-    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ minHeight: 500 }}>
+    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4" style={{ minHeight: "calc(500px + var(--demo-extra, 0px))" }}>
 
       {/* ── Desktop: Resume panel always visible ── */}
       <div className="hidden sm:block w-[42%] flex-shrink-0">
@@ -311,7 +311,7 @@ export function ResumeExamplePreview({ step, initialTab }: { step: number; initi
 
         <div
           className="flex-1 overflow-y-auto min-h-0 pr-0.5 mt-1"
-          style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.1) transparent', maxHeight: 400 }}
+          style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.1) transparent', maxHeight: "calc(400px + var(--demo-extra, 0px))" }}
         >
           {!isReady ? (
             <div className="flex flex-col items-center justify-center h-full text-center py-6">

@@ -21,8 +21,8 @@ export const SITE_URL = "https://preciprocal.com";
 
 export const NAV_LINKS = [
   { label: "Features",     href: "/#features" },
-  { label: "How it Works", href: "/#how-it-works" },
-  { label: "Pricing",      href: "/#pricing" },
+  { label: "How it Works", href: "/how-it-works" },
+  { label: "Pricing",      href: "/pricing" },
   { label: "Testimonials", href: "/#testimonials" },
   { label: "FAQ",          href: "/faq" },
 ] as const;
@@ -32,7 +32,7 @@ export const FOOTER_COLUMNS = [
     title: "Product",
     links: [
       { label: "Features",         href: "/#features" },
-      { label: "Pricing",          href: "/#pricing" },
+      { label: "Pricing",          href: "/pricing" },
       { label: "Free ATS Checker", href: "/free-ats-checker" },
       { label: "Chrome Extension", href: "/#features" },
     ],

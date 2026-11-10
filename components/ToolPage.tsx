@@ -71,6 +71,8 @@ export interface ToolPageProps {
    * Not for pages with a `tool`, where the tool itself should lead.
    */
   demo?: ChapterId;
+  /** A custom animated scene for the ProductHero frame; needs `demo` set too (its chapter is the fallback). */
+  heroScene?: React.ReactNode;
   /** Pill above the H1 */
   badge: string;
   /** H1 renders as two lines: plain text, then a gradient accent line */
@@ -119,6 +121,7 @@ export default function ToolPage({
   accent = "indigo",
   visual,
   demo,
+  heroScene,
   badge,
   h1,
   h1Accent,
@@ -159,6 +162,7 @@ export default function ToolPage({
           {demo ? (
             <ProductHero
               chapter={demo}
+              scene={heroScene}
               sectionProps={{ "data-section": "hero", "data-section-name": "Hero" }}
               breadcrumb={[{ label: "Home", href: "/" }, { label: breadcrumbName }]}
               badge={badge}

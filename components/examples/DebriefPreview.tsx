@@ -118,10 +118,10 @@ const MOCK_ENTRIES = [
 
 function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: boolean }) {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
       {/* Left, Form */}
-      <div className="w-[52%] flex-shrink-0 overflow-y-auto pr-0.5 db-scroll" style={{ maxHeight: 520 }}>
+      <div className="w-[52%] flex-shrink-0 overflow-y-auto pr-0.5 db-scroll" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         <FadeIn delay={0}>
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center">
@@ -294,7 +294,7 @@ function LogFormPhase({ onSave, isLoading }: { onSave: () => void; isLoading: bo
 function JournalLogPhase() {
   const [expandedIdx, setExpandedIdx] = useState(0);
   return (
-    <div className="h-full overflow-y-auto db-scroll space-y-2" style={{ minHeight: 520, maxHeight: 520 }}>
+    <div className="h-full overflow-y-auto db-scroll space-y-2" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))", maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
       {/* Stats row */}
       <FadeIn delay={0}>
@@ -379,7 +379,7 @@ function JournalLogPhase() {
 
 function StatsPhase() {
   return (
-    <div className="h-full overflow-y-auto db-scroll space-y-2.5" style={{ minHeight: 520, maxHeight: 520 }}>
+    <div className="h-full overflow-y-auto db-scroll space-y-2.5" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))", maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Score Trend */}
@@ -474,7 +474,7 @@ function StatsPhase() {
 
 function AIAnalysisPhase() {
   return (
-    <div className="h-full overflow-y-auto db-scroll space-y-2.5" style={{ minHeight: 520, maxHeight: 520 }}>
+    <div className="h-full overflow-y-auto db-scroll space-y-2.5" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))", maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Readiness + Verdict */}
@@ -622,7 +622,7 @@ function InteractivePhase() {
   ];
 
   return (
-    <div className="flex flex-col h-full" style={{ minHeight: 520 }}>
+    <div className="flex flex-col h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Hint */}
@@ -717,7 +717,7 @@ export function DebriefExamplePreview({ step }: { step: number }) {
       return <StatsPhase />;
     case 'ai-loading':
       return (
-        <div className="flex items-center justify-center" style={{ minHeight: 520 }}>
+        <div className="flex items-center justify-center" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
           <LoadingCard message="Analysing your interview history…" sub="Identifying patterns across 4 entries" />
         </div>
       );

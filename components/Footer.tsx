@@ -80,9 +80,7 @@ const FOOTER_COLUMNS = [
 // A profile with an href links out; one without shows the "Coming soon"
 // tooltip. Keep these in step with sameAs in components/JsonLd.tsx.
 const socials: { label: string; href?: string }[] = [
-  { label: "Twitter" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/preciprocal-ai" },
-  { label: "GitHub" },
 ];
 
 function SocialLink({ label, href }: { label: string; href?: string }) {

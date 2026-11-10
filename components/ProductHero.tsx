@@ -64,6 +64,12 @@ function useChapterPlayback(chapter: ChapterId) {
 
 export interface ProductHeroProps {
   chapter: ChapterId;
+  /**
+   * A custom animated scene shown in place of the chapter preview (for
+   * example the OPT ad on /for/international-students). It brings its own
+   * frame and caption; `chapter` is then unused.
+   */
+  scene?: ReactNode;
   breadcrumb?: Crumb[];
   badge?: ReactNode;
   title: ReactNode;
@@ -76,7 +82,7 @@ export interface ProductHeroProps {
   sectionProps?: Record<string, string>;
 }
 
-export default function ProductHero({ chapter, breadcrumb, badge, title, accent, subhead, ctaHref, ctaLabel, secondary, sectionProps }: ProductHeroProps) {
+export default function ProductHero({ chapter, scene, breadcrumb, badge, title, accent, subhead, ctaHref, ctaLabel, secondary, sectionProps }: ProductHeroProps) {
   const data = CHAPTER_DATA[chapter];
   const Preview = PREVIEWS[chapter];
   const { ref, step, done } = useChapterPlayback(chapter);
@@ -125,6 +131,11 @@ export default function ProductHero({ chapter, breadcrumb, badge, title, accent,
           </div>
 
           {/* The product, playing one chapter of the story. Decorative for assistive tech: the page text says it. */}
+          {scene ? (
+            <div aria-hidden="true" className="relative mt-10 hidden animate-fade-up opacity-0 md:block" style={{ animationDelay: "160ms" }}>
+              {scene}
+            </div>
+          ) : (
           <div ref={ref} aria-hidden="true" className="relative mt-10 hidden animate-fade-up opacity-0 md:block" style={{ animationDelay: "160ms" }}>
             <p className="mx-auto mb-4 max-w-3xl text-center text-[15px] italic leading-relaxed text-slate-300">
               <span className="mr-2 not-italic font-semibold text-accent-soft">Arjun&apos;s story (an illustrative example):</span>
@@ -163,7 +174,9 @@ export default function ProductHero({ chapter, breadcrumb, badge, title, accent,
                 </div>
               </div>
 
-              <div className={`relative overflow-hidden ${FRAME_H}`}>
+              {/* The previews were sized for the home demo (about 520px of content);
+                  --demo-extra grows their panels to fill this taller frame. */}
+              <div className={`relative overflow-hidden ${FRAME_H} [--demo-extra:48px] xl:[--demo-extra:88px]`}>
                 <div className="h-full overflow-hidden p-3 sm:p-4">
                   <Preview step={step} />
                 </div>
@@ -171,6 +184,7 @@ export default function ProductHero({ chapter, breadcrumb, badge, title, accent,
               </div>
             </div>
           </div>
+          )}
         </div>
       </section>
     </>

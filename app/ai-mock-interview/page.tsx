@@ -406,7 +406,7 @@ export default function AIMockInterviewPage() {
                   <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
                     Start free <Chevron />
                   </Link>
-                  <Link href="/#pricing" className={BTN_SECONDARY}>
+                  <Link href="/pricing" className={BTN_SECONDARY}>
                     See all plans
                   </Link>
                 </div>

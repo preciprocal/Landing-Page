@@ -62,7 +62,7 @@ function PanelAvatar({ initials, gradient, isSpeaking, size = 'lg' }: {
 
 function WaitingRoom({ step, onJoin }: { step: number; onJoin?: () => void }) {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       {/* Left, Main area */}
       <div className="flex-1 min-w-0 flex flex-col gap-2.5">
         <FadeIn delay={0}>
@@ -294,7 +294,7 @@ function LiveInterview({ step }: { step: number }) {
   const [currentTranscript, setCurrentTranscript] = useState('Interview session ready...');
 
   return (
-    <div className="flex flex-col h-full" style={{ minHeight: 520 }}>
+    <div className="flex flex-col h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       {/* Header bar */}
       <FadeIn delay={0}>
         <div className="flex items-center justify-between mb-3 px-1">
@@ -410,7 +410,7 @@ function FeedbackReport() {
   return (
     <div
       className="flex flex-col gap-3 overflow-y-auto pr-1 feedback-scrollbar"
-      style={{ minHeight: 520, maxHeight: 520 }}
+      style={{ minHeight: "calc(520px + var(--demo-extra, 0px))", maxHeight: "calc(520px + var(--demo-extra, 0px))" }}
     >
       {/* Custom scrollbar styles */}
       <style>{`
@@ -617,7 +617,7 @@ export function InterviewExamplePreview({ step }: { step: number }) {
   }, []);
 
   return (
-    <div className="h-full" style={{ minHeight: 520 }}>
+    <div className="h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       {userPhase === 'waiting' && <WaitingRoom step={Math.min(step, 1)} onJoin={handleJoin} />}
       {userPhase === 'live' && <LiveInterview step={liveStep} />}
       {userPhase === 'feedback' && <FeedbackReport />}

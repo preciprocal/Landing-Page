@@ -246,7 +246,7 @@ export default function FAQPage() {
                 </a>{" "}
                 or{" "}
                 <Link
-                  href="/#pricing"
+                  href="/pricing"
                   className="text-accent-soft underline decoration-accent/40 underline-offset-4 transition-colors hover:text-white"
                 >
                   see pricing

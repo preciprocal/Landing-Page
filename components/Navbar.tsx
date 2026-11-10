@@ -97,8 +97,8 @@ const FLAT_NAV = [
   // The audience the product is built around gets the first link.
   { label: "For OPT students", href: "/for/international-students" },
   { label: "Features",     href: "/#features" },
-  { label: "How it Works", href: "/#how-it-works" },
-  { label: "Pricing",      href: "/#pricing" },
+  { label: "How it Works", href: "/how-it-works" },
+  { label: "Pricing",      href: "/pricing" },
 ];
 
 // Both dropdowns receive the shared hover state so moving between triggers

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, CheckCircle2 } from "lucide-react";
 import { U, STATUS_CFG, PREP_TIMES, type TrackerJob } from "@/lib/demo";
+import DatePicker from "@/components/ui/DatePicker";
 
 // Re-export TrackerJob so consumers only import from one place
 export type { TrackerJob };
@@ -157,7 +158,7 @@ export function StatusDropdown({ job, onUpdate }: { job: TrackerJob; onUpdate: (
 export function EditOverlay({ job, onClose, onSave }: { job: TrackerJob; onClose: ()=>void; onSave: (j:TrackerJob)=>void }) {
   const [form, setForm] = useState({...job});
   const f = (k: keyof TrackerJob, v: string) => setForm(p => ({...p, [k]: v}));
-  const today = new Date().toISOString().split("T")[0];
+  const [applied, setApplied] = useState(() => new Date().toISOString().split("T")[0]);
 
   return (
     <div className="absolute inset-0 bg-black/70 z-40 flex items-center justify-center p-4" onClick={onClose}>
@@ -189,7 +190,7 @@ export function EditOverlay({ job, onClose, onSave }: { job: TrackerJob; onClose
             <div><label className="text-[11px] text-slate-400 mb-1 block">Status</label>
               <div className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-slate-300">{form.status}</div></div>
             <div><label className="text-[11px] text-slate-400 mb-1 block">Applied Date</label>
-              <input type="date" defaultValue={today} className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-white outline-none focus:border-indigo-500/50 transition-colors" /></div>
+              <DatePicker ariaLabel="Applied date" value={applied} onChange={setApplied} className="w-full bg-[#161b2e] border border-white/[0.08] rounded-xl px-3 py-2.5 text-[13px] text-white outline-none focus:border-indigo-500/50 transition-colors" /></div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div><label className="text-[11px] text-slate-400 mb-1 block">Location</label>

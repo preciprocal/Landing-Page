@@ -18,7 +18,7 @@ export default function NotFound() {
   const links = [
     { label: "Home", href: "/" },
     { label: "Features", href: "/#features" },
-    { label: "Pricing", href: "/#pricing" },
+    { label: "Pricing", href: "/pricing" },
     { label: "Free ATS Checker", href: "/free-ats-checker" },
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },

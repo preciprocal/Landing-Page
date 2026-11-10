@@ -72,7 +72,7 @@ function LoadingCard({ message, sub }: { message: string; sub: string }) {
 
 function LinkedInForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoading: boolean }) {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       {/* Left, Form */}
       <div className="w-[48%] flex-shrink-0 flex flex-col">
         <FadeIn delay={0}>
@@ -99,7 +99,7 @@ function LinkedInForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoa
           </div>
         </FadeIn>
 
-        <div className="flex-1 overflow-y-auto pr-0.5 ct-scroll space-y-2.5" style={{ maxHeight: 440 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 ct-scroll space-y-2.5" style={{ maxHeight: "calc(440px + var(--demo-extra, 0px))" }}>
           <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
           <FadeIn delay={200}>
@@ -180,11 +180,11 @@ function LinkedInForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoa
 
 function LinkedInResults() {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Left, Form (filled) */}
-      <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: 520 }}>
+      <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
           <p className="text-[10px] font-bold text-white">Career Tools</p>
@@ -209,7 +209,7 @@ function LinkedInResults() {
       </div>
 
       {/* Right, Results */}
-      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
+      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         {/* Overall Score */}
         <FadeIn delay={0}>
           <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-lg">
@@ -314,7 +314,7 @@ function LinkedInResults() {
 
 function OutreachForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoading: boolean }) {
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <div className="w-[48%] flex-shrink-0 flex flex-col">
         <FadeIn delay={0}>
           <div className="flex items-center gap-2 mb-3">
@@ -327,7 +327,7 @@ function OutreachForm({ onGenerate, isLoading }: { onGenerate: () => void; isLoa
           </div>
         </FadeIn>
 
-        <div className="flex-1 overflow-y-auto pr-0.5 ct-scroll space-y-2" style={{ maxHeight: 440 }}>
+        <div className="flex-1 overflow-y-auto pr-0.5 ct-scroll space-y-2" style={{ maxHeight: "calc(440px + var(--demo-extra, 0px))" }}>
           <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
           <FadeIn delay={200}>
@@ -450,11 +450,11 @@ function OutreachResults() {
   const active = versions[activeVersion];
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Left, compact form summary */}
-      <div className="w-[35%] flex-shrink-0 overflow-y-auto ct-scroll" style={{ maxHeight: 520 }}>
+      <div className="w-[35%] flex-shrink-0 overflow-y-auto ct-scroll" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
           <p className="text-[10px] font-bold text-white">Career Tools</p>
@@ -480,7 +480,7 @@ function OutreachResults() {
       </div>
 
       {/* Right, Results */}
-      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
+      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         {/* Version tabs */}
         <FadeIn delay={0}>
           <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-lg">
@@ -576,11 +576,11 @@ function InteractiveView() {
   ];
 
   return (
-    <div className="flex gap-3 h-full" style={{ minHeight: 520 }}>
+    <div className="flex gap-3 h-full" style={{ minHeight: "calc(520px + var(--demo-extra, 0px))" }}>
       <style dangerouslySetInnerHTML={{ __html: SCROLL_CSS }} />
 
       {/* Left, Form summary + tool switcher */}
-      <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: 520 }}>
+      <div className="w-[42%] flex-shrink-0 overflow-y-auto pr-0.5 ct-scroll" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><Sparkles className="w-3 h-3 text-white" /></div>
           <p className="text-[10px] font-bold text-white">Career Tools</p>
@@ -638,7 +638,7 @@ function InteractiveView() {
       </div>
 
       {/* Right, Results (changes based on active tool) */}
-      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: 520 }}>
+      <div className="flex-1 min-w-0 overflow-y-auto ct-scroll space-y-2.5" style={{ maxHeight: "calc(520px + var(--demo-extra, 0px))" }}>
         {activeTool === 'linkedin' ? (
           <>
             {/* Score */}

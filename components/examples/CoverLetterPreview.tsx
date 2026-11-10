@@ -23,7 +23,7 @@ export function CoverLetterExamplePreview({ step }: { step: number }) {
   }, []);
 
   return (
-    <div className="flex gap-3" style={{ minHeight: 500 }}>
+    <div className="flex gap-3" style={{ minHeight: "calc(500px + var(--demo-extra, 0px))" }}>
       {/* ── Left panel: Job Details form ── */}
       <div className="w-[44%] flex-shrink-0">
         <div className="p-3 bg-white/[0.02] border border-white/[0.06] rounded-xl h-full flex flex-col">

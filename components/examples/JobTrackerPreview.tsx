@@ -210,7 +210,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
 
   if (view === 'form' && !isComplete) {
     return (
-      <div style={{ minHeight: 480 }} className="flex items-center justify-center">
+      <div style={{ minHeight: "calc(480px + var(--demo-extra, 0px))" }} className="flex items-center justify-center">
         <FadeIn delay={200}>
           <div className="bg-[#0d1526]/90 border border-white/[0.08] rounded-xl overflow-hidden max-w-lg mx-auto">
             <div className="flex items-center justify-between px-4 py-3 border-b border-white/[0.06]">
@@ -287,7 +287,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
     const contact = CONTACTS[activeContact];
 
     return (
-      <div style={{ minHeight: 480 }}>
+      <div style={{ minHeight: "calc(480px + var(--demo-extra, 0px))" }}>
         <div className="bg-[#0d1526]/90 border border-white/[0.08] rounded-xl overflow-hidden">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/[0.06]">
@@ -331,7 +331,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
 
           {/* Contacts list + detail */}
           {contactsReady && (
-            <div className="flex" style={{ minHeight: 340 }}>
+            <div className="flex" style={{ minHeight: "calc(340px + var(--demo-extra, 0px))" }}>
               {/* Sidebar */}
               <div className="w-44 flex-shrink-0 border-r border-white/[0.05]">
                 {CONTACTS.map((c, i) => (
@@ -354,7 +354,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
               </div>
 
               {/* Detail */}
-              <div className="flex-1 p-3 overflow-y-auto space-y-2.5" style={{ maxHeight: 340 }}>
+              <div className="flex-1 p-3 overflow-y-auto space-y-2.5" style={{ maxHeight: "calc(340px + var(--demo-extra, 0px))" }}>
                 <FadeIn delay={500}>
                   <div className="bg-white/[0.03] border border-white/[0.06] rounded-lg p-2.5">
                     <div className="flex items-start justify-between gap-2 mb-2">
@@ -436,7 +436,7 @@ export function JobTrackerExamplePreview({ step }: { step: number }) {
 
   // ── Dashboard view (default / complete) ──
   return (
-    <div style={{ minHeight: 480 }}>
+    <div style={{ minHeight: "calc(480px + var(--demo-extra, 0px))" }}>
       {/* Header bar */}
       <FadeIn delay={100}>
         <div className="flex items-center justify-between mb-3">
