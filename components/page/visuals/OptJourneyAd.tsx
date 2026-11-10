@@ -3,61 +3,86 @@
 /**
  * components/page/visuals/OptJourneyAd.tsx
  *
- * The hero film on /for/international-students. One OPT search in four
- * beats, shot like a product film rather than a slideshow:
+ * The hero film on /for/international-students: one OPT search, played in a
+ * copy of the real app (the Dashboard repo): its sidebar, its page header
+ * (breadcrumb row, icon, title, description, actions), its stat cards, its
+ * status colours and its #5b6cff accent. Three beats:
  *
- *   01 Know your clock           the unemployment day count
- *   02 Tailor in one click       resume match for one role, before and after
- *   03 Rehearse the hard one     the sponsorship question, out loud
- *   04 Land the interview        the application moves to Interview
+ *   01 Resume       open Resume, tailor it to a role: 62 to 91
+ *   02 Interviews   open Interviews, rehearse the sponsorship question
+ *   03 Job Tracker  open Job Tracker, move the application to Phone Screen
  *
- * Every beat has the same grammar: a calm wide shot, the pointer travels to
- * its target on a gentle curve and clicks, the camera pushes in while the
- * rest of the window falls into shadow, the caption rises over the band at
- * the bottom, then the camera pulls back for the next beat.
+ * Each beat follows the same grammar, after the Sectira hero film: the
+ * pointer clicks the sidebar and the screen changes, travels to the thing to
+ * do and clicks it, the camera pushes in while the rest of the window falls
+ * into shadow, the caption rises over the bottom band, the camera pulls back.
  *
- * Mechanics: one clock (requestAnimationFrame) drives the film. The camera,
- * the spotlight, the pointer and its ripple are written straight to the DOM
- * each frame; React only re-renders when the app's state changes (a click)
- * or a caption changes. Targets are measured in canvas units at the start of
- * each beat. It pauses off screen, and with reduced motion it shows the
- * final frame without the pointer or camera moves.
+ * Mechanics: one requestAnimationFrame clock. Camera, spotlight, pointer,
+ * ripple and chapter bars are written to the DOM each frame; React renders
+ * only when the screen or the app's state changes. Targets are measured in
+ * canvas units (the camera's zoom divided out). Pauses off screen; with
+ * reduced motion it shows the finished tracker without camera or pointer.
  *
- * Colours are the app's own indigo and purple, no glows. Everything shown is
- * an illustrative example (the caption says so); the companies are made up.
- * Decorative: ProductHero marks it aria-hidden and the page text says it.
+ * Illustrative example (the caption says so); the companies are made up.
+ * Decorative: ProductHero marks it aria-hidden.
  */
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
-import { CalendarClock, Check, FileText, KanbanSquare, LayoutDashboard, Mic, Sparkles } from "lucide-react";
+import {
+  Award,
+  BookOpen,
+  Briefcase,
+  Calendar,
+  Check,
+  CheckCircle,
+  ChevronRight,
+  Puzzle,
+  Clock,
+  FileText,
+  Home,
+  Mic,
+  NotebookPen,
+  Pen,
+  Plus,
+  Shield,
+  Sparkles,
+  Target,
+  Upload,
+  Video,
+  type LucideIcon,
+} from "lucide-react";
 
 // ─── The film ───────────────────────────────────────────────────────────────
 
-type Key = "clock" | "tailor" | "practice" | "status" | "panel" | "row";
+type Screen = "overview" | "resume" | "interviews" | "tracker";
+type Key = "nav-resume" | "nav-interviews" | "nav-tracker" | "tailor" | "feedback" | "status" | "resumeFocus" | "ivFocus" | "row";
 
-const BEATS: { label: string; caption: string; cursor: Key; click: boolean; focus: Key }[] = [
-  { label: "Know your clock", caption: "Know exactly how many days you have.", cursor: "clock", click: false, focus: "clock" },
-  { label: "Tailor in one click", caption: "Tailor every resume to the role.", cursor: "tailor", click: true, focus: "panel" },
-  { label: "Rehearse the hard question", caption: "Rehearse the sponsorship question out loud.", cursor: "practice", click: true, focus: "panel" },
-  { label: "Land the interview", caption: "Land the interview, with days to spare.", cursor: "status", click: true, focus: "row" },
+const BEATS: { screen: Screen; label: string; caption: string; nav: Key; target: Key; focus: Key }[] = [
+  { screen: "resume", label: "Tailor the resume", caption: "Tailor every resume to the role.", nav: "nav-resume", target: "tailor", focus: "resumeFocus" },
+  { screen: "interviews", label: "Rehearse the hard question", caption: "Rehearse the sponsorship question out loud.", nav: "nav-interviews", target: "feedback", focus: "ivFocus" },
+  { screen: "tracker", label: "Track it to the interview", caption: "Track every application to the interview.", nav: "nav-tracker", target: "status", focus: "row" },
 ];
 
-/** Milliseconds. Beat-local times are from the start of the beat. */
-const INTRO = 1200;
-const BEAT = 5600;
-const OUTRO = 1600;
+/** Milliseconds; beat-local times run from the start of the beat. */
+const INTRO = 1400;
+const BEAT = 6600;
+const OUTRO = 1800;
 const TOTAL = INTRO + BEATS.length * BEAT + OUTRO;
-const MOVE_FROM = 150;
-const ARRIVE = 1100;
-const CLICK = 1180;
-const PUSH_AT = 1350;
+const NAV_FROM = 150;
+const NAV_ARRIVE = 950;
+const NAV_CLICK = 1020;
+const TGT_FROM = 1550;
+const TGT_ARRIVE = 2350;
+const TGT_CLICK = 2430;
+const PUSH_AT = 2600;
 const PUSH = 1000;
-const CAP: [number, number] = [1550, 4850];
-const PULL_AT = 4650;
-const PULL = 900;
+const CAP: [number, number] = [2800, 5900];
+const PULL_AT = 5700;
+const PULL = 850;
+const CLICKS = [NAV_CLICK, TGT_CLICK];
 
-const BAND = 76; // the caption band at the bottom of the picture
+const BAND = 76;
 const SPOT_FADE = 28;
 
 function bezier(x1: number, y1: number, x2: number, y2: number) {
@@ -84,7 +109,6 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
 const lerp = (a: number, b: number, p: number) => a + (b - a) * p;
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Which beat plays at film time T, and how far into it (-1 for the intro, BEATS.length for the outro). */
 function locate(T: number) {
   if (T < INTRO) return { beat: -1, local: T };
   const u = T - INTRO;
@@ -93,35 +117,27 @@ function locate(T: number) {
   return { beat, local: u - beat * BEAT };
 }
 
-/** The app's state at a moment of the film: what has been clicked so far. */
+/** Which screen is up and what has been done, at film time T. */
 function stateAt(T: number) {
   const { beat, local } = locate(T);
-  const done = (b: number) => beat > b || (beat === b && local >= CLICK);
-  return { beat, tailored: done(1), interview: done(2), booked: done(3) };
+  let screen: Screen = "overview";
+  if (beat >= BEATS.length) screen = BEATS[BEATS.length - 1].screen;
+  else if (beat >= 0) screen = local >= NAV_CLICK ? BEATS[beat].screen : beat > 0 ? BEATS[beat - 1].screen : "overview";
+  const done = (b: number) => beat > b || (beat === b && local >= TGT_CLICK);
+  return { beat, screen, tailored: done(0), feedback: done(1), moved: done(2) };
 }
 
 type Rect = { x: number; y: number; w: number; h: number };
 type Cam = { z: number; x: number; y: number };
 const WIDE: Cam = { z: 1, x: 0, y: 0 };
 
-/** Frame a target: scale it to fill most of the picture above the band, centred, never past the edges. */
 function frame(r: Rect, W: number, H: number): Cam {
   const safeH = H - BAND;
-  const z = Math.max(1, Math.min(1.55, (0.78 * W) / r.w, (0.8 * safeH) / r.h));
+  const z = Math.max(1, Math.min(1.55, (0.8 * W) / r.w, (0.82 * safeH) / r.h));
   const x = W / 2 - z * (r.x + r.w / 2);
   const y = safeH / 2 - z * (r.y + r.h / 2);
   return { z, x: Math.min(0, Math.max(W - z * W, x)), y: Math.min(0, Math.max(H - z * H, y)) };
 }
-
-// ─── Data ───────────────────────────────────────────────────────────────────
-
-const ROWS = [
-  { role: "Data Analyst", company: "Northwind Analytics", match: 62, status: "Applied" },
-  { role: "Business Intelligence Analyst", company: "Lumen Health", match: 88, status: "Applied" },
-  { role: "Product Analyst", company: "Bluefin Labs", match: 79, status: "Saved" },
-  { role: "Analytics Engineer", company: "Cedar Systems", match: 84, status: "Screen" },
-];
-const KEYWORDS = ["SQL", "A/B testing", "Stakeholder reporting"];
 
 function useCount(to: number, from: number, run: boolean, duration = 1.4) {
   const [v, setV] = useState(run ? from : to);
@@ -138,6 +154,9 @@ function useCount(to: number, from: number, run: boolean, duration = 1.4) {
 
 // ─── Component ──────────────────────────────────────────────────────────────
 
+type App = ReturnType<typeof stateAt>;
+type Reg = (k: Key) => (el: HTMLElement | null) => void;
+
 export default function OptJourneyAd() {
   const reduce = useReducedMotion() ?? false;
   const pictureRef = useRef<HTMLDivElement>(null);
@@ -149,25 +168,24 @@ export default function OptJourneyAd() {
   const inView = useInView(pictureRef, { margin: "-60px" });
 
   const targets = useRef<Partial<Record<Key, HTMLElement | null>>>({});
-  const reg = (k: Key) => (el: HTMLElement | null) => {
+  const reg: Reg = (k) => (el) => {
     targets.current[k] = el;
   };
   const rects = useRef<Partial<Record<Key, Rect>>>({});
-  const measuredBeat = useRef<number | null>(null);
 
   const T = useRef(0);
-  const [app, setApp] = useState(() => stateAt(0));
+  const [app, setApp] = useState<App>(() => stateAt(0));
   const [cap, setCap] = useState<number | null>(null);
   const appKey = useRef("");
+  const remeasure = useRef("");
 
-  /** Measure targets in canvas units, dividing out whatever zoom the camera has. */
   const measure = () => {
     const cam = camRef.current;
     if (!cam) return;
     const base = cam.getBoundingClientRect();
     const z = base.width / (cam.offsetWidth || 1) || 1;
     for (const [k, el] of Object.entries(targets.current)) {
-      if (!el) continue;
+      if (!el || !el.isConnected) continue;
       const r = el.getBoundingClientRect();
       rects.current[k as Key] = { x: (r.left - base.left) / z, y: (r.top - base.top) / z, w: r.width / z, h: r.height / z };
     }
@@ -183,35 +201,39 @@ export default function OptJourneyAd() {
     return () => ro.disconnect();
   }, []);
 
-  /** Draws one frame of the film. */
   const paintRef = useRef<(t: number) => void>(() => {});
   paintRef.current = (t: number) => {
     const pic = pictureRef.current, cam = camRef.current;
     if (!pic || !cam) return;
     const W = pic.offsetWidth, H = pic.offsetHeight;
     const { beat, local } = locate(t);
+    const inBeat = beat >= 0 && beat < BEATS.length;
 
-    // React state, only when it changes.
     const s = stateAt(t);
-    const key = `${s.beat}|${s.tailored}|${s.interview}|${s.booked}`;
+    const key = `${s.screen}|${s.tailored}|${s.feedback}|${s.moved}|${s.beat}`;
     if (key !== appKey.current) {
       appKey.current = key;
       setApp(s);
     }
-    const showCap = beat >= 0 && beat < BEATS.length && local >= CAP[0] && local < CAP[1] ? beat : null;
+    const showCap = inBeat && local >= CAP[0] && local < CAP[1] ? beat : null;
     setCap((c) => (c === showCap ? c : showCap));
 
-    // Re-measure early in each beat, while the camera is wide.
-    if (beat !== measuredBeat.current && local > 40) {
-      measuredBeat.current = beat;
+    // The new screen has settled by the time the pointer sets off for its target.
+    const mk = `${beat}|${local >= TGT_FROM - 80}`;
+    if (mk !== remeasure.current && (local > 40 || beat === -1)) {
+      remeasure.current = mk;
       measure();
     }
 
-    // Camera and focus.
+    // Fade the whole picture in at the start of a loop and out at the end.
+    const fade = beat === -1 ? clamp01(local / 450) : beat >= BEATS.length ? 1 - clamp01((local - OUTRO + 500) / 500) : 1;
+    cam.style.opacity = String(fade);
+
+    // Camera.
     let view: Cam = WIDE;
     let focus = 0;
     let fr: Rect | undefined;
-    if (beat >= 0 && beat < BEATS.length) {
+    if (inBeat) {
       fr = rects.current[BEATS[beat].focus];
       if (fr) {
         const to = frame(fr, W, H);
@@ -223,7 +245,7 @@ export default function OptJourneyAd() {
     cam.style.transform = `matrix(${view.z.toFixed(5)},0,0,${view.z.toFixed(5)},${view.x.toFixed(2)},${view.y.toFixed(2)})`;
     const toScreen = (x: number, y: number) => ({ x: view.z * x + view.x, y: view.z * y + view.y });
 
-    // Spotlight: four soft bands of shadow around the subject.
+    // Spotlight.
     const spot = spotRef.current;
     if (spot) {
       spot.style.opacity = String(focus);
@@ -238,37 +260,45 @@ export default function OptJourneyAd() {
       }
     }
 
-    // Pointer: rests on the last target, travels to the next on a gentle curve.
+    // Pointer: the sidebar first, then the thing to do on the new screen.
     const cur = curRef.current, rip = ripRef.current;
     if (cur && rip) {
-      const entry = { x: W * 0.78, y: H * 0.9 };
-      const pt = (b: number) => {
-        if (b < 0) return entry;
-        const r = rects.current[BEATS[Math.min(b, BEATS.length - 1)].cursor];
-        return r ? { x: r.x + r.w * 0.5, y: r.y + r.h * 0.58 } : entry;
+      const entry = { x: W * 0.72, y: H * 0.86 };
+      const at = (k: Key, ax = 0.5, ay = 0.58) => {
+        const r = rects.current[k];
+        return r ? { x: r.x + r.w * ax, y: r.y + r.h * ay } : entry;
       };
-      let at = beat >= BEATS.length ? pt(BEATS.length - 1) : pt(beat - 1);
-      let show = 1;
-      if (beat >= 0 && beat < BEATS.length) {
-        const from = pt(beat - 1), to = pt(beat);
-        const p = easeCam(clamp01((local - MOVE_FROM) / (ARRIVE - MOVE_FROM)));
-        const dx = to.x - from.x, dy = to.y - from.y, d = Math.hypot(dx, dy) || 1;
+      const navPt = (b: number) => at(BEATS[b].nav, 0.32, 0.55);
+      const tgtPt = (b: number) => (b < 0 ? entry : at(BEATS[b].target));
+      const curve = (a: { x: number; y: number }, b: { x: number; y: number }, p: number) => {
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
         const bow = Math.min(60, d * 0.18);
-        const cx = (from.x + to.x) / 2 + (dy / d) * bow, cy = (from.y + to.y) / 2 - (dx / d) * bow;
+        const cx = (a.x + b.x) / 2 + (dy / d) * bow, cy = (a.y + b.y) / 2 - (dx / d) * bow;
         const q = 1 - p;
-        at = { x: q * q * from.x + 2 * q * p * cx + p * p * to.x, y: q * q * from.y + 2 * q * p * cy + p * p * to.y };
-      }
-      if (beat === -1) show = clamp01((local - 300) / 400);
-      if (beat >= BEATS.length) show = 1 - clamp01(local / 500);
+        return { x: q * q * a.x + 2 * q * p * cx + p * p * b.x, y: q * q * a.y + 2 * q * p * cy + p * p * b.y };
+      };
 
-      // Press and ripple.
-      let press = 0, ripple = -1;
-      if (beat >= 0 && beat < BEATS.length && BEATS[beat].click) {
-        const u = local - CLICK;
-        if (u > -90 && u < 260) press = u < 0 ? 1 + u / 90 : u < 80 ? 1 : 1 - (u - 80) / 180;
-        if (u >= 0 && u < 620) ripple = u / 620;
+      let pos = entry;
+      let show = 1;
+      if (beat === -1) show = clamp01((local - 500) / 400);
+      else if (beat >= BEATS.length) {
+        pos = tgtPt(BEATS.length - 1);
+        show = 1 - clamp01(local / 500);
+      } else if (local < TGT_FROM) {
+        pos = curve(tgtPt(beat - 1), navPt(beat), easeCam(clamp01((local - NAV_FROM) / (NAV_ARRIVE - NAV_FROM))));
+      } else {
+        pos = curve(navPt(beat), tgtPt(beat), easeCam(clamp01((local - TGT_FROM) / (TGT_ARRIVE - TGT_FROM))));
       }
-      const sp = toScreen(at.x, at.y);
+
+      let press = 0, ripple = -1;
+      if (inBeat) {
+        for (const c of CLICKS) {
+          const u = local - c;
+          if (u > -90 && u < 260) press = Math.max(press, u < 0 ? 1 + u / 90 : u < 80 ? 1 : 1 - (u - 80) / 180);
+          if (u >= 0 && u < 620) ripple = u / 620;
+        }
+      }
+      const sp = toScreen(pos.x, pos.y);
       const size = (1 + 0.22 * (view.z - 1)) * (1 - 0.14 * press);
       cur.style.opacity = String(show);
       cur.style.transform = `translate(${sp.x.toFixed(2)}px,${sp.y.toFixed(2)}px) scale(${size.toFixed(4)})`;
@@ -278,7 +308,6 @@ export default function OptJourneyAd() {
       } else rip.style.opacity = "0";
     }
 
-    // Chapter bar.
     barRefs.current.forEach((el, i) => {
       if (!el) return;
       const f = beat > i ? 1 : beat === i ? clamp01(local / BEAT) : 0;
@@ -286,7 +315,6 @@ export default function OptJourneyAd() {
     });
   };
 
-  // The clock.
   useEffect(() => {
     if (reduce || !inView) return;
     let raf = 0;
@@ -301,7 +329,6 @@ export default function OptJourneyAd() {
     return () => cancelAnimationFrame(raf);
   }, [reduce, inView]);
 
-  // With reduced motion: the finished picture, no camera moves.
   useEffect(() => {
     if (!reduce) return;
     setApp(stateAt(TOTAL - 1));
@@ -311,21 +338,19 @@ export default function OptJourneyAd() {
     });
   }, [reduce]);
 
-  const { tailored, interview, booked, beat } = app;
-  const panel: "idle" | "tailor" | "interview" = interview ? "interview" : tailored ? "tailor" : "idle";
   const run = !reduce;
-  const chip = beat >= 0 && beat < BEATS.length ? BEATS[beat] : null;
+  const chip = app.beat >= 0 && app.beat < BEATS.length ? BEATS[app.beat] : null;
 
   return (
     <div className="mx-auto w-full max-w-[1240px]">
       <p className="mx-auto mb-4 max-w-3xl text-center text-[15px] italic leading-relaxed text-slate-300">
         <span className="mr-2 not-italic font-semibold text-indigo-300">An illustrative example:</span>
-        one OPT search, from counting the days to the interview.
+        one OPT search in Preciprocal, from the resume to the interview.
       </p>
 
       <div className="relative rounded-[20px] bg-[linear-gradient(180deg,rgb(255_255_255/0.14),rgb(255_255_255/0.05)_18%,rgb(255_255_255/0.04))] p-px shadow-[0_50px_120px_-40px_rgb(0_0_0/0.9)]">
         <span aria-hidden="true" className="pointer-events-none absolute inset-x-[14%] -top-px h-px bg-[linear-gradient(90deg,transparent,rgb(255_255_255/0.55),rgb(165_180_252/0.7),transparent)]" />
-        <div className="overflow-hidden rounded-[19px] bg-[#080c18]">
+        <div className="overflow-hidden rounded-[19px] bg-[#0c0e14]">
           {/* Window chrome */}
           <div className="flex items-center gap-3 border-b border-white/[0.06] bg-white/[0.02] px-4 py-2.5">
             <div className="flex w-48 shrink-0 gap-1.5">
@@ -335,7 +360,7 @@ export default function OptJourneyAd() {
             </div>
             <div className="min-w-0 flex-1">
               <div className="mx-auto w-fit rounded-md border border-white/[0.06] bg-white/[0.035] px-3 py-1 text-[11.5px] font-medium text-slate-400">
-                app.preciprocal.com
+                app.preciprocal.com{PATHS[app.screen]}
               </div>
             </div>
             <div className="flex w-48 shrink-0 justify-end">
@@ -346,27 +371,24 @@ export default function OptJourneyAd() {
           </div>
 
           {/* The picture */}
-          <div ref={pictureRef} className="relative h-[520px] overflow-hidden xl:h-[560px]">
+          <div ref={pictureRef} className="relative h-[540px] overflow-hidden xl:h-[580px]">
             <div ref={camRef} className="absolute inset-0 origin-top-left will-change-transform">
-              <Canvas reg={reg} panel={panel} booked={booked} run={run} beat={beat} />
+              <AppCanvas reg={reg} app={app} run={run} />
             </div>
 
-            {/* Spotlight */}
             <div ref={spotRef} aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-0">
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, transparent, rgb(5 8 16 / 0.8) ${SPOT_FADE}px)` }} />
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent, rgb(5 8 16 / 0.8) ${SPOT_FADE}px)` }} />
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to left, transparent, rgb(5 8 16 / 0.8) ${SPOT_FADE}px)` }} />
-              <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent, rgb(5 8 16 / 0.8) ${SPOT_FADE}px)` }} />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, transparent, rgb(8 9 13 / 0.82) ${SPOT_FADE}px)` }} />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent, rgb(8 9 13 / 0.82) ${SPOT_FADE}px)` }} />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to left, transparent, rgb(8 9 13 / 0.82) ${SPOT_FADE}px)` }} />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to right, transparent, rgb(8 9 13 / 0.82) ${SPOT_FADE}px)` }} />
             </div>
 
-            {/* Ripple and pointer */}
             {!reduce && (
               <>
                 <div ref={ripRef} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-0 w-0 opacity-0">
-                  <span className="absolute -left-[18px] -top-[18px] h-9 w-9 rounded-full border-[1.5px] border-indigo-300/80 bg-indigo-400/[0.14]" />
+                  <span className="absolute -left-[18px] -top-[18px] h-9 w-9 rounded-full border-[1.5px] border-[#8f9bff]/80 bg-[#5b6cff]/[0.14]" />
                 </div>
                 <div ref={curRef} aria-hidden="true" className="pointer-events-none absolute left-0 top-0 h-0 w-0 origin-top-left opacity-0">
-                  {/* An arrowhead with its tip on the click point. The shadow is offset copies, so no filter. */}
                   <svg width="22" height="22" viewBox="0 0 18 18" className="absolute -left-[3px] -top-[2.2px] overflow-visible">
                     <path d="M2.5 1.8 15 8.6l-5.4 1.3-2.4 5.3z" transform="translate(0.7 1.9)" fill="#000" opacity="0.2" stroke="#000" strokeWidth="2.6" strokeLinejoin="round" />
                     <path d="M2.5 1.8 15 8.6l-5.4 1.3-2.4 5.3z" transform="translate(0.35 0.9)" fill="#000" opacity="0.32" />
@@ -376,8 +398,7 @@ export default function OptJourneyAd() {
               </>
             )}
 
-            {/* Caption band */}
-            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(to_top,rgb(8_12_24/0.92),rgb(8_12_24/0.55)_55%,transparent)]" />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-[120px] bg-[linear-gradient(to_top,rgb(12_14_20/0.94),rgb(12_14_20/0.55)_55%,transparent)]" />
             <div className="pointer-events-none absolute inset-x-0 bottom-6 px-7">
               <AnimatePresence>
                 {cap !== null && (
@@ -397,7 +418,7 @@ export default function OptJourneyAd() {
           </div>
 
           {/* Chapters */}
-          <div className="grid grid-cols-4 gap-3 border-t border-white/[0.06] px-5 py-3">
+          <div className="grid grid-cols-3 gap-4 border-t border-white/[0.06] px-5 py-3">
             {BEATS.map((b, i) => (
               <div key={b.label} className="min-w-0">
                 <span className="mb-2 block h-[3px] overflow-hidden rounded-full bg-white/[0.07]">
@@ -405,10 +426,10 @@ export default function OptJourneyAd() {
                     ref={(el) => {
                       barRefs.current[i] = el;
                     }}
-                    className="block h-full origin-left scale-x-0 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500"
+                    className="block h-full origin-left scale-x-0 rounded-full bg-[#5b6cff]"
                   />
                 </span>
-                <p className={`truncate text-[11.5px] font-medium transition-colors duration-300 ${beat === i ? "text-white" : beat > i ? "text-slate-400" : "text-slate-600"}`}>
+                <p className={`truncate text-[11.5px] font-medium transition-colors duration-300 ${app.beat === i ? "text-white" : app.beat > i ? "text-slate-400" : "text-slate-600"}`}>
                   <span className="mr-1.5 font-mono text-[10.5px] text-slate-500">0{i + 1}</span>
                   {b.label}
                 </p>
@@ -421,271 +442,344 @@ export default function OptJourneyAd() {
   );
 }
 
-// ─── The app, at its fixed layout ───────────────────────────────────────────
+// ─── The app (Dashboard repo look) ──────────────────────────────────────────
 
-function Canvas({
-  reg,
-  panel,
-  booked,
-  run,
-  beat,
-}: {
-  reg: (k: Key) => (el: HTMLElement | null) => void;
-  panel: "idle" | "tailor" | "interview";
-  booked: boolean;
-  run: boolean;
-  beat: number;
-}) {
+const PATHS: Record<Screen, string> = { overview: "", resume: "/resume", interviews: "/interview", tracker: "/job-tracker" };
+
+const NAV: { id: string; label: string; Icon: LucideIcon; screen?: Screen; key?: Key }[] = [
+  { id: "overview", label: "Overview", Icon: Home, screen: "overview" },
+  { id: "resume", label: "Resume", Icon: FileText, screen: "resume", key: "nav-resume" },
+  { id: "cover-letter", label: "Cover Letter", Icon: Pen },
+  { id: "interviews", label: "Interviews", Icon: Video, screen: "interviews", key: "nav-interviews" },
+  { id: "planner", label: "Planner", Icon: Calendar },
+  { id: "debrief", label: "Interview Journal", Icon: NotebookPen },
+  { id: "career-tools", label: "Career Tools", Icon: Sparkles },
+  { id: "job-tracker", label: "Job Tracker", Icon: Briefcase, screen: "tracker", key: "nav-tracker" },
+  { id: "extension", label: "Extension", Icon: Puzzle },
+];
+
+const CARD = "rounded-2xl border border-white/[0.08] bg-[#13161e]";
+const BTN_PRIMARY = "inline-flex h-9 items-center gap-1.5 rounded-xl bg-[#5b6cff] px-3.5 text-[12px] font-semibold text-white";
+const BTN_PILL = "inline-flex h-9 items-center gap-1.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-3 text-[12px] font-medium text-slate-300";
+
+function AppCanvas({ reg, app, run }: { reg: Reg; app: App; run: boolean }) {
   return (
-    <div className="grid h-full grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:grid-cols-[176px_minmax(0,1fr)_minmax(0,0.82fr)]">
-      <aside className="hidden border-r border-white/[0.05] bg-white/[0.012] p-4 lg:block">
-        <div className="mb-6 flex items-center gap-2">
-          <span className="h-6 w-6 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-500" />
-          <span className="text-[13px] font-bold text-white">Preciprocal</span>
-        </div>
-        {[
-          { Icon: LayoutDashboard, label: "Dashboard", on: beat <= 0 || beat >= BEATS.length },
-          { Icon: FileText, label: "Resume", on: beat === 1 },
-          { Icon: Mic, label: "Interviews", on: beat === 2 },
-          { Icon: KanbanSquare, label: "Tracker", on: beat === 3 },
-          { Icon: CalendarClock, label: "OPT clock", on: false },
-        ].map(({ Icon, label, on }) => (
-          <div
-            key={label}
-            className={`mb-1 flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[12px] transition-colors duration-300 ${on ? "bg-white/[0.06] text-white" : "text-slate-500"}`}
-          >
-            <Icon className="h-3.5 w-3.5" strokeWidth={1.9} />
-            {label}
+    <div className="flex h-full">
+      <aside className="hidden w-[208px] shrink-0 flex-col border-r border-white/[0.07] bg-[#0f1218] lg:flex">
+        <div className="px-4 pb-3 pt-4">
+          <div className="flex items-center gap-2.5">
+            <span className="h-[26px] w-[26px] rounded-[8px] bg-[#5b6cff]" />
+            <span className="text-[15px] font-bold tracking-tight text-white">Preciprocal</span>
           </div>
-        ))}
-      </aside>
-
-      <div className="flex min-w-0 flex-col gap-4 p-5">
-        <div className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-4">
-          <Clock regRef={reg("clock")} />
-          <Week booked={booked} />
-        </div>
-
-        <div className="rounded-xl border border-white/[0.07] bg-white/[0.02]">
-          <div className="flex items-center justify-between border-b border-white/[0.06] px-4 py-3">
-            <p className="text-[12.5px] font-semibold text-white">Applications</p>
-            <p className="text-[11px] text-slate-500">4 active</p>
+          <div className="mt-3 flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.025] px-2.5 py-2">
+            <span className="relative grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#191d27] text-[10px] font-bold text-slate-200">
+              AP
+              <span className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full border-2 border-[#0f1218] bg-emerald-500" />
+            </span>
+            <div className="min-w-0">
+              <p className="truncate text-[12px] font-semibold text-white">Arjun Patel</p>
+              <p className="truncate text-[10px] text-slate-500">arjun@example.com</p>
+            </div>
           </div>
-          {ROWS.map((r, idx) => {
-            const first = idx === 0;
-            const status = first && booked ? "Interview" : r.status;
-            const match = first && panel !== "idle" ? 91 : r.match;
+        </div>
+        <nav className="space-y-0.5 px-3">
+          <p className="px-3 pb-1.5 pt-2 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-slate-600">Menu</p>
+          {NAV.map(({ id, label, Icon, screen, key }) => {
+            const active = screen === app.screen;
             return (
-              <div key={r.company} ref={first ? reg("row") : undefined} className="flex items-center gap-3 border-b border-white/[0.04] px-4 py-3 last:border-b-0">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.05] text-[11px] font-bold text-slate-300">{r.company[0]}</span>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[12.5px] font-semibold text-white">{r.role}</p>
-                  <p className="truncate text-[11px] text-slate-500">{r.company}</p>
-                </div>
-                <span className={`tabular-nums text-[11.5px] font-semibold transition-colors duration-500 ${match >= 85 ? "text-emerald-300" : match >= 75 ? "text-slate-300" : "text-amber-300"}`}>
-                  {match}%
+              <div
+                key={id}
+                ref={key ? reg(key) : undefined}
+                className={`relative flex items-center justify-between rounded-lg px-3 py-[7px] transition-colors duration-200 ${active ? "bg-white/[0.06] text-white" : "text-slate-400"}`}
+              >
+                {active && <span className="absolute left-0 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-r-full bg-[#5b6cff]" />}
+                <span className="flex items-center gap-2.5">
+                  <Icon className={`h-4 w-4 ${active ? "text-white" : "text-slate-500"}`} strokeWidth={1.75} />
+                  <span className="text-[12px] font-medium">{label}</span>
                 </span>
-                {first && (
-                  <span
-                    ref={reg("tailor")}
-                    className={`inline-block shrink-0 rounded-md border px-2 py-1 text-[10.5px] font-semibold transition-colors duration-300 ${
-                      panel === "idle" ? "border-indigo-400/40 bg-indigo-500/10 text-indigo-200" : "border-white/[0.08] text-slate-500"
-                    }`}
-                  >
-                    {panel === "idle" ? "Tailor resume" : "Tailored"}
-                  </span>
+                {id === "extension" && (
+                  <span className="rounded-md border border-indigo-400/20 bg-indigo-500/10 px-1.5 py-0.5 text-[8.5px] font-semibold uppercase leading-none tracking-wider text-indigo-300">New</span>
                 )}
-                <span
-                  ref={first ? reg("status") : undefined}
-                  className={`w-[76px] shrink-0 rounded-full px-2 py-1 text-center text-[10.5px] font-semibold transition-colors duration-300 ${
-                    status === "Interview"
-                      ? "bg-emerald-400/15 text-emerald-300"
-                      : status === "Screen"
-                        ? "bg-purple-400/10 text-purple-300"
-                        : status === "Saved"
-                          ? "bg-white/[0.05] text-slate-400"
-                          : "bg-indigo-400/10 text-indigo-300"
-                  }`}
-                >
-                  {status}
-                </span>
               </div>
             );
           })}
-        </div>
-      </div>
+          <p className="px-3 pb-1.5 pt-4 text-[9.5px] font-semibold uppercase tracking-[0.16em] text-slate-600">Resources</p>
+          <div className="flex items-center gap-2.5 rounded-lg px-3 py-[7px] text-slate-400">
+            <BookOpen className="h-4 w-4 text-slate-500" strokeWidth={1.75} />
+            <span className="text-[12px] font-medium">Templates</span>
+          </div>
+        </nav>
+      </aside>
 
-      <div className="min-w-0 border-l border-white/[0.05] p-5">
-        <div ref={reg("panel")} className="h-[calc(100%-64px)]">
-          <AnimatePresence mode="wait" initial={false}>
-            {panel === "idle" && <IdlePanel key="idle" />}
-            {panel === "tailor" && <TailorPanel key="tailor" run={run} regPractice={reg("practice")} />}
-            {panel === "interview" && <InterviewPanel key="interview" run={run} />}
-          </AnimatePresence>
-        </div>
-      </div>
+      <main className="relative min-w-0 flex-1 bg-[#0c0e14]">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={app.screen}
+            className="absolute inset-0 space-y-3.5 p-5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.3, ease: EASE } }}
+            exit={{ opacity: 0, transition: { duration: 0.15, ease: "easeIn" } }}
+          >
+            {app.screen === "overview" && <OverviewScreen />}
+            {app.screen === "resume" && <ResumeScreen reg={reg} done={app.tailored} run={run} />}
+            {app.screen === "interviews" && <InterviewScreen reg={reg} done={app.feedback} run={run} />}
+            {app.screen === "tracker" && <TrackerScreen reg={reg} done={app.moved} />}
+          </motion.div>
+        </AnimatePresence>
+      </main>
     </div>
   );
 }
 
-function Clock({ regRef }: { regRef: (el: HTMLElement | null) => void }) {
-  const used = 41;
-  const limit = 90;
-  const r = 34;
-  const c = 2 * Math.PI * r;
+/** The header every signed-in page uses: breadcrumb row, then icon, title, description, actions. */
+function PageHeader({ section, title, description, Icon, actions }: { section?: string; title: string; description: string; Icon: LucideIcon; actions?: ReactNode }) {
   return (
-    <div ref={regRef} className="flex items-center gap-4 rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
-      <svg width="84" height="84" viewBox="0 0 84 84" className="shrink-0 -rotate-90">
-        <circle cx="42" cy="42" r={r} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
-        <circle cx="42" cy="42" r={r} fill="none" stroke="url(#opt-ad-ring)" strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - used / limit)} />
-        <defs>
-          <linearGradient id="opt-ad-ring" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#6366f1" />
-            <stop offset="1" stopColor="#a855f7" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div className="min-w-0">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">OPT clock</p>
-        <p className="mt-1 text-[26px] font-extrabold leading-none tabular-nums text-white">
-          49 <span className="text-[13px] font-semibold text-slate-400">days left</span>
-        </p>
-        <p className="mt-1.5 text-[11px] text-slate-500">41 of 90 unemployment days used</p>
+    <header className={`${CARD} overflow-hidden`}>
+      {section && (
+        <div className="flex items-center gap-1 border-b border-white/[0.06] bg-white/[0.015] px-5 py-2 text-[11.5px]">
+          <Home className="h-3 w-3 text-slate-400" />
+          <span className="text-slate-400">Home</span>
+          <ChevronRight className="h-3 w-3 text-slate-600" />
+          <span className="font-medium text-white">{section}</span>
+        </div>
+      )}
+      <div className="flex items-center gap-4 px-5 py-3.5">
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          <span className="grid h-9 w-9 shrink-0 place-items-center rounded-[10px] border border-[#5b6cff]/40 bg-[#5b6cff]/[0.12] text-indigo-200">
+            <Icon className="h-[18px] w-[18px]" strokeWidth={1.75} />
+          </span>
+          <div className="min-w-0">
+            <p className="truncate text-[17px] font-semibold leading-tight tracking-tight text-white">{title}</p>
+            <p className="mt-0.5 truncate text-[11.5px] text-slate-400">{description}</p>
+          </div>
+        </div>
+        {actions && <div className="flex shrink-0 items-center gap-2">{actions}</div>}
       </div>
+    </header>
+  );
+}
+
+function Stat({ label, value, tone, sub, Icon }: { label: string; value: ReactNode; tone: string; sub?: string; Icon?: LucideIcon }) {
+  return (
+    <div className={`${CARD} px-4 py-3`}>
+      <div className="flex items-center justify-between">
+        <p className="text-[10.5px] font-medium text-slate-500">{label}</p>
+        {Icon && <Icon className={`h-3.5 w-3.5 ${tone}`} strokeWidth={1.75} />}
+      </div>
+      <p className={`mt-1 text-[20px] font-bold tabular-nums leading-tight ${tone}`}>{value}</p>
+      {sub && <p className="text-[10px] text-slate-600">{sub}</p>}
     </div>
   );
 }
 
-function Week({ booked }: { booked: boolean }) {
-  const stats = [
-    { label: "Applied", value: 6 },
-    { label: "Replies", value: 2 },
-    { label: "Interviews", value: booked ? 1 : 0, live: true },
-  ];
+function OverviewScreen() {
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-4">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">This week</p>
-      <div className="grid grid-cols-3 gap-2">
-        {stats.map((s) => (
-          <div key={s.label}>
-            <AnimatePresence mode="popLayout" initial={false}>
-              <motion.p
-                key={s.value}
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -10, opacity: 0 }}
-                transition={{ duration: 0.35 }}
-                className={`text-[22px] font-extrabold tabular-nums leading-none ${s.live && booked ? "text-emerald-300" : "text-white"}`}
-              >
-                {s.value}
-              </motion.p>
-            </AnimatePresence>
-            <p className="mt-1.5 text-[11px] text-slate-500">{s.label}</p>
+    <>
+      <PageHeader title="Welcome back, Arjun" description="Here is where your search stands this week" Icon={Home} actions={<span className={BTN_PRIMARY}><Video className="h-3.5 w-3.5" /> Start New Interview</span>} />
+      <div className="grid grid-cols-3 gap-3">
+        <Stat label="Resume score" value="62" tone="text-amber-400" sub="Data Analyst resume" />
+        <Stat label="Mock interviews" value="2" tone="text-blue-400" sub="this month" />
+        <Stat label="Applications" value="12" tone="text-white" sub="5 in progress" />
+      </div>
+      <div className={`${CARD} p-4`}>
+        <p className="mb-3 text-[12px] font-semibold text-white">Suggested next steps</p>
+        {["Tailor your resume for Northwind Analytics", "Practise the sponsorship question", "Follow up with Lumen Health"].map((t, i) => (
+          <div key={t} className="flex items-center gap-3 border-t border-white/[0.05] py-2.5 first:border-t-0">
+            <span className="font-mono text-[10.5px] text-slate-600">0{i + 1}</span>
+            <span className="text-[12px] text-slate-300">{t}</span>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
-const panelMotion = {
-  initial: { opacity: 0, x: 14 },
-  animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -10 },
-  transition: { duration: 0.32, ease: EASE },
+function ResumeScreen({ reg, done, run }: { reg: Reg; done: boolean; run: boolean }) {
+  const score = useCount(done ? 91 : 62, 62, run && done, 1.6);
+  const r = 34, c = 2 * Math.PI * r;
+  return (
+    <>
+      <PageHeader section="Resume" title="Resume Analysis" description="AI feedback on every resume you upload" Icon={FileText} actions={<span className={BTN_PRIMARY}><Upload className="h-3.5 w-3.5" /> Upload Resume</span>} />
+      <div ref={reg("resumeFocus")} className="grid grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-3">
+        <div className={`${CARD} p-4`}>
+          <div className="mb-3 flex items-center gap-2">
+            <FileText className="h-4 w-4 text-slate-400" strokeWidth={1.75} />
+            <p className="truncate text-[12px] font-semibold text-white">Arjun_Patel_Resume.pdf</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <svg width="84" height="84" viewBox="0 0 84 84" className="shrink-0 -rotate-90">
+              <circle cx="42" cy="42" r={r} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="7" />
+              <circle cx="42" cy="42" r={r} fill="none" stroke={score >= 85 ? "#34d399" : "#fbbf24"} strokeWidth="7" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - score / 100)} />
+            </svg>
+            <div>
+              <p className={`text-[30px] font-bold tabular-nums leading-none ${score >= 85 ? "text-emerald-400" : "text-amber-400"}`}>{score}</p>
+              <p className="mt-1 text-[11px] text-slate-500">ATS score{done ? ", was 62" : ""}</p>
+            </div>
+          </div>
+          <div className="mt-4 grid grid-cols-3 gap-1 rounded-lg border border-white/[0.06] bg-white/[0.02] p-1 text-center text-[10.5px]">
+            <span className="rounded-md bg-[#5b6cff] py-1 font-semibold text-white">Analysis</span>
+            <span className="py-1 text-slate-500">Recruiter</span>
+            <span className="py-1 text-slate-500">Writer</span>
+          </div>
+        </div>
+        <div className={`${CARD} flex flex-col p-4`}>
+          <p className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-slate-500">Tailor to a job</p>
+          <p className="mt-1 text-[12.5px] font-semibold text-white">Data Analyst · Northwind Analytics</p>
+          <p className="mb-3 mt-1 text-[11px] text-slate-500">{done ? "Matched to the posting" : "3 keywords from the posting are missing"}</p>
+          <div className="mb-auto flex flex-wrap gap-1.5">
+            {["SQL", "A/B testing", "Stakeholder reporting"].map((k, i) => (
+              <motion.span
+                key={k}
+                initial={false}
+                animate={{ opacity: 1 }}
+                transition={{ delay: done && run ? 0.4 + i * 0.25 : 0 }}
+                className={`inline-flex items-center gap-1 rounded-md border px-2 py-1 text-[11px] font-medium transition-colors duration-500 ${
+                  done ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-300" : "border-white/[0.08] bg-white/[0.03] text-slate-500"
+                }`}
+              >
+                {done && <Check className="h-3 w-3" strokeWidth={2.6} />} {k}
+              </motion.span>
+            ))}
+          </div>
+          <span ref={reg("tailor")} className={`${done ? BTN_PILL : BTN_PRIMARY} mt-4 w-fit`}>
+            {done ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Sparkles className="h-3.5 w-3.5" />}
+            {done ? "Tailored" : "Tailor resume"}
+          </span>
+        </div>
+      </div>
+      <div className={`${CARD} p-4`}>
+        <p className="mb-2 text-[12px] font-semibold text-white">Top fixes</p>
+        {["Add a summary that names the role", "Quantify the Datadog pipeline work", "Move skills above projects"].map((t) => (
+          <div key={t} className="flex items-center gap-2.5 py-1.5 text-[11.5px] text-slate-400">
+            <span className={`h-1.5 w-1.5 rounded-full ${done ? "bg-emerald-400" : "bg-amber-400"}`} />
+            {t}
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function InterviewScreen({ reg, done, run }: { reg: Reg; done: boolean; run: boolean }) {
+  const score = useCount(86, 0, run && done, 1.2);
+  return (
+    <>
+      <PageHeader section="Interviews" title="Interview Practice" description="Mock interviews with AI feedback and scores" Icon={Video} actions={<span className={BTN_PRIMARY}><Plus className="h-3.5 w-3.5" /> Start New Interview</span>} />
+      <div className="grid grid-cols-4 gap-3">
+        <Stat label="Total Interviews" value={done ? 3 : 2} tone="text-blue-400" Icon={Target} />
+        <Stat label="Average Score" value={done ? "79%" : "76%"} tone="text-emerald-400" Icon={CheckCircle} />
+        <Stat label="Practice Time" value="1.5h" tone="text-violet-400" Icon={Clock} />
+        <Stat label="Completion" value="100%" tone="text-amber-400" Icon={Award} />
+      </div>
+      <div ref={reg("ivFocus")} className={`${CARD} p-4`}>
+        <div className="mb-3 flex items-center justify-between">
+          <p className="text-[12px] font-semibold text-white">Recruiter screen · Northwind Analytics</p>
+          <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[10px] text-slate-400">Question 3 of 6</span>
+        </div>
+        <div className="mb-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-3">
+          <p className="mb-1 text-[10px] font-semibold text-indigo-300">Interviewer</p>
+          <p className="text-[13px] leading-snug text-white">&ldquo;Will you now or in the future require visa sponsorship?&rdquo;</p>
+        </div>
+        {done ? (
+          <motion.div initial={run ? { opacity: 0, y: 6 } : false} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, ease: EASE }} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3">
+            <div className="mb-1.5 flex items-center justify-between">
+              <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-slate-200">
+                <Sparkles className="h-3.5 w-3.5 text-indigo-300" /> Feedback
+              </p>
+              <p className="text-[17px] font-bold tabular-nums text-emerald-400">
+                {score}
+                <span className="text-[10.5px] font-semibold text-slate-500">/100</span>
+              </p>
+            </div>
+            <p className="text-[11.5px] leading-relaxed text-slate-300">Clear and calm. You named OPT, your dates and the STEM extension in one breath. Next: lead with the role, then the status.</p>
+          </motion.div>
+        ) : (
+          <div className="flex items-center gap-3">
+            <div className="flex h-9 flex-1 items-center gap-[3px] rounded-xl border border-white/[0.06] bg-white/[0.015] px-3">
+              <Mic className="mr-1.5 h-3.5 w-3.5 shrink-0 text-rose-400" />
+              {Array.from({ length: 30 }, (_, i) => (
+                <motion.span
+                  key={i}
+                  className="w-[3px] rounded-full bg-[#5b6cff]/70"
+                  initial={{ height: 4 }}
+                  animate={run ? { height: [4, 5 + ((i * 7) % 16), 4] } : { height: 5 + ((i * 7) % 16) }}
+                  transition={run ? { duration: 0.9, repeat: Infinity, delay: (i % 8) * 0.05, ease: "easeInOut" } : undefined}
+                />
+              ))}
+            </div>
+            <span ref={reg("feedback")} className={BTN_PRIMARY}>
+              <Sparkles className="h-3.5 w-3.5" /> Get feedback
+            </span>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+const STATUS: Record<string, string> = {
+  Wishlist: "border-slate-500/20 bg-slate-500/10 text-slate-400",
+  Applied: "border-blue-500/20 bg-blue-500/10 text-blue-400",
+  "Phone Screen": "border-violet-500/20 bg-violet-500/10 text-violet-400",
+  Technical: "border-indigo-500/20 bg-indigo-500/10 text-indigo-400",
 };
+const DOT: Record<string, string> = { Wishlist: "bg-slate-400", Applied: "bg-blue-400", "Phone Screen": "bg-violet-400", Technical: "bg-indigo-400" };
 
-function IdlePanel() {
-  return (
-    <motion.div {...panelMotion} className="flex h-full flex-col">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Up next</p>
-      {["Tailor your resume for Northwind", "Practise the sponsorship question", "Follow up with Lumen Health"].map((t, i) => (
-        <div key={t} className="mb-2 flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] px-3.5 py-3">
-          <span className="font-mono text-[11px] text-slate-500">0{i + 1}</span>
-          <span className="text-[12.5px] text-slate-300">{t}</span>
-        </div>
-      ))}
-    </motion.div>
-  );
-}
+const APPS = [
+  { company: "Northwind Analytics", role: "Data Analyst", where: "Boston, MA · Hybrid", status: "Applied" },
+  { company: "Lumen Health", role: "Business Intelligence Analyst", where: "Remote", status: "Technical" },
+  { company: "Bluefin Labs", role: "Product Analyst", where: "New York, NY · Onsite", status: "Applied" },
+  { company: "Cedar Systems", role: "Analytics Engineer", where: "Austin, TX · Hybrid", status: "Wishlist" },
+];
 
-function TailorPanel({ run, regPractice }: { run: boolean; regPractice: (el: HTMLElement | null) => void }) {
-  const score = useCount(91, 62, run, 1.6);
+function TrackerScreen({ reg, done }: { reg: Reg; done: boolean }) {
   return (
-    <motion.div {...panelMotion} className="flex h-full flex-col">
-      <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Resume match</p>
-      <p className="mb-4 text-[12.5px] text-slate-400">Data Analyst · Northwind Analytics</p>
-      <div className="mb-4 flex items-end gap-3">
-        <p className={`text-[44px] font-extrabold leading-none tabular-nums ${score >= 85 ? "text-emerald-300" : "text-white"}`}>{score}</p>
-        <p className="mb-1.5 text-[12px] text-slate-500">/ 100, was 62</p>
+    <>
+      <PageHeader
+        section="Job Tracker"
+        title="Job Tracker"
+        description="Every application from wishlist to offer"
+        Icon={Briefcase}
+        actions={
+          <>
+            <span className={BTN_PILL}>
+              <Shield className="h-3.5 w-3.5" /> Unlimited
+            </span>
+            <span className={BTN_PRIMARY}>
+              <Plus className="h-3.5 w-3.5" /> Add Application
+            </span>
+          </>
+        }
+      />
+      <div className="grid grid-cols-4 gap-3">
+        <Stat label="Total" value={12} tone="text-white" />
+        <Stat label="Active" value={5} tone="text-blue-400" sub="in progress" />
+        <Stat label="Response Rate" value={done ? "33%" : "25%"} tone="text-amber-400" />
+        <Stat label="Offers" value={0} tone="text-emerald-400" />
       </div>
-      <div className="mb-5 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
-        <div className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-[width] duration-300" style={{ width: `${score}%` }} />
+      <div className="space-y-2">
+        {APPS.map((a, i) => {
+          const status = i === 0 && done ? "Phone Screen" : a.status;
+          return (
+            <div key={a.company} ref={i === 0 ? reg("row") : undefined} className={`${CARD} flex items-center gap-3 px-4 py-2.5`}>
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-white/[0.05] text-[11px] font-bold text-slate-300">{a.company[0]}</span>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[12.5px] font-semibold text-white">{a.role}</p>
+                <p className="truncate text-[10.5px] text-slate-500">
+                  {a.company} · {a.where}
+                </p>
+              </div>
+              <span
+                ref={i === 0 ? reg("status") : undefined}
+                className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[10.5px] font-semibold transition-colors duration-300 ${STATUS[status]}`}
+              >
+                <span className={`h-1.5 w-1.5 rounded-full ${DOT[status]}`} />
+                {status}
+              </span>
+            </div>
+          );
+        })}
       </div>
-      <p className="mb-2 text-[11px] font-medium text-slate-500">Added from the posting</p>
-      <div className="mb-auto flex flex-wrap gap-1.5">
-        {KEYWORDS.map((k, i) => (
-          <motion.span
-            key={k}
-            initial={run ? { opacity: 0, y: 4 } : false}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.3, duration: 0.35, ease: EASE }}
-            className="inline-flex items-center gap-1 rounded-md border border-white/[0.08] bg-white/[0.04] px-2 py-1 text-[11px] font-medium text-slate-200"
-          >
-            <Check className="h-3 w-3 text-emerald-300" strokeWidth={2.6} /> {k}
-          </motion.span>
-        ))}
-      </div>
-      <span
-        ref={regPractice}
-        className="mt-4 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2.5 text-[12.5px] font-semibold text-white"
-      >
-        <Mic className="h-3.5 w-3.5" /> Practise the interview
-      </span>
-    </motion.div>
-  );
-}
-
-function InterviewPanel({ run }: { run: boolean }) {
-  const score = useCount(86, 0, run, 1.2);
-  return (
-    <motion.div {...panelMotion} className="flex h-full flex-col">
-      <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Mock interview · Recruiter screen</p>
-      <div className="mb-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-3.5">
-        <p className="mb-1 text-[10.5px] font-semibold text-indigo-300">Interviewer</p>
-        <p className="text-[13px] leading-snug text-white">&ldquo;Will you now or in the future require visa sponsorship?&rdquo;</p>
-      </div>
-      <div className="mb-4 flex h-10 items-center gap-[3px] rounded-xl border border-white/[0.06] bg-white/[0.015] px-3">
-        <Mic className="mr-2 h-3.5 w-3.5 shrink-0 text-slate-400" />
-        {Array.from({ length: 34 }, (_, i) => (
-          <motion.span
-            key={i}
-            className="w-[3px] rounded-full bg-indigo-400/70"
-            initial={{ height: 4 }}
-            animate={run ? { height: [4, 6 + ((i * 7) % 18), 4] } : { height: 6 + ((i * 7) % 18) }}
-            transition={run ? { duration: 0.9, repeat: 2, delay: (i % 8) * 0.05, ease: "easeInOut" } : undefined}
-          />
-        ))}
-      </div>
-      <motion.div
-        initial={run ? { opacity: 0, y: 8 } : false}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.1, duration: 0.4, ease: EASE }}
-        className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3.5"
-      >
-        <div className="mb-2 flex items-center justify-between">
-          <p className="flex items-center gap-1.5 text-[11.5px] font-semibold text-slate-200">
-            <Sparkles className="h-3.5 w-3.5 text-indigo-300" /> Feedback
-          </p>
-          <p className="text-[18px] font-extrabold tabular-nums text-white">
-            {score}
-            <span className="text-[11px] font-semibold text-slate-500">/100</span>
-          </p>
-        </div>
-        <p className="text-[12px] leading-relaxed text-slate-300">
-          Clear and calm. You named OPT, your dates and the STEM extension in one breath. Next: lead with the role, then the status.
-        </p>
-      </motion.div>
-    </motion.div>
+    </>
   );
 }
