@@ -28,7 +28,6 @@ const FACTS = [
     bar: "from-amber-500 to-yellow-300",
     card: "border-amber-400/20 bg-amber-400/[0.04]",
     divider: "bg-amber-400/30",
-    width: "60%",
   },
   {
     stat: "150",
@@ -38,7 +37,6 @@ const FACTS = [
     bar: "from-orange-500 to-amber-300",
     card: "border-orange-400/20 bg-orange-400/[0.04]",
     divider: "bg-orange-400/30",
-    width: "100%",
   },
   {
     stat: "I-983",
@@ -48,7 +46,6 @@ const FACTS = [
     bar: "from-rose-500 to-pink-400",
     card: "border-rose-400/20 bg-rose-400/[0.04]",
     divider: "bg-rose-400/30",
-    width: "75%",
   },
   {
     stat: "H-1B",
@@ -58,7 +55,6 @@ const FACTS = [
     bar: "from-red-500 to-rose-400",
     card: "border-red-400/20 bg-red-400/[0.04]",
     divider: "bg-red-400/30",
-    width: "90%",
   },
 ];
 
@@ -85,23 +81,25 @@ export default function ProblemSection() {
         <StaggerChildren className="space-y-3">
           {FACTS.map((f, i) => (
             <StaggerItem key={f.stat}>
-              <div className={`flex items-center gap-5 rounded-2xl border p-5 ${f.card}`}>
-                <div className="w-24 flex-shrink-0 text-right">
+              <div className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border p-5 pl-6 sm:flex-row sm:items-center sm:gap-5 sm:pl-7 ${f.card}`}>
+                {/* An accent stripe in the fact's colour, drawn top to bottom
+                    on reveal. It marks the rule; it is not a measure, so it
+                    has no length to misread. */}
+                <motion.span
+                  aria-hidden="true"
+                  initial={{ scaleY: 0 }}
+                  whileInView={{ scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.25 + i * 0.12, duration: 0.6, ease: "easeOut" }}
+                  className={`absolute inset-y-0 left-0 w-1 origin-top bg-gradient-to-b ${f.bar}`}
+                />
+                <div className="flex-shrink-0 sm:w-24 sm:text-right">
                   <span className={`text-2xl font-black tracking-tight sm:text-3xl ${f.color}`}>{f.stat}</span>
                   {f.unit && <span className="ml-1 text-xs font-semibold text-slate-500">{f.unit}</span>}
                 </div>
-                <div className={`h-10 w-px flex-shrink-0 ${f.divider}`} />
+                <div className={`hidden h-10 w-px flex-shrink-0 sm:block ${f.divider}`} />
                 <div className="min-w-0 flex-1">
-                  <p className="mb-2.5 text-[15px] leading-snug text-slate-200">{f.line}</p>
-                  <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: f.width }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + i * 0.12, duration: 0.8, ease: "easeOut" }}
-                      className={`h-full rounded-full bg-gradient-to-r ${f.bar}`}
-                    />
-                  </div>
+                  <p className="text-[15px] leading-snug text-slate-200">{f.line}</p>
                 </div>
               </div>
             </StaggerItem>

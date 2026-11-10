@@ -305,7 +305,7 @@ export default function AlternativePage({
             <SectionHead align="center" eyebrow="Side by side" title={`Preciprocal vs ${competitor}: feature comparison`} />
             <Reveal>
               {/* Scrolls sideways on small screens; from lg the wrapper stops clipping so the header row can stick under the navbar. */}
-              <div className="overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16] lg:overflow-visible">
+              <div className="relative overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16] lg:overflow-visible">
                 <table className="w-full min-w-[600px] border-separate border-spacing-0 text-left text-sm lg:min-w-0">
                   <caption className="sr-only">
                     Feature comparison of Preciprocal and {competitor}

@@ -57,9 +57,10 @@ function TabBar({
     const buttons = containerRef.current.querySelectorAll<HTMLButtonElement>('[data-tab-btn]');
     if (buttons[idx]) {
       const btn = buttons[idx];
-      const cr = containerRef.current.getBoundingClientRect();
-      const br = btn.getBoundingClientRect();
-      setIndicator({ left: br.left - cr.left, width: br.width });
+      // Layout offsets, not getBoundingClientRect: the tool-page frames zoom
+      // the preview (CSS zoom), and the rect comes back in zoomed pixels,
+      // which pushed the highlight past its tab.
+      setIndicator({ left: btn.offsetLeft, width: btn.offsetWidth });
     }
   }, [activeTab, tabs]);
 

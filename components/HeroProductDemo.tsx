@@ -625,7 +625,7 @@ export default function HeroProductDemo() {
   const overallProgress = totalAllSteps > 0 ? (completedSteps / totalAllSteps) * 100 : 0;
 
   return (
-    <section className="relative pb-20">
+    <section className="relative overflow-x-clip pb-20">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header, TextGenerate effect */}
