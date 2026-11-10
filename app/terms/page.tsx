@@ -147,6 +147,16 @@ You agree that you will NOT:
 We reserve the right to investigate and take appropriate legal action against anyone who, in our sole discretion, violates these provisions.`,
   },
   {
+    title: "Job insights, autofill, forwarded emails and interview practice",
+    content: `Job Insights: Reply rates, ghost-job warnings, funnel diagnoses and similar insights are estimates based on job postings and on the combined, anonymous results of Preciprocal users. They are for information only. They are not a guarantee of how any employer will respond, and you decide where and whether to apply.
+
+Autofill and Applications: Preciprocal fills application forms from the profile you provide. You are responsible for reviewing every application and submitting it yourself; we never submit an application for you. We do not answer demographic, work-authorization, citizenship, criminal-record or certification questions unless you have saved an answer, and you are responsible for making sure every answer you submit is true.
+
+Forwarded Emails: If you forward emails to your Preciprocal address, you authorize us to read them in order to update your job tracker. Only forward emails about your own job applications. We keep the subject line and what we found in it, not the email itself. You can change your address at any time, which stops us accepting mail sent to the old one.
+
+Interview Practice: Mock interviews are for preparation before an interview. Do not use Preciprocal to get help during a live interview or assessment where the employer has not allowed it.`,
+  },
+  {
     title: "Intellectual property and content ownership",
     content: `Your Content: You retain full ownership of all content you upload, submit, or transmit through the Service, including resumes, cover letters, interview recordings, and any other personal documents (**Your Content**). By submitting Your Content to the Service, you grant us a limited, non-exclusive, worldwide, royalty-free license to access, process, store, and use Your Content solely to the extent necessary to provide the Service to you. This license terminates when you delete Your Content or close your account, subject to any retention obligations under applicable law.
 
@@ -316,7 +326,7 @@ export default function TermsPage() {
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
               </p>
               <p className="mt-4 font-mono text-[12px] text-slate-400">
-                Last updated: October 11, 2026. Effective date: October 11, 2026.
+                Last updated: November 9, 2026. Effective date: November 9, 2026.
               </p>
             </>
           }

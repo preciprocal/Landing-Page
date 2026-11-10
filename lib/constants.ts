@@ -59,8 +59,8 @@ export const FOOTER_COLUMNS = [
     title: "Company",
     links: [
       { label: "About",   href: "/#features" },
-      { label: "Contact", href: "mailto:support@preciprocal.com" },
-      { label: "Support", href: "mailto:support@preciprocal.com" },
+      { label: "Contact", href: "/contact" },
+      { label: "Support", href: "/support" },
     ],
   },
 ] as const;

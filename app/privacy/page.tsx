@@ -151,6 +151,10 @@ Marketing With Your Permission: To publish approved testimonials and success sto
 
 Automated Scoring: To produce the scores, rankings and feedback the Service exists to provide, including resume scores against a job description, estimates of how your application compares with a wider applicant pool, and scoring of a mock interview across several dimensions. These are automated and are generated to inform you, not to make a decision about you. We do not use them to decide anything that affects your legal rights, we do not share them with employers, and no employer sees your account. You can ask us to review or explain any score by emailing support@preciprocal.com.
 
+Aggregated Job Insights: When you track applications, we combine their outcomes (for example, whether and how quickly a company replied) with those of other Preciprocal users to show reply rates for employers. These figures are counts across many people. We only show a company's figures once at least ten different users have applied there, we never show what happened to any one person's application, and we never share your individual applications with employers or anyone else.
+
+Forwarded Emails: If you forward emails about your job applications to your Preciprocal address, we read them only to update your job tracker. We keep the subject line and what we found in it, not the email itself. You can change your address at any time, which stops us accepting mail sent to the old one.
+
 Legal Compliance: To comply with applicable laws, regulations, legal processes, and governmental requests.
 
 Communications: To send you the service emails your account depends on, such as sign-up confirmation and email verification, onboarding guidance, password resets, security alerts, payment receipts and renewal reminders, allowance notifications, and correspondence about a refund you have requested, and, with your consent, to send product updates and promotional material. Section 5 sets out in full what we send and what you can opt out of.
@@ -408,7 +412,7 @@ export default function PrivacyPage() {
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
               </p>
               <p className="mt-4 font-mono text-[12px] text-slate-400">
-                Last updated: November 5, 2026. Effective date: November 5, 2026.
+                Last updated: November 9, 2026. Effective date: November 9, 2026.
               </p>
             </>
           }

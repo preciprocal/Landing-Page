@@ -240,9 +240,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/contact`,
-      lastModified: new Date("2026-06-01"),
+      lastModified: new Date("2026-11-09"),
       changeFrequency: "yearly",
       priority: 0.4,
+    },
+    {
+      url: `${SITE_URL}/support`,
+      lastModified: new Date("2026-11-09"),
+      changeFrequency: "monthly",
+      priority: 0.5,
     },
     // ── Alternatives / Comparison pages ─────────────────────────────────────
     // High commercial intent, searchers are in buying mode.
@@ -294,13 +300,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ── Legal ────────────────────────────────────────────────────────────────
     {
       url: `${SITE_URL}/privacy`,
-      lastModified: new Date("2026-01-15"),
+      lastModified: new Date("2026-11-09"),
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${SITE_URL}/terms`,
-      lastModified: new Date("2026-01-15"),
+      lastModified: new Date("2026-11-09"),
       changeFrequency: "yearly",
       priority: 0.2,
     },
@@ -375,7 +381,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const isAlternative = (u: string) => u.startsWith(`${SITE_URL}/alternatives`);
   const isLegalOrCorp = (u: string) =>
-    ["/privacy", "/terms", "/about", "/contact", "/roadmap", "/faq"].some(
+    ["/privacy", "/terms", "/about", "/contact", "/support", "/roadmap", "/faq"].some(
       (p) => u === `${SITE_URL}${p}`
     );
 

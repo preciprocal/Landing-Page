@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Contact Preciprocal: Support and Sales" },
+  title: { absolute: "Contact Preciprocal: Feedback, Partnerships and Press" },
   description:
-    "Questions, feedback, bug reports, or partnership enquiries. We read every email and respond within 24 hours on weekdays. Reach us at support@preciprocal.com.",
+    "Talk to the Preciprocal team: product ideas, feedback, university and career centre partnerships, and press. For account or billing help, see Support.",
   keywords: [
     "contact preciprocal",
     "preciprocal support",
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Contact Preciprocal",
     description:
-      "Questions or feedback? We read every email and respond within 24 hours on weekdays.",
+      "Product ideas, feedback, partnerships and press. We read every email.",
     url: "https://preciprocal.com/contact",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
@@ -23,6 +23,6 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact Preciprocal",
-    description: "Questions or feedback? We read every email and respond within 24 hours.",
+    description: "Product ideas, feedback, partnerships and press.",
   },
 };

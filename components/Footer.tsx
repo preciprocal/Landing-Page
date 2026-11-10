@@ -70,7 +70,7 @@ const FOOTER_COLUMNS = [
     links: [
       { label: "About",   href: "/about" },
       { label: "Contact", href: "/contact" },
-      { label: "Support", href: "mailto:support@preciprocal.com" },
+      { label: "Support", href: "/support" },
       { label: "Privacy", href: "/privacy" },
       { label: "Terms",   href: "/terms" },
     ],
