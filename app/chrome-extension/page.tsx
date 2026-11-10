@@ -61,7 +61,7 @@ const FAQS = [
   },
   {
     q: "What permissions does it need?",
-    a: "It reads the content of job pages you explicitly click the button on. It does not read your browsing history, does not run on pages you have not activated it on, and does not access your email or LinkedIn credentials.",
+    a: "It runs on job sites such as LinkedIn, Greenhouse, Lever and Workday, so it can add the save button and read the posting you are looking at. It does not read your browsing history, and it does not access your email or your LinkedIn password.",
   },
   {
     q: "Is the extension free?",

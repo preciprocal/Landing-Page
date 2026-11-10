@@ -69,7 +69,7 @@ const RESOURCES_GROUPS = [
   {
     group: "Interview & Outreach",
     items: [
-      { label: "AI Mock Interview",      href: "/ai-mock-interview",          sub: "Voice practice with a real panel" },
+      { label: "AI Mock Interview",      href: "/ai-mock-interview",          sub: "Voice practice with an AI panel" },
       { label: "Interview Study Planner",href: "/interview-study-planner",    sub: "A plan built to your date" },
       { label: "Interview Debrief",      href: "/interview-debrief",          sub: "Learn from every interview" },
       { label: "Cold Email Generator",   href: "/cold-email-generator",       sub: "Outreach that gets replies" },
@@ -96,7 +96,7 @@ const RESOURCES_GROUPS = [
 const FLAT_NAV = [
   // The audience the product is built around gets the first link.
   { label: "For OPT students", href: "/for/international-students" },
-  { label: "Features",     href: "/#features" },
+  { label: "Features",     href: "/features" },
   { label: "How it Works", href: "/how-it-works" },
   { label: "Pricing",      href: "/pricing" },
 ];

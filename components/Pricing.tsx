@@ -32,7 +32,7 @@ export default function Pricing() {
           <h2 className="text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-4">
             Invest in yourself.
             <br />
-            <span className="text-gradient">It pays back fast.</span>
+            <span className="text-gradient">Start free.</span>
           </h2>
           <p className="text-base text-slate-400 max-w-lg mx-auto">
             On OPT, a slow search costs you more than time. Everything you need to make each application count, for less than a coffee a week.

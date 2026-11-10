@@ -96,7 +96,7 @@ const FAQS = [
   },
   {
     q: "Is there a free plan?",
-    a: "Yes. The free tier includes 1 mock interview per month, no credit card required. Students with a .edu email get 1 month of Pro free (3 mock interviews a month). Pro is $9.99/month, and if you land a job while subscribed we refund that month.",
+    a: "Yes. The free tier includes 1 mock interview per month, no credit card required. Students with a .edu email get 1 month of Pro free (3 mock interviews a month). Pro is $9.99/month, and if you land the job while subscribed and share your story, that month is on us.",
   },
   {
     q: "Do I need a webcam?",
@@ -135,7 +135,7 @@ const STEPS = [
   {
     number: "01",
     title: "Pick your role and company",
-    description: "Choose from 40+ roles and 20+ target companies. The AI tailors its questions to match that company's actual interview style, including Google's Googleyness rounds, Amazon's Leadership Principles, Stripe's systems thinking.",
+    description: "Choose from 40+ roles and 50+ target companies. The AI tailors its questions to match that company's actual interview style, including Google's Googleyness rounds, Amazon's Leadership Principles, Stripe's systems thinking.",
   },
   {
     number: "02",
@@ -328,7 +328,7 @@ export default function AIMockInterviewPage() {
                   href="/interview-prep"
                   className="group inline-flex min-h-[40px] items-center gap-1 rounded-lg border border-accent/30 bg-accent/[0.06] px-3.5 text-sm font-medium text-accent-soft transition-colors hover:border-accent/50 hover:text-white"
                 >
-                  All 20+ companies <Chevron />
+                  All 50+ companies <Chevron />
                 </Link>
               </div>
             </Fold>

@@ -163,7 +163,7 @@ export default function BlogIndexPage() {
                 <Link href="/interview-questions" className="group flex items-center justify-between gap-3 py-4 transition-colors">
                   <span>
                     <span className="block font-semibold text-white">Interview questions by role</span>
-                    <span className="block text-sm text-slate-500">Q&amp;As for 20+ roles with detailed answers</span>
+                    <span className="block text-sm text-slate-500">Q&amp;As for 40+ roles with detailed answers</span>
                   </span>
                   <Chevron className="text-slate-600 group-hover:text-slate-300" />
                 </Link>

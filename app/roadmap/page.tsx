@@ -142,7 +142,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Ghost Job Detector",
     description:
-      "Before you spend an hour applying, know if the job is real. We cross-reference posting age, company hiring patterns, LinkedIn headcount changes, and recruiter activity to flag roles that are likely expired, fake, or already filled internally. 67% of candidates have suspected a posting was misleading. Now you'll know before you apply.",
+      "Before you spend an hour applying, know if the job is real. We cross-reference posting age, company hiring patterns, LinkedIn headcount changes, and recruiter activity to flag roles that are likely expired, fake, or already filled internally. Now you'll know before you apply.",
     status: "in-progress",
     tag: "New Tool",
   },
@@ -163,7 +163,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "AI screening interview simulator",
     description:
-      "Practice against the actual AI screening tools companies use, including HireVue-style video interviews with question prediction based on the role. Over 90% of employers now use automated screening. Most candidates have never practiced for it.",
+      "Practice against the actual AI screening tools companies use, including HireVue-style video interviews with question prediction based on the role. Most candidates have never practiced for it.",
     status: "planned",
     tag: "Interviews",
   },
@@ -184,7 +184,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Company-specific interview prep packs",
     description:
-      "Curated question banks, values frameworks, and interview formats for specific target companies, expanded beyond the current 40+.",
+      "Curated question banks, values frameworks, and interview formats for specific target companies, expanded beyond the current 50+.",
     status: "planned",
     tag: "Interviews",
   },

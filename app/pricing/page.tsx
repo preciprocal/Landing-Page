@@ -100,7 +100,7 @@ function PricingJsonLd() {
     "@id": "https://preciprocal.com/pricing#webpage",
     url: "https://preciprocal.com/pricing",
     name: "Preciprocal Pricing, Start Free, Land Faster",
-    description: "Free plan available. Pro at $9.99/mo. Land a job while subscribed and we refund that month.",
+    description: "Free plan available. Pro at $9.99/mo. Land the job while subscribed, share your story, and that month is on us.",
     isPartOf: { "@id": "https://preciprocal.com/#website" },
     about: { "@id": "https://preciprocal.com/#software" },
     inLanguage: "en-US",
@@ -180,7 +180,7 @@ export default function PricingPage() {
               <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-[42px]">
                 Invest in yourself.
                 <br />
-                <span className="text-gradient">It pays back fast.</span>
+                <span className="text-gradient">Start free.</span>
               </h1>
               <p className="mx-auto max-w-lg text-base text-slate-400">
                 On OPT, a slow search costs you more than time. Everything you need to make each

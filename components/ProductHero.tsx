@@ -41,6 +41,21 @@ const PREVIEWS: Record<ChapterId, Preview> = {
   debrief: dynamic(() => import("@/components/examples/DebriefPreview").then((m) => m.DebriefExamplePreview), { ssr: false, loading: Loading }),
 };
 
+/**
+ * The pill in the frame's top bar names the tool. The chapter titles and
+ * completed labels ("Fix His Resume", "$165K offer") belong to the homepage
+ * story and read as nonsense on a tool page that never introduces Arjun.
+ */
+const TOOL_LABEL: Record<ChapterId, string> = {
+  resume: "Resume analysis",
+  "cover-letter": "Cover letter",
+  "career-tools": "LinkedIn and outreach",
+  "job-tracker": "Job tracker",
+  planner: "Study planner",
+  interview: "Mock interview",
+  debrief: "Interview debrief",
+};
+
 /** How long the finished state holds before the chapter replays. */
 const HOLD_MS = 7000;
 
@@ -170,7 +185,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
                         done ? "bg-emerald-400/10 text-emerald-300" : "bg-accent/10 text-accent-soft"
                       }`}
                     >
-                      {done ? data.completedLabel : data.title}
+                      {done ? `${TOOL_LABEL[chapter]} · example` : TOOL_LABEL[chapter]}
                     </motion.span>
                   </AnimatePresence>
                 </div>

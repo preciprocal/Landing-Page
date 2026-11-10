@@ -43,7 +43,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Practice volume",
-      "ours": "30 mocks/mo on Pro, 3 on free",
+      "ours": "3 mocks/mo on Pro, 1 on free",
       "theirs": "Per session, typically a handful"
     },
     {
@@ -93,7 +93,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Price",
-      "ours": "$9.99/mo, unlimited-ish practice",
+      "ours": "$9.99/mo for Pro",
       "theirs": "About $179 to $339 per session"
     },
     {
@@ -106,11 +106,11 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Be clear about the trade-off",
-      "body": "A real engineer from your target company giving you live feedback is higher fidelity than any AI, and we are not going to claim otherwise. What AI gives you is volume and cost: you can run twenty mocks in a fortnight for less than a tenth of one human session. Most candidates need reps more than they need a single expert opinion."
+      "body": "A real engineer from your target company giving you live feedback is higher fidelity than any AI, and we are not going to claim otherwise. What AI gives you is cost and convenience: a month of Pro, with 3 full mock interviews, costs a small fraction of one human session. Most candidates need reps more than they need a single expert opinion."
     },
     {
       "title": "Per-session pricing does not fit a long search",
-      "body": "Third-party reports put interviewing.io sessions at roughly $179 to $339 depending on interviewer seniority, with multi-session packages running into the thousands. Note that they do not publish prices publicly, so treat those as indicative. Preciprocal Pro is $9.99 a month with 30 mocks included."
+      "body": "Third-party reports put interviewing.io sessions at roughly $179 to $339 depending on interviewer seniority, with multi-session packages running into the thousands. Note that they do not publish prices publicly, so treat those as indicative. Preciprocal Pro is $9.99 a month with 3 mock interviews included."
     },
     {
       "title": "Coverage beyond technical engineering loops",

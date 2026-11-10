@@ -121,8 +121,8 @@ function DepthCard() {
             <Target className="w-4 h-4 text-white" />
           </div>
           <div>
-            <h3 className="text-[14px] font-bold text-white">Four-dimensional resume score</h3>
-            <p className="text-[10px] text-slate-500">Every resume scored across 4 criteria, out of 100</p>
+            <h3 className="text-[14px] font-bold text-white">A resume score out of 100</h3>
+            <p className="text-[10px] text-slate-500">Scored on content, ATS fit, skills, structure and tone</p>
           </div>
         </div>
 
@@ -160,7 +160,7 @@ function DepthCard() {
 function CoverageCard() {
   const features = [
     { icon: FileText,    label: "Resume analysis", sub: "5 analysis types" },
-    { icon: Mic,         label: "Mock interviews",  sub: "4-person AI panel" },
+    { icon: Mic,         label: "Mock interviews",  sub: "A voice AI panel" },
     { icon: Sparkles,    label: "Cover letters",    sub: "Company-researched" },
     { icon: Brain,       label: "Study planner",    sub: "AI-generated schedule" },
     { icon: Briefcase,   label: "Job tracker",      sub: "Kanban + contacts" },
@@ -232,7 +232,7 @@ function NotChatbotCard() {
     <Card delay={0}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Not a chatbot.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">A full 4-person interview panel: HR screener, technical lead, hiring manager, and you. Just like real interviews at top companies.</p>
+        <p className="text-[10px] text-slate-500 mb-3">A voice panel: an HR interviewer and a technical lead ask the questions and follow up, with a third panelist observing. It feels like the real thing.</p>
 
         <div className="flex items-center gap-2 flex-1 justify-center">
           {panelMembers.map((m, i) => (
@@ -302,14 +302,14 @@ function StudentPriceCard() {
     <Card delay={0.2}>
       <div className="p-5 h-full flex flex-col">
         <h3 className="text-[13px] font-bold text-white mb-1">Built for students.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">Premium career tools usually cost $50-200/month. We built this for people who are still eating ramen.</p>
+        <p className="text-[10px] text-slate-500 mb-3">Built for students on OPT, priced for a student budget. Start free, and Pro is $9.99 a month.</p>
 
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="flex items-baseline gap-1">
             <span className="text-[36px] font-extrabold text-white leading-none">$9.99</span>
             <span className="text-[12px] text-slate-500">/mo</span>
           </div>
-          <p className="text-[10px] text-slate-400 font-medium mt-1">All 11 tools included</p>
+          <p className="text-[10px] text-slate-400 font-medium mt-1">Every tool included</p>
 
           <div className="flex items-center gap-2 mt-4 px-3 py-1.5 bg-indigo-500/[0.06] border border-indigo-500/15 rounded-lg">
             <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
@@ -319,7 +319,7 @@ function StudentPriceCard() {
 
         <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
           <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[8px] text-slate-500">Land a job while subscribed and we refund that month</span>
+          <span className="text-[8px] text-slate-500">Land the job while subscribed, share your story, and that month is on us</span>
         </div>
       </div>
     </Card>
@@ -371,14 +371,14 @@ function AINotGenericCard() {
 
 function TrustBar() {
   const items = [
-    { icon: Lock,              label: "End-to-end encrypted",   sub: "Your resume data never shared or sold" },
+    { icon: Lock,              label: "Encrypted",              sub: "In transit and at rest. Never sold." },
     { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
     { icon: Globe,             label: "Works everywhere",        sub: "Web app, no downloads, any device" },
     // ⚠️  Refund wording: see REFUND_POLICY in lib/pricing.ts. Do not restate
     // the retired "30-day money-back, no questions asked" claim here.
     // Original read "Land an interview in 30 days or refund", that implies
     // a guaranteed outcome we cannot promise and creates legal liability.
-    { icon: Award,             label: "Success Refund",          sub: "Land a job while subscribed, we refund that month" },
+    { icon: Award,             label: "Success Refund",          sub: "Land the job while subscribed, share your story, and that month is on us" },
   ];
 
   return (

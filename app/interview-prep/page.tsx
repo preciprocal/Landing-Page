@@ -177,7 +177,7 @@ export default function InterviewPrepIndexPage() {
                 <div className="max-w-2xl">
                   <h2 className="text-[17px] font-semibold tracking-tight text-white">Looking for role-specific questions?</h2>
                   <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
-                    We also have detailed Q&A guides for 20+ roles, including software engineer, PM, data scientist, and more.
+                    We also have detailed Q&A guides for 40+ roles, including software engineer, PM, data scientist, and more.
                   </p>
                 </div>
                 <Link

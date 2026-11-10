@@ -61,7 +61,7 @@ export const metadata: Metadata = {
 const COMPARISON_ROWS = [
   { feature: "AI Mock Interviews",        preciprocal: "✅ Multi-agent panel (HR + Tech + HM)",    finalRound: "✅ Yes" },
   { feature: "Interview scoring",          preciprocal: "✅ 5 dimensions with debrief",              finalRound: "✅ Yes" },
-  { feature: "Company-specific prep",     preciprocal: "✅ 20+ companies",                           finalRound: "✅ Yes" },
+  { feature: "Company-specific prep",     preciprocal: "✅ 50+ companies",                           finalRound: "✅ Yes" },
   { feature: "ATS Resume Checker",        preciprocal: "✅ Full ATS scoring + fixes",                finalRound: "❌ Not included" },
   { feature: "Resume editor",             preciprocal: "✅ PDF + Word export",                       finalRound: "❌ Not included" },
   { feature: "Cover Letter Generator",    preciprocal: "✅ AI-written, company-researched",          finalRound: "❌ Not included" },
@@ -72,7 +72,7 @@ const COMPARISON_ROWS = [
   { feature: "Free plan",                 preciprocal: "✅ 1 mock interview/mo, no card",           finalRound: "✅ Limited free tier" },
   { feature: "Starting price",            preciprocal: "✅ $9.99/mo (Pro)",                          finalRound: "⚠️ Higher pricing tiers" },
   { feature: "Student discount",          preciprocal: "✅ 1 month Pro free with .edu email",        finalRound: "❌ No student-specific plan" },
-  { feature: "Primary audience",          preciprocal: "✅ Students & new grads",                    finalRound: "⚠️ General / enterprise-focused" },
+  { feature: "Primary audience",          preciprocal: "✅ F-1 students on OPT, students, new grads",                    finalRound: "⚠️ General / enterprise-focused" },
 ];
 
 const FAQS = [
@@ -185,7 +185,7 @@ export default function FinalRoundAIAlternativePage() {
         <section aria-label="Why students choose Preciprocal" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead align="center" eyebrow="Why switch" title="Why students and new grads choose Preciprocal" className="mb-12" />
+              <SectionHead align="center" eyebrow="Why switch" title="Why job seekers on OPT choose Preciprocal" className="mb-12" />
             </Reveal>
             <ReasonList
               items={[
@@ -199,7 +199,7 @@ export default function FinalRoundAIAlternativePage() {
                 },
                 {
                   title: "Honest pricing for students",
-                  body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land a job while subscribed and we refund that month.",
+                  body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land the job while subscribed, share your story, and that month is on us.",
                 },
                 {
                   title: "ATS resume scoring included",

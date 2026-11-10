@@ -372,7 +372,7 @@ export default function AlternativePage({
         {/* Reasons: an open list, one short paragraph each */}
         <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
           <div className={INNER}>
-            <SectionHead align="center" eyebrow="Why switch" title={`Why students and new grads choose Preciprocal over ${competitor}`} className="mb-12" />
+            <SectionHead align="center" eyebrow="Why switch" title={`Why job seekers on OPT choose Preciprocal over ${competitor}`} className="mb-12" />
             <ReasonList items={reasons} />
           </div>
         </section>

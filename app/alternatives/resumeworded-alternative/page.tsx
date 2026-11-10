@@ -74,11 +74,11 @@ const COMPARISON_ROWS = [
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",           resumeWorded: "❌ Not included" },
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        resumeWorded: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",            resumeWorded: "❌ Not included" },
-  { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",         resumeWorded: "✅ LinkedIn grader" },
+  { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite",         resumeWorded: "✅ LinkedIn grader" },
   { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                         resumeWorded: "⚠️ $49/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",       resumeWorded: "❌ No student plan" },
-  { feature: "Primary audience",            preciprocal: "✅ Students & new grads",                   resumeWorded: "⚠️ General professionals" },
+  { feature: "Primary audience",            preciprocal: "✅ F-1 students on OPT, students, new grads",                   resumeWorded: "⚠️ General professionals" },
 ];
 
 const FAQS = [
@@ -210,7 +210,7 @@ export default function ResumeWordedAlternativePage() {
         <section aria-label="Why students choose Preciprocal over Resume Worded" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead align="center" eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Resume Worded" className="mb-12" />
+              <SectionHead align="center" eyebrow="Why switch" title="Why job seekers on OPT choose Preciprocal over Resume Worded" className="mb-12" />
             </Reveal>
             <ReasonList
               items={[

@@ -302,7 +302,7 @@ export function ResumeWriterTab({ onHighlight, onApplyFix }: ResumeWriterTabProp
                     </div>
                     <div className="p-1.5 bg-white/[0.02] border border-white/[0.06] rounded flex items-start gap-1.5">
                       <Zap className="w-2.5 h-2.5 text-amber-400 flex-shrink-0 mt-0.5" />
-                      <p className="text-[7px] text-slate-500">{win.impact}</p>
+                      
                     </div>
                     <div className="flex gap-1.5">
                       <button onClick={() => handleApply(win.current, win.improved, `qw-${win.id}`, win.targetText)} disabled={isApplying}

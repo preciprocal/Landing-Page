@@ -345,7 +345,7 @@ export default function CoverLetterGeneratorPage() {
               body={
                 <p>
                   5 cover letters per month on the free plan. Students with a .edu email get 1 month of
-                  Pro free (30 cover letters a month). No credit card required.
+                  Pro free (30 cover letters a month). A card is needed for the trial, and nothing is charged for 30 days.
                 </p>
               }
               action={

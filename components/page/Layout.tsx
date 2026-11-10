@@ -169,7 +169,7 @@ export function SectionHead({
 export const TRUST_POINTS = [
   "Free plan, no credit card",
   ".edu email gets a month of Pro free",
-  "Land a job while subscribed, we refund that month",
+  "Land the job while subscribed, share your story, and that month is on us",
 ] as const;
 
 export function TrustRow({ className = "", align = "start" }: { className?: string; align?: "start" | "center" | "end" }) {

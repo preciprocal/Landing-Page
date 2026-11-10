@@ -71,11 +71,11 @@ const COMPARISON_ROWS = [
   { feature: "Chrome Extension",            preciprocal: "✅ 1-click import from LinkedIn",            jobscan: "✅ Yes" },
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        jobscan: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",             jobscan: "❌ Not included" },
-  { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite (Premium)",          jobscan: "✅ LinkedIn scanning" },
+  { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite",          jobscan: "✅ LinkedIn scanning" },
   { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                          jobscan: "⚠️ $49.95/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",        jobscan: "❌ No student plan" },
-  { feature: "Primary audience",            preciprocal: "✅ Students & new grads",                    jobscan: "⚠️ General job seekers" },
+  { feature: "Primary audience",            preciprocal: "✅ F-1 students on OPT, students, new grads",                    jobscan: "⚠️ General job seekers" },
 ];
 
 const FAQS = [
@@ -206,7 +206,7 @@ export default function JobscanAlternativePage() {
         <section aria-label="Why students choose Preciprocal over Jobscan" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <Reveal>
-              <SectionHead align="center" eyebrow="Why switch" title="Why students and new grads choose Preciprocal over Jobscan" className="mb-12" />
+              <SectionHead align="center" eyebrow="Why switch" title="Why job seekers on OPT choose Preciprocal over Jobscan" className="mb-12" />
             </Reveal>
             <ReasonList
               items={[

@@ -44,7 +44,7 @@ export default function FinalCTA() {
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
           className="text-lg text-slate-400 mb-10 leading-relaxed max-w-xl mx-auto">
-          Start with whatever is worrying you most. It is free, and it takes a minute.
+          Free to start. Set up in a minute, and use only the tools you need.
         </motion.p>
 
 
