@@ -626,7 +626,7 @@ export default function HeroProductDemo() {
 
   return (
     <section className="relative pb-20">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
 
         {/* Header, TextGenerate effect */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -634,7 +634,7 @@ export default function HeroProductDemo() {
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-2">
             <TextGenerate text="See Preciprocal in action" delay={0.1} />
           </h2>
-          <p className="text-[14px] text-slate-400 max-w-lg mx-auto">
+          <p className="text-[14px] text-slate-400 max-w-2xl mx-auto">
             <TextGenerate text="Follow Arjun, an F-1 student with 90 days on OPT, from 347 applications to an offer. An illustrative story, played on the real product." delay={0.6} />
           </p>
         </motion.div>
@@ -718,7 +718,7 @@ export default function HeroProductDemo() {
                   <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.98 }}
                     className="flex items-center justify-center relative" style={{ minHeight: 480 }}>
                     <SparklesField count={24} />
-                    <div className="max-w-md text-center px-6 relative z-10">
+                    <div className="max-w-2xl text-center px-6 relative z-10">
                       <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, type: "spring", damping: 15 }}
                         className="w-14 h-14 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/20">
@@ -740,7 +740,7 @@ export default function HeroProductDemo() {
                         <PulseHighlight active={true}>
                           <button onClick={handleBeginStory}
                             className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl text-[14px] font-semibold text-white
-                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)] animate-pulse
+                              bg-purple-600 border border-purple-500 shadow-[0_0_12px_rgba(139,92,246,0.4)]
                               hover:-translate-y-0.5 hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all duration-300 cursor-pointer">
                             View the Job Listing
                             <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
