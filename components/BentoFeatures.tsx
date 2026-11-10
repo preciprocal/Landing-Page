@@ -2,12 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Zap, Shield, Target, Users, TrendingUp, Clock,
-  CheckCircle2, ChevronRight, Lock, Star,
-  BarChart3, Brain, Mic, FileText, Sparkles, Award,
-  Globe, Briefcase, GraduationCap, MonitorSmartphone,
-} from "lucide-react";
+import { Zap, Shield, Target, Users, TrendingUp, CheckCircle2, BarChart3, Brain, Mic, FileText, Sparkles, Briefcase } from "lucide-react";
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // SHARED, Card with cursor-follow glow
@@ -297,34 +292,6 @@ function BrutallyHonestCard() {
 // price" crossed out is a deceptive pricing pattern and illegal in several
 // jurisdictions (UK CPR 2008, EU Consumer Rights Directive, US FTC Act).
 
-function StudentPriceCard() {
-  return (
-    <Card delay={0.2}>
-      <div className="p-5 h-full flex flex-col">
-        <h3 className="text-[13px] font-bold text-white mb-1">Built for students.</h3>
-        <p className="text-[10px] text-slate-500 mb-3">Premium career tools usually cost $50-200/month. We built this for people who are still eating ramen.</p>
-
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <div className="flex items-baseline gap-1">
-            <span className="text-[36px] font-extrabold text-white leading-none">$9.99</span>
-            <span className="text-[12px] text-slate-500">/mo</span>
-          </div>
-          <p className="text-[10px] text-slate-400 font-medium mt-1">All 11 tools included</p>
-
-          <div className="flex items-center gap-2 mt-4 px-3 py-1.5 bg-indigo-500/[0.06] border border-indigo-500/15 rounded-lg">
-            <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="text-[9px] text-indigo-300 font-medium">.edu email? First month free</span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
-          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[8px] text-slate-500">Land a job while subscribed and we refund that month</span>
-        </div>
-      </div>
-    </Card>
-  );
-}
 
 function AINotGenericCard() {
   const [step, setStep] = useState(0);
@@ -369,47 +336,6 @@ function AINotGenericCard() {
 // ROW 3, TRUST BAR (full width)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-function TrustBar() {
-  const items = [
-    { icon: Lock,              label: "End-to-end encrypted",   sub: "Your resume data never shared or sold" },
-    { icon: MonitorSmartphone, label: "Chrome extension",        sub: "One-click import from any job board" },
-    { icon: Globe,             label: "Works everywhere",        sub: "Web app, no downloads, any device" },
-    // ⚠️  Refund wording: see REFUND_POLICY in lib/pricing.ts. Do not restate
-    // the retired "30-day money-back, no questions asked" claim here.
-    // Original read "Land an interview in 30 days or refund", that implies
-    // a guaranteed outcome we cannot promise and creates legal liability.
-    { icon: Award,             label: "Success Refund",          sub: "Land a job while subscribed, we refund that month" },
-  ];
-
-  return (
-    <Card className="md:col-span-full" delay={0.1}>
-      <div className="p-5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {items.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div key={item.label}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + i * 0.1 }}
-                className="flex items-center gap-3 p-3 bg-white/[0.02] border border-white/[0.05] rounded-xl"
-              >
-                <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.06] flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4 text-slate-400" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold text-white">{item.label}</p>
-                  <p className="text-[8px] text-slate-500">{item.sub}</p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </Card>
-  );
-}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // MAIN EXPORT
@@ -442,16 +368,12 @@ export default function BentoFeatures() {
           <CoverageCard />
         </div>
 
-        {/* Row 2: Differentiators, 4 equal cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+        {/* Row 2: Differentiators, 3 equal cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <NotChatbotCard />
           <BrutallyHonestCard />
-          <StudentPriceCard />
           <AINotGenericCard />
         </div>
-
-        {/* Row 3: Trust bar */}
-        <TrustBar />
       </div>
     </section>
   );

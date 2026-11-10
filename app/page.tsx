@@ -14,14 +14,13 @@
 
 import type { Metadata } from "next";
 import { WebSiteJsonLd, FAQJsonLd } from "@/components/JsonLd";
+import { LANDING_FAQS } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import LogoBar from "@/components/LogoBar";
 import SocialProofStrip from "@/components/SocialProofStrip";
 import ProblemSection from "@/components/ProblemSection";
 import BentoFeatures from "@/components/BentoFeatures";
-import HowItWorks from "@/components/HowItWorks";
-import ComparisonTable from "@/components/ComparisonTable";
 import Testimonials from "@/components/Testimonials";
 import Pricing from "@/components/Pricing";
 import FAQSection from "@/components/FAQSection";
@@ -29,7 +28,6 @@ import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import ScrollToast from "@/components/ScrollToast";
 import HeroProductDemo from "@/components/HeroProductDemo";
-import ChromeExtensionBanner from "@/components/ChromeExtensionBanner";
 import FreeToolsStrip from "@/components/FreeToolsStrip";
 
 export const metadata: Metadata = {
@@ -98,7 +96,7 @@ export default function Home() {
       {/* FAQJsonLd belongs on the homepage only - moved from layout.tsx    */}
       {/* Having it in layout was injecting homepage FAQ schema into every  */}
       {/* page on the site, causing Search Console schema validation errors */}
-      <FAQJsonLd />
+      <FAQJsonLd items={LANDING_FAQS} />
 
       <Navbar />
 
@@ -123,26 +121,11 @@ export default function Home() {
           <BentoFeatures />
         </section>
 
-        {/* 6. Process - 3 steps */}
-        <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" aria-label="How Preciprocal works">
-          <HowItWorks />
-        </section>
-
         {/* 6b. Free tools and guide hubs - a no-account way in, and the
             homepage's only contextual internal links. */}
         <section data-section="free-tools" data-section-name="Free tools" aria-label="Free tools and guides">
           <FreeToolsStrip />
         </section>
-
-        {/* 7. Differentiation - comparison table */}
-        <section data-section="comparison" data-section-name="Comparison table" aria-label="Competitor comparison">
-          <ComparisonTable />
-        </section>
-
-        {/* 8. Chrome Extension */}
-        <div data-section="chrome-extension" data-section-name="Chrome extension">
-          <ChromeExtensionBanner />
-        </div>
 
         {/* 9. Pricing */}
         <section id="pricing" data-section="pricing" data-section-name="Pricing" aria-label="Pricing plans">

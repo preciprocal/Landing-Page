@@ -144,6 +144,9 @@ export default function ToolPage({
   bottomBody,
 }: ToolPageProps) {
   const signUpUrl = `${APP_URL}/sign-up?tool=${ctaTool}`;
+  // Five questions at most: the ones that decide a sign-up. The schema below
+  // uses the same list, so search results match what the page shows.
+  const shownFaqs = faqs.slice(0, 5);
 
   return (
     <>
@@ -264,7 +267,7 @@ export default function ToolPage({
                 __html: JSON.stringify({
                   "@context": "https://schema.org",
                   "@type": "FAQPage",
-                  mainEntity: faqs.map(({ q, a }) => ({
+                  mainEntity: shownFaqs.map(({ q, a }) => ({
                     "@type": "Question",
                     name: q,
                     acceptedAnswer: { "@type": "Answer", text: a },
@@ -285,7 +288,7 @@ export default function ToolPage({
                 </p>
               </div>
 
-              <FaqList items={faqs} />
+              <FaqList items={shownFaqs} />
             </div>
           </section>
 

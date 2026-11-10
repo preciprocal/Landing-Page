@@ -162,11 +162,12 @@ export function SoftwareAppJsonLd() {
   );
 }
 
-export function FAQJsonLd() {
+/** FAQPage schema. Pass the questions the page actually shows; Google expects them to match. */
+export function FAQJsonLd({ items = FAQS }: { items?: readonly { q: string; a: string }[] } = {}) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: FAQS.map((faq) => ({
+    mainEntity: items.map((faq) => ({
       "@type": "Question",
       name: faq.q,
       acceptedAnswer: { "@type": "Answer", text: faq.a },

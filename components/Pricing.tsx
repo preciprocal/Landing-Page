@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CheckIcon } from "@/components/Icons";
 import RefundPolicy from "@/components/RefundPolicy";
 import { APP_URL } from "@/lib/constants";
@@ -18,7 +17,6 @@ import {
   MagneticHover,
   GlowDivider,
 } from "@/components/LandingAnimations";
-import Chevron from "@/components/Chevron";
 
 
 export default function Pricing() {
@@ -109,13 +107,6 @@ export default function Pricing() {
           required; nothing is charged for 30 days and you can cancel any time.
         </p>
 
-        {/* FAQ link, catches hesitant buyers */}
-        <p className="text-center text-[12px] text-slate-700 mt-3">
-          Have questions before subscribing?{" "}
-          <a href="/faq" className="text-indigo-400 hover:text-indigo-300 transition-colors font-medium">
-            Read our FAQ <Chevron />
-          </a>
-        </p>
       </div>
     </section>
   );

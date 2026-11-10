@@ -38,15 +38,10 @@ export default function FinalCTA() {
 
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-lg text-slate-400 mb-4 leading-relaxed max-w-xl mx-auto">
-          Start with the thing worrying you most: the resume nobody answers, the interview you cannot predict, or the days you keep counting. It is free to start, and it takes a minute.
+          className="text-lg text-slate-400 mb-10 leading-relaxed max-w-xl mx-auto">
+          Start with whatever is worrying you most. It is free, and it takes a minute.
         </motion.p>
 
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-sm text-emerald-400 font-medium mb-10">
-          Land a job while you&apos;re subscribed and we&apos;ll refund that month.
-        </motion.p>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
