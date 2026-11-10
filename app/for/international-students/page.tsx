@@ -105,7 +105,7 @@ export default function InternationalStudentsPage() {
     <ToolPage
       breadcrumbName="For International Students"
       canonicalPath="/for/international-students"
-      accent="sky"
+      accent="indigo"
       demo="resume"
       heroScene={<OptJourneyAd />}
       badge="Built by students, for students"
