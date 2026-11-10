@@ -78,6 +78,53 @@ const STEPS = [
   { step: "3", title: "Every week: practise and track", body: "Mock interviews before real ones, and a pipeline that shows what is working." },
 ];
 
+/** The plan after a layoff, by phase. */
+const PLAN = {
+  title: "A plan for what comes next",
+  subtitle: "Four phases, from the first days to steady momentum. Each one has a single goal, so the search stays calm and focused.",
+  phases: [
+    {
+      when: "Days 1 to 3",
+      goal: "Sort the admin before you search.",
+      actions: [
+        "Read your severance and benefits paperwork before you sign anything.",
+        "Apply for unemployment benefits in your state.",
+        "If you are on a work visa, speak to an immigration attorney now about your timeline.",
+      ],
+    },
+    {
+      when: "Week 1",
+      goal: "A resume and profile that tell your latest story.",
+      actions: [
+        "Add your most recent wins while you still remember the numbers.",
+        "Update your LinkedIn headline and let recruiters know you are open to work.",
+        "Write a calm, two sentence answer for why you are looking.",
+      ],
+      tool: { label: "Free ATS checker", href: "/free-ats-checker" },
+    },
+    {
+      when: "Week 2 onwards",
+      goal: "A steady pipeline, not a burst.",
+      actions: [
+        "Tell your network exactly what role you want next.",
+        "Reach out to people at your top target companies.",
+        "Send tailored applications to those companies first.",
+      ],
+      tool: { label: "Cold email generator", href: "/cold-email-generator" },
+    },
+    {
+      when: "Every week",
+      goal: "Keep momentum, and see what is working.",
+      actions: [
+        "Track every application and follow up after a week.",
+        "Run a mock interview before each real one.",
+        "Look at which applications get replies, and do more of those.",
+      ],
+      tool: { label: "Job application tracker", href: "/job-application-tracker" },
+    },
+  ],
+};
+
 export default function LaidOffPage() {
   return (
     <ToolPage
@@ -96,6 +143,7 @@ export default function LaidOffPage() {
       featuresSubtitle="Everything you need to run a structured search, so it does not take over your whole day."
       features={FEATURES}
       steps={STEPS}
+      plan={PLAN}
       bodyTitle="A first-week plan after a layoff"
       faqTitle="Job search after a layoff FAQ"
       faqs={FAQS}

@@ -100,6 +100,58 @@ const VISA_GUIDES = [
   { label: "Employment-based green card pathways", href: "/blog/green-card-employment-based-pathways-2026" },
 ];
 
+/**
+ * The plan for an F-1 student, by phase of OPT. OPT facts match the OPT
+ * guides (filing window from /opt/how-to-apply, STEM requirements from
+ * /opt/stem-opt-extension), which are checked against USCIS and DHS.
+ */
+const PLAN = {
+  title: "A plan built around the OPT clock",
+  subtitle: "Four phases, from your last semester to the offer. Each one has a single goal, so you always know what to do this week.",
+  phases: [
+    {
+      when: "Before OPT starts",
+      goal: "Start the search before the clock does.",
+      actions: [
+        "File Form I-765 inside the window: no earlier than 90 days before your program ends and no later than 60 days after.",
+        "Build a target list of employers that have sponsored before, plus cap-exempt ones: universities and nonprofit research organisations.",
+        "Get one resume past the ATS for your target role, so every application starts from a strong base.",
+      ],
+      tool: { label: "Work out your filing dates", href: "/opt/how-to-apply" },
+    },
+    {
+      when: "Your first weeks on OPT",
+      goal: "Send fewer applications, and make each one count.",
+      actions: [
+        "Tailor your resume to every posting you apply to.",
+        "Reach a person at each company, a recruiter or someone on the team, instead of relying on the portal.",
+        "Track every application and follow up after a week.",
+      ],
+      tool: { label: "Job application tracker", href: "/job-application-tracker" },
+    },
+    {
+      when: "When interviews start",
+      goal: "Turn the few interviews you get into offers.",
+      actions: [
+        "Follow a day-by-day prep plan to the interview date.",
+        "Rehearse your work authorisation answer out loud: authorised now on OPT, what comes next, in two sentences.",
+        "Debrief after every real round, so the next one goes better.",
+      ],
+      tool: { label: "AI mock interview", href: "/ai-mock-interview" },
+    },
+    {
+      when: "Every week",
+      goal: "Know exactly where your count stands.",
+      actions: [
+        "Count your unemployment days against the 90 day limit, or 150 with the STEM extension.",
+        "If an offer is close and you plan to extend, check the employer is enrolled in E-Verify; STEM OPT needs it, plus a signed I-983.",
+        "Talk to your DSO well before you reach the limit.",
+      ],
+      tool: { label: "OPT day calculator", href: "/opt/unemployment-calculator" },
+    },
+  ],
+};
+
 export default function InternationalStudentsPage() {
   return (
     <ToolPage
@@ -119,6 +171,7 @@ export default function InternationalStudentsPage() {
       featuresSubtitle="The same tools every job seeker uses, aimed at the constraint you actually have: time."
       features={FEATURES}
       steps={STEPS}
+      plan={PLAN}
       bodyTitle="Why the international student job search is different"
       faqTitle="International student job search FAQ"
       faqs={FAQS}

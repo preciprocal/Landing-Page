@@ -78,6 +78,54 @@ const STEPS = [
   { step: "3", title: "Practise until it is easy", body: "Run mock interviews for your target role until the common questions stop being stressful." },
 ];
 
+/** The plan for a first job search, by phase. */
+const PLAN = {
+  title: "Your first job search, step by step",
+  subtitle: "Four phases, from a resume nobody reads to an offer. Each one has a single goal, so you always know what to do next.",
+  phases: [
+    {
+      when: "Now, before you apply",
+      goal: "A resume that gets read.",
+      actions: [
+        "Turn projects, internships and coursework into bullets that show results.",
+        "Check it against a real posting for the role you want, and fix what the ATS misses.",
+        "Update your LinkedIn headline and About so recruiters can find you.",
+      ],
+      tool: { label: "Free ATS checker", href: "/free-ats-checker" },
+    },
+    {
+      when: "Application season",
+      goal: "Fewer, better applications.",
+      actions: [
+        "Pick two or three role types and stop applying outside them.",
+        "Tailor your resume and cover letter to each posting.",
+        "Message an alum or recruiter at each company you apply to.",
+      ],
+      tool: { label: "Resume tailoring", href: "/resume-tailoring" },
+    },
+    {
+      when: "When interviews start",
+      goal: "Make sure your first real interview is not your first interview.",
+      actions: [
+        "See the questions the posting is likely to bring up.",
+        "Practise out loud with mock interviews until the common questions stop feeling stressful.",
+        "Send a short thank you email within a day of every interview.",
+      ],
+      tool: { label: "AI mock interview", href: "/ai-mock-interview" },
+    },
+    {
+      when: "Every week",
+      goal: "See what is working, and do more of it.",
+      actions: [
+        "Track every application and follow up after a week.",
+        "If replies are rare, fix the resume before sending more applications.",
+        "Keep a running list of the questions you were asked.",
+      ],
+      tool: { label: "Job application tracker", href: "/job-application-tracker" },
+    },
+  ],
+};
+
 export default function NewGradsPage() {
   return (
     <ToolPage
@@ -96,6 +144,7 @@ export default function NewGradsPage() {
       featuresSubtitle="The tools career centres point you to, in one place, aimed at someone without years of experience."
       features={FEATURES}
       steps={STEPS}
+      plan={PLAN}
       bodyTitle="What new grads get wrong about the job search"
       faqTitle="New grad job search FAQ"
       faqs={FAQS}

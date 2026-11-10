@@ -79,6 +79,54 @@ const STEPS = [
   { step: "3", title: "Own the story", body: "Practise 'why the switch?' until it is the strongest answer you give." },
 ];
 
+/** The plan for a career change, by phase. */
+const PLAN = {
+  title: "A plan for making the switch",
+  subtitle: "Four phases, from choosing the target to owning the story. Each one has a single goal, so the move feels deliberate, not random.",
+  phases: [
+    {
+      when: "Week 1",
+      goal: "Choose one target role.",
+      actions: [
+        "Read ten postings for the role and note the skills that keep coming up.",
+        "List the skills you already have, in the new field's words.",
+        "List the gaps you need to close, and start with the most requested one.",
+      ],
+      tool: { label: "Free ATS checker", href: "/free-ats-checker" },
+    },
+    {
+      when: "Weeks 2 and 3",
+      goal: "A resume that reads like the new field.",
+      actions: [
+        "Rewrite your bullets in the new field's terms, leading with results that transfer.",
+        "Tailor the resume to each posting and close the keyword gaps.",
+        "Write one cover letter that explains the move, then adapt it per role.",
+      ],
+      tool: { label: "Resume tailoring", href: "/resume-tailoring" },
+    },
+    {
+      when: "Ongoing",
+      goal: "Get in through people, not portals.",
+      actions: [
+        "Find people who made the same switch, and people on the teams you want to join.",
+        "Ask for 15 minutes with a short, specific message.",
+        "Apply with a referral wherever you can.",
+      ],
+      tool: { label: "Recruiter contact finder", href: "/recruiter-contact-finder" },
+    },
+    {
+      when: "Before interviews",
+      goal: "Make 'why the switch?' your strongest answer.",
+      actions: [
+        "Write a 60 second answer: what you did, why you are moving, why this role.",
+        "Rehearse it with follow-up questions until it holds up.",
+        "Close the skill gaps with a day-by-day study plan.",
+      ],
+      tool: { label: "AI mock interview", href: "/ai-mock-interview" },
+    },
+  ],
+};
+
 export default function CareerChangersPage() {
   return (
     <ToolPage
@@ -97,6 +145,7 @@ export default function CareerChangersPage() {
       featuresSubtitle="Each tool aimed at the gap between what you have done and how the new field describes it."
       features={FEATURES}
       steps={STEPS}
+      plan={PLAN}
       bodyTitle="Why career changers get filtered out, and how to stop it"
       faqTitle="Career change FAQ"
       faqs={FAQS}

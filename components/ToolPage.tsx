@@ -53,6 +53,18 @@ export interface ToolRelatedLink {
   href: string;
 }
 
+/** One phase of an audience page's action plan. */
+export interface PlanPhase {
+  /** When, e.g. "Before OPT starts" or "Days 1 to 3". */
+  when: string;
+  /** The one thing this phase is for. */
+  goal: string;
+  /** What to do, in order. Short imperative lines. */
+  actions: string[];
+  /** The Preciprocal tool or guide that does this phase. */
+  tool?: { label: string; href: string };
+}
+
 export interface ToolPageProps {
   /** Breadcrumb label and canonical path, e.g. "LinkedIn Optimizer" + "/linkedin-profile-optimizer" */
   breadcrumbName: string;
@@ -99,6 +111,12 @@ export interface ToolPageProps {
   featuresSubtitle: string;
   features: ToolFeature[];
   steps: ToolStep[];
+  /**
+   * An action plan, for the audience pages (/for/*). When set it replaces
+   * the generic "How it works" steps and "What you get" list with a phased
+   * plan: when, the goal, what to do, and the tool that does it.
+   */
+  plan?: { title: string; subtitle: string; phases: PlanPhase[] };
   bodyTitle: string;
   /** The long-form SEO prose. Per-page, because this is what actually ranks. */
   body: React.ReactNode;
@@ -135,6 +153,7 @@ export default function ToolPage({
   featuresSubtitle,
   features,
   steps,
+  plan,
   bodyTitle,
   body,
   faqTitle,
@@ -174,7 +193,7 @@ export default function ToolPage({
               subhead={<p>{subhead}</p>}
               ctaHref={signUpUrl}
               ctaLabel={ctaLabel}
-              secondary={{ href: "#how-it-works", label: "See how it works" }}
+              secondary={{ href: "#how-it-works", label: plan ? "See the plan" : "See how it works" }}
             />
           ) : (
           <PageHero
@@ -206,6 +225,51 @@ export default function ToolPage({
             </section>
           )}
 
+          {plan ? (
+            <section id="how-it-works" data-section="plan" data-section-name="Plan" className={`scroll-mt-24 border-t border-white/[0.05] py-24 ${PAD}`}>
+              <div className={INNER}>
+                <div className="mx-auto max-w-2xl text-center">
+                  <Eyebrow>Your plan</Eyebrow>
+                  <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{plan.title}</h2>
+                  <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{plan.subtitle}</p>
+                </div>
+                <RevealGroup as="ol" className="mx-auto mt-14 max-w-5xl space-y-4">
+                  {plan.phases.map((ph, i) => (
+                    <RevealItem as="li" key={ph.when}>
+                      <div className="grid gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6 sm:p-7 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-10">
+                        <div>
+                          <div className="flex items-center gap-3">
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-accent/40 bg-accent/[0.08] text-[13px] font-bold text-accent-soft">{i + 1}</span>
+                            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-soft">{ph.when}</p>
+                          </div>
+                          <h3 className="mt-4 text-xl font-semibold leading-snug text-white">{ph.goal}</h3>
+                          {ph.tool && (
+                            <Link
+                              href={ph.tool.href}
+                              className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[13px] font-medium text-slate-300 transition-colors hover:border-white/[0.16] hover:text-white"
+                            >
+                              {ph.tool.label} <Chevron />
+                            </Link>
+                          )}
+                        </div>
+                        <ul className="space-y-3 md:border-l md:border-white/[0.06] md:pl-10">
+                          {ph.actions.map((a) => (
+                            <li key={a} className="flex gap-3 text-[15px] leading-relaxed text-slate-300">
+                              <span aria-hidden="true" className="mt-[3px] grid h-5 w-5 shrink-0 place-items-center rounded-md border border-white/[0.12] text-accent-soft">
+                                <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                              </span>
+                              {a}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </RevealItem>
+                  ))}
+                </RevealGroup>
+              </div>
+            </section>
+          ) : (
+            <>
           {/* ── How it works: the flow comes first, as three connected stages ── */}
           <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 border-t border-white/[0.05] py-24 ${PAD}`}>
             <div className={INNER}>
@@ -258,6 +322,8 @@ export default function ToolPage({
               </RevealGroup>
             </div>
           </section>
+            </>
+          )}
 
           {/* ── FAQ ─────────────────────────────────────────────────────── */}
                       <script
