@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description: "Free AI interview question predictor, plus a score out of 10 for your answer. No sign-up.",
     url: "https://preciprocal.com/interview-question-predictor",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

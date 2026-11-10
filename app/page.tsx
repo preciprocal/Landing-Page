@@ -65,10 +65,10 @@ export const metadata: Metadata = {
     siteName: "Preciprocal",
     images: [
       {
-        url: "https://preciprocal.com/og-image-v2.png",
+        url: "https://preciprocal.com/og-image-v3.png",
         width: 1200,
         height: 630,
-        alt: "Preciprocal | AI Career Prep Platform",
+        alt: "Preciprocal: Your OPT clock is running. Land the job before it runs out.",
       },
     ],
     type: "website",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     title: "Preciprocal | Your OPT Clock Is Running",
     description:
       "Career prep for F-1 students on OPT. Make every application count before your unemployment days run out.",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", alt: "Preciprocal" }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", alt: "Preciprocal" }],
   },
 
   alternates: {

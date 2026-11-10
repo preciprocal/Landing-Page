@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "Account, billing and technical help. Fix it yourself in a minute, or open a ticket and a person replies.",
     url: "https://preciprocal.com/support",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
 };
 

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description: "A specific, short thank you email for any interview stage, ready to copy. No sign-up.",
     url: "https://preciprocal.com/thank-you-email-after-interview",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

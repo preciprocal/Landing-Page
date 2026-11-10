@@ -235,7 +235,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
     headline: props.headline,
     description: props.description,
     url: pageUrl,
-    image: { "@type": "ImageObject", url: `${SITE_URL}/og-image-v2.png`, width: 1200, height: 630 },
+    image: { "@type": "ImageObject", url: `${SITE_URL}/og-image-v3.png`, width: 1200, height: 630 },
     datePublished: props.datePublished,
     dateModified: checkedAt,
     author: { "@type": "Organization", name: "Preciprocal Team", url: SITE_URL },

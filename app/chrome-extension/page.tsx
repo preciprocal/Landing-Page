@@ -33,7 +33,7 @@ export const metadata: Metadata = {
       "One click to save a job with its full description, ready to tailor against and track.",
     url: "https://preciprocal.com/chrome-extension",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

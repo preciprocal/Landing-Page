@@ -18,7 +18,7 @@ export const metadata: Metadata = {
       "Product ideas, feedback, partnerships and press. We read every email.",
     url: "https://preciprocal.com/contact",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
       "One resume for every job is the biggest mistake in a job search. Tailor in minutes, not hours.",
     url: "https://preciprocal.com/resume-tailoring",
     type: "website",
-    images: [{ url: "https://preciprocal.com/og-image-v2.png", width: 1200, height: 630 }],
+    images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

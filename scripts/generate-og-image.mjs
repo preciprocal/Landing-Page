@@ -20,30 +20,33 @@
  * components/ and lib/. The unversioned public/og-image.png is written too,
  * as a fallback for anything that still points at it.
  *
- * Fonts: Segoe UI from the Windows font folder, since next/og's bundled
- * font has no bold weight. On another OS, point FONT_DIR at any TTF pair.
+ * Fonts: Inter, the site's own typeface, from scripts/fonts (TTF, since the
+ * renderer cannot read woff2; Inter is SIL Open Font License). v3 is a
+ * minimal redesign: one message, the brand, the URL. No chips, no button
+ * pill, no gradient text.
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { createElement as h } from "react";
 import { ImageResponse } from "next/og.js";
 
-const OG_VERSION = 2;
+const OG_VERSION = 3;
 
-const FONT_DIR = process.env.FONT_DIR ?? "C:/Windows/Fonts";
-const regular = readFileSync(`${FONT_DIR}/segoeui.ttf`);
-const bold = readFileSync(`${FONT_DIR}/segoeuib.ttf`);
+const font = (w) => readFileSync(`scripts/fonts/Inter-${w}.ttf`);
 const logo = `data:image/png;base64,${readFileSync("public/logo.png").toString("base64")}`;
 
 const COPY = {
-  line1: "Stop applying",
-  line2: "into the void.",
-  sub: "The AI career prep platform for students and new grads. Mock interviews, resume scoring, cover letters and job tracking.",
-  chips: ["AI Mock Interviews", "Resume ATS Score", "Cover Letters", "Job Tracker"],
-  footerRight: "Free plan  ·  Pro from $9.99/mo",
+  line1: "Your OPT clock",
+  line2: "is running.",
+  sub: "Land the job before it runs out.",
+  footerLeft: "preciprocal.com",
+  footerRight: "For F-1 students on OPT",
 };
 
-const row = (style, ...children) => h("div", { style: { display: "flex", ...style } }, ...children);
+const INK = "#f8fafc";
+const MUTED = "#94a3b8";
+const FAINT = "#64748b";
+const ACCENT = "#a5b4fc";
 
 const image = h(
   "div",
@@ -53,84 +56,36 @@ const image = h(
       height: "100%",
       display: "flex",
       flexDirection: "column",
-      padding: "56px 60px 44px",
-      backgroundColor: "#050810",
-      backgroundImage:
-        "radial-gradient(circle at 12% 0%, rgba(99,102,241,0.28), transparent 45%), radial-gradient(circle at 100% 100%, rgba(168,85,247,0.22), transparent 45%)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      fontFamily: "Segoe UI",
-      color: "#e2e8f0",
+      padding: "64px 80px 56px",
+      backgroundColor: "#06080f",
+      // One faint light, high in the top left; a long, gentle falloff so it
+      // reads as atmosphere, not a glow.
+      backgroundImage: "radial-gradient(ellipse 900px 520px at 0% 0%, rgba(99,102,241,0.16), rgba(99,102,241,0.06) 45%, rgba(6,8,15,0) 75%)",
+      fontFamily: "Inter",
+      color: INK,
     },
   },
-  row(
-    { alignItems: "center", justifyContent: "space-between" },
-    row(
-      { alignItems: "center", gap: 14 },
-      h("img", { src: logo, width: 44, height: 44, style: { borderRadius: 10 } }),
-      h("div", { style: { fontSize: 26, color: "#e2e8f0" } }, "Preciprocal")
-    ),
-    h(
-      "div",
-      {
-        style: {
-          display: "flex",
-          padding: "10px 22px",
-          borderRadius: 999,
-          backgroundImage: "linear-gradient(90deg, #6366f1, #a855f7)",
-          color: "#ffffff",
-          fontSize: 20,
-          fontWeight: 700,
-        },
-      },
-      "Try free"
-    )
-  ),
-  h("div", { style: { display: "flex", height: 1, backgroundColor: "rgba(255,255,255,0.35)", marginTop: 26, marginBottom: 34 } }),
-  h("div", { style: { display: "flex", fontSize: 92, fontWeight: 700, color: "#ffffff", lineHeight: 1.02, letterSpacing: -2 } }, COPY.line1),
   h(
     "div",
-    {
-      style: {
-        display: "flex",
-        fontSize: 92,
-        fontWeight: 700,
-        lineHeight: 1.08,
-        letterSpacing: -2,
-        backgroundImage: "linear-gradient(90deg, #818cf8, #c084fc)",
-        backgroundClip: "text",
-        color: "transparent",
-      },
-    },
-    COPY.line2
-  ),
-  h("div", { style: { display: "flex", fontSize: 24, color: "#94a3b8", marginTop: 20, maxWidth: 900, lineHeight: 1.4 } }, COPY.sub),
-  row(
-    { gap: 12, marginTop: 24, marginBottom: 28 },
-    ...COPY.chips.map((c) =>
-      h(
-        "div",
-        {
-          key: c,
-          style: {
-            display: "flex",
-            padding: "8px 16px",
-            borderRadius: 999,
-            border: "1px solid rgba(129,140,248,0.35)",
-            backgroundColor: "rgba(99,102,241,0.12)",
-            color: "#c7d2fe",
-            fontSize: 18,
-          },
-        },
-        c
-      )
-    )
+    { style: { display: "flex", alignItems: "center", gap: 14 } },
+    h("img", { src: logo, width: 36, height: 36, style: { borderRadius: 8 } }),
+    h("div", { style: { display: "flex", fontSize: 26, fontWeight: 500, letterSpacing: -0.4, color: INK } }, "Preciprocal")
   ),
   h("div", { style: { display: "flex", flexGrow: 1 } }),
-  h("div", { style: { display: "flex", height: 1, backgroundColor: "rgba(255,255,255,0.35)", marginBottom: 20 } }),
-  row(
-    { justifyContent: "space-between", alignItems: "center", fontSize: 20 },
-    h("div", { style: { display: "flex", color: "#818cf8" } }, "preciprocal.com"),
-    h("div", { style: { display: "flex", color: "#64748b" } }, COPY.footerRight)
+  h(
+    "div",
+    { style: { display: "flex", flexDirection: "column", fontSize: 104, fontWeight: 700, letterSpacing: -4.2, lineHeight: 1.0 } },
+    h("div", { style: { display: "flex", color: INK } }, COPY.line1),
+    h("div", { style: { display: "flex", color: ACCENT, marginTop: 6 } }, COPY.line2)
+  ),
+  h("div", { style: { display: "flex", fontSize: 32, fontWeight: 400, letterSpacing: -0.4, color: MUTED, marginTop: 30 } }, COPY.sub),
+  h("div", { style: { display: "flex", flexGrow: 1 } }),
+  h("div", { style: { display: "flex", height: 1, backgroundColor: "rgba(255,255,255,0.10)", marginBottom: 24 } }),
+  h(
+    "div",
+    { style: { display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 22, fontWeight: 500, letterSpacing: -0.2 } },
+    h("div", { style: { display: "flex", color: MUTED } }, COPY.footerLeft),
+    h("div", { style: { display: "flex", color: FAINT } }, COPY.footerRight)
   )
 );
 
@@ -138,8 +93,9 @@ const res = new ImageResponse(image, {
   width: 1200,
   height: 630,
   fonts: [
-    { name: "Segoe UI", data: regular, weight: 400, style: "normal" },
-    { name: "Segoe UI", data: bold, weight: 700, style: "normal" },
+    { name: "Inter", data: font(400), weight: 400, style: "normal" },
+    { name: "Inter", data: font(500), weight: 500, style: "normal" },
+    { name: "Inter", data: font(700), weight: 700, style: "normal" },
   ],
 });
 const png = Buffer.from(await res.arrayBuffer());
