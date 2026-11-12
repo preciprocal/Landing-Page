@@ -69,6 +69,10 @@ export const SRC = {
     label: "Fragomen: scope of the proposed $103,265 H-1B fee",
     href: "https://www.fragomen.com/insights/united-states-uscis-proposes-new-fee-of-over-dollar100000-for-h-1b-cap-subject-petitions.html",
   },
+  everifySearch: {
+    label: "USCIS: E-Verify Employer Search, and what each field means",
+    href: "https://www.e-verify.gov/e-verify-employer-search",
+  },
   gatechEmployment: {
     label: "Georgia Tech OIE: types of employment on pre- and post-completion OPT",
     href: "https://isss.oie.gatech.edu/node/3541",
