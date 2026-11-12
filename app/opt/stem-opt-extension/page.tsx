@@ -116,7 +116,7 @@ export default function StemOptPage() {
           <p>
             E-Verify enrolment is the requirement most likely to rule out an employer, especially small companies and
             start-ups. Ask about it early in the hiring process, before you accept an offer that depends on STEM OPT, and
-            look the company up first in the <Link href="/opt/e-verify-employer-search">E-Verify employer search</Link>.
+            look the company up first in the <Link href="/opt/employer-lookup">employer lookup</Link>.
           </p>
 
           <h2>How to apply</h2>

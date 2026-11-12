@@ -1,13 +1,14 @@
 /**
  * app/api/tools/everify/route.ts
  *
- * GET ?q=<company> -> E-Verify accounts whose name matches or starts with the
- * query. Backs the free search on /opt/e-verify-employer-search. No account,
+ * GET ?q=<company> -> employers whose name matches or starts with the query,
+ * with E-Verify enrolment and H-1B history. Backs the free search on
+ * /opt/employer-lookup. No account,
  * nothing stored. See lib/everify.ts for where the data comes from.
  */
 
 import { NextResponse } from "next/server";
-import { searchEverify } from "@/lib/everify";
+import { searchEmployers } from "@/lib/everify";
 import { rateLimit } from "@/lib/interviewTools/server";
 
 export const runtime = "nodejs";
@@ -23,7 +24,7 @@ export async function GET(req: Request) {
   }
 
   const q = (new URL(req.url).searchParams.get("q") ?? "").slice(0, MAX_QUERY);
-  const result = await searchEverify(q).catch((err) => {
+  const result = await searchEmployers(q).catch((err) => {
     console.error("E-Verify search failed:", err);
     return "unavailable" as const;
   });

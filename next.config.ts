@@ -27,6 +27,15 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // ------------------------------------------------------------------
+      // Employer lookup: was the E-Verify-only search, renamed when H-1B
+      // history was added (2026-11-12).
+      // ------------------------------------------------------------------
+      {
+        source: "/opt/e-verify-employer-search",
+        destination: "/opt/employer-lookup",
+        permanent: true,
+      },
+      // ------------------------------------------------------------------
       // Cover letter routes
       // ------------------------------------------------------------------
       // Old /cover-letter slug (Google found a 404 here).

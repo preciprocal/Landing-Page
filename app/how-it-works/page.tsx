@@ -99,7 +99,7 @@ const STAGES = [
 
 const OPT_TOOLS = [
   { label: "OPT unemployment day calculator", body: "Count the days you have used against the 90 or 150 day limit.", href: "/opt/unemployment-calculator" },
-  { label: "E-Verify employer search", body: "See if a company is enrolled in E-Verify before you apply, for STEM OPT.", href: "/opt/e-verify-employer-search" },
+  { label: "Employer lookup: E-Verify and H-1B", body: "See if a company can hire you on OPT, STEM OPT and H-1B before you apply.", href: "/opt/employer-lookup" },
   { label: "OPT and STEM OPT filing dates", body: "The window to file, worked out from your program or EAD end date.", href: "/opt/how-to-apply" },
   { label: "All OPT guides", body: "Rules, fees and dates, checked against USCIS and DHS sources.", href: "/opt" },
 ];

@@ -73,6 +73,14 @@ export const SRC = {
     label: "USCIS: E-Verify Employer Search, and what each field means",
     href: "https://www.e-verify.gov/e-verify-employer-search",
   },
+  h1bHub: {
+    label: "USCIS: H-1B Employer Data Hub",
+    href: "https://www.uscis.gov/tools/reports-and-studies/h-1b-employer-data-hub",
+  },
+  h1bHubGuide: {
+    label: "USCIS: Understanding the H-1B Employer Data Hub",
+    href: "https://www.uscis.gov/tools/reports-and-studies/h-1b-employer-data-hub/understanding-our-h-1b-employer-data-hub",
+  },
   gatechEmployment: {
     label: "Georgia Tech OIE: types of employment on pre- and post-completion OPT",
     href: "https://isss.oie.gatech.edu/node/3541",

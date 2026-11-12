@@ -26,7 +26,7 @@ import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import { OPT_GUIDES } from "@/lib/optGuides";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, CtaPanel, INNER, PAD, PageHero, SECTION, pad2, FaqSection } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_SECONDARY, CtaPanel, INNER, PAD, PageHero, SECTION, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export interface OptKeyFact {
@@ -189,9 +189,9 @@ export default function OptGuidePage(props: OptGuideProps) {
                 <a href={signUpUrl} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   Make your OPT days count <Chevron />
                 </a>
-                <p className="text-[12px] leading-snug text-slate-500 sm:max-w-[220px]">
-                  Free plan for the job search itself: tailored resumes, tracking and mock interviews.
-                </p>
+                <Link href="/how-it-works" className={`${BTN_SECONDARY} w-full sm:w-auto`}>
+                  See how it works
+                </Link>
               </div>
             }
           />
