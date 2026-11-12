@@ -55,10 +55,10 @@ const day = (iso: string | null) => (iso ? DATE.format(new Date(`${iso}T00:00:00
 const BADGE: Record<State, { label: (m: Match) => string; cls: string }> = {
   enrolled: { label: () => "Enrolled", cls: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" },
   ending: {
-    label: (m) => `Enrolled until ${day(m.accounts[0].terminatesOn)}`,
+    label: (m) => `Active until ${day(m.accounts[0].terminatesOn)}`,
     cls: "border-amber-400/30 bg-amber-400/10 text-amber-300",
   },
-  ended: { label: () => "Enrollment ended", cls: "border-rose-400/30 bg-rose-400/10 text-rose-300" },
+  ended: { label: () => "Terminated", cls: "border-rose-400/30 bg-rose-400/10 text-rose-300" },
 };
 
 export default function EverifySearch() {
@@ -127,8 +127,8 @@ export default function EverifySearch() {
       <div className="border-b border-white/[0.06] p-6 sm:p-8">
         <p className="text-lg font-semibold text-white">E-Verify employer search</p>
         <p className="mt-1.5 text-[12px] text-slate-400">
-          The full public USCIS list{result ? `, ${result.totalEmployers.toLocaleString("en-US")} employer accounts` : ""}, copied
-          daily. No account needed.
+          {result ? `${result.totalEmployers.toLocaleString("en-US")} employer records` : "Over 1.2 million employer records"}
+          {result?.sourceUpdated ? `, current as of ${day(result.sourceUpdated)}` : ", updated daily"}.
         </p>
 
         <div className="relative mt-5">
@@ -139,7 +139,7 @@ export default function EverifySearch() {
             autoComplete="off"
             spellCheck={false}
             aria-label="Company name"
-            placeholder="Company name, e.g. Google"
+            placeholder="Search by company name"
             className={input}
             value={q}
             onChange={(e) => setQ(e.target.value)}
@@ -153,7 +153,7 @@ export default function EverifySearch() {
         </div>
 
         <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-slate-400">
-          <span>Try</span>
+          <span>Examples</span>
           {EXAMPLES.map((ex) => (
             <button
               key={ex}
@@ -175,18 +175,18 @@ export default function EverifySearch() {
             </motion.p>
           ) : !result ? (
             <motion.p key="empty" {...fade} className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-sm text-slate-400">
-              Type a company name to see whether it is enrolled in E-Verify, since when, and how big it says it is.
+              Enter a company name to view its E-Verify enrolment status, enrolment date and reported workforce size.
             </motion.p>
           ) : result.matches.length === 0 ? (
             <motion.div key={`none-${result.query}`} {...fade} className="rounded-xl border border-white/[0.08] px-5 py-5 text-sm text-slate-300">
-              <p className="font-medium text-white">No E-Verify account under &ldquo;{result.query}&rdquo;.</p>
+              <p className="font-medium text-white">No records match &ldquo;{result.query}&rdquo;.</p>
               <p className="mt-1.5 text-slate-400">
-                That does not prove the company is not enrolled. Employers enrol under the name they choose, so try a shorter
-                or more formal version of the name, then check the{" "}
+                Employers enrol under a name of their choosing, such as a legal name, trade name or abbreviation. Try an
+                alternative name, or confirm with the{" "}
                 <a href={OFFICIAL_SEARCH} target="_blank" rel="noopener noreferrer" className="text-accent-soft underline underline-offset-4 hover:text-white">
-                  official search
-                </a>{" "}
-                and ask the employer.
+                  official E-Verify search
+                </a>
+                .
               </p>
             </motion.div>
           ) : (
@@ -199,14 +199,13 @@ export default function EverifySearch() {
         </AnimatePresence>
 
         <p className="mt-5 text-[11px] leading-relaxed text-slate-400">
-          Employer-reported data from the USCIS E-Verify Employer Search
-          {result?.sourceUpdated ? `, updated by USCIS on ${day(result.sourceUpdated)}` : ""}. Results match the name an employer
-          enrolled under, and a company can have several accounts. Confirm on the{" "}
+          Source:{" "}
           <a href={OFFICIAL_SEARCH} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-0.5 text-accent-soft underline underline-offset-4 hover:text-white">
-            official search
+            USCIS E-Verify Employer Search
             <ExternalLink aria-hidden="true" className="h-3 w-3" />
-          </a>{" "}
-          and with the employer before you rely on it.
+          </a>
+          . Records are self-reported by employers and provided for reference only. Preciprocal is not affiliated with USCIS
+          or the Department of Homeland Security.
         </p>
       </div>
     </div>
@@ -226,7 +225,7 @@ function MatchRow({ m }: { m: Match }) {
           <p className="mt-1 text-[12px] text-slate-400">
             {[
               best.enrolledOn && `Enrolled ${day(best.enrolledOn)}`,
-              best.terminatesOn && `${best.open ? "Ends" : "Ended"} ${day(best.terminatesOn)}`,
+              best.terminatesOn && `${best.open ? "Active until" : "Terminated"} ${day(best.terminatesOn)}`,
               best.workforce && `Workforce ${best.workforce}`,
             ]
               .filter(Boolean)
@@ -242,9 +241,9 @@ function MatchRow({ m }: { m: Match }) {
         <details className="group mt-2.5">
           <summary className="inline-flex min-h-[28px] cursor-pointer list-none items-center text-[12px] font-medium text-accent-soft hover:text-white [&::-webkit-details-marker]:hidden">
             <span className="group-open:hidden">
-              {others} more account{others > 1 ? "s" : ""} under this name
+              View {others} additional record{others > 1 ? "s" : ""}
             </span>
-            <span className="hidden group-open:inline">Hide other accounts</span>
+            <span className="hidden group-open:inline">Hide additional records</span>
           </summary>
           <ul className="mt-2 space-y-1.5 border-l border-white/[0.08] pl-3">
             {m.accounts.slice(1).map((a, i) => (
@@ -252,9 +251,9 @@ function MatchRow({ m }: { m: Match }) {
                 <span className="text-slate-300">{a.employer}</span>
                 {a.dba ? ` (${a.dba})` : ""}
                 {" · "}
-                <span className={a.open ? "text-emerald-300" : "text-rose-300"}>{a.open ? "Open" : "Ended"}</span>
+                <span className={a.open ? "text-emerald-300" : "text-rose-300"}>{a.open ? "Enrolled" : "Terminated"}</span>
                 {a.enrolledOn ? ` · enrolled ${day(a.enrolledOn)}` : ""}
-                {a.terminatesOn ? ` · ${a.open ? "ends" : "ended"} ${day(a.terminatesOn)}` : ""}
+                {a.terminatesOn ? ` · ${a.open ? "active until" : "terminated"} ${day(a.terminatesOn)}` : ""}
                 {a.workforce ? ` · ${a.workforce}` : ""}
               </li>
             ))}

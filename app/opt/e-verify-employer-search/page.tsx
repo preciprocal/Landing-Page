@@ -4,9 +4,13 @@
  * Targets: "E-Verify employer search", "is this company E-Verify", "E-Verify
  * companies list", "STEM OPT E-Verify employer", "E-Verify check company".
  *
- * The tool searches the full public E-Verify Employer Search list, copied
- * daily (lib/everify.ts). Field meanings and caveats: the USCIS search page
- * itself. The STEM OPT requirement: DHS Study in the States STEM OPT overview.
+ * An independent lookup over the public E-Verify Employer Search records,
+ * refreshed daily (lib/everify.ts). It speaks as a third-party reference
+ * tool: it names its data source and says it is not affiliated with USCIS,
+ * rather than describing how the data is collected.
+ *
+ * Field meanings and caveats: the USCIS search page. The STEM OPT
+ * requirement: the DHS Study in the States STEM OPT overview.
  */
 
 import type { Metadata } from "next";
@@ -16,10 +20,10 @@ import EverifySearch from "@/components/opt/EverifySearch";
 import { SRC } from "@/lib/optSources";
 
 const DESCRIPTION =
-  "Search the full USCIS E-Verify employer list, copied daily, to see if a company is enrolled before you apply. STEM OPT needs an E-Verify employer.";
+  "Look up any employer's E-Verify enrolment status, enrolment date and workforce size. Search more than 1.2 million employer records, updated daily from USCIS.";
 
 export const metadata: Metadata = {
-  title: "E-Verify Employer Search for STEM OPT",
+  title: "E-Verify Employer Search | Check Any Company's Enrolment",
   description: DESCRIPTION,
   keywords: [
     "E-Verify employer search",
@@ -30,34 +34,34 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://preciprocal.com/opt/e-verify-employer-search" },
   openGraph: {
-    title: "E-Verify Employer Search for STEM OPT",
+    title: "E-Verify Employer Search",
     description: DESCRIPTION,
     url: "https://preciprocal.com/opt/e-verify-employer-search",
-    type: "article",
+    type: "website",
     images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
   },
 };
 
 const FAQS = [
   {
-    q: "Does my employer need E-Verify for regular OPT?",
-    a: "No. E-Verify is a requirement of the 24-month STEM OPT extension: you have to pursue it through an employer enrolled in E-Verify. If you plan to extend, check early, because the employer you join on regular OPT is often the one you extend with.",
+    q: "Does an employer need E-Verify for STEM OPT?",
+    a: "Yes. The 24-month STEM OPT extension must be pursued through an employer enrolled in E-Verify, and the employer must remain in good standing with the program.",
   },
   {
-    q: "Where does this list come from?",
-    a: "The public E-Verify Employer Search run by USCIS, which it updates daily at about 2 a.m. ET. This page copies the whole list once a day. The details are what employers reported when they enrolled, so USCIS does not vouch for them.",
+    q: "Where does this data come from?",
+    a: "From the public E-Verify Employer Search published by USCIS, which USCIS updates daily. Records are self-reported by employers at enrolment, so their accuracy depends on what each employer submitted.",
   },
   {
-    q: "The company is not in the results. Does that mean it does not use E-Verify?",
-    a: "Not necessarily. Employers enrol under the name they choose, which can be a legal name, a trade name or an abbreviation, and a doing-business-as name only shows if they gave one. Try other versions of the name, check the official search, and ask the employer directly.",
+    q: "A company does not appear. Does that mean it is not enrolled?",
+    a: "Not necessarily. Employers enrol under a name of their choosing, which may be a legal name, a trade name or an abbreviation. A doing-business-as name only appears if the employer provided one. Try alternative names, and confirm directly with the employer.",
   },
   {
-    q: "Why does one company show several accounts?",
-    a: "Large employers often enrol more than once, for different legal entities or hiring sites, and old accounts stay on the list as terminated. A listed company also does not mean every one of its hiring sites uses E-Verify, since employers choose which sites take part.",
+    q: "Why are there several records for one company?",
+    a: "Large organisations often hold separate accounts for different legal entities or hiring sites, and terminated accounts remain on record. Employers with several locations may also choose which sites participate in E-Verify.",
   },
   {
-    q: "What does \"enrolled until\" mean?",
-    a: "The account is open but has a termination date in the future. After that date it is no longer enrolled.",
+    q: "Is Preciprocal affiliated with USCIS or E-Verify?",
+    a: "No. This is an independent reference tool built on public records. For an authoritative answer, use the official E-Verify Employer Search or ask the employer.",
   },
 ];
 
@@ -66,55 +70,61 @@ export default function EverifyEmployerSearchPage() {
     <OptGuidePage
       breadcrumbName="E-Verify employer search"
       canonicalPath="/opt/e-verify-employer-search"
-      headline="E-Verify Employer Search for STEM OPT"
+      headline="E-Verify Employer Search"
       description={DESCRIPTION}
       h1="E-Verify employer search"
-      h1Accent="before you apply"
-      intro="STEM OPT only works with an employer enrolled in E-Verify. Search the full USCIS list, copied daily, and know before you spend an application on a company that cannot sign your extension."
+      h1Accent="for any US company"
+      intro="Check whether an employer participates in E-Verify, the federal program a STEM OPT employer must be enrolled in. See enrolment status, enrolment date and reported workforce size in seconds."
+      badge={<span>Public USCIS records, updated daily</span>}
+      disclaimer="Independent reference tool, not affiliated with USCIS or the Department of Homeland Security. Records are self-reported by employers."
+      sourcesTitle="Data and references"
+      hideCheckedDate
       keyFacts={[
-        { value: "Required", label: "E-Verify enrolment for a STEM OPT employer" },
-        { value: "Daily", label: "USCIS updates the list, around 2 a.m. ET" },
-        { value: "Self-reported", label: "Employers enter their own details" },
-        { value: "5+", label: "Employees before workforce size is shown" },
+        { value: "1.2M+", label: "Employer records searchable" },
+        { value: "Daily", label: "Updates from USCIS" },
+        { value: "STEM OPT", label: "Requires an E-Verify employer" },
+        { value: "Free", label: "No account required" },
       ]}
       tool={<EverifySearch />}
       ctaTool="job-tracker"
-      bottomTitle="See this for every company you apply to."
-      bottomBody="The job tracker puts an E-Verify badge on each application, from the same daily list. Free to start."
+      bottomTitle="Know the status of every employer you apply to."
+      bottomBody="The Preciprocal job tracker shows E-Verify status on each application automatically. Free to start."
       faqs={FAQS}
       sources={[SRC.everifySearch, SRC.stemOverview]}
       body={
         <>
-          <h2>Why it matters on STEM OPT</h2>
+          <h2>Why it matters</h2>
           <p>
-            DHS requires you to pursue the STEM OPT extension through an employer enrolled in E-Verify, and the employer has
-            to stay in good standing with E-Verify. Start-ups and small companies can qualify, as long as every requirement
-            is met. See the <Link href="/opt/stem-opt-extension">STEM OPT guide</Link> for the rest of what the employer has
-            to do.
+            An employer must be enrolled in E-Verify, and remain in good standing, to employ a student on the STEM OPT
+            extension. Start-ups and small businesses are eligible if they meet every requirement. Confirming enrolment
+            before you apply helps you focus on employers that can support your extension. The{" "}
+            <Link href="/opt/stem-opt-extension">STEM OPT guide</Link> covers the remaining employer requirements.
           </p>
 
-          <h2>How to read a result</h2>
+          <h2>Reading a record</h2>
           <ul className="list-disc pl-5 space-y-2">
             <li>
-              <strong>Employer name</strong> is the name used at enrolment: a legal name, a trade name or an abbreviation.
+              <strong>Employer name:</strong> the name used at enrolment, which may be a legal name, trade name or
+              abbreviation.
             </li>
             <li>
-              <strong>Enrolled</strong> is the date the employer signed the E-Verify Memorandum of Understanding.
-              <strong> Ended</strong> is the date that agreement was terminated.
+              <strong>Enrolled:</strong> the date the employer signed the E-Verify Memorandum of Understanding.
             </li>
             <li>
-              <strong>Workforce</strong> is the size band the employer reported. It only appears for employers with at least
-              five employees.
+              <strong>Terminated:</strong> the date that agreement ended. A future date means the account is active until
+              then.
             </li>
-            <li>The badge uses the open account first, then the most recent one, when a name has several.</li>
+            <li>
+              <strong>Workforce:</strong> the size band the employer reported, shown for employers with five or more
+              employees.
+            </li>
           </ul>
 
-          <h2>If the company is missing</h2>
+          <h2>No match found</h2>
           <p>
-            Search for the name on the offer letter or the company&apos;s formal name, and drop words like
-            &ldquo;Technologies&rdquo; or &ldquo;Group&rdquo; one at a time. If it still does not show, check the official
-            search, then ask the recruiter whether the company uses E-Verify for the site you would work at. A missing
-            result is a question to ask, not an answer.
+            Search the formal name shown on the job posting or offer letter, and try removing words such as
+            &ldquo;Technologies&rdquo; or &ldquo;Group&rdquo;. If the employer still does not appear, confirm with the
+            recruiter whether the company uses E-Verify at the hiring site you would join.
           </p>
         </>
       }

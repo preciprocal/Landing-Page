@@ -53,6 +53,15 @@ export interface OptGuideProps {
   bottomBody: string;
   /** Optional decorative hero illustration (hidden below lg and from assistive tech by PageHero). */
   visual?: React.ReactNode;
+  /**
+   * Data tools (rather than guides) replace the "checked against" badge, the
+   * disclaimer and the sources heading with their own, and hide the checked
+   * date: the data refreshes on its own schedule.
+   */
+  badge?: React.ReactNode;
+  disclaimer?: React.ReactNode;
+  sourcesTitle?: string;
+  hideCheckedDate?: boolean;
 }
 
 const LONG_DATE = new Intl.DateTimeFormat("en-US", {
@@ -153,9 +162,11 @@ export default function OptGuidePage(props: OptGuideProps) {
                 : [{ label: "Home", href: "/" }, { label: "OPT guides", href: "/opt" }, { label: props.breadcrumbName }]
             }
             badge={
-              <span>
-                Checked against USCIS and DHS sources on <time dateTime={checkedAt}>{checkedLabel}</time>
-              </span>
+              props.badge ?? (
+                <span>
+                  Checked against USCIS and DHS sources on <time dateTime={checkedAt}>{checkedLabel}</time>
+                </span>
+              )
             }
             title={props.h1}
             accent={props.h1Accent}
@@ -164,8 +175,12 @@ export default function OptGuidePage(props: OptGuideProps) {
               <>
                 <p>{props.intro}</p>
                 <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
-                  General information from official sources, not legal advice. Your DSO and the record in SEVIS have the final
-                  word on your own case.
+                  {props.disclaimer ?? (
+                    <>
+                      General information from official sources, not legal advice. Your DSO and the record in SEVIS have the
+                      final word on your own case.
+                    </>
+                  )}
                 </p>
               </>
             }
@@ -222,10 +237,12 @@ export default function OptGuidePage(props: OptGuideProps) {
 
               <section data-section="sources" data-section-name="Sources" className={ROW}>
                 <div>
-                  <h2 className={ROW_HEAD}>Sources</h2>
-                  <p className="mt-2 text-sm text-slate-500">
-                    Checked on <time dateTime={checkedAt}>{checkedLabel}</time>
-                  </p>
+                  <h2 className={ROW_HEAD}>{props.sourcesTitle ?? "Sources"}</h2>
+                  {!props.hideCheckedDate && (
+                    <p className="mt-2 text-sm text-slate-500">
+                      Checked on <time dateTime={checkedAt}>{checkedLabel}</time>
+                    </p>
+                  )}
                 </div>
                 <div className="min-w-0 max-w-[860px]">
                   <ol className="border-t border-white/[0.05]">
