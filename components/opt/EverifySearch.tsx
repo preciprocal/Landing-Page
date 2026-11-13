@@ -21,7 +21,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ChevronDown, ExternalLink, Search } from "lucide-react";
+import { Check, ChevronDown, Clock, ExternalLink, Minus, Search, X } from "lucide-react";
 
 const EVERIFY_SEARCH = "https://www.e-verify.gov/e-verify-employer-search";
 const H1B_HUB = "https://www.uscis.gov/tools/reports-and-studies/h-1b-employer-data-hub";
@@ -279,16 +279,16 @@ function MatchRow({ m, years, open, onToggle }: { m: Match; years: string[]; ope
         type="button"
         onClick={onToggle}
         aria-expanded={open}
-        className="flex w-full flex-col gap-2.5 px-4 py-3.5 text-left transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5"
+        className="relative flex w-full flex-col gap-2.5 px-4 py-3.5 text-left transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:px-5"
       >
         <div className="min-w-0">
-          <p className="break-words text-[15px] font-semibold text-white">{m.name}</p>
+          <p className="break-words pr-7 text-[15px] font-semibold text-white sm:pr-0">{m.name}</p>
           {sub.length > 0 && <p className="mt-0.5 break-words text-[12px] text-slate-400">{sub.join("  ·  ")}</p>}
         </div>
         <div className="flex flex-wrap items-center gap-1.5 sm:flex-nowrap">
           <Chip tone={ev.tone}>{ev.label}</Chip>
           <Chip tone={h ? "info" : "muted"}>{h ? `H-1B · ${n(h.approvals)} in FY${h.year}` : "No H-1B record"}</Chip>
-          <ChevronDown aria-hidden="true" className={`ml-1 h-4 w-4 shrink-0 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} />
+          <ChevronDown aria-hidden="true" className={`absolute right-4 top-4 h-4 w-4 shrink-0 text-slate-500 transition-transform sm:static sm:ml-1 ${open ? "rotate-180" : ""}`} />
         </div>
       </button>
 
@@ -300,36 +300,7 @@ function MatchRow({ m, years, open, onToggle }: { m: Match; years: string[]; ope
             exit={reduce ? undefined : { height: 0, opacity: 0 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="border-t border-white/[0.06] px-4 pb-4 pt-4 sm:px-5 sm:pb-5">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Work authorisation</p>
-              <div className="grid gap-3 lg:grid-cols-3">
-                <Stage title="OPT" chip={<Chip tone="good">No sponsorship needed</Chip>}>
-                  OPT is authorised by your own EAD, so no petition from the employer is needed. The role must be directly
-                  related to your major.
-                </Stage>
-                <StemStage m={m} />
-                <H1bStage m={m} years={years} />
-              </div>
-
-              {m.everify.accounts.length > 0 && (
-                <div className="mt-4">
-                  <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">E-Verify records</p>
-                  <ul className="space-y-1.5 border-l border-white/[0.08] pl-3">
-                    {m.everify.accounts.map((a, i) => (
-                      <li key={i} className="text-[12px] text-slate-400">
-                        <span className="text-slate-300">{a.employer}</span>
-                        {a.dba ? ` (${a.dba})` : ""}
-                        {" · "}
-                        <span className={a.open ? "text-emerald-300" : "text-rose-300"}>{a.open ? "Enrolled" : "Terminated"}</span>
-                        {a.enrolledOn ? ` · enrolled ${day(a.enrolledOn)}` : ""}
-                        {a.terminatesOn ? ` · ${a.open ? "active until" : "terminated"} ${day(a.terminatesOn)}` : ""}
-                        {a.workforce ? ` · ${a.workforce}` : ""}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
+            <Breakdown m={m} years={years} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -337,83 +308,145 @@ function MatchRow({ m, years, open, onToggle }: { m: Match; years: string[]; ope
   );
 }
 
-function Stage({ title, chip, children }: { title: string; chip: React.ReactNode; children: React.ReactNode }) {
+// ─── The breakdown: one plain answer per stage, records on request ──────────
+
+type Verdict = { stage: string; tone: Tone; answer: string; note: string };
+
+const ICON: Record<Tone, { Icon: typeof Check; cls: string; text: string }> = {
+  good: { Icon: Check, cls: "bg-emerald-400/10 text-emerald-300", text: "text-emerald-300" },
+  info: { Icon: Check, cls: "bg-emerald-400/10 text-emerald-300", text: "text-emerald-300" },
+  warn: { Icon: Clock, cls: "bg-amber-400/10 text-amber-300", text: "text-amber-300" },
+  bad: { Icon: X, cls: "bg-rose-400/10 text-rose-300", text: "text-rose-300" },
+  muted: { Icon: Minus, cls: "bg-white/[0.05] text-slate-400", text: "text-slate-300" },
+};
+
+const year = (iso: string | null) => (iso ? iso.slice(0, 4) : "");
+
+/** The earliest enrolment among open accounts: how long the employer has used E-Verify. */
+function enrolledSince(m: Match): string | null {
+  const dates = m.everify.accounts.filter((a) => a.open && a.enrolledOn).map((a) => a.enrolledOn as string).sort();
+  return dates[0] ?? null;
+}
+
+function verdicts(m: Match, years: string[]): Verdict[] {
+  const s = m.everify.state;
+  const best = m.everify.accounts[0];
+  const since = enrolledSince(m);
+  const stem: Verdict =
+    s === "enrolled"
+      ? { stage: "STEM OPT", tone: "good", answer: "Yes", note: `Enrolled in E-Verify${since ? ` since ${year(since)}` : ""}. They must also sign your Form I-983.` }
+      : s === "ending"
+        ? { stage: "STEM OPT", tone: "warn", answer: `Until ${day(best.terminatesOn)}`, note: "Its E-Verify enrolment ends on that date." }
+        : s === "ended"
+          ? { stage: "STEM OPT", tone: "bad", answer: "Not currently", note: "Its E-Verify account was terminated. Ask whether another part of the company is enrolled." }
+          : { stage: "STEM OPT", tone: "muted", answer: "Not confirmed", note: "No E-Verify record under this name. Ask the employer whether it uses E-Verify." };
+
+  const h = latestH1b(m);
+  const span = years.length ? `FY${years[years.length - 1]} to FY${years[0]}` : "recent years";
+  const h1b: Verdict = h
+    ? { stage: "H-1B", tone: "good", answer: "Has sponsored", note: `${n(h.approvals)} workers approved in FY${h.year}, ${n(h.newEmployment)} of them new hires.` }
+    : { stage: "H-1B", tone: "muted", answer: "No record", note: `No approvals from ${span} under this name. Try the legal company name.` };
+
+  return [
+    { stage: "OPT", tone: "good", answer: "Yes", note: "No sponsorship needed. The role must be related to your major." },
+    stem,
+    h1b,
+  ];
+}
+
+function Breakdown({ m, years }: { m: Match; years: string[] }) {
+  const [details, setDetails] = useState(false);
+  const hasDetails = m.everify.accounts.length > 0 || !!m.h1b;
   return (
-    <div className="rounded-lg border border-white/[0.06] bg-[#070b16] p-4">
-      <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm font-semibold text-white">{title}</p>
-        {chip}
-      </div>
-      <div className="text-[12.5px] leading-relaxed text-slate-400">{children}</div>
+    <div className="border-t border-white/[0.06] px-4 pb-4 pt-4 sm:px-5">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Can this employer hire you?</p>
+      <ul className="mt-1 divide-y divide-white/[0.05]">
+        {verdicts(m, years).map((v) => {
+          const { Icon, cls, text } = ICON[v.tone];
+          return (
+            <li key={v.stage} className="flex items-start gap-3 py-3">
+              <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${cls}`}>
+                <Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={2.5} />
+              </span>
+              <div className="min-w-0 flex-1 sm:flex sm:gap-4">
+                <p className="shrink-0 text-sm font-semibold leading-6 text-white sm:w-24">{v.stage}</p>
+                <p className="text-sm leading-6">
+                  <span className={`font-semibold ${text}`}>{v.answer}.</span>{" "}
+                  <span className="text-slate-400">{v.note}</span>
+                </p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+
+      {hasDetails && (
+        <div className="border-t border-white/[0.05] pt-2">
+          <button
+            type="button"
+            onClick={() => setDetails((d) => !d)}
+            aria-expanded={details}
+            className="inline-flex min-h-[36px] items-center gap-1 rounded-md text-[12px] font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+          >
+            {details ? "Hide records" : "View records"}
+            <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${details ? "rotate-180" : ""}`} />
+          </button>
+          {details && <Records m={m} />}
+        </div>
+      )}
     </div>
   );
 }
 
-function StemStage({ m }: { m: Match }) {
-  const s = m.everify.state;
-  const best = m.everify.accounts[0];
-  const chip =
-    s === "enrolled" ? (
-      <Chip tone="good">Meets E-Verify rule</Chip>
-    ) : s === "ending" ? (
-      <Chip tone="warn">Until {day(best.terminatesOn)}</Chip>
-    ) : s === "ended" ? (
-      <Chip tone="bad">E-Verify terminated</Chip>
-    ) : (
-      <Chip tone="muted">Not confirmed</Chip>
-    );
-  const body =
-    s === "enrolled"
-      ? `Enrolled in E-Verify${best.enrolledOn ? ` since ${day(best.enrolledOn)}` : ""}, which STEM OPT requires.`
-      : s === "ending"
-        ? `Enrolled in E-Verify until ${day(best.terminatesOn)}. After that it no longer meets the STEM OPT requirement.`
-        : s === "ended"
-          ? `The E-Verify account under this name was terminated${best.terminatesOn ? ` on ${day(best.terminatesOn)}` : ""}. Ask whether another entity of the company is enrolled.`
-          : "No E-Verify record under this name. The company may be enrolled under a legal or trade name, so confirm with the employer.";
+function Records({ m }: { m: Match }) {
   return (
-    <Stage title="STEM OPT" chip={chip}>
-      {body} The employer must also sign your Form I-983 training plan.
-    </Stage>
-  );
-}
-
-function H1bStage({ m, years }: { m: Match; years: string[] }) {
-  const h = latestH1b(m);
-  const span = years.length ? `FY${years[years.length - 1]} to FY${years[0]}` : "the years on record";
-  if (!m.h1b || !h) {
-    return (
-      <Stage title="H-1B" chip={<Chip tone="muted">No record</Chip>}>
-        No H-1B approvals under this name from {span}. Petitions are filed under the legal entity, so try the company&apos;s
-        legal name before drawing conclusions.
-      </Stage>
-    );
-  }
-  return (
-    <Stage title="H-1B" chip={<Chip tone="info">Has sponsored</Chip>}>
-      <p>
-        {n(h.approvals)} H-1B workers approved in FY{h.year}, {n(h.newEmployment)} of them for new employment
-        {m.h1b.employer.toLowerCase() !== m.name.toLowerCase() ? `, filed as ${m.h1b.employer}` : ""}.
-      </p>
-      <table className="mt-2.5 w-full text-[11.5px] tabular-nums">
-        <thead>
-          <tr className="text-left text-slate-500">
-            <th className="pb-1 font-medium">Year</th>
-            <th className="pb-1 text-right font-medium">Approved</th>
-            <th className="pb-1 text-right font-medium">New</th>
-            <th className="pb-1 text-right font-medium">Denied</th>
-          </tr>
-        </thead>
-        <tbody>
-          {m.h1b.years.map((y) => (
-            <tr key={y.year} className="border-t border-white/[0.05] text-slate-300">
-              <td className="py-1">FY{y.year}</td>
-              <td className="py-1 text-right">{n(y.approvals)}</td>
-              <td className="py-1 text-right">{n(y.newEmployment)}</td>
-              <td className="py-1 text-right">{n(y.denials)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </Stage>
+    <div className="mt-2 grid gap-6 pb-1 lg:grid-cols-2">
+      {m.h1b && (
+        <div className="min-w-0">
+          <p className="text-[12px] font-semibold text-slate-300">H-1B approvals by year</p>
+          <p className="mt-0.5 text-[11.5px] text-slate-500">Filed as {m.h1b.employer}. Counts are workers.</p>
+          <table className="mt-2 w-full text-[12px] tabular-nums">
+            <thead>
+              <tr className="text-left text-slate-500">
+                <th className="pb-1.5 font-medium">Fiscal year</th>
+                <th className="pb-1.5 text-right font-medium">Approved</th>
+                <th className="pb-1.5 text-right font-medium">New hires</th>
+                <th className="pb-1.5 text-right font-medium">Denied</th>
+              </tr>
+            </thead>
+            <tbody>
+              {m.h1b.years.map((y) => (
+                <tr key={y.year} className="border-t border-white/[0.05] text-slate-300">
+                  <td className="py-1.5">FY{y.year}</td>
+                  <td className="py-1.5 text-right">{n(y.approvals)}</td>
+                  <td className="py-1.5 text-right">{n(y.newEmployment)}</td>
+                  <td className="py-1.5 text-right">{n(y.denials)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {m.everify.accounts.length > 0 && (
+        <div className="min-w-0">
+          <p className="text-[12px] font-semibold text-slate-300">E-Verify accounts</p>
+          <p className="mt-0.5 text-[11.5px] text-slate-500">Names as enrolled, reported by the employer.</p>
+          <ul className="mt-2">
+            {m.everify.accounts.map((a, i) => (
+              <li key={i} className="flex items-baseline justify-between gap-3 border-t border-white/[0.05] py-1.5 text-[12px] first:border-t-0">
+                <span className="min-w-0 break-words text-slate-300">
+                  {a.employer}
+                  {a.dba ? <span className="text-slate-500"> ({a.dba})</span> : null}
+                </span>
+                <span className="shrink-0 tabular-nums text-slate-500">
+                  <span className={a.open ? "text-emerald-300" : "text-rose-300"}>{a.open ? "Enrolled" : "Terminated"}</span>
+                  {a.enrolledOn ? ` · ${year(a.enrolledOn)}${a.terminatesOn ? `-${year(a.terminatesOn)}` : ""}` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
