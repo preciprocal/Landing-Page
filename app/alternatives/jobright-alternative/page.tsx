@@ -61,7 +61,7 @@ const ROWS: ComparisonRow[] = [
   },
   {
     feature: "H1B sponsorship filter",
-    ours: "Visa guides, no sponsorship filter",
+    ours: "Employer lookup (E-Verify, H-1B by year), no job filter",
     theirs: "Filter built on USCIS filing history",
   },
   {
@@ -134,7 +134,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
   {
     title: "Use Jobright if finding the jobs is your problem",
-    body: "Worth saying first: Jobright's matching engine is the best-reviewed part of the product, and if your bottleneck is finding relevant postings rather than converting them, it solves a problem we do not even attempt. Preciprocal is not a job board and does not match you to roles. If you are an international student, the H1B sponsorship filter built on historical USCIS filing data is genuinely distinctive and we have nothing equivalent.",
+    body: "Worth saying first: Jobright's matching engine is the best-reviewed part of the product, and if your bottleneck is finding relevant postings rather than converting them, it solves a problem we do not even attempt. Preciprocal is not a job board and does not match you to roles. If you are an international student, its H1B sponsorship filter over job listings is genuinely distinctive. Our free employer lookup covers the same USCIS data from the other side: for a company you have already found, it shows E-Verify status and H-1B approvals by year, but it does not search listings.",
   },
   {
     title: "Nothing happens after the application",
@@ -165,7 +165,7 @@ const FAQS: AlternativeFaq[] = [
   },
   {
     q: "Is Jobright better for international students?",
-    a: "For finding sponsoring employers, yes. Its H1B filter is built on historical USCIS filing data and we do not offer anything comparable. Preciprocal's strength for the same audience is different: cover letters that handle work authorisation directly, plus a library of OPT, H-1B and visa guides, and interview practice for the round where the sponsorship conversation actually happens.",
+    a: "For finding sponsoring employers among open roles, yes: its H1B filter works on job listings, and ours does not. Preciprocal's free employer lookup answers the next question, whether a specific company can employ you on OPT, STEM OPT and H-1B, from its E-Verify enrolment and USCIS H-1B approvals. Beyond that, Preciprocal's strength for the same audience is different: cover letters that handle work authorisation directly, plus a library of OPT, H-1B and visa guides, and interview practice for the round where the sponsorship conversation actually happens.",
   },
   {
     q: "How much does Jobright cost compared to Preciprocal?",
