@@ -21,7 +21,7 @@ export const BLOG_SEO: Record<string, BlogSeoEntry> = {
     description: "Most resumes are rejected before a human sees them. Learn exactly how ATS works, why qualified candidates get filtered out, and the 10 fixes that get you past the system.",
     keywords: ["ATS resume screening", "how to pass ATS", "applicant tracking system resume tips", "ATS score 2026", "resume keywords ATS", "beat ATS resume", "ATS friendly resume format"],
     ogTitle: "How to Pass ATS Resume Screening in 2026",
-    ogDescription: "75% of resumes are rejected before a human reads them. Here are the 10 fixes that get you through the filter.",
+    ogDescription: "Applicant tracking systems decide what a recruiter sees first. Here are the 10 fixes that get you through the filter.",
   },
   "software-engineer-interview-prep-guide": {
     title: "SWE Interview Prep: 8-Week Plan (2026)",

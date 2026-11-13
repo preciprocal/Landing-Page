@@ -44,7 +44,7 @@ const ACCEPT = ".pdf,.docx,.doc,application/pdf,application/vnd.openxmlformats-o
 
 /** The app's own calibration (Dashboard ANALYSIS_SYSTEM, rule 4). */
 function band(score: number) {
-  if (score >= 90) return { label: "Top 5% of resumes", tone: "text-emerald-300", ring: "#34d399" };
+  if (score >= 90) return { label: "Excellent", tone: "text-emerald-300", ring: "#34d399" };
   if (score >= 70) return { label: "Above average", tone: "text-emerald-300", ring: "#34d399" };
   if (score >= 50) return { label: "Average. Most resumes land here", tone: "text-amber-300", ring: "#fbbf24" };
   if (score >= 30) return { label: "Weak. Likely filtered out", tone: "text-rose-300", ring: "#fb7185" };

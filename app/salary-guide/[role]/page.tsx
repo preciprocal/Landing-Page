@@ -67,7 +67,7 @@ const SALARY_DATA: Record<string, SalaryData> = {
       "Location still matters: remote-first companies may apply geo-adjustments of 10-25%",
       "Stack and specialty: ML engineers, security engineers, and distributed systems engineers command 15-30% premiums",
       "Offer timing: candidates with competing offers see 10-20% higher final packages on average",
-      "Negotiation: 72% of employers expect negotiation; most first offers are 5-15% below the ceiling",
+      "Negotiation: ask for the range, and counter with specifics from your offer and the market",
     ],
     sources: "Data aggregated from Levels.fyi, Glassdoor, LinkedIn Salary, and Blind (2025-2026). Individual packages vary significantly by company, location, and offer timing.",
   },

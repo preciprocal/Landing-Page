@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AI Mock Interview Practice Online: Simulate Real Interviews With Instant Feedback",
   description:
-    "Practice with an AI panel that mimics real hiring committees. Multi-agent voice interviews for technical, behavioral, and case rounds across 40+ roles. Get scored and debriefed instantly.",
+    "Practice with an AI interview panel by voice. Technical, behavioral, and case rounds across 40+ roles, with follow-up questions, scoring and a debrief after every session.",
   keywords: [
     "AI mock interview",
     "mock interview practice online",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "AI Mock Interview Practice: Simulate Real Interviews With Instant Feedback",
     description:
-      "Practice with a multi-agent AI panel that pushes back, asks follow-ups, and scores you like a real hiring committee. Covers 40+ roles.",
+      "Practice with an AI interview panel that pushes back, asks follow-ups, and scores you across five dimensions. Covers 40+ roles.",
     url: "https://preciprocal.com/ai-mock-interview",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],
@@ -33,6 +33,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AI Mock Interview Practice: Simulate Real Interviews",
     description:
-      "Practice with a multi-agent AI panel that scores you like a real hiring committee. Covers 40+ roles.",
+      "Practice with an AI interview panel that scores you across five dimensions. Covers 40+ roles.",
   },
 };

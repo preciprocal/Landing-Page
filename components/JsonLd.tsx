@@ -130,7 +130,7 @@ export function SoftwareAppJsonLd() {
       "Resume ATS Scoring",
       "Recruiter Eye Simulation",
       "Candidate Benchmarking",
-      "Cover Letter Generator with real-time company research",
+      "Cover Letter Generator tailored to each company and job",
       "AI Study Planner",
       "Job Tracker with Kanban board",
       "Chrome Extension",

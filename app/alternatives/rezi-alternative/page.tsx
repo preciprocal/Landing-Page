@@ -106,7 +106,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Voice practice with a panel, not a text exchange",
-      "body": "Rezi includes AI interviews on Pro, so this is a difference of depth rather than presence. Preciprocal's mocks are voice-based with a multi-agent panel, an HR screener, a technical lead and a hiring manager, that asks follow-ups and pushes back, then scores across five dimensions and produces a debrief."
+      "body": "Rezi includes AI interviews on Pro, so this is a difference of depth rather than presence. Preciprocal's mocks are voice-based with a panel, an HR interviewer and a technical lead, that asks follow-ups and pushes back, then scores across five dimensions and produces a debrief."
     },
     {
       "title": "$9.99 against $29 monthly",

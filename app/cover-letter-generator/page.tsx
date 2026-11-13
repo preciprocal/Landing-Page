@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How does the AI cover letter generator work?",
-    a: "You paste a job description and the AI does three things automatically: (1) it researches the company in real time to pull in specific details about their products, culture, and recent news, (2) it analyses the job requirements against your resume to find your strongest matching points, and (3) it writes a personalised letter that connects your specific experience to their specific needs. The whole process takes under 60 seconds.",
+    a: "You paste a job description and the AI does three things automatically: (1) it brings in what is widely known about the company, such as what it makes and who it serves, (2) it analyses the job requirements against your resume to find your strongest matching points, and (3) it writes a personalised letter that connects your specific experience to their specific needs. The whole process takes under 60 seconds.",
   },
   {
     q: "Will my cover letter sound like it was written by AI?",

@@ -15,7 +15,6 @@ export const metadata: Metadata = {
     "preciprocal privacy policy",
     "preciprocal data privacy",
     "AI career prep tool privacy",
-    "GDPR compliance career app",
     "CCPA rights preciprocal",
     "resume data privacy",
   ],
@@ -25,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Preciprocal Privacy Policy",
     description:
-      "How Preciprocal handles your personal data. Plain language, full GDPR and CCPA compliance, and a clear explanation of your rights.",
+      "How Preciprocal handles your personal data. Plain language, and a clear explanation of your rights under GDPR and CCPA.",
     url: "https://preciprocal.com/privacy",
     type: "website",
     images: [{ url: "https://preciprocal.com/og-image-v3.png", width: 1200, height: 630 }],

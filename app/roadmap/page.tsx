@@ -54,7 +54,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "AI Mock Interviews (voice)",
     description:
-      "Multi-agent voice interview panel with HR screener, technical lead, and hiring manager, with real-time follow-ups and a full debrief.",
+      "Voice interview panel with an HR interviewer and a technical lead, follow-up questions and a full debrief.",
     status: "shipped",
     date: "Nov 2024",
     tag: "Interviews",
@@ -70,7 +70,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Recruiter Eye Simulation",
     description:
-      "Heatmap showing where an HR screener, technical lead, and hiring manager look on your resume, based on published eye-tracking research.",
+      "An AI simulation of how an HR screener, technical lead, and hiring manager read your resume, with an attention heatmap.",
     status: "shipped",
     date: "Dec 2024",
     tag: "Resume",

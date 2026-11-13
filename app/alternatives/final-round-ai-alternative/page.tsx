@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 };
 
 const COMPARISON_ROWS = [
-  { feature: "AI Mock Interviews",        preciprocal: "✅ Multi-agent panel (HR + Tech + HM)",    finalRound: "✅ Yes" },
+  { feature: "AI Mock Interviews",        preciprocal: "✅ Voice panel (HR + technical lead)",    finalRound: "✅ Yes" },
   { feature: "Interview scoring",          preciprocal: "✅ 5 dimensions with debrief",              finalRound: "✅ Yes" },
   { feature: "Company-specific prep",     preciprocal: "✅ 50+ companies",                           finalRound: "✅ Yes" },
   { feature: "ATS Resume Checker",        preciprocal: "✅ Full ATS scoring + fixes",                finalRound: "❌ Not included" },
@@ -90,7 +90,7 @@ const FAQS = [
   },
   {
     q: "Is Preciprocal's mock interview as good as Final Round AI's?",
-    a: "Preciprocal uses a multi-agent panel, an HR screener, technical lead, and hiring manager, each asking role-appropriate questions and following up on vague answers. You get a structured debrief scoring communication, technical depth, structure, relevance, and confidence. Whether that's 'better' depends on what you need: Preciprocal is deeper on feedback; Final Round AI emphasises real-time assistance.",
+    a: "Preciprocal uses a voice panel, an HR interviewer and a technical lead, each asking role-appropriate questions and following up on vague answers. You get a structured debrief scoring communication, technical knowledge, problem-solving, role fit and confidence. Whether that's 'better' depends on what you need: Preciprocal is deeper on feedback; Final Round AI emphasises real-time assistance.",
   },
   {
     q: "Can I try Preciprocal before paying?",

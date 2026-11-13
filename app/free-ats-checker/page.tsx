@@ -63,7 +63,7 @@ const FAQS = [
   },
   {
     q: "What is a good ATS resume score?",
-    a: "The scoring is deliberately strict. 90 to 100 is the top 5% of resumes, 70 to 89 is above average, 50 to 69 is where most resumes land, 30 to 49 is weak, and below 30 is at risk of rejection. A 55 is a normal first score. The point of the score is to show you what to fix, so an honest 55 is more useful than an inflated 80.",
+    a: "The scoring is deliberately strict. 90 to 100 is excellent and rare, 70 to 89 is above average, 50 to 69 is where most resumes land, 30 to 49 is weak, and below 30 is at risk of rejection. A 55 is a normal first score. The point of the score is to show you what to fix, so an honest 55 is more useful than an inflated 80.",
   },
   {
     q: "Is the ATS checker really free?",

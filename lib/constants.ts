@@ -385,7 +385,7 @@ export const ROLE_QUESTIONS: Record<string, RoleQA[]> = {
     { question: "How do you build a talent pipeline?",                                       answer: "Proactive talent acquisition: build relationships with potential candidates before you need them (LinkedIn, conferences, employee referrals), develop a strong employer brand (Glassdoor, LinkedIn Life, employee stories), create a structured internship-to-hire pipeline for early career talent, and identify internal talent for future roles with succession planning. Key metric: what % of roles are filled with internal candidates or pre-identified external candidates vs. reactive sourcing?" },
     { question: "How do you ensure diversity, equity, and inclusion in hiring?",              answer: "Systemic approach, not individual effort: blind resume review removes names/schools, diverse interview panels reduce individual bias, structured interviews with consistent questions allow fair comparison, train interviewers on bias (affinity bias, halo effect), broaden sourcing channels (HBCUs, minority professional associations, non-traditional backgrounds), and track metrics (application-to-interview, interview-to-offer rates by demographic) to identify where the funnel breaks. Representation is the outcome; inclusion is whether people feel they can be themselves once hired." },
     { question: "Describe your experience with HR technology and HRIS systems.",              answer: "Common systems: Workday (enterprise HRIS), BambooHR/Rippling (SMB), Greenhouse/Lever/Workable (ATS), Lattice/Culture Amp (performance management), Deel/Remote (global payroll). Key questions HR should ask of any new system: does it reduce admin work for managers and employees? Does it give better data for decisions? What's the change management required for adoption? HR tech is only as good as the processes it automates, garbage in, garbage out." },
-    { question: "How do you design an effective onboarding program?",                        answer: "Onboarding starts before day one (send equipment, Slack access, day-one schedule). Structure: day one (culture, team context, role clarity), first week (meet key stakeholders, understand the business, set 30/60/90 goals), first month (deliverables, regular manager check-ins). Research shows the first 90 days determine long-term retention and performance. Most companies dramatically underinvest, preboarding, buddy programs, and structured check-ins at 30/60/90 days significantly improve outcomes." },
+    { question: "How do you design an effective onboarding program?",                        answer: "Onboarding starts before day one (send equipment, Slack access, day-one schedule). Structure: day one (culture, team context, role clarity), first week (meet key stakeholders, understand the business, set 30/60/90 goals), first month (deliverables, regular manager check-ins). The first 90 days shape long-term retention and performance. Preboarding, buddy programs, and structured check-ins at 30/60/90 days significantly improve outcomes." },
     { question: "How do you measure employee engagement and what do you do with the data?",   answer: "Tools: annual engagement surveys (Gallup Q12, Culture Amp) for deep measurement, quarterly pulse surveys for trend tracking, always-on feedback tools (Leapsome, Lattice). Key metrics: engagement score, eNPS (would you recommend this company to a friend?), and verbatim feedback themes. What to do with data: share results transparently (employees stop participating if nothing changes), create action plans owned by managers (not just HR), track year-over-year trends, and correlate engagement with turnover and performance data." },
     { question: "How do you handle a complaint of workplace harassment?",                    answer: "Immediate steps: take every complaint seriously, reassure the complainant that retaliation won't be tolerated, document the initial conversation. Investigation: assign a neutral investigator (often HR + legal or an external party for senior-level complaints), interview all relevant parties separately, gather documentary evidence. Outcome: take corrective action proportional to findings, communicate outcome to the complainant (without violating the respondent's privacy), and document everything. Post-investigation: monitor for any retaliation, review policies if systemic issues are identified." },
     { question: "What is your approach to change management?",                               answer: "Kotter's 8-step model is a useful framework: create urgency, build a coalition, form a vision, communicate it widely, empower people to act, create short-term wins, maintain momentum, and anchor the change in culture. In practice: people resist change when they don't understand why or feel excluded from the process. Involve impacted employees in designing the change where possible. Over-communicate (people need to hear something 7 times before it sticks). Address the WIIFM ('what's in it for me?') explicitly." },
@@ -1060,7 +1060,7 @@ Here is an honest breakdown of what actually works.
 
 ## The detection problem
 
-Over 90% of employers now use AI screening tools. Some of these tools score AI-generated content negatively. Even when they do not, recruiters who read hundreds of cover letters per week can spot the AI pattern immediately: "I am excited to apply for the [role] at [company] because your mission of [mission] aligns with my passion for [thing]."
+Many employers now use AI screening tools, and some of them score AI-generated content negatively. Even when they do not, recruiters who read hundreds of cover letters per week can spot the AI pattern immediately: "I am excited to apply for the [role] at [company] because your mission of [mission] aligns with my passion for [thing]."
 
 The fix is not to avoid AI. It is to use AI as a starting point and then edit heavily. The test: read your application out loud. If it sounds like you talking to someone, submit it. If it sounds like a LinkedIn post, rewrite it.
 
@@ -1141,7 +1141,7 @@ The good news is that the most effective networking tactics in 2026 are low-volu
 
 ## Why referrals matter more than ever
 
-A referred candidate is 4x more likely to be hired than one who applies through a job board. At many large tech companies, 30-50% of hires come through employee referrals. Recruiters treat referred candidates differently: they are more likely to receive a response, more likely to pass the resume screen, and more likely to get scheduling priority.
+A referral puts your application in front of a person instead of a queue. Recruiters treat referred candidates differently: they are more likely to receive a response, more likely to pass the resume screen, and more likely to get scheduling priority.
 
 Getting one referral from inside a target company is worth more than 50 cold applications through the careers page.
 
@@ -1477,7 +1477,7 @@ The discipline is to keep all three tiers moving simultaneously and to replenish
 
 ## Step 3: Make referrals your primary channel
 
-Referred candidates are hired at 4 times the rate of cold applicants. At large tech companies, 30 to 50 percent of hires come through employee referrals. This is the highest-ROI activity in your job search and the one most candidates skip.
+A referral puts your application in front of a person instead of a queue, which is why it is worth the effort and why so many candidates underuse it.
 
 Getting referrals is not about asking strangers for favours. It is about having genuine conversations with people who can vouch for you.
 
@@ -1515,7 +1515,7 @@ Preciprocal is built to handle the mechanical work so you can focus on the human
 
 **Resume analysis and tailoring.** Upload your resume and paste a job description. Preciprocal gives you your ATS score, shows you exactly which keywords are missing, and rewrites specific bullets to close the gap. The Recruiter Eye Simulation shows you how an HR screener, technical lead, and hiring manager scan your document, with an attention heatmap showing what gets missed. The Candidate Benchmarking tool shows you how your resume compares to others applying for the same type of role.
 
-**Mock interviews.** Voice-based mock interviews with a multi-agent AI panel: an HR screener, a technical lead, and a hiring manager. You speak, they respond with real follow-up questions, and you get a detailed debrief with scoring across five dimensions. You can target specific companies and roles, adjust difficulty, and run as many sessions as you need. Candidates who use mock interview tools consistently perform better in real interviews because the format stops being unfamiliar.
+**Mock interviews.** Voice-based mock interviews with an AI panel: an HR interviewer and a technical lead. You speak, they respond with real follow-up questions, and you get a detailed debrief with scoring across five dimensions. You can target specific companies and roles, adjust difficulty, and run as many sessions as you need. Practising out loud makes the format familiar before it counts.
 
 **Cover letters.** The cover letter generator researches your target company in real time, analyses the job description, and writes a personalised letter that connects your specific experience to their needs. The output sounds like you, not like a template. Every change is shown in an original-to-rewrite format so you control what goes in.
 
@@ -1677,7 +1677,7 @@ Start free at app.preciprocal.com. No credit card required.`,
     featured: true,
     content: `## The clock problem every F1 student faces
 
-The moment your OPT EAD card activates, a countdown begins. Standard OPT gives you 12 months. STEM OPT extends that to 36 months. H-1B status starts October 1 each year. These three timelines do not always line up cleanly, and the gaps between them have ended thousands of international careers in the US.
+The moment your OPT EAD card activates, a countdown begins. Standard OPT gives you 12 months. STEM OPT extends that to 36 months. H-1B status starts October 1 each year. These three timelines do not always line up cleanly, and the gaps between them are where international students most often get caught out.
 
 Stopping the clock, or more precisely, strategically extending and bridging your work authorization, requires understanding exactly which rules govern each phase and acting before deadlines arrive, not after.
 
@@ -1866,11 +1866,11 @@ Standard government filing fees (subject to change, verify at uscis.gov):
 - ACWIA training fee: $750 to $1,500 depending on employer size
 - Fraud prevention and detection fee: $500
 - Asylum program fee: $600 (for most employers)
-- Premium processing (optional): $2,965 for 15-business-day processing (effective March 1, 2026)
+- Premium processing (optional): an extra fee (see the USCIS fee schedule, Form G-1055) for action within 15 business days
 
 ### Step 5: USCIS adjudicates the petition (3 to 6 months standard, 15 business days premium)
 
-Standard processing takes 3 to 6 months. Premium processing costs $2,965 and guarantees a decision (approval, denial, or RFE) within 15 business days. For OPT holders whose EAD expires before October 1, the cap-gap extension provides automatic work authorization through September 30 once the petition is filed, reducing the urgency of premium processing in most cases.
+Standard processing takes 3 to 6 months. Premium processing, for an extra fee listed on the USCIS fee schedule, means USCIS takes action (approval, denial, or RFE) within 15 business days. For OPT holders whose EAD expires before October 1, the cap-gap extension provides automatic work authorization through September 30 once the petition is filed, reducing the urgency of premium processing in most cases.
 
 Approximately 17% of petitions receive a Request for Evidence (RFE) requesting additional documentation. Respond to any RFE promptly with thorough supporting materials. RFE response time is typically 87 days but the sooner you respond, the better.
 
@@ -1953,7 +1953,7 @@ To qualify for either L-1 category, you must meet all of the following:
 
 The US employer files the petition with USCIS. No lottery. No registration window. Petitions can be filed at any time of year.
 
-Processing time: 3 to 6 months standard. Premium processing ($2,965 effective March 2026) guarantees a response in 15 calendar days.
+Processing time: 3 to 6 months standard. Premium processing, for an extra fee, means USCIS takes action within 15 business days.
 
 **Step 2: If outside the US, apply for L-1 visa stamp at US consulate**
 
@@ -1971,7 +1971,7 @@ Companies that transfer large numbers of employees to the US can obtain an L-1 b
 
 Standard individual petition processing: 3 to 6 months depending on the USCIS service center and current caseload.
 
-Premium processing: 15 calendar day response guaranteed for $2,965.
+Premium processing: USCIS action within 15 business days, for an extra fee.
 
 New office petitions require additional documentation (business plan, lease, proof of funding) and are sometimes more closely scrutinised. USCIS may schedule site visits through the Fraud Detection and National Security directorate.
 
@@ -2078,7 +2078,7 @@ Unlike EB-1A (the extraordinary ability green card), the O-1 visa requires a US 
 
 Your employer or agent files Form I-129 with USCIS. The O-1 has no annual cap and can be filed at any time of year. There is no registration period and no lottery.
 
-Processing time: Standard processing takes 2 to 4 months. Premium processing ($2,965) guarantees a response in 15 business days.
+Processing time: Standard processing takes 2 to 4 months. Premium processing, for an extra fee, means USCIS takes action within 15 business days.
 
 The O-1 is initially approved for the period needed to complete the event or activity, up to 3 years. It can be extended in 1-year increments indefinitely as long as you continue to qualify.
 
@@ -2427,7 +2427,7 @@ More importantly for anyone graduating soon: F-1 students who were admitted for 
 
 DHS issued an interim final rule on October 30, 2025 that ended automatic extensions of employment authorization for most renewal applicants. USCIS stopped granting them as of that date.
 
-**What the old rule did.** If you filed your EAD renewal on time, your existing card kept working for up to 540 days past its printed expiration date while USCIS processed the renewal. It was the safety net that kept hundreds of thousands of people employed through processing backlogs.
+**What the old rule did.** If you filed your EAD renewal on time, your existing card kept working for up to 540 days past its printed expiration date while USCIS processed the renewal. It was the safety net that kept people employed through processing backlogs.
 
 **What happens now.** For most renewal categories, a timely-filed I-765 no longer extends anything. Your work authorization stops on the date printed on your card. If USCIS has not approved the renewal by then, you stop working, your employer must take you off payroll, and you resume only when the new card arrives.
 
@@ -2894,9 +2894,9 @@ export const FAQS: FAQItem[] = [
   { id: "i3", category: "interviews",   q: "What types of interviews can I practise?",       a: "Technical (coding + system design), behavioural (STAR method), case interviews (consulting), finance interviews (DCF, LBO), marketing strategy, and general screening. You can target specific companies and roles, select difficulty level, and the AI adjusts accordingly." },
   { id: "i4", category: "interviews",   q: "Can I practise for a specific company?",         a: "Yes. Enter the company name and role, and the AI tailors questions to that company's known interview style, values, and technical focus areas." },
   { id: "r1", category: "resume",       q: "What is ATS scoring?",                           a: "ATS (Applicant Tracking System) is the software used by most large employers to automatically filter resumes before a human sees them. Our scorer reviews your resume across five dimensions: content and impact, ATS compatibility, skills, structure, and tone, and gives you a score out of 100 with specific fixes." },
-  { id: "r2", category: "resume",       q: "What is the Recruiter Eye Simulation?",          a: "Based on published eye-tracking research, we simulate how three reviewers approach your document: an HR screener (quick first pass), a technical lead (deeper skill evaluation), and a hiring manager (impact & leadership focus). You see an attention heatmap showing where each reviewer's eyes go and what gets missed." },
+  { id: "r2", category: "resume",       q: "What is the Recruiter Eye Simulation?",          a: "An AI simulation of how three reviewers approach your document: an HR screener (quick first pass), a technical lead (deeper skill evaluation), and a hiring manager (impact & leadership focus). You see an attention heatmap showing where each reviewer's eyes go and what gets missed." },
   { id: "r3", category: "resume",       q: "Can I tailor my resume to a specific job?",      a: "Yes. Paste a job description into the Tailor tab, and the AI rewrites specific bullets to better match, adjusting keywords, reframing experience, and prioritising relevant skills. Every change is shown in a clear 'original to rewrite' format for your approval." },
-  { id: "c1", category: "cover-letter", q: "How does the cover letter generator work?",      a: "Paste a job description and the AI (1) researches the company in real-time, (2) analyses job requirements against your resume, and (3) writes a personalised letter connecting your experience to their needs, referencing real company details." },
+  { id: "c1", category: "cover-letter", q: "How does the cover letter generator work?",      a: "Paste a job description and the AI (1) draws on what is widely known about the company, (2) analyses job requirements against your resume, and (3) writes a personalised letter connecting your experience to their needs." },
   { id: "s1", category: "planner",      q: "How does the AI Study Planner work?",            a: "Enter your target role, interview date, current skill level, and daily time commitment. The AI generates a personalised day-by-day schedule with tasks, curated resources, daily quizzes, and an AI coach you can ask questions anytime." },
   // NOTE: t1 and t2 make legal commitments and must stay consistent with
   // app/privacy/page.tsx. The earlier wording claimed we "never share it with

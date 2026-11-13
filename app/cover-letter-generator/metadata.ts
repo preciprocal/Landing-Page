@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "AI Cover Letter Generator: Personalised Letters in 30 Seconds | Preciprocal",
   description:
-    "Generate a personalised cover letter in seconds. Our AI researches the company in real time, matches your resume to the job description, and writes a letter that sounds like you.",
+    "Generate a personalised cover letter in seconds. Our AI matches your resume to the job description, draws on what is known about the company, and writes a letter that sounds like you.",
   keywords: [
     "AI cover letter generator",
     "cover letter generator free",

@@ -93,7 +93,7 @@ const FAQS = [
   },
   {
     q: "What does Preciprocal have that Jobscan doesn't?",
-    a: "AI mock interviews (3/mo on Pro), a multi-agent interview panel with 5-dimension scoring, cover letter generation with real-time company research, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full career prep platform.",
+    a: "AI mock interviews (3/mo on Pro), a voice interview panel with 5-dimension scoring, cover letters tailored to each company, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full career prep platform.",
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",

@@ -80,7 +80,7 @@ const FAQS = [
   },
   {
     q: "How is this different from practicing with a friend or ChatGPT?",
-    a: "Three key differences. First, Preciprocal uses a multi-agent panel, including an HR screener, a technical lead, and a hiring manager, each asking questions from their perspective. Second, scoring is structured across 5 dimensions (communication, technical depth, structure, relevance, and confidence signals) so you know exactly what to improve. Third, it's infinitely available: no scheduling, no asking a favour, no friend who stops giving honest feedback after round two.",
+    a: "Three key differences. First, Preciprocal uses a voice panel: an HR interviewer and a technical lead take turns asking questions, with a third panelist observing. Second, scoring is structured across 5 dimensions (communication, technical knowledge, problem-solving, role fit, and confidence) so you know exactly what to improve. Third, it's infinitely available: no scheduling, no asking a favour, no friend who stops giving honest feedback after round two.",
   },
   {
     q: "What types of interviews can I practice?",
@@ -140,7 +140,7 @@ const STEPS = [
   {
     number: "02",
     title: "Interview with a 3-agent panel",
-    description: "An HR screener, technical lead, and hiring manager take turns asking questions. They follow up when you're vague, push back when you're wrong, and calibrate difficulty in real time. Speaking out loud is the skill you are building.",
+    description: "An HR interviewer and a technical lead take turns asking questions. They follow up when you're vague, push back when you're wrong, and calibrate difficulty in real time. Speaking out loud is the skill you are building.",
   },
   {
     number: "03",

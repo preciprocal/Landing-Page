@@ -133,7 +133,7 @@ export default function RecruiterContactFinderPage() {
             When someone on the team forwards your resume internally, you enter through a{" "}
             <strong className="text-white">completely different queue</strong>, one that is
             measured in dozens rather than hundreds, and where a human reads it first. Referred
-            candidates are hired at dramatically higher rates than portal applicants, and the
+            candidates tend to get further than portal applicants, and the
             difference is mostly structural rather than a judgement about quality.
           </p>
           <p>
