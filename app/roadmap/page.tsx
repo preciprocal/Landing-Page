@@ -14,7 +14,7 @@ import { APP_URL } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, Fold, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, Fold, PageHero, CtaPanel, pad2, H2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import type { RoadmapItem, RoadmapStatus } from "@/components/page/RoadmapTimeline";
 
@@ -263,7 +263,7 @@ export default function RoadmapPage() {
                   <Eyebrow>
                     {lane.label} · {pad2(entries.length)}
                   </Eyebrow>
-                  <h2 id={`lane-${lane.status}`} className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+                  <h2 id={`lane-${lane.status}`} className={H2}>
                     {lane.title}
                   </h2>
                 </Reveal>

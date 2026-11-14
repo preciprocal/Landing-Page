@@ -21,6 +21,7 @@ import { analyseDelivery, type DeliveryStats, type Status } from "@/lib/intervie
 import { trackEvent } from "@/lib/analytics/client";
 import Chevron from "@/components/Chevron";
 
+import { BTN_PRIMARY } from "@/components/page/Layout";
 const MAX_SECONDS = 150;
 const EASE = [0.22, 1, 0.36, 1] as const;
 const FOCUS =
@@ -214,7 +215,7 @@ export default function VoiceAnswerRecorder({
             type="button"
             data-track="question-predictor-record-start"
             onClick={start}
-            className={`inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-gradient-to-r from-indigo-500 to-purple-500 text-white transition-all hover:brightness-110 ${FOCUS}`}
+            className={BTN_PRIMARY}
           >
             <span className="w-2.5 h-2.5 rounded-full bg-rose-400" />
             {stats ? "Record again" : "Record my answer"}

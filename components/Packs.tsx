@@ -20,6 +20,7 @@ import { APP_URL } from "@/lib/constants";
 import { PACK_REFUND_LINE, formatUsd, getPacks } from "@/lib/pricing";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 
+import { H2 } from "@/components/page/Layout";
 export default function Packs() {
   const packs = getPacks();
 
@@ -32,7 +33,7 @@ export default function Packs() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-indigo-400 mb-3">
             Top-ups
           </p>
-          <h2 className="text-2xl sm:text-[28px] font-extrabold text-white tracking-tight mb-3">
+          <h2 className={`${H2} mb-3`}>
             Need more for one big week?
           </h2>
           <p className="text-[13px] text-slate-500 leading-relaxed max-w-md mx-auto">

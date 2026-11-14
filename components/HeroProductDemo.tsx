@@ -18,6 +18,7 @@ import { DebriefExamplePreview } from "@/components/examples/DebriefPreview";
 import { JobTrackerExamplePreview } from "@/components/examples/JobTrackerPreview";
 import { CHAPTER_DATA } from "@/lib/demoChapters";
 
+import { BTN_PRIMARY } from "@/components/page/Layout";
 // ═══════════════════════════════════════════════════════════════════════════════
 // ACETERNITY-INSPIRED ANIMATIONS (pure framer-motion + CSS)
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -626,7 +627,7 @@ export default function HeroProductDemo() {
 
   return (
     <section className="relative overflow-x-clip pb-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
 
         {/* Header, TextGenerate effect */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -823,7 +824,7 @@ export default function HeroProductDemo() {
                         <motion.a href="https://app.preciprocal.com/sign-up"
                           whileHover={{ scale: 1.04, y: -2 }}
                           whileTap={{ scale: 0.97 }}
-                          className="inline-flex items-center gap-2 px-7 py-3 rounded-xl text-[14px] font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-[0_8px_30px_rgba(99,102,241,0.25)] hover:shadow-[0_16px_40px_rgba(99,102,241,0.3)] transition-shadow">
+                          className={BTN_PRIMARY}>
                           Get Started <ChevronRight className="w-4 h-4" />
                         </motion.a>
                         <motion.button onClick={replay}

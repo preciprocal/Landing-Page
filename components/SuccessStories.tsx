@@ -24,6 +24,7 @@ import { ExternalLink } from "lucide-react";
 import { getSuccessStoryViews, type SuccessStoryView } from "@/lib/successStories";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 
+import { H2 } from "@/components/page/Layout";
 export default function SuccessStories() {
   const [stories, setStories] = useState<SuccessStoryView[] | null>(null);
 
@@ -53,7 +54,7 @@ export default function SuccessStories() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-400 mb-3">
             Success stories
           </p>
-          <h2 className="text-2xl sm:text-[28px] font-extrabold text-white tracking-tight mb-3">
+          <h2 className={`${H2} mb-3`}>
             People who landed, and got that month back
           </h2>
           <p className="text-[13px] text-slate-500 leading-relaxed max-w-md mx-auto">

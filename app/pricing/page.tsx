@@ -36,7 +36,7 @@ import {
   tierSchemaPrice,
 } from "@/lib/pricing";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, Breadcrumbs, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, Breadcrumbs, FaqSection, H1, BTN_PRIMARY, BTN_SECONDARY } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -177,7 +177,7 @@ export default function PricingPage() {
               <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-indigo-400">
                 Pricing
               </p>
-              <h1 className="mb-4 text-4xl font-extrabold leading-tight tracking-tight text-white md:text-[42px]">
+              <h1 className={`${H1} mb-4`}>
                 Invest in yourself.
                 <br />
                 <span className="text-gradient">Start free.</span>
@@ -229,11 +229,7 @@ export default function PricingPage() {
 
                       <a
                         href={plan.id === "free" ? `${APP_URL}/sign-up` : `${APP_URL}/sign-up?plan=${plan.id}`}
-                        className={`block w-full rounded-xl py-3.5 text-center text-[15px] font-semibold transition-all duration-300 ${
-                          plan.mostPopular
-                            ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:brightness-110"
-                            : "border border-white/[0.12] bg-white/[0.05] text-slate-200 hover:border-white/20 hover:bg-white/[0.08]"
-                        }`}
+                        className={`${plan.mostPopular ? BTN_PRIMARY : BTN_SECONDARY} w-full`}
                       >
                         {plan.cta}
                       </a>

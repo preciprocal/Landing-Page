@@ -152,10 +152,10 @@ export default function HowItWorksPage() {
           }
         >
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full px-8 py-4 sm:w-auto`}>
+            <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
               Start free <Chevron />
             </a>
-            <a href="#walkthrough" className={`${BTN_SECONDARY} w-full py-4 sm:w-auto`}>
+            <a href="#walkthrough" className={`${BTN_SECONDARY} w-full sm:w-auto`}>
               Watch the walkthrough
             </a>
           </div>
@@ -278,7 +278,7 @@ export default function HowItWorksPage() {
               title="Your clock is running. Make the days count."
               body={<p>Start with whatever is worrying you most. It is free, and it takes a minute.</p>}
               action={
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} py-4`}>
+                <a href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
                   Start free <Chevron />
                 </a>
               }

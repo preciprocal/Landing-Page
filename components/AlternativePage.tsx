@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection, H1 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import { Check, X } from "lucide-react";
 
@@ -230,14 +230,14 @@ export default function AlternativePage({
                   <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
                   Comparison · Updated {pricingChecked}
                 </div>
-                <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
+                <h1 className={H1}>
                   {`The Best ${competitor} Alternative `}
                   <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">in 2026</span>
                 </h1>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">{intro}</p>
                 <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-400">{positioning}</p>
                 <div className="mt-9">
-                  <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto`}>
+                  <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                     Try Preciprocal free <Chevron />
                   </a>
                   <TrustRow className="mt-5" />

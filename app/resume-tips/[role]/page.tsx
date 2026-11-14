@@ -311,7 +311,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Typical salary range</p>
                 <p className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">{tipData.salaryRange}</p>
               </div>
-              <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full py-4`}>
+              <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full`}>
                 Check my resume free <Chevron />
               </a>
               <p className="-mt-1 text-center text-[12px] text-slate-500">No account needed for your first score</p>

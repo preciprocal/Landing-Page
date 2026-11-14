@@ -18,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, CtaPanel, Fold, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, CtaPanel, Fold, pad2, H2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
@@ -219,7 +219,7 @@ export default function AboutPage() {
           <div className={INNER}>
             <Reveal className="mx-auto max-w-3xl text-center">
               <Eyebrow>The team</Eyebrow>
-              <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+              <h2 className={H2}>
                 Who&apos;s behind it
               </h2>
               <p className="mt-4 text-[16px] leading-relaxed text-slate-400">

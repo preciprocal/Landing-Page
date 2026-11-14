@@ -31,6 +31,7 @@ import { INPUT_LIMITS } from "@/lib/interviewTools/limits";
 import type { PredictedQuestion, Prediction, Rating, ToolError } from "@/lib/interviewTools/schemas";
 import Chevron from "@/components/Chevron";
 
+import { BTN_PRIMARY, BTN_PRIMARY_SM } from "@/components/page/Layout";
 type Mode = "predict" | "tmay";
 
 const TMAY_QUESTION = "Tell me about yourself.";
@@ -80,8 +81,6 @@ const rise: Variants = {
 
 const FOCUS =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810]";
-const BTN =
-  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 font-bold text-white transition-all hover:brightness-110 disabled:translate-y-0 disabled:opacity-40 disabled:shadow-none disabled:cursor-not-allowed";
 const LABEL = "text-[11px] font-semibold uppercase tracking-[0.18em]";
 
 /** Counts from 0 to `to` once, when it mounts. */
@@ -255,7 +254,7 @@ function PredictPanel() {
             data-track="question-predictor-submit"
             onClick={predict}
             disabled={loading || tooShort}
-            className={`${BTN} px-6 py-3 text-sm ${FOCUS}`}
+            className={BTN_PRIMARY}
           >
             {loading && <Spinner />}
             {loading ? "Reading the posting..." : "Predict my 5 questions"}
@@ -580,7 +579,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
               data-track="question-predictor-score"
               onClick={score}
               disabled={loading || tooShort}
-              className={`${BTN} px-5 py-2.5 text-sm ${FOCUS}`}
+              className={BTN_PRIMARY_SM}
             >
               {loading && <Spinner />}
               {loading ? "Scoring..." : rating ? "Score it again" : voice ? "Score my content" : "Score my answer"}
@@ -690,7 +689,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
               This is where real interviews are won or lost, and you cannot practice it by typing. Preciprocal&apos;s AI
               interviewer asks follow-ups like this one out loud, the way a real interviewer would, and scores how you handle them.
             </p>
-            <a href={signUpUrl(role)} className={`${BTN} w-full px-5 py-3 text-sm sm:w-auto ${FOCUS}`}>
+            <a href={signUpUrl(role)} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
               Answer it in a free mock interview <Chevron />
             </a>
             <p className="text-[11px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>
@@ -724,7 +723,7 @@ function ConversionBanner({ role }: { role: string }) {
           </p>
         </div>
         <div>
-          <a href={signUpUrl(role)} className={`${BTN} w-full px-6 py-3 text-sm ${FOCUS}`}>
+          <a href={signUpUrl(role)} className={`${BTN_PRIMARY} w-full`}>
             Start a free mock interview <Chevron />
           </a>
           <p className="text-[11px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>

@@ -6,6 +6,7 @@ import { APP_URL } from "@/lib/constants";
 import { MagneticHover } from "@/components/LandingAnimations";
 import SmoothGlow from "@/components/ui/SmoothGlow";
 
+import { BTN_PRIMARY, H2 } from "@/components/page/Layout";
 export default function FinalCTA() {
   return (
     <section className="relative py-32 overflow-hidden">
@@ -35,7 +36,7 @@ export default function FinalCTA() {
 
         <motion.h2 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight leading-[1.1] mb-5">
+          className={`${H2} mb-5`}>
           Make the days you have left
           <br />
           <span className="text-gradient">count.</span>
@@ -53,7 +54,7 @@ export default function FinalCTA() {
           className="flex flex-col items-center">
           <MagneticHover>
             <a href={`${APP_URL}/sign-up`}
-              className="inline-flex items-center justify-center gap-2 px-12 py-4 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl text-lg transition-all hover:brightness-110 group">
+              className={BTN_PRIMARY}>
               Start free
               <ChevronRightIcon className="transition-transform group-hover:translate-x-1" />
             </a>

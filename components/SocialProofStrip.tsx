@@ -35,7 +35,7 @@ export default function SocialProofStrip() {
         <GlowDivider />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         <RevealOnScroll>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {PROOF.map((item) => (

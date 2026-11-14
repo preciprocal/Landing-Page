@@ -92,11 +92,31 @@ export const GRID_BG: CSSProperties = {
 export const CARD = "rounded-2xl border border-white/[0.07] bg-white/[0.025]";
 export const CARD_SOLID = "rounded-2xl border border-white/[0.07] bg-[#070b16]";
 
-/** Buttons. The primary stays brand indigo on every page, whatever the accent. */
-export const BTN_PRIMARY =
-  "group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 px-7 py-3.5 text-sm font-bold text-white transition-all hover:brightness-110";
-export const BTN_SECONDARY =
-  "group inline-flex items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-6 py-3.5 text-sm font-semibold text-white transition-all hover:border-white/25 hover:bg-white/[0.07]";
+/**
+ * Buttons: the only button styles on the site. Every page CTA uses BTN_PRIMARY
+ * or BTN_SECONDARY; compact places (the navbar, actions inside a tool) use the
+ * _SM sizes, which keep the same shape, font and colours with less padding.
+ * Add `w-full` for a full-width button, never new padding or font sizes.
+ * The primary stays brand indigo on every page, whatever the accent.
+ */
+const BTN_BASE =
+  "group inline-flex items-center justify-center gap-2 rounded-xl text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 disabled:cursor-not-allowed disabled:opacity-40";
+const BTN_FILL = "bg-gradient-to-r from-indigo-500 to-purple-500 font-bold text-white hover:brightness-110";
+const BTN_OUTLINE = "border border-white/[0.12] bg-white/[0.04] font-semibold text-white hover:border-white/25 hover:bg-white/[0.07]";
+export const BTN_PRIMARY = `${BTN_BASE} ${BTN_FILL} px-7 py-3.5`;
+export const BTN_SECONDARY = `${BTN_BASE} ${BTN_OUTLINE} px-6 py-3.5`;
+export const BTN_PRIMARY_SM = `${BTN_BASE} ${BTN_FILL} px-4 py-2.5`;
+export const BTN_SECONDARY_SM = `${BTN_BASE} ${BTN_OUTLINE} px-4 py-2.5`;
+
+/**
+ * Headings: one scale for the whole site. H1 is a page title (PageHero,
+ * product, comparison and guide heroes); H2 is a section title. The homepage
+ * hero headline is the one deliberate exception, and a PageHero with an
+ * illustration beside it caps the title at 3.6rem so it stays on three lines
+ * (at 4rem the illustrated tool heroes wrap to four).
+ */
+export const H1 = "text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]";
+export const H2 = "text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.625rem]";
 
 export const pad2 = (n: number) => String(n).padStart(2, "0");
 
@@ -152,7 +172,7 @@ export function SectionHead({
   return (
     <div className={`max-w-3xl ${align === "center" ? "mx-auto text-center" : ""} ${className}`}>
       <Eyebrow>{eyebrow}</Eyebrow>
-      <Tag className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">
+      <Tag className={H2}>
         {title}
         {accent && <> <span className={ACCENT_TEXT}>{accent}</span></>}
       </Tag>
@@ -266,7 +286,7 @@ export function PageHero({
           a size there rather than wrapping to four lines. */}
       <h1
         className={`text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl ${
-          visual ? "lg:text-[3.25rem] xl:text-[3.6rem]" : "lg:text-[4.25rem]"
+          visual ? "lg:text-[3.25rem] xl:text-[3.6rem]" : "lg:text-[4rem]"
         }`}
       >
         {title}
@@ -351,7 +371,7 @@ export function CtaPanel({
 
       <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
-          <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{title}</h2>
+          <h2 className={H2}>{title}</h2>
           {body && <div className="mt-4 text-[16px] leading-relaxed text-slate-400">{body}</div>}
           {trust && <TrustRow className="mt-6" />}
         </div>
@@ -436,7 +456,7 @@ export function FaqSection({
       <div className={`${INNER} grid grid-cols-1 gap-10 lg:grid-cols-[360px_minmax(0,1fr)] xl:gap-24`}>
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Eyebrow>FAQ</Eyebrow>
-          <h2 className="text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight">{title}</h2>
+          <h2 className={H2}>{title}</h2>
           <p className="mt-4 text-sm leading-relaxed text-slate-500">
             Something else? Email{" "}
             <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">

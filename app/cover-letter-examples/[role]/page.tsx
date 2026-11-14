@@ -336,7 +336,7 @@ export default async function CoverLetterExampleRolePage({
           }
           aside={
             <div className="flex flex-col gap-3 lg:items-end">
-              <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto ${FOCUS}`}>
+              <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Write mine in 60 seconds <Chevron />
               </a>
               <p className="text-[12px] text-slate-500">5 free cover letters a month · No credit card</p>
@@ -419,7 +419,7 @@ export default async function CoverLetterExampleRolePage({
                     required.
                   </p>
                 </div>
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 px-6 py-3 md:w-auto`}>
+                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 md:w-auto`}>
                   Generate my cover letter free <Chevron />
                 </a>
               </div>

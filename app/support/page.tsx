@@ -119,10 +119,10 @@ export default function SupportPage() {
           }
         >
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a href={`${APP_URL}/help`} className={`${BTN_PRIMARY} w-full px-8 py-4 sm:w-auto`}>
+            <a href={`${APP_URL}/help`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
               Open a support ticket <Chevron />
             </a>
-            <a href={`mailto:${SUPPORT_EMAIL}`} className={`${BTN_SECONDARY} w-full py-4 sm:w-auto`}>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className={`${BTN_SECONDARY} w-full sm:w-auto`}>
               Email support
             </a>
           </div>

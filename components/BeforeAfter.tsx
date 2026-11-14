@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { H2 } from "@/components/page/Layout";
 import {
   SpotlightCard,
   StaggerChildren,
@@ -30,12 +31,12 @@ const WITH = [
 export default function BeforeAfter() {
   return (
     <section className="py-24 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         <GlowDivider />
 
         <RevealOnScroll className="text-center mb-14 mt-14">
           <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">The difference</p>
-          <h2 className="text-3xl sm:text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight">
+          <h2 className={H2}>
             Same you. <span className="text-gradient">Different strategy.</span>
           </h2>
         </RevealOnScroll>

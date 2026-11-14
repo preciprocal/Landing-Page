@@ -21,7 +21,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, TrustRow, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, TrustRow, FaqSection, H1 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -128,7 +128,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                   </span>
                 </div>
 
-                <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
+                <h1 className={H1}>
                   {"How to Get a Job at "}
                   <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">
                     {meta.displayName} (2026)
@@ -140,7 +140,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 </p>
 
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <a href={mockUrl} className={`${BTN_PRIMARY} py-4`}>
+                  <a href={mockUrl} className={BTN_PRIMARY}>
                     Practice a {meta.displayName} mock interview <Chevron />
                   </a>
                   <a href="#process" className={BTN_SECONDARY}>
@@ -317,7 +317,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 </p>
               }
               action={
-                <a href={mockUrl} className={`${BTN_PRIMARY} w-full px-8 py-4 text-base sm:w-auto`}>
+                <a href={mockUrl} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   Start preparing free <Chevron />
                 </a>
               }

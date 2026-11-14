@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, Crown, ChevronRight } from "lucide-react";
 import { reportStaleContent } from "@/lib/contentFreshness";
+import { H2, BTN_PRIMARY } from "@/components/page/Layout";
 import {
   SpotlightCard,
   StaggerChildren,
@@ -87,12 +88,12 @@ export default function ComparisonTable() {
     <section className="relative py-24 overflow-hidden">
       <FloatingDots count={15} />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <RevealOnScroll className="text-center mb-14">
           <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
             Why Preciprocal
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+          <h2 className={`${H2} mb-3`}>
             Everything they charge extra for.{" "}
             <span className="text-gradient">We include.</span>
           </h2>
@@ -170,9 +171,7 @@ export default function ComparisonTable() {
           <MagneticHover>
             <a
               href="https://app.preciprocal.com/sign-up"
-              className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white text-[14px]
-                         bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500
-                         shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300"
+              className={BTN_PRIMARY}
             >
               Get all 13 features for $9.99
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

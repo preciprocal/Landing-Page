@@ -24,6 +24,7 @@ import { MotionConfig, motion } from "framer-motion";
 import { CalendarClock, FileCheck2, Mail, MessageSquareText } from "lucide-react";
 import Chevron from "@/components/Chevron";
 
+import { H2 } from "@/components/page/Layout";
 /**
  * Each card opens on the moment a job seeker is in, then says what the tool
  * does about it. Keep every claim checkable: the timings come from the tools
@@ -87,7 +88,7 @@ export default function FreeToolsStrip() {
         <div className="mx-auto w-full max-w-[1200px]">
           <div className="mb-10 text-center sm:mb-12">
             <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-emerald-300">Free, no account needed</p>
-            <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+            <h2 className={`${H2} mb-4`}>
               The job search is hard enough.
               <span className="block bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">Start with what is worrying you.</span>
             </h2>

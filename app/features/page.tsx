@@ -26,7 +26,7 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, PageHero, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, PageHero, pad2, H2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 type Feature = {
@@ -296,7 +296,7 @@ export default function FeaturesPage() {
                   <Eyebrow>
                     {pad2(stageIndex + 1)} · {stage.eyebrow}
                   </Eyebrow>
-                  <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.25rem]">{stage.title}</h2>
+                  <h2 className={H2}>{stage.title}</h2>
                   <p className="mt-4 text-[15.5px] leading-relaxed text-slate-400">{stage.intro}</p>
                 </Reveal>
 

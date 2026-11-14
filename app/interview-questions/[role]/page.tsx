@@ -79,7 +79,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
           subhead={<p>{meta.description}</p>}
           aside={
             <div className="flex flex-col gap-3 lg:items-end">
-              <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full py-4 sm:w-auto ${FOCUS}`}>
+              <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Practice these out loud, free <Chevron />
               </a>
               <p className="text-[12px] text-slate-500">Voice mock interview · AI follow-ups · No credit card</p>

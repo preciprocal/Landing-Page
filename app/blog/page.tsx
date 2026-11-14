@@ -191,7 +191,7 @@ export default function BlogIndexPage() {
             />
             <div className="relative flex justify-center">
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                Practice everything you&apos;ve read, free <Chevron />
+                Practice what you&apos;ve read <Chevron />
               </a>
             </div>
           </Reveal>

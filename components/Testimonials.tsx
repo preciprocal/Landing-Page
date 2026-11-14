@@ -5,6 +5,7 @@ import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
 import { TESTIMONIALS } from "@/lib/constants";
 import { RevealOnScroll } from "@/components/LandingAnimations";
 
+import { H2 } from "@/components/page/Layout";
 export default function Testimonials() {
   const items = TESTIMONIALS.map((t) => ({
     quote: t.text,
@@ -25,12 +26,12 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className="py-20">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         <RevealOnScroll className="text-center mb-16">
           <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
             Real Stories
           </p>
-          <h2 className="text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-4">
+          <h2 className={`${H2} mb-4`}>
             They were where you are now.
             <br />
             <span className="text-gradient">Then they started preparing.</span>

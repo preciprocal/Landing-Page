@@ -10,6 +10,7 @@ import {
   tierPriceLabel,
 } from "@/lib/pricing";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
+import { H2, BTN_PRIMARY, BTN_SECONDARY } from "@/components/page/Layout";
 import {
   RevealOnScroll,
   StaggerChildren,
@@ -29,7 +30,7 @@ export default function Pricing() {
           <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
             Pricing
           </p>
-          <h2 className="text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-4">
+          <h2 className={`${H2} mb-4`}>
             Invest in yourself.
             <br />
             <span className="text-gradient">Start free.</span>
@@ -80,15 +81,13 @@ export default function Pricing() {
                   {plan.mostPopular ? (
                     <MagneticHover>
                       <a href={`${APP_URL}/sign-up`}
-                        className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                   bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:-translate-y-0.5 hover:shadow-[0_20px_40px_rgba(99,102,241,0.3)]">
+                        className={`${BTN_PRIMARY} w-full`}>
                         {plan.cta}
                       </a>
                     </MagneticHover>
                   ) : (
                     <a href={`${APP_URL}/sign-up`}
-                      className="block w-full text-center py-3.5 rounded-xl font-semibold text-[15px] transition-all duration-300
-                                 bg-white/[0.05] border border-white/[0.12] text-slate-200 hover:bg-white/[0.08] hover:border-white/20 hover:-translate-y-0.5">
+                      className={`${BTN_SECONDARY} w-full`}>
                       {plan.cta}
                     </a>
                   )}

@@ -24,7 +24,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection, H2 } from "@/components/page/Layout";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
@@ -208,7 +208,7 @@ export default function ToolPage({
               <>
                 {/* With a tool on the page, the tool is the primary action and
                     this is the quieter way in; without one, it is the CTA. */}
-                <a href={signUpUrl} className={`${tool ? BTN_SECONDARY : `${BTN_PRIMARY} py-4`} w-full sm:w-auto`}>
+                <a href={signUpUrl} className={`${tool ? BTN_SECONDARY : BTN_PRIMARY} w-full sm:w-auto`}>
                   {ctaLabel} <Chevron />
                 </a>
                 <p className="mt-3 text-[12px] text-slate-500">{ctaMicrocopy}</p>
@@ -230,7 +230,7 @@ export default function ToolPage({
               <div className={INNER}>
                 <div className="mx-auto max-w-2xl text-center">
                   <Eyebrow>Your plan</Eyebrow>
-                  <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{plan.title}</h2>
+                  <h2 className={H2}>{plan.title}</h2>
                   <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{plan.subtitle}</p>
                 </div>
                 <RevealGroup as="ol" className="mx-auto mt-14 max-w-5xl space-y-4">
@@ -275,7 +275,7 @@ export default function ToolPage({
             <div className={INNER}>
               <div className="mx-auto max-w-2xl text-center">
                 <Eyebrow>How it works</Eyebrow>
-                <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">
+                <h2 className={H2}>
                   {COUNT_WORD[steps.length] ?? steps.length} steps. <span className={ACCENT_TEXT}>Zero guesswork.</span>
                 </h2>
               </div>
@@ -302,7 +302,7 @@ export default function ToolPage({
             <div className={INNER}>
               <div className="mx-auto max-w-2xl text-center">
                 <Eyebrow>What you get</Eyebrow>
-                <h2 className="text-[1.75rem] font-bold leading-tight tracking-tight text-white sm:text-[2.5rem]">{featuresTitle}</h2>
+                <h2 className={H2}>{featuresTitle}</h2>
                 <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{featuresSubtitle}</p>
               </div>
               <RevealGroup className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -409,7 +409,7 @@ export default function ToolPage({
                 title={bottomTitle}
                 body={<p>{bottomBody}</p>}
                 action={
-                  <a href={signUpUrl} className={`${BTN_PRIMARY} w-full px-8 py-4 text-base sm:w-auto`}>
+                  <a href={signUpUrl} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                     {ctaLabel} <Chevron />
                   </a>
                 }

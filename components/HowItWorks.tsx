@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { STEPS } from "@/lib/constants";
 import { RevealOnScroll, StaggerChildren, StaggerItem, SpotlightCard } from "@/components/LandingAnimations";
 
+import { H2 } from "@/components/page/Layout";
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="relative">
@@ -12,7 +13,7 @@ export default function HowItWorks() {
           <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
             How It Works
           </p>
-          <h2 className="text-4xl md:text-[42px] font-extrabold text-white tracking-tight leading-tight mb-4">
+          <h2 className={`${H2} mb-4`}>
             Three steps. <span className="text-gradient">Zero guesswork.</span>
           </h2>
           <p className="text-base text-slate-400 max-w-lg mx-auto">

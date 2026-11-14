@@ -19,6 +19,7 @@ import { motion } from "framer-motion";
 import { RevealOnScroll, StaggerChildren, StaggerItem, GlowDivider } from "@/components/LandingAnimations";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
+import { H2 } from "@/components/page/Layout";
 const FACTS = [
   {
     stat: "90",
@@ -66,7 +67,7 @@ export default function ProblemSection() {
 
         <RevealOnScroll className="mb-14 mt-10 text-center">
           <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-amber-400">The OPT reality</p>
-          <h2 className="mb-5 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-[42px]">
+          <h2 className={`${H2} mb-5`}>
             You are not just job hunting.
             <br />
             <span className="text-slate-500">You are racing a clock.</span>

@@ -21,7 +21,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb, H1 } from "@/components/page/Layout";
 import { CHAPTER_DATA, type ChapterId } from "@/lib/demoChapters";
 
 const FRAME_H = "h-[660px] xl:h-[720px]";
@@ -123,7 +123,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
                 {badge}
               </div>
             )}
-            <h1 className="text-[clamp(2.4rem,4.6vw,4rem)] font-extrabold leading-[1.05] tracking-[-0.025em] text-white">
+            <h1 className={H1}>
               {title}
               {accent && (
                 <span className="block animate-[gradient-shift_8s_ease_infinite] bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-[length:200%_auto] bg-clip-text pb-1 text-transparent">
@@ -133,11 +133,11 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
             </h1>
             <div className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-slate-400">{subhead}</div>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a href={ctaHref} className={`${BTN_PRIMARY} w-full px-8 py-4 text-base sm:w-auto`}>
+              <a href={ctaHref} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                 {ctaLabel} <Chevron />
               </a>
               {secondary && (
-                <a href={secondary.href} className={`${BTN_SECONDARY} w-full py-4 sm:w-auto`}>
+                <a href={secondary.href} className={`${BTN_SECONDARY} w-full sm:w-auto`}>
                   {secondary.label}
                 </a>
               )}

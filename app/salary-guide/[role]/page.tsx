@@ -23,7 +23,7 @@ import { ALL_ROLES, ROLE_DISPLAY, APP_URL } from "@/lib/constants";
 import { fitTitle } from "@/lib/seoTitle";
 import { getRoleContent } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, Fold, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, Fold, pad2, H1 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Static params ────────────────────────────────────────────────────────────
@@ -339,7 +339,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               <span aria-hidden="true" className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-3xl">
                 {display.icon}
               </span>
-              <h1 className="text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4.25rem]">
+              <h1 className={H1}>
                 {display.name} salary guide 2026
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
