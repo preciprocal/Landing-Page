@@ -221,6 +221,16 @@ function Toggle({ on, onChange, label, hint }: { on: boolean; onChange: (v: bool
   );
 }
 
+/**
+ * Sign up (or sign in), then land on this role in the app's job feed, which
+ * re-checks the posting live and saves its description into the Apply flow.
+ * The in-app path is encoded once more as the redirect value; the app only
+ * follows in-app paths (lib/auth/destination.ts there).
+ */
+function tailorUrl(j: Job) {
+  return `${APP_URL}/sign-up?redirect=${encodeURIComponent(`/jobs?q=${encodeURIComponent(j.title)}`)}`;
+}
+
 function JobRow({ j, year }: { j: Job; year: string | null }) {
   const ev =
     j.everify === "enrolled" ? { label: "STEM OPT: E-Verify", cls: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300" }
@@ -252,7 +262,7 @@ function JobRow({ j, year }: { j: Job; year: string | null }) {
           </div>
         </div>
         <div className="flex shrink-0 gap-2">
-          <a href={`${APP_URL}/sign-up?tool=resume-tailoring`} className={BTN_SECONDARY_SM}>Tailor resume</a>
+          <a href={tailorUrl(j)} className={BTN_SECONDARY_SM}>Tailor resume</a>
           <a href={j.url} target="_blank" rel="noopener noreferrer" className={BTN_PRIMARY_SM}>
             Apply <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
           </a>
