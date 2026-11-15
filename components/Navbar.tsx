@@ -97,6 +97,7 @@ const RESOURCES_GROUPS = [
 const FLAT_NAV = [
   // The audience the product is built around gets the first link.
   { label: "For OPT students", href: "/for/international-students" },
+  { label: "Jobs",         href: "/jobs" },
   { label: "Features",     href: "/features" },
   { label: "How it Works", href: "/how-it-works" },
   { label: "Pricing",      href: "/pricing" },
@@ -220,7 +221,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop nav links */}
-        <div className="hidden lg:flex items-center gap-7">
+        <div className="hidden xl:flex items-center gap-7 whitespace-nowrap">
           {FLAT_NAV.map((link) => (
             <a
               key={link.label}
@@ -238,7 +239,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTAs */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3 whitespace-nowrap">
           {/* Outlined secondary button, matching the non-highlighted plan card
               CTAs. As bare text it read as another nav link rather than as the
               pair to "Get Started Free". */}
@@ -262,7 +263,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-white p-2"
+          className="xl:hidden text-white p-2"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <CloseIcon /> : <MenuIcon />}
@@ -271,7 +272,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-white/[0.06] bg-[#050810]/95 backdrop-blur-xl px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
+        <div className="xl:hidden border-t border-white/[0.06] bg-[#050810]/95 backdrop-blur-xl px-6 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
           {/* Flat links */}
           {FLAT_NAV.map((link) => (
             <a
