@@ -97,7 +97,6 @@ const RESOURCES_GROUPS = [
 const FLAT_NAV = [
   // The audience the product is built around gets the first link.
   { label: "For OPT students", href: "/for/international-students" },
-  { label: "Jobs",         href: "/jobs" },
   { label: "Features",     href: "/features" },
   { label: "How it Works", href: "/how-it-works" },
   { label: "Pricing",      href: "/pricing" },

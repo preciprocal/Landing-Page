@@ -27,6 +27,15 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // ------------------------------------------------------------------
+      // The public /jobs page was removed on 2026-11-15: the job feed lives
+      // in the app only for now. Temporary (307), so the URL can come back.
+      // ------------------------------------------------------------------
+      {
+        source: "/jobs",
+        destination: "/",
+        permanent: false,
+      },
+      // ------------------------------------------------------------------
       // Employer lookup: was the E-Verify-only search, renamed when H-1B
       // history was added (2026-11-12).
       // ------------------------------------------------------------------

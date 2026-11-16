@@ -127,12 +127,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${SITE_URL}/jobs`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
     // ── Tool landing pages ───────────────────────────────────────────────────
     // One page per product surface. Previously 8 of the 11 tools had no page at
     // all, so there was nothing for Google to rank against those keywords.
@@ -376,7 +370,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Submit them in order in Search Console: tier 0 first, then 1, and leave 3
   // until the earlier tiers are landing.
   const commercial = new Set([
-    "/", "/pricing", "/how-it-works", "/features", "/jobs",
+    "/", "/pricing", "/how-it-works", "/features",
     "/ai-mock-interview", "/cover-letter-generator", "/free-ats-checker",
     "/linkedin-profile-optimizer", "/resume-tailoring", "/job-application-tracker",
     "/interview-study-planner", "/cold-email-generator", "/recruiter-contact-finder",
