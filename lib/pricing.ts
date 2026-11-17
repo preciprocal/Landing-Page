@@ -162,6 +162,12 @@ export type Pack = {
  * no longer grants tracked jobs (Pro and Premium are unlimited, and the Free
  * tracker cap is not something a pack tops up).
  *
+ * Revised November 2026: Job Application Pack and Prep Pack are new,
+ * Application Boost was renamed Resume and Letter Pack (same contents), and
+ * Starter and Interview Boost no longer grant logged interviews, since job
+ * tracking and interview debriefs are unlimited on every plan. Order matches the Dashboard's
+ * lib/config/packs.ts.
+ *
  * When a real pricing endpoint exists, change `getPacks()` to fetch it and
  * delete this constant; no component reads PACKS directly.
  */
@@ -177,12 +183,17 @@ const PACKS: readonly Pack[] = [
       "+2 contact searches",
       "+2 LinkedIn optimisations",
       "+2 outreach messages",
-      "+2 logged interviews",
     ],
   },
   {
-    id: "application-boost",
-    name: "Application Boost",
+    id: "job-application-pack",
+    name: "Job Application Pack",
+    priceUsd: 4.99,
+    items: ["+5 tailored applications (resume, cover letter and prep for each job)"],
+  },
+  {
+    id: "resume-letter-pack",
+    name: "Resume and Letter Pack",
     priceUsd: 4.99,
     items: ["+10 resume analyses", "+15 cover letters"],
   },
@@ -197,10 +208,16 @@ const PACKS: readonly Pack[] = [
     ],
   },
   {
+    id: "prep-pack",
+    name: "Prep Pack",
+    priceUsd: 4.99,
+    items: ["+3 study plans", "+2 AI analyses of your real interviews"],
+  },
+  {
     id: "interview-boost",
     name: "Interview Boost",
     priceUsd: 6.49,
-    items: ["+2 mock interviews", "+3 logged interviews"],
+    items: ["+2 mock interviews"],
   },
 ];
 

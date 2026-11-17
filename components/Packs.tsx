@@ -42,7 +42,7 @@ export default function Packs() {
           </p>
         </RevealOnScroll>
 
-        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+        <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
           {packs.map((pack) => (
             <StaggerItem key={pack.id} className="flex flex-col">
               <div
