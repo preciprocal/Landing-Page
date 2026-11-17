@@ -40,8 +40,8 @@ export type TierQuotas = {
   interviewDebriefs: Quota;
   /**
    * AI analysis across the journal. Metered separately in the app
-   * (Dashboard lib/config/usage-limits.ts debriefAnalyses), so a Pro user can
-   * log 5 debriefs but run 4 analyses; the cards say so.
+   * (Dashboard lib/config/usage-limits.ts debriefAnalyses), so every plan can
+   * log unlimited debriefs while analyses stay limited; the cards say so.
    */
   debriefAnalyses: Quota;
   linkedinOptimizations: Quota;
@@ -75,12 +75,12 @@ export const TIERS: readonly Tier[] = [
       mockInterviews: 1,
       mockInterviewMinutes: 8,
       studyPlans: 2,
-      interviewDebriefs: 2,
+      interviewDebriefs: null,
       debriefAnalyses: 1,
       linkedinOptimizations: 2,
       outreachMessages: 3,
       contactSearches: 3,
-      trackedJobs: 10,
+      trackedJobs: null,
     },
     perks: [],
     cta: "Get started free",
@@ -97,7 +97,7 @@ export const TIERS: readonly Tier[] = [
       mockInterviews: 3,
       mockInterviewMinutes: 10,
       studyPlans: 10,
-      interviewDebriefs: 5,
+      interviewDebriefs: null,
       debriefAnalyses: 4,
       linkedinOptimizations: 5,
       outreachMessages: 20,
@@ -119,7 +119,7 @@ export const TIERS: readonly Tier[] = [
       mockInterviews: 5,
       mockInterviewMinutes: 12,
       studyPlans: 25,
-      interviewDebriefs: 10,
+      interviewDebriefs: null,
       debriefAnalyses: 12,
       linkedinOptimizations: 15,
       outreachMessages: 60,
@@ -299,7 +299,9 @@ export function tierFeatureLines(tier: Tier): string[] {
     `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")}`,
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),
     `${pluralise(q.studyPlans ?? 0, "study plan", "study plans")}`,
-    `${pluralise(q.interviewDebriefs ?? 0, "interview debrief", "interview debriefs")}`,
+    q.interviewDebriefs === null
+      ? "Unlimited interview debriefs"
+      : `${pluralise(q.interviewDebriefs, "interview debrief", "interview debriefs")}`,
     `${pluralise(q.debriefAnalyses ?? 0, "AI interview analysis", "AI interview analyses")}`,
     `${pluralise(q.linkedinOptimizations ?? 0, "LinkedIn optimisation", "LinkedIn optimisations")}`,
     `${pluralise(q.outreachMessages ?? 0, "outreach message", "outreach messages")}`,

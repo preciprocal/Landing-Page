@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Free Job Application Tracker",
-    description: "Every application, stage, and follow-up in one place. Free for up to 10 jobs.",
+    description: "Every application, stage, and follow-up in one place. Free, with no limit on jobs.",
   },
 };
 
@@ -70,7 +70,7 @@ const FAQS = [
   },
   {
     q: "Is the job tracker free?",
-    a: "The free plan tracks up to 10 jobs with full stage and follow-up tracking, no credit card required. Pro removes the limit and adds analytics across your pipeline, including response rate by company and by resume version.",
+    a: "Every plan, Free included, tracks unlimited jobs with full stage and follow-up tracking, no credit card required. Pro adds analytics across your pipeline, including response rate by company and by resume version.",
   },
 ];
 
@@ -96,13 +96,13 @@ export default function JobApplicationTrackerPage() {
       accent="emerald"
       demo="job-tracker"
       canonicalPath="/job-application-tracker"
-      badge="Free, track up to 10 jobs"
+      badge="Free, unlimited jobs"
       h1="Free job application tracker"
       h1Accent="stop losing track of applications"
       subhead="Thirty applications in, nobody remembers who they contacted, what they applied for, or which company has gone quiet. One pipeline with stages, follow-ups, and the original job description attached."
       ctaTool="job-tracker"
       ctaLabel="Start tracking free"
-      ctaMicrocopy="10 jobs free · Chrome extension included · No credit card"
+      ctaMicrocopy="Unlimited jobs free · Chrome extension included · No credit card"
       featuresTitle="What the job tracker does"
       featuresSubtitle="Built for the part of the job search that quietly falls apart: everything after you click submit."
       features={FEATURES}
@@ -120,7 +120,7 @@ export default function JobApplicationTrackerPage() {
       ]}
       bottomTitle="Run a pipeline, not a pile."
       bottomBody="The candidates who get offers aren't sending the most applications. They're the ones still following up on the ones they sent."
-      bottomMicrocopy="10 jobs free · No credit card · Unlimited jobs on Pro"
+      bottomMicrocopy="Unlimited jobs on every plan · No credit card"
       body={
         <>
           <p>

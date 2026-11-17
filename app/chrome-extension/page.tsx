@@ -65,7 +65,7 @@ const FAQS = [
   },
   {
     q: "Is the extension free?",
-    a: "Yes, and it works with the free plan. Saved jobs count against your tracker limit, which is 10 jobs on the free tier and unlimited on Pro.",
+    a: "Yes, and it works with the free plan. Saved jobs go into your job tracker, which has no limit on any plan.",
   },
 ];
 

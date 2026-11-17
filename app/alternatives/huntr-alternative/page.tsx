@@ -38,7 +38,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Free tracking limit",
-      "ours": "10 jobs on the free plan",
+      "ours": "Unlimited on every plan",
       "theirs": "100 jobs, unusually generous"
     },
     {
@@ -137,7 +137,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Is Huntr's tracker better than Preciprocal's?",
-      "a": "Huntr's tracker is more mature and its free limit is much higher at 100 jobs against 10. If tracking is the centre of what you need, Huntr does it well. Preciprocal's tracker is built to feed the rest of the pipeline, connecting each application to the resume version you sent and the contacts you spoke to."
+      "a": "Huntr's tracker is more mature, and if tracking is the centre of what you need, Huntr does it well. Its free plan stops at 100 jobs; Preciprocal's tracker has no job limit on any plan, Free included. Preciprocal's tracker is built to feed the rest of the pipeline, connecting each application to the resume version you sent and the contacts you spoke to."
     },
     {
       "q": "Does Huntr include interview practice?",

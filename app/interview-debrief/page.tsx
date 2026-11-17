@@ -71,7 +71,7 @@ const FAQS = [
   },
   {
     q: "Is the debrief journal free?",
-    a: "The free plan includes 2 interview debriefs per month. Pro raises this to 5 and adds pattern analysis across all your debriefs, which is where most of the value is, since the insight comes from the aggregate rather than any single entry.",
+    a: "Yes. Debriefs are unlimited on every plan, Free included. The AI analysis across your debriefs is limited by plan, with 1 a month on Free and more on Pro and Premium. That analysis is where most of the value is, since the insight comes from the aggregate rather than any single entry.",
   },
 ];
 
@@ -97,13 +97,13 @@ export default function InterviewDebriefPage() {
       accent="rose"
       demo="debrief"
       canonicalPath="/interview-debrief"
-      badge="Free, 2 debriefs per month"
+      badge="Free, unlimited debriefs"
       h1="Interview debrief journal"
       h1Accent="learn from every interview"
       subhead="Almost no company tells you why you were rejected. Your own notes are the only feedback you will ever get, and they are worthless if you write them three days later."
       ctaTool="interview-debrief"
       ctaLabel="Start a debrief free"
-      ctaMicrocopy="2 free debriefs/month · Guided prompts · No credit card"
+      ctaMicrocopy="Unlimited free debriefs · Guided prompts · No credit card"
       featuresTitle="What the debrief journal captures"
       featuresSubtitle="Structured while it's fresh, so the pattern across interviews becomes visible."
       features={FEATURES}
@@ -121,7 +121,7 @@ export default function InterviewDebriefPage() {
       ]}
       bottomTitle="Stop repeating the same interview."
       bottomBody="Eight interviews should make you dramatically better. For most candidates they don't, because nothing is captured."
-      bottomMicrocopy="2 free debriefs per month · No credit card · Takes about 10 minutes"
+      bottomMicrocopy="Unlimited debriefs free · No credit card · Takes about 10 minutes"
       body={
         <>
           <p>

@@ -118,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "A free tier rather than a trial",
-      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 3 resume analyses, 5 cover letters, 1 mock interview and a 10-job tracker every month, with no card required. For a search that runs months rather than days, that difference compounds."
+      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 3 resume analyses, 5 cover letters, 1 mock interview every month and an unlimited job tracker, with no card required. For a search that runs months rather than days, that difference compounds."
     }
   ];
 
