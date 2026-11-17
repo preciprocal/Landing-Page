@@ -46,7 +46,7 @@ export default function FaqAccordion({ items }: { items: { q: string; a: ReactNo
                 onClick={() => toggle(i)}
                 className="flex w-full items-center gap-4 rounded-xl px-5 py-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:px-6"
               >
-                <span className="flex-1 text-[15.5px] font-medium leading-snug text-white">{faq.q}</span>
+                <span className="flex-1 text-[15px] font-medium leading-snug text-white">{faq.q}</span>
                 <span
                   aria-hidden="true"
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${

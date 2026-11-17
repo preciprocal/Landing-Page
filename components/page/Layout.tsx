@@ -88,35 +88,77 @@ export const GRID_BG: CSSProperties = {
   backgroundSize: "56px 56px",
 };
 
+/* ─── The design system ───────────────────────────────────────────────────────
+ * One set of sizes for every marketing surface, modelled on the app's
+ * (Dashboard) design: flat panels, hairline borders, three radii, semibold
+ * headings with tight tracking, and a short type scale. Colours are the
+ * site's own (brand indigo-purple, per-page accents); only shape and size are
+ * shared with the app.
+ *
+ * Rules:
+ *   • Text uses H1 / H2 / H3 / LEAD / BODY / SMALL / LABEL. No other sizes on
+ *     a page. Mock app screens (components/examples, components/demo, the
+ *     product films) keep their compact sizes: they copy the app.
+ *   • Surfaces use CARD (and CARD_HOVER when clickable), PANEL for large
+ *     framed blocks, PILL for badges and chips, INPUT for fields.
+ *   • Radii: rounded-lg (buttons, inputs, small tiles), rounded-xl (cards),
+ *     rounded-2xl (panels, product frames), rounded-full (pills, avatars).
+ *   • Spacing: cards pad p-6 (p-5 in dense grids), grids gap-4, sections SECTION.
+ */
+
+/** Radii, by surface. */
+export const R_CONTROL = "rounded-lg";
+export const R_CARD = "rounded-xl";
+export const R_PANEL = "rounded-2xl";
+
 /** Card surfaces. */
-export const CARD = "rounded-2xl border border-white/[0.07] bg-white/[0.025]";
-export const CARD_SOLID = "rounded-2xl border border-white/[0.07] bg-[#070b16]";
+export const CARD = "rounded-xl border border-white/[0.07] bg-white/[0.02]";
+export const CARD_SOLID = "rounded-xl border border-white/[0.07] bg-[#070b16]";
+/** Add to a CARD that links or opens something. */
+export const CARD_HOVER = "transition-colors duration-200 hover:border-white/[0.13] hover:bg-white/[0.035]";
+/** Large framed blocks: CTA panels, folds, product frames, pricing tables. */
+export const PANEL = "rounded-2xl border border-white/[0.08] bg-[#070b16]";
+/** Badges, chips and tags. Colour comes from the caller (border, bg, text). */
+export const PILL = "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-medium";
+/** Text inputs, selects and textareas. */
+export const INPUT =
+  "w-full rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-slate-500 transition-colors focus:border-indigo-400/60 focus:bg-white/[0.045] focus:outline-none";
 
 /**
  * Buttons: the only button styles on the site. Every page CTA uses BTN_PRIMARY
- * or BTN_SECONDARY; compact places (the navbar, actions inside a tool) use the
- * _SM sizes, which keep the same shape, font and colours with less padding.
- * Add `w-full` for a full-width button, never new padding or font sizes.
- * The primary stays brand indigo on every page, whatever the accent.
+ * or BTN_SECONDARY (44px); compact places (the navbar, actions inside a tool,
+ * table rows) use the _SM sizes (36px), which keep the same shape, font and
+ * colours. Add `w-full` for a full-width button, never new padding, radius or
+ * font sizes. The primary stays brand indigo on every page, whatever the accent.
  */
 const BTN_BASE =
-  "group inline-flex items-center justify-center gap-2 rounded-xl text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 disabled:cursor-not-allowed disabled:opacity-40";
-const BTN_FILL = "bg-gradient-to-r from-indigo-500 to-purple-500 font-bold text-white hover:brightness-110";
-const BTN_OUTLINE = "border border-white/[0.12] bg-white/[0.04] font-semibold text-white hover:border-white/25 hover:bg-white/[0.07]";
-export const BTN_PRIMARY = `${BTN_BASE} ${BTN_FILL} px-7 py-3.5`;
-export const BTN_SECONDARY = `${BTN_BASE} ${BTN_OUTLINE} px-6 py-3.5`;
-export const BTN_PRIMARY_SM = `${BTN_BASE} ${BTN_FILL} px-4 py-2.5`;
-export const BTN_SECONDARY_SM = `${BTN_BASE} ${BTN_OUTLINE} px-4 py-2.5`;
+  "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 disabled:cursor-not-allowed disabled:opacity-40";
+const BTN_FILL =
+  "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_8px_24px_-12px_rgba(129,140,248,0.55)] hover:brightness-110";
+const BTN_OUTLINE = "border border-white/[0.12] bg-white/[0.03] text-white hover:border-white/[0.22] hover:bg-white/[0.06]";
+export const BTN_PRIMARY = `${BTN_BASE} ${BTN_FILL} h-11 px-5`;
+export const BTN_SECONDARY = `${BTN_BASE} ${BTN_OUTLINE} h-11 px-5`;
+export const BTN_PRIMARY_SM = `${BTN_BASE} ${BTN_FILL} h-9 px-3.5`;
+export const BTN_SECONDARY_SM = `${BTN_BASE} ${BTN_OUTLINE} h-9 px-3.5`;
+/** A text link that acts as a quiet action ("See all guides"). */
+export const LINK_ACTION = "inline-flex items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white";
 
 /**
  * Headings: one scale for the whole site. H1 is a page title (PageHero,
- * product, comparison and guide heroes); H2 is a section title. The homepage
- * hero headline is the one deliberate exception, and a PageHero with an
- * illustration beside it caps the title at 3.6rem so it stays on three lines
- * (at 4rem the illustrated tool heroes wrap to four).
+ * product, comparison and guide heroes); H2 is a section title; H3 is a card
+ * or sub-section title. The homepage hero headline is the one deliberate
+ * exception, and a PageHero with an illustration beside it caps the title at
+ * 3.6rem so it stays on three lines (at 4rem the illustrated heroes wrap to four).
  */
-export const H1 = "text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]";
-export const H2 = "text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.625rem]";
+export const H1 = "text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-5xl lg:text-[4rem]";
+export const H2 = "text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-4xl lg:text-[2.625rem]";
+export const H3 = "text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white";
+
+/** Body text: the hero subhead, running text, captions, and labels. */
+export const LEAD = "text-lg leading-relaxed text-slate-400";
+export const BODY = "text-[15px] leading-relaxed text-slate-400";
+export const SMALL = "text-[13px] leading-relaxed text-slate-500";
+export const LABEL = "text-[11px] font-semibold uppercase tracking-[0.16em]";
 
 export const pad2 = (n: number) => String(n).padStart(2, "0");
 
@@ -138,7 +180,7 @@ export function HoverRule(_props: { className?: string }) {
 
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <p className={`mb-3 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90 ${className}`}>
+    <p className={`mb-3 inline-flex items-center gap-2 ${LABEL} text-accent-soft/90 ${className}`}>
       <span className="h-px w-5 bg-gradient-to-r from-accent to-transparent" />
       {children}
     </p>
@@ -176,7 +218,7 @@ export function SectionHead({
         {title}
         {accent && <> <span className={ACCENT_TEXT}>{accent}</span></>}
       </Tag>
-      {subtitle && <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{subtitle}</p>}
+      {subtitle && <p className={`mt-4 ${BODY}`}>{subtitle}</p>}
     </div>
   );
 }
@@ -195,7 +237,7 @@ export const TRUST_POINTS = [
 export function TrustRow({ className = "", align = "start" }: { className?: string; align?: "start" | "center" | "end" }) {
   const justify = { start: "justify-start", center: "justify-center", end: "lg:justify-end" }[align];
   return (
-    <ul className={`flex flex-wrap gap-x-5 gap-y-2 text-[12.5px] text-slate-400 ${justify} ${className}`}>
+    <ul className={`flex flex-wrap gap-x-5 gap-y-2 text-[13px] text-slate-400 ${justify} ${className}`}>
       {TRUST_POINTS.map((t) => (
         <li key={t} className="inline-flex items-center gap-1.5">
           <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" className="shrink-0 text-emerald-400">
@@ -274,7 +316,7 @@ export function PageHero({
   const text = (
     <div className={`max-w-4xl animate-fade-up opacity-0 ${centred ? "mx-auto text-center" : ""}`}>
       {badge && (
-        <div className={`mb-7 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[12px] font-medium ${tone}`}>
+        <div className={`mb-7 ${PILL} ${tone}`}>
           <span className="relative flex h-1.5 w-1.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--dot)] opacity-60" />
             <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--dot)]" />
@@ -285,7 +327,7 @@ export function PageHero({
       {/* Beside a visual the text column is narrower, so the title steps down
           a size there rather than wrapping to four lines. */}
       <h1
-        className={`text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl ${
+        className={`text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-white sm:text-5xl ${
           visual ? "lg:text-[3.25rem] xl:text-[3.6rem]" : "lg:text-[4rem]"
         }`}
       >
@@ -296,7 +338,7 @@ export function PageHero({
           </span>
         )}
       </h1>
-      {subhead && <div className={`mt-6 max-w-2xl text-lg leading-relaxed text-slate-400 ${centred ? "mx-auto" : ""}`}>{subhead}</div>}
+      {subhead && <div className={`mt-6 max-w-2xl ${LEAD} ${centred ? "mx-auto" : ""}`}>{subhead}</div>}
     </div>
   );
 
@@ -360,7 +402,7 @@ export function CtaPanel({
   trust?: boolean;
 }) {
   return (
-    <div className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-7 py-12 sm:px-14 sm:py-16`}>
+    <div className={`${INNER} relative overflow-hidden ${PANEL} px-7 py-12 sm:px-14 sm:py-16`}>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
@@ -372,12 +414,12 @@ export function CtaPanel({
       <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
         <div className="max-w-2xl">
           <h2 className={H2}>{title}</h2>
-          {body && <div className="mt-4 text-[16px] leading-relaxed text-slate-400">{body}</div>}
+          {body && <div className={`mt-4 ${BODY}`}>{body}</div>}
           {trust && <TrustRow className="mt-6" />}
         </div>
         <div className="shrink-0 lg:text-right">
           {action}
-          {note && <p className="mt-3 text-[12px] text-slate-500">{note}</p>}
+          {note && <p className={`mt-3 ${SMALL}`}>{note}</p>}
         </div>
       </div>
     </div>
@@ -409,12 +451,12 @@ export function Fold({
   className?: string;
 }) {
   return (
-    <details className={`group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] open:border-white/[0.12] ${className}`}>
+    <details className={`group overflow-hidden ${PANEL} open:border-white/[0.12] ${className}`}>
       <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] sm:p-8 [&::-webkit-details-marker]:hidden">
         <div className="min-w-0">
-          {eyebrow && <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">{eyebrow}</p>}
-          <Tag className={`${eyebrow ? "mt-2 " : ""}text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl`}>{title}</Tag>
-          {meta && <p className="mt-1.5 text-sm text-slate-500">{meta}</p>}
+          {eyebrow && <p className={`${LABEL} text-accent-soft/90`}>{eyebrow}</p>}
+          <Tag className={`${eyebrow ? "mt-2 " : ""}text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl`}>{title}</Tag>
+          {meta && <p className={`mt-1.5 ${SMALL}`}>{meta}</p>}
         </div>
         <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/[0.12] text-slate-300 transition-transform duration-300 group-open:rotate-180">
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -457,7 +499,7 @@ export function FaqSection({
         <div className="lg:sticky lg:top-28 lg:self-start">
           <Eyebrow>FAQ</Eyebrow>
           <h2 className={H2}>{title}</h2>
-          <p className="mt-4 text-sm leading-relaxed text-slate-500">
+          <p className={`mt-4 ${SMALL}`}>
             Something else? Email{" "}
             <a href="mailto:support@preciprocal.com" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
               support@preciprocal.com
@@ -465,7 +507,7 @@ export function FaqSection({
             .
           </p>
           {more && (
-            <Link href={more.href} className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white">
+            <Link href={more.href} className={`mt-5 ${LINK_ACTION}`}>
               {more.label}
               <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6" /></svg>
             </Link>
