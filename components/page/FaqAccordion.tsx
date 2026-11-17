@@ -69,7 +69,7 @@ export default function FaqAccordion({ items }: { items: { q: string; a: ReactNo
             >
               <div className="overflow-hidden">
                 <div
-                  className={`max-w-[72ch] pb-5 pl-5 pr-6 text-[15px] leading-relaxed text-slate-400 transition-opacity duration-300 sm:pl-6 sm:pr-14 ${
+                  className={`pb-5 pl-5 pr-6 text-[15px] leading-relaxed text-slate-400 transition-opacity duration-300 sm:pl-6 sm:pr-14 ${
                     isOpen ? "opacity-100" : "opacity-0"
                   }`}
                 >

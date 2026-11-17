@@ -82,16 +82,24 @@ export default function ProblemSection() {
         <StaggerChildren className="space-y-3">
           {FACTS.map((f, i) => (
             <StaggerItem key={f.stat}>
-              <div className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-xl border p-5 pl-6 sm:flex-row sm:items-center sm:gap-5 sm:pl-7 ${f.card}`}>
+              {/* The card, not the stripe, watches the viewport: a stripe at
+                  scaleY(0) has no height, so it could miss its own reveal and
+                  stay hidden (the first two did). */}
+              <motion.div
+                initial="hidden"
+                whileInView="shown"
+                viewport={{ once: true, amount: 0.4 }}
+                className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-xl border p-5 pl-6 sm:flex-row sm:items-center sm:gap-5 sm:pl-7 ${f.card}`}
+              >
                 {/* An accent stripe in the fact's colour, drawn top to bottom
                     on reveal. It marks the rule; it is not a measure, so it
                     has no length to misread. */}
                 <motion.span
                   aria-hidden="true"
-                  initial={{ scaleY: 0 }}
-                  whileInView={{ scaleY: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.25 + i * 0.12, duration: 0.6, ease: "easeOut" }}
+                  variants={{
+                    hidden: { scaleY: 0 },
+                    shown: { scaleY: 1, transition: { delay: 0.25 + i * 0.12, duration: 0.6, ease: "easeOut" } },
+                  }}
                   className={`absolute inset-y-0 left-0 w-1 origin-top bg-gradient-to-b ${f.bar}`}
                 />
                 <div className="flex-shrink-0 sm:w-24 sm:text-right">
@@ -102,7 +110,7 @@ export default function ProblemSection() {
                 <div className="min-w-0 flex-1">
                   <p className="text-[15px] leading-snug text-slate-200">{f.line}</p>
                 </div>
-              </div>
+              </motion.div>
             </StaggerItem>
           ))}
         </StaggerChildren>

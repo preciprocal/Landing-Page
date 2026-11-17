@@ -240,7 +240,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="font-semibold tracking-[-0.035em] leading-[0.92] text-white select-none"
+          className="font-extrabold tracking-[-0.04em] leading-[0.92] text-white select-none"
           style={{ fontSize: "clamp(3.8rem, 10vw, 8.5rem)" }}
         >
           Your OPT clock
