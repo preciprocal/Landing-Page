@@ -63,7 +63,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, 30/mo on Pro",
+      "ours": "Company-researched, 10/mo on Pro",
       "theirs": "Included"
     },
     {
@@ -145,7 +145,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "Can I try both free?",
-      "a": "Preciprocal's free plan is permanent and needs no card: 3 resume analyses, 5 cover letters each month and an unlimited job tracker. Rezi has a free tier with limits on downloads and features. Running the same resume through both is the fastest way to decide."
+      "a": "Preciprocal's free plan is permanent and needs no card: 2 resume analyses, 2 cover letters each month and an unlimited job tracker. Rezi has a free tier with limits on downloads and features. Running the same resume through both is the fastest way to decide."
     }
   ];
 

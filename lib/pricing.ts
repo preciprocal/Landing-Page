@@ -27,6 +27,13 @@ export type TierId = "free" | "pro" | "premium";
 export type Quota = number | null;
 
 export type TierQuotas = {
+  /**
+   * One job taken through the app's Apply flow: a tailored resume, a cover
+   * letter and round-by-round prep for that job, plus up to 5 after-round
+   * reviews. Metered as one unit (Dashboard usage-limits.ts applications), so
+   * those steps do not use the resume or cover letter allowance.
+   */
+  tailoredApplications: Quota;
   resumeAnalyses: Quota;
   coverLetters: Quota;
   mockInterviews: Quota;
@@ -70,16 +77,17 @@ export const TIERS: readonly Tier[] = [
     priceUsd: 0,
     tagline: "Get started and feel the value.",
     quotas: {
-      resumeAnalyses: 3,
-      coverLetters: 5,
+      tailoredApplications: 1,
+      resumeAnalyses: 2,
+      coverLetters: 2,
       mockInterviews: 1,
       mockInterviewMinutes: 8,
-      studyPlans: 2,
+      studyPlans: 1,
       interviewDebriefs: null,
       debriefAnalyses: 1,
-      linkedinOptimizations: 2,
-      outreachMessages: 3,
-      contactSearches: 3,
+      linkedinOptimizations: 1,
+      outreachMessages: 2,
+      contactSearches: 2,
       trackedJobs: null,
     },
     perks: [],
@@ -92,16 +100,17 @@ export const TIERS: readonly Tier[] = [
     priceUsd: 9.99,
     tagline: "Everything an active job seeker needs.",
     quotas: {
-      resumeAnalyses: 20,
-      coverLetters: 30,
+      tailoredApplications: 6,
+      resumeAnalyses: 10,
+      coverLetters: 10,
       mockInterviews: 3,
       mockInterviewMinutes: 10,
-      studyPlans: 10,
+      studyPlans: 3,
       interviewDebriefs: null,
-      debriefAnalyses: 4,
-      linkedinOptimizations: 5,
-      outreachMessages: 20,
-      contactSearches: 15,
+      debriefAnalyses: 2,
+      linkedinOptimizations: 3,
+      outreachMessages: 10,
+      contactSearches: 10,
       trackedJobs: null,
     },
     perks: ["Priority AI response speed"],
@@ -114,16 +123,17 @@ export const TIERS: readonly Tier[] = [
     priceUsd: 24.99,
     tagline: "Maximum power for serious candidates.",
     quotas: {
-      resumeAnalyses: 50,
-      coverLetters: 80,
+      tailoredApplications: 12,
+      resumeAnalyses: 20,
+      coverLetters: 20,
       mockInterviews: 5,
       mockInterviewMinutes: 12,
-      studyPlans: 25,
+      studyPlans: 5,
       interviewDebriefs: null,
-      debriefAnalyses: 12,
-      linkedinOptimizations: 15,
-      outreachMessages: 60,
-      contactSearches: 50,
+      debriefAnalyses: 4,
+      linkedinOptimizations: 5,
+      outreachMessages: 20,
+      contactSearches: 20,
       trackedJobs: null,
     },
     perks: [
@@ -295,6 +305,7 @@ function pluralise(count: number, singular: string, plural: string): string {
 export function tierFeatureLines(tier: Tier): string[] {
   const q = tier.quotas;
   const lines: string[] = [
+    `${pluralise(q.tailoredApplications ?? 0, "tailored application", "tailored applications")}`,
     `${pluralise(q.resumeAnalyses ?? 0, "resume analysis", "resume analyses")}`,
     `${pluralise(q.coverLetters ?? 0, "cover letter", "cover letters")}`,
     mockInterviewLine(q.mockInterviews ?? 0, q.mockInterviewMinutes),

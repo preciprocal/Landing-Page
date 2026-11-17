@@ -63,7 +63,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, 30/mo on Pro",
+      "ours": "Company-researched, 10/mo on Pro",
       "theirs": "Included"
     },
     {
@@ -118,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "A free tier rather than a trial",
-      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 3 resume analyses, 5 cover letters, 1 mock interview every month and an unlimited job tracker, with no card required. For a search that runs months rather than days, that difference compounds."
+      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 2 resume analyses, 2 cover letters, 1 mock interview every month and an unlimited job tracker, with no card required. For a search that runs months rather than days, that difference compounds."
     }
   ];
 

@@ -79,7 +79,7 @@ const FAQS = [
   },
   {
     q: "Is the LinkedIn optimizer free?",
-    a: "The free plan includes 2 LinkedIn optimisations per month with no credit card required. Pro includes more runs plus the full rewrite, and Premium includes a complete section-by-section rewrite of your entire profile.",
+    a: "The free plan includes 1 LinkedIn optimisation per month with no credit card required. Pro includes more runs plus the full rewrite, and Premium includes a complete section-by-section rewrite of your entire profile.",
   },
 ];
 

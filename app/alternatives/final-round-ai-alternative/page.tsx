@@ -94,7 +94,7 @@ const FAQS = [
   },
   {
     q: "Can I try Preciprocal before paying?",
-    a: "Yes. The free plan includes 1 mock interview per month, 3 resume analyses, and 5 cover letters, no credit card required. Students with a .edu email get 1 full month of Pro free (3 mock interviews and 30 cover letters a month).",
+    a: "Yes. The free plan includes 1 mock interview per month, 2 resume analyses, and 2 cover letters, no credit card required. Students with a .edu email get 1 full month of Pro free (3 mock interviews and 10 cover letters a month).",
   },
 ];
 
@@ -237,7 +237,7 @@ export default function FinalRoundAIAlternativePage() {
               title="Try Preciprocal free. No card required."
               body={
                 <p>
-                  1 mock interview, 3 resume analyses, and 5 cover letters per month on the free plan.
+                  1 mock interview, 2 resume analyses, and 2 cover letters per month on the free plan.
                   Students with a .edu email get 1 month of Pro free.
                 </p>
               }

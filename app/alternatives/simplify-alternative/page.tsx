@@ -73,7 +73,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Cover letter generator",
-      "ours": "Company-researched, 30/mo on Pro",
+      "ours": "Company-researched, 10/mo on Pro",
       "theirs": "AI cover letters on Simplify+"
     },
     {
@@ -88,7 +88,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Free plan",
-      "ours": "3 analyses, 1 mock, unlimited tracking",
+      "ours": "2 analyses, 1 mock, unlimited tracking",
       "theirs": "Autofill, matching, tracking free"
     },
     {

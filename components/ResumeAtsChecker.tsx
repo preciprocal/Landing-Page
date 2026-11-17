@@ -445,7 +445,7 @@ function WelcomeBack({ result }: { result: Shown }) {
         </p>
         <p className="mt-1 text-sm text-slate-400">
           {device
-            ? "Your free check is used. Create a free account to see every fix and check new versions of your resume, with 3 analyses every month."
+            ? "Your free check is used. Create a free account to see every fix and check new versions of your resume, with 2 analyses every month."
             : "For privacy, the detailed feedback only shows in the browser that ran the check. Create a free account to see every fix, or to check a different resume."}
         </p>
       </div>
@@ -715,7 +715,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             {[
               `All ${result.totals.findings} findings across the 5 dimensions, each with a rewrite`,
               "Your full report saved to your account, so you can track the score as you improve",
-              "Re-check as you edit, with 3 free analyses every month",
+              "Re-check as you edit, with 2 free analyses every month",
             ].map((item) => (
               <li key={item} className="flex gap-2.5">
                 <span className="mt-0.5 shrink-0 text-indigo-300">✓</span>

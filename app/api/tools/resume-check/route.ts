@@ -43,8 +43,8 @@ const json = (body: unknown, status = 200) =>
 
 const REFUSALS = {
   "in-flight": "Your resume is already being checked. Give it a few seconds and it will appear here.",
-  "ip-cap": "The free check has already been used from your network. Create a free account to check your resume, with 3 analyses every month.",
-  "daily-cap": "Free checks are used up for today. Create a free account to check your resume now, with 3 analyses every month.",
+  "ip-cap": "The free check has already been used from your network. Create a free account to check your resume, with 2 analyses every month.",
+  "daily-cap": "Free checks are used up for today. Create a free account to check your resume now, with 2 analyses every month.",
 } as const;
 
 const stored = (s: StoredCheck) => json({ ...s.result, restored: s.restored, checkedAt: s.checkedAt });

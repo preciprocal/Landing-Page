@@ -83,7 +83,7 @@ const ROWS: ComparisonRow[] = [
     },
     {
       "feature": "Free plan",
-      "ours": "3 analyses, 1 mock, no card",
+      "ours": "2 analyses, 1 mock, no card",
       "theirs": "Free version available"
     },
     {

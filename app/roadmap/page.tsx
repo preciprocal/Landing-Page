@@ -62,7 +62,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Cover Letter Generator",
     description:
-      "Role-specific, tone-matched cover letters generated from your resume and the job description. 30 a month on Pro.",
+      "Role-specific, tone-matched cover letters generated from your resume and the job description. 10 a month on Pro.",
     status: "shipped",
     date: "Nov 2024",
     tag: "Cover Letters",

@@ -75,7 +75,7 @@ const COMPARISON_ROWS = [
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        resumeWorded: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",            resumeWorded: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite",         resumeWorded: "✅ LinkedIn grader" },
-  { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
+  { feature: "Free plan",                   preciprocal: "✅ 2 analyses/mo, no credit card",          resumeWorded: "⚠️ Very limited free tier" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                         resumeWorded: "⚠️ $49/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",       resumeWorded: "❌ No student plan" },
   { feature: "Primary audience",            preciprocal: "✅ F-1 students on OPT, students, new grads",                   resumeWorded: "⚠️ General professionals" },
@@ -262,7 +262,7 @@ export default function ResumeWordedAlternativePage() {
               title="Try Preciprocal free. No credit card needed."
               body={
                 <p>
-                  3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
+                  2 resume analyses, 2 cover letters, and 1 mock interview per month on the free plan.
                   Students with a .edu email get 1 month of Pro free.
                 </p>
               }

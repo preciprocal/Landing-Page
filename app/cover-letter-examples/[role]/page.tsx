@@ -339,7 +339,7 @@ export default async function CoverLetterExampleRolePage({
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Write mine in 60 seconds <Chevron />
               </a>
-              <p className="text-[12px] text-slate-500">5 free cover letters a month · No credit card</p>
+              <p className="text-[12px] text-slate-500">2 free cover letters a month · No credit card</p>
             </div>
           }
         >
@@ -489,7 +489,7 @@ export default async function CoverLetterExampleRolePage({
               body={
                 <p className="max-w-lg text-sm">
                   Paste the job description and our AI researches the company, matches your resume to the
-                  role, and writes a personalised letter in under 60 seconds. 5 cover letters per month
+                  role, and writes a personalised letter in under 60 seconds. 2 cover letters per month
                   free, no credit card required.
                 </p>
               }

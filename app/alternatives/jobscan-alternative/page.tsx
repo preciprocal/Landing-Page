@@ -72,7 +72,7 @@ const COMPARISON_ROWS = [
   { feature: "Application Autofill",       preciprocal: "✅ Fills the form, you review",        jobscan: "❌ Not included" },
   { feature: "Study Planner",               preciprocal: "✅ Day-by-day AI prep schedule",             jobscan: "❌ Not included" },
   { feature: "LinkedIn Optimiser",          preciprocal: "✅ Full profile rewrite",          jobscan: "✅ LinkedIn scanning" },
-  { feature: "Free plan",                   preciprocal: "✅ 3 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
+  { feature: "Free plan",                   preciprocal: "✅ 2 analyses/mo, no credit card",           jobscan: "⚠️ Limited free scans" },
   { feature: "Starting price",              preciprocal: "✅ $9.99/mo (Pro)",                          jobscan: "⚠️ $49.95/mo" },
   { feature: "Student discount",            preciprocal: "✅ 1 month Pro free with .edu email",        jobscan: "❌ No student plan" },
   { feature: "Primary audience",            preciprocal: "✅ F-1 students on OPT, students, new grads",                    jobscan: "⚠️ General job seekers" },
@@ -101,7 +101,7 @@ const FAQS = [
   },
   {
     q: "Can I use Preciprocal's ATS checker for free?",
-    a: "Yes. Preciprocal's free plan includes 3 resume analyses per month, no credit card required. You get a full ATS score, keyword gap analysis, and formatting recommendations on every scan.",
+    a: "Yes. Preciprocal's free plan includes 2 resume analyses per month, no credit card required. You get a full ATS score, keyword gap analysis, and formatting recommendations on every scan.",
   },
 ];
 
@@ -224,7 +224,7 @@ export default function JobscanAlternativePage() {
                 },
                 {
                   title: "Free ATS checker with no credit card",
-                  body: "Preciprocal's free plan includes 3 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
+                  body: "Preciprocal's free plan includes 2 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
                 },
               ]}
             />
@@ -258,7 +258,7 @@ export default function JobscanAlternativePage() {
               title="Try Preciprocal free. No credit card needed."
               body={
                 <p>
-                  3 resume analyses, 5 cover letters, and 1 mock interview per month on the free plan.
+                  2 resume analyses, 2 cover letters, and 1 mock interview per month on the free plan.
                   Students with a .edu email get 1 month of Pro free.
                 </p>
               }

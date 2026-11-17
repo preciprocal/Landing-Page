@@ -133,11 +133,11 @@ function PricingJsonLd() {
 const PRICING_FAQS = [
   {
     q: "Is there a free plan?",
-    a: "Yes, Preciprocal's free plan includes 3 resume analyses, 5 cover letters, 1 mock interview of 8 minutes per month, plus unlimited interview debriefs and job tracking, with no credit card required. You can use it indefinitely.",
+    a: "Yes, Preciprocal's free plan includes 1 tailored application, 2 resume analyses, 2 cover letters, 1 mock interview of 8 minutes per month, plus unlimited interview debriefs and job tracking, with no credit card required. You can use it indefinitely.",
   },
   {
     q: "What's included in the Pro plan?",
-    a: "Pro ($9.99/mo) includes 20 resume analyses, 30 cover letters, 3 mock interviews of 10 minutes each, 10 study plans, unlimited interview debriefs, 5 LinkedIn optimisations, 20 outreach messages, 15 recruiter contact searches and an unlimited job tracker, plus priority AI response speed.",
+    a: "Pro ($9.99/mo) includes 6 tailored applications, 10 resume analyses, 10 cover letters, 3 mock interviews of 10 minutes each, 3 study plans, unlimited interview debriefs, 3 LinkedIn optimisations, 10 outreach messages, 10 recruiter contact searches and an unlimited job tracker, plus priority AI response speed.",
   },
   {
     q: "Can I cancel anytime?",
@@ -153,7 +153,7 @@ const PRICING_FAQS = [
   },
   {
     q: "What's the difference between Pro and Premium?",
-    a: "Both plans include the same tools; Premium raises the monthly limits. Pro gives you 20 resume analyses, 30 cover letters and 3 mock interviews of 10 minutes each. Premium ($24.99/mo) gives you 50, 80 and 5 of 12 minutes each, plus 25 study plans, 15 LinkedIn optimisations, 60 outreach messages and 50 recruiter contact searches, and it adds priority support on a 24-hour SLA plus early access to new features.",
+    a: "Both plans include the same tools; Premium raises the monthly limits. Pro gives you 6 tailored applications, 10 resume analyses, 10 cover letters and 3 mock interviews of 10 minutes each. Premium ($24.99/mo) gives you 12, 20, 20 and 5 of 12 minutes each, plus 5 study plans, 5 LinkedIn optimisations, 20 outreach messages and 20 recruiter contact searches, and it adds priority support on a 24-hour SLA plus early access to new features.",
   },
 ];
 

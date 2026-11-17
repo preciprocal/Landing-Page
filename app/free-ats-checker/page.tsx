@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: "Is the ATS checker really free?",
-    a: "Yes. You can upload your resume and see your overall score, all five dimension scores and your top fixes without creating an account. To see every fix and your full report, create a free Preciprocal account. The free plan includes 3 resume analyses a month and needs no credit card.",
+    a: "Yes. You can upload your resume and see your overall score, all five dimension scores and your top fixes without creating an account. To see every fix and your full report, create a free Preciprocal account. The free plan includes 2 resume analyses a month and needs no credit card.",
   },
   {
     q: "Does adding a job description change my score?",
@@ -115,7 +115,7 @@ export default function FreeATSCheckerPage() {
       subhead="Upload your resume and get an honest score out of 100 across five dimensions, with the fixes that will move it most and the rewrites to paste in. Scored the way recruiters read, not padded to make you feel good."
       ctaTool="ats-checker"
       ctaLabel="Get the full report free"
-      ctaMicrocopy="Free account · 3 resume analyses a month · No credit card"
+      ctaMicrocopy="Free account · 2 resume analyses a month · No credit card"
       tool={<ResumeAtsChecker />}
       featuresTitle="What the checker reviews"
       featuresSubtitle="Five dimensions, each reviewed separately and weighted into one score, with fixes tied to specific lines of your resume."
@@ -134,7 +134,7 @@ export default function FreeATSCheckerPage() {
       ]}
       bottomTitle="Your score is the start. The full report is the plan."
       bottomBody="Create a free account to see every fix, save your report and re-check as you edit. It opens straight to resume analysis."
-      bottomMicrocopy="Free plan · 3 resume analyses a month · No credit card"
+      bottomMicrocopy="Free plan · 2 resume analyses a month · No credit card"
       body={
         <>
           <p>

@@ -87,7 +87,7 @@ const FAQS = [
   },
   {
     q: "How many cover letters can I generate for free?",
-    a: "The free plan includes 5 cover letters per month, no credit card required. Pro ($9.99/mo) includes 30 cover letters a month. Students with a .edu email get 1 month of Pro free.",
+    a: "The free plan includes 2 cover letters per month, no credit card required. Pro ($9.99/mo) includes 10 cover letters a month. Students with a .edu email get 1 month of Pro free.",
   },
   {
     q: "Can I customise the output?",
@@ -177,7 +177,7 @@ export default function CoverLetterGeneratorPage() {
                 template. Built for students and new grads who are applying to multiple roles at once.
               </p>
               <p className="mt-4">
-                Free to start. No credit card. <strong className="font-semibold text-slate-200">5 cover letters per month on the free plan.</strong>
+                Free to start. No credit card. <strong className="font-semibold text-slate-200">2 cover letters per month on the free plan.</strong>
               </p>
             </>
           }
@@ -219,7 +219,7 @@ export default function CoverLetterGeneratorPage() {
             <dl className="grid grid-cols-2 gap-x-10 gap-y-8 lg:grid-cols-4">
               {[
                 { stat: "60s",        label: "average time to generate" },
-                { stat: "5/mo",       label: "free cover letters, no card" },
+                { stat: "2/mo",       label: "free cover letters, no card" },
                 { stat: "30/mo",      label: "on Pro at $9.99/mo" },
                 { stat: "Any role",   label: "tech, finance, consulting + more" },
               ].map(({ stat, label }) => (
@@ -344,8 +344,8 @@ export default function CoverLetterGeneratorPage() {
               title="Generate your first cover letter free"
               body={
                 <p>
-                  5 cover letters per month on the free plan. Students with a .edu email get 1 month of
-                  Pro free (30 cover letters a month). A card is needed for the trial, and nothing is charged for 30 days.
+                  2 cover letters per month on the free plan. Students with a .edu email get 1 month of
+                  Pro free (10 cover letters a month). A card is needed for the trial, and nothing is charged for 30 days.
                 </p>
               }
               action={
