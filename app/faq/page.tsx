@@ -136,7 +136,7 @@ export default function FAQPage() {
           }
         />
 
-        <section className={`${SECTION} ${PAD} !pt-12 sm:!pt-16`}>
+        <section className={`${SECTION}  ${PAD} !pt-12 sm:!pt-16`}>
           <div className={INNER}>
             {/* Category filter: one row of pills above the questions */}
             <nav aria-label="FAQ categories" className="flex flex-col items-center gap-4">
@@ -161,7 +161,7 @@ export default function FAQPage() {
                 ))}
               </ul>
               {/* Results count when searching */}
-              <p aria-live="polite" className="min-h-[1.25rem] text-[12px] text-slate-400">
+              <p aria-live="polite" className="min-h-[1.25rem] text-[13px] text-slate-400">
                 {(search || activeCategory !== "all") &&
                   (filtered.length === 0
                     ? "No results found."
@@ -177,7 +177,7 @@ export default function FAQPage() {
                     <Reveal key={cat.id}>
                       <section aria-labelledby={`faq-${cat.id}`} className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
                         <div className="flex items-baseline justify-between gap-4 lg:block lg:pt-4">
-                          <h2 id={`faq-${cat.id}`} className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                          <h2 id={`faq-${cat.id}`} className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
                             {cat.label}
                           </h2>
                           <span className="font-mono text-[11px] text-slate-500 lg:mt-1 lg:block">{pad2(items.length)}</span>
@@ -191,7 +191,7 @@ export default function FAQPage() {
                 </div>
               ) : (
                 <div className="mx-auto max-w-3xl rounded-2xl border border-dashed border-white/[0.1] py-16 text-center">
-                  <p className="mb-3 text-sm text-slate-400">No questions match your search.</p>
+                  <p className="mb-3 text-[15px] text-slate-400">No questions match your search.</p>
                   <button
                     type="button"
                     onClick={() => {
@@ -211,7 +211,7 @@ export default function FAQPage() {
 
         {/* Bottom CTA */}
         <section className={`pb-24 ${PAD}`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-12 sm:px-14`}>
+          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] px-7 py-12 sm:px-14`}>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"

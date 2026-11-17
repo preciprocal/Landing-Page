@@ -23,9 +23,9 @@ type Mode = "opt" | "stem";
 type Job = { id: number; start: string; end: string };
 
 const input =
-  "min-h-[44px] w-full min-w-0 rounded-xl bg-white/[0.04] border border-white/[0.08] px-3.5 py-2.5 text-sm text-white transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25 [color-scheme:dark]";
+  "w-full min-w-0 rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25 [color-scheme:dark]";
 
-const fieldLabel = "mb-2 block text-[12px] font-medium text-slate-300";
+const fieldLabel = "mb-2 block text-[13px] font-medium text-slate-300";
 
 export default function UnemploymentCalculator() {
   const [mode, setMode] = useState<Mode>("opt");
@@ -77,14 +77,14 @@ export default function UnemploymentCalculator() {
   const share = result ? Math.min(100, Math.max(0, (result.used / result.limit) * 100)) : 0;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 sm:p-8 md:flex-row md:items-end md:justify-between">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-lg font-semibold text-white">OPT unemployment day calculator</p>
-          <p className="mt-1.5 text-[12px] text-slate-400">Runs in your browser. Nothing you enter is sent anywhere.</p>
+          <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">OPT unemployment day calculator</p>
+          <p className="mt-1.5 text-[13px] text-slate-400">Runs in your browser. Nothing you enter is sent anywhere.</p>
         </div>
 
-        <div role="group" aria-label="OPT type" className="inline-flex w-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-1 md:w-auto">
+        <div role="group" aria-label="OPT type" className="inline-flex w-full rounded-lg border border-white/[0.08] bg-white/[0.02] p-1 md:w-auto">
           {(
             [
               ["opt", "Post-completion OPT (90 days)"],
@@ -96,7 +96,7 @@ export default function UnemploymentCalculator() {
               type="button"
               aria-pressed={mode === id}
               onClick={() => setMode(id)}
-              className={`min-h-[40px] flex-1 rounded-lg px-3.5 py-2 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 md:flex-none md:whitespace-nowrap ${
+              className={`h-9 flex-1 rounded-md px-3.5 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 md:flex-none md:whitespace-nowrap ${
                 mode === id ? "bg-accent/15 text-white shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.45)]" : "text-slate-400 hover:text-white"
               }`}
             >
@@ -108,7 +108,7 @@ export default function UnemploymentCalculator() {
 
       <div className="relative grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]">
         {/* Inputs */}
-        <div className="p-6 sm:p-8">
+        <div className="p-6">
           <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <span id="opt-start-label" className={fieldLabel}>{mode === "stem" ? "STEM OPT EAD start date" : "EAD start date (on the card)"}</span>
@@ -126,7 +126,7 @@ export default function UnemploymentCalculator() {
             )}
           </div>
 
-          <p id="opt-jobs-label" className="mb-3 text-[12px] font-medium text-slate-300">Qualifying jobs (leave the end date empty if you still work there)</p>
+          <p id="opt-jobs-label" className="mb-3 text-[13px] font-medium text-slate-300">Qualifying jobs (leave the end date empty if you still work there)</p>
           <div aria-hidden="true" className="mb-1.5 grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)_2.75rem] gap-2 text-[11px] text-slate-400">
             <span className="pl-1">Start date</span>
             <span className="pl-1">End date</span>
@@ -151,14 +151,14 @@ export default function UnemploymentCalculator() {
           <button
             type="button"
             onClick={() => setJobs((js) => [...js, { id: Math.max(...js.map((x) => x.id)) + 1, start: "", end: "" }])}
-            className="inline-flex min-h-[40px] items-center rounded-md px-1 text-[12px] font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+            className="inline-flex h-9 items-center rounded-lg px-1 text-[13px] font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
           >
             + Add another job
           </button>
         </div>
 
         {/* Result */}
-        <div className="border-t border-white/[0.06] bg-white/[0.015] p-6 sm:p-8 lg:border-l lg:border-t-0">
+        <div className="border-t border-white/[0.06] bg-white/[0.015] p-6 lg:border-l lg:border-t-0">
           <div aria-live="polite">
             <AnimatePresence mode="wait" initial={false}>
               {result ? (
@@ -171,12 +171,12 @@ export default function UnemploymentCalculator() {
                 >
                   <div className="mb-5 grid grid-cols-2 gap-4">
                     <div>
-                      <p className={`text-4xl font-extrabold tabular-nums tracking-tight ${tone.text}`}>{result.used}</p>
-                      <p className="mt-1 text-[12px] text-slate-400">of {result.limit} unemployment days used</p>
+                      <p className={`text-4xl font-semibold tabular-nums tracking-[-0.03em] ${tone.text}`}>{result.used}</p>
+                      <p className="mt-1 text-[13px] text-slate-400">of {result.limit} unemployment days used</p>
                     </div>
                     <div>
-                      <p className="text-4xl font-extrabold tabular-nums tracking-tight text-white">{Math.max(0, result.remaining)}</p>
-                      <p className="mt-1 text-[12px] text-slate-400">days remaining</p>
+                      <p className="text-4xl font-semibold tabular-nums tracking-[-0.03em] text-white">{Math.max(0, result.remaining)}</p>
+                      <p className="mt-1 text-[13px] text-slate-400">days remaining</p>
                     </div>
                   </div>
                   <div aria-hidden="true" className="mb-5 h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
@@ -188,16 +188,16 @@ export default function UnemploymentCalculator() {
                     />
                   </div>
                   {result.remaining <= 0 ? (
-                    <p className="text-sm text-rose-300">
+                    <p className="text-[15px] text-rose-300">
                       This is at or over the limit. Contact your DSO now, before doing anything else.
                     </p>
                   ) : result.limitDate ? (
-                    <p className="text-sm text-slate-300">
+                    <p className="text-[15px] text-slate-300">
                       If you stay unemployed, your last allowed unemployment day is{" "}
                       <strong className="text-white">{formatDay(result.limitDate)}</strong>.
                     </p>
                   ) : (
-                    <p className="text-sm text-slate-300">You are counted as employed on {formatDay(result.t)}, so the clock is stopped.</p>
+                    <p className="text-[15px] text-slate-300">You are counted as employed on {formatDay(result.t)}, so the clock is stopped.</p>
                   )}
                 </motion.div>
               ) : (
@@ -206,7 +206,7 @@ export default function UnemploymentCalculator() {
                   initial={reduce ? false : { opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={reduce ? undefined : { opacity: 0 }}
-                  className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-sm text-slate-400"
+                  className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-[15px] text-slate-400"
                 >
                   Enter your EAD start date to see your count.
                 </motion.p>
@@ -214,7 +214,7 @@ export default function UnemploymentCalculator() {
             </AnimatePresence>
           </div>
 
-          <p className="mt-5 text-[11px] leading-relaxed text-slate-400">
+          <p className="mt-5 text-[13px] leading-relaxed text-slate-400">
             Assumes every job you enter is qualifying: at least 20 hours a week and directly related to your degree. Days outside
             the US count as unemployment unless you were employed at the time. This is an estimate; the count your DSO sees in
             SEVIS is the one that matters.

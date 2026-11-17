@@ -82,7 +82,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Practice these out loud, free <Chevron />
               </a>
-              <p className="text-[12px] text-slate-500">Voice mock interview · AI follow-ups · No credit card</p>
+              <p className="text-[13px] text-slate-500">Voice mock interview · AI follow-ups · No credit card</p>
             </div>
           }
         >
@@ -94,7 +94,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               { label: "Questions covered", value: `${questions.length}+ Q&As` },
             ].map((s) => (
               <div key={s.label} className="bg-[#070b16] px-6 py-5">
-                <dt className="text-[12px] text-slate-500">{s.label}</dt>
+                <dt className="text-[13px] text-slate-500">{s.label}</dt>
                 <dd className="mt-2 font-semibold text-white">{s.value}</dd>
               </div>
             ))}
@@ -105,7 +105,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
             stack, so opening an answer only moves the questions under it.
             Answers are native <details>, so every one stays in the HTML and
             the FAQ structured data matches the page. */}
-        <section className={`${SECTION} ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
             <Reveal>
               <SectionHead
@@ -127,7 +127,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
                           <summary
                             className={`flex cursor-pointer list-none items-start justify-between gap-6 rounded-lg py-5 text-left [&::-webkit-details-marker]:hidden ${FOCUS}`}
                           >
-                            <h3 className="flex gap-2 text-base font-semibold leading-snug text-white transition-colors group-hover:text-accent-soft sm:text-[17px]">
+                            <h3 className="flex gap-2 font-semibold leading-snug text-white transition-colors group-hover:text-accent-soft text-[17px]">
                               <span className="w-9 shrink-0 pt-[3px] font-mono text-[13px] font-normal leading-snug text-accent-soft/80">Q{n}.</span>
                               <span>{qa.question}</span>
                             </h3>
@@ -140,7 +140,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
                             </span>
                           </summary>
                           <div className="relative mb-6 border-l border-accent/30 pl-5 sm:pr-10">
-                            <p className="text-sm leading-relaxed text-slate-300 sm:text-[15px]">{qa.answer}</p>
+                            <p className="text-[15px] leading-relaxed text-slate-300">{qa.answer}</p>
                           </div>
                         </details>
                       </article>
@@ -155,7 +155,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               <div className="mt-14 flex flex-col gap-5 rounded-2xl border border-accent/20 bg-accent-deep/[0.05] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
                 <div className="max-w-2xl">
                   <h2 className="text-[17px] font-semibold leading-snug text-white">Practice these questions with AI mock interviews</h2>
-                  <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">Reading answers is good. Being grilled by an AI interviewer that follows up, pushes back, and scores your response is 10× better.</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">Reading answers is good. Being grilled by an AI interviewer that follows up, pushes back, and scores your response is 10× better.</p>
                 </div>
                 <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} shrink-0 ${FOCUS}`}>
                   Start practicing free <Chevron />
@@ -166,13 +166,13 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
         </section>
 
         {/* Where to go next: the predictor, the sibling guides, related roles */}
-        <section className={`${SECTION} ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
             {/* Job-description predictor cross-link */}
             <div className="flex flex-col gap-5 border-b border-white/[0.06] pb-10 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
-                <h2 className="text-xl font-semibold text-white">Interviewing for a specific {roleLabel} job?</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">Interviewing for a specific {roleLabel} job?</h2>
+                <p className="mt-2 text-[15px] leading-relaxed text-slate-400">
                   These are the common questions. Paste the actual job posting into the free predictor to get the 5 questions that role is most likely to ask, then practice your answers out loud.
                 </p>
               </div>
@@ -187,13 +187,13 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
             {/* Related roles */}
             {meta.relatedRoles.length > 0 && (
               <nav aria-labelledby="related-title" className="mt-12">
-                <h2 id="related-title" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Related interview guides</h2>
+                <h2 id="related-title" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Related interview guides</h2>
                 <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
                   {meta.relatedRoles.map((r) => (
                     <li key={r} className="border-b border-white/[0.05]">
                       <Link
                         href={`/interview-questions/${r}`}
-                        className={`group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white ${FOCUS}`}
+                        className={`group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white ${FOCUS}`}
                       >
                         {r.split("-").map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")} Interview Questions
                         <Chevron className="text-slate-600 group-hover:text-slate-300" />

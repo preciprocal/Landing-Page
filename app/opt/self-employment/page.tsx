@@ -93,8 +93,8 @@ export default function SelfEmploymentPage() {
       body={
         <>
           <h2>Side by side</h2>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6 overflow-x-auto">
-            <table className="w-full text-sm min-w-[560px]">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+            <table className="w-full text-[15px] min-w-[560px]">
               <thead>
                 <tr className="text-left text-slate-200">
                   <th className="pb-2 pr-4" />

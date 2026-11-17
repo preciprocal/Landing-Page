@@ -148,7 +148,7 @@ export default function JobApplicationTrackerPage() {
                 "Which resume version you sent, so you can't tell what's working",
                 "Warm contacts who go cold because nobody logged when you last spoke",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
                   <span>{item}</span>
                 </li>

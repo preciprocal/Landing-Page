@@ -175,7 +175,7 @@ export default function FinalRoundAIAlternativePage() {
               caption="Preciprocal vs Final Round AI: feature comparison"
               rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.finalRound }))}
             />
-            <p className="mt-4 text-center text-xs text-slate-400">
+            <p className="mt-4 text-center text-[13px] leading-relaxed text-slate-400">
               Information based on publicly available feature lists as of September 2026. Features may change. Always verify on each tool&apos;s pricing page.
             </p>
           </div>

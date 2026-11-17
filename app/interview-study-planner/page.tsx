@@ -145,7 +145,7 @@ export default function InterviewStudyPlannerPage() {
                 "Skipping behavioural entirely, the round that sinks the most senior candidates",
                 "Never practising out loud, silent solving is a genuinely different skill from interviewing",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
                   <span>{item}</span>
                 </li>

@@ -11,7 +11,7 @@ import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import Chevron from "@/components/Chevron";
 
-import { BTN_PRIMARY_SM } from "@/components/page/Layout";
+import { BTN_PRIMARY_SM, BTN_SECONDARY_SM, LABEL } from "@/components/page/Layout";
 // ─── Dropdown menu data ───────────────────────────────────────────────────────
 
 const PREP_LINKS = [
@@ -119,7 +119,7 @@ function PrepDropdown({ active, setActive }: MenuProps) {
       <div className="grid grid-cols-3 gap-0 p-2">
         {PREP_LINKS.map((group) => (
           <div key={group.group} className="p-4">
-            <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
+            <p className={`${LABEL} text-slate-500 mb-3`}>
               {group.group}
             </p>
             <ul className="space-y-1">
@@ -131,7 +131,7 @@ function PrepDropdown({ active, setActive }: MenuProps) {
             </ul>
             <Link
               href={group.seeAllHref}
-              className="group inline-flex items-center gap-0.5 mt-3 text-[12px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors px-2"
+              className="group inline-flex items-center gap-0.5 mt-3 text-[13px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors px-2"
             >
               {group.seeAllLabel} <Chevron />
             </Link>
@@ -158,7 +158,7 @@ function ResourcesDropdown({ active, setActive }: MenuProps) {
       <div className="grid grid-cols-4 gap-0 p-2 items-start">
         {RESOURCES_GROUPS.map((group) => (
           <div key={group.group} className="p-4">
-            <p className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest mb-3">
+            <p className={`${LABEL} text-slate-500 mb-3`}>
               {group.group}
             </p>
             <ul className="space-y-1">
@@ -171,7 +171,7 @@ function ResourcesDropdown({ active, setActive }: MenuProps) {
                     <span className="text-[13px] text-slate-300 group-hover:text-white font-medium transition-colors">
                       {item.label}
                     </span>
-                    <span className="text-[11px] text-slate-600 mt-0.5">{item.sub}</span>
+                    <span className="text-[12px] text-slate-500 mt-0.5">{item.sub}</span>
                   </Link>
                 </li>
               ))}
@@ -216,7 +216,7 @@ export default function Navbar() {
             height={36}
             className="w-9 h-9 rounded-[10px] transition-transform group-hover:scale-105"
           />
-          <span className="text-xl font-bold text-white tracking-tight">Preciprocal</span>
+          <span className="text-xl font-semibold text-white tracking-[-0.02em]">Preciprocal</span>
         </Link>
 
         {/* Desktop nav links */}
@@ -244,10 +244,7 @@ export default function Navbar() {
               pair to "Get Started Free". */}
           <a
             href={`${APP_URL}/sign-in`}
-            className="inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold
-                       text-slate-200 bg-white/[0.04] border border-white/[0.12]
-                       hover:text-white hover:bg-white/[0.08] hover:border-white/25 hover:-translate-y-0.5
-                       transition-all duration-300"
+            className={BTN_SECONDARY_SM}
           >
             Log in
           </a>
@@ -303,7 +300,7 @@ export default function Navbar() {
               <div className="pb-3 space-y-4">
                 {PREP_LINKS.map((group) => (
                   <div key={group.group}>
-                    <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-2 pl-2">
+                    <p className={`${LABEL} text-slate-600 mb-2 pl-2`}>
                       {group.group}
                     </p>
                     <div className="space-y-0.5">
@@ -350,7 +347,7 @@ export default function Navbar() {
               <div className="pb-3 space-y-4">
                 {RESOURCES_GROUPS.map((group) => (
                   <div key={group.group}>
-                    <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-2 pl-2">
+                    <p className={`${LABEL} text-slate-600 mb-2 pl-2`}>
                       {group.group}
                     </p>
                     <div className="space-y-0.5">
@@ -362,7 +359,7 @@ export default function Navbar() {
                           className="block text-[14px] text-slate-400 hover:text-white py-1.5 pl-2 rounded-lg hover:bg-white/[0.04] transition-all"
                         >
                           {item.label}
-                          <span className="block text-[11px] text-slate-600 mt-0.5">{item.sub}</span>
+                          <span className="block text-[12px] text-slate-500 mt-0.5">{item.sub}</span>
                         </Link>
                       ))}
                     </div>

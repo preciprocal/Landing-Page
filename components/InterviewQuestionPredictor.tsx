@@ -31,7 +31,7 @@ import { INPUT_LIMITS } from "@/lib/interviewTools/limits";
 import type { PredictedQuestion, Prediction, Rating, ToolError } from "@/lib/interviewTools/schemas";
 import Chevron from "@/components/Chevron";
 
-import { BTN_PRIMARY, BTN_PRIMARY_SM } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_PRIMARY_SM, BTN_SECONDARY_SM } from "@/components/page/Layout";
 type Mode = "predict" | "tmay";
 
 const TMAY_QUESTION = "Tell me about yourself.";
@@ -65,7 +65,7 @@ What we're looking for
 - Comfortable with ambiguity and juggling requests from several teams`;
 
 const inputClass =
-  "w-full rounded-xl bg-[#070b16] border border-white/[0.08] px-4 py-3 text-sm text-white placeholder:text-slate-600 transition-colors focus:outline-none focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-400/15";
+  "w-full rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-slate-500 transition-colors focus:border-indigo-400/60 focus:bg-white/[0.045] focus:outline-none";
 
 // ── Look and motion ────────────────────────────────────────────────────────
 // Motion explains state (results arriving, a score filling in), it is not
@@ -81,7 +81,7 @@ const rise: Variants = {
 
 const FOCUS =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810]";
-const LABEL = "text-[11px] font-semibold uppercase tracking-[0.18em]";
+const LABEL = "text-[11px] font-semibold uppercase tracking-[0.16em]";
 
 /** Counts from 0 to `to` once, when it mounts. */
 function CountUp({ to }: { to: number }) {
@@ -135,7 +135,7 @@ export default function InterviewQuestionPredictor() {
       <div
         role="tablist"
         aria-label="Tool mode"
-        className="mb-6 inline-flex w-full flex-col gap-1 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-1 sm:w-auto sm:flex-row"
+        className="mb-6 inline-flex w-full flex-col gap-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-1 sm:w-auto sm:flex-row"
       >
         {(
           [
@@ -150,7 +150,7 @@ export default function InterviewQuestionPredictor() {
             aria-selected={mode === t.id}
             data-track={`question-predictor-tab-${t.id}`}
             onClick={() => setMode(t.id)}
-            className={`relative rounded-xl px-4 py-2.5 text-sm transition-colors ${FOCUS} ${
+            className={`relative rounded-lg px-4 py-2.5 text-[15px] transition-colors ${FOCUS} ${
               mode === t.id ? "text-white" : "text-slate-400 hover:text-white"
             }`}
           >
@@ -223,7 +223,7 @@ function PredictPanel() {
     <div className="space-y-6">
       {/* Input on the left, what comes back on the right. */}
       <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
         <div className="flex items-center justify-between gap-3 mb-3">
           <label htmlFor="jd" className="text-white font-semibold">
             Paste the job description
@@ -232,7 +232,7 @@ function PredictPanel() {
             type="button"
             data-track="question-predictor-sample"
             onClick={() => setJd(SAMPLE_JD)}
-            className={`rounded-lg border border-indigo-400/25 px-2.5 py-1 text-[12px] text-indigo-300 transition-colors hover:border-indigo-400/50 hover:text-indigo-200 ${FOCUS}`}
+            className={`rounded-full border border-indigo-400/25 px-3 py-1 text-[12px] font-medium text-indigo-300 transition-colors hover:border-indigo-400/50 hover:text-indigo-200 ${FOCUS}`}
           >
             Try a sample
           </button>
@@ -246,7 +246,7 @@ function PredictPanel() {
           placeholder="Paste the full posting: the role, what you'll do, and what they're looking for."
         />
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-4">
-          <p className="text-[11px] text-slate-600">
+          <p className="text-[13px] text-slate-600">
             Sent to an AI model to generate your questions. Not stored, no account needed.
           </p>
           <button
@@ -261,7 +261,7 @@ function PredictPanel() {
             {!loading && <Chevron />}
           </button>
         </div>
-        {error && <p role="alert" className="text-sm text-rose-300 mt-4">{error}</p>}
+        {error && <p role="alert" className="text-[15px] text-rose-300 mt-4">{error}</p>}
       </SpotlightCard>
       <WhatYouGet
         title="What comes back"
@@ -289,13 +289,13 @@ function PredictPanel() {
         >
           {/* Left: the role and the next step stay in view while the questions scroll past. */}
           <div className="space-y-6 lg:sticky lg:top-28">
-          <motion.div variants={rise} className="flex flex-col sm:flex-row sm:items-end lg:flex-col lg:items-start justify-between gap-3 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6">
+          <motion.div variants={rise} className="flex flex-col sm:flex-row sm:items-end lg:flex-col lg:items-start justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
             <div>
               <p className={`${LABEL} mb-2 inline-flex items-center gap-2 text-emerald-300`}>
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 Your likely questions
               </p>
-              <h3 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+              <h3 className="text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">
                 {role || "This role"}
                 {result.company && <span className="text-slate-400 font-normal"> at {result.company}</span>}
               </h3>
@@ -304,7 +304,7 @@ function PredictPanel() {
               type="button"
               data-track="question-predictor-copy"
               onClick={copyAll}
-              className={`self-start sm:self-auto px-3 py-1.5 rounded-lg text-[12px] border transition-colors ${FOCUS} ${
+              className={`self-start sm:self-auto px-3 py-1.5 rounded-lg text-[13px] border transition-colors ${FOCUS} ${
                 copied ? "border-emerald-400/40 text-emerald-300" : "border-white/[0.1] text-slate-300 hover:border-white/25 hover:text-white"
               }`}
             >
@@ -338,30 +338,30 @@ function QuestionCard({ q, index, role }: { q: PredictedQuestion; index: number;
   const [practising, setPractising] = useState(false);
 
   return (
-    <article className="group/card relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors duration-300 hover:border-white/[0.12] sm:p-7">
+    <article className="group/card relative overflow-hidden rounded-xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="flex items-start gap-4 sm:gap-5">
         <span className="mt-0.5 w-7 shrink-0 font-mono text-[13px] text-indigo-300/80">
           {String(index + 1).padStart(2, "0")}
         </span>
         <div className="flex-1 min-w-0">
-          <span className="inline-block px-2 py-0.5 rounded-md border border-white/[0.07] bg-white/[0.04] text-[11px] text-slate-400 mb-3">
+          <span className="inline-block px-3 py-1 rounded-full border border-white/[0.07] bg-white/[0.04] text-[12px] font-medium text-slate-400 mb-3">
             {TYPE_LABELS[q.type]}
           </span>
           <h4 className="text-white text-[17px] font-semibold leading-snug mb-4">{q.question}</h4>
 
           {q.jd_signal && (
-            <p className="text-[12px] text-slate-500 mb-4 border-l border-indigo-400/40 pl-3">
+            <p className="text-[13px] text-slate-500 mb-4 border-l border-indigo-400/40 pl-3">
               From the posting: <span className="text-slate-300 italic">&ldquo;{q.jd_signal}&rdquo;</span>
             </p>
           )}
 
-          <p className="text-sm text-slate-400 leading-relaxed mb-4">
+          <p className="text-[15px] text-slate-400 leading-relaxed mb-4">
             <strong className="text-slate-200">Why they ask: </strong>
             {q.why_they_ask}
           </p>
 
           {q.what_good_looks_like.length > 0 && (
-            <div className="text-sm text-slate-400">
+            <div className="text-[15px] text-slate-400">
               <p className="text-slate-200 font-semibold mb-2">A strong answer covers</p>
               <ul className="space-y-2">
                 {q.what_good_looks_like.map((point, i) => (
@@ -388,7 +388,7 @@ function QuestionCard({ q, index, role }: { q: PredictedQuestion; index: number;
               type="button"
               data-track="question-predictor-practise"
               onClick={() => setPractising(true)}
-              className={`group mt-6 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-[13px] font-semibold border border-indigo-400/40 text-indigo-200 transition-colors hover:border-indigo-400/60 hover:bg-indigo-500/10 ${FOCUS}`}
+              className={`${BTN_SECONDARY_SM} mt-6`}
             >
               Practice this answer and get a score <Chevron />
             </button>
@@ -410,14 +410,14 @@ function TmayPanel() {
 
   return (
     <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-    <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
-      <p className="text-white text-xl font-semibold tracking-tight mb-2">&ldquo;{TMAY_QUESTION.replace(".", "")}&rdquo;</p>
-      <p className="text-sm text-slate-400 mb-5">
+    <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+      <p className="text-white text-xl font-semibold tracking-[-0.02em] mb-2">&ldquo;{TMAY_QUESTION.replace(".", "")}&rdquo;</p>
+      <p className="text-[15px] text-slate-400 mb-5">
         The first question in almost every interview. Say your answer out loud (or type it) and see your pace, filler
         words and length instantly, then get the content scored out of 10 with the exact fixes.
       </p>
       <div className="mb-4">
-        <label htmlFor="tmay-role" className="block text-[12px] text-slate-400 mb-1.5">
+        <label htmlFor="tmay-role" className="block text-[13px] text-slate-400 mb-1.5">
           Role you are interviewing for (optional, makes the feedback sharper)
         </label>
         <input
@@ -452,9 +452,9 @@ function TmayPanel() {
 /** Beside the input: what the tool returns, so the empty state is not a blank column. */
 function WhatYouGet({ title, intro, items, notes }: { title: string; intro: string; items: string[]; notes: string[] }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 sm:p-7">
+    <div className="flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
       <p className={`${LABEL} text-indigo-300/90`}>{title}</p>
-      <p className="mt-2 text-sm text-slate-400">{intro}</p>
+      <p className="mt-2 text-[15px] text-slate-400">{intro}</p>
       <ol className="mb-auto mt-6 space-y-3">
         {items.map((item, i) => (
           <motion.li
@@ -538,7 +538,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
               aria-pressed={inputMode === m.id}
               data-track={`question-predictor-input-${m.id}`}
               onClick={() => setInputMode(m.id)}
-              className={`px-3 py-1.5 rounded-lg text-[12px] border transition-colors ${FOCUS} ${
+              className={`px-3 py-1.5 rounded-lg text-[13px] border transition-colors ${FOCUS} ${
                 inputMode === m.id
                   ? "bg-indigo-500/[0.16] border-indigo-400/40 text-white"
                   : "border-transparent text-slate-400 hover:text-white"
@@ -561,7 +561,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
 
       {(!voice || answer) && (
         <div>
-          {voice && <p className="text-[12px] text-slate-400 mb-2">Transcript (fix any misheard words before scoring)</p>}
+          {voice && <p className="text-[13px] text-slate-400 mb-2">Transcript (fix any misheard words before scoring)</p>}
           <textarea
             aria-label="Your answer"
             className={`${inputClass} min-h-[160px] resize-y leading-relaxed`}
@@ -571,7 +571,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
             placeholder="Type your answer as you would say it out loud..."
           />
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mt-3">
-            <p className="text-[11px] text-slate-600">
+            <p className="text-[13px] text-slate-600">
               {words} words{words > 0 && `, about ${Math.max(1, Math.round(words / 2.5))} seconds spoken`}. Aim for 150 to 300.
             </p>
             <button
@@ -585,7 +585,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
               {loading ? "Scoring..." : rating ? "Score it again" : voice ? "Score my content" : "Score my answer"}
             </button>
           </div>
-          {error && <p role="alert" className="text-sm text-rose-300 mt-3">{error}</p>}
+          {error && <p role="alert" className="text-[15px] text-rose-300 mt-3">{error}</p>}
         </div>
       )}
 
@@ -606,7 +606,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
   return (
     <motion.div
-      className="rounded-2xl border border-white/[0.08] bg-[#070b16] p-5 sm:p-6 space-y-6"
+      className="rounded-xl border border-white/[0.08] bg-[#070b16] p-6 space-y-6"
       variants={stagger}
       initial="hidden"
       animate="show"
@@ -629,18 +629,18 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
               transition={{ duration: 1, ease: EASE }}
             />
           </svg>
-          <span className="relative text-2xl font-extrabold leading-none tabular-nums">
+          <span className="relative text-2xl font-semibold leading-none tabular-nums">
             <CountUp to={rating.score} />
           </span>
-          <span className="relative text-[10px] text-slate-500">/ 10</span>
+          <span className="relative text-[13px] text-slate-500">/ 10</span>
         </div>
         <p className="text-white font-semibold leading-snug">{rating.verdict}</p>
       </motion.div>
 
       {rating.strengths.length > 0 && (
         <motion.div variants={rise}>
-          <p className="text-sm text-slate-200 font-semibold mb-2.5">What works</p>
-          <ul className="space-y-2 text-sm text-slate-400">
+          <p className="text-[15px] text-slate-200 font-semibold mb-2.5">What works</p>
+          <ul className="space-y-2 text-[15px] text-slate-400">
             {rating.strengths.map((s, i) => (
               <li key={i} className="flex gap-2.5">
                 <span className="text-emerald-400 shrink-0">✓</span>
@@ -653,11 +653,11 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
       {rating.fixes.length > 0 && (
         <motion.div variants={rise}>
-          <p className="text-sm text-slate-200 font-semibold mb-2.5">Fix these first</p>
-          <ol className="divide-y divide-white/[0.05] border-y border-white/[0.05] text-sm">
+          <p className="text-[15px] text-slate-200 font-semibold mb-2.5">Fix these first</p>
+          <ol className="divide-y divide-white/[0.05] border-y border-white/[0.05] text-[15px]">
             {rating.fixes.map((f, i) => (
               <li key={i} className="flex gap-3 py-3">
-                <span className="font-mono text-[12px] leading-5 text-amber-300 shrink-0">{i + 1}.</span>
+                <span className="font-mono text-[13px] leading-5 text-amber-300 shrink-0">{i + 1}.</span>
                 <span>
                   <span className="text-slate-200">{f.issue}</span>{" "}
                   <span className="text-slate-400">{f.suggestion}</span>
@@ -670,8 +670,8 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
       {rating.stronger_opening && (
         <motion.div variants={rise} className="rounded-xl bg-white/[0.025] border border-white/[0.06] border-l-indigo-400/50 p-4">
-          <p className="text-[12px] text-slate-500 mb-1.5">A stronger way to open</p>
-          <p className="text-sm text-slate-200 leading-relaxed">&ldquo;{rating.stronger_opening}&rdquo;</p>
+          <p className="text-[13px] text-slate-500 mb-1.5">A stronger way to open</p>
+          <p className="text-[15px] text-slate-200 leading-relaxed">&ldquo;{rating.stronger_opening}&rdquo;</p>
         </motion.div>
       )}
 
@@ -684,15 +684,15 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
             <p className={`${LABEL} text-indigo-300 mb-2`}>
               What the interviewer asks next
             </p>
-            <p className="text-white text-lg font-semibold leading-snug mb-3">&ldquo;{rating.follow_up_question}&rdquo;</p>
-            <p className="text-sm text-slate-400 mb-5">
+            <p className="mb-3 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">&ldquo;{rating.follow_up_question}&rdquo;</p>
+            <p className="text-[15px] text-slate-400 mb-5">
               This is where real interviews are won or lost, and you cannot practice it by typing. Preciprocal&apos;s AI
               interviewer asks follow-ups like this one out loud, the way a real interviewer would, and scores how you handle them.
             </p>
             <a href={signUpUrl(role)} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
               Answer it in a free mock interview <Chevron />
             </a>
-            <p className="text-[11px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>
+            <p className="text-[13px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>
           </div>
         </motion.div>
       )}
@@ -704,7 +704,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
 function ConversionBanner({ role }: { role: string }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-indigo-400/25 bg-[#070b16] p-6 sm:p-7">
+    <div className="relative overflow-hidden rounded-xl border border-indigo-400/25 bg-[#070b16] p-6">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_80%_70%_at_100%_0%,black,transparent)]"
@@ -716,8 +716,8 @@ function ConversionBanner({ role }: { role: string }) {
       />
       <div className="relative flex flex-col gap-6">
         <div>
-          <h3 className="text-xl font-bold tracking-tight text-white mb-2">Now practice all 5 out loud</h3>
-          <p className="text-sm text-slate-400">
+          <h3 className="text-xl font-semibold tracking-[-0.02em] text-white mb-2">Now practice all 5 out loud</h3>
+          <p className="text-[15px] text-slate-400">
             Knowing the question is half of it. Preciprocal&apos;s AI interviewer asks these{role ? ` for the ${role} role` : ""} by
             voice, asks follow-up questions like a real interviewer, and scores you on structure and clarity.
           </p>
@@ -726,7 +726,7 @@ function ConversionBanner({ role }: { role: string }) {
           <a href={signUpUrl(role)} className={`${BTN_PRIMARY} w-full`}>
             Start a free mock interview <Chevron />
           </a>
-          <p className="text-[11px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>
+          <p className="text-[13px] text-slate-500 mt-2.5">Free plan includes an AI mock interview · No credit card</p>
         </div>
       </div>
     </div>
@@ -741,14 +741,14 @@ function LoadingCard({ lines }: { lines: string[] }) {
   }, []);
   return (
     <motion.div
-      className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6"
+      className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6"
       aria-live="polite"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
       transition={{ duration: 0.35, ease: EASE }}
     >
-      <div aria-hidden="true" className="mb-4 flex justify-end font-mono text-[12px] tabular-nums text-slate-500">
+      <div aria-hidden="true" className="mb-4 flex justify-end font-mono text-[13px] tabular-nums text-slate-500">
         {secs}s
       </div>
       <ul className="space-y-3.5">
@@ -766,7 +766,7 @@ function LoadingCard({ lines }: { lines: string[] }) {
           </li>
         ))}
       </ul>
-      <p className="text-[11px] text-slate-600 mt-4">This usually takes 10 to 20 seconds.</p>
+      <p className="text-[13px] text-slate-600 mt-4">This usually takes 10 to 20 seconds.</p>
     </motion.div>
   );
 }

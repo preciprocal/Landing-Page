@@ -21,7 +21,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb, H1 } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb, H1, LEAD, LABEL, PILL } from "@/components/page/Layout";
 import { CHAPTER_DATA, type ChapterId } from "@/lib/demoChapters";
 
 const FRAME_H = "h-[660px] xl:h-[720px]";
@@ -118,7 +118,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
           {/* Headline block */}
           <div className="mx-auto max-w-5xl animate-fade-up text-center opacity-0">
             {badge && (
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-accent-soft">
+              <div className={`mb-5 ${PILL} border-accent/25 bg-accent/[0.08] text-accent-soft`}>
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {badge}
               </div>
@@ -131,7 +131,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
                 </span>
               )}
             </h1>
-            <div className="mx-auto mt-5 max-w-2xl text-[17px] leading-relaxed text-slate-400">{subhead}</div>
+            <div className={`mx-auto mt-5 max-w-2xl ${LEAD}`}>{subhead}</div>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <a href={ctaHref} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                 {ctaLabel} <Chevron />
@@ -155,7 +155,7 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
             {/* The chapter narration is a line from the homepage's continuing
                 story and reads as nonsense on its own page, so only a short,
                 honest label sits above the frame. */}
-            <p className="mb-3 text-center text-[12px] font-medium uppercase tracking-[0.16em] text-slate-500">
+            <p className={`mb-3 text-center ${LABEL} text-slate-500`}>
               The real app, with example data
             </p>
 

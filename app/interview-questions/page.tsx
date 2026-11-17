@@ -16,7 +16,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_ROLES, ROLE_DISPLAY, ALL_ROLE_CATEGORIES, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, CARD, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, CARD, CARD_HOVER, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -63,7 +63,7 @@ export default function InterviewQuestionsIndexPage() {
                 Real interview questions, detailed answers, salary benchmarks, and preparation tips
                 for every major career path, updated for 2026.
               </p>
-              <p className="mt-3 font-mono text-[12px] uppercase tracking-[0.14em] text-slate-500">
+              <p className="mt-3 font-mono text-[13px] uppercase tracking-[0.16em] text-slate-500">
                 {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
               </p>
             </>
@@ -75,7 +75,7 @@ export default function InterviewQuestionsIndexPage() {
               <a
                 key={category}
                 href={`#${anchor(category)}`}
-                className={`group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[13px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white ${FOCUS}`}
+                className={`group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white font-medium ${FOCUS}`}
               >
                 {category}
                 <span className="font-mono text-[11px] text-slate-500 group-hover:text-accent-soft">{pad2(roles.length)}</span>
@@ -95,7 +95,7 @@ export default function InterviewQuestionsIndexPage() {
                 className="scroll-mt-24"
               >
                 <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
-                  <h2 id={`${anchor(category)}-title`} className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                  <h2 id={`${anchor(category)}-title`} className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
                     {category}
                   </h2>
                   <span className="font-mono text-[11px] text-slate-500">
@@ -103,7 +103,7 @@ export default function InterviewQuestionsIndexPage() {
                   </span>
                 </div>
 
-                <RevealGroup as="ul" className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <RevealGroup as="ul" className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {roles.map((role) => {
                     const display = ROLE_DISPLAY[role];
                     if (!display) return null;
@@ -111,19 +111,19 @@ export default function InterviewQuestionsIndexPage() {
                       <RevealItem as="li" key={role}>
                         <Link
                           href={`/interview-questions/${role}`}
-                          className={`group relative flex h-full items-center gap-4 overflow-hidden ${CARD} p-4 transition-colors duration-300 hover:border-white/[0.14] hover:bg-white/[0.045] ${FOCUS}`}
+                          className={`group relative flex h-full items-center gap-4 overflow-hidden ${CARD} ${CARD_HOVER} p-5 ${FOCUS}`}
                         >
                           <span
                             aria-hidden="true"
-                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.07] bg-[#070b16] text-lg"
+                            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.07] bg-[#070b16] text-lg"
                           >
                             {display.icon}
                           </span>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-medium text-slate-100 transition-colors group-hover:text-white">
+                            <p className="truncate text-[15px] font-medium text-slate-100 transition-colors group-hover:text-white">
                               {display.name}
                             </p>
-                            <p className="mt-0.5 text-[12px] text-slate-500 transition-colors group-hover:text-accent-soft">
+                            <p className="mt-0.5 text-[13px] text-slate-500 transition-colors group-hover:text-accent-soft">
                               Interview questions <Chevron />
                             </p>
                           </div>
@@ -139,7 +139,7 @@ export default function InterviewQuestionsIndexPage() {
             <div className="grid gap-x-12 border-y border-white/[0.06] lg:grid-cols-2">
               <div className="flex flex-col gap-3 border-b border-white/[0.06] py-6 lg:border-b-0">
                 <h2 className="text-[17px] font-semibold text-white">Have a specific job posting?</h2>
-                <p className="max-w-xl text-sm leading-relaxed text-slate-400">
+                <p className="max-w-xl text-[15px] leading-relaxed text-slate-400">
                   Paste it into the free predictor to get the 5 questions that posting is most likely to lead to, and practice your answers out loud. No sign-up.
                 </p>
                 <Link
@@ -151,7 +151,7 @@ export default function InterviewQuestionsIndexPage() {
               </div>
               <div className="flex flex-col gap-3 py-6">
                 <h2 className="text-[17px] font-semibold text-white">Preparing for a specific company?</h2>
-                <p className="max-w-xl text-sm leading-relaxed text-slate-400">
+                <p className="max-w-xl text-[15px] leading-relaxed text-slate-400">
                   We also have company-specific prep guides covering the interview process, culture, difficulty, and what each company actually looks for.
                 </p>
                 <Link

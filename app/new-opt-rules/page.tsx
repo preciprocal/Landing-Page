@@ -178,9 +178,9 @@ export default function NewOptRulesPage() {
             recommendations. DHS says the aim is to fight fraud, protect US workers, and make schools more selective about
             which students they recommend.
           </p>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
             <h3 className="mb-3">How the fee would work</h3>
-            <ul className="list-disc pl-5 space-y-2 text-sm">
+            <ul className="list-disc pl-5 space-y-2 text-[15px]">
               <li>
                 <strong>$70,000</strong> for a student&apos;s first OPT recommendation. Law firm summaries describe this as
                 the first OPT of any type, which would include pre-completion OPT.
@@ -254,8 +254,8 @@ export default function NewOptRulesPage() {
           </p>
 
           <h2 id="unchanged">What has not changed</h2>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
-            <ul className="space-y-3 text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+            <ul className="space-y-3 text-[15px]">
               {[
                 "Post-completion OPT gives up to 12 months of work authorisation per degree level",
                 "STEM OPT adds 24 months, with an E-Verify employer and a Form I-983 training plan",

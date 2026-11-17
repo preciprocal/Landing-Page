@@ -18,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, SectionHead, PageHero, CtaPanel, Fold, pad2, H2 } from "@/components/page/Layout";
+import { ACCENT_TEXT, BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, Fold, H2, H3, INNER, LABEL, PAD, PageHero, SECTION, SMALL, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
@@ -163,10 +163,10 @@ export default function AboutPage() {
                   />
                   <div className="flex items-baseline gap-3">
                     <span className="font-mono text-[11px] text-slate-500">{pad2(i + 1)}</span>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft">{m.date}</span>
+                    <span className={`${LABEL} text-accent-soft`}>{m.date}</span>
                   </div>
-                  <h3 className="mb-2 mt-2 text-lg font-bold text-white">{m.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400">{m.description}</p>
+                  <h3 className={`mb-2 mt-2 ${H3}`}>{m.title}</h3>
+                  <p className={BODY}>{m.description}</p>
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -177,13 +177,13 @@ export default function AboutPage() {
         <section aria-label="Our mission" className={`${SECTION} ${PAD}`}>
           <Reveal className={`${INNER} text-center`}>
             <Eyebrow>Our mission</Eyebrow>
-            <p className="mx-auto max-w-5xl text-3xl font-extrabold leading-[1.15] tracking-tight text-white [text-wrap:balance] sm:text-4xl lg:text-5xl">
+            <p className="mx-auto max-w-5xl text-3xl font-semibold leading-[1.15] tracking-[-0.03em] text-white [text-wrap:balance] sm:text-4xl lg:text-5xl">
               &ldquo;Make expert-level career preparation accessible to every student,
               regardless of where they went to school or{" "}
               <span className={ACCENT_TEXT}>who they know.</span>
               &rdquo;
             </p>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-relaxed text-slate-400">
+            <p className={`mx-auto mt-8 max-w-2xl ${BODY}`}>
               The students who land the best jobs often aren&apos;t the most qualified.
               They&apos;re the best prepared. We&apos;re here to fix that.
             </p>
@@ -202,11 +202,11 @@ export default function AboutPage() {
                 const Icon = v.icon;
                 return (
                   <RevealItem key={v.title} className="border-t border-white/[0.08] pt-6">
-                    <span className="mb-5 grid h-10 w-10 place-items-center rounded-xl border border-accent/20 bg-accent/10">
+                    <span className="mb-5 grid h-10 w-10 place-items-center rounded-lg border border-accent/20 bg-accent/10">
                       <Icon aria-hidden="true" className="h-4 w-4 text-accent" />
                     </span>
-                    <h3 className="mb-2 text-lg font-bold text-white">{v.title}</h3>
-                    <p className="text-sm leading-relaxed text-slate-400">{v.description}</p>
+                    <h3 className={`mb-2 ${H3}`}>{v.title}</h3>
+                    <p className={BODY}>{v.description}</p>
                   </RevealItem>
                 );
               })}
@@ -222,7 +222,7 @@ export default function AboutPage() {
               <h2 className={H2}>
                 Who&apos;s behind it
               </h2>
-              <p className="mt-4 text-[16px] leading-relaxed text-slate-400">
+              <p className={`mt-4 ${BODY}`}>
                 A team of international students and recent graduates who went through
                 the US job search, figured out what actually works, and built the tools
                 they wish they&apos;d had on day one.
@@ -241,14 +241,14 @@ export default function AboutPage() {
                       alt={b.label}
                       className="flex-shrink-0 rounded-[2px] object-cover"
                     />
-                    <span className="text-xs font-medium text-slate-200">{b.label}</span>
+                    <span className="text-[12px] font-medium text-slate-200">{b.label}</span>
                   </div>
                 ))}
                 <div className="flex items-center gap-2 rounded-full border border-dashed border-white/[0.15] px-3 py-1.5">
-                  <span className="text-xs font-medium text-slate-300">+ more</span>
+                  <span className="text-[12px] font-medium text-slate-300">+ more</span>
                 </div>
               </div>
-              <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-slate-500">
+              <p className={`mx-auto mt-6 max-w-2xl ${SMALL}`}>
                 Collectively spread across US universities, applying to jobs in tech,
                 finance, consulting, and beyond. Every feature in Preciprocal traces
                 back to a real gap one of us hit during our own job search.
@@ -287,7 +287,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA */}
-        <section aria-label="Contact and get started" className={`pb-24 pt-4 ${PAD}`}>
+        <section aria-label="Contact and get started" className={`pb-20 pt-4 ${PAD}`}>
           <Reveal>
             <CtaPanel
               title="Have a question or want to talk?"

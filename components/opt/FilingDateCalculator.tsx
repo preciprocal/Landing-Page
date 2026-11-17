@@ -21,7 +21,7 @@ import DatePicker from "@/components/ui/DatePicker";
 type Mode = "initial" | "stem";
 
 const input =
-  "min-h-[44px] w-full rounded-xl bg-white/[0.04] border border-white/[0.08] px-3.5 py-2.5 text-sm text-white transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25 [color-scheme:dark]";
+  "w-full rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25 [color-scheme:dark]";
 
 const pad2 = (n: number) => String(n).padStart(2, "0");
 
@@ -31,10 +31,10 @@ function Row({ index, label, value, note }: { index: number; label: string; valu
       <span className="pt-0.5 font-mono text-[11px] text-accent-soft/70">{pad2(index)}</span>
       <div>
         <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-          <p className="text-sm text-slate-400">{label}</p>
-          <p className="text-sm font-semibold text-white sm:text-right">{value}</p>
+          <p className="text-[15px] text-slate-400">{label}</p>
+          <p className="text-[15px] font-semibold text-white sm:text-right">{value}</p>
         </div>
-        {note && <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">{note}</p>}
+        {note && <p className="mt-1.5 text-[13px] leading-relaxed text-slate-400">{note}</p>}
       </div>
     </div>
   );
@@ -83,14 +83,14 @@ export default function FilingDateCalculator() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 sm:p-8 md:flex-row md:items-end md:justify-between">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+      <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-lg font-semibold text-white">OPT filing deadline calculator</p>
-          <p className="mt-1.5 text-[12px] text-slate-400">Runs in your browser. Nothing you enter is sent anywhere.</p>
+          <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">OPT filing deadline calculator</p>
+          <p className="mt-1.5 text-[13px] text-slate-400">Runs in your browser. Nothing you enter is sent anywhere.</p>
         </div>
 
-        <div role="group" aria-label="OPT type" className="inline-flex w-full rounded-xl border border-white/[0.08] bg-white/[0.02] p-1 md:w-auto">
+        <div role="group" aria-label="OPT type" className="inline-flex w-full rounded-lg border border-white/[0.08] bg-white/[0.02] p-1 md:w-auto">
           {(
             [
               ["initial", "Post-completion OPT"],
@@ -102,7 +102,7 @@ export default function FilingDateCalculator() {
               type="button"
               aria-pressed={mode === id}
               onClick={() => setMode(id)}
-              className={`min-h-[40px] flex-1 rounded-lg sm:whitespace-nowrap px-3.5 py-2 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 md:flex-none ${
+              className={`h-9 flex-1 rounded-md sm:whitespace-nowrap px-3.5 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 md:flex-none ${
                 mode === id ? "bg-accent/15 text-white shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.45)]" : "text-slate-400 hover:text-white"
               }`}
             >
@@ -112,16 +112,16 @@ export default function FilingDateCalculator() {
         </div>
       </div>
 
-      <div className="relative p-6 sm:p-8">
+      <div className="relative p-6">
         <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <span id="filing-anchor-label" className="mb-2 block text-[12px] font-medium text-slate-300">
+            <span id="filing-anchor-label" className="mb-2 block text-[13px] font-medium text-slate-300">
               {mode === "initial" ? "Program end date (on your I-20)" : "Current OPT EAD end date"}
             </span>
             <DatePicker labelledBy="filing-anchor-label" className={input} value={anchor} onChange={setAnchor} />
           </div>
           <div>
-            <span id="filing-rec-label" className="mb-2 block text-[12px] font-medium text-slate-300">DSO recommendation date (optional)</span>
+            <span id="filing-rec-label" className="mb-2 block text-[13px] font-medium text-slate-300">DSO recommendation date (optional)</span>
             <DatePicker labelledBy="filing-rec-label" className={input} value={rec} onChange={setRec} />
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function FilingDateCalculator() {
                 initial={reduce ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduce ? undefined : { opacity: 0 }}
-                className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-sm text-slate-400"
+                className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-[15px] text-slate-400"
               >
                 Enter a date to see your filing window.
               </motion.p>
@@ -155,7 +155,7 @@ export default function FilingDateCalculator() {
           </AnimatePresence>
         </div>
 
-        <p className="mt-5 text-[11px] leading-relaxed text-slate-400">
+        <p className="mt-5 text-[13px] leading-relaxed text-slate-400">
           Based on the filing rules on USCIS&apos;s OPT and Form I-765 pages. USCIS goes by the date it receives your
           application, not the date you send it, so do not leave it to the last day. Confirm your dates with your DSO.
         </p>

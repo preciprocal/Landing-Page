@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { APP_URL } from "@/lib/constants";
 import { ChevronRightIcon } from "@/components/Icons";
 import { SpotlightNew } from "@/components/ui/SpotlightNew";
+import { BTN_PRIMARY, BTN_SECONDARY, LABEL, LEAD } from "@/components/page/Layout";
 
 // Aurora canvas
 
@@ -229,7 +230,7 @@ export default function Hero() {
           initial={{ opacity: 0, letterSpacing: "0.3em" }}
           animate={{ opacity: 1, letterSpacing: "0.2em" }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="mb-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-indigo-400/70"
+          className={`mb-8 ${LABEL} text-indigo-400/70`}
         >
           For F-1 students on OPT
         </motion.p>
@@ -239,7 +240,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="font-black tracking-[-0.03em] leading-[0.92] text-white select-none"
+          className="font-semibold tracking-[-0.035em] leading-[0.92] text-white select-none"
           style={{ fontSize: "clamp(3.8rem, 10vw, 8.5rem)" }}
         >
           Your OPT clock
@@ -278,7 +279,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="mt-5 max-w-xl text-[16px] font-normal leading-relaxed text-slate-400"
+          className={`mt-5 max-w-xl ${LEAD}`}
         >
           Up to 90 days of unemployment on OPT, 150 with the STEM extension. Spend them on applications that get answered: a resume tailored to each role, interviews practised out loud, every lead tracked.
         </motion.p>
@@ -292,7 +293,7 @@ export default function Hero() {
         >
           <a
             href={`${APP_URL}/sign-up`}
-            className="group inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-semibold text-white transition-all duration-300 hover:scale-[1.04] hover:shadow-[0_0_50px_rgba(139,92,246,0.5)]"
+            className={BTN_PRIMARY}
             style={{
               background: "linear-gradient(135deg, #7c3aed, #a855f7, #7c3aed)",
               backgroundSize: "200% 100%",
@@ -305,7 +306,7 @@ export default function Hero() {
 
           <a
             href="/opt/unemployment-calculator"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[14px] font-medium text-slate-300 border border-white/15 transition-all duration-300 hover:text-white hover:border-white/30 hover:bg-white/5"
+            className={BTN_SECONDARY}
           >
             Count my OPT days
           </a>
@@ -316,7 +317,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-5 text-[11px] text-slate-600 tracking-wide"
+          className="mt-5 text-[13px] text-slate-600"
         >
           Free plan · No credit card · .edu email gets a month of Pro free
         </motion.p>

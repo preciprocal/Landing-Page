@@ -198,7 +198,7 @@ export default function VoiceAnswerRecorder({
             type="button"
             data-track="question-predictor-record-stop"
             onClick={finish}
-            className={`relative inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold bg-rose-500 text-white transition-colors hover:bg-rose-400 ${FOCUS}`}
+            className={`relative inline-flex h-11 items-center justify-center gap-2 px-5 rounded-lg text-sm font-semibold bg-rose-500 text-white transition-colors hover:bg-rose-400 ${FOCUS}`}
           >
             <motion.span
               aria-hidden="true"
@@ -221,7 +221,7 @@ export default function VoiceAnswerRecorder({
             {stats ? "Record again" : "Record my answer"}
           </button>
         )}
-        <p className="text-[11px] text-slate-600">
+        <p className="text-[13px] text-slate-600">
           {recording
             ? "Answer as you would in the interview. Aim for 60 to 120 seconds."
             : "Your browser turns speech into text. Preciprocal never receives the audio."}
@@ -237,7 +237,7 @@ export default function VoiceAnswerRecorder({
           transition={{ duration: 0.35, ease: EASE }}
         >
           <div className="flex items-center justify-between gap-3 mb-3">
-            <div className="flex items-center gap-2 text-[12px] text-rose-300">
+            <div className="flex items-center gap-2 text-[13px] text-rose-300">
               <span className="w-2 h-2 rounded-full bg-rose-400 animate-pulse" />
               Listening
             </div>
@@ -254,7 +254,7 @@ export default function VoiceAnswerRecorder({
               ))}
             </div>
           </div>
-          <p className="text-sm text-slate-300 leading-relaxed min-h-[3rem]">{live || "Start speaking..."}</p>
+          <p className="text-[15px] text-slate-300 leading-relaxed min-h-[3rem]">{live || "Start speaking..."}</p>
           <div aria-hidden="true" className="mt-3 h-1 overflow-hidden rounded-full bg-white/[0.05]">
             <div
               className="h-full rounded-full bg-gradient-to-r from-rose-400/70 to-rose-300/40 transition-[width] duration-300 ease-linear"
@@ -264,7 +264,7 @@ export default function VoiceAnswerRecorder({
         </motion.div>
       )}
 
-      {error && <p role="alert" className="text-sm text-rose-300">{error}</p>}
+      {error && <p role="alert" className="text-[15px] text-rose-300">{error}</p>}
       {stats && <DeliveryView stats={stats} />}
     </div>
   );
@@ -303,13 +303,13 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
 
   return (
     <motion.div
-      className="rounded-2xl border border-white/[0.08] bg-[#070b16] p-5 sm:p-6 space-y-5"
+      className="rounded-xl border border-white/[0.08] bg-[#070b16] p-6 space-y-5"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: EASE }}
     >
       <div>
-        <p className="text-[11px] uppercase tracking-[0.18em] text-emerald-300 font-semibold mb-1.5">Your delivery</p>
+        <p className="text-[11px] uppercase tracking-[0.16em] text-emerald-300 font-semibold mb-1.5">Your delivery</p>
         <p className="text-white font-semibold">{headline}</p>
       </div>
 
@@ -326,13 +326,13 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
       </div>
 
       {stats.fillers.length > 0 && (
-        <p className="text-[12px] text-slate-400">
+        <p className="text-[13px] text-slate-400">
           Fillers: {stats.fillers.map((f) => `“${f.word}” ×${f.count}`).join(", ")}
         </p>
       )}
 
       {tips.length > 0 && (
-        <ul className="space-y-2 text-sm text-slate-400">
+        <ul className="space-y-2 text-[15px] text-slate-400">
           {tips.map((t, i) => (
             <li key={i} className="flex gap-2">
               <span className="text-amber-300 shrink-0"><Chevron /></span>
@@ -342,7 +342,7 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
         </ul>
       )}
 
-      <p className="text-[11px] text-slate-600">
+      <p className="text-[13px] text-slate-600">
         Speech recognition often leaves out &ldquo;um&rdquo; and &ldquo;uh&rdquo;, so your real filler count may be
         higher. Pauses are estimated.
       </p>
@@ -353,12 +353,12 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
 function Stat({ label, value, hint, status }: { label: string; value: string; hint: string; status: Status }) {
   return (
     <div className={`bg-[#070b16] p-4 ${STATUS_STYLES[status]}`}>
-      <p className="flex items-center gap-1.5 text-[11px] text-slate-500">
+      <p className="flex items-center gap-1.5 text-[13px] text-slate-500">
         <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-[var(--dot)]" />
         {label}
       </p>
-      <p className="mt-1 text-xl font-bold tabular-nums">{value}</p>
-      <p className="text-[10px] text-slate-600">{hint}</p>
+      <p className="mt-1 text-xl font-semibold tabular-nums">{value}</p>
+      <p className="text-[13px] text-slate-600">{hint}</p>
     </div>
   );
 }

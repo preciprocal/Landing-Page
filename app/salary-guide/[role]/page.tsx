@@ -276,8 +276,8 @@ export async function generateMetadata({ params }: { params: Promise<{ role: str
 }
 
 // ─── Layout helpers ───────────────────────────────────────────────────────────
-const PROSE_TEXT = "mx-auto max-w-3xl space-y-5 text-[16px] leading-relaxed text-slate-400";
-const TH = "p-4 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 sm:p-5";
+const PROSE_TEXT = "mx-auto max-w-3xl space-y-5 text-[16px] leading-[1.75] text-slate-400";
+const TH = "p-4 text-left text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 sm:p-5";
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default async function SalaryGuideRolePage({ params }: { params: Promise<{ role: string }> }) {
@@ -336,7 +336,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
           <HeroBackdrop />
           <div className={`relative ${INNER}`}>
             <div className="max-w-4xl animate-fade-up opacity-0">
-              <span aria-hidden="true" className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-3xl">
+              <span aria-hidden="true" className="mb-7 inline-flex h-14 w-14 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03] text-3xl">
                 {display.icon}
               </span>
               <h1 className={H1}>
@@ -349,19 +349,19 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                 <a href={signUp} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   Get the interview that gets you this offer <Chevron />
                 </a>
-                <p className="text-[12px] text-slate-500">Free plan · No credit card</p>
+                <p className="text-[13px] text-slate-500">Free plan · No credit card</p>
               </div>
             </div>
 
             <div className="mt-12 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0 sm:grid-cols-2 fill-sm-2" style={{ animationDelay: "200ms" }}>
               <div className="relative bg-[#070b16] p-6 sm:p-8">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-400/60 to-transparent" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300">Median Base Salary</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">Median Base Salary</p>
                 <p className="mt-3 break-words font-mono text-2xl font-semibold tabular-nums text-white sm:text-3xl xl:text-4xl">{salaryData.medianBase}</p>
               </div>
               <div className="relative bg-[#070b16] p-6 sm:p-8">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent/60 to-transparent" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft">Median Total Comp</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-soft">Median Total Comp</p>
                 <p className="mt-3 break-words font-mono text-2xl font-semibold tabular-nums text-white sm:text-3xl xl:text-4xl">{salaryData.medianTotal}</p>
               </div>
             </div>
@@ -376,7 +376,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
             </Reveal>
             <Reveal>
               <div className="overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16]">
-                <table className="w-full text-sm">
+                <table className="w-full text-[15px]">
                   <thead>
                     <tr className="border-b border-white/[0.07] bg-white/[0.02]">
                       <th scope="col" className={TH}>Level</th>
@@ -390,13 +390,13 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                       <tr key={i} className="align-top">
                         <th scope="row" className="p-4 sm:min-w-[180px] text-left font-normal sm:p-5">
                           <span className="block text-[15px] font-semibold text-slate-100">{level.level}</span>
-                          <span className="mt-0.5 block font-mono text-xs tabular-nums text-slate-500 md:hidden">{level.yearsExp}</span>
+                          <span className="mt-0.5 block font-mono text-[13px] tabular-nums text-slate-500 md:hidden">{level.yearsExp}</span>
                           <span className="mt-2 block max-w-md text-[13px] leading-relaxed text-slate-400">{level.equityNote}</span>
                         </th>
-                        <td className="hidden whitespace-nowrap p-4 font-mono text-xs tabular-nums text-slate-500 sm:p-5 md:table-cell">{level.yearsExp}</td>
+                        <td className="hidden whitespace-nowrap p-4 font-mono text-[13px] tabular-nums text-slate-500 sm:p-5 md:table-cell">{level.yearsExp}</td>
                         <td className="w-[9.5rem] p-4 font-mono text-[13px] tabular-nums text-emerald-300 sm:w-auto sm:whitespace-nowrap sm:p-5 sm:text-[15px]">
                           {level.baseSalary}
-                          <span className="mt-2 block text-[11px] uppercase tracking-[0.12em] text-slate-500 sm:hidden">Total Comp</span>
+                          <span className="mt-2 block text-[11px] uppercase tracking-[0.16em] text-slate-500 sm:hidden">Total Comp</span>
                           <span className="block text-accent-soft sm:hidden">{level.totalComp}</span>
                         </td>
                         <td className="hidden whitespace-nowrap p-4 font-mono tabular-nums text-accent-soft sm:table-cell sm:p-5 sm:text-[15px]">{level.totalComp}</td>
@@ -407,7 +407,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               </div>
             </Reveal>
             {/* Sources */}
-            <p className="mx-auto mt-6 max-w-4xl text-center text-xs leading-relaxed text-slate-500">{salaryData.sources}</p>
+            <p className="mx-auto mt-6 max-w-4xl text-center text-[13px] leading-relaxed text-slate-500">{salaryData.sources}</p>
           </div>
         </section>
 
@@ -422,9 +422,9 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                 <RevealItem
                   as="li"
                   key={i}
-                  className="inline-flex items-center gap-2.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-slate-200"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-slate-200"
                 >
-                  <span className="font-mono text-xs tabular-nums text-accent-soft">{pad2(i + 1)}</span>
+                  <span className="font-mono text-[12px] tabular-nums text-accent-soft">{pad2(i + 1)}</span>
                   {city}
                 </RevealItem>
               ))}
@@ -440,7 +440,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
             <RevealGroup as="ul" className="grid gap-x-14 gap-y-8 md:grid-cols-2 xl:grid-cols-3">
               {salaryData.salaryFactors.map((factor, i) => (
                 <RevealItem as="li" key={i} className="flex items-start gap-4">
-                  <span aria-hidden="true" className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-accent/30 font-mono text-[12px] text-accent-soft">
+                  <span aria-hidden="true" className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full border border-accent/30 font-mono text-[13px] text-accent-soft">
                     {i + 1}
                   </span>
                   <p className="text-[15px] leading-relaxed text-slate-300">{factor}</p>
@@ -465,7 +465,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               <blockquote className="border-l-2 border-accent/60 pl-5 text-lg leading-relaxed text-slate-100 sm:pl-7 sm:text-xl">
                 {salaryData.negotiationScript}
               </blockquote>
-              <p className="mt-5 pl-5 text-sm text-slate-500 sm:pl-7">
+              <p className="mt-5 pl-5 text-[15px] text-slate-500 sm:pl-7">
                 Replace [$X] with your target number. Research Levels.fyi, Glassdoor, and LinkedIn Salary before the conversation.
               </p>
             </Reveal>
@@ -483,7 +483,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
           role's own keyword set, positioning note and category profile. They
           sit in Fold panels: closed by default, but in the HTML for search.
         */}
-        <section className={`${SECTION} ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <div className={`${INNER} space-y-4`}>
             {content && (
               <>
@@ -545,7 +545,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                         `Giving a number first. If asked for expectations before an offer exists, redirect once and say you would like to understand the full scope first. If a form forces a figure, anchor to the upper half of ${content.salaryRange} and note that it is negotiable.`,
                       ].map((m, i) => (
                         <li key={i} className="flex items-start gap-4 py-4">
-                          <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-red-500/20 bg-red-500/[0.08] text-xs font-bold text-red-400">✕</span>
+                          <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md border border-red-500/20 bg-red-500/[0.08] text-[13px] font-semibold text-red-400">✕</span>
                           <p className="text-[15px] leading-relaxed text-slate-400">{m}</p>
                         </li>
                       ))}
@@ -557,11 +557,11 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
 
             {/* Sibling guides for this role, plus the ATS checker */}
             <nav id="more-guides" aria-label={`More ${display.name} guides`} className="scroll-mt-24 pt-8">
-              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">More {display.name} guides</h2>
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">More {display.name} guides</h2>
               <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
                 {moreLinks.map((link) => (
                   <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                       {link.label}
                       <Chevron className="text-slate-600 group-hover:text-slate-300" />
                     </Link>

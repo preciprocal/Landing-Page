@@ -13,6 +13,7 @@ import { LinkedInScreen } from "@/components/demo/LinkedinDemo";
 import { JobTrackerView } from "@/components/demo/JobTracker";
 import { CoverLetterView } from "@/components/demo/CoverLetterDemo";
 import Chevron from "@/components/Chevron";
+import { BODY, H2, H3, LABEL, SMALL } from "@/components/page/Layout";
 
 // ── Chrome logo (official 4-colour) ──────────────────────────────────────────
 function ChromeLogo({ size = 40 }: { size?: number }) {
@@ -178,7 +179,7 @@ export default function ChromeExtensionBanner() {
   };
 
   return (
-    <section id="extension" aria-label="Chrome Extension" className="relative overflow-hidden py-28">
+    <section id="extension" aria-label="Chrome Extension" className="relative overflow-hidden py-20">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-30 pointer-events-none" />
       <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#050810] to-transparent pointer-events-none" />
@@ -235,9 +236,9 @@ export default function ChromeExtensionBanner() {
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.08] to-transparent skew-x-12 pointer-events-none"
                 />
                 <ChromeLogo size={16} />
-                <span className="text-[11px] font-bold text-indigo-300 uppercase tracking-widest">Chrome Extension</span>
+                <span className={`${LABEL} text-indigo-300`}>Chrome Extension</span>
                 <span className="h-3.5 w-px bg-indigo-500/30" />
-                <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-widest">Free forever</span>
+                <span className={`${LABEL} text-emerald-400`}>Free forever</span>
               </motion.div>
 
               {/* Headline: staggered line reveal */}
@@ -247,7 +248,7 @@ export default function ChromeExtensionBanner() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-4xl md:text-[44px] font-extrabold text-white tracking-tight leading-[1.08]"
+                  className={H2}
                 >
                   You deserve a job,
                 </motion.h2>
@@ -256,7 +257,7 @@ export default function ChromeExtensionBanner() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.22, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-4xl md:text-[44px] font-extrabold tracking-tight leading-[1.08]"
+                  className={H2}
                 >
                   <span className="text-gradient">not a second job applying.</span>
                 </motion.h2>
@@ -303,7 +304,7 @@ export default function ChromeExtensionBanner() {
                   whileHover={{ scale: 1.03, y: -1 }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                  className="group inline-flex items-center gap-3 bg-white text-[#050810] font-bold text-[14px] px-6 py-3.5 rounded-xl shadow-[0_4px_24px_rgba(255,255,255,0.12)] mb-3 cursor-pointer"
+                  className="group inline-flex h-11 items-center gap-2 bg-white text-[#050810] font-semibold text-sm px-5 rounded-lg shadow-[0_4px_24px_rgba(255,255,255,0.12)] mb-3 cursor-pointer"
                 >
                   <ChromeLogo size={22} />
                   Add to Chrome, it&apos;s free
@@ -315,7 +316,7 @@ export default function ChromeExtensionBanner() {
                   </motion.span>
                 </motion.a>
 
-                <p className="text-[12px] text-slate-500 mb-2">
+                <p className={`${SMALL} mb-2`}>
                   Takes 15 seconds to install. Works immediately on every tab.
                 </p>
                 <div className="flex items-center gap-4">
@@ -330,7 +331,7 @@ export default function ChromeExtensionBanner() {
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.55 + i * 0.08, duration: 0.3 }}
-                      className="flex items-center gap-1.5 text-[11px] text-slate-500"
+                      className="flex items-center gap-1.5 text-[13px] text-slate-500"
                     >
                       <ShieldCheck size={11} className="text-slate-600" />
                       {text}
@@ -370,18 +371,18 @@ export default function ChromeExtensionBanner() {
                   viewport={{ once: true }}
                   transition={{ delay: card.delay, duration: 0.55, ease: [0.16,1,0.3,1] }}
                   whileHover={{ y: -3, borderColor: "rgba(99,102,241,0.25)" }}
-                  className="flex items-start gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/[0.06] transition-colors cursor-default"
+                  className="flex items-start gap-4 p-5 rounded-xl bg-white/[0.02] border border-white/[0.07] transition-colors cursor-default"
                 >
                   <motion.span
                     whileHover={{ scale: 1.12, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 350, damping: 18 }}
-                    className="flex-shrink-0 w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center"
+                    className="flex-shrink-0 w-10 h-10 rounded-lg bg-indigo-500/15 border border-indigo-500/20 flex items-center justify-center"
                   >
                     {card.icon}
                   </motion.span>
                   <div>
-                    <p className="text-[14px] font-semibold text-white leading-snug">{card.title}</p>
-                    <p className="text-[12px] text-slate-500 mt-1 leading-relaxed">{card.body}</p>
+                    <p className={H3}>{card.title}</p>
+                    <p className={`mt-1 ${BODY}`}>{card.body}</p>
                   </div>
                 </motion.div>
               ))}
@@ -391,7 +392,7 @@ export default function ChromeExtensionBanner() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6, duration: 0.4 }}
-                className="text-[11px] text-slate-600 pl-1"
+                className="text-[13px] text-slate-600 pl-1"
               >
                 Works on LinkedIn, Workday, Greenhouse, Lever, Ashby, and 40+ job boards.
               </motion.p>

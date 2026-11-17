@@ -136,7 +136,7 @@ export default function SupportPage() {
         </PageHero>
 
         {/* Self-serve */}
-        <section aria-label="Common fixes" className={`${SECTION} ${PAD}`}>
+        <section aria-label="Common fixes" className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
             <Reveal>
               <SectionHead align="center" className="mb-12" eyebrow="Fix it yourself" title="Common problems," accent="solved in a minute." />
@@ -145,14 +145,14 @@ export default function SupportPage() {
               {SELF_SERVE.map((s) => {
                 const external = s.href.startsWith("http");
                 const cls =
-                  "group flex h-full flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors hover:border-white/[0.16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
+                  "group flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors hover:border-white/[0.16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
                 const inner = (
                   <>
                     <span className="mb-5 grid h-10 w-10 place-items-center rounded-xl border border-accent/20 bg-accent/10">
                       <s.Icon aria-hidden="true" className="h-4 w-4 text-accent-soft" strokeWidth={1.8} />
                     </span>
                     <h3 className="mb-2 text-[16px] font-semibold text-white">{s.title}</h3>
-                    <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-400">{s.body}</p>
+                    <p className="mb-5 flex-1 text-[15px] leading-relaxed text-slate-400">{s.body}</p>
                     <span className="inline-flex items-center gap-1 text-sm font-semibold text-accent-soft transition-colors group-hover:text-white">
                       {s.cta} <Chevron />
                     </span>
@@ -177,7 +177,7 @@ export default function SupportPage() {
         </section>
 
         {/* Still stuck */}
-        <section aria-label="Contact support" className={`${SECTION} ${PAD}`}>
+        <section aria-label="Contact support" className={`${SECTION}  ${PAD}`}>
           <div className={`${INNER} grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16`}>
             <Reveal>
               <SectionHead
@@ -199,25 +199,25 @@ export default function SupportPage() {
             </Reveal>
 
             <Reveal className="space-y-6">
-              <div className="rounded-2xl border border-white/[0.07] bg-[#070b16] p-6">
+              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
                 <p className="mb-4 text-[13px] font-semibold text-white">A good report gets a faster fix</p>
                 <ul className="space-y-2.5">
                   {GOOD_REPORT.map((g, i) => (
-                    <li key={g} className="flex items-start gap-3 text-sm text-slate-400">
+                    <li key={g} className="flex items-start gap-3 text-[15px] text-slate-400">
                       <span className="mt-px font-mono text-[11px] text-slate-600">0{i + 1}</span>
                       {g}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="rounded-2xl border border-white/[0.07] bg-[#070b16] p-6">
+              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
                 <p className="mb-4 inline-flex items-center gap-2 text-[13px] font-semibold text-white">
                   <Clock aria-hidden="true" className="h-4 w-4 text-accent" /> When to expect a reply
                 </p>
                 <dl className="space-y-3">
                   {RESPONSE.map((r) => (
                     <div key={r.label} className="flex items-center justify-between gap-4 border-t border-white/[0.06] pt-3 first:border-t-0 first:pt-0">
-                      <dt className="text-sm text-slate-400">{r.label}</dt>
+                      <dt className="text-[15px] text-slate-400">{r.label}</dt>
                       <dd className="text-sm font-semibold text-accent-soft">{r.value}</dd>
                     </div>
                   ))}

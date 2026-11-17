@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection, H1 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection, H1, H3, LEAD, BODY, SMALL, LABEL, PILL, PANEL } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import { Check, X } from "lucide-react";
 
@@ -88,8 +88,8 @@ export function ReasonList({ items }: { items: { title: string; body: string }[]
             <Check className="h-3.5 w-3.5" strokeWidth={2.75} />
           </span>
           <div>
-            <h3 className="text-[16px] font-semibold text-white">{title}</h3>
-            <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">{body}</p>
+            <h3 className={H3}>{title}</h3>
+            <p className={`mt-1.5 ${BODY}`}>{body}</p>
           </div>
         </RevealItem>
       ))}
@@ -110,9 +110,9 @@ export function LinkList({
   return (
     <>
       <div className="mb-3 flex items-baseline justify-between gap-4">
-        <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{title}</h2>
+        <h2 className={`${LABEL} text-slate-500`}>{title}</h2>
         {more && (
-          <Link href={more.href} className="text-[13px] text-slate-400 transition-colors hover:text-white">
+          <Link href={more.href} className="text-[13px] font-medium text-slate-400 transition-colors hover:text-white">
             {more.label}
           </Link>
         )}
@@ -226,7 +226,7 @@ export default function AlternativePage({
           <div className={`relative ${INNER}`}>
             <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_420px] xl:grid-cols-[minmax(0,1fr)_460px] xl:gap-20">
               <div className="max-w-4xl animate-fade-up opacity-0">
-                <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-accent-soft">
+                <div className={`mb-7 ${PILL} border-accent/25 bg-accent/[0.08] text-accent-soft`}>
                   <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
                   Comparison · Updated {pricingChecked}
                 </div>
@@ -234,8 +234,8 @@ export default function AlternativePage({
                   {`The Best ${competitor} Alternative `}
                   <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">in 2026</span>
                 </h1>
-                <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">{intro}</p>
-                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-slate-400">{positioning}</p>
+                <p className={`mt-6 max-w-3xl ${LEAD}`}>{intro}</p>
+                <p className={`mt-5 max-w-3xl ${LEAD}`}>{positioning}</p>
                 <div className="mt-9">
                   <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                     Try Preciprocal free <Chevron />
@@ -246,9 +246,9 @@ export default function AlternativePage({
 
               <div className="flex flex-col gap-3">
               {/* Price callout: the price difference is half of what the reader came for */}
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Monthly price</p>
+              <p className={`${LABEL} text-slate-500`}>Monthly price</p>
               <div
-                className="relative z-10 grid animate-fade-up gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] opacity-0"
+                className="relative z-10 grid animate-fade-up gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] opacity-0"
                 style={{ animationDelay: "120ms" }}
               >
                 {[
@@ -264,9 +264,9 @@ export default function AlternativePage({
                     )}
                     <div className="min-w-0">
                       <p className={`text-sm font-medium ${highlight ? "text-accent-soft" : "text-slate-400"}`}>{label}</p>
-                      <p className="mt-1 text-[13px] text-slate-400">{note}</p>
+                      <p className={`mt-1 ${SMALL} text-slate-400`}>{note}</p>
                     </div>
-                    <p className={`shrink-0 whitespace-nowrap text-xl font-extrabold sm:text-2xl tracking-tight ${highlight ? "text-accent-soft" : "text-slate-200"}`}>
+                    <p className={`shrink-0 whitespace-nowrap text-xl font-semibold sm:text-2xl tracking-[-0.02em] ${highlight ? "text-accent-soft" : "text-slate-200"}`}>
                       {price}
                     </p>
                   </div>
@@ -278,20 +278,20 @@ export default function AlternativePage({
         </section>
 
         {/* Quick verdict: two short answers side by side */}
-        <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+        <section className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <SectionHead align="center" eyebrow="Quick verdict" title={`Preciprocal or ${competitor}?`} />
-            <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
-              <RevealItem className="bg-[#070b16] p-7 sm:p-9">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">{competitor}</p>
-                <p className="mt-4 text-[16px] leading-relaxed text-slate-300">
+            <RevealGroup className="grid gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] md:grid-cols-2 fill-md-2">
+              <RevealItem className="bg-[#070b16] p-6 sm:p-8">
+                <p className={`${LABEL} text-slate-400`}>{competitor}</p>
+                <p className={`mt-4 ${BODY} text-slate-300`}>
                   Choose <strong className="text-white">{competitor}</strong> if {verdictTheirs}
                 </p>
               </RevealItem>
-              <RevealItem className="relative bg-[#0b1024] p-7 sm:p-9">
+              <RevealItem className="relative bg-[#0b1024] p-6 sm:p-8">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent via-accent-2 to-transparent" />
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft">Preciprocal</p>
-                <p className="mt-4 text-[16px] leading-relaxed text-slate-200">
+                <p className={`${LABEL} text-accent-soft`}>Preciprocal</p>
+                <p className={`mt-4 ${BODY} text-slate-200`}>
                   Choose <strong className="text-white">Preciprocal</strong> if {verdictOurs}
                 </p>
               </RevealItem>
@@ -300,13 +300,13 @@ export default function AlternativePage({
         </section>
 
         {/* Comparison table */}
-        <section aria-label="Feature comparison table" className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+        <section aria-label="Feature comparison table" className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <SectionHead align="center" eyebrow="Side by side" title={`Preciprocal vs ${competitor}: feature comparison`} />
             <Reveal>
               {/* Scrolls sideways on small screens; from lg the wrapper stops clipping so the header row can stick under the navbar. */}
-              <div className="relative overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16] lg:overflow-visible">
-                <table className="w-full min-w-[600px] border-separate border-spacing-0 text-left text-sm lg:min-w-0">
+              <div className={`relative overflow-x-auto ${PANEL} lg:overflow-visible`}>
+                <table className="w-full min-w-[600px] border-separate border-spacing-0 text-left text-[15px] lg:min-w-0">
                   <caption className="sr-only">
                     Feature comparison of Preciprocal and {competitor}
                   </caption>
@@ -314,20 +314,20 @@ export default function AlternativePage({
                     <tr>
                       <th
                         scope="col"
-                        className="w-[28%] border-b border-white/[0.08] bg-[#070b16]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10 lg:rounded-tl-2xl"
+                        className="w-[28%] border-b border-white/[0.08] bg-[#070b16]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10 lg:rounded-tl-2xl"
                       >
                         Feature
                       </th>
                       <th
                         scope="col"
-                        className="relative w-[36%] border-b border-accent/25 bg-[#0d0b1f]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-soft backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10"
+                        className="relative w-[36%] border-b border-accent/25 bg-[#0d0b1f]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-soft backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10"
                       >
                         <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent to-accent-2" />
                         Preciprocal
                       </th>
                       <th
                         scope="col"
-                        className="w-[36%] border-b border-white/[0.08] bg-[#070b16]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400 backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10 lg:rounded-tr-2xl"
+                        className="w-[36%] border-b border-white/[0.08] bg-[#070b16]/95 px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400 backdrop-blur lg:sticky lg:top-[calc(72px+var(--banner-h,0px))] lg:z-10 lg:rounded-tr-2xl"
                       >
                         {competitor}
                       </th>
@@ -362,7 +362,7 @@ export default function AlternativePage({
                 </table>
               </div>
             </Reveal>
-            <p className="mx-auto mt-4 max-w-3xl text-center text-xs leading-relaxed text-slate-400">
+            <p className={`mx-auto mt-4 max-w-3xl text-center ${SMALL}`}>
               Based on publicly available feature lists and pricing as of {pricingChecked}. Plans and
               prices change, so verify on {competitor}&apos;s own pricing page before deciding.
             </p>
@@ -370,7 +370,7 @@ export default function AlternativePage({
         </section>
 
         {/* Reasons: an open list, one short paragraph each */}
-        <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+        <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <SectionHead align="center" eyebrow="Why switch" title={`Why job seekers on OPT choose Preciprocal over ${competitor}`} className="mb-12" />
             <ReasonList items={reasons} />
@@ -410,7 +410,7 @@ export default function AlternativePage({
             <CtaPanel
               title="Try it free before you decide"
               body={
-                <p className="max-w-lg text-sm leading-relaxed">
+                <p className="max-w-lg">
                   The free plan needs no credit card, so you can compare against {competitor} with your own
                   resume rather than taking anyone&apos;s word for it.
                 </p>

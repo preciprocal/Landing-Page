@@ -102,8 +102,8 @@ export default function OptFeesPage() {
       body={
         <>
           <h2>What OPT costs today</h2>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6 overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+            <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">
                   <th className="pb-2 pr-4">Fee</th>
@@ -124,7 +124,7 @@ export default function OptFeesPage() {
                 ))}
               </tbody>
             </table>
-            <p className="text-[12px] text-slate-500 mt-3">
+            <p className="text-[13px] text-slate-500 mt-3">
               Source: USCIS G-1055 fee schedule, edition dated October 7, 2026. USCIS also has inflation changes taking
               effect October 16, 2026, but those apply to asylum, parole and TPS work permits, not to OPT.
             </p>
@@ -140,8 +140,8 @@ export default function OptFeesPage() {
             ICEB-2026-0100). DHS says the purpose is to combat fraud and abuse, strengthen the integrity of the
             immigration system, and protect US workers.
           </p>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
-            <ul className="list-disc pl-5 space-y-2 text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+            <ul className="list-disc pl-5 space-y-2 text-[15px]">
               <li>
                 <strong>$70,000</strong> for a student&apos;s first OPT recommendation. Law firm summaries read this as the
                 first OPT of any type, which would include pre-completion OPT.
@@ -164,8 +164,8 @@ export default function OptFeesPage() {
           </div>
 
           <h2>What it would cost, by situation</h2>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6 overflow-x-auto">
-            <table className="w-full text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+            <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">
                   <th className="pb-2 pr-4">Your situation</th>

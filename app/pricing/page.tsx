@@ -36,7 +36,7 @@ import {
   tierSchemaPrice,
 } from "@/lib/pricing";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, Breadcrumbs, FaqSection, H1, BTN_PRIMARY, BTN_SECONDARY } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, FaqSection, H1, INNER, LABEL, LEAD, PAD, SMALL } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
 function PricingJsonLd() {
@@ -174,7 +174,7 @@ export default function PricingPage() {
         <section data-section="pricing-plans" data-section-name="Pricing plans" aria-label="Pricing plans" className={`relative pb-6 pt-12 sm:pt-16 ${PAD}`}>
           <div className={INNER}>
             <RevealOnScroll className="mx-auto mb-14 max-w-2xl text-center">
-              <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-indigo-400">
+              <p className={`mb-3 ${LABEL} text-indigo-400`}>
                 Pricing
               </p>
               <h1 className={`${H1} mb-4`}>
@@ -182,35 +182,35 @@ export default function PricingPage() {
                 <br />
                 <span className="text-gradient">Start free.</span>
               </h1>
-              <p className="mx-auto max-w-lg text-base text-slate-400">
+              <p className={`mx-auto max-w-lg ${LEAD}`}>
                 On OPT, a slow search costs you more than time. Everything you need to make each
                 application count, for less than a coffee a week.
               </p>
             </RevealOnScroll>
 
             {/* ── Plan cards ── */}
-            <StaggerChildren className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-5 md:grid-cols-3">
+            <StaggerChildren className="mx-auto grid max-w-6xl grid-cols-1 items-stretch gap-4 md:grid-cols-3">
               {TIERS.map((plan) => (
                 <StaggerItem key={plan.name} className="flex flex-col">
                   <div
-                    className={`relative flex flex-1 flex-col rounded-2xl p-8 transition-colors duration-300 lg:p-9 ${
+                    className={`relative flex flex-1 flex-col rounded-2xl p-8 transition-colors duration-300 ${
                       plan.mostPopular
                         ? "border border-indigo-500/30 bg-gradient-to-br from-indigo-500/[0.10] to-purple-500/[0.05]"
                         : "border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12]"
                     }`}
                   >
                     {plan.mostPopular && (
-                      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-1.5 text-xs font-bold text-white">
+                      <div className="absolute -top-3 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-1.5 text-[12px] font-semibold text-white">
                         Most Popular
                       </div>
                     )}
 
                     <div className="relative z-10 flex flex-1 flex-col">
-                      <h2 className="mb-1 text-xl font-bold text-white">{plan.name}</h2>
-                      <p className="mb-4 text-[13px] text-slate-500">{plan.tagline}</p>
+                      <h2 className="mb-1 text-xl font-semibold tracking-[-0.02em] text-white">{plan.name}</h2>
+                      <p className={`mb-4 ${SMALL}`}>{plan.tagline}</p>
 
                       <div className="mb-6">
-                        <span className="text-5xl font-extrabold tracking-tight text-white">
+                        <span className="text-5xl font-semibold tracking-[-0.035em] text-white">
                           {tierPriceLabel(plan)}
                         </span>
                         {tierPeriodLabel(plan) && (
@@ -220,7 +220,7 @@ export default function PricingPage() {
 
                       <div className="mb-8 flex flex-1 flex-col gap-3.5">
                         {tierFeatureLines(plan).map((feature) => (
-                          <div key={feature} className="flex items-center gap-2.5 text-sm text-slate-300">
+                          <div key={feature} className="flex items-center gap-2.5 text-[15px] leading-snug text-slate-300">
                             <CheckIcon className="flex-shrink-0 text-indigo-400" />
                             <span>{feature}</span>
                           </div>
@@ -244,7 +244,7 @@ export default function PricingPage() {
               <RefundPolicy />
             </div>
 
-            <p className="mt-5 text-center text-[13px] text-slate-500">
+            <p className={`mt-5 text-center ${SMALL}`}>
               University student? Verify your .edu email for{" "}
               <span className="font-medium text-slate-300">1 month of Pro free</span>. A card is
               required; nothing is charged for 30 days and you can cancel any time.

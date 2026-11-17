@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, Crown, ChevronRight } from "lucide-react";
 import { reportStaleContent } from "@/lib/contentFreshness";
-import { H2, BTN_PRIMARY } from "@/components/page/Layout";
+import { BODY, BTN_PRIMARY, H2, LABEL } from "@/components/page/Layout";
 import {
   SpotlightCard,
   StaggerChildren,
@@ -85,19 +85,19 @@ export default function ComparisonTable() {
   }, []);
 
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section className="relative py-20 overflow-hidden">
       <FloatingDots count={15} />
 
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         <RevealOnScroll className="text-center mb-14">
-          <p className="text-[13px] font-semibold text-indigo-400 uppercase tracking-widest mb-3">
+          <p className={`${LABEL} text-indigo-400 mb-3`}>
             Why Preciprocal
           </p>
           <h2 className={`${H2} mb-3`}>
             Everything they charge extra for.{" "}
             <span className="text-gradient">We include.</span>
           </h2>
-          <p className="text-slate-500 text-sm max-w-lg mx-auto">
+          <p className={`${BODY} max-w-lg mx-auto`}>
             Other tools give you one feature for $50-100/mo. Preciprocal gives you the full stack at $9.99.
           </p>
         </RevealOnScroll>
@@ -119,7 +119,7 @@ export default function ComparisonTable() {
                   className="grid min-w-[860px] border-b border-white/[0.06]"
                   style={{ gridTemplateColumns: `minmax(160px, 1.4fr) repeat(${competitors.length}, 1fr)` }}
                 >
-                  <div className="p-4 text-[11px] font-bold text-slate-500 uppercase tracking-wider">Feature</div>
+                  <div className={`p-4 ${LABEL} text-slate-500`}>Feature</div>
                   {competitors.map(c => (
                     <div key={c.name} className={`p-4 text-center ${c.highlight ? "bg-indigo-500/[0.06]" : ""}`}>
                       {c.highlight && (
@@ -127,12 +127,12 @@ export default function ComparisonTable() {
                           initial={{ opacity: 0, y: -8 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
-                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[8px] text-indigo-400 font-bold mb-1"
+                          className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-[11px] text-indigo-400 font-semibold mb-1"
                         >
                           <Crown className="w-2.5 h-2.5" /> BEST VALUE
                         </motion.span>
                       )}
-                      <p className={`text-[12px] font-bold mt-1 ${c.highlight ? "text-indigo-300" : "text-slate-400"}`}>{c.name}</p>
+                      <p className={`text-[13px] font-semibold mt-1 ${c.highlight ? "text-indigo-300" : "text-slate-400"}`}>{c.name}</p>
                     </div>
                   ))}
                 </div>
@@ -145,13 +145,13 @@ export default function ComparisonTable() {
                         className={`grid min-w-[860px] border-b border-white/[0.04] last:border-0 hover:bg-white/[0.02] transition-colors duration-200 ${fi % 2 === 0 ? "" : "bg-white/[0.01]"}`}
                         style={{ gridTemplateColumns: `minmax(160px, 1.4fr) repeat(${competitors.length}, 1fr)` }}
                       >
-                        <div className="p-3 px-4 text-[12px] text-slate-300 font-medium flex items-center">{feat}</div>
+                        <div className="p-3 px-4 text-[13px] text-slate-300 font-medium flex items-center">{feat}</div>
                         {competitors.map(c => {
                           const val = c.values[fi];
                           return (
                             <div key={`${c.name}-${feat}`} className={`p-3 flex items-center justify-center ${c.highlight ? "bg-indigo-500/[0.03]" : ""}`}>
                               {typeof val === "string" ? (
-                                <span className={`text-[13px] font-bold ${c.highlight ? "text-emerald-400" : "text-slate-400"}`}>{val}</span>
+                                <span className={`text-[13px] font-semibold ${c.highlight ? "text-emerald-400" : "text-slate-400"}`}>{val}</span>
                               ) : (
                                 <CellCheck active={val} highlight={c.highlight} />
                               )}

@@ -228,7 +228,7 @@ const KEY_TIPS = 5;
 function TipBody({ n, title, body }: { n: number; title: string; body: string }) {
   return (
     <>
-      <span aria-hidden="true" className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-accent/30 font-mono text-[12px] text-accent-soft">
+      <span aria-hidden="true" className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border border-accent/30 font-mono text-[13px] text-accent-soft">
         {n}
       </span>
       <div id={`tip-${n}`} className="scroll-mt-24">
@@ -308,13 +308,13 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
           aside={
             <div className="flex flex-col gap-4 text-left lg:min-w-[300px]">
               <div className={`${CARD} px-6 py-5`}>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Typical salary range</p>
-                <p className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">{tipData.salaryRange}</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Typical salary range</p>
+                <p className="mt-2 text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">{tipData.salaryRange}</p>
               </div>
               <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full`}>
                 Check my resume free <Chevron />
               </a>
-              <p className="-mt-1 text-center text-[12px] text-slate-500">No account needed for your first score</p>
+              <p className="-mt-1 text-center text-[13px] text-slate-500">No account needed for your first score</p>
             </div>
           }
         />
@@ -335,7 +335,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                 <RevealItem
                   as="li"
                   key={kw}
-                  className="inline-flex items-center rounded-lg border border-accent/20 bg-accent-deep/[0.06] px-3.5 py-2 text-[14px] font-medium text-accent-soft"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-accent/20 bg-accent-deep/[0.06] px-3 py-1 text-[12px] font-medium text-accent-soft"
                 >
                   {kw}
                 </RevealItem>
@@ -351,7 +351,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
               <SectionHead align="center" eyebrow="Bullet formula" title="The bullet formula that works" />
             </Reveal>
             <Reveal className="mx-auto max-w-4xl text-center">
-              <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-mono text-[13px] leading-relaxed text-accent-soft sm:text-[14px]">
+              <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 font-mono text-[13px] leading-relaxed text-accent-soft sm:text-[15px]">
                 {formulaParts.map((part, i) => (
                   <span key={i} className="contents">
                     {i > 0 && <span className="text-accent/70"> + </span>}
@@ -360,7 +360,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                 ))}
               </p>
               <figure className="mt-10 border-l-2 border-emerald-400/60 pl-5 text-left sm:pl-7">
-                <figcaption className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">Real example</figcaption>
+                <figcaption className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300/90">Real example</figcaption>
                 <blockquote className="mt-3 text-lg leading-relaxed text-slate-100 sm:text-xl">{tipData.bulletExample}</blockquote>
               </figure>
             </Reveal>
@@ -384,7 +384,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
         </section>
 
         {/* 4. Mistakes folded, then the related guides */}
-        <section className={`${SECTION} ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
             {moreTips.length > 0 && (
               <Fold eyebrow="The guide" title={`More ${display.name.toLowerCase()} resume tips`} className="mb-4">
@@ -402,7 +402,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
                 <ol className="mx-auto max-w-4xl divide-y divide-white/[0.06]">
                   {tipData.commonMistakes.map((mistake, i) => (
                     <li key={i} className="flex items-start gap-4 py-4">
-                      <span className="mt-0.5 shrink-0 font-mono text-[12px] font-semibold text-rose-300/80">{pad2(i + 1)}</span>
+                      <span className="mt-0.5 shrink-0 font-mono text-[13px] font-semibold text-rose-300/80">{pad2(i + 1)}</span>
                       <p className="text-[15px] leading-relaxed text-slate-300">{mistake}</p>
                     </li>
                   ))}
@@ -411,11 +411,11 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
             </div>
 
             <nav aria-label={`More ${display.name} guides`} className="mt-12">
-              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">More {display.name} guides</h2>
+              <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">More {display.name} guides</h2>
               <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
                 {moreLinks.map((link) => (
                   <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                       {link.label}
                       <Chevron className="text-slate-600 group-hover:text-slate-300" />
                     </Link>
@@ -432,7 +432,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
             <CtaPanel
               title="Get your resume scored in 30 seconds"
               body={
-                <p className="max-w-xl text-sm leading-relaxed sm:text-base">
+                <p className="max-w-xl text-[15px] leading-relaxed">
                   Upload your {display.name.toLowerCase()} resume and see your ATS score, missing keywords, and line-by-line improvement suggestions.
                 </p>
               }

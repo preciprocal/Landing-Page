@@ -33,7 +33,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, SectionHead, CtaPanel, Fold, pad2, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, SectionHead, CtaPanel, Fold, pad2, FaqSection, BODY, H3 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
 
@@ -215,11 +215,11 @@ export default function AIMockInterviewPage() {
               />
               {STEPS.map((step, i) => (
                 <RevealItem as="li" key={step.number} className="relative text-center">
-                  <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft">
+                  <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-semibold text-accent-soft">
                     {i + 1}
                   </span>
-                  <h3 className="mt-6 text-lg font-semibold text-white">{step.title}</h3>
-                  <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-slate-400">{step.description}</p>
+                  <h3 className={`mt-6 ${H3}`}>{step.title}</h3>
+                  <p className={`mx-auto mt-2 max-w-sm ${BODY}`}>{step.description}</p>
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -241,7 +241,7 @@ export default function AIMockInterviewPage() {
               ].map(({ stat, label }) => (
                 <div key={stat} className="flex flex-col-reverse border-t border-white/[0.08] pt-5 text-center">
                   <dt className="mt-1 text-[13px] text-slate-400">{label}</dt>
-                  <dd className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${ACCENT_TEXT}`}>{stat}</dd>
+                  <dd className={`text-3xl font-semibold tracking-[-0.03em] sm:text-4xl ${ACCENT_TEXT}`}>{stat}</dd>
                 </div>
               ))}
             </dl>
@@ -257,7 +257,7 @@ export default function AIMockInterviewPage() {
         <section aria-label="More about AI mock interviews" className={`border-t border-white/[0.05] py-16 ${PAD}`}>
           <div className={`${INNER} space-y-4`}>
             <Fold eyebrow="Formats" title="Practice every type of interview" meta="Technical, behavioural, case and finance">
-              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+              <p className={`mb-8 max-w-3xl ${BODY}`}>
                 Not just technical interviews. The AI adapts to whichever format your target company uses.
               </p>
               <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -267,10 +267,10 @@ export default function AIMockInterviewPage() {
                       {item.type}
                       <Chevron className="text-slate-500 group-hover:text-accent" />
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{item.description}</p>
+                    <p className={`mt-2 ${BODY}`}>{item.description}</p>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {item.roles.map((role) => (
-                        <span key={role} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-xs text-slate-400">
+                        <span key={role} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 text-[12px] font-medium text-slate-400">
                           {role}
                         </span>
                       ))}
@@ -281,7 +281,7 @@ export default function AIMockInterviewPage() {
             </Fold>
 
             <Fold eyebrow="Who it's for" title="Built specifically for students and new grads">
-              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+              <p className={`mb-8 max-w-3xl ${BODY}`}>
                 Most interview prep tools are built for mid-career professionals switching companies. They assume you
                 have 5 years of STAR stories and prior offer negotiation experience. Preciprocal is built for the
                 version of you that&apos;s entering the market for the first time.
@@ -304,14 +304,14 @@ export default function AIMockInterviewPage() {
                   <li key={title} className="border-t border-white/[0.08] pt-5">
                     <span className="font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
                     <h3 className="mt-2 font-semibold text-white">{title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+                    <p className={`mt-1.5 ${BODY}`}>{body}</p>
                   </li>
                 ))}
               </ol>
             </Fold>
 
             <Fold eyebrow="By company" title="Practice for a specific company">
-              <p className="mb-6 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+              <p className={`mb-6 max-w-3xl ${BODY}`}>
                 Select a target company and the AI tailors its questions to their known format, values, and difficulty.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -319,14 +319,14 @@ export default function AIMockInterviewPage() {
                   <Link
                     key={company}
                     href={`/interview-prep/${company.toLowerCase()}`}
-                    className="inline-flex min-h-[40px] items-center rounded-lg border border-white/[0.08] bg-white/[0.02] px-3.5 text-sm text-slate-300 transition-colors hover:border-white/25 hover:text-white"
+                    className="inline-flex h-9 items-center rounded-lg border border-white/[0.08] bg-white/[0.02] px-3.5 text-sm text-slate-300 transition-colors hover:border-white/25 hover:text-white"
                   >
                     {company}
                   </Link>
                 ))}
                 <Link
                   href="/interview-prep"
-                  className="group inline-flex min-h-[40px] items-center gap-1 rounded-lg border border-accent/30 bg-accent/[0.06] px-3.5 text-sm font-medium text-accent-soft transition-colors hover:border-accent/50 hover:text-white"
+                  className="group inline-flex h-9 items-center gap-1 rounded-lg border border-accent/30 bg-accent/[0.06] px-3.5 text-sm font-medium text-accent-soft transition-colors hover:border-accent/50 hover:text-white"
                 >
                   All 50+ companies <Chevron />
                 </Link>
@@ -337,8 +337,8 @@ export default function AIMockInterviewPage() {
             <nav aria-label="Related tools" className="grid gap-x-10 gap-y-8 pt-10 lg:grid-cols-2">
               <section aria-label="Free interview question predictor" className="border-t border-white/[0.08] pt-6">
                 <Eyebrow>No sign-up</Eyebrow>
-                <h2 className="text-xl font-semibold tracking-tight text-white">Try it first, no account needed</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <h2 className="text-xl font-semibold tracking-[-0.02em] text-white">Try it first, no account needed</h2>
+                <p className={`mt-2 ${BODY}`}>
                   Paste a job description to get the 5 questions you are most likely to be asked, then say your answer out
                   loud and get your pace, filler words and a score out of 10.
                 </p>
@@ -352,8 +352,8 @@ export default function AIMockInterviewPage() {
 
               <section aria-label="Pair with ATS resume checker" className="border-t border-white/[0.08] pt-6">
                 <Eyebrow>Before you apply</Eyebrow>
-                <h2 className="text-xl font-semibold tracking-tight text-white">Don&apos;t forget your resume</h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <h2 className="text-xl font-semibold tracking-[-0.02em] text-white">Don&apos;t forget your resume</h2>
+                <p className={`mt-2 ${BODY}`}>
                   A great interview performance means nothing if your resume never makes it past the ATS filter.
                   Check your score before you apply.
                 </p>

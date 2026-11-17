@@ -58,7 +58,7 @@ interface Result {
 }
 
 const input =
-  "min-h-[52px] w-full min-w-0 rounded-xl bg-white/[0.04] border border-white/[0.08] pl-11 pr-4 py-3 text-[15px] text-white placeholder:text-slate-500 transition-colors hover:border-white/[0.14] focus:outline-none focus:border-accent/60 focus:ring-2 focus:ring-accent/25";
+  "w-full min-w-0 rounded-lg border border-white/[0.1] bg-white/[0.03] py-3 pl-11 pr-4 text-[15px] text-white placeholder:text-slate-500 transition-colors hover:border-white/[0.14] focus:border-accent/60 focus:bg-white/[0.045] focus:outline-none focus:ring-2 focus:ring-accent/25";
 const link = "text-accent-soft underline underline-offset-4 hover:text-white";
 
 const DATE = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
@@ -76,7 +76,7 @@ const TONE: Record<Tone, string> = {
 
 function Chip({ tone, children }: { tone: Tone; children: React.ReactNode }) {
   return (
-    <span className={`inline-flex w-fit shrink-0 items-center whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold ${TONE[tone]}`}>
+    <span className={`inline-flex w-fit shrink-0 items-center whitespace-nowrap rounded-full border px-3 py-1 text-[13px] font-medium ${TONE[tone]}`}>
       {children}
     </span>
   );
@@ -162,10 +162,10 @@ export default function EverifySearch() {
     : "Over 1.2 million E-Verify records and H-1B history for US employers";
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div className="border-b border-white/[0.06] p-6 sm:p-8">
-        <p className="text-lg font-semibold text-white">Employer lookup</p>
-        <p className="mt-1.5 text-[12px] text-slate-400">{coverage}.</p>
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+      <div className="border-b border-white/[0.06] p-6">
+        <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Employer lookup</p>
+        <p className="mt-1.5 text-[13px] text-slate-400">{coverage}.</p>
 
         <div className="relative mt-5">
           <Search aria-hidden="true" className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
@@ -188,14 +188,14 @@ export default function EverifySearch() {
           )}
         </div>
 
-        <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px] text-slate-400">
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-[13px] text-slate-400">
           <span>Examples</span>
           {EXAMPLES.map((ex) => (
             <button
               key={ex}
               type="button"
               onClick={() => setQ(ex)}
-              className="min-h-[32px] rounded-full border border-white/[0.08] bg-white/[0.02] px-3 text-slate-300 transition-colors hover:border-white/[0.16] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+              className="h-8 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 text-slate-300 transition-colors hover:border-white/[0.16] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
             >
               {ex}
             </button>
@@ -203,19 +203,19 @@ export default function EverifySearch() {
         </div>
       </div>
 
-      <div className="bg-white/[0.015] p-4 sm:p-8" aria-live="polite">
+      <div className="bg-white/[0.015] p-4 sm:p-6" aria-live="polite">
         <AnimatePresence mode="wait" initial={false}>
           {error ? (
-            <motion.p key="error" {...fade} className="rounded-xl border border-rose-400/20 bg-rose-400/[0.05] px-5 py-4 text-sm text-rose-200">
+            <motion.p key="error" {...fade} className="rounded-xl border border-rose-400/20 bg-rose-400/[0.05] px-5 py-4 text-[15px] text-rose-200">
               {error}
             </motion.p>
           ) : !result ? (
-            <motion.p key="empty" {...fade} className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-sm text-slate-400">
+            <motion.p key="empty" {...fade} className="rounded-xl border border-dashed border-white/[0.08] px-5 py-6 text-[15px] text-slate-400">
               Enter a company name to see whether it can employ you on OPT, STEM OPT and H-1B, based on its E-Verify enrolment
               and H-1B record.
             </motion.p>
           ) : result.matches.length === 0 ? (
-            <motion.div key={`none-${result.query}`} {...fade} className="rounded-xl border border-white/[0.08] px-5 py-5 text-sm text-slate-300">
+            <motion.div key={`none-${result.query}`} {...fade} className="rounded-xl border border-white/[0.08] px-5 py-5 text-[15px] text-slate-300">
               <p className="font-medium text-white">No records match &ldquo;{result.query}&rdquo;.</p>
               <p className="mt-1.5 text-slate-400">
                 Employers are listed under the name they used with USCIS, such as a legal name, trade name or abbreviation. Try
@@ -241,7 +241,7 @@ export default function EverifySearch() {
           )}
         </AnimatePresence>
 
-        <p className="mt-5 text-[11px] leading-relaxed text-slate-400">
+        <p className="mt-5 text-[13px] leading-relaxed text-slate-400">
           Sources:{" "}
           <a href={EVERIFY_SEARCH} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-0.5 ${link}`}>
             USCIS E-Verify Employer Search
@@ -283,7 +283,7 @@ function MatchRow({ m, years, open, onToggle }: { m: Match; years: string[]; ope
       >
         <div className="min-w-0">
           <p className="break-words pr-7 text-[15px] font-semibold text-white sm:pr-0">{m.name}</p>
-          {sub.length > 0 && <p className="mt-0.5 break-words text-[12px] text-slate-400">{sub.join("  ·  ")}</p>}
+          {sub.length > 0 && <p className="mt-0.5 break-words text-[13px] text-slate-400">{sub.join("  ·  ")}</p>}
         </div>
         <div className="flex flex-wrap items-center gap-1.5 sm:flex-nowrap">
           <Chip tone={ev.tone}>{ev.label}</Chip>
@@ -359,7 +359,7 @@ function Breakdown({ m, years }: { m: Match; years: string[] }) {
   const hasDetails = m.everify.accounts.length > 0 || !!m.h1b;
   return (
     <div className="border-t border-white/[0.06] px-4 pb-4 pt-4 sm:px-5">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">Can this employer hire you?</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Can this employer hire you?</p>
       <ul className="mt-1 divide-y divide-white/[0.05]">
         {verdicts(m, years).map((v) => {
           const { Icon, cls, text } = ICON[v.tone];
@@ -369,8 +369,8 @@ function Breakdown({ m, years }: { m: Match; years: string[] }) {
                 <Icon aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={2.5} />
               </span>
               <div className="min-w-0 flex-1 sm:flex sm:gap-4">
-                <p className="shrink-0 text-sm font-semibold leading-6 text-white sm:w-24">{v.stage}</p>
-                <p className="text-sm leading-6">
+                <p className="shrink-0 text-[15px] font-semibold leading-6 text-white sm:w-24">{v.stage}</p>
+                <p className="text-[15px] leading-6">
                   <span className={`font-semibold ${text}`}>{v.answer}.</span>{" "}
                   <span className="text-slate-400">{v.note}</span>
                 </p>
@@ -386,7 +386,7 @@ function Breakdown({ m, years }: { m: Match; years: string[] }) {
             type="button"
             onClick={() => setDetails((d) => !d)}
             aria-expanded={details}
-            className="inline-flex min-h-[36px] items-center gap-1 rounded-md text-[12px] font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+            className="inline-flex h-9 items-center gap-1 rounded-lg text-[13px] font-medium text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
           >
             {details ? "Hide records" : "View records"}
             <ChevronDown aria-hidden="true" className={`h-3.5 w-3.5 transition-transform ${details ? "rotate-180" : ""}`} />
@@ -403,9 +403,9 @@ function Records({ m }: { m: Match }) {
     <div className="mt-2 grid gap-6 pb-1 lg:grid-cols-2">
       {m.h1b && (
         <div className="min-w-0">
-          <p className="text-[12px] font-semibold text-slate-300">H-1B approvals by year</p>
-          <p className="mt-0.5 text-[11.5px] text-slate-500">Filed as {m.h1b.employer}. Counts are workers.</p>
-          <table className="mt-2 w-full text-[12px] tabular-nums">
+          <p className="text-[13px] font-semibold text-slate-300">H-1B approvals by year</p>
+          <p className="mt-0.5 text-[13px] text-slate-500">Filed as {m.h1b.employer}. Counts are workers.</p>
+          <table className="mt-2 w-full text-[13px] tabular-nums">
             <thead>
               <tr className="text-left text-slate-500">
                 <th className="pb-1.5 font-medium">Fiscal year</th>
@@ -429,11 +429,11 @@ function Records({ m }: { m: Match }) {
       )}
       {m.everify.accounts.length > 0 && (
         <div className="min-w-0">
-          <p className="text-[12px] font-semibold text-slate-300">E-Verify accounts</p>
-          <p className="mt-0.5 text-[11.5px] text-slate-500">Names as enrolled, reported by the employer.</p>
+          <p className="text-[13px] font-semibold text-slate-300">E-Verify accounts</p>
+          <p className="mt-0.5 text-[13px] text-slate-500">Names as enrolled, reported by the employer.</p>
           <ul className="mt-2">
             {m.everify.accounts.map((a, i) => (
-              <li key={i} className="flex items-baseline justify-between gap-3 border-t border-white/[0.05] py-1.5 text-[12px] first:border-t-0">
+              <li key={i} className="flex items-baseline justify-between gap-3 border-t border-white/[0.05] py-1.5 text-[13px] first:border-t-0">
                 <span className="min-w-0 break-words text-slate-300">
                   {a.employer}
                   {a.dba ? <span className="text-slate-500"> ({a.dba})</span> : null}

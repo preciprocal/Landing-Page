@@ -21,7 +21,7 @@ import HeroProductDemo from "@/components/HeroProductDemo";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import { TIERS, tierFeatureLines } from "@/lib/pricing";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, PageHero, SectionHead, pad2, FaqSection } from "@/components/page/Layout";
+import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, FaqSection, H3, INNER, LINK_ACTION, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -180,18 +180,18 @@ export default function HowItWorksPage() {
               />
             </Reveal>
 
-            <RevealGroup as="ol" className="grid gap-5 md:grid-cols-2">
+            <RevealGroup as="ol" className="grid gap-4 md:grid-cols-2">
               {STAGES.map((s, i) => (
-                <RevealItem as="li" key={s.title} className="flex flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-7 sm:p-8">
+                <RevealItem as="li" key={s.title} className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
                   <div className="mb-6 flex items-center justify-between">
-                    <span className="grid h-11 w-11 place-items-center rounded-xl border border-accent/20 bg-accent/10">
+                    <span className="grid h-11 w-11 place-items-center rounded-lg border border-accent/20 bg-accent/10">
                       <s.Icon aria-hidden="true" className="h-5 w-5 text-accent-soft" strokeWidth={1.8} />
                     </span>
                     <span className="font-mono text-[12px] text-slate-500">{pad2(i + 1)}</span>
                   </div>
                   <p className="mb-1.5 text-[13px] font-medium text-accent-soft">{s.problem}</p>
-                  <h3 className="mb-3 text-xl font-bold text-white sm:text-[22px]">{s.title}</h3>
-                  <p className="mb-6 text-[15px] leading-relaxed text-slate-400">{s.body}</p>
+                  <h3 className={`mb-3 ${H3}`}>{s.title}</h3>
+                  <p className={`mb-6 ${BODY}`}>{s.body}</p>
                   <ul className="mt-auto flex flex-wrap gap-2 border-t border-white/[0.06] pt-5">
                     {s.tools.map((t) => (
                       <li key={t.href}>
@@ -222,13 +222,13 @@ export default function HowItWorksPage() {
                 subtitle="The clock decides how hard you push. Free, no account needed, and the calculators run in your browser."
               />
             </Reveal>
-            <RevealGroup as="ul" className="divide-y divide-white/[0.06] rounded-2xl border border-white/[0.07] bg-[#070b16]">
+            <RevealGroup as="ul" className="divide-y divide-white/[0.06] rounded-xl border border-white/[0.07] bg-[#070b16]">
               {OPT_TOOLS.map((t) => (
                 <RevealItem as="li" key={t.href}>
                   <Link href={t.href} className="group flex items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60">
                     <div>
-                      <p className="font-semibold text-white">{t.label}</p>
-                      <p className="mt-1 text-sm text-slate-400">{t.body}</p>
+                      <p className={H3}>{t.label}</p>
+                      <p className={`mt-1 ${BODY}`}>{t.body}</p>
                     </div>
                     <Chevron className="shrink-0 text-slate-500 transition-colors group-hover:text-white" />
                   </Link>
@@ -261,7 +261,7 @@ export default function HowItWorksPage() {
                 ))}
               </ul>
               <p className="mt-8 text-center">
-                <Link href="/pricing" className="inline-flex items-center gap-1 text-sm font-semibold text-accent-soft transition-colors hover:text-white">
+                <Link href="/pricing" className={LINK_ACTION}>
                   Compare all plans <Chevron />
                 </Link>
               </p>
@@ -272,7 +272,7 @@ export default function HowItWorksPage() {
         {/* FAQ */}
         <FaqSection title="Before you start" items={FAQS} sectionProps={{ "aria-label": "Questions" }} />
 
-        <section aria-label="Get started" className={`pb-24 pt-4 ${PAD}`}>
+        <section aria-label="Get started" className={`pb-20 pt-4 ${PAD}`}>
           <Reveal>
             <CtaPanel
               title="Your clock is running. Make the days count."

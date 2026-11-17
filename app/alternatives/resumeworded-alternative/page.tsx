@@ -200,7 +200,7 @@ export default function ResumeWordedAlternativePage() {
               caption="Preciprocal vs Resume Worded: feature comparison"
               rows={COMPARISON_ROWS.map((r) => ({ feature: r.feature, preciprocal: r.preciprocal, other: r.resumeWorded }))}
             />
-            <p className="mt-4 text-center text-xs text-slate-400">
+            <p className="mt-4 text-center text-[13px] leading-relaxed text-slate-400">
               Based on publicly available feature lists as of September 2026. Always verify on each tool&apos;s pricing page.
             </p>
           </div>

@@ -179,8 +179,8 @@ export default function NewH1bRulesPage() {
             27, 2026 and governed the FY2027 registration in March 2026. Each registration is now entered a number of times
             based on the OEWS prevailing wage level that the offered salary meets for that occupation and area.
           </p>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
-            <table className="w-full text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+            <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">
                   <th className="pb-2">Offered wage level</th>
@@ -245,15 +245,15 @@ export default function NewH1bRulesPage() {
             petition, on top of the normal filing fees. This one is going through formal rulemaking, which is exactly
             what the courts said the $100,000 fee skipped, so it is on firmer legal ground if it is finalised.
           </p>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
             <h3 className="mb-3">As proposed, the fee would apply to</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm">
+            <ul className="list-disc pl-5 space-y-1 text-[15px]">
               <li>All cap-subject petitions, including the US master&apos;s cap</li>
               <li>Change of status petitions filed inside the US, which covers most F-1 OPT to H-1B cases</li>
               <li>Consular notification petitions for people abroad</li>
             </ul>
             <h3 className="mt-5 mb-3">It would not apply to</h3>
-            <ul className="list-disc pl-5 space-y-1 text-sm">
+            <ul className="list-disc pl-5 space-y-1 text-[15px]">
               <li>Cap-exempt employers: universities, affiliated nonprofits, and nonprofit or government research organisations</li>
               <li>People already counted against the cap, such as extensions</li>
             </ul>

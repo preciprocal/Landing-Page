@@ -24,7 +24,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection, H2 } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, BTN_SECONDARY_SM, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection, H2, H3, BODY, SMALL, LABEL, CARD, PANEL } from "@/components/page/Layout";
 
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
@@ -211,7 +211,7 @@ export default function ToolPage({
                 <a href={signUpUrl} className={`${tool ? BTN_SECONDARY : BTN_PRIMARY} w-full sm:w-auto`}>
                   {ctaLabel} <Chevron />
                 </a>
-                <p className="mt-3 text-[12px] text-slate-500">{ctaMicrocopy}</p>
+                <p className={`mt-3 ${SMALL}`}>{ctaMicrocopy}</p>
               </>
             }
           />
@@ -226,27 +226,27 @@ export default function ToolPage({
           )}
 
           {plan ? (
-            <section id="how-it-works" data-section="plan" data-section-name="Plan" className={`scroll-mt-24 border-t border-white/[0.05] py-24 ${PAD}`}>
+            <section id="how-it-works" data-section="plan" data-section-name="Plan" className={`scroll-mt-24 ${SECTION} ${PAD}`}>
               <div className={INNER}>
                 <div className="mx-auto max-w-2xl text-center">
                   <Eyebrow>Your plan</Eyebrow>
                   <h2 className={H2}>{plan.title}</h2>
-                  <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{plan.subtitle}</p>
+                  <p className={`mt-4 ${BODY}`}>{plan.subtitle}</p>
                 </div>
                 <RevealGroup as="ol" className="mx-auto mt-14 max-w-5xl space-y-4">
                   {plan.phases.map((ph, i) => (
                     <RevealItem as="li" key={ph.when}>
-                      <div className="grid gap-5 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6 sm:p-7 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-10">
+                      <div className={`grid gap-5 ${CARD} p-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-10`}>
                         <div>
                           <div className="flex items-center gap-3">
-                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-accent/40 bg-accent/[0.08] text-[13px] font-bold text-accent-soft">{i + 1}</span>
-                            <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-accent-soft">{ph.when}</p>
+                            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-accent/40 bg-accent/[0.08] text-[13px] font-semibold text-accent-soft">{i + 1}</span>
+                            <p className={`${LABEL} text-accent-soft`}>{ph.when}</p>
                           </div>
-                          <h3 className="mt-4 text-xl font-semibold leading-snug text-white">{ph.goal}</h3>
+                          <h3 className={`mt-4 ${H3}`}>{ph.goal}</h3>
                           {ph.tool && (
                             <Link
                               href={ph.tool.href}
-                              className="mt-4 inline-flex items-center gap-1.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-[13px] font-medium text-slate-300 transition-colors hover:border-white/[0.16] hover:text-white"
+                              className={`mt-4 ${BTN_SECONDARY_SM}`}
                             >
                               {ph.tool.label} <Chevron />
                             </Link>
@@ -254,7 +254,7 @@ export default function ToolPage({
                         </div>
                         <ul className="space-y-3 md:border-l md:border-white/[0.06] md:pl-10">
                           {ph.actions.map((a) => (
-                            <li key={a} className="flex gap-3 text-[15px] leading-relaxed text-slate-300">
+                            <li key={a} className={`flex gap-3 ${BODY} text-slate-300`}>
                               <span aria-hidden="true" className="mt-[3px] grid h-5 w-5 shrink-0 place-items-center rounded-md border border-white/[0.12] text-accent-soft">
                                 <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                               </span>
@@ -271,7 +271,7 @@ export default function ToolPage({
           ) : (
             <>
           {/* ── How it works: the flow comes first, as three connected stages ── */}
-          <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 border-t border-white/[0.05] py-24 ${PAD}`}>
+          <section id="how-it-works" data-section="how-it-works" data-section-name="How it works" className={`scroll-mt-24 ${SECTION} ${PAD}`}>
             <div className={INNER}>
               <div className="mx-auto max-w-2xl text-center">
                 <Eyebrow>How it works</Eyebrow>
@@ -286,11 +286,11 @@ export default function ToolPage({
                 />
                 {steps.map((step, i) => (
                   <RevealItem as="li" key={step.step} className="relative text-center">
-                    <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft">
+                    <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-semibold text-accent-soft">
                       {i + 1}
                     </span>
-                    <h3 className="mt-6 text-lg font-semibold text-white">{step.title}</h3>
-                    <p className="mx-auto mt-2 max-w-xs text-[15px] leading-relaxed text-slate-400">{step.body}</p>
+                    <h3 className={`mt-6 ${H3}`}>{step.title}</h3>
+                    <p className={`mx-auto mt-2 max-w-xs ${BODY}`}>{step.body}</p>
                   </RevealItem>
                 ))}
               </RevealGroup>
@@ -298,12 +298,12 @@ export default function ToolPage({
           </section>
 
           {/* ── What you get: an open list, one line each ── */}
-          <section data-section="features" data-section-name="Features" className={`border-t border-white/[0.05] py-24 ${PAD}`}>
+          <section data-section="features" data-section-name="Features" className={`${SECTION} ${PAD}`}>
             <div className={INNER}>
               <div className="mx-auto max-w-2xl text-center">
                 <Eyebrow>What you get</Eyebrow>
                 <h2 className={H2}>{featuresTitle}</h2>
-                <p className="mt-4 text-[16px] leading-relaxed text-slate-400">{featuresSubtitle}</p>
+                <p className={`mt-4 ${BODY}`}>{featuresSubtitle}</p>
               </div>
               <RevealGroup className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((item) => (
@@ -314,8 +314,8 @@ export default function ToolPage({
                       </svg>
                     </span>
                     <div>
-                      <p className="text-[16px] font-semibold text-white">{item.label}</p>
-                      <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">{item.description}</p>
+                      <p className={H3}>{item.label}</p>
+                      <p className={`mt-1.5 ${BODY}`}>{item.description}</p>
                     </div>
                   </RevealItem>
                 ))}
@@ -349,11 +349,11 @@ export default function ToolPage({
               engines index content in collapsed panels. */}
           <section data-section="content" data-section-name="Guide content" className={`border-t border-white/[0.05] py-16 ${PAD}`}>
             <div className={INNER}>
-              <details className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] open:border-white/[0.12]">
+              <details className={`group overflow-hidden ${PANEL} open:border-white/[0.12]`}>
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] sm:p-8 [&::-webkit-details-marker]:hidden">
                   <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft/90">The full guide</p>
-                    <h2 className="mt-2 text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl">{bodyTitle}</h2>
+                    <p className={`${LABEL} text-accent-soft/90`}>The full guide</p>
+                    <h2 className="mt-2 text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">{bodyTitle}</h2>
                   </div>
                   <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/[0.12] text-slate-300 transition-transform duration-300 group-open:rotate-180">
                     <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -370,14 +370,14 @@ export default function ToolPage({
                   <div
                     className={[
                       "mx-auto max-w-[860px] space-y-6 text-[17px] leading-[1.8] text-slate-400",
-                      "[&>p:first-of-type]:text-[19px] [&>p:first-of-type]:leading-[1.65] [&>p:first-of-type]:text-slate-200",
+                      "[&>p:first-of-type]:text-lg [&>p:first-of-type]:leading-relaxed [&>p:first-of-type]:text-slate-200",
                       "[&_strong]:font-semibold [&_strong]:text-white",
-                      "[&>div]:!my-10 [&>div]:overflow-hidden [&>div]:!rounded-2xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#050810] [&>div]:!p-0",
+                      "[&>div]:!my-10 [&>div]:overflow-hidden [&>div]:!rounded-xl [&>div]:border [&>div]:!border-white/[0.08] [&>div]:!bg-[#050810] [&>div]:!p-0",
                       "[&>div>h3]:!mb-0 [&>div>h3]:flex [&>div>h3]:items-center [&>div>h3]:gap-3 [&>div>h3]:border-b [&>div>h3]:border-white/[0.06] [&>div>h3]:bg-white/[0.025] [&>div>h3]:px-6 [&>div>h3]:py-4 [&>div>h3]:text-[15px] [&>div>h3]:font-semibold [&>div>h3]:tracking-tight [&>div>h3]:text-white",
                       "[&>div>h3]:before:h-2 [&>div>h3]:before:w-2 [&>div>h3]:before:shrink-0 [&>div>h3]:before:rounded-full [&>div>h3]:before:bg-accent [&>div>h3]:before:content-['']",
                       "[&>div>ul]:grid [&>div>ol]:grid [&>div>ul]:!space-y-0 [&>div>ol]:!space-y-0 [&>div>ul]:gap-px [&>div>ol]:gap-px [&>div>ul]:bg-white/[0.06] [&>div>ol]:bg-white/[0.06] md:[&>div>ul]:grid-cols-2 md:[&>div>ol]:grid-cols-2",
                       "md:[&>div>ul>li:last-child:nth-child(odd)]:col-span-2 md:[&>div>ol>li:last-child:nth-child(odd)]:col-span-2",
-                      "[&>div_li]:bg-[#050810] [&>div_li]:p-5 [&>div_li]:text-[14px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
+                      "[&>div_li]:bg-[#050810] [&>div_li]:p-5 [&>div_li]:text-[15px] [&>div_li]:leading-relaxed [&>div_li]:text-slate-300",
                       "[&>div>p]:px-6 [&>div>h3+p]:pt-5 [&>div>p:last-child]:pb-6",
                     ].join(" ")}
                   >
@@ -387,7 +387,7 @@ export default function ToolPage({
               </details>
 
               <nav data-section="related-links" data-section-name="Related links" aria-label="Related guides" className="mt-10">
-                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+                <p className={`mb-3 ${LABEL} text-slate-500`}>Also useful</p>
                 <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
                   {relatedLinks.map((link) => (
                     <li key={link.label} className="border-b border-white/[0.05]">

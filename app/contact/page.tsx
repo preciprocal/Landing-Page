@@ -85,7 +85,7 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="font-semibold text-white">Need help with your account, billing or a bug?</p>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-400">Support has the quick fixes and a ticket system that keeps the whole conversation in one place. It is the faster route.</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-slate-400">Support has the quick fixes and a ticket system that keeps the whole conversation in one place. It is the faster route.</p>
                 </div>
               </div>
               <Link href="/support" className={`${BTN_SECONDARY} w-full shrink-0 sm:w-auto`}>
@@ -96,7 +96,7 @@ export default function ContactPage() {
         </section>
 
         {/* Reasons to write */}
-        <section aria-label="Reasons to get in touch" className={`${SECTION} ${PAD} mt-16`}>
+        <section aria-label="Reasons to get in touch" className={`${SECTION}  ${PAD} mt-16`}>
           <div className={INNER}>
             <Reveal>
               <SectionHead
@@ -120,8 +120,8 @@ export default function ContactPage() {
                       <span className="mb-5 grid h-10 w-10 place-items-center rounded-xl bg-accent/10">
                         <Icon aria-hidden="true" className="h-4 w-4 text-accent" />
                       </span>
-                      <h3 className="mb-1.5 text-[15px] font-bold text-white transition-colors group-hover:text-accent-soft">{c.title}</h3>
-                      <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-400">{c.description}</p>
+                      <h3 className="mb-1.5 text-[15px] font-semibold text-white transition-colors group-hover:text-accent-soft">{c.title}</h3>
+                      <p className="mb-5 flex-1 text-[15px] leading-relaxed text-slate-400">{c.description}</p>
                       <span className="inline-flex items-center gap-1 text-[13px] font-medium text-accent-soft">
                         Write to us <Chevron />
                       </span>
@@ -132,11 +132,11 @@ export default function ContactPage() {
             </RevealGroup>
 
             <Reveal className="mt-16 text-center">
-              <p className="text-sm text-slate-500">Or write to us directly</p>
-              <a href={`mailto:${EMAIL}`} className="mt-2 inline-block break-words text-[1.5rem] font-bold tracking-tight text-white transition-colors hover:text-accent-soft sm:text-[2rem]">
+              <p className="text-[15px] text-slate-500">Or write to us directly</p>
+              <a href={`mailto:${EMAIL}`} className="mt-2 inline-block break-words text-[1.5rem] font-semibold tracking-[-0.02em] text-white transition-colors hover:text-accent-soft sm:text-[2rem]">
                 {EMAIL}
               </a>
-              <p className="mt-2 text-sm text-slate-500">We reply within a working day.</p>
+              <p className="mt-2 text-[15px] text-slate-500">We reply within a working day.</p>
               <div className="mt-6">
                 <a href={`mailto:${EMAIL}`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                   Send us an email <Chevron />

@@ -80,15 +80,15 @@ export default function OptHubPage() {
       body={
         <>
           <h2>Start here</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {OPT_GUIDES.map((g) => (
               <Link
                 key={g.href}
                 href={g.href}
-                className="block bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 hover:border-white/[0.15] transition-colors !no-underline"
+                className="block rounded-xl border border-white/[0.07] bg-white/[0.02] p-5 transition-colors duration-200 hover:border-white/[0.13] hover:bg-white/[0.035] !no-underline"
               >
-                <p className="text-white font-semibold">{g.label}</p>
-                <p className="text-slate-500 text-sm mt-1">{g.blurb}</p>
+                <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">{g.label}</p>
+                <p className="mt-1 text-[15px] leading-relaxed text-slate-400">{g.blurb}</p>
               </Link>
             ))}
           </div>

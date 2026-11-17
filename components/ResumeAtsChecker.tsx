@@ -114,7 +114,7 @@ function CountUp({ to, duration = 1.2 }: { to: number; duration?: number }) {
 }
 
 const inputClass =
-  "w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-400/60";
+  "w-full rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-slate-500 transition-colors focus:border-indigo-400/60 focus:bg-white/[0.045] focus:outline-none";
 
 export default function ResumeAtsChecker() {
   const [file, setFile] = useState<File | null>(null);
@@ -187,7 +187,7 @@ export default function ResumeAtsChecker() {
   }
 
   if (!lookedUp) {
-    return <div className="h-[420px] animate-pulse rounded-2xl border border-white/[0.06] bg-white/[0.03]" aria-busy="true" />;
+    return <div className="h-[420px] animate-pulse rounded-xl border border-white/[0.07] bg-white/[0.02]" aria-busy="true" />;
   }
 
   const returning = Boolean(result?.restored);
@@ -200,7 +200,7 @@ export default function ResumeAtsChecker() {
       {/* ── Upload ───────────────────────────────────────────────────── */}
       {!returning && (
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -260,14 +260,14 @@ export default function ResumeAtsChecker() {
               {file ? (
                 <>
                   <span className="block font-semibold text-white">{file.name}</span>
-                  <span className="mt-1 block text-[12px] text-slate-500">{(file.size / 1024).toFixed(0)} KB · Click to choose a different file</span>
+                  <span className="mt-1 block text-[13px] text-slate-500">{(file.size / 1024).toFixed(0)} KB · Click to choose a different file</span>
                 </>
               ) : dragging ? (
                 <span className="block font-semibold text-indigo-200">Drop it to upload</span>
               ) : (
                 <>
                   <span className="block font-semibold text-white">Drop your resume here, or click to upload</span>
-                  <span className="mt-1 block text-[12px] text-slate-500">PDF or Word (.docx), up to 4 MB</span>
+                  <span className="mt-1 block text-[13px] text-slate-500">PDF or Word (.docx), up to 4 MB</span>
                 </>
               )}
             </motion.span>
@@ -277,14 +277,14 @@ export default function ResumeAtsChecker() {
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <div>
-            <label htmlFor="ats-role" className="mb-1.5 block text-[12px] text-slate-400">
+            <label htmlFor="ats-role" className="mb-1.5 block text-[13px] text-slate-400">
               Target role (optional)
             </label>
             <input id="ats-role" className={inputClass} value={jobTitle} maxLength={120} onChange={(e) => setJobTitle(e.target.value)} placeholder="Data Analyst" />
           </div>
           <div className="flex items-end">
             {!showJd && (
-              <button type="button" onClick={() => setShowJd(true)} className="text-sm text-indigo-300 hover:text-indigo-200">
+              <button type="button" onClick={() => setShowJd(true)} className="text-[15px] text-indigo-300 hover:text-indigo-200">
                 + Add the job description for a sharper score
               </button>
             )}
@@ -300,7 +300,7 @@ export default function ResumeAtsChecker() {
             transition={{ duration: 0.3, ease: EASE }}
           >
           <div className="pt-4">
-            <label htmlFor="ats-jd" className="mb-1.5 block text-[12px] text-slate-400">
+            <label htmlFor="ats-jd" className="mb-1.5 block text-[13px] text-slate-400">
               Job description (optional, recommended)
             </label>
             <textarea
@@ -317,7 +317,7 @@ export default function ResumeAtsChecker() {
         </AnimatePresence>
 
         <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-sm text-[11px] leading-relaxed text-slate-600">No account needed. Your file is not stored; the result is kept for 30 days so you can come back to it.</p>
+          <p className="max-w-sm text-[13px] leading-relaxed text-slate-600">No account needed. Your file is not stored; the result is kept for 30 days so you can come back to it.</p>
           <button
             type="button"
             data-track="ats-check-submit"
@@ -328,7 +328,7 @@ export default function ResumeAtsChecker() {
             {loading ? "Analysing your resume..." : "Check my resume free"}
           </button>
         </div>
-        {error && <p className="mt-4 text-sm text-rose-300">{error}</p>}
+        {error && <p className="mt-4 text-[15px] text-rose-300">{error}</p>}
         {limitHit && (
           <a
             href={SIGN_UP_URL}
@@ -393,9 +393,9 @@ const DIMENSIONS = [
 /** Beside the upload: what the check measures and what comes back. */
 function WhatYouGet() {
   return (
-    <div className="flex flex-col rounded-2xl border border-white/[0.07] bg-[#070b16] p-6 sm:p-7">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-300/90">What is scored</p>
-      <p className="mt-2 text-sm text-slate-400">Five dimensions, each reviewed separately and weighted into one score out of 100.</p>
+    <div className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-indigo-300/90">What is scored</p>
+      <p className="mt-2 text-[15px] text-slate-400">Five dimensions, each reviewed separately and weighted into one score out of 100.</p>
       <ul className="mt-6 space-y-3.5">
         {DIMENSIONS.map((d, i) => (
           <li key={d.label}>
@@ -436,14 +436,14 @@ function WelcomeBack({ result }: { result: Shown }) {
     : "";
   const device = result.restored === "device";
   return (
-    <div className="flex flex-col gap-4 rounded-2xl border border-indigo-400/25 bg-indigo-500/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col gap-4 rounded-xl border border-indigo-400/25 bg-indigo-500/[0.06] p-6 sm:flex-row sm:items-center sm:justify-between">
       <div>
         <p className="font-semibold text-white">
           {device
             ? `Welcome back. Here is your resume check${when ? ` from ${when}` : ""}.`
             : `Welcome back. A free check was already run from this device${when ? ` on ${when}` : ""}.`}
         </p>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-[15px] text-slate-400">
           {device
             ? "Your free check is used. Create a free account to see every fix and check new versions of your resume, with 2 analyses every month."
             : "For privacy, the detailed feedback only shows in the browser that ran the check. Create a free account to see every fix, or to check a different resume."}
@@ -469,7 +469,7 @@ function Progress() {
   }, []);
   return (
     <motion.div
-      className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6"
+      className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6"
       aria-live="polite"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -494,13 +494,13 @@ function Progress() {
 
         <div className="flex-1">
           <div className="mb-4 flex items-baseline justify-between">
-            <p className="text-sm font-semibold text-white">Five reviews running at once</p>
-            <p className="font-mono text-[12px] tabular-nums text-slate-500">{secs}s</p>
+            <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Five reviews running at once</p>
+            <p className="font-mono text-[13px] tabular-nums text-slate-500">{secs}s</p>
           </div>
           <ul className="space-y-3">
             {dims.map((d, i) => (
               <li key={d}>
-                <p className="mb-1.5 text-[12px] text-slate-400">{d}</p>
+                <p className="mb-1.5 text-[13px] text-slate-400">{d}</p>
                 <div className="relative h-1.5 overflow-hidden rounded-full bg-white/[0.05]">
                   <motion.div
                     className="absolute inset-y-0 w-1/3 rounded-full bg-gradient-to-r from-transparent via-indigo-400/60 to-transparent"
@@ -512,7 +512,7 @@ function Progress() {
               </li>
             ))}
           </ul>
-          <p className="mt-4 text-[11px] text-slate-600">This usually takes 15 to 30 seconds.</p>
+          <p className="mt-4 text-[13px] text-slate-600">This usually takes 15 to 30 seconds.</p>
         </div>
       </div>
     </motion.div>
@@ -524,7 +524,7 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
   const r = 52;
   const c = 2 * Math.PI * r;
   return (
-    <div className="rounded-2xl border border-white/[0.08] bg-[#0a0f1c] p-6 sm:p-8">
+    <div className="rounded-2xl border border-white/[0.08] bg-[#0a0f1c] p-6">
       <div className="flex flex-col gap-7">
         <div className="flex flex-col items-center text-center">
           <svg viewBox="0 0 120 120" className="h-36 w-36" role="img" aria-label={`ATS resume score ${result.overallScore} out of 100`}>
@@ -550,21 +550,21 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
               out of 100
             </text>
           </svg>
-          <p className={`mt-2 text-sm font-semibold ${b.tone}`}>{b.label}</p>
-          <p className="mt-1 text-[11px] text-slate-600">
+          <p className={`mt-2 text-[15px] font-semibold ${b.tone}`}>{b.label}</p>
+          <p className="mt-1 text-[13px] text-slate-600">
             {result.hasJobContext ? "Scored against your target role" : "Add a job description for a role-specific score"}
           </p>
         </div>
 
         <div className="space-y-4 border-t border-white/[0.06] pt-6">
-          <p className="text-sm text-slate-400">
+          <p className="text-[15px] text-slate-400">
             Scored the way recruiters do: honestly. An honest 55 is worth more than a padded 80, because it tells you what to fix.
           </p>
           {result.sections.map((s, i) => (
             <div key={s.key}>
-              <div className="mb-1.5 flex items-baseline justify-between text-sm">
+              <div className="mb-1.5 flex items-baseline justify-between text-[15px]">
                 <span className="text-slate-200">
-                  {s.label} <span className="text-[11px] text-slate-600">· {Math.round(s.weight * 100)}% of score</span>
+                  {s.label} <span className="text-[13px] text-slate-600">· {Math.round(s.weight * 100)}% of score</span>
                 </span>
                 <span className="font-semibold text-white">{s.score}</span>
               </div>
@@ -586,14 +586,14 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
 
 function Strengths({ items }: { items: { section: string; tip: string }[] }) {
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
-      <p className="mb-3 text-sm font-semibold text-white">What is working</p>
+    <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+      <p className="mb-3 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">What is working</p>
       <ul className="space-y-2.5">
         {items.map((s, i) => (
-          <li key={i} className="flex gap-3 text-sm text-slate-300">
+          <li key={i} className="flex gap-3 text-[15px] text-slate-300">
             <span className="mt-0.5 shrink-0 text-emerald-400">✓</span>
             <span>
-              {s.tip} <span className="text-[11px] text-slate-600">· {s.section}</span>
+              {s.tip} <span className="text-[13px] text-slate-600">· {s.section}</span>
             </span>
           </li>
         ))}
@@ -607,8 +607,8 @@ function Fixes({ result }: { result: ResumeCheckResult }) {
   return (
     <div>
       <div className="mb-3 flex items-baseline justify-between">
-        <h3 className="text-lg font-bold text-white">Your top fixes</h3>
-        <p className="text-[12px] text-slate-500">
+        <h3 className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Your top fixes</h3>
+        <p className="text-[13px] text-slate-500">
           {result.fixes.length} of {result.fixes.length + result.locked.length}
         </p>
       </div>
@@ -626,17 +626,17 @@ function Fixes({ result }: { result: ResumeCheckResult }) {
 function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; index: number }) {
   const [copied, setCopied] = useState(false);
   return (
-    <article className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 transition-colors duration-300 hover:border-white/[0.12]">
+    <article className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="mb-3 flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-[11px] font-bold text-white">{index + 1}</span>
-        <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-slate-400">{fix.section}</span>
+        <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1 text-[12px] font-medium text-slate-400">{fix.section}</span>
       </div>
       <p className="mb-2 font-semibold leading-snug text-white">{fix.tip}</p>
-      {fix.explanation && <p className="mb-4 text-sm leading-relaxed text-slate-400">{fix.explanation}</p>}
+      {fix.explanation && <p className="mb-4 text-[15px] leading-relaxed text-slate-400">{fix.explanation}</p>}
       {fix.solution && (
         <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/[0.05] p-4">
           <div className="mb-1.5 flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-emerald-300">Suggested rewrite</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300">Suggested rewrite</p>
             <button
               type="button"
               data-track="ats-check-copy-fix"
@@ -649,12 +649,12 @@ function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; inde
                   // Clipboard blocked; the text is still selectable.
                 }
               }}
-              className="text-[12px] text-emerald-200 hover:text-white"
+              className="text-[13px] text-emerald-200 hover:text-white"
             >
               {copied ? "Copied" : "Copy"}
             </button>
           </div>
-          <p className="whitespace-pre-line text-sm leading-relaxed text-slate-200">{fix.solution}</p>
+          <p className="whitespace-pre-line text-[15px] leading-relaxed text-slate-200">{fix.solution}</p>
         </div>
       )}
     </article>
@@ -679,8 +679,8 @@ function Locked({ result }: { result: ResumeCheckResult }) {
           here. The rewrites are never sent to the page. */}
       <div aria-hidden="true" className="pointer-events-none select-none space-y-4 p-6 blur-[5px] opacity-90">
         {(shown.length ? shown : PLACEHOLDER_FIXES).map((f, i) => (
-          <div key={i} className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6">
-            <span className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-slate-400">{f.section}</span>
+          <div key={i} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+            <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1 text-[12px] font-medium text-slate-400">{f.section}</span>
             <p className="mt-3 font-semibold text-white">{f.tip}</p>
             <div className="mt-3 space-y-2">
               <div className="h-2.5 w-11/12 rounded bg-white/10" />
@@ -705,13 +705,13 @@ function Locked({ result }: { result: ResumeCheckResult }) {
               <path d="M8 11V7a4 4 0 0 1 8 0v4" />
             </svg>
           </div>
-          <h3 className="mb-2 text-xl font-bold text-white">
+          <h3 className="mb-2 text-xl font-semibold tracking-[-0.02em] text-white">
             {n > 0 ? `${n} ${scoresOnly ? "" : "more "}${n === 1 ? "fix" : "fixes"} found in your resume` : "Your full analysis is ready"}
           </h3>
-          <p className="mb-5 text-sm text-slate-400">
+          <p className="mb-5 text-[15px] text-slate-400">
             Explore every fix and the deeper analysis in your free account.
           </p>
-          <ul className="mb-6 space-y-2 text-left text-sm text-slate-300">
+          <ul className="mb-6 space-y-2 text-left text-[15px] text-slate-300">
             {[
               `All ${result.totals.findings} findings across the 5 dimensions, each with a rewrite`,
               "Your full report saved to your account, so you can track the score as you improve",
@@ -740,7 +740,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
               Unlock my full analysis, free <Chevron />
             </span>
           </a>
-          <p className="mt-3 text-[11px] text-slate-500">
+          <p className="mt-3 text-[13px] text-slate-500">
             Free account · No credit card · Opens straight to resume analysis, upload the same file to see every fix
           </p>
         </div>

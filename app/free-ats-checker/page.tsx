@@ -160,7 +160,7 @@ export default function FreeATSCheckerPage() {
                 "Non-standard section names, such as Career Journey instead of Experience",
                 "Image-only PDFs exported from a scan, which have no text for the parser to read",
               ].map((reason, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
                   <span>{reason}</span>
                 </li>
@@ -183,7 +183,7 @@ export default function FreeATSCheckerPage() {
                 "Paste the job description you are applying to, so the score is specific to it",
                 "Check one resume per role: a resume tailored to the posting scores very differently from a generic one",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                   <span>{item}</span>
                 </li>

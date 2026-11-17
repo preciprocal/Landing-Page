@@ -172,7 +172,7 @@ export default function CareerChangersPage() {
 
           <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
             <h3 className="text-white font-semibold mb-4">Translating, not inventing</h3>
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-[15px]">
               {[
                 ["Retail store manager to operations", "'Ran a store' becomes 'managed a $2M P&L, scheduling for 18 staff, and inventory forecasting'"],
                 ["Teacher to instructional design", "'Taught 9th grade' becomes 'designed, delivered and evaluated curricula for 120 learners a year'"],

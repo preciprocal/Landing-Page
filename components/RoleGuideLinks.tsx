@@ -16,6 +16,7 @@
 
 import Link from "next/link";
 import Chevron from "@/components/Chevron";
+import { H3 } from "@/components/page/Layout";
 
 export type RoleGuideSection = "interview-questions" | "resume-tips" | "salary-guide" | "cover-letter-examples";
 
@@ -26,7 +27,7 @@ const GUIDES: { section: RoleGuideSection; title: string; blurb: (role: string) 
   { section: "cover-letter-examples", title: "Cover letter examples", blurb: (r) => `${r} cover letters to adapt` },
 ];
 
-const card = "group p-4 rounded-xl border transition-all hover:border-indigo-500/30 hover:bg-white/[0.03]";
+const card = "group p-5 rounded-xl border transition-all hover:border-indigo-500/30 hover:bg-white/[0.03]";
 const cardStyle = { background: "rgba(255,255,255,0.02)", borderColor: "rgba(255,255,255,0.07)" };
 
 export default function RoleGuideLinks({
@@ -50,16 +51,16 @@ export default function RoleGuideLinks({
 
   return (
     <section aria-label={`More ${roleName} guides`} className={className}>
-      <h2 style={{ color: "#ffffff" }} className="font-semibold text-lg mb-4">
+      <h2 style={{ color: "#ffffff" }} className={`${H3} mb-4`}>
         More {roleName} guides
       </h2>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {siblings.map((g) => (
           <Link key={g.section} href={`/${g.section}/${role}`} className={card} style={cardStyle}>
-            <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1 group-hover:text-white">
+            <p style={{ color: "#e2e8f0" }} className="font-semibold text-[15px] mb-1 group-hover:text-white">
               {roleName} {g.title.toLowerCase()}
             </p>
-            <p style={{ color: "#64748b" }} className="text-xs leading-relaxed">
+            <p style={{ color: "#64748b" }} className="text-[13px] leading-relaxed">
               {g.blurb(roleName)} <Chevron />
             </p>
           </Link>
@@ -69,10 +70,10 @@ export default function RoleGuideLinks({
           className={`${card} hover:border-indigo-400/40`}
           style={{ background: "rgba(99,102,241,0.06)", borderColor: "rgba(99,102,241,0.25)" }}
         >
-          <p style={{ color: "#e2e8f0" }} className="font-medium text-sm mb-1 group-hover:text-white">
+          <p style={{ color: "#e2e8f0" }} className="font-semibold text-[15px] mb-1 group-hover:text-white">
             {tool.title}
           </p>
-          <p style={{ color: "#94a3b8" }} className="text-xs leading-relaxed">
+          <p style={{ color: "#94a3b8" }} className="text-[13px] leading-relaxed">
             {tool.blurb} <Chevron />
           </p>
         </Link>

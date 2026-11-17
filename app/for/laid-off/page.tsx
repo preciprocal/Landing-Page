@@ -169,7 +169,7 @@ export default function LaidOffPage() {
 
           <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
             <h3 className="text-white font-semibold mb-4">The first week</h3>
-            <ol className="space-y-3 list-decimal list-inside text-sm">
+            <ol className="space-y-3 list-decimal list-inside text-[15px]">
               {[
                 "Read your severance agreement before signing, and note every deadline for benefits and health coverage",
                 "Check your state's unemployment insurance rules and file promptly",

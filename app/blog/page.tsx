@@ -17,7 +17,7 @@ import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { BLOG_POSTS, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, SectionHead, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, SectionHead, pad2, SECTION, PANEL, PILL, LABEL, SMALL } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -50,16 +50,16 @@ function PostLink({ post, featured = false }: { post: Post; featured?: boolean }
       href={`/blog/${post.slug}`}
       className="group flex h-full flex-col border-t border-white/[0.08] pt-5 transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
     >
-      {featured && <span className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">{post.category}</span>}
+      {featured && <span className={`mb-2 ${LABEL} text-accent-soft`}>{post.category}</span>}
       <h3
-        className={`font-semibold leading-snug transition-colors group-hover:text-accent-soft ${
-          featured ? "text-lg text-white sm:text-xl" : "text-slate-100"
+        className={`font-semibold leading-snug tracking-[-0.01em] transition-colors group-hover:text-accent-soft ${
+          featured ? "text-lg text-white sm:text-xl" : "text-[17px] text-slate-100"
         }`}
       >
         {post.title}
       </h3>
-      <p className="mb-4 mt-2 line-clamp-2 text-sm leading-relaxed text-slate-500">{post.description}</p>
-      <div className="mt-auto flex items-center justify-between gap-3 text-xs text-slate-500">
+      <p className="mb-4 mt-2 line-clamp-2 text-[15px] leading-relaxed text-slate-500">{post.description}</p>
+      <div className={`mt-auto flex items-center justify-between gap-3 ${SMALL}`}>
         <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span>{formatDate(post.publishedAt)}</span>
           <span aria-hidden="true">·</span>
@@ -107,7 +107,7 @@ export default function BlogIndexPage() {
                 <a
                   key={cat}
                   href={`#${catId(cat)}`}
-                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-slate-400 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent/60 focus-visible:text-white focus-visible:outline-none"
+                  className={`${PILL} border-white/[0.08] bg-white/[0.03] text-slate-400 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent/60 focus-visible:text-white focus-visible:outline-none`}
                 >
                   {cat}
                 </a>
@@ -118,7 +118,7 @@ export default function BlogIndexPage() {
 
         {/* Featured */}
         {featured.length > 0 && (
-          <section className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}>
+          <section className={`${SECTION}  ${PAD}`}>
             <div className={INNER}>
               <SectionHead align="center" className="mb-12" eyebrow="Featured" title="Featured guides" />
               <RevealGroup className="grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
@@ -136,10 +136,10 @@ export default function BlogIndexPage() {
         {categories.map((cat) => {
           const posts = rest.filter((p) => p.category === cat);
           return (
-            <section key={cat} id={catId(cat)} className={`scroll-mt-24 border-t border-white/[0.05] py-14 sm:py-16 ${PAD}`}>
+            <section key={cat} id={catId(cat)} className={`scroll-mt-24 ${SECTION}  ${PAD}`}>
               <div className={INNER}>
                 <div className="mb-8 flex items-baseline justify-between gap-4">
-                  <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">{cat}</h2>
+                  <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">{cat}</h2>
                   <span className="font-mono text-[11px] text-slate-500">{pad2(posts.length)}</span>
                 </div>
                 <RevealGroup className="grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -155,15 +155,15 @@ export default function BlogIndexPage() {
         })}
 
         {/* Cross-links */}
-        <section className={`border-t border-white/[0.05] py-14 ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <nav aria-label="More guides" className={INNER}>
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+            <p className={`mb-3 ${LABEL} text-slate-500`}>Also useful</p>
             <ul className="grid gap-x-10 sm:grid-cols-2">
               <li className="border-b border-white/[0.05]">
                 <Link href="/interview-questions" className="group flex items-center justify-between gap-3 py-4 transition-colors">
                   <span>
-                    <span className="block font-semibold text-white">Interview questions by role</span>
-                    <span className="block text-sm text-slate-500">Q&amp;As for 40+ roles with detailed answers</span>
+                    <span className="block text-[17px] font-semibold tracking-[-0.01em] text-white">Interview questions by role</span>
+                    <span className="block text-[15px] text-slate-500">Q&amp;As for 40+ roles with detailed answers</span>
                   </span>
                   <Chevron className="text-slate-600 group-hover:text-slate-300" />
                 </Link>
@@ -171,8 +171,8 @@ export default function BlogIndexPage() {
               <li className="border-b border-white/[0.05]">
                 <Link href="/interview-prep" className="group flex items-center justify-between gap-3 py-4 transition-colors">
                   <span>
-                    <span className="block font-semibold text-white">Company prep guides</span>
-                    <span className="block text-sm text-slate-500">Google, Amazon, Meta, Stripe, and 16 more</span>
+                    <span className="block text-[17px] font-semibold tracking-[-0.01em] text-white">Company prep guides</span>
+                    <span className="block text-[15px] text-slate-500">Google, Amazon, Meta, Stripe, and 16 more</span>
                   </span>
                   <Chevron className="text-slate-600 group-hover:text-slate-300" />
                 </Link>
@@ -183,7 +183,7 @@ export default function BlogIndexPage() {
 
         {/* CTA */}
         <section className={`pb-24 ${PAD}`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-8 py-12 sm:px-14`}>
+          <Reveal className={`${INNER} relative overflow-hidden ${PANEL} px-7 py-12 sm:px-14`}>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_50%_50%,black,transparent)]"

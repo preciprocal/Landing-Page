@@ -70,8 +70,8 @@ export default function TocNav({ items, label = "On this page" }: { items: TocIt
   return (
     <>
       {/* Mobile and tablet: collapsible, closes once a section is picked */}
-      <details ref={detailsRef} className="group rounded-2xl border border-white/[0.07] bg-white/[0.025] lg:hidden">
-        <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-sm font-semibold text-white [&::-webkit-details-marker]:hidden">
+      <details ref={detailsRef} className="group rounded-xl border border-white/[0.07] bg-white/[0.02] lg:hidden">
+        <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-[15px] font-semibold text-white [&::-webkit-details-marker]:hidden">
           {label}
           <span
             aria-hidden="true"
@@ -90,7 +90,7 @@ export default function TocNav({ items, label = "On this page" }: { items: TocIt
 
       {/* Desktop: sticky beside the text */}
       <nav aria-label={label} className="hidden lg:block">
-        <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{label}</p>
+        <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{label}</p>
         <div className="max-h-[calc(100vh-10rem)] overflow-y-auto pr-2 [scrollbar-width:thin]">{list()}</div>
       </nav>
     </>

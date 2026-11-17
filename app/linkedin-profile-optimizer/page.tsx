@@ -163,7 +163,7 @@ export default function LinkedInProfileOptimizerPage() {
                 "About, the largest free-text field you control, fully indexed",
                 "Experience descriptions, indexed, and where your keywords earn their credibility",
               ].map((field, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{field}</span>
                 </li>

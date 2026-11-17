@@ -179,7 +179,7 @@ export default function NewGradsPage() {
                 "Practising interviews in your head, which feels like preparation and is not",
                 "Starting in spring when the large employers filled their new grad roles in the fall",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
                   <span>{item}</span>
                 </li>

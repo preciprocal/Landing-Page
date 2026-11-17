@@ -159,7 +159,7 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
                       <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
                     </span>
                     <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-accent-soft">Today</span>
-                    <span className="text-[12px] text-slate-400">as of {checkedLabel}</span>
+                    <span className="text-[13px] text-slate-400">as of {checkedLabel}</span>
                   </div>
                 )}
                 <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-x-4 gap-y-1 px-5 py-4 sm:grid-cols-[auto_200px_minmax(0,1fr)_auto] sm:gap-x-6 sm:px-6">
@@ -167,10 +167,10 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
                     aria-hidden="true"
                     className={`mt-1.5 h-2.5 w-2.5 rounded-full ${r.upcoming ? "border-2 border-accent/70" : "bg-accent"}`}
                   />
-                  <p className={`text-[14px] font-semibold ${r.upcoming ? "text-slate-300" : "text-white"}`}>{r.date}</p>
-                  <p className="col-start-2 text-[14px] leading-relaxed text-slate-400 sm:col-start-auto">{r.event}</p>
+                  <p className={`text-[15px] font-semibold ${r.upcoming ? "text-slate-300" : "text-white"}`}>{r.date}</p>
+                  <p className="col-start-2 text-[15px] leading-relaxed text-slate-400 sm:col-start-auto">{r.event}</p>
                   {r.upcoming ? (
-                    <span className="col-start-2 justify-self-start rounded-md border border-accent/25 bg-accent/[0.08] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent-soft sm:col-start-auto sm:mt-0.5">
+                    <span className="col-start-2 justify-self-start rounded-full border border-accent/25 bg-accent/[0.08] px-3 py-1 text-[12px] font-medium text-accent-soft sm:col-start-auto sm:mt-0.5">
                       Upcoming
                     </span>
                   ) : (
@@ -188,7 +188,7 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
 
 /** Prose styles for the per-page body, which arrives as plain h2, p, ul and table markup. */
 const PROSE =
-  "space-y-6 text-[15px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
+  "space-y-6 text-[15px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-[-0.02em] [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
 
 /**
  * Splits the per-page body into one chunk per rule: each chunk starts at the
@@ -206,7 +206,7 @@ function splitByRule(body: React.ReactNode, rows: RuleRow[]): Record<string, Rea
       current = child.props.id;
       // The anchor id moves to the row; the heading keeps its words, one level down.
       out[current] = [
-        <h3 key={`${current}-heading`} className="!text-xl !font-bold !tracking-tight sm:!text-2xl">
+        <h3 key={`${current}-heading`} className="!text-xl !font-semibold !tracking-[-0.02em] sm:!text-2xl">
           {child.props.children}
         </h3>,
       ];
@@ -218,7 +218,6 @@ function splitByRule(body: React.ReactNode, rows: RuleRow[]): Record<string, Rea
   return rows.every((r) => out[r.anchor]) ? out : null;
 }
 
-const H2 = "text-2xl font-bold tracking-tight text-white sm:text-[2rem] sm:leading-tight";
 
 export default function RuleTrackerPage(props: RuleTrackerProps) {
   reportStaleContent();
@@ -282,7 +281,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
             subhead={
               <>
                 <p>{props.intro}</p>
-                <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
+                <p className="mt-6 text-[13px] leading-relaxed text-slate-500">
                   A summary of public rules and court rulings, not legal advice. Confirm anything about your own case with
                   your DSO or an immigration attorney.
                 </p>
@@ -311,7 +310,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                   return (
                     <li
                       key={s}
-                      className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-slate-300"
+                      className="inline-flex items-center gap-2.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[13px] text-slate-300"
                     >
                       <StatusDot status={s} />
                       {STATUS_STYLE[s].label}
@@ -327,19 +326,19 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                     const style = STATUS_STYLE[row.status];
                     return (
                       <details key={row.anchor} id={row.anchor} className="group scroll-mt-28 border-t border-white/[0.06] first:border-t-0">
-                        <summary className="grid cursor-pointer list-none grid-cols-1 gap-3 p-5 transition-colors hover:bg-white/[0.02] sm:p-7 lg:grid-cols-[3rem_200px_minmax(0,1fr)_auto] lg:items-start lg:gap-8 [&::-webkit-details-marker]:hidden">
+                        <summary className="grid cursor-pointer list-none grid-cols-1 gap-3 p-5 transition-colors hover:bg-white/[0.02] sm:p-6 lg:grid-cols-[3rem_200px_minmax(0,1fr)_auto] lg:items-start lg:gap-8 [&::-webkit-details-marker]:hidden">
                           <span className="hidden font-mono text-[11px] text-accent-soft/70 lg:block lg:pt-1.5">{pad2(i + 1)}</span>
                           <span
-                            className={`inline-flex items-center gap-2 self-start justify-self-start shrink-0 rounded-md border px-2.5 py-1 text-[11px] font-semibold ${style.className}`}
+                            className={`inline-flex items-center gap-2 self-start justify-self-start shrink-0 rounded-full border px-3 py-1 text-[12px] font-medium ${style.className}`}
                           >
                             <StatusDot status={row.status} />
                             {style.label}
                           </span>
                           <span className="min-w-0">
                             <span className="block font-semibold text-white">{row.rule}</span>
-                            <span className="mt-1.5 block text-sm leading-relaxed text-slate-400">{row.summary}</span>
+                            <span className="mt-1.5 block text-[15px] leading-relaxed text-slate-400">{row.summary}</span>
                           </span>
-                          <span className="inline-flex items-center gap-2 text-[12px] font-medium text-slate-400 lg:mt-0.5">
+                          <span className="inline-flex items-center gap-2 text-[13px] font-medium text-slate-400 lg:mt-0.5">
                             <span className="group-open:hidden">Full detail</span>
                             <span className="hidden group-open:inline">Close</span>
                             <span aria-hidden="true" className="grid h-7 w-7 place-items-center rounded-full border border-white/[0.12] transition-transform duration-300 group-open:rotate-180">
@@ -349,7 +348,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                             </span>
                           </span>
                         </summary>
-                        <div className="border-t border-white/[0.05] px-5 pb-10 pt-8 sm:px-7 lg:pl-[calc(8.75rem+200px)]">
+                        <div className="border-t border-white/[0.05] px-5 pb-10 pt-8 sm:px-6 lg:pl-[calc(8.5rem+200px)]">
                           <div className={`max-w-[820px] ${PROSE}`}>{details[row.anchor]}</div>
                         </div>
                       </details>
@@ -360,14 +359,14 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 <>
                   <ul className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
                     {props.rows.map((row) => (
-                      <li key={row.anchor} className="flex flex-col gap-3 border-t border-white/[0.06] p-5 first:border-t-0 sm:flex-row sm:items-start sm:gap-8 sm:p-7">
-                        <span className={`inline-flex shrink-0 items-center gap-2 self-start rounded-md border px-2.5 py-1 text-[11px] font-semibold ${STATUS_STYLE[row.status].className}`}>
+                      <li key={row.anchor} className="flex flex-col gap-3 border-t border-white/[0.06] p-5 first:border-t-0 sm:flex-row sm:items-start sm:gap-8 sm:p-6">
+                        <span className={`inline-flex shrink-0 items-center gap-2 self-start rounded-full border px-3 py-1 text-[12px] font-medium ${STATUS_STYLE[row.status].className}`}>
                           <StatusDot status={row.status} />
                           {STATUS_STYLE[row.status].label}
                         </span>
                         <a href={`#${row.anchor}`} className="min-w-0">
                           <span className="block font-semibold text-white">{row.rule}</span>
-                          <span className="mt-1.5 block text-sm leading-relaxed text-slate-400">{row.summary}</span>
+                          <span className="mt-1.5 block text-[15px] leading-relaxed text-slate-400">{row.summary}</span>
                         </a>
                       </li>
                     ))}
@@ -406,7 +405,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
           <section data-section="sources" data-section-name="Sources" className={`py-16 ${PAD}`}>
             <div className={`${INNER} grid gap-12 lg:grid-cols-2 lg:gap-16`}>
               <div>
-                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
                   Sources, checked on <time dateTime={checkedAt}>{rulesCheckedLabel()}</time>
                 </h2>
                 <ol>
@@ -416,7 +415,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                         href={s.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex gap-3 py-3 text-sm leading-snug text-accent-soft transition-colors hover:text-white"
+                        className="group flex gap-3 py-3 text-[15px] leading-snug text-accent-soft transition-colors hover:text-white"
                       >
                         <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
                         <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
@@ -426,11 +425,11 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 </ol>
               </div>
               <nav data-section="related-links" data-section-name="Related guides" aria-label="Related guides">
-                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</h2>
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also useful</h2>
                 <ul className="grid gap-x-10 sm:grid-cols-2">
                   {props.relatedLinks.map((link) => (
                     <li key={link.href} className="border-b border-white/[0.05]">
-                      <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                         {link.label}
                         <Chevron className="text-slate-600 group-hover:text-slate-300" />
                       </Link>

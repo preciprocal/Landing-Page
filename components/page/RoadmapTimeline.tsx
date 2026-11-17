@@ -16,6 +16,7 @@ import { useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { CheckCircle2, Circle, Clock } from "lucide-react";
 import { pad2 } from "./Layout";
+import { BODY, H3, PILL } from "@/components/page/Layout";
 
 export type RoadmapStatus = "shipped" | "in-progress" | "planned";
 
@@ -59,7 +60,7 @@ function StatusBadge({ status }: { status: RoadmapStatus }) {
   const cfg = STATUS_CONFIG[status];
   const Icon = cfg.icon;
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] font-semibold ${cfg.badge}`}>
+    <span className={`${PILL} ${cfg.badge}`}>
       <Icon aria-hidden="true" className="h-3 w-3" />
       {cfg.label}
     </span>
@@ -145,7 +146,7 @@ export default function RoadmapTimeline({ items }: { items: RoadmapItem[] }) {
                 <div className="lg:flex lg:justify-center">
                   <h2
                     id={`lane-${status}`}
-                    className="inline-flex items-center gap-3 text-lg font-bold tracking-tight text-white lg:mt-9 lg:rounded-full lg:border lg:border-white/[0.08] lg:bg-[#070b16] lg:px-5 lg:py-2 lg:text-base"
+                    className="inline-flex items-center gap-3 text-lg font-semibold tracking-[-0.02em] text-white lg:mt-9 lg:rounded-full lg:border lg:border-white/[0.08] lg:bg-[#070b16] lg:px-5 lg:py-2 lg:text-base"
                   >
                     {STATUS_CONFIG[status].label}
                     <span className="font-mono text-[11px] font-normal text-slate-500">{pad2(entries.length)}</span>
@@ -170,21 +171,21 @@ export default function RoadmapTimeline({ items }: { items: RoadmapItem[] }) {
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
                         transition={{ duration: 0.55, ease: EASE }}
-                        className={`group relative rounded-2xl border border-white/[0.07] bg-[#070b16] p-5 transition-colors duration-300 hover:border-accent/25 sm:p-6 lg:row-start-1 ${
+                        className={`group relative rounded-xl border border-white/[0.07] bg-[#070b16] p-5 transition-colors duration-300 hover:border-accent/25 sm:p-6 lg:row-start-1 ${
                           right ? "lg:col-start-2" : "lg:col-start-1"
                         }`}
                       >
                         <div className="mb-3 flex flex-wrap items-center gap-2">
                           <StatusBadge status={item.status} />
                           {item.tag && (
-                            <span className="rounded-full border border-white/[0.08] px-2 py-0.5 text-[10px] font-semibold text-slate-300">
+                            <span className={`${PILL} border-white/[0.08] text-slate-300`}>
                               {item.tag}
                             </span>
                           )}
                           {item.date && <span className="ml-auto font-mono text-[11px] text-slate-400 lg:hidden">{item.date}</span>}
                         </div>
-                        <h3 className="mb-1.5 text-[15px] font-bold text-white">{item.title}</h3>
-                        <p className="text-sm leading-relaxed text-slate-400">{item.description}</p>
+                        <h3 className={`mb-1.5 ${H3}`}>{item.title}</h3>
+                        <p className={BODY}>{item.description}</p>
                         <span
                           aria-hidden="true"
                           className="absolute bottom-0 inset-x-6 h-px origin-left scale-x-0 bg-gradient-to-r from-accent to-accent-2 transition-transform duration-500 group-hover:scale-x-100"

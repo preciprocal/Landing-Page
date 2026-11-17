@@ -224,7 +224,7 @@ export function ProductItem({
   src: string;
 }) {
   return (
-    <Link href={href} className="flex items-start gap-3 group p-2 rounded-xl hover:bg-white/[0.04] transition-all">
+    <Link href={href} className="flex items-start gap-3 group p-2 rounded-lg hover:bg-white/[0.04] transition-all">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
@@ -235,7 +235,7 @@ export function ProductItem({
         <p className="text-[13px] font-semibold text-white group-hover:text-indigo-300 transition-colors">
           {title}
         </p>
-        <p className="text-[11px] text-slate-500 mt-0.5 leading-relaxed line-clamp-2">
+        <p className="text-[12px] text-slate-500 mt-0.5 leading-relaxed line-clamp-2">
           {description}
         </p>
       </div>

@@ -19,7 +19,7 @@ import { motion } from "framer-motion";
 import { RevealOnScroll, StaggerChildren, StaggerItem, GlowDivider } from "@/components/LandingAnimations";
 import { TextGenerateEffect } from "@/components/ui/TextGenerateEffect";
 
-import { H2 } from "@/components/page/Layout";
+import { BODY, H2, LABEL, SMALL } from "@/components/page/Layout";
 const FACTS = [
   {
     stat: "90",
@@ -61,12 +61,12 @@ const FACTS = [
 
 export default function ProblemSection() {
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden py-20">
       <div className="relative z-10 mx-auto max-w-4xl px-6">
         <GlowDivider />
 
         <RevealOnScroll className="mb-14 mt-10 text-center">
-          <p className="mb-3 text-[13px] font-semibold uppercase tracking-widest text-amber-400">The OPT reality</p>
+          <p className={`mb-3 ${LABEL} text-amber-400`}>The OPT reality</p>
           <h2 className={`${H2} mb-5`}>
             You are not just job hunting.
             <br />
@@ -74,7 +74,7 @@ export default function ProblemSection() {
           </h2>
           <TextGenerateEffect
             words="Domestic candidates can afford a slow search. On OPT, every week of generic applications is a week off your count. Fewer employers will sponsor, and the ones that do ask harder questions."
-            className="mx-auto max-w-xl text-base font-normal leading-relaxed text-slate-400"
+            className={`mx-auto max-w-xl ${BODY}`}
             duration={0.4}
           />
         </RevealOnScroll>
@@ -82,7 +82,7 @@ export default function ProblemSection() {
         <StaggerChildren className="space-y-3">
           {FACTS.map((f, i) => (
             <StaggerItem key={f.stat}>
-              <div className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-2xl border p-5 pl-6 sm:flex-row sm:items-center sm:gap-5 sm:pl-7 ${f.card}`}>
+              <div className={`relative flex flex-col items-start gap-2 overflow-hidden rounded-xl border p-5 pl-6 sm:flex-row sm:items-center sm:gap-5 sm:pl-7 ${f.card}`}>
                 {/* An accent stripe in the fact's colour, drawn top to bottom
                     on reveal. It marks the rule; it is not a measure, so it
                     has no length to misread. */}
@@ -95,7 +95,7 @@ export default function ProblemSection() {
                   className={`absolute inset-y-0 left-0 w-1 origin-top bg-gradient-to-b ${f.bar}`}
                 />
                 <div className="flex-shrink-0 sm:w-24 sm:text-right">
-                  <span className={`text-2xl font-black tracking-tight sm:text-3xl ${f.color}`}>{f.stat}</span>
+                  <span className={`text-2xl font-semibold tracking-[-0.03em] sm:text-3xl ${f.color}`}>{f.stat}</span>
                   {f.unit && <span className="ml-1 text-xs font-semibold text-slate-500">{f.unit}</span>}
                 </div>
                 <div className={`hidden h-10 w-px flex-shrink-0 sm:block ${f.divider}`} />
@@ -107,7 +107,7 @@ export default function ProblemSection() {
           ))}
         </StaggerChildren>
 
-        <p className="mt-5 text-center text-[12px] text-slate-500">
+        <p className={`mt-5 text-center ${SMALL}`}>
           Rules as published by USCIS and DHS. Not legal advice; your DSO has the final word on your case.{" "}
           <Link href="/opt" className="text-slate-300 underline decoration-white/20 underline-offset-4 hover:text-white">
             Read our OPT guides

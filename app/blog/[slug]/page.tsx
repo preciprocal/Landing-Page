@@ -7,7 +7,7 @@ import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, Breadcrumbs, HeroBackdrop } from "@/components/page/Layout";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, Breadcrumbs, HeroBackdrop, H2, H3, BODY, SMALL, LABEL, PILL, PANEL } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import ReadingProgress from "@/components/page/ReadingProgress";
 
@@ -27,11 +27,11 @@ const COLUMNS =
 
 function SidebarCTA() {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
-      <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+    <div className="relative overflow-hidden rounded-xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
+      <h3 className={`${H3} mb-2`}>
         Practice what you read
       </h3>
-      <p className="text-sm text-slate-400 leading-relaxed mb-5">
+      <p className={`${BODY} mb-5`}>
         AI mock interviews, resume scoring, cover letters, and job tracking,
         all in one place. $9.99/mo.
       </p>
@@ -92,14 +92,14 @@ function PracticeLinks({ category }: { category: string }) {
   const links = PRACTICE_LINKS[category];
   if (!links) return null;
   return (
-    <div className="mt-12 overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <p className="border-b border-white/[0.06] px-6 py-4 text-sm font-semibold text-white">Put this into practice</p>
+    <div className={`mt-12 overflow-hidden ${PANEL}`}>
+      <p className={`border-b border-white/[0.06] px-6 py-4 ${H3}`}>Put this into practice</p>
       <div className="grid gap-px bg-white/[0.06] sm:grid-cols-3 fill-sm-3">
         {links.map((l, i) => (
           <Link
             key={l.href}
             href={l.href}
-            className="group flex items-end justify-between gap-3 bg-[#070b16] px-6 py-5 text-sm text-slate-300 transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
+            className="group flex items-end justify-between gap-3 bg-[#070b16] px-6 py-5 text-[15px] text-slate-300 transition-colors hover:bg-[#0a1020] hover:text-white focus-visible:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-accent/60"
           >
             <span>
               <span className="mb-2 block font-mono text-[11px] text-accent-soft/60">{String(i + 1).padStart(2, "0")}</span>
@@ -151,18 +151,18 @@ function RelatedPosts({ currentSlug }: { currentSlug: string }) {
   }
   return (
     <div>
-      <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-slate-500 mb-3">
+      <p className={`${LABEL} text-slate-500 mb-3`}>
         More Posts
       </p>
       <ul className="divide-y divide-white/[0.05] border-y border-white/[0.05]">
         {related.map((post) => (
           <li key={post.slug} className="py-4">
-            <p className="text-[10px] font-semibold tracking-[0.1em] uppercase text-accent-soft/90 mb-1.5">
+            <p className={`${LABEL} text-accent-soft/90 mb-1.5`}>
               {post.category.toUpperCase()}
             </p>
             <Link
               href={`/blog/${post.slug}`}
-              className="text-sm font-medium text-slate-300 hover:text-white leading-snug transition-colors block"
+              className="text-[15px] font-medium text-slate-300 hover:text-white leading-snug transition-colors block"
             >
               {post.title}
             </Link>
@@ -223,7 +223,7 @@ function renderMarkdown(content: string) {
     // H1 (fallback)
     if (line.startsWith("# ")) {
       elements.push(
-        <h1 key={key++} className="text-2xl font-bold text-white mb-4">
+        <h1 key={key++} className={`${H2} mb-4`}>
           {parseInline(line.slice(2))}
         </h1>
       );
@@ -274,7 +274,7 @@ function renderMarkdown(content: string) {
       }
       elements.push(
         <div key={key++} className="overflow-x-auto my-6">
-          <table className="w-full text-sm border-collapse">
+          <table className="w-full text-[15px] border-collapse">
             <thead>
               <tr>
                 {headers.map((h, idx) => (
@@ -336,8 +336,8 @@ export default function BlogArticlePage() {
       <style>{`
         .prose-article {
           color: #cbd5e1;
-          font-size: 1.0625rem;
-          line-height: 1.8;
+          font-size: 1rem;
+          line-height: 1.75;
           font-weight: 400;
           text-wrap: pretty;
         }
@@ -346,12 +346,12 @@ export default function BlogArticlePage() {
         .prose-article h2 {
           position: relative;
           font-size: 1.625rem;
-          font-weight: 700;
+          font-weight: 600;
           color: #f8fafc;
           margin: 3.25rem 0 1rem;
           padding-top: 2.25rem;
           border-top: 1px solid rgba(255,255,255,0.06);
-          letter-spacing: -0.02em;
+          letter-spacing: -0.03em;
           line-height: 1.3;
           text-wrap: balance;
           scroll-margin-top: 7rem;
@@ -368,7 +368,7 @@ export default function BlogArticlePage() {
         .prose-article > h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
         .prose-article > h2:first-child::before { display: none; }
         .prose-article h3 {
-          font-size: 1.1875rem;
+          font-size: 1.0625rem;
           font-weight: 600;
           color: #e2e8f0;
           margin: 2.25rem 0 0.625rem;
@@ -407,7 +407,7 @@ export default function BlogArticlePage() {
           background: linear-gradient(90deg, rgb(var(--accent-deep) / 0.1), rgb(var(--accent-deep) / 0.02));
           padding: 1.1rem 1.4rem;
           margin: 2rem 0;
-          border-radius: 0 0.875rem 0.875rem 0;
+          border-radius: 0 0.75rem 0.75rem 0;
           font-style: italic;
           color: #e2e8f0;
           font-size: 1rem;
@@ -435,31 +435,31 @@ export default function BlogArticlePage() {
         {/* Header: meta, H1 and author, aligned to the article column */}
         <header className={`relative overflow-hidden pb-12 pt-12 sm:pt-14 ${PAD}`}>
           <HeroBackdrop />
-          <div className={`relative ${INNER} ${COLUMNS}`}>
+          <div className={`relative ${INNER}  ${COLUMNS}`}>
             <div className="max-w-[860px] animate-fade-up opacity-0 lg:col-start-2">
               {/* Meta row */}
               <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-2">
-                <span className="rounded-full border border-accent/25 bg-accent-deep/[0.08] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-accent-soft">
+                <span className={`${PILL} border-accent/25 bg-accent-deep/[0.08] text-accent-soft`}>
                   {post.category}
                 </span>
-                <span className="text-xs text-slate-500">{post.readTime}</span>
+                <span className={SMALL}>{post.readTime}</span>
                 <span className="text-slate-700" aria-hidden="true">·</span>
-                <span className="text-xs text-slate-500">Updated {updatedDate}</span>
+                <span className={SMALL}>Updated {updatedDate}</span>
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-[2.75rem]">
+              <h1 className={H2}>
                 {post.title}
               </h1>
 
               {/* Author row */}
               <div className="mt-8 flex items-center gap-3">
-                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-accent-deep/20 text-xs font-bold text-accent-soft">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border border-accent/30 bg-accent-deep/20 text-[13px] font-semibold text-accent-soft">
                   P
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-slate-300">Preciprocal Team</p>
-                  <p className="text-xs text-slate-600">preciprocal.com</p>
+                  <p className="text-[15px] font-medium text-slate-300">Preciprocal Team</p>
+                  <p className="text-[13px] text-slate-600">preciprocal.com</p>
                 </div>
               </div>
             </div>
@@ -467,7 +467,7 @@ export default function BlogArticlePage() {
         </header>
 
         <div className={`border-t border-white/[0.05] pb-24 pt-12 sm:pt-14 ${PAD}`}>
-          <div className={`${INNER} ${COLUMNS}`}>
+          <div className={`${INNER}  ${COLUMNS}`}>
 
             {/* Main column, kept at reading width */}
             <article className="min-w-0 max-w-[860px] lg:col-start-2 lg:row-start-1">
@@ -486,17 +486,17 @@ export default function BlogArticlePage() {
 
               {/* Footer CTA */}
               <Reveal>
-                <div className="relative mt-12 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] p-8 text-center sm:p-10">
+                <div className={`relative mt-12 overflow-hidden ${PANEL} p-8 text-center sm:p-10`}>
                   <div
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_90%_at_50%_100%,black,transparent)]"
                     style={GRID_BG}
                   />
                   <div className="relative">
-                    <p className="text-xl font-semibold text-white mb-2">
+                    <p className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl mb-2">
                       Ready to land the role?
                     </p>
-                    <p className="text-sm text-slate-400 mb-6 max-w-sm mx-auto">
+                    <p className={`${BODY} mb-6 max-w-sm mx-auto`}>
                       Resume analysis, mock interviews, cover letters, and job tracking, all in one place. Free to start.
                     </p>
                     <a
@@ -506,7 +506,7 @@ export default function BlogArticlePage() {
                       Start free <Chevron />
                     </a>
                     {post.category === "Visa & Immigration" && (
-                      <p className="text-[12px] text-slate-500 mt-5">
+                      <p className={`${SMALL} mt-5`}>
                         On F-1 or OPT?{" "}
                         <Link href="/for/international-students" className="text-accent-soft hover:text-white underline underline-offset-2">
                           See how Preciprocal works for international students

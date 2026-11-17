@@ -153,7 +153,7 @@ export default function ChromeExtensionPage() {
                 "Interview prep, the requirements you're about to be questioned on",
                 "Duplicate detection, a warning before you apply to the same role twice",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-indigo-400 flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>

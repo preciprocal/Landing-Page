@@ -27,7 +27,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, SectionHead, CtaPanel, Fold, pad2, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Eyebrow, SectionHead, CtaPanel, Fold, pad2, FaqSection, BODY, H3, LABEL } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
 
@@ -199,11 +199,11 @@ export default function CoverLetterGeneratorPage() {
               />
               {STEPS.map((step, i) => (
                 <RevealItem as="li" key={step.number} className="relative text-center">
-                  <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft">
+                  <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-semibold text-accent-soft">
                     {i + 1}
                   </span>
-                  <h3 className="mt-6 text-lg font-semibold text-white">{step.title}</h3>
-                  <p className="mx-auto mt-2 max-w-sm text-[15px] leading-relaxed text-slate-400">{step.description}</p>
+                  <h3 className={`mt-6 ${H3}`}>{step.title}</h3>
+                  <p className={`mx-auto mt-2 max-w-sm ${BODY}`}>{step.description}</p>
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -225,7 +225,7 @@ export default function CoverLetterGeneratorPage() {
               ].map(({ stat, label }) => (
                 <div key={stat} className="flex flex-col-reverse border-t border-white/[0.08] pt-5 text-center">
                   <dt className="mt-1 text-[13px] text-slate-400">{label}</dt>
-                  <dd className={`text-3xl font-extrabold tracking-tight sm:text-4xl ${ACCENT_TEXT}`}>{stat}</dd>
+                  <dd className={`text-3xl font-semibold tracking-[-0.03em] sm:text-4xl ${ACCENT_TEXT}`}>{stat}</dd>
                 </div>
               ))}
             </dl>
@@ -241,7 +241,7 @@ export default function CoverLetterGeneratorPage() {
         <section aria-label="More about the cover letter generator" className={`border-t border-white/[0.05] py-16 ${PAD}`}>
           <div className={`${INNER} space-y-4`}>
             <Fold eyebrow="What is different" title="Why this is different from other cover letter generators">
-              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+              <p className={`mb-8 max-w-3xl ${BODY}`}>
                 Most generators fill in a template with your name and job title. Here is what Preciprocal actually does differently.
               </p>
               <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
@@ -249,14 +249,14 @@ export default function CoverLetterGeneratorPage() {
                   <div key={title} className="border-t border-white/[0.08] pt-5">
                     <span className="font-mono text-[11px] text-accent-soft/80">{pad2(i + 1)}</span>
                     <h3 className="mt-2 font-semibold text-white">{title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-400">{body}</p>
+                    <p className={`mt-2 ${BODY}`}>{body}</p>
                   </div>
                 ))}
               </div>
             </Fold>
 
             <Fold eyebrow="Who it's for" title="Built for students and new grads specifically">
-              <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-slate-400">
+              <p className={`mb-8 max-w-3xl ${BODY}`}>
                 Most cover letter tools are built for people who have years of work history to reference. Preciprocal is
                 built for the version of you that is applying to your first or second real job, where your strongest
                 material might be a university project, an internship, or a bootcamp capstone.
@@ -279,7 +279,7 @@ export default function CoverLetterGeneratorPage() {
                   <li key={title} className="border-t border-white/[0.08] pt-5">
                     <span className="font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
                     <h3 className="mt-2 font-semibold text-white">{title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+                    <p className={`mt-1.5 ${BODY}`}>{body}</p>
                   </li>
                 ))}
               </ol>
@@ -289,10 +289,10 @@ export default function CoverLetterGeneratorPage() {
             <section aria-label="Pair with ATS resume checker" className="grid gap-6 border-t border-white/[0.08] pt-8 !mt-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="max-w-2xl">
                 <Eyebrow>Before you submit</Eyebrow>
-                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                <h2 className="text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">
                   Your cover letter and your resume should work together
                 </h2>
-                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                <p className={`mt-2 ${BODY}`}>
                   A strong cover letter won&apos;t save a resume that fails ATS. Before you submit, check
                   your resume score for the same job description.
                 </p>
@@ -315,7 +315,7 @@ export default function CoverLetterGeneratorPage() {
 
             {/* Internal links */}
             <nav aria-label="Related tools and resources" className="!mt-12">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Related tools</p>
+              <p className={`mb-3 ${LABEL} text-slate-500`}>Related tools</p>
               <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
                 {[
                   { label: "Free ATS Resume Checker", href: "/free-ats-checker" },

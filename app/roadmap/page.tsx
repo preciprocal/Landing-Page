@@ -14,7 +14,7 @@ import { APP_URL } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, Eyebrow, Fold, PageHero, CtaPanel, pad2, H2 } from "@/components/page/Layout";
+import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, Fold, H2, H3, INNER, PAD, PILL, PageHero, SECTION, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import type { RoadmapItem, RoadmapStatus } from "@/components/page/RoadmapTimeline";
 
@@ -30,14 +30,14 @@ function ItemBody({ item }: { item: RoadmapItem }) {
     <>
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {item.tag && (
-          <span className="rounded-full border border-white/[0.08] px-2 py-0.5 text-[10px] font-semibold text-slate-300">
+          <span className={`${PILL} border-white/[0.08] text-slate-300`}>
             {item.tag}
           </span>
         )}
         {item.date && <span className="font-mono text-[11px] text-slate-400">{item.date}</span>}
       </div>
-      <h3 className="mb-1.5 text-[16px] font-bold text-white">{item.title}</h3>
-      <p className="text-sm leading-relaxed text-slate-400">{item.description}</p>
+      <h3 className={`mb-1.5 ${H3}`}>{item.title}</h3>
+      <p className={BODY}>{item.description}</p>
     </>
   );
 }
@@ -239,14 +239,14 @@ export default function RoadmapPage() {
           }
           aside={
             /* Live counts, on the right of the title on wide screens */
-            <dl className="grid w-full grid-cols-3 text-left lg:w-[520px] divide-x divide-white/[0.07] overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.025]">
+            <dl className="grid w-full grid-cols-3 text-left lg:w-[520px] divide-x divide-white/[0.07] overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02]">
               {counts.map((c) => (
                 <div key={c.label} className="flex flex-col-reverse gap-1 px-4 py-4 sm:px-6">
-                  <dt className="flex items-center gap-2 text-[12px] font-medium text-slate-400">
+                  <dt className="flex items-center gap-2 text-[13px] font-medium text-slate-400">
                     <span aria-hidden="true" className={`h-2 w-2 shrink-0 rounded-full ${c.dot}`} />
                     {c.label}
                   </dt>
-                  <dd className="text-2xl font-extrabold text-white sm:text-3xl">{c.value}</dd>
+                  <dd className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">{c.value}</dd>
                 </div>
               ))}
             </dl>
@@ -295,7 +295,7 @@ export default function RoadmapPage() {
         </section>
 
         {/* Suggest a feature */}
-        <section className={`pb-24 pt-4 ${PAD}`}>
+        <section className={`pb-20 pt-4 ${PAD}`}>
           <Reveal>
             <CtaPanel
               title="Have a feature idea?"

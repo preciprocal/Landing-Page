@@ -222,14 +222,14 @@ function getCoverLetterFAQs(roleName: string, content: ReturnType<typeof getRole
 
 // ── Layout helpers ────────────────────────────────────────────────────────────
 const FOCUS = "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
-const LIST_LABEL = "mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500";
+const LIST_LABEL = "mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500";
 
 function LinkList({ links }: { links: { href: string; label: string }[] }) {
   return (
     <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
       {links.map((link) => (
         <li key={link.href} className="border-b border-white/[0.05]">
-          <Link href={link.href} className={`group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white ${FOCUS}`}>
+          <Link href={link.href} className={`group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white ${FOCUS}`}>
             {link.label}
             <Chevron className="text-slate-600 group-hover:text-slate-300" />
           </Link>
@@ -339,7 +339,7 @@ export default async function CoverLetterExampleRolePage({
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Write mine in 60 seconds <Chevron />
               </a>
-              <p className="text-[12px] text-slate-500">2 free cover letters a month · No credit card</p>
+              <p className="text-[13px] text-slate-500">2 free cover letters a month · No credit card</p>
             </div>
           }
         >
@@ -352,8 +352,8 @@ export default async function CoverLetterExampleRolePage({
             ].map((item) => (
               <div key={item.label} className="relative bg-[#070b16] p-6">
                 <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent-2/50 to-transparent" />
-                <dt className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">{item.label}</dt>
-                <dd className={`mt-2 text-base font-semibold text-accent-soft ${item.mono ? "font-mono tabular-nums" : ""}`}>{item.value}</dd>
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">{item.label}</dt>
+                <dd className={`mt-2 font-semibold text-accent-soft text-[17px] ${item.mono ? "font-mono tabular-nums" : ""}`}>{item.value}</dd>
               </div>
             ))}
           </dl>
@@ -376,7 +376,7 @@ export default async function CoverLetterExampleRolePage({
                 {sections.map((section, i) => (
                   <div key={i} className="relative mt-7 first:mt-0">
                     <span
-                      className="mb-2 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.14em]"
+                      className="mb-2 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-semibold uppercase tracking-[0.16em]"
                       style={{ background: section.badgeColor + "26", color: "#334155" }}
                     >
                       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full" style={{ background: section.badgeColor }} />
@@ -393,13 +393,13 @@ export default async function CoverLetterExampleRolePage({
                 <RevealItem key={i}>
                   <div className="flex items-center gap-3">
                     <span
-                      className="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold"
+                      className="inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-semibold"
                       style={{ background: section.badgeColor + "14", borderColor: section.badgeColor + "40", color: section.badgeColor }}
                     >
                       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full" style={{ background: section.badgeColor }} />
                       {section.badge}
                     </span>
-                    <h3 className="text-base font-semibold text-white">{section.label}</h3>
+                    <h3 className="font-semibold text-white text-[17px]">{section.label}</h3>
                   </div>
                   <p className="mt-3 text-[15px] leading-relaxed text-slate-400">{section.guidance}</p>
                 </RevealItem>
@@ -410,10 +410,10 @@ export default async function CoverLetterExampleRolePage({
             <Reveal className="mt-16">
               <div className="flex flex-col gap-6 rounded-2xl border border-accent/20 bg-accent-deep/[0.05] p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
                 <div className="max-w-2xl">
-                  <h2 className="text-lg font-bold text-white">
+                  <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
                     Generate a tailored {roleName} cover letter in 60 seconds
                   </h2>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  <p className="mt-2 text-[15px] leading-relaxed text-slate-400">
                     Paste your job description and Preciprocal&apos;s AI researches the company, matches your
                     resume to the role, and writes a personalised letter. Free to start, no credit card
                     required.
@@ -431,17 +431,17 @@ export default async function CoverLetterExampleRolePage({
         <FaqSection className="scroll-mt-24" items={faqs} sectionProps={{ "id": "faq", "aria-label": `${roleName} cover letter FAQ` }} />
 
         {/* 3. Writing tips folded, then the related links */}
-        <section className={`${SECTION} ${PAD}`}>
+        <section className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
             <div id="tips" className="scroll-mt-24">
               <Fold eyebrow="Writing tips" title={`${roleName} cover letter tips`} meta={`${tips.length} tips`}>
                 <ol className="grid gap-x-12 gap-y-8 md:grid-cols-2">
                   {tips.map((tip, i) => (
                     <li key={i} className="flex gap-4">
-                      <span className="mt-0.5 shrink-0 font-mono text-[12px] text-accent-soft/80">{pad2(i + 1)}</span>
+                      <span className="mt-0.5 shrink-0 font-mono text-[13px] text-accent-soft/80">{pad2(i + 1)}</span>
                       <div>
                         <h3 className="text-[15px] font-semibold text-slate-100">{tip.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-slate-400">{tip.body}</p>
+                        <p className="mt-2 text-[15px] leading-relaxed text-slate-400">{tip.body}</p>
                       </div>
                     </li>
                   ))}
@@ -465,12 +465,12 @@ export default async function CoverLetterExampleRolePage({
               {meta.topCompanies.length > 0 && (
                 <section id="companies" aria-label={`Top companies hiring ${roleName}s`} className="scroll-mt-24">
                   <h2 className={LIST_LABEL}>Top companies hiring {roleName}s</h2>
-                  <p className="mb-4 text-sm text-slate-500">
+                  <p className="mb-4 text-[15px] text-slate-500">
                     Tailor your cover letter for each company. Reference something specific about their product, culture, or recent work.
                   </p>
                   <ul className="flex flex-wrap gap-2">
                     {meta.topCompanies.map((company) => (
-                      <li key={company} className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-sm text-slate-300">
+                      <li key={company} className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-slate-300">
                         {company}
                       </li>
                     ))}
@@ -487,7 +487,7 @@ export default async function CoverLetterExampleRolePage({
             <CtaPanel
               title={<>Generate your {roleName} cover letter free</>}
               body={
-                <p className="max-w-lg text-sm">
+                <p className="max-w-lg text-[15px]">
                   Paste the job description and our AI researches the company, matches your resume to the
                   role, and writes a personalised letter in under 60 seconds. 2 cover letters per month
                   free, no credit card required.
@@ -498,7 +498,7 @@ export default async function CoverLetterExampleRolePage({
                   <a href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
                     Generate free <Chevron />
                   </a>
-                  <Link href="/cover-letter-examples" className={`${BTN_SECONDARY} ${FOCUS}`}>
+                  <Link href="/cover-letter-examples" className={`${BTN_SECONDARY}  ${FOCUS}`}>
                     Browse all examples
                   </Link>
                 </div>

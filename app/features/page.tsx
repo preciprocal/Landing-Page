@@ -26,7 +26,7 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { PAD, INNER, ACCENT_TEXT, BTN_PRIMARY, CtaPanel, Eyebrow, PageHero, pad2, H2 } from "@/components/page/Layout";
+import { ACCENT_TEXT, BODY, BTN_PRIMARY, CtaPanel, Eyebrow, H2, H3, INNER, PAD, PageHero, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 type Feature = {
@@ -214,10 +214,10 @@ function ToolItem({ feature, index }: { feature: Feature; index: number }) {
       className="group flex h-full flex-col border-t border-white/[0.08] pt-6 transition-colors hover:border-white/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
     >
       <span className="font-mono text-[11px] text-accent-soft/80">{pad2(index)}</span>
-      <h3 className="mt-3 text-lg font-semibold leading-tight text-white">{feature.name}</h3>
-      <p className="mt-2 text-[14.5px] italic leading-snug text-slate-300">{feature.pain}</p>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{feature.promise}</p>
-      <span className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-medium text-accent-soft transition-colors group-hover:text-white">
+      <h3 className={`mt-3 ${H3}`}>{feature.name}</h3>
+      <p className="mt-2 text-[15px] italic leading-snug text-slate-300">{feature.pain}</p>
+      <p className={`mt-2 flex-1 ${BODY}`}>{feature.promise}</p>
+      <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-soft transition-colors group-hover:text-white">
         See how it works
         <Chevron />
       </span>
@@ -259,7 +259,7 @@ export default function FeaturesPage() {
           }
         >
           <nav aria-label="Search stages">
-            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
+            <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-4 fill-sm-2 fill-lg-4">
               {STAGES.map((stage, i) => (
                 <li key={stage.title} className="bg-[#070b16]">
                   <a
@@ -268,8 +268,8 @@ export default function FeaturesPage() {
                   >
                     <span className="font-mono text-[12px] text-accent-soft">{pad2(i + 1)}</span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-medium text-white transition-colors group-hover:text-accent-soft">{stage.title}</span>
-                      <span className="block text-[12px] text-slate-400">{stage.features.length} tools</span>
+                      <span className="block text-[15px] font-medium text-white transition-colors group-hover:text-accent-soft">{stage.title}</span>
+                      <span className="block text-[13px] text-slate-400">{stage.features.length} tools</span>
                     </span>
                     <Chevron className="text-slate-500 group-hover:text-accent-soft" />
                   </a>
@@ -289,7 +289,7 @@ export default function FeaturesPage() {
               data-section={`feature-stage-${stageSlug(stage.title)}`}
               data-section-name={stage.title}
               aria-label={stage.title}
-              className={`scroll-mt-24 border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}
+              className={`scroll-mt-24 border-t border-white/[0.05] py-20 ${PAD}`}
             >
               <div className={INNER}>
                 <Reveal className="mx-auto mb-12 max-w-2xl text-center">
@@ -297,7 +297,7 @@ export default function FeaturesPage() {
                     {pad2(stageIndex + 1)} · {stage.eyebrow}
                   </Eyebrow>
                   <h2 className={H2}>{stage.title}</h2>
-                  <p className="mt-4 text-[15.5px] leading-relaxed text-slate-400">{stage.intro}</p>
+                  <p className={`mt-4 ${BODY}`}>{stage.intro}</p>
                 </Reveal>
 
                 <RevealGroup className={`grid grid-cols-1 gap-x-10 gap-y-10 ${COLS[stage.features.length] ?? COLS[4]}`}>
@@ -317,7 +317,7 @@ export default function FeaturesPage() {
           data-section="features-cta"
           data-section-name="Features CTA"
           aria-label="Get started"
-          className={`border-t border-white/[0.05] py-16 sm:py-20 ${PAD}`}
+          className={`border-t border-white/[0.05] py-20 ${PAD}`}
         >
           <Reveal>
             <CtaPanel

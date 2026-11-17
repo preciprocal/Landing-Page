@@ -9,6 +9,7 @@ import Link from "next/link";
 import PreferredSourceBadge from "@/components/PreferredSourceBadge";
 import { useState } from "react";
 import { resetConsent } from "@/lib/consent";
+import { LABEL } from "@/components/page/Layout";
 
 const FOOTER_COLUMNS = [
   {
@@ -158,13 +159,13 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <img src="/logo.png" alt="Preciprocal" className="w-8 h-8 rounded-lg" />
-              <span className="text-lg font-bold text-white">Preciprocal</span>
+              <span className="text-lg font-semibold tracking-[-0.02em] text-white">Preciprocal</span>
             </Link>
-            <p className="text-sm text-slate-500 leading-relaxed max-w-[260px]">
+            <p className="text-[13px] text-slate-500 leading-relaxed max-w-[260px]">
               Career prep for F-1 students on OPT. Make every application
               count before the clock runs out.
             </p>
-            <p className="text-[12px] text-slate-600 mt-4">
+            <p className="text-[13px] text-slate-600 mt-4">
               Built by students, for students.
             </p>
           </div>
@@ -172,7 +173,7 @@ export default function Footer() {
           {/* Link columns */}
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
-              <p className="text-[13px] font-semibold text-slate-400 uppercase tracking-wider mb-4">
+              <p className={`${LABEL} text-slate-400 mb-4`}>
                 {col.title}
               </p>
               <div className="flex flex-col gap-3">
@@ -181,7 +182,7 @@ export default function Footer() {
                     <a
                       key={link.label}
                       href={link.href}
-                      className="text-sm text-slate-500 hover:text-slate-200 transition-colors"
+                      className="text-[13px] text-slate-500 hover:text-slate-200 transition-colors"
                     >
                       {link.label}
                     </a>
@@ -189,7 +190,7 @@ export default function Footer() {
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="text-sm text-slate-500 hover:text-slate-200 transition-colors"
+                      className="text-[13px] text-slate-500 hover:text-slate-200 transition-colors"
                     >
                       {link.label}
                     </Link>

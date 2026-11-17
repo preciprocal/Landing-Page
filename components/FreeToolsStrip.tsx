@@ -24,7 +24,7 @@ import { MotionConfig, motion } from "framer-motion";
 import { CalendarClock, FileCheck2, Mail, MessageSquareText } from "lucide-react";
 import Chevron from "@/components/Chevron";
 
-import { H2 } from "@/components/page/Layout";
+import { BODY, H2, H3, LABEL } from "@/components/page/Layout";
 /**
  * Each card opens on the moment a job seeker is in, then says what the tool
  * does about it. Keep every claim checkable: the timings come from the tools
@@ -87,18 +87,18 @@ export default function FreeToolsStrip() {
       <div className="border-t border-white/[0.04] px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto w-full max-w-[1200px]">
           <div className="mb-10 text-center sm:mb-12">
-            <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-emerald-300">Free, no account needed</p>
+            <p className={`mb-3 ${LABEL} text-emerald-300`}>Free, no account needed</p>
             <h2 className={`${H2} mb-4`}>
               The job search is hard enough.
               <span className="block bg-gradient-to-r from-indigo-300 to-purple-400 bg-clip-text text-transparent">Start with what is worrying you.</span>
             </h2>
-            <p className="mx-auto max-w-2xl text-slate-400">
+            <p className={`mx-auto max-w-2xl ${BODY}`}>
               The resume nobody answers, the interview you cannot predict, the OPT days you keep counting in your head. Pick one and get an answer in under a minute.
             </p>
           </div>
 
           <motion.ul
-            className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4"
+            className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-80px" }}
@@ -114,26 +114,26 @@ export default function FreeToolsStrip() {
               >
                 <Link
                   href={t.href}
-                  className="group flex h-full items-center gap-4 rounded-2xl border border-white/[0.07] bg-[#070b16] p-4 transition-colors duration-300 hover:border-white/[0.16] hover:bg-[#0a0f1d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 sm:flex-col sm:items-stretch sm:gap-0 sm:p-6"
+                  className="group flex h-full items-center gap-4 rounded-xl border border-white/[0.07] bg-[#070b16] p-5 transition-colors duration-300 hover:border-white/[0.16] hover:bg-[#0a0f1d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 sm:flex-col sm:items-stretch sm:gap-0 sm:p-6"
                 >
                   <div className="flex shrink-0 items-start justify-between sm:mb-5">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-indigo-400/20 bg-indigo-500/[0.12] text-indigo-200">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-indigo-400/20 bg-indigo-500/[0.12] text-indigo-200">
                       <t.Icon className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
                     </span>
                     {t.tag && (
-                      <span className="hidden rounded-md bg-emerald-500/15 px-2 py-0.5 text-[11px] font-semibold text-emerald-300 sm:inline">{t.tag}</span>
+                      <span className="hidden rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[12px] font-medium text-emerald-300 sm:inline">{t.tag}</span>
                     )}
                   </div>
 
                   <div className="min-w-0 flex-1 sm:flex sm:flex-col">
                     <p className="text-[13px] font-medium text-indigo-200/80 sm:mb-1.5">{t.moment}</p>
-                    <p className="text-[16px] font-semibold leading-snug text-white sm:mb-2.5 sm:text-lg">{t.title}</p>
-                    <p className="hidden text-sm leading-relaxed text-slate-400 sm:mb-6 sm:block">{t.body}</p>
+                    <p className={`${H3} sm:mb-2.5`}>{t.title}</p>
+                    <p className={`hidden ${BODY} sm:mb-6 sm:block`}>{t.body}</p>
                     <div className="mt-auto hidden items-center justify-between gap-3 border-t border-white/[0.06] pt-4 sm:flex">
                       <span className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold text-indigo-300 transition-colors group-hover:text-indigo-200">
                         {t.cta} <Chevron />
                       </span>
-                      <span className="whitespace-nowrap text-[11px] text-slate-500">{t.time}</span>
+                      <span className="whitespace-nowrap text-[13px] text-slate-500">{t.time}</span>
                     </div>
                   </div>
 
@@ -145,13 +145,13 @@ export default function FreeToolsStrip() {
           </motion.ul>
 
           <nav aria-label="Guides" className="mt-12 border-t border-white/[0.06] pt-8">
-            <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Or start with a guide</p>
+            <p className={`mb-4 text-center ${LABEL} text-slate-500`}>Or start with a guide</p>
             <ul className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
               {GUIDES.map((g) => (
                 <li key={g.href} className="border-b border-white/[0.05]">
                   <Link
                     href={g.href}
-                    className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
+                    className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                   >
                     {g.label}
                     <Chevron className="text-slate-600 transition-colors group-hover:text-slate-300" />

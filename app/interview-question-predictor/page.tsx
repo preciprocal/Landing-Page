@@ -152,7 +152,7 @@ export default function InterviewQuestionPredictorPage() {
                 "Soft phrases signal real problems. “Comfortable with ambiguity” or “juggling requests from several teams” usually means the team is stretched, and you will be asked how you prioritise.",
                 "Seniority words set the bar. “Own”, “lead” and “define” mean they want examples where you made the call, not ones where you helped.",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                   <span>{item}</span>
                 </li>
@@ -182,7 +182,7 @@ export default function InterviewQuestionPredictorPage() {
                 "Does it end on a result, ideally one with a number?",
                 "Would it take between one and two minutes to say out loud?",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                   <span>{item}</span>
                 </li>

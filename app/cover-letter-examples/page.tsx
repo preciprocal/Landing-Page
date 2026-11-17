@@ -72,9 +72,9 @@ export default function CoverLetterExamplesIndexPage() {
           <div className={`${INNER} space-y-14 border-t border-white/[0.05] pt-16`}>
             {grouped.map(({ category, roles }) => (
               <section key={category}>
-                <h2 className="mb-3 flex items-baseline gap-3 text-lg font-semibold tracking-tight text-white">
+                <h2 className="mb-3 flex items-baseline gap-3 text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
                   {category}
-                  <span className="text-sm font-normal text-slate-500">
+                  <span className="text-[15px] font-normal text-slate-500">
                     {roles.length} example{roles.length !== 1 ? "s" : ""}
                   </span>
                 </h2>
@@ -88,7 +88,7 @@ export default function CoverLetterExamplesIndexPage() {
                           href={`/cover-letter-examples/${role}`}
                           className="group flex items-center gap-3 py-3 text-[15px] text-slate-300 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                         >
-                          <span aria-hidden="true" className="text-base">{display.icon}</span>
+                          <span aria-hidden="true" className="text-[15px]">{display.icon}</span>
                           <span className="min-w-0 flex-1 truncate">{display.name}</span>
                           <Chevron className="text-slate-600 group-hover:text-slate-300" />
                         </Link>
@@ -100,14 +100,14 @@ export default function CoverLetterExamplesIndexPage() {
             ))}
 
             <nav aria-label="Related guides" className="pt-4">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also useful</p>
               <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {[
                   { href: "/resume-tips", label: "Browse resume tips" },
                   { href: "/interview-questions", label: "Browse interview guides" },
                 ].map((link) => (
                   <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                       {link.label}
                       <Chevron className="text-slate-600 group-hover:text-slate-300" />
                     </Link>

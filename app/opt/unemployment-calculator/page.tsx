@@ -118,8 +118,8 @@ export default function UnemploymentCalculatorPage() {
             SEVP&apos;s OPT policy guidance lists the kinds of employment that count on regular post-completion OPT. All
             of them must be directly related to your degree program.
           </p>
-          <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
-            <ul className="space-y-4 text-sm">
+          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+            <ul className="space-y-4 text-[15px]">
               {[
                 ["Paid employment", "Part time (at least 20 hours a week) or full time."],
                 ["Multiple employers", "You can work for more than one employer, as long as every job is related to your degree. Ask your DSO how hours across several part-time jobs will be counted."],

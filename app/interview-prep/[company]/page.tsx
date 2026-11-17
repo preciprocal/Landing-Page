@@ -116,12 +116,12 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
             <div className="grid items-end gap-10 lg:grid-cols-[minmax(0,1fr)_380px] xl:gap-20">
               <div className="max-w-4xl animate-fade-up opacity-0">
                 <div className="mb-7 flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-deep/[0.08] px-3.5 py-1.5 text-[12px] font-medium text-accent-soft">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-deep/[0.08] px-3 py-1 text-[12px] font-medium text-accent-soft">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
                     {meta.tier}
                   </span>
                   <span
-                    className="rounded-full border px-3.5 py-1.5 text-[12px] font-medium"
+                    className="rounded-full border px-3 py-1 text-[12px] font-medium"
                     style={{ color: diffStyle.color, background: diffStyle.bg, borderColor: diffStyle.border }}
                   >
                     {meta.difficulty}
@@ -198,7 +198,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
               />
               {stages.map((stage, i) => (
                 <RevealItem as="li" key={i} className="relative flex gap-5 lg:block lg:text-center">
-                  <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-bold text-accent-soft lg:mx-auto">
+                  <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-semibold text-accent-soft lg:mx-auto">
                     {i + 1}
                   </span>
                   <div className="min-w-0 pt-2.5 lg:pt-0">
@@ -222,7 +222,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
               <div className="mt-16 flex flex-col gap-5 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
                   <p className="text-[17px] font-semibold text-white">Rehearse every round before the real one.</p>
-                  <p className="mt-1.5 text-[14.5px] leading-relaxed text-slate-400">
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">
                     A voice mock interview with an AI panel that asks follow-ups, scored on communication,
                     technical depth and structure. The nerves fade once you&apos;ve done it out loud.
                   </p>
@@ -249,7 +249,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                       <path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
-                  <p className="text-[15.5px] leading-relaxed text-slate-300">{tip}</p>
+                  <p className="text-[15px] leading-relaxed text-slate-300">{tip}</p>
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -270,10 +270,10 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
         <section className={`border-t border-white/[0.05] py-16 ${PAD}`}>
           <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16`}>
             <div>
-              <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Top roles at {meta.displayName}</h2>
+              <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Top roles at {meta.displayName}</h2>
               <ul className="flex flex-wrap gap-2">
                 {meta.topRoles.map((role) => (
-                  <li key={role} className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-sm text-slate-300">
+                  <li key={role} className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-slate-300">
                     {role}
                   </li>
                 ))}
@@ -282,7 +282,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
 
             {relatedCompanySlugs.length > 0 && (
               <nav aria-labelledby="related-companies">
-                <h2 id="related-companies" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also preparing for</h2>
+                <h2 id="related-companies" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also preparing for</h2>
                 <ul className="grid gap-x-10 sm:grid-cols-2">
                   {relatedCompanySlugs.map((slug) => {
                     const relMeta = COMPANY_META[slug];
@@ -291,7 +291,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                       <li key={slug} className="border-b border-white/[0.05]">
                         <Link
                           href={`/interview-prep/${slug}`}
-                          className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
+                          className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                         >
                           {name} Interview Prep
                           <Chevron className="text-slate-600 group-hover:text-slate-300" />

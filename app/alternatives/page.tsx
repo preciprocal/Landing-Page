@@ -23,7 +23,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, GRID_BG, BTN_PRIMARY, PageHero, pad2, BODY } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -115,7 +115,7 @@ export default function AlternativesIndexPage() {
                 Preciprocal. Each page states what the other tool is genuinely better at, because a
                 comparison that never concedes anything is not worth reading.
               </p>
-              <p className="mt-4 text-sm text-slate-400">
+              <p className="mt-4 text-[15px] leading-relaxed text-slate-400">
                 Pricing checked September 2026. Plans change often, so verify on each tool&apos;s own page.
               </p>
             </>
@@ -126,7 +126,7 @@ export default function AlternativesIndexPage() {
                 <a
                   key={group}
                   href={`#${groupId(group)}`}
-                  className="inline-flex min-h-[40px] items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.03] px-4 text-[13px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white"
+                  className="inline-flex h-9 items-center gap-2 rounded-full border border-white/[0.09] bg-white/[0.03] px-4 text-[13px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white"
                 >
                   {group}
                   <span className="font-mono text-[11px] text-accent-soft/80">{pad2(items.length)}</span>
@@ -141,7 +141,7 @@ export default function AlternativesIndexPage() {
             <section key={group} id={groupId(group)} className={`${INNER} scroll-mt-28`}>
               <Reveal>
                 <div className="mb-2 flex items-baseline justify-between gap-4">
-                  <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">
+                  <h2 className="text-lg font-semibold tracking-[-0.02em] text-white sm:text-xl">
                     {group} <span className="font-mono text-[12px] font-normal text-slate-500">· {items.length}</span>
                   </h2>
                 </div>
@@ -170,7 +170,7 @@ export default function AlternativesIndexPage() {
         </div>
 
         <section className={`${PAD} pb-24`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#070b16] px-7 py-10 sm:px-12 sm:py-12`}>
+          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] px-7 py-10 sm:px-12 sm:py-12`}>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
@@ -179,14 +179,14 @@ export default function AlternativesIndexPage() {
             <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
             <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-16">
               <div className="max-w-3xl">
-                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">How we write these</h2>
-                <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                <h2 className="text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">How we write these</h2>
+                <p className={`mt-3 ${BODY}`}>
                   Every comparison names what the other tool does better and says plainly when you should
                   use it instead, including when the answer is their free tier rather than our paid one.
                   Prices come from public pricing pages where they exist, and from third-party reporting
                   where they do not, which is noted on the page.
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-400">
+                <p className={`mt-3 ${BODY}`}>
                   Preciprocal Pro is $9.99/mo, billed monthly. The free plan needs no card,
                   so the fastest way to judge any of this is to run your own resume through both.
                 </p>

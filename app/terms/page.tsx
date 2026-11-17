@@ -325,7 +325,7 @@ export default function TermsPage() {
               <p>
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
               </p>
-              <p className="mt-4 font-mono text-[12px] text-slate-400">
+              <p className="mt-4 font-mono text-[13px] text-slate-400">
                 Last updated: November 9, 2026. Effective date: November 9, 2026.
               </p>
             </>
@@ -347,17 +347,17 @@ export default function TermsPage() {
                   className="scroll-mt-28 border-b border-white/[0.05] py-10 first:pt-0 last:border-b-0"
                 >
                   <Reveal>
-                    <h2 id={`${TOC[i].id}-h`} className="flex items-baseline gap-3 text-xl font-semibold tracking-tight text-white sm:text-[1.375rem]">
-                      <span className="font-mono text-[12px] font-medium text-accent-soft">{pad2(i + 1)}</span>
+                    <h2 id={`${TOC[i].id}-h`} className="flex items-baseline gap-3 text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
+                      <span className="font-mono text-[13px] font-medium text-accent-soft">{pad2(i + 1)}</span>
                       {section.title}
                     </h2>
-                    <div className="mt-5 space-y-5 text-[15px] leading-[1.8] text-slate-300">{renderContent(section.content)}</div>
+                    <div className="mt-5 space-y-5 text-[16px] leading-[1.75] text-slate-300">{renderContent(section.content)}</div>
                   </Reveal>
                 </section>
               ))}
 
               {/* Contact footer */}
-              <Reveal className="mt-6 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+              <Reveal className="mt-6 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
                 <p className="text-[15px] leading-relaxed text-slate-300">
                   Questions about these Terms? Email us at{" "}
                   <a

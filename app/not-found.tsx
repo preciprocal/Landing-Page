@@ -12,7 +12,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
-import { ACCENT_TEXT, BTN_PRIMARY, GRID_BG, HoverRule, PAD } from "@/components/page/Layout";
+import { ACCENT_TEXT, BODY, BTN_PRIMARY, GRID_BG, HoverRule, PAD } from "@/components/page/Layout";
 
 export default function NotFound() {
   const links = [
@@ -40,21 +40,21 @@ export default function NotFound() {
         <div className="relative mx-auto w-full max-w-2xl animate-fade-up text-center opacity-0">
           <p
             aria-hidden="true"
-            className={`select-none font-mono text-[112px] font-bold leading-none tracking-tight sm:text-[168px] ${ACCENT_TEXT}`}
+            className={`select-none font-mono text-[112px] font-semibold leading-none tracking-[-0.04em] sm:text-[168px] ${ACCENT_TEXT}`}
           >
             404
           </p>
           <div aria-hidden="true" className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
 
-          <h1 className="mt-8 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">Page not found</h1>
-          <p className="mx-auto mt-3 max-w-sm text-base leading-relaxed text-slate-400">
+          <h1 className="mt-8 text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">Page not found</h1>
+          <p className={`mx-auto mt-3 max-w-sm ${BODY}`}>
             This page doesn&apos;t exist or may have moved. Here are some places
             that do:
           </p>
 
           {/* Quick links */}
           <nav aria-label="Helpful links" className="mt-10">
-            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] text-left sm:grid-cols-3 fill-2 fill-sm-3">
+            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] text-left sm:grid-cols-3 fill-2 fill-sm-3">
               {links.map((l, i) => (
                 <li key={l.label} className={`bg-[#070b16] ${i === links.length - 1 ? "col-span-2 sm:col-span-3" : ""}`}>
                   <Link

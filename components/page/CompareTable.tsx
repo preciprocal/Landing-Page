@@ -19,7 +19,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Check, Minus, X } from "lucide-react";
 import Chevron from "@/components/Chevron";
-import { CARD, Eyebrow, HoverRule } from "@/components/page/Layout";
+import { CARD, Eyebrow, HoverRule, H3, BODY, SMALL, LABEL, PANEL } from "@/components/page/Layout";
 import { RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 type Status = "yes" | "no" | "partial" | "none";
@@ -71,10 +71,10 @@ export default function CompareTable({
   rows: CompareRow[];
   caption: string;
 }) {
-  const head = "sticky top-[calc(var(--banner-h,0px)+72px)] z-10 border-b border-white/[0.08] bg-[#0a0f1c]/95 px-3 py-3.5 text-left text-[11px] font-semibold uppercase tracking-[0.14em] backdrop-blur sm:px-5";
+  const head = "sticky top-[calc(var(--banner-h,0px)+72px)] z-10 border-b border-white/[0.08] bg-[#0a0f1c]/95 px-3 py-3.5 text-left text-[11px] font-semibold uppercase tracking-[0.16em] backdrop-blur sm:px-5";
   return (
-    <div className="overflow-clip rounded-2xl border border-white/[0.08] bg-[#070b16]">
-      <table className="w-full table-fixed border-separate border-spacing-0 text-[13px] leading-snug sm:text-sm">
+    <div className={`overflow-clip ${PANEL}`}>
+      <table className="w-full table-fixed border-separate border-spacing-0 text-[13px] leading-snug sm:text-[15px]">
         <caption className="sr-only">{caption}</caption>
         <colgroup>
           <col className="w-[32%] sm:w-[28%]" />
@@ -125,14 +125,14 @@ export default function CompareTable({
  */
 export function Verdict({ competitor, preciprocal }: { competitor: ReactNode; preciprocal: ReactNode }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+    <div className={`relative overflow-hidden ${PANEL}`}>
       <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-      <p className="flex items-center gap-2 border-b border-white/[0.06] px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-accent-soft sm:px-8">
+      <p className={`flex items-center gap-2 border-b border-white/[0.06] px-6 py-3.5 ${LABEL} text-accent-soft sm:px-8`}>
         Quick verdict
       </p>
       <div className="grid md:grid-cols-2">
-        <p className="px-6 py-6 leading-relaxed text-slate-300 sm:px-8 sm:py-7">{competitor}</p>
-        <p className="border-t border-accent/20 bg-accent/[0.05] px-6 py-6 leading-relaxed text-slate-200 sm:px-8 sm:py-7 md:border-l md:border-t-0">
+        <p className={`px-6 py-6 ${BODY} text-slate-300 sm:px-8 sm:py-7`}>{competitor}</p>
+        <p className={`border-t border-accent/20 bg-accent/[0.05] px-6 py-6 ${BODY} text-slate-200 sm:px-8 sm:py-7 md:border-l md:border-t-0`}>
           {preciprocal}
         </p>
       </div>
@@ -147,18 +147,18 @@ export function PriceCompare({ items }: { items: { label: string; price: string;
       {items.map(({ label, price, note, highlight }) => (
         <div
           key={label}
-          className={`relative overflow-hidden rounded-2xl border p-6 sm:p-7 ${
+          className={`relative overflow-hidden rounded-xl border p-6 ${
             highlight ? "border-accent/35 bg-accent/[0.07]" : "border-white/[0.07] bg-white/[0.025]"
           }`}
         >
           {highlight && <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />}
-          <p className="text-sm text-slate-400">{label}</p>
+          <p className="text-sm font-medium text-slate-400">{label}</p>
           {/* "$49.95/mo": the figure large, the period small, as on the homepage pricing cards. */}
-          <p className={`mt-2 whitespace-nowrap text-3xl font-extrabold tracking-tight sm:text-4xl ${highlight ? "text-accent-soft" : "text-slate-200"}`}>
+          <p className={`mt-2 whitespace-nowrap text-3xl font-semibold tracking-[-0.03em] sm:text-4xl ${highlight ? "text-accent-soft" : "text-slate-200"}`}>
             {price.split("/")[0]}
             {price.includes("/") && <span className="ml-0.5 text-base font-medium text-slate-500">/{price.split("/").slice(1).join("/")}</span>}
           </p>
-          <p className="mt-1 text-sm text-slate-400">{note}</p>
+          <p className={`mt-1 ${SMALL} text-slate-400`}>{note}</p>
         </div>
       ))}
     </div>
@@ -170,13 +170,13 @@ export function ReasonGrid({ items }: { items: { title: string; body: string }[]
   return (
     <RevealGroup className="grid gap-4 md:grid-cols-2">
       {items.map(({ title, body }) => (
-        <RevealItem key={title} className={`${CARD} flex gap-4 p-6 sm:p-7`}>
+        <RevealItem key={title} className={`${CARD} flex gap-4 p-6`}>
           <span aria-hidden="true" className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border border-accent/30 bg-accent/10 text-accent-soft">
             <Check className="h-3.5 w-3.5" strokeWidth={2.75} />
           </span>
           <div>
-            <h3 className="font-semibold text-white">{title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{body}</p>
+            <h3 className={H3}>{title}</h3>
+            <p className={`mt-1.5 ${BODY}`}>{body}</p>
           </div>
         </RevealItem>
       ))}
@@ -189,8 +189,8 @@ export function RelatedLinks({ links, title = "Related resources" }: { links: { 
   return (
     <>
       <Eyebrow>Keep reading</Eyebrow>
-      <h2 className="mb-6 text-xl font-semibold tracking-tight text-white sm:text-2xl">{title}</h2>
-      <RevealGroup className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
+      <h2 className="mb-6 text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">{title}</h2>
+      <RevealGroup className="grid gap-px overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.07] sm:grid-cols-2 lg:grid-cols-3 fill-sm-2 fill-lg-3">
         {links.map(({ label, href }) => (
           <RevealItem key={href} className="bg-[#070b16]">
             <Link

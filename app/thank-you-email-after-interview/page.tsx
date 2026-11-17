@@ -174,7 +174,7 @@ export default function ThankYouEmailPage() {
                 "Under 150 words, which is three short paragraphs",
                 "No new asks. Do not ask about salary, timelines or other roles in a thank you email",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                   <span>{item}</span>
                 </li>
@@ -192,11 +192,11 @@ export default function ThankYouEmailPage() {
           {EXAMPLES.map((ex) => (
             <div key={ex.title} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
               <h3 className="text-white font-semibold mb-4">{ex.title}</h3>
-              <p className="text-sm text-slate-400 mb-3">
+              <p className="text-[15px] leading-relaxed text-slate-400 mb-3">
                 <strong className="text-slate-200">Subject:</strong> {ex.subject}
               </p>
               {ex.body.map((para, i) => (
-                <p key={i} className="text-sm text-slate-400 leading-relaxed mb-3 last:mb-0 whitespace-pre-line">
+                <p key={i} className="text-[15px] text-slate-400 leading-relaxed mb-3 last:mb-0 whitespace-pre-line">
                   {para}
                 </p>
               ))}

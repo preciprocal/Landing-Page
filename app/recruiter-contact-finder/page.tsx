@@ -152,7 +152,7 @@ export default function RecruiterContactFinderPage() {
                 "Someone who recently joined the team, remembers the process and is usually generous about it",
                 "Recruiter, the most contacted and most saturated inbox, but still better than the portal",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>

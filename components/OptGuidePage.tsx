@@ -26,7 +26,7 @@ import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import { OPT_GUIDES } from "@/lib/optGuides";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, BTN_SECONDARY, CtaPanel, INNER, PAD, PageHero, SECTION, pad2, FaqSection } from "@/components/page/Layout";
+import { BTN_PRIMARY, BTN_SECONDARY, CtaPanel, INNER, LABEL, PAD, PageHero, R_CARD, SECTION, SMALL, pad2, FaqSection } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export interface OptKeyFact {
@@ -73,7 +73,7 @@ const LONG_DATE = new Intl.DateTimeFormat("en-US", {
 
 /** Prose styles for the per-page body, which arrives as plain h2, p, ul and table markup. */
 const PROSE =
-  "space-y-6 text-[16px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
+  "space-y-6 text-[15px] leading-[1.75] text-slate-400 [&>h2:first-child]:pt-0 [&_h2]:scroll-mt-28 [&_h2]:pt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:tracking-[-0.02em] [&_h2]:text-white [&_h3]:font-semibold [&_h3]:text-white [&_strong]:text-slate-200 [&_a]:text-accent-soft [&_a]:underline [&_a]:decoration-accent-soft/30 [&_a]:underline-offset-4 [&_a:hover]:text-white [&_li]:marker:text-accent/60 [&_th]:font-semibold [&_th]:text-slate-200";
 
 type GuideSection = { heading: ReactElement<{ className?: string }> | null; content: ReactNode[] };
 
@@ -100,7 +100,7 @@ function splitSections(body: ReactNode): GuideSection[] | null {
 
 /** One row of the guide: heading left, content right on wide screens, stacked below lg. */
 const ROW = "grid grid-cols-1 gap-5 border-t border-white/[0.06] py-10 first:border-t-0 first:pt-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.4fr)] lg:gap-16";
-const ROW_HEAD = "scroll-mt-28 text-xl font-bold leading-snug tracking-tight text-white sm:text-2xl";
+const ROW_HEAD = "scroll-mt-28 text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl";
 
 export default function OptGuidePage(props: OptGuideProps) {
   reportStaleContent();
@@ -174,7 +174,7 @@ export default function OptGuidePage(props: OptGuideProps) {
             subhead={
               <>
                 <p>{props.intro}</p>
-                <p className="mt-6 text-[12px] leading-relaxed text-slate-500">
+                <p className={`mt-6 ${SMALL}`}>
                   {props.disclaimer ?? (
                     <>
                       General information from official sources, not legal advice. Your DSO and the record in SEVIS have the
@@ -199,11 +199,11 @@ export default function OptGuidePage(props: OptGuideProps) {
           {/* ── Key facts: the numbers the reader came for ─────────────── */}
           <section data-section="key-facts" data-section-name="Key facts" className={`pb-16 ${PAD}`}>
             <div className={INNER}>
-              <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4">
+              <RevealGroup className={`grid grid-cols-2 gap-px overflow-hidden ${R_CARD} border border-white/[0.07] bg-white/[0.07] lg:grid-cols-4 fill-2 fill-lg-4`}>
                 {props.keyFacts.map((f) => (
-                  <RevealItem key={f.label} className="bg-[#070b16] p-5 sm:p-7">
-                    <p className="text-xl font-extrabold tracking-tight text-white sm:text-3xl">{f.value}</p>
-                    <p className="mt-2 text-[12px] leading-snug text-slate-400 sm:text-[13px]">{f.label}</p>
+                  <RevealItem key={f.label} className="bg-[#070b16] p-5 sm:p-6">
+                    <p className="text-2xl font-semibold tracking-[-0.03em] text-white sm:text-3xl">{f.value}</p>
+                    <p className="mt-2 text-[13px] leading-snug text-slate-400">{f.label}</p>
                   </RevealItem>
                 ))}
               </RevealGroup>
@@ -239,7 +239,7 @@ export default function OptGuidePage(props: OptGuideProps) {
                 <div>
                   <h2 className={ROW_HEAD}>{props.sourcesTitle ?? "Sources"}</h2>
                   {!props.hideCheckedDate && (
-                    <p className="mt-2 text-sm text-slate-500">
+                    <p className={`mt-2 ${SMALL}`}>
                       Checked on <time dateTime={checkedAt}>{checkedLabel}</time>
                     </p>
                   )}
@@ -252,7 +252,7 @@ export default function OptGuidePage(props: OptGuideProps) {
                           href={s.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex gap-3 py-3 text-sm leading-snug text-accent-soft transition-colors hover:text-white"
+                          className="group flex gap-3 py-3 text-[15px] leading-snug text-accent-soft transition-colors hover:text-white"
                         >
                           <span className="mt-0.5 font-mono text-[11px] text-slate-600">{pad2(i + 1)}</span>
                           <span className="min-w-0 flex-1 break-words underline-offset-4 group-hover:underline">{s.label}</span>
@@ -276,11 +276,11 @@ export default function OptGuidePage(props: OptGuideProps) {
           {!isHub && (
             <nav data-section="guide-nav" data-section-name="More OPT guides" aria-label="More OPT guides" className={`pb-16 ${PAD}`}>
               <div className={INNER}>
-                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">More OPT guides</h2>
+                <h2 className={`mb-3 ${LABEL} text-slate-500`}>More OPT guides</h2>
                 <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
                   {OPT_GUIDES.filter((g) => g.href !== props.canonicalPath).map((g) => (
                     <li key={g.href} className="border-b border-white/[0.05]">
-                      <Link href={g.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                      <Link href={g.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                         {g.label}
                         <Chevron className="text-slate-600 group-hover:text-slate-300" />
                       </Link>

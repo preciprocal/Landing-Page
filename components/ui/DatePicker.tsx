@@ -239,7 +239,7 @@ export default function DatePicker({ value, onChange, labelledBy, ariaLabel, pla
                 type="button"
                 onClick={() => setMode((m) => (m === "days" ? "months" : "days"))}
                 aria-label={mode === "days" ? `${MONTH_FMT.format(view)}, choose month and year` : "Back to days"}
-                className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2 text-[14px] font-semibold text-white transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                className="inline-flex h-8 items-center gap-1.5 rounded-lg px-2 text-[15px] font-semibold text-white transition-colors hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
               >
                 {mode === "days" ? MONTH_FMT.format(view) : view.getUTCFullYear()}
                 <ChevronRight aria-hidden="true" className={`h-3.5 w-3.5 text-slate-400 transition-transform ${mode === "months" ? "rotate-90" : ""}`} />
@@ -309,7 +309,7 @@ export default function DatePicker({ value, onChange, labelledBy, ariaLabel, pla
                         setFocusDay(new Date(Date.UTC(view.getUTCFullYear(), i, Math.min(focusDay.getUTCDate(), lastDay))));
                         setMode("days");
                       }}
-                      className={`h-12 rounded-xl text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 ${
+                      className={`h-12 rounded-lg text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 ${
                         isView ? "bg-accent/15 text-white shadow-[inset_0_0_0_1px_rgb(var(--accent)/0.45)]" : "text-slate-300 hover:bg-white/[0.06] hover:text-white"
                       }`}
                     >
@@ -328,14 +328,14 @@ export default function DatePicker({ value, onChange, labelledBy, ariaLabel, pla
                   onChange("");
                   close();
                 }}
-                className="rounded-md px-2 py-1 text-[12px] font-medium text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                className="rounded-md px-2 py-1 text-[13px] font-medium text-slate-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
               >
                 Clear
               </button>
               <button
                 type="button"
                 onClick={() => pick(todayUtc())}
-                className="rounded-md px-2 py-1 text-[12px] font-semibold text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                className="rounded-md px-2 py-1 text-[13px] font-semibold text-accent-soft transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
               >
                 Today
               </button>

@@ -208,7 +208,7 @@ export default function InternationalStudentsPage() {
                 "Go around the portal: a referral or a direct note to a hiring manager matters more when the pool is small",
                 "Practise explaining your work authorisation in two clear sentences",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-emerald-400 flex-shrink-0 mt-0.5">✓</span>
                   <span>{item}</span>
                 </li>
@@ -235,7 +235,7 @@ export default function InternationalStudentsPage() {
                 </li>
               ))}
             </ul>
-            <p className="text-[12px] text-slate-500 mt-4">
+            <p className="text-[13px] leading-relaxed text-slate-500 mt-4">
               Rules change. Each guide is dated, and your DSO or an immigration attorney has the final word
               on your own case.
             </p>

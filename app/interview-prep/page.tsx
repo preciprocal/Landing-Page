@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, COMPANY_META, APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, CARD_SOLID, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
+import { PAD, INNER, CARD_SOLID, CARD_HOVER, BTN_PRIMARY, PageHero, CtaPanel, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -115,7 +115,7 @@ export default function InterviewPrepIndexPage() {
                 <a
                   key={tier}
                   href={`#${tierId(tier)}`}
-                  className="group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[13px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none"
+                  className="group inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent focus-visible:text-white focus-visible:outline-none font-medium"
                 >
                   {tier}
                   <span className="font-mono text-[11px] text-slate-500 group-hover:text-accent-soft">{pad2(companies.length)}</span>
@@ -131,17 +131,17 @@ export default function InterviewPrepIndexPage() {
               <div className="flex flex-wrap items-center gap-2 text-[11px]">
                 <span className="mr-2 text-slate-500">Difficulty:</span>
                 {Object.entries(DIFFICULTY_COLOR).map(([label, cls]) => (
-                  <span key={label} className={`rounded-full border px-2 py-1 ${cls}`}>{label}</span>
+                  <span key={label} className={`rounded-full border px-3 py-1 text-[12px] font-medium ${cls}`}>{label}</span>
                 ))}
               </div>
 
               {grouped.map(({ tier, companies }) => (
                 <section key={tier} id={tierId(tier)} className="scroll-mt-28">
                   <div className="mb-5 flex items-baseline justify-between gap-4 border-b border-white/[0.06] pb-3">
-                    <h2 className="text-lg font-semibold tracking-tight text-white sm:text-xl">{tier}</h2>
+                    <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">{tier}</h2>
                     <span className="font-mono text-[11px] text-slate-600">{pad2(companies.length)}</span>
                   </div>
-                  <RevealGroup className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-3 xl:grid-cols-4">
+                  <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
                     {companies.map((company, i) => {
                       const display = COMPANY_DISPLAY[company];
                       if (!display) return null;
@@ -150,18 +150,18 @@ export default function InterviewPrepIndexPage() {
                         <RevealItem key={company}>
                           <Link
                             href={`/interview-prep/${company}`}
-                            className={`group relative flex h-full flex-col items-start justify-between gap-3 ${CARD_SOLID} p-3.5 transition-colors duration-300 hover:border-white/[0.14] hover:bg-[#0a1020] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:gap-4 sm:p-4`}
+                            className={`group relative flex h-full flex-col items-start justify-between gap-3 ${CARD_SOLID} ${CARD_HOVER} p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:gap-4 sm:p-5`}
                           >
                             <div className="flex min-w-0 items-start gap-4">
                               <span className="mt-0.5 hidden font-mono text-[11px] text-accent-soft/60 sm:inline">{pad2(i + 1)}</span>
                               <div className="min-w-0">
-                                <p className="truncate text-sm font-medium text-white transition-colors group-hover:text-accent-soft">
+                                <p className="truncate text-[15px] font-medium text-white transition-colors group-hover:text-accent-soft">
                                   {display.name}
                                 </p>
-                                <p className="mt-0.5 text-[11px] text-slate-500 transition-colors group-hover:text-slate-300">Prep guide <Chevron /></p>
+                                <p className="mt-0.5 text-[13px] text-slate-500 transition-colors group-hover:text-slate-300">Prep guide <Chevron /></p>
                               </div>
                             </div>
-                            <span className={`shrink-0 rounded-full border px-2 py-1 text-[10px] font-semibold ${diffClass}`}>
+                            <span className={`shrink-0 rounded-full border px-3 py-1 text-[12px] font-medium ${diffClass}`}>
                               {display.difficulty}
                             </span>
                           </Link>
@@ -175,8 +175,8 @@ export default function InterviewPrepIndexPage() {
               {/* Role questions cross-link */}
               <nav aria-label="Role interview guides" className="flex flex-col gap-4 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
                 <div className="max-w-2xl">
-                  <h2 className="text-[17px] font-semibold tracking-tight text-white">Looking for role-specific questions?</h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-slate-400">
+                  <h2 className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Looking for role-specific questions?</h2>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">
                     We also have detailed Q&A guides for 40+ roles, including software engineer, PM, data scientist, and more.
                   </p>
                 </div>

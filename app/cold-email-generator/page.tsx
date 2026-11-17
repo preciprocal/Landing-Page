@@ -136,7 +136,7 @@ export default function ColdEmailGeneratorPage() {
                 "Too generic, 'I'm passionate about your mission' is indistinguishable from the other forty emails that week",
                 "Ask too large, a stranger will not refer you, but they might take a 15-minute call",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-rose-400 flex-shrink-0 mt-0.5">✕</span>
                   <span>{item}</span>
                 </li>
@@ -159,20 +159,20 @@ export default function ColdEmailGeneratorPage() {
 
           <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6">
             <h3 className="text-white font-semibold mb-4">What a working cold email looks like</h3>
-            <p className="text-sm text-slate-400 mb-3">
+            <p className="text-[15px] leading-relaxed text-slate-400 mb-3">
               <strong className="text-slate-200">Subject:</strong> Question about the payments team
             </p>
-            <p className="text-sm text-slate-400 leading-relaxed mb-3">
+            <p className="text-[15px] text-slate-400 leading-relaxed mb-3">
               Hi Priya, I read your write-up on moving the reconciliation pipeline to event
               sourcing, particularly the part about idempotency keys under retry storms. I spent
               last year on the same problem at a smaller scale and took a different approach, so it
               was a genuinely useful read.
             </p>
-            <p className="text-sm text-slate-400 leading-relaxed mb-3">
+            <p className="text-[15px] text-slate-400 leading-relaxed mb-3">
               I&apos;m a backend engineer with three years on payments infrastructure, currently looking
               at the Senior Backend Engineer opening on your team.
             </p>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-[15px] text-slate-400 leading-relaxed">
               Would you be open to 15 minutes in the next couple of weeks? Happy to work around your
               schedule.
             </p>

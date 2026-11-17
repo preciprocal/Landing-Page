@@ -57,7 +57,7 @@ function fill(template: string, vars: Record<string, string>) {
 }
 
 const inputClass =
-  "w-full rounded-lg bg-white/[0.04] border border-white/[0.08] px-3 py-2 text-sm text-white placeholder:text-slate-600 transition-colors focus:outline-none focus:border-indigo-400/60 focus:ring-2 focus:ring-indigo-500/20";
+  "w-full rounded-lg border border-white/[0.1] bg-white/[0.03] px-4 py-3 text-[15px] text-white placeholder:text-slate-500 transition-colors focus:border-indigo-400/60 focus:bg-white/[0.045] focus:outline-none";
 
 export default function ThankYouEmailBuilder() {
   const [stage, setStage] = useState<Stage>("phone-screen");
@@ -122,15 +122,15 @@ export default function ThankYouEmailBuilder() {
 
   return (
     <div className="grid grid-cols-1 items-start gap-6 text-left lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-      <SpotlightCard className="rounded-2xl border border-white/[0.07] bg-white/[0.025] p-6 sm:p-7">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
         <div className="space-y-5">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-indigo-300/90">Step 01</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-indigo-300/90">Step 01</p>
             <p className="mt-1.5 font-semibold text-white">Fill in the details</p>
           </div>
 
           <div role="group" aria-labelledby={`${uid}-stage`}>
-            <p id={`${uid}-stage`} className="mb-1.5 block text-[12px] text-slate-400">Which interview was it?</p>
+            <p id={`${uid}-stage`} className="mb-1.5 block text-[13px] text-slate-400">Which interview was it?</p>
             <div className="grid grid-cols-1 gap-1 rounded-xl border border-white/[0.07] bg-[#070b16] p-1 sm:grid-cols-3">
               {STAGES.map((s) => (
                 <button
@@ -138,7 +138,7 @@ export default function ThankYouEmailBuilder() {
                   type="button"
                   aria-pressed={stage === s.id}
                   onClick={() => setStage(s.id)}
-                  className={`rounded-lg px-3 py-2 text-[12px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${
+                  className={`h-9 rounded-lg px-3.5 text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${
                     stage === s.id
                       ? "bg-indigo-500/20 text-white shadow-[inset_0_0_0_1px_rgba(129,140,248,0.45)]"
                       : "text-slate-400 hover:bg-white/[0.04] hover:text-white"
@@ -190,14 +190,14 @@ export default function ThankYouEmailBuilder() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]/70" />
             </div>
-            <p className="truncate text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-300/90">Step 02 · Your email</p>
+            <p className="truncate text-[11px] font-semibold uppercase tracking-[0.16em] text-emerald-300/90">Step 02 · Your email</p>
           </div>
           <button
             type="button"
             data-track="thank-you-email-copy"
             onClick={copy}
             aria-live="polite"
-            className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3.5 py-2 text-[12px] font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${
+            className={`inline-flex h-9 shrink-0 items-center gap-1.5 rounded-lg px-3.5 text-sm font-semibold text-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 ${
               copied
                 ? "bg-emerald-500/20 shadow-[inset_0_0_0_1px_rgba(52,211,153,0.45)]"
                 : "bg-gradient-to-r from-indigo-500 to-purple-500 hover:brightness-110"
@@ -225,7 +225,7 @@ export default function ThankYouEmailBuilder() {
         </dl>
 
         {/* Body */}
-        <div className="min-h-[300px] flex-1 space-y-4 px-6 py-6 text-[14.5px] leading-[1.75] text-slate-200">
+        <div className="min-h-[300px] flex-1 space-y-4 px-6 py-6 text-[15px] leading-[1.75] text-slate-200">
           {paragraphs.map((para, i) => (
             <p key={i} className={`whitespace-pre-line ${i === paragraphs.length - 1 ? "border-t border-white/[0.06] pt-4 text-slate-300" : ""}`}>
               <Filled text={para} />
@@ -237,7 +237,7 @@ export default function ThankYouEmailBuilder() {
         <div className="border-t border-white/[0.06] bg-white/[0.015] px-6 py-4">
           <ul className="grid gap-2 sm:grid-cols-3">
             {checks.map((c) => (
-              <li key={c.label} className={`flex items-start gap-2 text-[11.5px] leading-snug ${c.ok ? "text-slate-300" : "text-amber-200/90"}`}>
+              <li key={c.label} className={`flex items-start gap-2 text-[13px] leading-snug ${c.ok ? "text-slate-300" : "text-amber-200/90"}`}>
                 <span
                   aria-hidden="true"
                   className={`mt-px grid h-4 w-4 shrink-0 place-items-center rounded-full ${c.ok ? "bg-emerald-400/15 text-emerald-300" : "bg-amber-400/15 text-amber-300"}`}
@@ -251,7 +251,7 @@ export default function ThankYouEmailBuilder() {
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-[11px] leading-relaxed text-slate-500">
+          <p className="mt-3 text-[13px] leading-relaxed text-slate-500">
             Send it within 24 hours, to each interviewer separately. Read it once out loud and cut anything that does not sound like you.
           </p>
         </div>
@@ -293,7 +293,7 @@ function Field({
   const id = useId();
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-[12px] text-slate-400">{label}</label>
+      <label htmlFor={id} className="mb-1.5 block text-[13px] text-slate-400">{label}</label>
       <input
         id={id}
         className={inputClass}
@@ -302,7 +302,7 @@ function Field({
         placeholder={placeholder}
         aria-describedby={hint ? `${id}-hint` : undefined}
       />
-      {hint && <p id={`${id}-hint`} className="mt-1.5 text-[11px] leading-relaxed text-slate-500">{hint}</p>}
+      {hint && <p id={`${id}-hint`} className="mt-1.5 text-[13px] leading-relaxed text-slate-500">{hint}</p>}
     </div>
   );
 }

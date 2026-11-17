@@ -67,9 +67,9 @@ export default function ResumeTipsIndexPage() {
             </p>
           }
           aside={
-            <p className="text-sm text-slate-500">
-              <span className="text-3xl font-bold tracking-tight text-white">{ALL_ROLES.length}</span> roles across{" "}
-              <span className="text-3xl font-bold tracking-tight text-white">{ALL_ROLE_CATEGORIES.length}</span> industries
+            <p className="text-[15px] text-slate-500">
+              <span className="text-3xl font-semibold tracking-[-0.02em] text-white">{ALL_ROLES.length}</span> roles across{" "}
+              <span className="text-3xl font-semibold tracking-[-0.02em] text-white">{ALL_ROLE_CATEGORIES.length}</span> industries
             </p>
           }
         >
@@ -79,10 +79,10 @@ export default function ResumeTipsIndexPage() {
                 <li key={category}>
                   <a
                     href={`#${catId(category)}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent focus-visible:outline-none"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] text-slate-300 transition-colors hover:border-accent/40 hover:text-white focus-visible:border-accent focus-visible:outline-none font-medium"
                   >
                     {category}
-                    <span className="font-mono text-[10px] text-slate-500">{pad2(roles.length)}</span>
+                    <span className="font-mono text-[11px] text-slate-500">{pad2(roles.length)}</span>
                   </a>
                 </li>
               ))}
@@ -95,9 +95,9 @@ export default function ResumeTipsIndexPage() {
           <div className={`${INNER} space-y-14 border-t border-white/[0.05] pt-16`}>
             {grouped.map(({ category, roles }) => (
               <section key={category} id={catId(category)} className="scroll-mt-24">
-                <h2 className="mb-3 flex items-baseline gap-3 text-lg font-semibold tracking-tight text-white">
+                <h2 className="mb-3 flex items-baseline gap-3 text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
                   {category}
-                  <span className="text-sm font-normal text-slate-500">
+                  <span className="text-[15px] font-normal text-slate-500">
                     {roles.length} guide{roles.length !== 1 ? "s" : ""}
                   </span>
                 </h2>
@@ -111,7 +111,7 @@ export default function ResumeTipsIndexPage() {
                           href={`/resume-tips/${role}`}
                           className="group flex items-center gap-3 py-3 text-[15px] text-slate-300 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-none"
                         >
-                          <span aria-hidden="true" className="text-base">{display.icon}</span>
+                          <span aria-hidden="true" className="text-[15px]">{display.icon}</span>
                           <span className="min-w-0 flex-1 truncate">{display.name}</span>
                           <Chevron className="text-slate-600 group-hover:text-slate-300" />
                         </Link>
@@ -123,14 +123,14 @@ export default function ResumeTipsIndexPage() {
             ))}
 
             <nav aria-label="Related guides" className="pt-4">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Also useful</p>
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also useful</p>
               <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {[
                   { href: "/cover-letter-examples", label: "Browse cover letter examples" },
                   { href: "/salary-guide", label: "Browse salary guides" },
                 ].map((link) => (
                   <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-sm text-slate-400 transition-colors hover:text-white">
+                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
                       {link.label}
                       <Chevron className="text-slate-600 group-hover:text-slate-300" />
                     </Link>

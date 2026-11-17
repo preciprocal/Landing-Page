@@ -153,7 +153,7 @@ export default function ResumeTailoringPage() {
                 "Seniority signals, scope language matched to the level in the posting",
                 "Acronyms, spelled out once so both the acronym and the full term are indexed",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>

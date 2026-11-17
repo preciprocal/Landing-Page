@@ -24,7 +24,7 @@ import { ExternalLink } from "lucide-react";
 import { getSuccessStoryViews, type SuccessStoryView } from "@/lib/successStories";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 
-import { H2 } from "@/components/page/Layout";
+import { BODY, H2, LABEL, SMALL } from "@/components/page/Layout";
 export default function SuccessStories() {
   const [stories, setStories] = useState<SuccessStoryView[] | null>(null);
 
@@ -51,13 +51,13 @@ export default function SuccessStories() {
     <section aria-label="Success stories" className="relative px-6 sm:px-10 lg:px-16 xl:px-32 2xl:px-48 py-20">
       <div className="w-full">
         <RevealOnScroll className="text-center mb-12">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-400 mb-3">
+          <p className={`${LABEL} text-emerald-400 mb-3`}>
             Success stories
           </p>
           <h2 className={`${H2} mb-3`}>
             People who landed, and got that month back
           </h2>
-          <p className="text-[13px] text-slate-500 leading-relaxed max-w-md mx-auto">
+          <p className={`${BODY} max-w-md mx-auto`}>
             Each one was submitted by a subscriber claiming the Success Refund, and shared
             with their permission.
           </p>
@@ -67,10 +67,10 @@ export default function SuccessStories() {
           {stories.map((story) => (
             <StaggerItem key={story.id} className="flex flex-col">
               <figure
-                className="flex flex-col flex-1 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-6
+                className="flex flex-col flex-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6
                            hover:border-white/[0.14] transition-colors duration-300"
               >
-                <blockquote className="text-[13px] text-slate-300 leading-relaxed">
+                <blockquote className="text-[15px] text-slate-300 leading-relaxed">
                   <span className="text-emerald-400/50 mr-0.5" aria-hidden="true">
                     &ldquo;
                   </span>
@@ -85,7 +85,7 @@ export default function SuccessStories() {
                     src={story.embedUrl}
                     title={`LinkedIn post by ${story.attribution}`}
                     loading="lazy"
-                    className="w-full mt-5 rounded-xl border border-white/[0.06]"
+                    className="w-full mt-5 rounded-lg border border-white/[0.06]"
                     height={340}
                     allowFullScreen
                   />
@@ -93,11 +93,11 @@ export default function SuccessStories() {
 
                 <figcaption className="mt-auto pt-5">
                   <div className="h-px bg-white/[0.06] mb-4" />
-                  <p className="text-[13px] font-semibold text-white leading-tight">
+                  <p className="text-[15px] font-semibold text-white leading-tight">
                     {story.attribution}
                   </p>
                   {story.roleLine && (
-                    <p className="mt-1 text-[12px] text-slate-500 leading-tight">
+                    <p className={`mt-1 ${SMALL}`}>
                       {story.roleLine}
                     </p>
                   )}
@@ -106,7 +106,7 @@ export default function SuccessStories() {
                       href={story.linkUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1.5 text-[12px] text-slate-400 hover:text-slate-200 transition-colors"
+                      className="mt-3 inline-flex items-center gap-1.5 text-[13px] text-slate-400 hover:text-slate-200 transition-colors"
                     >
                       <ExternalLink className="w-3 h-3" aria-hidden="true" />
                       Read their LinkedIn post

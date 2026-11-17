@@ -153,7 +153,7 @@ export default function InterviewDebriefPage() {
                 "Anything they told you about the team, the role, or the timeline",
                 "Your read on how it went, so you can later calibrate that read against the outcome",
               ].map((item, i) => (
-                <li key={i} className="flex gap-3 text-sm">
+                <li key={i} className="flex gap-3 text-[15px]">
                   <span className="text-accent flex-shrink-0 mt-0.5"><Chevron /></span>
                   <span>{item}</span>
                 </li>

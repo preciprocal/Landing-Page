@@ -36,7 +36,7 @@ function Choice<T extends string>({
           type="button"
           aria-pressed={value === id}
           onClick={() => onChange(id)}
-          className={`flex min-h-[44px] items-center gap-2.5 rounded-xl border px-3.5 py-2.5 text-left text-[13px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 ${
+          className={`flex min-h-[44px] items-center gap-2.5 rounded-lg border px-3.5 py-2.5 text-left text-[13px] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 ${
             value === id
               ? "border-accent/50 bg-accent/[0.12] text-white"
               : "border-white/[0.08] bg-white/[0.02] text-slate-400 hover:border-white/[0.16] hover:text-white"
@@ -85,17 +85,17 @@ export default function FeeChecker() {
   }
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
-      <div className="relative border-b border-white/[0.06] p-6 sm:p-8">
-        <p className="text-lg font-semibold text-white">Would the proposed OPT fee apply to me?</p>
-        <p className="mt-1.5 text-[12px] leading-relaxed text-slate-400">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+      <div className="relative border-b border-white/[0.06] p-6">
+        <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Would the proposed OPT fee apply to me?</p>
+        <p className="mt-1.5 text-[13px] leading-relaxed text-slate-400">
           Based on the rule as proposed on October 8, 2026. Nothing is in effect today, and the final rule could change.
         </p>
       </div>
 
-      <div className="relative space-y-6 p-6 sm:p-8">
+      <div className="relative space-y-6 p-6">
         <div>
-          <p className="mb-3 text-[12px] font-medium text-slate-300">1. Which OPT are you asking about?</p>
+          <p className="mb-3 text-[13px] font-medium text-slate-300">1. Which OPT are you asking about?</p>
           <Choice
             label="Which OPT are you asking about?"
             options={[
@@ -108,7 +108,7 @@ export default function FeeChecker() {
         </div>
 
         <div>
-          <p className="mb-3 text-[12px] font-medium text-slate-300">2. When will your DSO recommend it in SEVIS?</p>
+          <p className="mb-3 text-[13px] font-medium text-slate-300">2. When will your DSO recommend it in SEVIS?</p>
           <Choice
             label="When will your DSO recommend it in SEVIS?"
             options={[
@@ -133,8 +133,8 @@ export default function FeeChecker() {
                 className="relative overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] p-5 pl-6"
               >
                 <span aria-hidden="true" className={`absolute inset-y-0 left-0 w-0.5 ${verdict.bar}`} />
-                <p className={`text-sm leading-relaxed ${verdict.tone}`}>{verdict.text}</p>
-                <p className="mt-3 text-[12px] text-slate-400">
+                <p className={`text-[15px] leading-relaxed ${verdict.tone}`}>{verdict.text}</p>
+                <p className="mt-3 text-[13px] text-slate-400">
                   Either way, the normal USCIS fees still apply: $470 to file Form I-765 online or $520 on paper, plus $1,780 if
                   you choose premium processing.
                 </p>
