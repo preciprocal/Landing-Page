@@ -148,11 +148,11 @@ const ITEMS: RoadmapItem[] = [
     tag: "New Tool",
   },
   {
-    title: "Salary Intelligence",
+    title: "Market Pay",
     description:
-      "Role-specific pay ranges before you apply or negotiate, so you never anchor too low on a posting with no salary.",
-    status: "in-progress",
-    tag: "New Tool",
+      "Pay for a job title in your city from US Bureau of Labor Statistics wage data, so you never anchor too low on a posting with no salary.",
+    status: "shipped",
+    tag: "Salary",
   },
   {
     title: "Application ghosting tracker",
