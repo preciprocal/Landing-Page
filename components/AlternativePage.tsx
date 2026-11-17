@@ -28,7 +28,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, ALTERNATIVE_PAGES } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, TrustRow, FaqSection, H1, H3, LEAD, BODY, SMALL, LABEL, PILL, PANEL } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, Breadcrumbs, SectionHead, HeroBackdrop, CtaPanel, FaqSection, H1, H3, LEAD, BODY, SMALL, LABEL, PILL, PANEL } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import { Check, X } from "lucide-react";
 
@@ -44,6 +44,12 @@ function verdictOf(text: string): Verdict {
   if (/^(not included|not offered|none published|none\b|no\b)/.test(t)) return "no";
   if (/^(included|yes\b)/.test(t)) return "yes";
   return null;
+}
+
+/** The first `n` sentences of a paragraph, so heroes stay short however long the page's copy runs. */
+export function firstSentences(text: string, n = 2): string {
+  const parts = text.split(/(?<=[.!?])\s+(?=[A-Z])/);
+  return parts.slice(0, n).join(" ");
 }
 
 function Cell({ text, ours }: { text: string; ours?: boolean }) {
@@ -162,8 +168,11 @@ export interface AlternativePageProps {
   theirPlanLabel: string;
   /** Opening paragraph: what they do and where the gap is */
   intro: string;
-  /** Second paragraph: the Preciprocal position */
-  positioning: string;
+  /**
+   * The Preciprocal position. No longer shown in the hero (the price callout
+   * and verdict say it); kept so each page states it for future use.
+   */
+  positioning?: string;
   /** When to pick them, stated fairly */
   verdictTheirs: string;
   /** When to pick us */
@@ -182,7 +191,6 @@ export default function AlternativePage({
   theirPriceNote,
   theirPlanLabel,
   intro,
-  positioning,
   verdictTheirs,
   verdictOurs,
   rows,
@@ -190,10 +198,14 @@ export default function AlternativePage({
   faqs,
   pricingChecked,
 }: AlternativePageProps) {
+  // Six questions and four reasons at most: the ones that decide. The FAQ
+  // schema uses the same list, so search results match what the page shows.
+  const shownFaqs = faqs.slice(0, 6);
+  const shownReasons = reasons.slice(0, 4);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map(({ q, a }) => ({
+    mainEntity: shownFaqs.map(({ q, a }) => ({
       "@type": "Question",
       name: q,
       acceptedAnswer: { "@type": "Answer", text: a },
@@ -234,13 +246,14 @@ export default function AlternativePage({
                   {`The Best ${competitor} Alternative `}
                   <span className="block bg-gradient-to-r from-accent-soft via-accent to-accent-2 bg-clip-text text-transparent">in 2026</span>
                 </h1>
-                <p className={`mt-6 max-w-3xl ${LEAD}`}>{intro}</p>
-                <p className={`mt-5 max-w-3xl ${LEAD}`}>{positioning}</p>
+                {/* Two sentences: what they do and where the gap is. The
+                    positioning line is not repeated here; the price callout
+                    and the verdict below carry it. */}
+                <p className={`mt-6 max-w-3xl ${LEAD}`}>{firstSentences(intro)}</p>
                 <div className="mt-9">
                   <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
                     Try Preciprocal free <Chevron />
                   </a>
-                  <TrustRow className="mt-5" />
                 </div>
               </div>
 
@@ -373,12 +386,12 @@ export default function AlternativePage({
         <section aria-label={`Why choose Preciprocal over ${competitor}`} className={`${SECTION} ${PAD}`}>
           <div className={INNER}>
             <SectionHead align="center" eyebrow="Why switch" title={`Why job seekers on OPT choose Preciprocal over ${competitor}`} className="mb-12" />
-            <ReasonList items={reasons} />
+            <ReasonList items={shownReasons} />
           </div>
         </section>
 
         {/* FAQ as closed dropdowns. Answers stay in the HTML (native <details>), so the FAQ structured data still matches the page. */}
-        <FaqSection title={`${competitor} alternative FAQ`} items={faqs} sectionProps={{ "aria-label": `${competitor} alternative FAQ` }} />
+        <FaqSection title={`${competitor} alternative FAQ`} items={shownFaqs} sectionProps={{ "aria-label": `${competitor} alternative FAQ` }} />
 
         {/* Other comparisons, as a compact list.
 
@@ -411,8 +424,7 @@ export default function AlternativePage({
               title="Try it free before you decide"
               body={
                 <p className="max-w-lg">
-                  The free plan needs no credit card, so you can compare against {competitor} with your own
-                  resume rather than taking anyone&apos;s word for it.
+                  Compare against {competitor} with your own resume. The free plan needs no card.
                 </p>
               }
               action={

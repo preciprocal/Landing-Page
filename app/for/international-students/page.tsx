@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How many unemployment days do I get on OPT?",
-    a: "Up to 90 days in total during the initial period of post-completion OPT. A STEM OPT extension adds 60 more, for 150 across both. The count is cumulative, not per gap, so a short job between two longer gaps does not reset it. Confirm your own count with your school's DSO, since the record they keep is the one that matters.",
+    a: "Up to 90 days in total on initial post-completion OPT, and 150 with a STEM extension. The count is cumulative, not per gap, so confirm yours with your school's DSO.",
   },
   {
     q: "When should international students start applying for jobs?",
@@ -163,7 +163,7 @@ export default function InternationalStudentsPage() {
       badge="Built by students, for students"
       h1="The job search for international students"
       h1Accent="built around the OPT clock"
-      subhead="Domestic candidates can afford a slow search. On F-1 OPT, you are counting unemployment days. Preciprocal helps you apply to fewer, better-targeted roles, track every one, and practice until the interviews you do get turn into offers."
+      subhead="On F-1 OPT you are counting unemployment days. Preciprocal helps you apply to fewer, better-targeted roles, track every one, and practise until interviews turn into offers."
       ctaTool="resume-tailoring"
       ctaLabel="Start free"
       ctaMicrocopy="Free plan · .edu email gets 1 month of Pro free"

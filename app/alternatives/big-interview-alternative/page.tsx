@@ -106,19 +106,19 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Check your university first",
-      "body": "Big Interview is widely licensed to universities, colleges and public libraries. If your institution provides it, you get the full curriculum at no cost, and no comparison beats free. Ask your career centre before subscribing to anything, including us."
+      "body": "Big Interview is widely licensed to universities and public libraries, and free beats any price. Ask your career centre before subscribing to anything, including us."
     },
     {
       "title": "Reps with follow-ups, rather than recorded answers",
-      "body": "Big Interview's practice records you answering a prompt. Preciprocal's mocks are conversations: a multi-agent panel that asks follow-ups based on what you actually said, pushes back on weak reasoning, and produces a debrief scored across five dimensions. Both have value, but they train different things."
+      "body": "Big Interview records you answering a prompt. Preciprocal's mocks are conversations: a panel follows up on what you said, pushes back, and scores you across five dimensions."
     },
     {
       "title": "Resume and applications included",
-      "body": "Big Interview is an interview product. Preciprocal covers ATS resume scoring against specific postings, cover letter generation, application tracking, contact finding and outreach as well. If you would otherwise buy a resume tool separately, compare the combined cost."
+      "body": "Preciprocal also covers ATS resume scoring against postings, cover letters, tracking, contact finding and outreach. If you would otherwise buy a resume tool too, compare the combined cost."
     },
     {
       "title": "$9.99 monthly against $39 monthly",
-      "body": "Big Interview's entry price is $39 for a month, $99 for three months, with lifetime access at $299 as a one-time payment. Preciprocal Pro is $9.99 monthly. The lifetime option is worth considering if you expect to be interviewing on and off for years, since it has no recurring cost."
+      "body": "Big Interview is $39 a month, $99 for three months or $299 for lifetime access; Preciprocal Pro is $9.99 monthly. Lifetime access is worth a look if you will interview on and off for years."
     }
   ];
 
@@ -133,7 +133,7 @@ const FAQS: AlternativeFaq[] = [
     },
     {
       "q": "How is Preciprocal's mock interview different?",
-      "a": "Format and interactivity. Big Interview records you answering a prompt and gives feedback on delivery. Preciprocal runs a voice conversation with a multi-agent panel that asks follow-up questions based on your answers and pushes back, which is closer to a real loop. It then scores you across five dimensions."
+      "a": "Format and interactivity. Big Interview records you answering a prompt and gives feedback on delivery; Preciprocal runs a voice conversation with a panel that follows up and pushes back, then scores you across five dimensions."
     },
     {
       "q": "How much does Big Interview cost?",

@@ -67,7 +67,7 @@ export default function SuccessStories() {
           {stories.map((story) => (
             <StaggerItem key={story.id} className="flex flex-col">
               <figure
-                className="flex flex-col flex-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6
+                className="flex flex-col flex-1 rounded-xl border border-white/[0.07] surface-card p-6
                            hover:border-white/[0.14] transition-colors duration-300"
               >
                 <blockquote className="text-[15px] text-slate-300 leading-relaxed">

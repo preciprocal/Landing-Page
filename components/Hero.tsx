@@ -281,7 +281,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className={`mt-5 max-w-xl ${LEAD}`}
         >
-          Up to 90 days of unemployment on OPT, 150 with the STEM extension. Spend them on applications that get answered: a resume tailored to each role, interviews practised out loud, every lead tracked.
+          Up to 90 days of unemployment on OPT, 150 with the STEM extension. Spend them on tailored resumes, interviews practised out loud and every lead tracked.
         </motion.p>
 
         {/* CTA row */}

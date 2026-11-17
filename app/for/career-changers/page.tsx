@@ -48,7 +48,7 @@ const FAQS = [
   },
   {
     q: "How do I answer 'why are you changing careers?'",
-    a: "Make it about moving towards something, not away from something. Name what drew you to the new field, show you have already acted on it with a course, project or certification, then connect one strength from your old career to the new role. Keep it under a minute. It is the question you are most certain to be asked, so it should be the answer you have practised most.",
+    a: "Make it about moving towards something, not away. Name what drew you to the field, show you have acted on it with a course or project, and connect one strength from your old career, in under a minute.",
   },
   {
     q: "Will an ATS reject my resume if my job titles do not match?",
@@ -137,7 +137,7 @@ export default function CareerChangersPage() {
       badge="For career changers"
       h1="Changing careers?"
       h1Accent="Make your experience translate"
-      subhead="Your skills transfer. Your job titles do not, and screening software was built for linear careers. Preciprocal helps you rewrite your experience for the new field and practise the story until hiring managers see the fit too."
+      subhead="Your skills transfer; your job titles do not. Preciprocal helps you rewrite your experience for the new field and practise the story until hiring managers see the fit."
       ctaTool="resume-tailoring"
       ctaLabel="Start free"
       ctaMicrocopy="Free plan · No credit card"

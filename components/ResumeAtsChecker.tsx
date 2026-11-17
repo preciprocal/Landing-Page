@@ -187,7 +187,7 @@ export default function ResumeAtsChecker() {
   }
 
   if (!lookedUp) {
-    return <div className="h-[420px] animate-pulse rounded-xl border border-white/[0.07] bg-white/[0.02]" aria-busy="true" />;
+    return <div className="h-[420px] animate-pulse rounded-xl border border-white/[0.07] surface-card" aria-busy="true" />;
   }
 
   const returning = Boolean(result?.restored);
@@ -200,7 +200,7 @@ export default function ResumeAtsChecker() {
       {/* ── Upload ───────────────────────────────────────────────────── */}
       {!returning && (
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
-      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] surface-card p-6">
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
@@ -393,7 +393,7 @@ const DIMENSIONS = [
 /** Beside the upload: what the check measures and what comes back. */
 function WhatYouGet() {
   return (
-    <div className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+    <div className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6">
       <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-indigo-300/90">What is scored</p>
       <p className="mt-2 text-[15px] text-slate-400">Five dimensions, each reviewed separately and weighted into one score out of 100.</p>
       <ul className="mt-6 space-y-3.5">
@@ -469,7 +469,7 @@ function Progress() {
   }, []);
   return (
     <motion.div
-      className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6"
+      className="rounded-xl border border-white/[0.07] surface-card p-6"
       aria-live="polite"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
@@ -586,7 +586,7 @@ function ScoreCard({ result }: { result: ResumeCheckResult }) {
 
 function Strengths({ items }: { items: { section: string; tip: string }[] }) {
   return (
-    <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+    <div className="rounded-xl border border-white/[0.07] surface-card p-6">
       <p className="mb-3 text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">What is working</p>
       <ul className="space-y-2.5">
         {items.map((s, i) => (
@@ -626,7 +626,7 @@ function Fixes({ result }: { result: ResumeCheckResult }) {
 function FixCard({ fix, index }: { fix: ResumeCheckResult["fixes"][number]; index: number }) {
   const [copied, setCopied] = useState(false);
   return (
-    <article className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 transition-colors duration-300 hover:border-white/[0.12]">
+    <article className="rounded-xl border border-white/[0.07] surface-card p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="mb-3 flex items-center gap-2">
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-[11px] font-bold text-white">{index + 1}</span>
         <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1 text-[12px] font-medium text-slate-400">{fix.section}</span>
@@ -679,7 +679,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
           here. The rewrites are never sent to the page. */}
       <div aria-hidden="true" className="pointer-events-none select-none space-y-4 p-6 blur-[5px] opacity-90">
         {(shown.length ? shown : PLACEHOLDER_FIXES).map((f, i) => (
-          <div key={i} className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div key={i} className="rounded-xl border border-white/[0.07] surface-card p-6">
             <span className="rounded-full border border-white/[0.08] bg-white/[0.05] px-3 py-1 text-[12px] font-medium text-slate-400">{f.section}</span>
             <p className="mt-3 font-semibold text-white">{f.tip}</p>
             <div className="mt-3 space-y-2">
@@ -741,7 +741,7 @@ function Locked({ result }: { result: ResumeCheckResult }) {
             </span>
           </a>
           <p className="mt-3 text-[13px] text-slate-500">
-            Free account · No credit card · Opens straight to resume analysis, upload the same file to see every fix
+            Free account · No credit card · Upload the same file to see every fix
           </p>
         </div>
       </div>

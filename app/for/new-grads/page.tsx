@@ -59,7 +59,7 @@ const FAQS = [
   },
   {
     q: "Is there a student discount?",
-    a: "Yes. Verify your .edu email for 1 month of Pro free. A card is required to start the trial, nothing is charged for 30 days, and you can cancel any time before it ends. The free plan stays free whether or not you take the trial.",
+    a: "Yes. Verify your .edu email for 1 month of Pro free; a card is required, nothing is charged for 30 days, and you can cancel any time before it ends.",
   },
 ];
 

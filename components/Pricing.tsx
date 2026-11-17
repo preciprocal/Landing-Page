@@ -36,7 +36,7 @@ export default function Pricing() {
             <span className="text-gradient">Start free.</span>
           </h2>
           <p className={`${BODY} max-w-lg mx-auto`}>
-            On OPT, a slow search costs you more than time. Everything you need to make each application count, for less than a coffee a week.
+            Everything you need to make each application count, for less than a coffee a week.
           </p>
         </RevealOnScroll>
 

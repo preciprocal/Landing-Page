@@ -13,6 +13,7 @@ import { Rocket } from "lucide-react";
 import { APP_URL } from "@/lib/constants";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ExploreLinks from "@/components/page/ExploreLinks";
 import Chevron from "@/components/Chevron";
 import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, Fold, H2, H3, INNER, PAD, PILL, PageHero, SECTION, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
@@ -86,7 +87,7 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Chrome Extension",
     description:
-      "Save jobs from LinkedIn and any job board with one click, auto-import job descriptions, and track applications without leaving the page.",
+      "Save jobs from any job board in one click, with the full description imported into your tracker.",
     status: "shipped",
     date: "Jan 2025",
     tag: "Extensions",
@@ -142,35 +143,35 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Ghost Job Detector",
     description:
-      "Before you spend an hour applying, know if the job is real. We cross-reference posting age, company hiring patterns, LinkedIn headcount changes, and recruiter activity to flag roles that are likely expired, fake, or already filled internally. Now you'll know before you apply.",
+      "Before you spend an hour applying, know if the job is real: roles that are likely expired, fake or already filled get flagged.",
     status: "in-progress",
     tag: "New Tool",
   },
   {
     title: "Salary Intelligence",
     description:
-      "See real, role-specific compensation ranges before you apply or negotiate. Pulls from live market data across levels, cities, and company sizes. No more going into an offer blind or anchoring too low because the job posting left the salary blank.",
+      "Role-specific pay ranges before you apply or negotiate, so you never anchor too low on a posting with no salary.",
     status: "in-progress",
     tag: "New Tool",
   },
   {
     title: "Application ghosting tracker",
     description:
-      "Automatically flags applications that have gone silent past the expected response window for that company, based on their known hiring pace. Tells you when to follow up, when to move on, and when a role has likely been filled so you stop waiting on jobs that are already gone.",
+      "Flags applications that have gone silent and tells you when to follow up and when to move on.",
     status: "planned",
     tag: "Job Tracker",
   },
   {
     title: "AI screening interview simulator",
     description:
-      "Practice against the actual AI screening tools companies use, including HireVue-style video interviews with question prediction based on the role. Most candidates have never practiced for it.",
+      "Practise for one-way video screening interviews, with questions predicted from the role.",
     status: "planned",
     tag: "Interviews",
   },
   {
     title: "Career pivot planner",
     description:
-      "Switching industries or roles? Get a skills gap analysis between where you are and where you want to go, a step-by-step transition plan with realistic timelines, and resume positioning advice that makes your unrelated experience look like an asset instead of a liability.",
+      "A skills gap analysis and a step-by-step plan for switching roles or industries, with resume positioning to match.",
     status: "planned",
     tag: "New Tool",
   },
@@ -184,14 +185,14 @@ const ITEMS: RoadmapItem[] = [
   {
     title: "Company-specific interview prep packs",
     description:
-      "Curated question banks, values frameworks, and interview formats for specific target companies, expanded beyond the current 50+.",
+      "Question banks, values frameworks and interview formats for more target companies.",
     status: "planned",
     tag: "Interviews",
   },
   {
     title: "Salary negotiation coach",
     description:
-      "AI role-play to practice negotiating an offer. Includes real comp data by role and market.",
+      "AI role-play to practise negotiating an offer.",
     status: "planned",
     tag: "New Tool",
   },
@@ -233,13 +234,12 @@ export default function RoadmapPage() {
           accent="Changelog"
           subhead={
             <p>
-              Everything we&apos;ve shipped, what&apos;s being built right now, and what&apos;s
-              coming next. No vaporware. If it&apos;s here, it&apos;s real.
+              What&apos;s live, what&apos;s being built and what&apos;s next.
             </p>
           }
           aside={
             /* Live counts, on the right of the title on wide screens */
-            <dl className="grid w-full grid-cols-3 text-left lg:w-[520px] divide-x divide-white/[0.07] overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02]">
+            <dl className="grid w-full grid-cols-3 text-left lg:w-[520px] divide-x divide-white/[0.07] overflow-hidden rounded-xl border border-white/[0.07] surface-card">
               {counts.map((c) => (
                 <div key={c.label} className="flex flex-col-reverse gap-1 px-4 py-4 sm:px-6">
                   <dt className="flex items-center gap-2 text-[13px] font-medium text-slate-400">
@@ -302,8 +302,7 @@ export default function RoadmapPage() {
               trust={false}
               body={
                 <p>
-                  Every item on this roadmap started as a user request. If you want
-                  something built, tell us. We actually listen.
+                  Tell us what you want built; requests shape this roadmap.
                 </p>
               }
               action={
@@ -319,6 +318,7 @@ export default function RoadmapPage() {
             />
           </Reveal>
         </section>
+        <ExploreLinks current="/roadmap" className="pb-20" />
       </main>
 
       <Footer />

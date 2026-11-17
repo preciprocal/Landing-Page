@@ -59,7 +59,7 @@ const FAQS = [
   },
   {
     q: "Should I take the first offer I get?",
-    a: "Not automatically. Compare it against your budget runway and how well it fits what you want next. If you have other interviews in progress, it is normal to tell those companies you have an offer and ask whether they can speed up. Our salary negotiation guide covers how to negotiate even when you feel you need the job.",
+    a: "Not automatically. Weigh it against your runway and what you want next, and if other interviews are in progress, tell those companies you have an offer and ask whether they can speed up.",
   },
 ];
 

@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: "Does an H-1B record mean the company will sponsor me?",
-    a: "No. It shows how many H-1B workers USCIS approved for that employer, based on USCIS's first decision on each petition. It is a strong signal that the company sponsors, but whether it sponsors a given role is the employer's decision. Ask the recruiter early.",
+    a: "No. It shows how many H-1B workers USCIS approved for that employer, a strong signal that it sponsors. Whether it sponsors a given role is the employer's call, so ask the recruiter early.",
   },
   {
     q: "A company shows no record. Does that mean it is not eligible?",

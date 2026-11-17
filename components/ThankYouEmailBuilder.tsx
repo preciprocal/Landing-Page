@@ -122,7 +122,7 @@ export default function ThankYouEmailBuilder() {
 
   return (
     <div className="grid grid-cols-1 items-start gap-6 text-left lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]">
-      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] surface-card p-6">
         <div className="space-y-5">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-indigo-300/90">Step 01</p>
@@ -131,7 +131,7 @@ export default function ThankYouEmailBuilder() {
 
           <div role="group" aria-labelledby={`${uid}-stage`}>
             <p id={`${uid}-stage`} className="mb-1.5 block text-[13px] text-slate-400">Which interview was it?</p>
-            <div className="grid grid-cols-1 gap-1 rounded-xl border border-white/[0.07] bg-[#070b16] p-1 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-1 rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-1 sm:grid-cols-3">
               {STAGES.map((s) => (
                 <button
                   key={s.id}
@@ -181,7 +181,7 @@ export default function ThankYouEmailBuilder() {
         </div>
       </SpotlightCard>
 
-      <div className="flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] lg:sticky lg:top-28">
+      <div className="flex flex-col overflow-hidden rounded-2xl border border-white/[0.08] surface-panel shadow-[0_30px_80px_-30px_rgba(0,0,0,0.9)] lg:sticky lg:top-28">
         {/* Compose window header */}
         <div className="flex items-center justify-between gap-4 border-b border-white/[0.06] bg-white/[0.02] px-5 py-3.5">
           <div className="flex min-w-0 items-center gap-3">

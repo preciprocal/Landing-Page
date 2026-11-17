@@ -56,8 +56,7 @@ export default function CoverLetterExamplesIndexPage() {
           title="Cover letter examples by role"
           subhead={
             <p>
-              Real cover letter examples, annotated templates, and writing guides for every major role.
-              Written to get past ATS and make hiring managers keep reading, updated for 2026.
+              Annotated examples and templates for every major role, written to get past ATS.
             </p>
           }
           aside={
@@ -98,23 +97,6 @@ export default function CoverLetterExamplesIndexPage() {
                 </ul>
               </section>
             ))}
-
-            <nav aria-label="Related guides" className="pt-4">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also useful</p>
-              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {[
-                  { href: "/resume-tips", label: "Browse resume tips" },
-                  { href: "/interview-questions", label: "Browse interview guides" },
-                ].map((link) => (
-                  <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
-                      {link.label}
-                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
         </section>
 

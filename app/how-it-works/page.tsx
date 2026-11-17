@@ -7,8 +7,8 @@
  *
  * Flow: a centred hero, the full interactive walkthrough (the homepage demo,
  * Arjun's illustrative story), the four stages of a search with the tools
- * that do each one, where the free OPT tools fit, what the free plan covers
- * (read from lib/pricing.ts so it cannot drift), a short FAQ and the CTA.
+ * that do each one, where the free OPT tools fit, a short FAQ and the CTA.
+ * The free plan's contents live on /pricing, not repeated here.
  */
 
 import type { Metadata } from "next";
@@ -20,8 +20,7 @@ import Chevron from "@/components/Chevron";
 import HeroProductDemo from "@/components/HeroProductDemo";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
-import { TIERS, tierFeatureLines } from "@/lib/pricing";
-import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, FaqSection, H3, INNER, LINK_ACTION, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
+import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, FaqSection, H3, INNER, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export const metadata: Metadata = {
@@ -55,7 +54,7 @@ const STAGES = [
   {
     Icon: FileCheck2,
     title: "Get seen",
-    problem: "Hundreds of applications, no replies.",
+    problem: "Applications out, no replies.",
     body: "Score your resume the way an ATS and a recruiter read it, then tailor it to each posting with rewrites you can paste in.",
     tools: [
       { label: "Free ATS checker", href: "/free-ats-checker" },
@@ -107,26 +106,23 @@ const OPT_TOOLS = [
 const FAQS = [
   {
     q: "Do I need to use every tool?",
-    a: "No. Most people start with the one thing that is worrying them, usually the resume or an upcoming interview, and add the rest when they need it. Everything shares one account, so your resume and applications carry across.",
+    a: "No. Start with whatever is worrying you, usually the resume or an upcoming interview. Everything shares one account, so your work carries across.",
   },
   {
     q: "Is it built for international students?",
-    a: "It works for anyone job hunting, but it is built around the situation of F-1 students on OPT: limited unemployment days, employers who may not sponsor, and the work authorisation question in interviews. The free OPT calculators and guides sit alongside the product.",
+    a: "It works for anyone, but it is built around F-1 students on OPT: limited unemployment days, employers who may not sponsor, and the work authorisation question in interviews.",
   },
   {
     q: "Is Preciprocal legal or immigration advice?",
-    a: "No. The OPT tools count days and dates the way the published rules describe, but your school's DSO and, where needed, an immigration attorney are the people to confirm anything about your status.",
+    a: "No. The OPT tools follow the published rules, but your DSO and, where needed, an immigration attorney confirm anything about your status.",
   },
   {
     q: "What does it cost?",
-    a: "There is a free plan with no credit card. Paid plans add more of each tool. A .edu email can be verified for 1 month of Pro free. See the pricing page for the full breakdown.",
+    a: "There is a free plan with no credit card, and paid plans add more of each tool. A .edu email gets 1 month of Pro free; the pricing page has the full breakdown.",
   },
 ];
 
 export default function HowItWorksPage() {
-  const free = TIERS.find((t) => t.id === "free");
-  const freeLines = free ? tierFeatureLines(free) : [];
-
   return (
     <div data-accent="indigo" className="min-h-screen bg-[#050810]">
       <BreadcrumbJsonLd
@@ -146,8 +142,7 @@ export default function HowItWorksPage() {
           accent="before the clock runs out"
           subhead={
             <p>
-              On OPT, every week counts. Here is how Preciprocal takes you from a resume nobody answers to an interview you are ready
-              for, in one place.
+              From a resume nobody answers to an interview you are ready for, in one place.
             </p>
           }
         >
@@ -182,7 +177,7 @@ export default function HowItWorksPage() {
 
             <RevealGroup as="ol" className="grid gap-4 md:grid-cols-2">
               {STAGES.map((s, i) => (
-                <RevealItem as="li" key={s.title} className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+                <RevealItem as="li" key={s.title} className="flex flex-col rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6">
                   <div className="mb-6 flex items-center justify-between">
                     <span className="grid h-11 w-11 place-items-center rounded-lg border border-accent/20 bg-accent/10">
                       <s.Icon aria-hidden="true" className="h-5 w-5 text-accent-soft" strokeWidth={1.8} />
@@ -219,10 +214,10 @@ export default function HowItWorksPage() {
                 eyebrow="Alongside the product"
                 title="Know your dates."
                 accent="Free, no account."
-                subtitle="The clock decides how hard you push. Free, no account needed, and the calculators run in your browser."
+                subtitle="The calculators run in your browser."
               />
             </Reveal>
-            <RevealGroup as="ul" className="divide-y divide-white/[0.06] rounded-xl border border-white/[0.07] bg-[#070b16]">
+            <RevealGroup as="ul" className="divide-y divide-white/[0.06] rounded-xl border border-white/[0.07] bg-[#070b16] surface-card">
               {OPT_TOOLS.map((t) => (
                 <RevealItem as="li" key={t.href}>
                   <Link href={t.href} className="group flex items-center justify-between gap-6 p-6 transition-colors hover:bg-white/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent/60">
@@ -235,37 +230,6 @@ export default function HowItWorksPage() {
                 </RevealItem>
               ))}
             </RevealGroup>
-          </div>
-        </section>
-
-        {/* What the free plan covers */}
-        <section aria-label="What is free" className={`${SECTION} ${PAD}`}>
-          <div className={INNER}>
-            <Reveal>
-              <SectionHead
-                align="center"
-                className="mb-10"
-                eyebrow="Start free"
-                title="Try every stage"
-                accent="on the free plan."
-                subtitle="No credit card. Each month the free plan includes:"
-              />
-            </Reveal>
-            <Reveal>
-              <ul className="mx-auto grid max-w-4xl gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
-                {freeLines.map((line) => (
-                  <li key={line} className="flex items-center gap-3 border-b border-white/[0.05] py-2.5 text-[15px] text-slate-300">
-                    <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {line}
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-8 text-center">
-                <Link href="/pricing" className={LINK_ACTION}>
-                  Compare all plans <Chevron />
-                </Link>
-              </p>
-            </Reveal>
           </div>
         </section>
 

@@ -135,7 +135,7 @@ export default function InterviewQuestionPredictor() {
       <div
         role="tablist"
         aria-label="Tool mode"
-        className="mb-6 inline-flex w-full flex-col gap-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-1 sm:w-auto sm:flex-row"
+        className="mb-6 inline-flex w-full flex-col gap-1 rounded-xl border border-white/[0.07] surface-card p-1 sm:w-auto sm:flex-row"
       >
         {(
           [
@@ -223,7 +223,7 @@ function PredictPanel() {
     <div className="space-y-6">
       {/* Input on the left, what comes back on the right. */}
       <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-      <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+      <SpotlightCard className="rounded-xl border border-white/[0.07] surface-card p-6">
         <div className="flex items-center justify-between gap-3 mb-3">
           <label htmlFor="jd" className="text-white font-semibold">
             Paste the job description
@@ -289,7 +289,7 @@ function PredictPanel() {
         >
           {/* Left: the role and the next step stay in view while the questions scroll past. */}
           <div className="space-y-6 lg:sticky lg:top-28">
-          <motion.div variants={rise} className="flex flex-col sm:flex-row sm:items-end lg:flex-col lg:items-start justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <motion.div variants={rise} className="flex flex-col sm:flex-row sm:items-end lg:flex-col lg:items-start justify-between gap-3 rounded-xl border border-white/[0.07] surface-card p-6">
             <div>
               <p className={`${LABEL} mb-2 inline-flex items-center gap-2 text-emerald-300`}>
                 <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
@@ -338,7 +338,7 @@ function QuestionCard({ q, index, role }: { q: PredictedQuestion; index: number;
   const [practising, setPractising] = useState(false);
 
   return (
-    <article className="group/card relative overflow-hidden rounded-xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors duration-300 hover:border-white/[0.12]">
+    <article className="group/card relative overflow-hidden rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6 transition-colors duration-300 hover:border-white/[0.12]">
       <div className="flex items-start gap-4 sm:gap-5">
         <span className="mt-0.5 w-7 shrink-0 font-mono text-[13px] text-indigo-300/80">
           {String(index + 1).padStart(2, "0")}
@@ -410,7 +410,7 @@ function TmayPanel() {
 
   return (
     <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-    <SpotlightCard className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+    <SpotlightCard className="rounded-xl border border-white/[0.07] surface-card p-6">
       <p className="text-white text-xl font-semibold tracking-[-0.02em] mb-2">&ldquo;{TMAY_QUESTION.replace(".", "")}&rdquo;</p>
       <p className="text-[15px] text-slate-400 mb-5">
         The first question in almost every interview. Say your answer out loud (or type it) and see your pace, filler
@@ -452,7 +452,7 @@ function TmayPanel() {
 /** Beside the input: what the tool returns, so the empty state is not a blank column. */
 function WhatYouGet({ title, intro, items, notes }: { title: string; intro: string; items: string[]; notes: string[] }) {
   return (
-    <div className="flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+    <div className="flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6">
       <p className={`${LABEL} text-indigo-300/90`}>{title}</p>
       <p className="mt-2 text-[15px] text-slate-400">{intro}</p>
       <ol className="mb-auto mt-6 space-y-3">
@@ -525,7 +525,7 @@ function AnswerPractice({ question, role }: { question: string; role: string }) 
   return (
     <div className="space-y-5">
       {canSpeak && (
-        <div role="group" aria-label="Answer input" className="inline-flex gap-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-1">
+        <div role="group" aria-label="Answer input" className="inline-flex gap-1 rounded-xl border border-white/[0.07] surface-card p-1">
           {(
             [
               { id: "voice", label: "Say it out loud" },
@@ -606,7 +606,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
   return (
     <motion.div
-      className="rounded-xl border border-white/[0.08] bg-[#070b16] p-6 space-y-6"
+      className="rounded-xl border border-white/[0.08] bg-[#070b16] surface-card p-6 space-y-6"
       variants={stagger}
       initial="hidden"
       animate="show"
@@ -704,7 +704,7 @@ function RatingView({ rating, role }: { rating: Rating; role: string }) {
 
 function ConversionBanner({ role }: { role: string }) {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-indigo-400/25 bg-[#070b16] p-6">
+    <div className="relative overflow-hidden rounded-xl border border-indigo-400/25 bg-[#070b16] surface-card p-6">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_80%_70%_at_100%_0%,black,transparent)]"
@@ -741,7 +741,7 @@ function LoadingCard({ lines }: { lines: string[] }) {
   }, []);
   return (
     <motion.div
-      className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6"
+      className="rounded-xl border border-white/[0.07] surface-card p-6"
       aria-live="polite"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}

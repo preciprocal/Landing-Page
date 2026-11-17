@@ -21,7 +21,7 @@ import { ALL_ROLES, ROLE_DISPLAY, getRoleMeta, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand, titleField } from "@/lib/seoTitle";
 import { getRoleInterviewQuestions } from "@/lib/roleContent";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -82,7 +82,6 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
               <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                 Practice these out loud, free <Chevron />
               </a>
-              <p className="text-[13px] text-slate-500">Voice mock interview · AI follow-ups · No credit card</p>
             </div>
           }
         >
@@ -149,40 +148,14 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
                 </RevealGroup>
               ))}
             </div>
-
-            {/* The bridge from reading the answers to saying them out loud. */}
-            <Reveal>
-              <div className="mt-14 flex flex-col gap-5 rounded-2xl border border-accent/20 bg-accent-deep/[0.05] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
-                <div className="max-w-2xl">
-                  <h2 className="text-[17px] font-semibold leading-snug text-white">Practice these questions with AI mock interviews</h2>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">Reading answers is good. Being grilled by an AI interviewer that follows up, pushes back, and scores your response is 10× better.</p>
-                </div>
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} shrink-0 ${FOCUS}`}>
-                  Start practicing free <Chevron />
-                </a>
-              </div>
-            </Reveal>
           </div>
         </section>
 
-        {/* Where to go next: the predictor, the sibling guides, related roles */}
+        {/* Where to go next: the sibling guides and related roles */}
         <section className={`${SECTION}  ${PAD}`}>
           <div className={INNER}>
-            {/* Job-description predictor cross-link */}
-            <div className="flex flex-col gap-5 border-b border-white/[0.06] pb-10 lg:flex-row lg:items-center lg:justify-between">
-              <div className="max-w-2xl">
-                <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">Interviewing for a specific {roleLabel} job?</h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-slate-400">
-                  These are the common questions. Paste the actual job posting into the free predictor to get the 5 questions that role is most likely to ask, then practice your answers out loud.
-                </p>
-              </div>
-              <Link href="/interview-question-predictor" className={`${BTN_SECONDARY} w-full shrink-0 sm:w-auto ${FOCUS}`}>
-                Predict questions from your job description <Chevron />
-              </Link>
-            </div>
-
             {/* Sibling guides for this role (resume, salary, cover letters) */}
-            <RoleGuideLinks role={role} roleName={ROLE_DISPLAY[role]?.name ?? roleLabel} current="interview-questions" className="mt-10" />
+            <RoleGuideLinks role={role} roleName={ROLE_DISPLAY[role]?.name ?? roleLabel} current="interview-questions" />
 
             {/* Related roles */}
             {meta.relatedRoles.length > 0 && (
@@ -210,7 +183,7 @@ export default async function RoleInterviewPage({ params }: { params: Promise<{ 
         <section className={`${PAD} pb-24 pt-4`}>
           <Reveal>
             <CtaPanel
-              title="Knowing the questions is half of it. Saying the answers out loud is the other half."
+              title="Knowing the questions is half of it."
               body={<p>Run a voice mock interview with an AI panel that asks follow-ups, then see exactly where your answers lost the room.</p>}
               action={
                 <a href={`${APP_URL}/sign-up?tool=mock-interview`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>

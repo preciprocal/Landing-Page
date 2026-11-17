@@ -134,11 +134,11 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
   {
     title: "Use Jobright if finding the jobs is your problem",
-    body: "Worth saying first: Jobright's matching engine is the best-reviewed part of the product, and if your bottleneck is finding relevant postings rather than converting them, it solves a problem we do not even attempt. Preciprocal is not a job board and does not match you to roles. If you are an international student, its H1B sponsorship filter over job listings is genuinely distinctive. Our free employer lookup covers the same USCIS data from the other side: for a company you have already found, it shows E-Verify status and H-1B approvals by year, but it does not search listings.",
+    body: "If finding postings is your bottleneck, Jobright's matching and H1B filter solve a problem we do not attempt; Preciprocal is not a job board. Our free employer lookup works from the other side: E-Verify status and H-1B approvals by year for a company you have found.",
   },
   {
     title: "Nothing happens after the application",
-    body: "Jobright optimises applications per hour. It has no mock interviews, no study planner and no debrief capture. Once a recruiter replies you are on your own, which is the half of the process where most qualified candidates actually get filtered out. Preciprocal is built for that half: voice mocks with a panel that asks follow-ups, a plan built backward from your interview date, and a journal that makes your recurring weaknesses visible.",
+    body: "Jobright has no mock interviews, study planner or debriefs, so once a recruiter replies you are on your own. Preciprocal is built for that half: voice mocks that follow up, a plan to your interview date, and a journal of recurring weak spots.",
   },
   {
     title: "The autopilot is assisted autofill",
@@ -146,7 +146,7 @@ const REASONS: AlternativeReason[] = [
   },
   {
     title: "$9.99 against $39.99",
-    body: "Jobright Turbo is $39.99 monthly, $89.99 quarterly or $17.99 weekly, having risen from $29.99 earlier in 2026. Preciprocal Pro is $9.99 monthly. Over a six-month search that is roughly $240 against $60, and the free plans on both sides are worth running first with your own resume.",
+    body: "Jobright Turbo is $39.99 monthly (up from $29.99 earlier in 2026), $89.99 quarterly or $17.99 weekly. Preciprocal Pro is $9.99 monthly, roughly $60 over six months against $240.",
   },
 ];
 

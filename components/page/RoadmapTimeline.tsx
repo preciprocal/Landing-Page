@@ -171,7 +171,7 @@ export default function RoadmapTimeline({ items }: { items: RoadmapItem[] }) {
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true, margin: "-60px" }}
                         transition={{ duration: 0.55, ease: EASE }}
-                        className={`group relative rounded-xl border border-white/[0.07] bg-[#070b16] p-5 transition-colors duration-300 hover:border-accent/25 sm:p-6 lg:row-start-1 ${
+                        className={`group relative rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-5 transition-colors duration-300 hover:border-accent/25 sm:p-6 lg:row-start-1 ${
                           right ? "lg:col-start-2" : "lg:col-start-1"
                         }`}
                       >

@@ -17,12 +17,12 @@
  *   • Metadata in app/pricing/metadata.ts
  */
 
-import Link from "next/link";
 import { CheckIcon } from "@/components/Icons";
 import { APP_URL } from "@/lib/constants";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ExploreLinks from "@/components/page/ExploreLinks";
 import Packs from "@/components/Packs";
 import SuccessStories from "@/components/SuccessStories";
 import RefundPolicy from "@/components/RefundPolicy";
@@ -35,7 +35,6 @@ import {
   tierPriceWithPeriod,
   tierSchemaPrice,
 } from "@/lib/pricing";
-import Chevron from "@/components/Chevron";
 import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, FaqSection, H1, INNER, LABEL, LEAD, PAD, SMALL } from "@/components/page/Layout";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
@@ -133,7 +132,7 @@ function PricingJsonLd() {
 const PRICING_FAQS = [
   {
     q: "Is there a free plan?",
-    a: "Yes, Preciprocal's free plan includes 1 tailored application, 2 resume analyses, 2 cover letters, 1 mock interview of 8 minutes per month, plus unlimited interview debriefs and job tracking, with no credit card required. You can use it indefinitely.",
+    a: "Yes. The free plan includes 1 tailored application, 2 resume analyses, 2 cover letters, 1 mock interview of 8 minutes per month, plus unlimited interview debriefs and job tracking, with no credit card required, for as long as you like.",
   },
   {
     q: "What's included in the Pro plan?",
@@ -141,11 +140,11 @@ const PRICING_FAQS = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. You can cancel your subscription at any time from your account settings. You'll keep access until the end of your billing period.",
+    a: "Yes, any time from your account settings. You keep access until the end of your billing period.",
   },
   {
     q: "Can I get a refund?",
-    a: "Yes, whenever you ask, from Settings > Plan & Billing > Refunds in the app. At any point in your billing month you can get back the part of that month you have not used, less card processing fees (our payment provider keeps those, about $0.66 on a $9.99 payment). Each feature counts by what it costs to run, so a mock interview counts for more than a cover letter. In your first 7 days, if you have barely used your plan, you get your first payment back instead, less the same fees. Once a new billing month starts the previous one can no longer be refunded, and an unused-credits refund is available once every 6 months. Separately, if you land a job while subscribed, send us your offer letter, a public LinkedIn post about your experience and a short testimonial, all three, and we will refund that month's subscription in full; this covers your most recent billing period only. One-time packs can be returned within 7 days of purchase if none of the pack has been used, less the card processing fee.",
+    a: "Yes, from Settings > Plan & Billing > Refunds in the app. Any time in your billing month you get back the part you have not used, less card fees, and in your first 7 days, if you have barely used your plan, your first payment back instead. Land a job while subscribed and share your story, and that month's subscription is refunded in full; the Terms have the full conditions.",
   },
   {
     q: "Is there a student discount?",
@@ -183,8 +182,7 @@ export default function PricingPage() {
                 <span className="text-gradient">Start free.</span>
               </h1>
               <p className={`mx-auto max-w-lg ${LEAD}`}>
-                On OPT, a slow search costs you more than time. Everything you need to make each
-                application count, for less than a coffee a week.
+                Everything you need to make each application count, for less than a coffee a week.
               </p>
             </RevealOnScroll>
 
@@ -265,6 +263,7 @@ export default function PricingPage() {
         {/* ── Pricing FAQ: questions closed, answers one click away ── */}
         <FaqSection title="Common questions" items={PRICING_FAQS} sectionProps={{ "data-section": "pricing-faq", "data-section-name": "Pricing FAQ", "aria-label": "Pricing frequently asked questions" }} />
 
+        <ExploreLinks current="/pricing" className="pb-20" />
       </main>
 
       <Footer />

@@ -91,35 +91,27 @@ const ROWS: RuleRow[] = [
 const FAQS = [
   {
     q: "Is the $70,000 OPT fee in effect?",
-    a: "No. It is a proposed rule published on October 8, 2026. It would take effect only after DHS reviews public comments and publishes a final rule, and then 60 days after that. Current OPT and STEM OPT rules and fees still apply.",
+    a: "No. It is a proposed rule published on October 8, 2026, and would take effect only 60 days after a final rule. Current OPT and STEM OPT rules and fees still apply.",
   },
   {
     q: "Who would pay the proposed OPT fee, the student or the school?",
-    a: "The proposal puts the fee on the school. A DSO could not enter the OPT recommendation in SEVIS until the school pays, and USCIS could not approve the EAD until it is paid. DHS acknowledges that schools may pass the cost on to students or employers, so how it lands on you would depend on your school.",
+    a: "The school, before its DSO can enter the recommendation in SEVIS; USCIS could not approve the EAD until it is paid. DHS acknowledges schools may pass the cost on to students or employers.",
   },
   {
     q: "I am already on OPT. Will I have to pay?",
-    a: "Not for your current period. As proposed, students already on OPT or STEM OPT, and students whose OPT is recommended or approved before the effective date, are not charged for that OPT period. A later request, such as a STEM OPT extension recommended after the rule takes effect, would carry the $30,000 fee.",
-  },
-  {
-    q: "Does the OPT fee apply to the STEM OPT extension?",
-    a: "Yes, as proposed. The STEM extension counts as a later OPT recommendation, so it would carry the $30,000 fee. A full OPT plus STEM OPT path would total $100,000 if both recommendations fall after the effective date.",
+    a: "Not for your current period, or any OPT recommended or approved before the effective date. A later request, such as a STEM OPT extension recommended after it, would carry the $30,000 fee.",
   },
   {
     q: "How do I comment on the OPT fee proposal?",
-    a: "Through regulations.gov, under docket ICEB-2026-0100. DHS's notice gives November 9, 2026 as the close of comments, while some law firm summaries give November 7, so submit early. Comments sent by email or mail are not considered, and submitted comments, including personal details, are published.",
+    a: "On regulations.gov, docket ICEB-2026-0100. DHS gives November 9, 2026 as the close (some law firm summaries say November 7), so submit early. Email and mail are not considered, and comments are published with personal details.",
   },
   {
     q: "Is duration of status ending?",
-    a: "Not right now. DHS published a final rule replacing D/S with fixed admission dates, due to start September 15, 2026, but a federal court in Massachusetts blocked it nationwide on September 14. The government appealed to the First Circuit on September 30. Until the courts say otherwise, D/S remains in place.",
-  },
-  {
-    q: "How many unemployment days do I get on OPT?",
-    a: "Unchanged: up to 90 days in total during post-completion OPT, plus 60 more during a STEM OPT extension, for 150 in total. The count is cumulative across your whole OPT period.",
+    a: "Not now. A federal court in Massachusetts blocked the rule nationwide on September 14, 2026, a day before it was due to start, and the government appealed on September 30. D/S remains in place.",
   },
   {
     q: "Should I apply for OPT early because of the proposed fee?",
-    a: "You cannot file earlier than the rules allow, which is up to 90 days before your program end date. But within the allowed window, an earlier recommendation and filing means you are more likely to be covered before any final rule takes effect. Talk to your DSO about your school's plans now.",
+    a: "You cannot file more than 90 days before your program end date, but filing early in your window makes it more likely you are covered before any final rule. Talk to your DSO about your school's plans.",
   },
 ];
 
@@ -152,7 +144,7 @@ export default function NewOptRulesPage() {
       datePublished="2026-10-13"
       h1="New OPT rules"
       h1Accent="what changed and what did not"
-      intro="A proposed $70,000 OPT fee, a blocked rule on how long F-1 students can stay, and an H-1B fee proposal that would reach OPT students for the first time. Here is what each one does, whether it applies today, and what to do about it."
+      intro="A proposed $70,000 OPT fee, a blocked rule on how long F-1 students can stay, and an H-1B fee that would reach OPT students for the first time. What each does, whether it applies today, and what to do."
       rows={ROWS}
       ctaTool="resume-tailoring"
       bottomTitle="Your OPT clock is the one thing that has not changed."
@@ -178,7 +170,7 @@ export default function NewOptRulesPage() {
             recommendations. DHS says the aim is to fight fraud, protect US workers, and make schools more selective about
             which students they recommend.
           </p>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <h3 className="mb-3">How the fee would work</h3>
             <ul className="list-disc pl-5 space-y-2 text-[15px]">
               <li>
@@ -202,17 +194,10 @@ export default function NewOptRulesPage() {
             </ul>
           </div>
           <p>
-            <strong>What it means for you:</strong> nothing changes today. If it is finalised, the question becomes how
-            your school responds. DHS itself acknowledges schools may pass the cost on to students or employers, and some
-            schools may recommend far fewer students. If you will need OPT in the next year, ask your international student
-            office what they plan to do, and file as early as your window allows. If you are on OPT now and will need STEM
-            OPT later, note that the extension would carry the $30,000 fee if it is recommended after the effective date.
-          </p>
-          <p>
-            Our <Link href="/opt/fees">OPT fees guide</Link> has a checker for whether the proposed fee would apply
-            to you, and what you pay today. Comments are open on regulations.gov under docket ICEB-2026-0100. DHS gives November 9, 2026 as the deadline;
-            some law firm summaries give November 7, so submit early. Specific, factual comments about how the fee would
-            affect you carry more weight than form letters.
+            <strong>What it means for you:</strong> nothing changes today. If it is finalised, it depends on how your
+            school responds. If you need OPT in the next year, ask your international student office about their plans and
+            file as early as your window allows. Check whether it would apply to you in the{" "}
+            <Link href="/opt/fees">OPT fees guide</Link>.
           </p>
 
           <h2 id="duration-of-status">Duration of status: blocked by a court</h2>
@@ -254,7 +239,7 @@ export default function NewOptRulesPage() {
           </p>
 
           <h2 id="unchanged">What has not changed</h2>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <ul className="space-y-3 text-[15px]">
               {[
                 "Post-completion OPT gives up to 12 months of work authorisation per degree level",
@@ -271,11 +256,6 @@ export default function NewOptRulesPage() {
               ))}
             </ul>
           </div>
-          <p>
-            The fixed clock is still the real constraint. Whatever happens to the fee proposal, the 90 days of
-            unemployment are what decide most OPT job searches, so the useful work is the same as before: start before
-            graduation, apply to fewer and better-targeted roles, and get very good at the interviews you land.
-          </p>
         </>
       }
     />

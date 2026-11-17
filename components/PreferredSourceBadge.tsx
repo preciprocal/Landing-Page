@@ -45,10 +45,10 @@ export default function PreferredSourceBadge({ className = "" }: { className?: s
       // high, G mark on the surface itself. Hover lays an 8% white tint over
       // the surface, as Google's buttons do.
       style={{ fontFamily: '"Google Sans", Roboto, Arial, sans-serif' }}
-      className={`relative inline-flex h-10 w-fit shrink-0 items-center gap-2.5 overflow-hidden rounded-full border border-[#8E918F] bg-[#131314] pl-3 pr-4 text-sm font-medium tracking-[0.25px] text-[#E3E3E3] transition-colors before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity hover:before:opacity-[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB4F8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810] ${className}`}
+      className={`relative inline-flex min-h-10 w-fit max-w-full shrink-0 items-center gap-2.5 overflow-hidden rounded-full py-2 border border-[#8E918F] bg-[#131314] pl-3 pr-4 text-sm font-medium tracking-[0.25px] text-[#E3E3E3] transition-colors before:absolute before:inset-0 before:bg-white before:opacity-0 before:transition-opacity hover:before:opacity-[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB4F8] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050810] ${className}`}
     >
       <GoogleG className="relative h-5 w-5 shrink-0" />
-      <span className="relative whitespace-nowrap">Add as a preferred source on Google</span>
+      <span className="relative leading-tight sm:whitespace-nowrap">Add as a preferred source on Google</span>
     </a>
   );
 }

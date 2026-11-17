@@ -73,7 +73,7 @@ export default function ProblemSection() {
             <span className="text-slate-500">You are racing a clock.</span>
           </h2>
           <TextGenerateEffect
-            words="Domestic candidates can afford a slow search. On OPT, every week of generic applications is a week off your count. Fewer employers will sponsor, and the ones that do ask harder questions."
+            words="On OPT, every week of generic applications is a week off your count, and fewer employers can sponsor you."
             className={`mx-auto max-w-xl ${BODY}`}
             duration={0.4}
           />

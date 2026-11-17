@@ -149,7 +149,7 @@ function KeyDates({ items, checkedAt, checkedLabel }: { items: { date: string; e
               {g.rows.length} {g.rows.length === 1 ? "date" : "dates"}
             </span>
           </div>
-          <RevealGroup as="ol" className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+          <RevealGroup as="ol" className="overflow-hidden rounded-2xl border border-white/[0.07] surface-panel">
             {g.rows.map((r) => (
               <RevealItem as="li" key={r.date + r.event} className="border-t border-white/[0.05] first:border-t-0">
                 {r === firstUpcoming && (
@@ -321,7 +321,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
               </ul>
 
               {details ? (
-                <div data-section="content" data-section-name="Rule details" className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+                <div data-section="content" data-section-name="Rule details" className="overflow-hidden rounded-2xl border border-white/[0.07] surface-panel">
                   {props.rows.map((row, i) => {
                     const style = STATUS_STYLE[row.status];
                     return (
@@ -357,7 +357,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 </div>
               ) : (
                 <>
-                  <ul className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#070b16]">
+                  <ul className="overflow-hidden rounded-2xl border border-white/[0.07] surface-panel">
                     {props.rows.map((row) => (
                       <li key={row.anchor} className="flex flex-col gap-3 border-t border-white/[0.06] p-5 first:border-t-0 sm:flex-row sm:items-start sm:gap-8 sm:p-6">
                         <span className={`inline-flex shrink-0 items-center gap-2 self-start rounded-full border px-3 py-1 text-[12px] font-medium ${STATUS_STYLE[row.status].className}`}>

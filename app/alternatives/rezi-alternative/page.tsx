@@ -110,7 +110,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 against $29 monthly",
-      "body": "Rezi Pro is $29 monthly, or $149 once for lifetime access. Preciprocal Pro is $9.99 monthly. Over a six-month search that is roughly $174 at Rezi's monthly rate against $60 at Preciprocal's."
+      "body": "Rezi Pro is $29 monthly or $149 for lifetime access; Preciprocal Pro is $9.99 monthly. Over a six-month search that is roughly $174 against $60."
     },
     {
       "title": "Analysis beyond the score",
@@ -118,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "The pipeline after the resume",
-      "body": "Rezi's centre of gravity is the document. Preciprocal carries through to tracking applications, finding the right person to contact, drafting the outreach, planning your interview prep and capturing debriefs afterwards. Whether that breadth is worth it depends on whether you would otherwise pay for separate tools."
+      "body": "Rezi's centre of gravity is the document. Preciprocal carries on through tracking, contacts, outreach, interview prep and debriefs."
     }
   ];
 

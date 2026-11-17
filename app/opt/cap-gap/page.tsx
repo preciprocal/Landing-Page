@@ -43,15 +43,11 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "What is the cap-gap extension?",
-    a: "An automatic extension of F-1 status, and in many cases work authorization, for students whose OPT or STEM OPT would end before their H-1B starts. It covers the gap between the end of OPT and an H-1B start date in the new fiscal year, which begins October 1.",
+    a: "An automatic extension of F-1 status, and often work authorization, for students whose OPT or STEM OPT ends before their H-1B starts in the new fiscal year (from October 1).",
   },
   {
     q: "How long does cap-gap last now?",
-    a: "Until April 1 of the fiscal year the H-1B is requested for. It used to end on October 1. DHS moved it to April 1 in the H-1B modernization rule, effective January 17, 2025, starting with the FY2026 registration.",
-  },
-  {
-    q: "Who qualifies for cap-gap?",
-    a: "F-1 students in a valid period of status who have not violated it, and who are the beneficiary of a timely filed cap-subject H-1B petition that requests a change of status (not consular processing) with a start date in the fiscal year. To keep working, you must be in a valid period of post-completion OPT or STEM OPT.",
+    a: "Until April 1 of the fiscal year the H-1B is for. It used to end on October 1; the H-1B modernization rule moved it, effective January 17, 2025, from the FY2026 registration.",
   },
   {
     q: "Can I work during cap-gap?",
@@ -63,7 +59,7 @@ const FAQS = [
   },
   {
     q: "Can I travel during cap-gap?",
-    a: "SEVP recommends not travelling if possible. USCIS treats a change of status application as abandoned if you leave the US while it is pending, so travelling can mean giving up the change of status your cap-gap depends on. Talk to your DSO and your employer's immigration counsel before booking anything.",
+    a: "SEVP recommends not travelling. USCIS treats a pending change of status as abandoned if you leave the US, and cap-gap depends on it. Talk to your DSO and your employer's immigration counsel first.",
   },
   {
     q: "Do unemployment days still count during cap-gap?",
@@ -105,10 +101,9 @@ export default function CapGapPage() {
 
           <h2>What changed in 2025</h2>
           <p>
-            Cap-gap used to end on October 1, the first day of the new fiscal year. If USCIS had not approved the H-1B by
-            then, students fell out of work authorization while they waited. The H-1B modernization rule, effective
-            January 17, 2025, moved the end date to April 1 of the relevant fiscal year, starting with the FY2026
-            registration. A petition still pending on October 1 no longer pushes you off payroll.
+            Cap-gap used to end on October 1, so a petition still pending then took students off payroll. The H-1B
+            modernization rule, effective January 17, 2025, moved the end to April 1 of the fiscal year, starting with
+            the FY2026 registration.
           </p>
 
           <h2>When cap-gap ends early</h2>

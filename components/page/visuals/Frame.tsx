@@ -20,6 +20,7 @@
  */
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useSafeReducedMotion } from "@/components/page/useSafeReducedMotion";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export const EASE = [0.22, 1, 0.36, 1] as const;
@@ -32,7 +33,7 @@ export const EASE = [0.22, 1, 0.36, 1] as const;
 export function useLoop(steps: number, ms = 1600) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-40px" });
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const [step, setStep] = useState(0);
 
   useEffect(() => {

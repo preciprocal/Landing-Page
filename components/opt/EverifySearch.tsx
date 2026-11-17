@@ -162,7 +162,7 @@ export default function EverifySearch() {
     : "Over 1.2 million E-Verify records and H-1B history for US employers";
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] surface-panel">
       <div className="border-b border-white/[0.06] p-6">
         <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Employer lookup</p>
         <p className="mt-1.5 text-[13px] text-slate-400">{coverage}.</p>
@@ -274,7 +274,7 @@ function MatchRow({ m, years, open, onToggle }: { m: Match; years: string[]; ope
   ].filter(Boolean);
 
   return (
-    <li className="overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02]">
+    <li className="overflow-hidden rounded-xl border border-white/[0.07] surface-card">
       <button
         type="button"
         onClick={onToggle}

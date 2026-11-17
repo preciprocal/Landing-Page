@@ -54,7 +54,7 @@ const FAQS = [
   },
   {
     q: "Will these be the exact questions I get asked?",
-    a: "Not word for word. No tool can know an interviewer's script. What it does reliably is point at the topics the posting signals the team cares about, which is where most of the questions come from. If you can answer these five well, you are prepared for the variations on them too.",
+    a: "Not word for word; no tool knows an interviewer's script. It points at the topics the posting signals the team cares about, which is where most questions come from.",
   },
   {
     q: "Why does it skip questions like “tell me about yourself”?",
@@ -66,7 +66,7 @@ const FAQS = [
   },
   {
     q: "How does the voice practice work, and what happens to my audio?",
-    a: "Press record and answer as you would in the interview. Your browser's built-in speech recognition turns your voice into text, and the page then measures your pace, filler words, pauses and length right on your device. Preciprocal never receives the audio. Depending on your browser, its speech service may process the audio on the browser maker's servers (Google for Chrome, Microsoft for Edge). Only the transcript is sent to us, and only if you click to score the content. Voice works in Chrome, Edge and Safari; in Firefox you can type your answer instead.",
+    a: "Your browser's speech recognition turns your answer into text, and the page measures pace, filler words and pauses on your device; Preciprocal never receives the audio (your browser's speech service may process it, for example Google for Chrome). Only the transcript is sent to us, and only if you score the content. Voice works in Chrome, Edge and Safari; in Firefox you can type.",
   },
   {
     q: "Why does my filler word count look low?",
@@ -112,13 +112,13 @@ export default function InterviewQuestionPredictorPage() {
       badge="Free AI tool, no sign-up"
       h1="Paste a job description."
       h1Accent="Get the 5 questions you'll be asked."
-      subhead="An AI reads the posting like the hiring manager who wrote it and predicts your most likely interview questions. Then say your answer out loud: see your pace and filler words instantly, and get the content scored out of 10. Free, no account needed."
+      subhead="An AI reads the posting like the hiring manager who wrote it and predicts your most likely interview questions. Answer out loud to see your pace and filler words and get a score out of 10, free with no account."
       ctaTool="question-predictor"
       ctaLabel="Practice in a free mock interview"
       ctaMicrocopy="Free plan includes an AI mock interview · No credit card"
       tool={<InterviewQuestionPredictor />}
       featuresTitle="More than a list of common questions"
-      featuresSubtitle="Generic question lists are the same for every job. These come from the posting in front of you."
+      featuresSubtitle="These questions come from the posting in front of you, not a generic list."
       features={FEATURES}
       steps={STEPS}
       bodyTitle="How to predict interview questions from a job description"

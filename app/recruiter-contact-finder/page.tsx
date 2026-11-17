@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Who should I actually contact about a job?",
-    a: "In rough order of usefulness: the hiring manager for the specific role, a team member who does the job you are applying for, then the recruiter. The hiring manager owns the opening and feels the cost of it staying unfilled. A team member can refer you internally, which routes your application through a completely different and much shorter queue. Recruiters are the most contacted and the most saturated.",
+    a: "In order: the hiring manager for the role, a team member who can refer you internally, then the recruiter, who is the most contacted of the three.",
   },
   {
     q: "How do I figure out who the hiring manager is?",
@@ -62,7 +62,7 @@ const FAQS = [
   },
   {
     q: "Is this the same as sales prospecting tools?",
-    a: "The underlying mechanic is similar, but the use case and the volume are completely different. Sales tools are built for sending hundreds of messages a week. Job search outreach works at maybe five to ten carefully chosen contacts a week, where each message is written specifically for the recipient. Sending job search outreach at sales volume does not work and damages your reputation.",
+    a: "The mechanic is similar but the volume is not: sales tools send hundreds of messages a week, while job search outreach works at five to ten carefully written ones.",
   },
   {
     q: "Is contacting people directly seen as inappropriate?",
@@ -99,7 +99,7 @@ export default function RecruiterContactFinderPage() {
       badge="Free, 2 lookups per month"
       h1="Recruiter contact finder"
       h1Accent="find the right person to email"
-      subhead="An application in a portal joins several hundred others. An email to the hiring manager arrives in an inbox with your name on it. Find who to contact and verify the address before you send."
+      subhead="An email to the hiring manager arrives with your name on it, not in a pile of applications. Find who to contact and verify the address before you send."
       ctaTool="contact-finder"
       ctaLabel="Find a contact free"
       ctaMicrocopy="2 free lookups/month · Verified addresses · No credit card"

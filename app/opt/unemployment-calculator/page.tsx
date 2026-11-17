@@ -59,15 +59,11 @@ const FAQS = [
   },
   {
     q: "Does volunteering stop the OPT clock?",
-    a: "On post-completion OPT, yes, if the volunteer or unpaid internship role is directly related to your degree, is at least 20 hours a week, and does not violate labor laws. Keep evidence from the organisation of your hours and duties. Unpaid work does not count on STEM OPT.",
-  },
-  {
-    q: "Do days outside the US count as unemployment?",
-    a: "Yes, unless you were employed at the time, either on leave your employer authorised or travelling for the job.",
+    a: "On post-completion OPT, yes, if it is related to your degree, at least 20 hours a week and within labor laws, with evidence of your hours. It does not count on STEM OPT.",
   },
   {
     q: "What happens if I go over 90 days?",
-    a: "The regulation says you may not accrue more than 90 days (150 with STEM OPT), so going over puts your F-1 status at risk. If you are close to or past the limit, talk to your DSO immediately about your options before you do anything else.",
+    a: "The regulation says you may not accrue more than 90 days (150 with STEM OPT), so going over puts your F-1 status at risk. If you are close, talk to your DSO immediately.",
   },
   {
     q: "Does the clock keep running during the cap-gap extension?",
@@ -84,7 +80,7 @@ export default function UnemploymentCalculatorPage() {
       description={DESCRIPTION}
       h1="OPT unemployment calculator"
       h1Accent="and how to stop the clock"
-      intro="Every day on OPT without qualifying work counts against a fixed limit: 90 days on post-completion OPT, 150 in total with STEM OPT. Count where you stand, then see which kinds of work stop the count, according to SEVP's own guidance."
+      intro="Every day on OPT without qualifying work counts against a fixed limit: 90 days on post-completion OPT, 150 in total with STEM OPT. Count where you stand, then see which work stops the count."
       keyFacts={[
         { value: "90", label: "Unemployment days on post-completion OPT" },
         { value: "150", label: "Total with a STEM OPT extension" },
@@ -114,11 +110,8 @@ export default function UnemploymentCalculatorPage() {
           </ul>
 
           <h2>What stops the clock on post-completion OPT</h2>
-          <p>
-            SEVP&apos;s OPT policy guidance lists the kinds of employment that count on regular post-completion OPT. All
-            of them must be directly related to your degree program.
-          </p>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <p>SEVP&apos;s guidance lists what counts on post-completion OPT. All of it must relate directly to your degree.</p>
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <ul className="space-y-4 text-[15px]">
               {[
                 ["Paid employment", "Part time (at least 20 hours a week) or full time."],

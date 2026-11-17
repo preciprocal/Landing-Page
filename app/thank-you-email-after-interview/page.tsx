@@ -139,7 +139,7 @@ export default function ThankYouEmailPage() {
       ctaMicrocopy="Free plan includes an AI mock interview · No credit card"
       tool={<ThankYouEmailBuilder />}
       featuresTitle="What makes a thank you email work"
-      featuresSubtitle="Short, specific, and sent the same day. The generator is built around those three rules."
+      featuresSubtitle="Short, specific, and sent the same day: the generator is built around those three rules."
       features={FEATURES}
       steps={STEPS}
       bodyTitle="Thank you email examples and the rules behind them"

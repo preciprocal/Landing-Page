@@ -18,6 +18,7 @@ import { FAQS, FAQ_CATEGORIES, type FAQCategory } from "@/lib/constants";
 import { FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ExploreLinks from "@/components/page/ExploreLinks";
 import Chevron from "@/components/Chevron";
 import { PlaceholdersAndVanishInput } from "@/components/ui/PlaceholdersAndVanishInput";
 import { PAD, INNER, SECTION, GRID_BG, BTN_PRIMARY, PageHero, FaqList, pad2 } from "@/components/page/Layout";
@@ -108,7 +109,7 @@ export default function FAQPage() {
       <main>
         <PageHero
           breadcrumb={[{ label: "Home", href: "/" }, { label: "FAQ" }]}
-          badge={<>{FAQS.length} answers to everything you need</>}
+          badge={<>{FAQS.length} answers</>}
           title={"Frequently asked "}
           accent="questions"
           subhead={
@@ -211,7 +212,7 @@ export default function FAQPage() {
 
         {/* Bottom CTA */}
         <section className={`pb-24 ${PAD}`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] px-7 py-12 sm:px-14`}>
+          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] surface-panel px-7 py-12 sm:px-14`}>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
@@ -237,11 +238,12 @@ export default function FAQPage() {
                 .
               </p>
               <a href="https://app.preciprocal.com/sign-up" className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                Start preparing free, no credit card required <Chevron />
+                Start preparing free <Chevron />
               </a>
             </div>
           </Reveal>
         </section>
+        <ExploreLinks current="/faq" className="pb-20" />
       </main>
 
       <Footer />

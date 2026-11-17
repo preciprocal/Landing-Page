@@ -109,16 +109,10 @@ export default function AlternativesIndexPage() {
           title="Job search tool "
           accent="comparisons"
           subhead={
-            <>
-              <p>
-                Honest comparisons against the {total} tools people most often evaluate alongside
-                Preciprocal. Each page states what the other tool is genuinely better at, because a
-                comparison that never concedes anything is not worth reading.
-              </p>
-              <p className="mt-4 text-[15px] leading-relaxed text-slate-400">
-                Pricing checked September 2026. Plans change often, so verify on each tool&apos;s own page.
-              </p>
-            </>
+            <p>
+              Honest comparisons against the {total} tools people most often weigh up alongside Preciprocal,
+              each saying what the other tool does better. Pricing checked September 2026.
+            </p>
           }
           aside={
             <nav aria-label="Jump to a category" className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end">
@@ -170,7 +164,7 @@ export default function AlternativesIndexPage() {
         </div>
 
         <section className={`${PAD} pb-24`}>
-          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16] px-7 py-10 sm:px-12 sm:py-12`}>
+          <Reveal className={`${INNER} relative overflow-hidden rounded-2xl border border-white/[0.08] surface-panel px-7 py-10 sm:px-12 sm:py-12`}>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_80%_at_100%_50%,black,transparent)]"
@@ -181,14 +175,8 @@ export default function AlternativesIndexPage() {
               <div className="max-w-3xl">
                 <h2 className="text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">How we write these</h2>
                 <p className={`mt-3 ${BODY}`}>
-                  Every comparison names what the other tool does better and says plainly when you should
-                  use it instead, including when the answer is their free tier rather than our paid one.
-                  Prices come from public pricing pages where they exist, and from third-party reporting
-                  where they do not, which is noted on the page.
-                </p>
-                <p className={`mt-3 ${BODY}`}>
-                  Preciprocal Pro is $9.99/mo, billed monthly. The free plan needs no card,
-                  so the fastest way to judge any of this is to run your own resume through both.
+                  Every comparison says when you should use the other tool instead, even when that is their free tier.
+                  Prices come from public pricing pages, or third-party reporting where noted.
                 </p>
               </div>
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>

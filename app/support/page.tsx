@@ -145,7 +145,7 @@ export default function SupportPage() {
               {SELF_SERVE.map((s) => {
                 const external = s.href.startsWith("http");
                 const cls =
-                  "group flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] p-6 transition-colors hover:border-white/[0.16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
+                  "group flex h-full flex-col rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6 transition-colors hover:border-white/[0.16] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60";
                 const inner = (
                   <>
                     <span className="mb-5 grid h-10 w-10 place-items-center rounded-xl border border-accent/20 bg-accent/10">
@@ -199,7 +199,7 @@ export default function SupportPage() {
             </Reveal>
 
             <Reveal className="space-y-6">
-              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6">
                 <p className="mb-4 text-[13px] font-semibold text-white">A good report gets a faster fix</p>
                 <ul className="space-y-2.5">
                   {GOOD_REPORT.map((g, i) => (
@@ -210,7 +210,7 @@ export default function SupportPage() {
                   ))}
                 </ul>
               </div>
-              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] p-6">
+              <div className="rounded-xl border border-white/[0.07] bg-[#070b16] surface-card p-6">
                 <p className="mb-4 inline-flex items-center gap-2 text-[13px] font-semibold text-white">
                   <Clock aria-hidden="true" className="h-4 w-4 text-accent" /> When to expect a reply
                 </p>

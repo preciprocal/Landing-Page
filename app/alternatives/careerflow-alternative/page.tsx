@@ -106,7 +106,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Mock interviews on the base tier, not an upsell",
-      "body": "Careerflow puts AI mock interviews on Premium Plus, above the $23.99 Premium tier. Preciprocal includes 3 mock interviews a month on the $9.99 Pro tier, and 1 a month on the free plan. If interview practice is part of why you are buying a tool, that pricing structure matters."
+      "body": "Careerflow puts AI mock interviews on Premium Plus, above the $23.99 Premium tier. Preciprocal includes 3 a month on the $9.99 Pro tier and 1 a month on the free plan."
     },
     {
       "title": "Voice-based rather than text-based practice",
@@ -114,7 +114,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "$9.99 against $23.99, and no weekly tier",
-      "body": "Careerflow Premium is $23.99 monthly, $54.99 quarterly, or $172.99 annually. Preciprocal Pro is $9.99 monthly, with no longer commitment to buy into. Both offer real free tiers, so compare those first with your own profile."
+      "body": "Careerflow Premium is $23.99 monthly, $54.99 quarterly or $172.99 annually; Preciprocal Pro is $9.99 monthly with no longer commitment. Both have real free tiers worth comparing first."
     },
     {
       "title": "Resume depth beyond the ATS score",

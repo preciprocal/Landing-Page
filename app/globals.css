@@ -40,6 +40,38 @@ body {
   animation: gradient-shift 4s ease infinite;
 }
 
+/* ── Gradient text descenders ─────────────────────────────────────────────
+ * Gradient text paints only inside its own box. With the tight heading line
+ * height, that box ends above the tails of g, j, p, q and y, so they were cut
+ * off ("worrying"). The padding extends the painted area below the baseline;
+ * the matching negative margin keeps block layouts exactly where they were. */
+@layer utilities {
+  .bg-clip-text,
+  .text-gradient {
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+}
+
+/* ── Surfaces ──────────────────────────────────────────────────────────────
+ * The two gradient surfaces every card and panel uses (CARD and PANEL in
+ * components/page/Layout.tsx). Deliberately faint: a sheen that fades down
+ * the card, a hairline of light on the top edge, and on panels a wash of the
+ * page accent from above. Colour stays the site's own. */
+@layer components {
+  .surface-card {
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  }
+  .surface-panel {
+    background-color: #070b16;
+    background-image:
+      radial-gradient(120% 70% at 50% -10%, rgb(var(--accent-deep) / 0.09), transparent 62%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 45%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  }
+}
+
 /* ── Infinite scroll (testimonials) ──────────────────────────────────────── */
 .animate-scroll {
   animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;

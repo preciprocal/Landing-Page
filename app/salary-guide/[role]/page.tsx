@@ -343,13 +343,12 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
                 {display.name} salary guide 2026
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
-                Real salary data for {lower}s, base pay, total compensation, equity benchmarks, and how to negotiate your next offer.
+                Base pay, total compensation and equity for {lower}s, and how to negotiate your next offer.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <div className="mt-8">
                 <a href={signUp} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                  Get the interview that gets you this offer <Chevron />
+                  Prepare for the interview <Chevron />
                 </a>
-                <p className="text-[13px] text-slate-500">Free plan · No credit card</p>
               </div>
             </div>
 
@@ -375,7 +374,7 @@ export default async function SalaryGuideRolePage({ params }: { params: Promise<
               <SectionHead align="center" eyebrow="Salary bands" title={`${display.name} salary by level`} />
             </Reveal>
             <Reveal>
-              <div className="overflow-x-auto rounded-2xl border border-white/[0.07] bg-[#070b16]">
+              <div className="overflow-x-auto rounded-2xl border border-white/[0.07] surface-panel">
                 <table className="w-full text-[15px]">
                   <thead>
                     <tr className="border-b border-white/[0.07] bg-white/[0.02]">

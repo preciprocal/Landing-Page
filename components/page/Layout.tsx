@@ -100,7 +100,9 @@ export const GRID_BG: CSSProperties = {
  *     a page. Mock app screens (components/examples, components/demo, the
  *     product films) keep their compact sizes: they copy the app.
  *   • Surfaces use CARD (and CARD_HOVER when clickable), PANEL for large
- *     framed blocks, PILL for badges and chips, INPUT for fields.
+ *     framed blocks, PILL for badges and chips, INPUT for fields. CARD and
+ *     PANEL carry the faint gradient surfaces in globals.css (.surface-card,
+ *     .surface-panel); use them rather than flat fills.
  *   • Radii: rounded-lg (buttons, inputs, small tiles), rounded-xl (cards),
  *     rounded-2xl (panels, product frames), rounded-full (pills, avatars).
  *   • Spacing: cards pad p-6 (p-5 in dense grids), grids gap-4, sections SECTION.
@@ -112,12 +114,12 @@ export const R_CARD = "rounded-xl";
 export const R_PANEL = "rounded-2xl";
 
 /** Card surfaces. */
-export const CARD = "rounded-xl border border-white/[0.07] bg-white/[0.02]";
-export const CARD_SOLID = "rounded-xl border border-white/[0.07] bg-[#070b16]";
+export const CARD = "rounded-xl border border-white/[0.07] surface-card";
+export const CARD_SOLID = "rounded-xl border border-white/[0.07] bg-[#070b16] surface-card";
 /** Add to a CARD that links or opens something. */
 export const CARD_HOVER = "transition-colors duration-200 hover:border-white/[0.13] hover:bg-white/[0.035]";
 /** Large framed blocks: CTA panels, folds, product frames, pricing tables. */
-export const PANEL = "rounded-2xl border border-white/[0.08] bg-[#070b16]";
+export const PANEL = "rounded-2xl border border-white/[0.08] surface-panel";
 /** Badges, chips and tags. Colour comes from the caller (border, bg, text). */
 export const PILL = "inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[12px] font-medium";
 /** Text inputs, selects and textareas. */
@@ -252,7 +254,7 @@ export function TrustRow({ className = "", align = "start" }: { className?: stri
 
 /**
  * A faint masked grid and a hairline at the bottom, for the top of a hero.
- * Deliberately quiet: no glows. Place inside a `relative overflow-hidden` section.
+ * Quiet: one soft accent wash, no hard glows. Place inside a `relative overflow-hidden` section.
  */
 export function HeroBackdrop() {
   return (
@@ -262,7 +264,12 @@ export function HeroBackdrop() {
         className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
         style={GRID_BG}
       />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-white/[0.05]" />
+      {/* A quiet wash of the page accent from the top edge. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(ellipse_55%_60%_at_50%_0%,rgb(var(--accent-deep)/0.13),transparent_70%)]"
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
     </>
   );
 }

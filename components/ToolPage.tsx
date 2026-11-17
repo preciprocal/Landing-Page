@@ -166,6 +166,9 @@ export default function ToolPage({
   // Five questions at most: the ones that decide a sign-up. The schema below
   // uses the same list, so search results match what the page shows.
   const shownFaqs = faqs.slice(0, 5);
+  // Three steps and six features: enough to explain the tool, short enough to scan.
+  const shownSteps = steps.slice(0, 3);
+  const shownFeatures = features.slice(0, 6);
 
   return (
     <>
@@ -276,7 +279,7 @@ export default function ToolPage({
               <div className="mx-auto max-w-2xl text-center">
                 <Eyebrow>How it works</Eyebrow>
                 <h2 className={H2}>
-                  {COUNT_WORD[steps.length] ?? steps.length} steps. <span className={ACCENT_TEXT}>Zero guesswork.</span>
+                  {COUNT_WORD[shownSteps.length] ?? shownSteps.length} steps. <span className={ACCENT_TEXT}>Zero guesswork.</span>
                 </h2>
               </div>
               <RevealGroup as="ol" className="relative mt-14 grid gap-12 md:grid-cols-3 md:gap-10">
@@ -284,7 +287,7 @@ export default function ToolPage({
                   aria-hidden="true"
                   className="absolute left-[16.7%] right-[16.7%] top-6 hidden h-px bg-gradient-to-r from-accent/50 via-white/[0.12] to-accent/50 md:block"
                 />
-                {steps.map((step, i) => (
+                {shownSteps.map((step, i) => (
                   <RevealItem as="li" key={step.step} className="relative text-center">
                     <span className="relative mx-auto grid h-12 w-12 place-items-center rounded-full border border-accent/40 bg-[#050810] text-[15px] font-semibold text-accent-soft">
                       {i + 1}
@@ -306,7 +309,7 @@ export default function ToolPage({
                 <p className={`mt-4 ${BODY}`}>{featuresSubtitle}</p>
               </div>
               <RevealGroup className="mt-14 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-                {features.map((item) => (
+                {shownFeatures.map((item) => (
                   <RevealItem key={item.label} className="flex gap-4">
                     <span aria-hidden="true" className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/[0.12] text-accent-soft">
                       <svg width="13" height="13" viewBox="0 0 16 16" fill="none">

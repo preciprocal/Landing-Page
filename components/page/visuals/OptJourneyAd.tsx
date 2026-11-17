@@ -31,7 +31,8 @@
  */
 
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { AnimatePresence, animate, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, animate, motion, useInView } from "framer-motion";
+import { useSafeReducedMotion } from "@/components/page/useSafeReducedMotion";
 import {
   AlertTriangle,
   BookOpen,
@@ -297,7 +298,7 @@ type App = ReturnType<typeof stateAt>;
 type Reg = (k: string) => (el: HTMLElement | null) => void;
 
 export default function OptJourneyAd() {
-  const reduce = useReducedMotion() ?? false;
+  const reduce = useSafeReducedMotion();
   const pictureRef = useRef<HTMLDivElement>(null);
   const camRef = useRef<HTMLDivElement>(null);
   const spotRef = useRef<HTMLDivElement>(null);

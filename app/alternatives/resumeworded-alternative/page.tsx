@@ -20,7 +20,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import CompareTable, { Verdict, PriceCompare } from "@/components/page/CompareTable";
 import { ReasonList, LinkList } from "@/components/AlternativePage";
@@ -84,27 +84,27 @@ const COMPARISON_ROWS = [
 const FAQS = [
   {
     q: "What is Resume Worded?",
-    a: "Resume Worded is an AI-powered resume review tool that provides line-by-line feedback on your resume and LinkedIn profile. It's been popular among job seekers for its detailed suggestions on how to improve resume bullets. Like Jobscan, it focuses on the resume stage and doesn't cover interviews, cover letters, or the broader job search workflow.",
+    a: "Resume Worded is an AI resume review tool with line-by-line feedback on your resume and LinkedIn profile. It focuses on the resume and does not cover interviews or cover letters.",
   },
   {
     q: "Why do people look for a Resume Worded alternative?",
-    a: "The most common reasons: pricing ($49/mo adds up quickly for students on a budget), limited scope (Resume Worded covers resume feedback but you still need separate tools for interviews and cover letters), and the free tier being too restricted to get real value. Students often want a single, affordable platform for the whole job search.",
+    a: "Mostly price ($49/mo adds up on a student budget), scope (interviews and cover letters need separate tools) and a restricted free tier.",
   },
   {
     q: "Is Preciprocal's resume scoring as detailed as Resume Worded's?",
-    a: "Preciprocal covers the same core functionality: ATS score, keyword analysis, bullet-by-bullet suggestions, and formatting feedback. Where Preciprocal adds value is recruiter eye simulation (a visual heatmap of what recruiters actually read in 6 seconds), candidate benchmarking (how your resume ranks vs other applicants), and interview intelligence (which resume bullets lead to interview questions). Resume Worded has more years of feedback data; Preciprocal wraps more around it.",
+    a: "It covers the same core: ATS score, keyword analysis, bullet suggestions and formatting feedback. It adds a recruiter eye simulation, candidate benchmarking and Interview Intel, which flags the bullets likely to draw questions.",
   },
   {
     q: "What does Preciprocal have that Resume Worded doesn't?",
-    a: "AI mock interviews (3/mo on Pro with a voice panel and 5-dimension scoring), cover letters tailored to each company, a job tracker with contact finder, a day-by-day study planner, and a Chrome extension for 1-click job saving. Resume Worded is a resume review tool. Preciprocal is a full career prep platform.",
+    a: "Voice mock interviews with 5-dimension scoring (3/mo on Pro), company-tailored cover letters, a job tracker with contact finder, a study planner and a Chrome extension.",
   },
   {
     q: "How much does Resume Worded cost vs Preciprocal?",
-    a: "Resume Worded's paid plans start at $49/mo, or about $19/mo prepaid annually. Preciprocal Pro is $9.99/mo with significantly more features. For students with a .edu email, Preciprocal offers 1 month of Pro completely free.",
+    a: "Resume Worded starts at $49/mo, or about $19/mo prepaid annually. Preciprocal Pro is $9.99/mo, and a .edu email gets 1 month of Pro free.",
   },
   {
     q: "Can I get free resume feedback without paying?",
-    a: "Yes. Preciprocal's free plan includes 3 full resume analyses per month with no credit card required. You get ATS score, keyword gap analysis, formatting recommendations, and recruiter simulation on every scan.",
+    a: "Yes. The free plan includes 2 resume analyses a month with no credit card, each with an ATS score, keyword gaps, formatting fixes and the recruiter simulation.",
   },
 ];
 
@@ -143,17 +143,11 @@ export default function ResumeWordedAlternativePage() {
           title="The Best Resume Worded Alternative "
           accent="in 2026"
           subhead={
-            <>
-              <p>
-                Resume Worded gives solid line-by-line resume feedback. But once your resume is polished,
-                you still need to prepare for interviews, write cover letters, and manage your applications.
-                That means paying for more tools.
-              </p>
-              <p className="mt-4">
-                <strong className="font-semibold text-slate-200">Preciprocal</strong> covers resume scoring plus the
-                rest of the job search at $9.99/mo, built specifically for students and new grads.
-              </p>
-            </>
+            <p>
+              Resume Worded gives solid line-by-line resume feedback.{" "}
+              <strong className="font-semibold text-slate-200">Preciprocal</strong> covers resume scoring plus
+              interviews, cover letters and tracking at $9.99/mo.
+            </p>
           }
         />
 
@@ -164,16 +158,14 @@ export default function ResumeWordedAlternativePage() {
               <Verdict
                 competitor={
                   <>
-                    Choose <strong className="font-semibold text-white">Resume Worded</strong> if you specifically want detailed line-by-line
-                    resume coaching with years of feedback data, and you already have separate tools for
-                    everything else.
+                    Choose <strong className="font-semibold text-white">Resume Worded</strong> if you want detailed line-by-line
+                    resume coaching and already have tools for everything else.
                   </>
                 }
                 preciprocal={
                   <>
-                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want resume scoring plus AI mock interviews,
-                    cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
-                    Especially if you&apos;re a student or breaking into the job market for the first time.
+                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want resume scoring plus mock interviews,
+                    cover letters, job tracking and a study planner in one platform at $9.99/mo.
                   </>
                 }
               />
@@ -216,19 +208,19 @@ export default function ResumeWordedAlternativePage() {
               items={[
                 {
                   title: "Resume feedback is step one, not the whole job",
-                  body: "Resume Worded helps you get a callback. After that, you still need to interview, write cover letters, and stay organised across 20+ applications. Preciprocal handles all of it so you're not paying for 4 tools separately.",
+                  body: "A better resume gets you a callback; then you still have to interview and keep track of every application. Preciprocal covers all of it in one plan.",
                 },
                 {
                   title: "More affordable for students",
-                  body: "Resume Worded starts at $49/mo. Preciprocal Pro is $9.99/mo for significantly more features. Students with a .edu email get 1 month of Pro free, with nothing charged for 30 days.",
+                  body: "Resume Worded starts at $49/mo; Preciprocal Pro is $9.99/mo. A .edu email gets 1 month of Pro free.",
                 },
                 {
                   title: "Built for people without extensive work history",
-                  body: "Most resume tools assume you have 5+ years of jobs to score against. Preciprocal understands new grad resumes: projects, internships, coursework, and how to frame limited experience in a way that ATS and recruiters actually respond to.",
+                  body: "Preciprocal is built around new grad resumes: projects, internships and coursework, framed for ATS and recruiters.",
                 },
                 {
                   title: "Interview intelligence closes the loop",
-                  body: "Preciprocal's resume analysis includes Interview Intel, which flags which bullet points on your resume are likely to generate interview questions. So you prepare for the exact topics your resume raises, not random questions.",
+                  body: "Interview Intel flags the resume bullets likely to draw interview questions, so you prepare for the topics your resume raises.",
                 },
               ]}
             />
@@ -261,20 +253,12 @@ export default function ResumeWordedAlternativePage() {
             <CtaPanel
               title="Try Preciprocal free. No credit card needed."
               body={
-                <p>
-                  2 resume analyses, 2 cover letters, and 1 mock interview per month on the free plan.
-                  Students with a .edu email get 1 month of Pro free.
-                </p>
+                <p>2 resume analyses, 2 cover letters and 1 mock interview a month on the free plan.</p>
               }
               action={
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
-                    Start free <Chevron />
-                  </Link>
-                  <Link href="/free-ats-checker" className={BTN_SECONDARY}>
-                    Try free resume checker
-                  </Link>
-                </div>
+                <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                  Start free <Chevron />
+                </Link>
               }
             />
           </Reveal>

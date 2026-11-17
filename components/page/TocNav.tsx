@@ -70,7 +70,7 @@ export default function TocNav({ items, label = "On this page" }: { items: TocIt
   return (
     <>
       {/* Mobile and tablet: collapsible, closes once a section is picked */}
-      <details ref={detailsRef} className="group rounded-xl border border-white/[0.07] bg-white/[0.02] lg:hidden">
+      <details ref={detailsRef} className="group rounded-xl border border-white/[0.07] surface-card lg:hidden">
         <summary className="flex min-h-[48px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-3 text-[15px] font-semibold text-white [&::-webkit-details-marker]:hidden">
           {label}
           <span

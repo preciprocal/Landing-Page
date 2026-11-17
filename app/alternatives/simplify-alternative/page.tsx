@@ -101,19 +101,19 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Use their free tier, it is genuinely good",
-      "body": "Simplify's autofill, job matching and tracking are free forever, and its job matching is something we do not offer at all. Our extension also fills application forms, free on every plan, so autofill alone is not the deciding factor. The comparison turns on what happens after the form is submitted."
+      "body": "Simplify's autofill, job matching and tracking are free, and we do not offer job matching at all. Our extension also fills forms on every plan, so the comparison turns on what happens after you submit."
     },
     {
       "title": "Speed and quality pull against each other",
-      "body": "Autofill optimises for applications per hour. But in a market with roughly one opening per unemployed worker, twenty tailored applications outperform two hundred generic ones, and the difference is invisible to the sender because you never learn which were discarded in the first pass. Preciprocal optimises the other variable."
+      "body": "Autofill optimises for applications per hour. Preciprocal optimises the other variable: how well each tailored application lands."
     },
     {
       "title": "Interview preparation is absent",
-      "body": "Simplify gets applications submitted. It does not help you once someone replies. Preciprocal includes voice mock interviews, a study planner built to your interview date and a debrief journal, which is the half of the process where most qualified candidates actually get filtered out."
+      "body": "Simplify gets applications submitted but does not help once someone replies. Preciprocal covers that half with voice mock interviews, a study planner and a debrief journal."
     },
     {
       "title": "$9.99 against $39.99 for the paid tiers",
-      "body": "Simplify+ is $39.99 monthly, $19.99 weekly or $89.99 quarterly, and adds AI resume tailoring and cover letters. Preciprocal Pro is $9.99 monthly, and includes interview practice as well as resume and cover letter tooling. Simplify does not publish a public pricing page, so verify before subscribing."
+      "body": "Simplify+ is $39.99 monthly, $19.99 weekly or $89.99 quarterly (no public pricing page, so verify). Preciprocal Pro is $9.99 monthly and includes interview practice as well as resume and letter tools."
     }
   ];
 

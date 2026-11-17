@@ -90,31 +90,27 @@ const ROWS: RuleRow[] = [
 const FAQS = [
   {
     q: "Is the $100,000 H-1B fee in effect right now?",
-    a: "No. It was extended on September 18, 2026 to September 21, 2027, but a Massachusetts federal court vacated the policy implementing it in June 2026, the First Circuit refused to pause that ruling in July, and a California federal court blocked the renewed version on September 30, 2026. USCIS cannot collect it today. Appeals are pending, so the status can change.",
+    a: "No. It was extended to September 21, 2027, but federal courts in Massachusetts (June 2026) and California (September 30, 2026) blocked it, so USCIS cannot collect it today. Appeals are pending, so this can change.",
   },
   {
     q: "Do F-1 students on OPT have to pay the $100,000 fee?",
-    a: "The $100,000 fee was aimed at beneficiaries coming from abroad, not at people already in the US changing status, so F-1 students changing to H-1B inside the US were not covered by it. It is also blocked for now. The separate proposed $103,265 fee is different: as proposed, it would apply to cap-subject change of status petitions, which includes most F-1 to H-1B cases.",
+    a: "No. It was aimed at beneficiaries abroad, not F-1 students changing status inside the US, and it is blocked. The separate proposed $103,265 fee would apply to cap-subject change of status petitions, which covers most F-1 to H-1B cases.",
   },
   {
     q: "Who pays the H-1B fee, the employer or the employee?",
-    a: "Both fees are charged to the petitioning employer as part of the H-1B petition. Whether an employer can recover the cost from the worker is a separate question governed by wage and labor rules, so ask an attorney before agreeing to repay any petition cost.",
-  },
-  {
-    q: "How does the wage-weighted H-1B lottery work?",
-    a: "Each registration is entered a number of times based on the OEWS wage level that the offered salary meets for that occupation and location: Level I once, Level II twice, Level III three times, Level IV four times. Every level can still be selected, but a higher wage level improves the odds. If several employers register the same person, the lowest wage level among them is used.",
+    a: "The petitioning employer. Whether it can recover the cost from the worker is governed by wage and labor rules, so ask an attorney before agreeing to repay any petition cost.",
   },
   {
     q: "When is the next H-1B lottery?",
-    a: "The FY2028 registration is expected in March 2027, for jobs starting October 1, 2027. USCIS had not announced the exact dates when we last checked. The FY2027 cap was reached, with no second lottery, on July 17, 2026.",
+    a: "The FY2028 registration is expected in March 2027, for jobs starting October 1, 2027; USCIS had not announced exact dates when we last checked. The FY2027 cap was reached on July 17, 2026, with no second lottery.",
   },
   {
     q: "Which employers are exempt from the H-1B cap and the proposed fee?",
-    a: "Universities, nonprofits affiliated with universities, and nonprofit or government research organisations are cap-exempt. They can file H-1B petitions year-round without the lottery, and the proposed $103,265 fee would not apply to them.",
+    a: "Universities, affiliated nonprofits, and nonprofit or government research organisations. They file year-round without the lottery, and the proposed $103,265 fee would not apply to them.",
   },
   {
     q: "Does the layoff executive order mean companies with layoffs cannot sponsor?",
-    a: "No. It requires adjudicators to consider whether the sponsor had layoffs in the past year or plans them, especially where similarly situated US workers were affected. It does not ban sponsorship. Expect slower processing and more scrutiny of employers with recent layoffs.",
+    a: "No. Adjudicators must consider past-year or planned layoffs affecting similar US workers, which means more scrutiny and slower processing, not a ban.",
   },
 ];
 
@@ -153,7 +149,7 @@ export default function NewH1bRulesPage() {
       datePublished="2026-10-13"
       h1="New H-1B rules"
       h1Accent="what is actually in force"
-      intro="H-1B policy changed more in the past year than in the decade before it, and much of what you read is out of date within weeks. Here is every change, whether it applies today, and what it means if you are an F-1 student or a worker hoping to be sponsored."
+      intro="Much of what you read about H-1B is out of date within weeks. Every change, whether it applies today, and what it means if you are an F-1 student or hoping to be sponsored."
       rows={ROWS}
       ctaTool="mock-interview"
       bottomTitle="Rules you cannot control. Interviews you can."
@@ -179,7 +175,7 @@ export default function NewH1bRulesPage() {
             27, 2026 and governed the FY2027 registration in March 2026. Each registration is now entered a number of times
             based on the OEWS prevailing wage level that the offered salary meets for that occupation and area.
           </p>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">
@@ -203,11 +199,9 @@ export default function NewH1bRulesPage() {
             </table>
           </div>
           <p>
-            <strong>What it means for you:</strong> salary is now a selection-odds question, not just a pay question. An
-            entry-level offer priced at Level I has a quarter of the weight of a Level IV offer. If you are negotiating with
-            a sponsoring employer before a cap season, it is reasonable to ask which wage level the offer falls into for
-            your occupation code and location. If more than one employer registers you, the lowest level among them is the
-            one that counts.
+            <strong>What it means for you:</strong> salary now sets your odds. A Level I offer has a quarter of the weight
+            of Level IV, so ask a sponsoring employer which level your offer falls into. If several employers register you,
+            the lowest level counts.
           </p>
 
           <h2 id="100k-fee">The $100,000 fee: extended, but blocked</h2>
@@ -234,18 +228,17 @@ export default function NewH1bRulesPage() {
             </li>
           </ul>
           <p>
-            <strong>What it means for you:</strong> the fee cannot be collected today. Employers who stopped hiring from
-            abroad during the fee period may be open to it again, so it is worth reopening those conversations. But a
-            government win on appeal could bring it back, so anyone relying on consular processing should keep watching.
+            <strong>What it means for you:</strong> the fee cannot be collected today, but a government win on appeal
+            could bring it back. Anyone relying on consular processing should keep watching.
           </p>
 
           <h2 id="103k-fee">The proposed $103,265 fee is the one F-1 students should watch</h2>
           <p>
-            On August 24, 2026, DHS announced a separate proposed rule that would charge $103,265 on every cap-subject H-1B
-            petition, on top of the normal filing fees. This one is going through formal rulemaking, which is exactly
-            what the courts said the $100,000 fee skipped, so it is on firmer legal ground if it is finalised.
+            On August 24, 2026, DHS proposed a $103,265 charge on every cap-subject H-1B petition, on top of normal filing
+            fees. Unlike the $100,000 fee, it is going through formal rulemaking, so it is on firmer legal ground if
+            finalised.
           </p>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <h3 className="mb-3">As proposed, the fee would apply to</h3>
             <ul className="list-disc pl-5 space-y-1 text-[15px]">
               <li>All cap-subject petitions, including the US master&apos;s cap</li>
@@ -259,27 +252,21 @@ export default function NewH1bRulesPage() {
             </ul>
           </div>
           <p>
-            <strong>What it means for you:</strong> today, staying in the US on OPT shields you from the $100,000 fee. If
-            this rule is finalised, that advantage goes away for cap-subject jobs, and every new cap H-1B would cost the
-            employer roughly $103,000 more. Expect employers to sponsor more selectively, mostly for senior and high-wage
-            roles. Cap-exempt employers become relatively more attractive, so add them to your target list if your field
-            has them. The comment period closed in late September 2026, and no final rule or effective date had been
-            published when we last checked.
+            <strong>What it means for you:</strong> if finalised, OPT no longer shields you from a large fee on cap-subject
+            jobs, so expect more selective sponsorship and put cap-exempt employers on your list. Comments closed in late
+            September 2026; no final rule had been published when we last checked.
           </p>
 
           <h2 id="layoff-order">The layoff executive order</h2>
           <p>
-            Issued alongside the September 2026 extension, an executive order directs the Departments of State, Labor and
-            Homeland Security to coordinate with Commerce, Education and the Small Business Administration when deciding
-            H-1B petitions, visa applications and labor condition applications. Adjudicators must consider whether the
-            sponsor directly or indirectly had layoffs in the previous year, or plans them, affecting similarly situated US
-            workers. The Department of Labor was told to begin reviewing previously filed labor condition applications
-            within 30 days.
+            Issued with the September 2026 extension, it requires adjudicators of H-1B petitions, visa applications and
+            labor condition applications to consider whether the sponsor had layoffs in the previous year, or plans them,
+            affecting similarly situated US workers. The Department of Labor was told to begin reviewing previously filed
+            labor condition applications within 30 days.
           </p>
           <p>
-            <strong>What it means for you:</strong> it is not a ban, but sponsors with recent layoffs face more scrutiny
-            and probably slower processing. When you are weighing offers, a sponsor&apos;s recent layoff history is now a
-            fair question to ask.
+            <strong>What it means for you:</strong> not a ban, but more scrutiny and slower processing for sponsors with
+            recent layoffs. Ask about layoff history when weighing offers.
           </p>
 
           <h2 id="prevailing-wage">The DOL prevailing wage proposal</h2>

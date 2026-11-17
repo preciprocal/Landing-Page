@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Can I be self-employed on OPT?",
-    a: "On regular OPT, yes. SEVP guidance says a student on OPT may start a business and be self-employed, as long as you have the proper business licences and are actively engaged in a business related to your degree. On post-completion OPT you also need to work at least 20 hours a week for it to count as employment.",
+    a: "On regular OPT, yes, per SEVP guidance, with the proper business licences and a business related to your degree. On post-completion OPT it must be at least 20 hours a week to count as employment.",
   },
   {
     q: "Can I do freelance or 1099 contract work on OPT?",
@@ -53,11 +53,11 @@ const FAQS = [
   },
   {
     q: "Can I work for my own startup on STEM OPT?",
-    a: "Generally not as a self-employed founder. STEM OPT requires a bona fide employer-employee relationship with an E-Verify employer that signs your Form I-983, and DHS says the student may not provide the employer attestation. The USCIS Policy Manual lists sole proprietorships among arrangements that may not show a bona fide relationship. A start-up can be a STEM OPT employer if it meets every requirement, but someone other than you has to be your employer in substance. Get advice from an immigration attorney first.",
+    a: "Generally not as a self-employed founder. You need a bona fide employer-employee relationship with an E-Verify employer that signs your I-983, and you may not sign the employer attestation yourself. A start-up can qualify if someone other than you is your employer in substance; get an immigration attorney's advice first.",
   },
   {
     q: "Can I sponsor myself for an H-1B?",
-    a: "Not as an individual, but a US company you own can petition for you. Since January 17, 2025, the rules allow an H-1B even when you hold a controlling interest in the petitioner, meaning more than 50 percent ownership or majority voting rights. The initial approval and first extension are each limited to 18 months, and you must spend the majority of your time on specialty occupation duties.",
+    a: "Not as an individual, but since January 17, 2025 a US company you control (over 50 percent ownership or majority voting rights) can petition for you. The initial approval and first extension are each capped at 18 months.",
   },
   {
     q: "Does a founder-owned H-1B still go through the lottery?",
@@ -65,7 +65,7 @@ const FAQS = [
   },
   {
     q: "What documents should I keep if I am self-employed on OPT?",
-    a: "Your business licences, evidence that the business is active and related to your degree (contracts, invoices, client work, a website), and a record of your weekly hours. Keep them for the whole OPT period: USCIS can ask for them in a later application, such as an H-1B or a green card.",
+    a: "Business licences, evidence the business is active and related to your degree (contracts, invoices, client work), and a log of weekly hours. USCIS can ask for them in a later H-1B or green card application.",
   },
 ];
 
@@ -93,7 +93,7 @@ export default function SelfEmploymentPage() {
       body={
         <>
           <h2>Side by side</h2>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6 overflow-x-auto">
             <table className="w-full text-[15px] min-w-[560px]">
               <thead>
                 <tr className="text-left text-slate-200">
@@ -123,16 +123,13 @@ export default function SelfEmploymentPage() {
 
           <h2>Self-employment on regular OPT</h2>
           <p>
-            SEVP&apos;s OPT policy guidance is direct: a student on OPT may start a business and be self-employed. The
-            conditions are that you have the proper business licences and are actively engaged in a business related to
-            your degree program. On post-completion OPT, the general rule also applies: you must work at least 20 hours a
-            week for it to count as employment, or the days count toward your 90-day unemployment limit.
+            SEVP guidance allows a student on OPT to start a business and be self-employed, with the proper business
+            licences and a business related to your degree. On post-completion OPT it must be at least 20 hours a week,
+            or the days count toward your 90-day unemployment limit.
           </p>
           <p>
-            Report the business as your employer within 10 days, as you would any job, so SEVIS shows you as employed.
-            Then keep evidence, because a later application can ask for it: licences and registrations, contracts and
-            invoices, proof of client work, and a log of weekly hours. Freelance and 1099 contract work are a separate
-            permitted category, called work for hire, with their own records to keep. See the{" "}
+            Report the business as your employer within 10 days, as with any job, and keep the evidence. Freelance and
+            1099 contract work are a separate permitted category, work for hire. See the{" "}
             <Link href="/opt/unemployment-calculator">full list of employment that stops the OPT clock</Link>.
           </p>
 
@@ -145,10 +142,9 @@ export default function SelfEmploymentPage() {
             <li>The USCIS Policy Manual lists sole proprietorships among arrangements that may not show a bona fide employer-employee relationship, and says you may not work on a volunteer basis.</li>
           </ul>
           <p>
-            DHS does say a start-up can qualify if it meets every requirement. In practice that means a real company,
-            enrolled in E-Verify, where someone other than you supervises your training and signs as the employer.
-            Whether a company you founded can meet that depends on its ownership and governance, so talk to an
-            immigration attorney before relying on it. More in the <Link href="/opt/stem-opt-extension">STEM OPT guide</Link>.
+            DHS says a start-up can qualify if it meets every requirement, which means someone other than you supervises
+            your training and signs as the employer. Talk to an immigration attorney before relying on it. More in the{" "}
+            <Link href="/opt/stem-opt-extension">STEM OPT guide</Link>.
           </p>
 
           <h2>H-1B for founders: the beneficiary-owner rule</h2>

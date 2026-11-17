@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Do cold emails actually work for job searching?",
-    a: "They work better than applying through a portal, which is a low bar but a meaningful one. A cold email that reaches an actual person bypasses the automated screen entirely. Response rates vary enormously with quality: a generic template sent to fifty people typically gets almost nothing, while a specific, short, well-targeted message often gets replies from a meaningful fraction of recipients. Cold outreach is a quality game, not a volume game.",
+    a: "Yes, when they are specific. An email that reaches a person skips the automated screen, and a short, well-targeted message gets far more replies than a template sent to fifty people.",
   },
   {
     q: "Should I email the recruiter or the hiring manager?",
@@ -53,7 +53,7 @@ const FAQS = [
   },
   {
     q: "How long should a cold email be?",
-    a: "Under 150 words. It should be readable on a phone without scrolling. The most common failure is length: a long email signals that replying will be work, so it gets deferred and then forgotten. Three short paragraphs, who you are, why them specifically, and one clear small ask, is the whole structure.",
+    a: "Under 150 words, readable on a phone without scrolling. Three short paragraphs: who you are, why them specifically, and one small ask.",
   },
   {
     q: "What's the right ask in a cold email?",
@@ -98,7 +98,7 @@ export default function ColdEmailGeneratorPage() {
       badge="Free, outreach included"
       h1="Cold email generator"
       h1Accent="outreach that gets replies"
-      subhead="A cold email that reaches a real person skips the automated screen entirely. Most fail for the same three reasons: too long, too generic, and asking for too much. Write ones that don't."
+      subhead="A cold email that reaches a real person skips the automated screen. Most fail by being too long, too generic or asking too much; write ones that don't."
       ctaTool="cold-outreach"
       ctaLabel="Write my outreach free"
       ctaMicrocopy="Free on the starter plan · No credit card · Editable before sending"

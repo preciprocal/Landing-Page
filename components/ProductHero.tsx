@@ -19,9 +19,10 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, type ComponentType, type ReactNode } from "react";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, TrustRow, type Crumb, H1, LEAD, LABEL, PILL } from "@/components/page/Layout";
+import { useSafeReducedMotion } from "@/components/page/useSafeReducedMotion";
+import { BTN_PRIMARY, BTN_SECONDARY, Breadcrumbs, GRID_BG, PAD, type Crumb, H1, LEAD, LABEL, PILL } from "@/components/page/Layout";
 import { CHAPTER_DATA, type ChapterId } from "@/lib/demoChapters";
 
 const FRAME_H = "h-[660px] xl:h-[720px]";
@@ -62,7 +63,8 @@ const HOLD_MS = 7000;
 function useChapterPlayback(chapter: ChapterId) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: "-120px" });
-  const reduce = useReducedMotion();
+  // Not plain useReducedMotion: see useSafeReducedMotion (hydration error #418).
+  const reduce = useSafeReducedMotion();
   const durations = CHAPTER_DATA[chapter].stepDurations;
   const total = durations.length;
   const [step, setStep] = useState(0);
@@ -142,7 +144,6 @@ export default function ProductHero({ chapter, scene, breadcrumb, badge, title, 
                 </a>
               )}
             </div>
-            <TrustRow align="center" className="mt-5" />
           </div>
 
           {/* The product, playing one chapter of the story. Decorative for assistive tech: the page text says it. */}

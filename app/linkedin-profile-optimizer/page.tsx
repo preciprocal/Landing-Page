@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How do recruiters actually find people on LinkedIn?",
-    a: "Recruiters use LinkedIn Recruiter, which is a search tool, not a feed. They type in a job title, a set of skills, a location, and sometimes a seniority filter, then work down a ranked list of results. Your profile either contains those search terms or it doesn't. This is why an impressive profile with the wrong vocabulary gets no messages while a plainer profile using the exact terms recruiters search gets several a week.",
+    a: "Recruiters use LinkedIn Recruiter, a search tool: they type a title, skills and location and work down a ranked list. A profile without those terms does not appear, however impressive it is.",
   },
   {
     q: "What is the single highest-impact part of a LinkedIn profile?",
@@ -63,7 +63,7 @@ const FAQS = [
   },
   {
     q: "Does the About section matter for search?",
-    a: "Yes. LinkedIn indexes the full text of your About section, and it is one of the largest free-text fields on your profile, which makes it the best place to work in secondary keywords naturally. It also matters for conversion: once a recruiter clicks through from search results, About is usually the first thing they read. Aim for three to four short paragraphs written in first person.",
+    a: "Yes. LinkedIn indexes the full About section, making it the best place for secondary keywords, and it is usually the first thing a recruiter reads after clicking through. Aim for three or four short first-person paragraphs.",
   },
   {
     q: "Should I turn on Open to Work?",
@@ -108,7 +108,7 @@ export default function LinkedInProfileOptimizerPage() {
       badge="Free, 2 optimisations per month"
       h1="Free LinkedIn profile optimizer"
       h1Accent="get found by recruiters"
-      subhead="Recruiters don't browse LinkedIn, they search it. If your profile doesn't contain the terms they type, you never appear. Fix the headline, About, and skills that decide whether you show up."
+      subhead="Recruiters search LinkedIn rather than browse it. Fix the headline, About and skills that decide whether you show up."
       ctaTool="linkedin-optimizer"
       ctaLabel="Optimise my profile free"
       ctaMicrocopy="2 free optimisations/month · No password required"

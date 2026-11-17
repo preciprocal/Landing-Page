@@ -56,8 +56,7 @@ export default function SalaryGuideIndexPage() {
           title="2026 salary guide by role"
           subhead={
             <p>
-              Real salary data, equity benchmarks, total compensation breakdowns, and proven negotiation scripts
-              for every major career path, updated for 2026.
+              Pay ranges, equity, total compensation and negotiation scripts for every major career path.
             </p>
           }
           aside={
@@ -98,23 +97,6 @@ export default function SalaryGuideIndexPage() {
                 </ul>
               </section>
             ))}
-
-            <nav aria-label="Related guides" className="pt-4">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also useful</p>
-              <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {[
-                  { href: "/interview-questions", label: "Browse interview guides" },
-                  { href: "/resume-tips", label: "Browse resume tips" },
-                ].map((link) => (
-                  <li key={link.href} className="border-b border-white/[0.05]">
-                    <Link href={link.href} className="group flex items-center justify-between gap-3 py-3 text-[15px] text-slate-400 transition-colors hover:text-white">
-                      {link.label}
-                      <Chevron className="text-slate-600 group-hover:text-slate-300" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
         </section>
 

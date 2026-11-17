@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How long do I need to prepare for a technical interview?",
-    a: "With a full-time job and roughly 10 hours a week, eight weeks is a comfortable runway for a mid-level software engineering loop. Four weeks is workable if you have prior interview experience. Two weeks means triaging: patterns over coverage, and mock interviews over new material. The planner builds backward from whatever date you actually have rather than assuming an ideal timeline.",
+    a: "With about 10 hours a week, eight weeks is comfortable for a mid-level engineering loop, four is workable with prior experience, and two means triage. The planner builds backward from the date you actually have.",
   },
   {
     q: "What should I study first if my interview is in two weeks?",

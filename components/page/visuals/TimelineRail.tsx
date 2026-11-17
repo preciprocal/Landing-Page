@@ -6,12 +6,13 @@
  * (left: 0). With reduced motion the line is drawn in full from the start.
  */
 
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useSafeReducedMotion } from "@/components/page/useSafeReducedMotion";
 import { useRef, type ReactNode } from "react";
 
 export default function TimelineRail({ children, className = "" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
+  const reduce = useSafeReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end 55%"] });
   const scaleY = useSpring(scrollYProgress, { stiffness: 140, damping: 30, restDelta: 0.001 });
 

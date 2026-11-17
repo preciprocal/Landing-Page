@@ -106,7 +106,7 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Design quality and ATS parsing pull in opposite directions",
-      "body": "Kickresume's strength is visual design. The difficulty is that the layouts which look best to humans, multi-column grids and styled sidebars, are frequently the ones ATS parsers mangle. Preciprocal scores your document specifically for machine readability and tells you which formatting choices are costing you."
+      "body": "Kickresume's strength is visual design, but multi-column grids and styled sidebars are often what ATS parsers mangle. Preciprocal scores your document for machine readability and shows which formatting costs you."
     },
     {
       "title": "Tailoring per posting, not one polished master",
@@ -118,7 +118,7 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "Compare the monthly rates honestly",
-      "body": "On monthly billing it is $24 against $9.99. Kickresume also sells an annual plan at roughly $8 a month, which undercuts us if you are willing to prepay twelve months up front; Preciprocal is monthly only, so you are never committing beyond the month you are in. The real difference is scope rather than price: one builds documents, the other runs the whole search."
+      "body": "Monthly it is $24 against $9.99; Kickresume's annual plan, at roughly $8 a month, undercuts us if you prepay a year. The real difference is scope: one builds documents, the other runs the whole search."
     }
   ];
 

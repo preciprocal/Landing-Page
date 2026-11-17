@@ -2908,4 +2908,18 @@ export const FAQS: FAQItem[] = [
 ];
 
 export const LANDING_FAQ_IDS = ["p1", "g5", "p2", "i1", "t1", "p5"] as const;
-export const LANDING_FAQS = FAQS.filter((f) => (LANDING_FAQ_IDS as readonly string[]).includes(f.id));
+/**
+ * Shorter answers for the homepage, where the FAQ is a quick scan. The full
+ * answers stay on /faq. The homepage FAQ JSON-LD is built from LANDING_FAQS,
+ * so the structured data always matches what the homepage shows.
+ */
+const LANDING_FAQ_SHORT: Partial<Record<(typeof LANDING_FAQ_IDS)[number], string>> = {
+  p2: "Yes, a real free plan, not a trial: 1 tailored application, 2 resume analyses, 2 cover letters and 1 mock interview a month, plus unlimited interview debriefs and job tracking. The full list is on the pricing page.",
+  p5: "Yes, from Settings in the app. Any time in your billing month you get back the part you have not used, less card fees, and in your first 7 days, if you have barely used your plan, your first payment back instead. The Terms have the full conditions.",
+  i1: "You speak with a voice AI panel, an HR interviewer and a technical lead, who ask follow-up questions like a real round. Afterwards you get a debrief scored across 5 dimensions.",
+  t1: "Yes. Data is encrypted in transit and at rest, and we never sell it or use it for advertising. Our Privacy Policy names every service provider we use.",
+};
+export const LANDING_FAQS = FAQS.filter((f) => (LANDING_FAQ_IDS as readonly string[]).includes(f.id)).map((f) => ({
+  ...f,
+  a: LANDING_FAQ_SHORT[f.id as (typeof LANDING_FAQ_IDS)[number]] ?? f.a,
+}));

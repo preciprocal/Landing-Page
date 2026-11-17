@@ -21,7 +21,7 @@ import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL } from "@/lib/constants";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
+import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";
 import CompareTable, { Verdict, PriceCompare } from "@/components/page/CompareTable";
 import { ReasonList, LinkList } from "@/components/AlternativePage";
@@ -81,27 +81,27 @@ const COMPARISON_ROWS = [
 const FAQS = [
   {
     q: "What is Jobscan?",
-    a: "Jobscan is an ATS optimization tool that compares your resume against a job description and gives you a match score with keyword recommendations. It's been around since 2014 and is primarily focused on resume scanning and LinkedIn profile optimization. It does the ATS analysis well but doesn't cover mock interviews, cover letters, or the broader job search workflow.",
+    a: "Jobscan is an ATS optimization tool that compares your resume with a job description and gives a match score with keyword recommendations. It does that well, but does not cover mock interviews, cover letters or the wider job search.",
   },
   {
     q: "Why do people look for a Jobscan alternative?",
-    a: "The most common reasons are price ($49.95/mo monthly, or $89.95 per quarter, is steep for students and new grads), scope (Jobscan only does ATS scanning, so you still need separate tools for interview prep and cover letters), and the need for a more affordable all-in-one solution. Students in particular often find they need 3-4 tools to cover what Preciprocal does in one platform.",
+    a: "Mostly price ($49.95/mo, or $89.95 per quarter, is steep for students) and scope: Jobscan only scans resumes, so interview prep and cover letters need separate tools.",
   },
   {
     q: "Is Preciprocal's ATS checker as good as Jobscan's?",
-    a: "Preciprocal's ATS scorer covers the same core analysis: keyword match percentage, missing keywords, formatting issues, and section structure. Where Preciprocal goes further is the recruiter eye simulation (a heatmap of what recruiters actually read) and candidate benchmarking (how your resume compares to other applicants for the same role). Jobscan has more years of calibration data; Preciprocal packages more around it.",
+    a: "It covers the same core analysis: keyword match, missing keywords, formatting and section structure. It adds a recruiter eye simulation and candidate benchmarking; Jobscan has more years of calibration data.",
   },
   {
     q: "What does Preciprocal have that Jobscan doesn't?",
-    a: "AI mock interviews (3/mo on Pro), a voice interview panel with 5-dimension scoring, cover letters tailored to each company, a study planner, cold outreach generator, and interview debrief journal. Jobscan is a resume tool. Preciprocal is a full career prep platform.",
+    a: "Voice mock interviews with 5-dimension scoring (3/mo on Pro), cover letters tailored to each company, a study planner, an outreach generator and an interview debrief journal.",
   },
   {
     q: "How much does Jobscan cost vs Preciprocal?",
-    a: "Jobscan's paid plan starts at $49.95/mo. Preciprocal Pro is $9.99/mo. That's an 80% cost reduction for more features. Students with a .edu email get 1 month of Preciprocal Pro free.",
+    a: "Jobscan's paid plan starts at $49.95/mo; Preciprocal Pro is $9.99/mo. Students with a .edu email get 1 month of Pro free.",
   },
   {
     q: "Can I use Preciprocal's ATS checker for free?",
-    a: "Yes. Preciprocal's free plan includes 2 resume analyses per month, no credit card required. You get a full ATS score, keyword gap analysis, and formatting recommendations on every scan.",
+    a: "Yes. The free plan includes 2 resume analyses per month with no credit card, each with a full ATS score, keyword gaps and formatting fixes.",
   },
 ];
 
@@ -140,17 +140,11 @@ export default function JobscanAlternativePage() {
           title="The Best Jobscan Alternative "
           accent="in 2026"
           subhead={
-            <>
-              <p>
-                Jobscan does one thing well: ATS resume scanning. But at $49.95/mo, you&apos;re paying enterprise
-                pricing for a single tool. If you&apos;re a student or new grad who also needs to prepare for
-                interviews, write cover letters, and track applications, you need more for less.
-              </p>
-              <p className="mt-4">
-                <strong className="font-semibold text-slate-200">Preciprocal</strong> covers ATS scoring plus the
-                entire job search pipeline at $9.99/mo. Here&apos;s an honest comparison.
-              </p>
-            </>
+            <p>
+              Jobscan does one thing well: ATS resume scanning, at $49.95/mo.{" "}
+              <strong className="font-semibold text-slate-200">Preciprocal</strong> covers ATS scoring plus
+              interviews, cover letters and tracking at $9.99/mo.
+            </p>
           }
         />
 
@@ -167,9 +161,8 @@ export default function JobscanAlternativePage() {
                 }
                 preciprocal={
                   <>
-                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want ATS scoring plus AI mock interviews,
-                    cover letter generation, job tracking, and a study planner in one platform at $9.99/mo.
-                    Especially if you&apos;re a student or new grad.
+                    Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want ATS scoring plus mock interviews,
+                    cover letters, job tracking and a study planner in one platform at $9.99/mo.
                   </>
                 }
               />
@@ -212,19 +205,19 @@ export default function JobscanAlternativePage() {
               items={[
                 {
                   title: "80% cheaper for more coverage",
-                  body: "Jobscan Pro is $49.95/mo for ATS scanning. Preciprocal Pro is $9.99/mo for ATS scanning, mock interviews, cover letters, job tracking, and a study planner. The math is straightforward.",
+                  body: "Jobscan Pro is $49.95/mo for ATS scanning. Preciprocal Pro is $9.99/mo for scanning, mock interviews, cover letters, tracking and a study planner.",
                 },
                 {
                   title: "ATS is just the first problem",
-                  body: "Getting your resume past ATS gets you a callback. Then you need to interview well, write a compelling cover letter, and manage 20 applications at once. Jobscan stops at the resume. Preciprocal carries you through the whole process.",
+                  body: "Passing ATS gets you a callback; then you still have to interview well and manage every application. Jobscan stops at the resume.",
                 },
                 {
                   title: "Built for entry-level, not just senior candidates",
-                  body: "Jobscan's keyword analysis is calibrated for people with years of work experience. Preciprocal understands new grad resumes: how to present internships, projects, coursework, and transferable skills in a way that scores well against entry-level job descriptions.",
+                  body: "Preciprocal is built around new grad resumes: internships, projects and coursework scored against entry-level job descriptions.",
                 },
                 {
                   title: "Free ATS checker with no credit card",
-                  body: "Preciprocal's free plan includes 2 resume analyses per month. No credit card. No 7-day trial that converts to a $50/mo subscription. Just a real free tier for students who are job searching on a budget.",
+                  body: "The free plan includes 2 resume analyses a month, with no credit card and no trial that converts to a paid plan.",
                 },
               ]}
             />
@@ -257,20 +250,12 @@ export default function JobscanAlternativePage() {
             <CtaPanel
               title="Try Preciprocal free. No credit card needed."
               body={
-                <p>
-                  2 resume analyses, 2 cover letters, and 1 mock interview per month on the free plan.
-                  Students with a .edu email get 1 month of Pro free.
-                </p>
+                <p>2 resume analyses, 2 cover letters and 1 mock interview a month on the free plan.</p>
               }
               action={
-                <div className="flex flex-col gap-3 sm:flex-row">
-                  <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
-                    Start free <Chevron />
-                  </Link>
-                  <Link href="/free-ats-checker" className={BTN_SECONDARY}>
-                    Try free ATS checker
-                  </Link>
-                </div>
+                <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
+                  Start free <Chevron />
+                </Link>
               }
             />
           </Reveal>

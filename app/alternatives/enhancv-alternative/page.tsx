@@ -106,19 +106,19 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Scoring against the posting, not just the document",
-      "body": "Enhancv's checker evaluates your resume on its own terms: structure, wording, quantification. Preciprocal scores it against a specific job description and reports the exact keywords that posting uses which your resume lacks. Those are different questions, and the second one is what determines whether you clear the automated screen."
+      "body": "Enhancv's checker judges your resume on its own terms: structure, wording, quantification. Preciprocal scores it against a specific posting and lists the keywords you lack, which is what decides the automated screen."
     },
     {
       "title": "The interview is the harder half",
-      "body": "Once the resume works, the constraint moves to the interview. Preciprocal includes voice mock interviews with a panel that asks follow-ups and scores across five dimensions, a study planner built to your interview date, and a debrief journal. Enhancv does not cover any of that."
+      "body": "Once the resume works, the interview is the constraint. Preciprocal adds voice mock interviews scored across five dimensions, a study planner and a debrief journal, none of which Enhancv covers."
     },
     {
       "title": "$9.99 against $39, with more included",
-      "body": "Enhancv Pro is $39 monthly, dropping to about $23 monthly on the quarterly plan and $16.50 on the semiannual plan. Preciprocal Pro is $9.99 monthly, and includes the interview and tracking tools. Note that Enhancv's entry point is a seven-day trial rather than a permanent free tier."
+      "body": "Enhancv Pro is $39 monthly, about $23 quarterly and $16.50 semiannually, with a seven-day trial rather than a free tier. Preciprocal Pro is $9.99 monthly and includes the interview and tracking tools."
     },
     {
       "title": "A free tier rather than a trial",
-      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 2 resume analyses, 2 cover letters, 1 mock interview every month and an unlimited job tracker, with no card required. For a search that runs months rather than days, that difference compounds."
+      "body": "Enhancv gives seven days of full access. Preciprocal's free plan is permanent: 2 resume analyses, 2 cover letters, 1 mock interview a month and an unlimited job tracker, with no card."
     }
   ];
 

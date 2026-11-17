@@ -19,6 +19,7 @@ import Link from "next/link";
 import { GraduationCap, Lightbulb, LifeBuoy, Mail, MessageSquare, Newspaper } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ExploreLinks from "@/components/page/ExploreLinks";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, BTN_PRIMARY, BTN_SECONDARY, PageHero, SectionHead } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
@@ -78,7 +79,7 @@ export default function ContactPage() {
         {/* Hand-off to Support for account problems */}
         <section aria-label="Account help" className={`${PAD} pb-4`}>
           <Reveal className={`${INNER}`}>
-            <div className="flex flex-col gap-5 rounded-2xl border border-white/[0.08] bg-[#070b16] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+            <div className="flex flex-col gap-5 rounded-2xl border border-white/[0.08] surface-panel p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
               <div className="flex items-start gap-4">
                 <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-accent/20 bg-accent/10">
                   <LifeBuoy aria-hidden="true" className="h-4 w-4 text-accent-soft" />
@@ -145,6 +146,7 @@ export default function ContactPage() {
             </Reveal>
           </div>
         </section>
+        <ExploreLinks current="/contact" className="pb-20" />
       </main>
 
       <Footer />

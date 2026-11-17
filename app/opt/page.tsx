@@ -52,7 +52,7 @@ const FAQS = [
   },
   {
     q: "Do I need a job offer to apply for OPT?",
-    a: "USCIS does not list a job offer among the requirements for regular post-completion OPT, which is why the 90-day unemployment allowance exists: you can look for work after your OPT starts. The STEM extension is different: you need an E-Verify employer that signs a Form I-983 training plan before you apply.",
+    a: "Not for regular post-completion OPT: USCIS does not require one, and you can look for work after OPT starts. The STEM extension needs an E-Verify employer that signs a Form I-983 before you apply.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function OptHubPage() {
       description={DESCRIPTION}
       h1="OPT for F-1 students"
       h1Accent="rules, dates, fees and tools"
-      intro="Everything about Optional Practical Training and the STEM extension, checked against USCIS, DHS and SEVP sources, with calculators for your filing window and your unemployment days."
+      intro="Optional Practical Training and the STEM extension, checked against USCIS, DHS and SEVP sources. Calculators for your filing window and unemployment days included."
       keyFacts={[
         { value: "12 months", label: "OPT per education level" },
         { value: "+24 months", label: "STEM OPT extension" },
@@ -85,7 +85,7 @@ export default function OptHubPage() {
               <Link
                 key={g.href}
                 href={g.href}
-                className="block rounded-xl border border-white/[0.07] bg-white/[0.02] p-5 transition-colors duration-200 hover:border-white/[0.13] hover:bg-white/[0.035] !no-underline"
+                className="block rounded-xl border border-white/[0.07] surface-card p-5 transition-colors duration-200 hover:border-white/[0.13] hover:bg-white/[0.035] !no-underline"
               >
                 <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">{g.label}</p>
                 <p className="mt-1 text-[15px] leading-relaxed text-slate-400">{g.blurb}</p>
@@ -112,10 +112,6 @@ export default function OptHubPage() {
             <Link href="/new-h1b-rules">H-1B rules tracker</Link> follow each one.
           </p>
 
-          <p>
-            Looking for work on OPT? Our <Link href="/for/international-students">guide for international students</Link>{" "}
-            covers the job search itself.
-          </p>
         </>
       }
     />

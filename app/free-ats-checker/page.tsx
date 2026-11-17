@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "What is an ATS (applicant tracking system)?",
-    a: "An ATS is the software employers use to collect applications and manage hiring. It reads your resume into structured fields such as your name, contact details, job history and skills, and recruiters search and filter candidates through it. Platforms you will run into include Workday, Greenhouse, Lever, iCIMS and Taleo. If the system cannot read your resume cleanly, or it does not carry the terms a recruiter searches for, a qualified application can be missed.",
+    a: "An ATS is the software employers use to collect applications, such as Workday, Greenhouse or Lever. It reads your resume into fields recruiters search, so a resume it cannot read, or one missing the terms they search for, can be missed.",
   },
   {
     q: "How is my score calculated?",
@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: "Is the ATS checker really free?",
-    a: "Yes. You can upload your resume and see your overall score, all five dimension scores and your top fixes without creating an account. To see every fix and your full report, create a free Preciprocal account. The free plan includes 2 resume analyses a month and needs no credit card.",
+    a: "Yes. You see your overall score, all five dimension scores and your top fixes without an account; a free account, with 2 analyses a month and no card, shows every fix.",
   },
   {
     q: "Does adding a job description change my score?",
@@ -79,7 +79,7 @@ const FAQS = [
   },
   {
     q: "Is my resume stored?",
-    a: "The file is not. Your resume is sent to our AI model provider to be scored and is not saved by Preciprocal. The result you see is kept for 30 days, so it is still there when you come back, and then deleted. Each visitor gets one free check. If you create an account and upload your resume there, it is saved to your account so you can track your score as you edit.",
+    a: "The file is not. It is sent to our AI model provider to be scored and not saved by Preciprocal; the result is kept for 30 days, then deleted.",
   },
   {
     q: "How do I improve my ATS score?",

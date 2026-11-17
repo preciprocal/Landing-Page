@@ -44,15 +44,11 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "When can I apply for OPT?",
-    a: "For post-completion OPT, USCIS must receive your Form I-765 no earlier than 90 days before your program end date and no later than 60 days after it. You also have to file within 30 days of your DSO entering the OPT recommendation in SEVIS, and that 30-day limit is often the deadline that actually bites.",
-  },
-  {
-    q: "Who is eligible for OPT?",
-    a: "F-1 students who have been lawfully enrolled full time for one full academic year. You get up to 12 months of OPT per education level, and a new 12 months when you move to a higher level. You are not eligible for post-completion OPT if you used one year or more of full-time CPT.",
+    a: "USCIS must receive your Form I-765 between 90 days before and 60 days after your program end date, and within 30 days of your DSO's recommendation in SEVIS. The 30-day limit is often the one that bites.",
   },
   {
     q: "What start date should I choose for OPT?",
-    a: "Any date from the day after your program ends up to 60 days after it. You cannot request a start more than 60 days after your program end date. Choose carefully: the unemployment clock starts on your EAD start date, so a start date earlier than your likely job start uses up unemployment days.",
+    a: "Any date from the day after your program ends up to 60 days after it. The unemployment clock starts on your EAD start date, so starting well before your likely job start uses up unemployment days.",
   },
   {
     q: "Can I start working before my EAD arrives?",
@@ -64,7 +60,7 @@ const FAQS = [
   },
   {
     q: "Does pre-completion OPT reduce my post-completion OPT?",
-    a: "Yes. Any pre-completion OPT at the same education level is deducted from your 12 months. Part-time pre-completion OPT (20 hours a week or less) counts at half: USCIS's example is that one year of part-time pre-completion OPT uses 6 months, leaving 6. A full year of full-time pre-completion OPT uses all 12, leaving none.",
+    a: "Yes, at the same education level. Part-time (20 hours a week or less) counts at half, so a year of it uses 6 months; a full year of full-time uses all 12.",
   },
   {
     q: "What is the 14-month rule?",
@@ -100,7 +96,7 @@ export default function HowToApplyPage() {
           <ul className="list-disc pl-5 space-y-2">
             <li>You have been lawfully enrolled full time for one full academic year.</li>
             <li>You have not used one year or more of full-time CPT, which makes you ineligible for post-completion OPT.</li>
-            <li>You have OPT time left at this education level. Any pre-completion OPT you used is deducted from the 12 months.</li>
+            <li>You have OPT time left at this education level: up to 12 months per level, with a new 12 at a higher level. Any pre-completion OPT you used is deducted.</li>
             <li>The work you plan to do is directly related to your major.</li>
           </ul>
 
@@ -131,10 +127,9 @@ export default function HowToApplyPage() {
 
           <h2>Choosing your start date</h2>
           <p>
-            The unemployment count starts on the start date on your EAD, so the earliest possible start date is not
-            always the best one. If you do not have a job lined up, a later start (still within 60 days of your program
-            end) keeps unemployment days in reserve. If you have an offer, match the start date to it. Track your count
-            with the <Link href="/opt/unemployment-calculator">unemployment calculator</Link>.
+            The unemployment count starts on your EAD start date. Without a job lined up, a later start (still within
+            60 days of your program end) keeps days in reserve; with an offer, match it. Track your count with the{" "}
+            <Link href="/opt/unemployment-calculator">unemployment calculator</Link>.
           </p>
 
           <h2>Pre-completion OPT</h2>

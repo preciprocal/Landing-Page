@@ -21,7 +21,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, TrustRow, FaqSection, H1 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, FaqSection, H1 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -147,7 +147,6 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                     See the rounds
                   </a>
                 </div>
-                <TrustRow className="mt-5" />
               </div>
 
               {/* Quick stats */}
@@ -206,7 +205,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                     {stage.parts.length > 0 && (
                       <ul className="mt-3 space-y-2 lg:mx-auto lg:max-w-[16rem]">
                         {stage.parts.map((part) => (
-                          <li key={part} className="rounded-lg border border-white/[0.07] bg-white/[0.02] px-3 py-2 text-[13px] leading-snug text-slate-400">
+                          <li key={part} className="rounded-lg border border-white/[0.07] surface-card px-3 py-2 text-[13px] leading-snug text-slate-400">
                             {part}
                           </li>
                         ))}
@@ -216,22 +215,6 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 </RevealItem>
               ))}
             </RevealGroup>
-
-            {/* The bridge from reading about the rounds to rehearsing them. */}
-            <Reveal>
-              <div className="mt-16 flex flex-col gap-5 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="max-w-2xl">
-                  <p className="text-[17px] font-semibold text-white">Rehearse every round before the real one.</p>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">
-                    A voice mock interview with an AI panel that asks follow-ups, scored on communication,
-                    technical depth and structure. The nerves fade once you&apos;ve done it out loud.
-                  </p>
-                </div>
-                <a href={mockUrl} className={`${BTN_PRIMARY} shrink-0`}>
-                  Start a mock interview <Chevron />
-                </a>
-              </div>
-            </Reveal>
           </div>
         </section>
 
@@ -259,7 +242,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
         {/* FAQ as closed dropdowns. Answers stay in the HTML, so the FAQ structured data still matches the page. */}
         <FaqSection title={`${meta.displayName} interview questions, answered`} items={questions.map((qa) => ({ q: qa.question, a: qa.answer }))} />
 
-        {/* Top roles and related companies, as a compact list.
+        {/* Related companies, as a compact list.
 
             The curated relatedCompanies list is used first, then topped up by
             rotating through ALL_COMPANIES from this company's own position.
@@ -268,22 +251,11 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
             the hub. The rotation guarantees every company page is reachable from
             several others, and being index-based it stays deterministic for SSR. */}
         <section className={`border-t border-white/[0.05] py-16 ${PAD}`}>
-          <div className={`${INNER} grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-16`}>
-            <div>
-              <h2 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Top roles at {meta.displayName}</h2>
-              <ul className="flex flex-wrap gap-2">
-                {meta.topRoles.map((role) => (
-                  <li key={role} className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-slate-300">
-                    {role}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
+          <div className={INNER}>
             {relatedCompanySlugs.length > 0 && (
               <nav aria-labelledby="related-companies">
                 <h2 id="related-companies" className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">Also preparing for</h2>
-                <ul className="grid gap-x-10 sm:grid-cols-2">
+                <ul className="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
                   {relatedCompanySlugs.map((slug) => {
                     const relMeta = COMPANY_META[slug];
                     const name = relMeta?.displayName ?? slug.charAt(0).toUpperCase() + slug.slice(1);

@@ -49,15 +49,11 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "Has DHS decided on the $70,000 OPT fee?",
-    a: "No. On October 8, 2026, DHS published a proposed rule. It is not a decision and it is not in effect. DHS is taking public comments until November 9, 2026, then must review them and publish a final rule, which could change the amounts or drop the fee. A final rule would take effect 60 days after it is published.",
+    a: "No. DHS published a proposed rule on October 8, 2026, with comments open until November 9, 2026; a final rule could change the amounts or drop the fee. It would take effect 60 days after it is published.",
   },
   {
-    q: "How much does it cost to apply for OPT right now?",
-    a: "The USCIS fee for Form I-765 is $470 if you file online or $520 on paper. Premium processing, which is optional, costs an extra $1,780. These are the amounts on the USCIS G-1055 fee schedule dated October 7, 2026.",
-  },
-  {
-    q: "How much does STEM OPT cost right now?",
-    a: "The same as initial OPT: $470 online or $520 on paper for Form I-765, plus $1,780 if you choose premium processing.",
+    q: "How much do OPT and STEM OPT cost right now?",
+    a: "Form I-765 is $470 online or $520 on paper for both, plus $1,780 for optional premium processing, per the USCIS G-1055 fee schedule dated October 7, 2026.",
   },
   {
     q: "Who would pay the proposed $70,000 OPT fee?",
@@ -86,7 +82,7 @@ export default function OptFeesPage() {
       description={DESCRIPTION}
       h1="OPT and STEM OPT fees"
       h1Accent="today, and what DHS has proposed"
-      intro="Nothing has been decided. DHS has proposed charging schools $70,000 for a student's first OPT and $30,000 for each one after it, including STEM OPT. Until a final rule is published and takes effect, you pay what OPT has always cost: the USCIS filing fee."
+      intro="DHS has proposed charging schools $70,000 for a student's first OPT and $30,000 for each one after it, including STEM OPT. Nothing is decided: until a final rule takes effect, you pay only the USCIS filing fee."
       keyFacts={[
         { value: "$470", label: "I-765 filed online today ($520 on paper)" },
         { value: "$1,780", label: "Optional premium processing" },
@@ -102,7 +98,7 @@ export default function OptFeesPage() {
       body={
         <>
           <h2>What OPT costs today</h2>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6 overflow-x-auto">
             <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">
@@ -140,7 +136,7 @@ export default function OptFeesPage() {
             ICEB-2026-0100). DHS says the purpose is to combat fraud and abuse, strengthen the integrity of the
             immigration system, and protect US workers.
           </p>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6">
             <ul className="list-disc pl-5 space-y-2 text-[15px]">
               <li>
                 <strong>$70,000</strong> for a student&apos;s first OPT recommendation. Law firm summaries read this as the
@@ -164,7 +160,7 @@ export default function OptFeesPage() {
           </div>
 
           <h2>What it would cost, by situation</h2>
-          <div className="rounded-xl border border-white/[0.07] bg-white/[0.02] p-6 overflow-x-auto">
+          <div className="rounded-xl border border-white/[0.07] surface-card p-6 overflow-x-auto">
             <table className="w-full text-[15px]">
               <thead>
                 <tr className="text-left text-slate-200">

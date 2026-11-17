@@ -9,16 +9,17 @@
  *
  * Layout (accent violet): PageHero, then one centred flow: the story in four
  * beats (the timeline), the mission, the values as an open row, the team with
- * the longer origin story folded beneath it, and a CTA panel.
+ * and a CTA panel. The old origin-story fold repeated the timeline and was cut.
  */
 
 import Link from "next/link";
 import { Heart, Zap, Shield, Users } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ExploreLinks from "@/components/page/ExploreLinks";
 import Chevron from "@/components/Chevron";
 import { APP_URL } from "@/lib/constants";
-import { ACCENT_TEXT, BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, Fold, H2, H3, INNER, LABEL, PAD, PageHero, SECTION, SMALL, SectionHead, pad2 } from "@/components/page/Layout";
+import { ACCENT_TEXT, BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, H2, H3, INNER, LABEL, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 // ─── Structured data ──────────────────────────────────────────────────────────
@@ -60,25 +61,25 @@ const VALUES = [
     icon: Heart,
     title: "Honesty over hype",
     description:
-      "We don't fake testimonials, pad user counts, or make promises we can't keep. When we say something works, we mean it.",
+      "No fake testimonials, padded user counts or promises we can't keep.",
   },
   {
     icon: Zap,
     title: "Built for speed",
     description:
-      "Job searching is already exhausting. Every tool we build is designed to save you hours, not add to your to-do list.",
+      "Every tool is built to save you hours, not add to your to-do list.",
   },
   {
     icon: Shield,
     title: "Your data is yours",
     description:
-      "Your resume, interview recordings, and job history are never sold, never used to train models without consent, and always deletable.",
+      "Never sold, never used to train models without consent, always deletable.",
   },
   {
     icon: Users,
     title: "Affordable on purpose",
     description:
-      "We deliberately priced Preciprocal below a Netflix subscription. Career tools shouldn't be a luxury for people who already have jobs.",
+      "Priced for a student budget. Career tools shouldn't be a luxury for people who already have jobs.",
   },
 ];
 
@@ -87,25 +88,25 @@ const MILESTONES = [
     date: "Early 2024",
     title: "The reality check",
     description:
-      "A group of international students, freshly arrived in the US, started applying for jobs with strong academic records and real skills. The results were humbling. Most applications disappeared. The unspoken rules of the American job market were nowhere in the textbooks.",
+      "International students with strong records started applying in the US, and most applications disappeared. The unspoken rules were nowhere in the textbooks.",
   },
   {
     date: "Mid 2024",
     title: "Reverse-engineering the system",
     description:
-      "Instead of guessing, we studied. How do ATS systems actually score resumes? What do US recruiters look for in the first 6 seconds? What do FAANG, consulting, and finance interviewers actually evaluate? We turned the answers into tools and shared them with classmates.",
+      "We studied how resumes are screened and how interviewers evaluate answers, then turned what we learned into tools for classmates.",
   },
   {
     date: "Late 2024",
     title: "Preciprocal is born",
     description:
-      "The tools worked well enough that we turned them into a real product. Named it Preciprocal, a nod to the reciprocal relationship between preparation and results. Built in public from day one.",
+      "The tools worked, so we made them a product: Preciprocal, a nod to the reciprocal link between preparation and results.",
   },
   {
     date: "2025 onwards",
     title: "Growing with real users",
     description:
-      "Real students using it, real feedback shaping it. Every feature on the roadmap comes from a conversation with someone who had a problem we hadn't solved yet.",
+      "Every feature on the roadmap comes from a student with a problem we hadn't solved yet.",
   },
 ];
 
@@ -136,8 +137,7 @@ export default function AboutPage() {
           accent="wish existed"
           subhead={
             <p>
-              Built by international students who experienced the US job market
-              firsthand and decided to reverse-engineer it instead of accepting it.
+              Built by international students who learned the US job market the hard way.
             </p>
           }
         />
@@ -184,8 +184,7 @@ export default function AboutPage() {
               &rdquo;
             </p>
             <p className={`mx-auto mt-8 max-w-2xl ${BODY}`}>
-              The students who land the best jobs often aren&apos;t the most qualified.
-              They&apos;re the best prepared. We&apos;re here to fix that.
+              The best jobs often go to the best prepared, not the most qualified.
             </p>
           </Reveal>
         </section>
@@ -223,9 +222,8 @@ export default function AboutPage() {
                 Who&apos;s behind it
               </h2>
               <p className={`mt-4 ${BODY}`}>
-                A team of international students and recent graduates who went through
-                the US job search, figured out what actually works, and built the tools
-                they wish they&apos;d had on day one.
+                International students and recent graduates who went through the US job
+                search and built the tools they wish they&apos;d had.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-2.5">
                 {TEAM_BACKGROUNDS.map((b) => (
@@ -248,41 +246,8 @@ export default function AboutPage() {
                   <span className="text-[12px] font-medium text-slate-300">+ more</span>
                 </div>
               </div>
-              <p className={`mx-auto mt-6 max-w-2xl ${SMALL}`}>
-                Collectively spread across US universities, applying to jobs in tech,
-                finance, consulting, and beyond. Every feature in Preciprocal traces
-                back to a real gap one of us hit during our own job search.
-              </p>
             </Reveal>
 
-            <Fold className="mt-14" eyebrow="Our origin story" title="Why we built it, in our own words">
-              <div className="mx-auto max-w-[68ch] space-y-6 text-[17px] leading-[1.8] text-slate-400">
-                <p>
-                  We came from different countries: India, Nigeria, Brazil, China,
-                  and more, with strong degrees, real skills, and zero understanding
-                  of why our applications kept disappearing. The cultural context around
-                  networking, resume formatting, ATS systems, and interview expectations
-                  was invisible. Nobody told us the rules because everyone else already knew them.
-                </p>
-                <p>
-                  Between us, we sent hundreds of applications. We watched classmates
-                  with less experience land roles faster, often because they knew someone
-                  or had grown up speaking the language of American hiring. We didn&apos;t
-                  resent it. We studied it.
-                </p>
-                <p>
-                  What do ATS systems actually score? What do US recruiters look at in
-                  the first 6 seconds? What do Google, McKinsey, and Goldman actually
-                  ask in interviews, and how do they evaluate answers? We mapped all of
-                  it, built tools to address each gap, and tested them on ourselves first.
-                </p>
-                <p className="border-l-2 border-accent/50 pl-5 text-slate-300">
-                  Preciprocal is what came out of that. Not a generic chatbot. A
-                  purpose-built system designed by people who had to learn the hard way,
-                  so you don&apos;t have to.
-                </p>
-              </div>
-            </Fold>
           </div>
         </section>
 
@@ -294,8 +259,7 @@ export default function AboutPage() {
               trust={false}
               body={
                 <p>
-                  We&apos;re a small team and we actually read every email. Whether it&apos;s
-                  feedback, a bug report, or just to say hi, reach out.
+                  We&apos;re a small team and we read every email: feedback, bugs or just hello.
                 </p>
               }
               action={
@@ -311,6 +275,7 @@ export default function AboutPage() {
             />
           </Reveal>
         </section>
+        <ExploreLinks current="/about" className="pb-20" />
       </main>
 
       <Footer />

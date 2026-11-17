@@ -357,7 +357,7 @@ export default function TermsPage() {
               ))}
 
               {/* Contact footer */}
-              <Reveal className="mt-6 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6">
+              <Reveal className="mt-6 rounded-xl border border-white/[0.07] surface-card p-6">
                 <p className="text-[15px] leading-relaxed text-slate-300">
                   Questions about these Terms? Email us at{" "}
                   <a

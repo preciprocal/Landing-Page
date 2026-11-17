@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Zap, Shield, Target, Users, TrendingUp, Clock,
-  CheckCircle2, ChevronRight, Lock, Star,
+  Zap, Shield, Target, Users, TrendingUp,
+  CheckCircle2, Lock,
   BarChart3, Brain, Mic, FileText, Sparkles, Award,
-  Globe, Briefcase, GraduationCap, MonitorSmartphone,
+  Globe, Briefcase, MonitorSmartphone,
 } from "lucide-react";
 import { BODY, H2, H3, LABEL, SMALL } from "@/components/page/Layout";
 
@@ -233,7 +233,7 @@ function NotChatbotCard() {
     <Card delay={0}>
       <div className="p-5 h-full flex flex-col">
         <h3 className={`${H3} mb-1`}>Not a chatbot.</h3>
-        <p className={`${SMALL} mb-3`}>A voice panel: an HR interviewer and a technical lead ask the questions and follow up, with a third panelist observing. It feels like the real thing.</p>
+        <p className={`${SMALL} mb-3`}>A voice panel, an HR interviewer and a technical lead, asks the questions and follows up like a real round.</p>
 
         <div className="flex items-center gap-2 flex-1 justify-center">
           {panelMembers.map((m, i) => (
@@ -266,7 +266,7 @@ function BrutallyHonestCard() {
     <Card delay={0.1}>
       <div className="p-5 h-full flex flex-col">
         <h3 className={`${H3} mb-1`}>Brutally honest.</h3>
-        <p className={`${SMALL} mb-3`}>Other tools inflate scores to keep you happy. We tell you exactly what&apos;s costing you interviews, then fix it.</p>
+        <p className={`${SMALL} mb-3`}>A straight score against the posting, showing exactly what is costing you interviews and how to fix it.</p>
 
         <div className="space-y-2 flex-1">
           {scores.map((s, i) => (
@@ -293,40 +293,6 @@ function BrutallyHonestCard() {
 }
 
 // ─── StudentPriceCard ─────────────────────────────────────────────────────────
-// Removed fake ~~$49~~ strikethrough, there is no $49 list price being
-// discounted to $9.99. $9.99 IS the price. Showing a fabricated "original
-// price" crossed out is a deceptive pricing pattern and illegal in several
-// jurisdictions (UK CPR 2008, EU Consumer Rights Directive, US FTC Act).
-
-function StudentPriceCard() {
-  return (
-    <Card delay={0.2}>
-      <div className="p-5 h-full flex flex-col">
-        <h3 className={`${H3} mb-1`}>Built for students.</h3>
-        <p className={`${SMALL} mb-3`}>Built for students on OPT, priced for a student budget. Start free, and Pro is $9.99 a month.</p>
-
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <div className="flex items-baseline gap-1">
-            <span className="text-[36px] font-semibold tracking-[-0.035em] text-white leading-none">$9.99</span>
-            <span className="text-[12px] text-slate-500">/mo</span>
-          </div>
-          <p className="text-[13px] text-slate-400 font-medium mt-1">Every tool included</p>
-
-          <div className="flex items-center gap-2 mt-4 px-3 py-1.5 bg-indigo-500/[0.06] border border-indigo-500/15 rounded-lg">
-            <GraduationCap className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="text-[12px] text-indigo-300 font-medium">.edu email? First month free</span>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1.5 mt-3 pt-3 border-t border-white/[0.04]">
-          <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-          <span className="text-[12px] text-slate-500">Land the job while subscribed, share your story, and that month is on us</span>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
 function AINotGenericCard() {
   const [step, setStep] = useState(0);
   const examples = [
@@ -343,7 +309,7 @@ function AINotGenericCard() {
     <Card delay={0.3}>
       <div className="p-5 h-full flex flex-col">
         <h3 className={`${H3} mb-1`}>Your story, not filler.</h3>
-        <p className={`${SMALL} mb-3`}>We read your actual resume and job description. Every word is calibrated to your experience, not templated garbage.</p>
+        <p className={`${SMALL} mb-3`}>Written from your actual resume and the job description, not a template.</p>
 
         <div className="flex-1">
           <AnimatePresence mode="wait">
@@ -432,7 +398,7 @@ export default function BentoFeatures() {
             <span className="text-gradient">Here&apos;s why it works.</span>
           </motion.h2>
           <p className={`${BODY} max-w-lg mx-auto`}>
-            Every feature is designed around one question: does this help you get hired before your OPT days run out?
+            Every feature answers one question: does this help you get hired before your OPT days run out?
           </p>
         </div>
 
@@ -443,11 +409,11 @@ export default function BentoFeatures() {
           <CoverageCard />
         </div>
 
-        {/* Row 2: Differentiators, 4 equal cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+        {/* Row 2: Differentiators, 3 equal cards. Price lives in the
+            pricing section below, so it is not repeated here. */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <NotChatbotCard />
           <BrutallyHonestCard />
-          <StudentPriceCard />
           <AINotGenericCard />
         </div>
 

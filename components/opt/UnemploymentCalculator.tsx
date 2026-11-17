@@ -77,7 +77,7 @@ export default function UnemploymentCalculator() {
   const share = result ? Math.min(100, Math.max(0, (result.used / result.limit) * 100)) : 0;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#070b16]">
+    <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] surface-panel">
       <div className="relative flex flex-col gap-5 border-b border-white/[0.06] p-6 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">OPT unemployment day calculator</p>

@@ -114,11 +114,11 @@ const REASONS: AlternativeReason[] = [
     },
     {
       "title": "Interview preparation is absent",
-      "body": "Huntr's AI features centre on resumes and cover letters. There is no interview practice, no study planning and no debrief capture. Since interview performance is where most qualified candidates actually get cut, that is the significant gap."
+      "body": "Huntr's AI features centre on resumes and cover letters, with no interview practice, study planning or debriefs. That is the significant gap, since the interview is where qualified candidates get cut."
     },
     {
       "title": "Outreach as well as tracking",
-      "body": "Tracking tells you what you have applied to. In a market where few roles are posted publicly and the hiring rate is low, the higher-leverage action is reaching a human directly. Preciprocal includes a contact finder that verifies addresses and an outreach generator that drafts the message."
+      "body": "Tracking tells you what you applied to; reaching a person directly does more. Preciprocal includes a contact finder that verifies addresses and an outreach generator that drafts the message."
     }
   ];
 

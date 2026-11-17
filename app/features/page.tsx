@@ -50,28 +50,28 @@ const STAGES: Stage[] = [
     eyebrow: "Stage one",
     title: "Get past the filter",
     intro:
-      "Most applications are rejected before a person reads them. Not because you are unqualified, but because the document did not match the posting closely enough to survive the first pass.",
+      "Match each posting closely enough that a person reads your application.",
     features: [
       {
         name: "Resume scoring",
         href: "/free-ats-checker",
         pain: "You never find out why you were screened out.",
         promise:
-          "Score your resume against a specific posting and see the exact terms it is missing, before you send it rather than after.",
+          "Score your resume against a posting and see the terms it is missing, before you send it.",
       },
       {
         name: "Resume tailoring",
         href: "/resume-tailoring",
         pain: "One resume sent to forty jobs, rewritten for none of them.",
         promise:
-          "Paste a job description and get bullet-level rewrites for that role, so one strong resume becomes forty targeted ones without forty evenings of work.",
+          "Paste a job description and get bullet-level rewrites for that role.",
       },
       {
         name: "LinkedIn optimisation",
         href: "/linkedin-profile-optimizer",
         pain: "Recruiters are searching for people like you and not finding you.",
         promise:
-          "Fix the headline, About section and skills that decide whether you appear in their results at all.",
+          "Fix the headline, About section and skills that decide whether you show up in their searches.",
       },
     ],
   },
@@ -79,14 +79,14 @@ const STAGES: Stage[] = [
     eyebrow: "Stage two",
     title: "Reach an actual human",
     intro:
-      "An application in a portal joins several hundred others. A message that lands in a real inbox has your name on it. This is the step most people skip, and it is the one that changes the odds most.",
+      "A message in a real inbox has your name on it; a portal application does not.",
     features: [
       {
         name: "Cover letters",
         href: "/cover-letter-generator",
         pain: "The blank page at 11pm, for the fifth application today.",
         promise:
-          "A letter grounded in that specific company and role, in minutes, that still sounds like you wrote it.",
+          "A letter grounded in that company and role, in minutes, that still sounds like you.",
       },
       {
         name: "Contact finding",
@@ -108,21 +108,21 @@ const STAGES: Stage[] = [
     eyebrow: "Stage three",
     title: "Win the interview",
     intro:
-      "This is where qualified people lose. Not on knowledge, but on saying it out loud, under time pressure, to a stranger who is deciding about you in real time.",
+      "Qualified people lose here on delivery, not knowledge, so practise saying it out loud.",
     features: [
       {
         name: "Mock interviews",
         href: "/ai-mock-interview",
         pain: "Your first time saying it out loud should not be the real thing.",
         promise:
-          "Practise out loud with a panel that asks follow-ups and pushes back, then scores you and tells you precisely where it went wrong.",
+          "A voice panel that asks follow-ups, then scores you and shows where it went wrong.",
       },
       {
         name: "Question prediction",
         href: "/interview-question-predictor",
         pain: "Generic question lists are the same for every job.",
         promise:
-          "Paste the posting and get the five questions it is most likely to lead to, then answer out loud and get scored. Free, no account needed.",
+          "Paste the posting and get the five likeliest questions, then practise your answers. Free, no account needed.",
       },
       {
         name: "Study planning",
@@ -136,7 +136,7 @@ const STAGES: Stage[] = [
         href: "/interview-debrief",
         pain: "Almost nobody tells you why you were rejected.",
         promise:
-          "Capture what you were asked while it is fresh, so the pattern across interviews becomes visible and fixable.",
+          "Log what you were asked while it is fresh, so patterns across interviews show up.",
       },
     ],
   },
@@ -144,7 +144,7 @@ const STAGES: Stage[] = [
     eyebrow: "Stage four",
     title: "Stay in control of it",
     intro:
-      "A search runs for months. The thing that quietly breaks people is not rejection, it is losing track: who has gone quiet, what needs a follow-up, what you even applied for.",
+      "A search runs for months, so keep every application and follow-up in one place.",
     features: [
       {
         name: "Application tracking",
@@ -252,9 +252,8 @@ export default function FeaturesPage() {
           }
           subhead={
             <p>
-              Applying is only one part of it. You also have to get past a filter, find
-              the right person, say the right thing, perform under pressure, and keep
-              track of all of it for months. Here is what handles each part.
+              Get past the filter, reach a person, win the interview and keep track of it
+              all, with one tool for each step.
             </p>
           }
         >
@@ -324,8 +323,7 @@ export default function FeaturesPage() {
               title="Start with whichever part is hurting most"
               body={
                 <p className="text-[15px] leading-relaxed">
-                  The free plan needs no card. Run your resume through it, do one mock
-                  interview, and decide from there.
+                  The free plan needs no card. Try your resume and a mock interview, then decide.
                 </p>
               }
               action={

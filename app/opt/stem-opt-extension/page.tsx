@@ -44,10 +44,6 @@ export const metadata: Metadata = {
 
 const FAQS = [
   {
-    q: "Who is eligible for the STEM OPT extension?",
-    a: "F-1 students in their initial period of post-completion OPT who hold a bachelor's or higher degree in a field on the DHS STEM Designated Degree Program List, from an accredited, SEVP-certified school, and who have a job offer from an E-Verify employer that will sign a Form I-983 training plan.",
-  },
-  {
     q: "Can I use an earlier STEM degree if my current degree is not STEM?",
     a: "Yes, if your most recent degree is from an accredited, SEVP-certified school, and the earlier STEM degree (bachelor's or higher) was earned within 10 years of your STEM OPT application. The field must be on the STEM list at the time you apply, not when you earned the degree.",
   },
@@ -69,7 +65,7 @@ const FAQS = [
   },
   {
     q: "Can I be unpaid or self-employed on STEM OPT?",
-    a: "No for unpaid: the USCIS Policy Manual says you may not work for the employer on a volunteer basis. Self-employment generally does not work either, because you must be a bona fide employee of an employer that signs the I-983, and you cannot sign the employer attestation yourself. See our self-employment guide.",
+    a: "No. The USCIS Policy Manual rules out volunteer work, and you must be a bona fide employee of an employer that signs the I-983, which you cannot sign for yourself. See our self-employment guide.",
   },
 ];
 
@@ -114,9 +110,8 @@ export default function StemOptPage() {
             <li>Report to your DSO within five business days if you leave the job early.</li>
           </ul>
           <p>
-            E-Verify enrolment is the requirement most likely to rule out an employer, especially small companies and
-            start-ups. Ask about it early in the hiring process, before you accept an offer that depends on STEM OPT, and
-            look the company up first in the <Link href="/opt/employer-lookup">employer lookup</Link>.
+            E-Verify is the requirement most likely to rule an employer out. Check it before you accept an offer, in the{" "}
+            <Link href="/opt/employer-lookup">employer lookup</Link>.
           </p>
 
           <h2>How to apply</h2>
@@ -129,7 +124,6 @@ export default function StemOptPage() {
             </li>
             <li>If you filed on time, you can keep working for up to 180 days past your current EAD while USCIS decides.</li>
           </ol>
-          <p>The calculator above works out your filing window from your current EAD end date.</p>
 
           <h2>Reporting while on STEM OPT</h2>
           <ul className="list-disc pl-5 space-y-2">

@@ -63,7 +63,7 @@ const FAQS = [
   },
   {
     q: "Should I record the interview?",
-    a: "No. Recording without explicit consent is illegal in many jurisdictions and will end your candidacy anywhere it is discovered. Write notes immediately afterward instead. The reconstruction is imperfect, but it is legal, and it is enough for the purpose.",
+    a: "No. Recording without explicit consent is illegal in many jurisdictions and will end your candidacy if discovered; write notes straight afterwards instead.",
   },
   {
     q: "What about the thank-you note?",
@@ -71,7 +71,7 @@ const FAQS = [
   },
   {
     q: "Is the debrief journal free?",
-    a: "Yes. Debriefs are unlimited on every plan, Free included. The AI analysis across your debriefs is limited by plan, with 1 a month on Free and more on Pro and Premium. That analysis is where most of the value is, since the insight comes from the aggregate rather than any single entry.",
+    a: "Yes. Debriefs are unlimited on every plan, Free included. The AI analysis across them, where most of the value is, is 1 a month on Free and more on Pro and Premium.",
   },
 ];
 

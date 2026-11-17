@@ -23,28 +23,6 @@ import ReadingProgress from "@/components/page/ReadingProgress";
 const COLUMNS =
   "grid gap-12 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-14 xl:gap-16";
 
-// ─── Sidebar CTA ──────────────────────────────────────────────────────────────
-
-function SidebarCTA() {
-  return (
-    <div className="relative overflow-hidden rounded-xl border border-accent/20 bg-gradient-to-b from-accent-deep/[0.08] to-transparent p-6">
-      <h3 className={`${H3} mb-2`}>
-        Practice what you read
-      </h3>
-      <p className={`${BODY} mb-5`}>
-        AI mock interviews, resume scoring, cover letters, and job tracking,
-        all in one place. $9.99/mo.
-      </p>
-      <a
-        href="https://app.preciprocal.com/sign-up"
-        className={`${BTN_PRIMARY} w-full`}
-      >
-        Start free <Chevron />
-      </a>
-    </div>
-  );
-}
-
 // ─── Put this into practice ───────────────────────────────────────────────────
 // The tools and guides that let a reader act on a post, by category. Blog
 // posts otherwise linked only to other posts, so the tool pages got no
@@ -497,7 +475,7 @@ export default function BlogArticlePage() {
                       Ready to land the role?
                     </p>
                     <p className={`${BODY} mb-6 max-w-sm mx-auto`}>
-                      Resume analysis, mock interviews, cover letters, and job tracking, all in one place. Free to start.
+                      Resume analysis, mock interviews and job tracking in one place. Free to start.
                     </p>
                     <a
                       href="https://app.preciprocal.com/sign-up"
@@ -532,10 +510,7 @@ export default function BlogArticlePage() {
 
             {/* Sidebar: sticky to the left of the article on wide screens, below it on phones */}
             <aside className="flex w-full flex-col gap-10 lg:sticky lg:top-28 lg:col-start-1 lg:row-start-1 lg:self-start">
-              <Reveal className="hidden lg:block">
-                <SidebarCTA />
-              </Reveal>
-              <Reveal delay={0.08}>
+              <Reveal>
                 <RelatedPosts currentSlug={post.slug} />
               </Reveal>
             </aside>

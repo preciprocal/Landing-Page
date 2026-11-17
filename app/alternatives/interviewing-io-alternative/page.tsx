@@ -106,19 +106,19 @@ const ROWS: ComparisonRow[] = [
 const REASONS: AlternativeReason[] = [
     {
       "title": "Be clear about the trade-off",
-      "body": "A real engineer from your target company giving you live feedback is higher fidelity than any AI, and we are not going to claim otherwise. What AI gives you is cost and convenience: a month of Pro, with 3 full mock interviews, costs a small fraction of one human session. Most candidates need reps more than they need a single expert opinion."
+      "body": "A real engineer from your target company is higher fidelity than any AI. What AI gives you is reps: a month of Pro, with 3 full mock interviews, costs a small fraction of one human session."
     },
     {
       "title": "Per-session pricing does not fit a long search",
-      "body": "Third-party reports put interviewing.io sessions at roughly $179 to $339 depending on interviewer seniority, with multi-session packages running into the thousands. Note that they do not publish prices publicly, so treat those as indicative. Preciprocal Pro is $9.99 a month with 3 mock interviews included."
+      "body": "Third-party reports put interviewing.io sessions at roughly $179 to $339 (prices are not published, so treat them as indicative). Preciprocal Pro is $9.99 a month with 3 mock interviews."
     },
     {
       "title": "Coverage beyond technical engineering loops",
-      "body": "interviewing.io is built for software engineering interviews. Preciprocal covers behavioural rounds, consulting cases, finance interviews, marketing, HR and healthcare, across 41 roles and 56 employers. If you are not interviewing for an engineering role, it is not really a comparison."
+      "body": "interviewing.io is built for software engineering. Preciprocal also covers behavioural, consulting, finance, marketing, HR and healthcare interviews, across 41 roles and 56 employers."
     },
     {
       "title": "The rest of the search is included",
-      "body": "interviewing.io is a mock interview service. Preciprocal also scores your resume against postings, generates cover letters, tracks applications, finds contacts and drafts outreach. Different products solving different amounts of the problem."
+      "body": "interviewing.io is a mock interview service. Preciprocal also scores your resume against postings, writes cover letters, tracks applications, finds contacts and drafts outreach."
     }
   ];
 

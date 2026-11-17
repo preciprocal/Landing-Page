@@ -230,7 +230,7 @@ export default function VoiceAnswerRecorder({
 
       {recording && (
         <motion.div
-          className="rounded-xl bg-[#070b16] border border-white/[0.07] p-4"
+          className="rounded-xl bg-[#070b16] surface-card border border-white/[0.07] p-4"
           aria-live="polite"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -303,7 +303,7 @@ function DeliveryView({ stats }: { stats: DeliveryStats }) {
 
   return (
     <motion.div
-      className="rounded-xl border border-white/[0.08] bg-[#070b16] p-6 space-y-5"
+      className="rounded-xl border border-white/[0.08] bg-[#070b16] surface-card p-6 space-y-5"
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: EASE }}

@@ -60,8 +60,7 @@ export default function InterviewQuestionsIndexPage() {
           subhead={
             <>
               <p>
-                Real interview questions, detailed answers, salary benchmarks, and preparation tips
-                for every major career path, updated for 2026.
+                Common questions with detailed answers and prep tips for every major career path.
               </p>
               <p className="mt-3 font-mono text-[13px] uppercase tracking-[0.16em] text-slate-500">
                 {ALL_ROLES.length} roles across {ALL_ROLE_CATEGORIES.length} industries
@@ -134,34 +133,6 @@ export default function InterviewQuestionsIndexPage() {
                 </RevealGroup>
               </section>
             ))}
-
-            {/* Cross-links: job-description predictor and company prep, as two compact rows */}
-            <div className="grid gap-x-12 border-y border-white/[0.06] lg:grid-cols-2">
-              <div className="flex flex-col gap-3 border-b border-white/[0.06] py-6 lg:border-b-0">
-                <h2 className="text-[17px] font-semibold text-white">Have a specific job posting?</h2>
-                <p className="max-w-xl text-[15px] leading-relaxed text-slate-400">
-                  Paste it into the free predictor to get the 5 questions that posting is most likely to lead to, and practice your answers out loud. No sign-up.
-                </p>
-                <Link
-                  href="/interview-question-predictor"
-                  className={`group inline-flex items-center gap-1.5 self-start rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
-                >
-                  Predict questions from a job description <Chevron />
-                </Link>
-              </div>
-              <div className="flex flex-col gap-3 py-6">
-                <h2 className="text-[17px] font-semibold text-white">Preparing for a specific company?</h2>
-                <p className="max-w-xl text-[15px] leading-relaxed text-slate-400">
-                  We also have company-specific prep guides covering the interview process, culture, difficulty, and what each company actually looks for.
-                </p>
-                <Link
-                  href="/interview-prep"
-                  className={`group inline-flex items-center gap-1.5 self-start rounded text-sm font-semibold text-accent-soft transition-colors hover:text-white ${FOCUS}`}
-                >
-                  Browse company interview guides <Chevron />
-                </Link>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -169,7 +140,7 @@ export default function InterviewQuestionsIndexPage() {
         <section className={`${PAD} pb-24`}>
           <Reveal>
             <CtaPanel
-              title="Reading questions is step one. Answering them under pressure is where real prep happens."
+              title="Reading questions is step one. Answering them out loud is the prep."
               action={
                 <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
                   Practice with AI mock interviews, free <Chevron />

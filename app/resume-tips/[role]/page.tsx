@@ -302,7 +302,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
           accent="resume tips"
           subhead={
             <p>
-              How to write a {display.name.toLowerCase()} resume that passes ATS, survives the 6-second recruiter scan, and gets you interviews in 2026.
+              How to write a {display.name.toLowerCase()} resume that passes ATS and reads well to a recruiter.
             </p>
           }
           aside={
@@ -314,7 +314,6 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
               <a href="/free-ats-checker" className={`${BTN_PRIMARY} w-full`}>
                 Check my resume free <Chevron />
               </a>
-              <p className="-mt-1 text-center text-[13px] text-slate-500">No account needed for your first score</p>
             </div>
           }
         />
@@ -430,7 +429,7 @@ export default async function ResumeTipsRolePage({ params }: { params: Promise<{
         <section className={`pb-24 pt-4 ${PAD}`}>
           <Reveal>
             <CtaPanel
-              title="Get your resume scored in 30 seconds"
+              title="Get your resume scored"
               body={
                 <p className="max-w-xl text-[15px] leading-relaxed">
                   Upload your {display.name.toLowerCase()} resume and see your ATS score, missing keywords, and line-by-line improvement suggestions.

@@ -75,7 +75,7 @@ export default function Packs() {
           {packs.map((pack) => (
             <StaggerItem key={pack.id} className="flex flex-col">
               <div
-                className="flex flex-col flex-1 rounded-xl border border-white/[0.07] bg-white/[0.02] p-6
+                className="flex flex-col flex-1 rounded-xl border border-white/[0.07] surface-card p-6
                            hover:border-white/[0.14] transition-colors duration-300"
               >
                 {/* Fixed-height header keeps every divider on one baseline */}

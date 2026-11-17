@@ -104,8 +104,8 @@ export default function InterviewPrepIndexPage() {
             accent="prep guides"
             subhead={
               <p>
-                In-depth prep guides for 56 top employers across tech, banking, consulting, healthcare
-                and retail, covering interview process, culture, difficulty, and what gets you the offer.
+                The interview process, culture and difficulty at 56 employers across tech, banking,
+                consulting, healthcare and retail.
               </p>
             }
           >
@@ -147,12 +147,12 @@ export default function InterviewPrepIndexPage() {
                       if (!display) return null;
                       const diffClass = DIFFICULTY_COLOR[display.difficulty] ?? DIFFICULTY_COLOR["Hard"];
                       return (
-                        <RevealItem key={company}>
+                        <RevealItem key={company} className="min-w-0">
                           <Link
                             href={`/interview-prep/${company}`}
                             className={`group relative flex h-full flex-col items-start justify-between gap-3 ${CARD_SOLID} ${CARD_HOVER} p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 sm:flex-row sm:items-center sm:gap-4 sm:p-5`}
                           >
-                            <div className="flex min-w-0 items-start gap-4">
+                            <div className="flex w-full min-w-0 items-start gap-4">
                               <span className="mt-0.5 hidden font-mono text-[11px] text-accent-soft/60 sm:inline">{pad2(i + 1)}</span>
                               <div className="min-w-0">
                                 <p className="truncate text-[15px] font-medium text-white transition-colors group-hover:text-accent-soft">
@@ -171,22 +171,6 @@ export default function InterviewPrepIndexPage() {
                   </RevealGroup>
                 </section>
               ))}
-
-              {/* Role questions cross-link */}
-              <nav aria-label="Role interview guides" className="flex flex-col gap-4 border-y border-white/[0.06] py-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="max-w-2xl">
-                  <h2 className="text-[17px] font-semibold leading-snug tracking-[-0.01em] text-white">Looking for role-specific questions?</h2>
-                  <p className="mt-1.5 text-[15px] leading-relaxed text-slate-400">
-                    We also have detailed Q&A guides for 40+ roles, including software engineer, PM, data scientist, and more.
-                  </p>
-                </div>
-                <Link
-                  href="/interview-questions"
-                  className="group inline-flex shrink-0 items-center gap-1 text-sm font-medium text-accent-soft transition-colors hover:text-white"
-                >
-                  Browse role interview guides <Chevron />
-                </Link>
-              </nav>
             </div>
           </section>
 
@@ -194,10 +178,10 @@ export default function InterviewPrepIndexPage() {
           <section className={`pb-24 ${PAD}`}>
             <Reveal>
               <CtaPanel
-                title="Practice with an AI that mimics each company's actual interview style."
+                title="Read the guide, then practise the interview out loud."
                 action={
                   <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto`}>
-                    Start practicing free, no credit card required <Chevron />
+                    Start practising free <Chevron />
                   </a>
                 }
               />

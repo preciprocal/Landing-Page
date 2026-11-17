@@ -255,7 +255,7 @@ export default async function CoverLetterExampleRolePage({
   const content = getRoleContent(role);
   const sections = getCoverLetterSections(roleName, meta.topCompanies, content);
   const tips = getCoverLetterTips(roleName, content);
-  const faqs = getCoverLetterFAQs(roleName, content);
+  const faqs = getCoverLetterFAQs(roleName, content).slice(0, 6);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -329,17 +329,15 @@ export default async function CoverLetterExampleRolePage({
           title={<>{roleName} Cover Letter Example (2026)</>}
           subhead={
             <p>
-              A free {roleName} cover letter example, annotated template, and writing guide for 2026.
-              What to include, what to avoid, and exactly how to structure a letter that gets past ATS
-              and makes hiring managers keep reading.
+              A free {roleName} cover letter example with annotations: what to include, what to
+              avoid, and how to structure a letter that gets past ATS.
             </p>
           }
           aside={
             <div className="flex flex-col gap-3 lg:items-end">
               <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full sm:w-auto ${FOCUS}`}>
-                Write mine in 60 seconds <Chevron />
+                Write mine free <Chevron />
               </a>
-              <p className="text-[13px] text-slate-500">2 free cover letters a month · No credit card</p>
             </div>
           }
         >
@@ -405,25 +403,6 @@ export default async function CoverLetterExampleRolePage({
                 </RevealItem>
               ))}
             </RevealGroup>
-
-            {/* Generate CTA */}
-            <Reveal className="mt-16">
-              <div className="flex flex-col gap-6 rounded-2xl border border-accent/20 bg-accent-deep/[0.05] p-6 sm:p-8 md:flex-row md:items-center md:justify-between">
-                <div className="max-w-2xl">
-                  <h2 className="text-xl font-semibold leading-snug tracking-[-0.02em] text-white sm:text-2xl">
-                    Generate a tailored {roleName} cover letter in 60 seconds
-                  </h2>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate-400">
-                    Paste your job description and Preciprocal&apos;s AI researches the company, matches your
-                    resume to the role, and writes a personalised letter. Free to start, no credit card
-                    required.
-                  </p>
-                </div>
-                <a href={`${APP_URL}/sign-up`} className={`${BTN_PRIMARY} w-full shrink-0 md:w-auto`}>
-                  Generate my cover letter free <Chevron />
-                </a>
-              </div>
-            </Reveal>
           </div>
         </section>
 
@@ -461,22 +440,6 @@ export default async function CoverLetterExampleRolePage({
                   <LinkList links={relatedLinks} />
                 </nav>
               )}
-
-              {meta.topCompanies.length > 0 && (
-                <section id="companies" aria-label={`Top companies hiring ${roleName}s`} className="scroll-mt-24">
-                  <h2 className={LIST_LABEL}>Top companies hiring {roleName}s</h2>
-                  <p className="mb-4 text-[15px] text-slate-500">
-                    Tailor your cover letter for each company. Reference something specific about their product, culture, or recent work.
-                  </p>
-                  <ul className="flex flex-wrap gap-2">
-                    {meta.topCompanies.map((company) => (
-                      <li key={company} className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[12px] font-medium text-slate-300">
-                        {company}
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              )}
             </div>
           </div>
         </section>
@@ -488,9 +451,7 @@ export default async function CoverLetterExampleRolePage({
               title={<>Generate your {roleName} cover letter free</>}
               body={
                 <p className="max-w-lg text-[15px]">
-                  Paste the job description and our AI researches the company, matches your resume to the
-                  role, and writes a personalised letter in under 60 seconds. 2 cover letters per month
-                  free, no credit card required.
+                  Paste the job description and get a personalised letter that matches your resume to the role.
                 </p>
               }
               action={

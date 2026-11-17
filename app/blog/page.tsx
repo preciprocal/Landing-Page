@@ -154,33 +154,6 @@ export default function BlogIndexPage() {
           );
         })}
 
-        {/* Cross-links */}
-        <section className={`${SECTION}  ${PAD}`}>
-          <nav aria-label="More guides" className={INNER}>
-            <p className={`mb-3 ${LABEL} text-slate-500`}>Also useful</p>
-            <ul className="grid gap-x-10 sm:grid-cols-2">
-              <li className="border-b border-white/[0.05]">
-                <Link href="/interview-questions" className="group flex items-center justify-between gap-3 py-4 transition-colors">
-                  <span>
-                    <span className="block text-[17px] font-semibold tracking-[-0.01em] text-white">Interview questions by role</span>
-                    <span className="block text-[15px] text-slate-500">Q&amp;As for 40+ roles with detailed answers</span>
-                  </span>
-                  <Chevron className="text-slate-600 group-hover:text-slate-300" />
-                </Link>
-              </li>
-              <li className="border-b border-white/[0.05]">
-                <Link href="/interview-prep" className="group flex items-center justify-between gap-3 py-4 transition-colors">
-                  <span>
-                    <span className="block text-[17px] font-semibold tracking-[-0.01em] text-white">Company prep guides</span>
-                    <span className="block text-[15px] text-slate-500">Google, Amazon, Meta, Stripe, and 16 more</span>
-                  </span>
-                  <Chevron className="text-slate-600 group-hover:text-slate-300" />
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </section>
-
         {/* CTA */}
         <section className={`pb-24 ${PAD}`}>
           <Reveal className={`${INNER} relative overflow-hidden ${PANEL} px-7 py-12 sm:px-14`}>

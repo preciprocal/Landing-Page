@@ -78,23 +78,23 @@ const COMPARISON_ROWS = [
 const FAQS = [
   {
     q: "What is Final Round AI?",
-    a: "Final Round AI is an AI interview preparation tool that provides mock interview practice and real-time interview assistance via a browser extension. It's primarily known for its Chrome extension that offers live interview support. It focuses on the interview stage of the job search.",
+    a: "Final Round AI is an AI interview tool with mock interview practice and real-time interview assistance through a browser extension. It focuses on the interview stage.",
   },
   {
     q: "Why do people look for a Final Round AI alternative?",
-    a: "Common reasons include: pricing (Final Round AI's higher tiers can be expensive for students), wanting an all-in-one platform that also covers resume scoring and job tracking, or needing stronger support for entry-level and new grad roles rather than senior-level interviews.",
+    a: "Mostly price (the higher tiers are expensive for students) and wanting resume scoring and job tracking in the same place.",
   },
   {
     q: "How is Preciprocal different from Final Round AI?",
-    a: "Preciprocal covers the entire job search pipeline, not just interviews. Where Final Round AI focuses on interview assistance, Preciprocal adds ATS resume scoring, cover letter generation, a job tracker with contact finder, and a study planner, all in one platform at $9.99/mo. It's also built specifically for students and new grads, not enterprise professionals.",
+    a: "Preciprocal covers the whole search, not just interviews: ATS resume scoring, cover letters, a job tracker with contact finder and a study planner, at $9.99/mo.",
   },
   {
     q: "Is Preciprocal's mock interview as good as Final Round AI's?",
-    a: "Preciprocal uses a voice panel, an HR interviewer and a technical lead, each asking role-appropriate questions and following up on vague answers. You get a structured debrief scoring communication, technical knowledge, problem-solving, role fit and confidence. Whether that's 'better' depends on what you need: Preciprocal is deeper on feedback; Final Round AI emphasises real-time assistance.",
+    a: "Preciprocal uses a voice panel (an HR interviewer and a technical lead) that follows up on vague answers, then scores communication, technical knowledge, problem-solving, role fit and confidence. It is deeper on feedback; Final Round AI emphasises real-time assistance.",
   },
   {
     q: "Can I try Preciprocal before paying?",
-    a: "Yes. The free plan includes 1 mock interview per month, 2 resume analyses, and 2 cover letters, no credit card required. Students with a .edu email get 1 full month of Pro free (3 mock interviews and 10 cover letters a month).",
+    a: "Yes. The free plan includes 1 mock interview, 2 resume analyses and 2 cover letters a month, with no credit card. A .edu email gets 1 month of Pro free.",
   },
 ];
 
@@ -134,11 +134,9 @@ export default function FinalRoundAIAlternativePage() {
           accent="in 2026"
           subhead={
             <p>
-              Final Round AI is a solid interview prep tool. But if you&apos;re a student or new grad who also
-              needs to fix your resume, generate cover letters, and track applications. You will need more
-              than one tool, or a platform that does all of it.{" "}
-              <strong className="font-semibold text-slate-200">Preciprocal</strong> covers the full job search pipeline
-              at $9.99/mo.
+              Final Round AI is a solid interview prep tool.{" "}
+              <strong className="font-semibold text-slate-200">Preciprocal</strong> covers interviews plus your resume,
+              cover letters and applications at $9.99/mo.
             </p>
           }
         />
@@ -155,9 +153,8 @@ export default function FinalRoundAIAlternativePage() {
               }
               preciprocal={
                 <>
-                  Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want AI mock interviews <em>plus</em> ATS
-                  resume scoring, cover letter generation, job tracking, and a study planner, all in one
-                  platform built for students and new grads, at $9.99/mo.
+                  Choose <strong className="font-semibold text-white">Preciprocal</strong> if you want mock interviews <em>plus</em> ATS
+                  resume scoring, cover letters, job tracking and a study planner in one platform at $9.99/mo.
                 </>
               }
             />
@@ -191,19 +188,19 @@ export default function FinalRoundAIAlternativePage() {
               items={[
                 {
                   title: "One platform for the entire job search",
-                  body: "Resume, applications, interviews, offers. Most tools pick one stage. Preciprocal covers all four, so you're not juggling 4 subscriptions.",
+                  body: "Most tools pick one stage. Preciprocal covers resume, applications and interviews in one subscription.",
                 },
                 {
                   title: "Built for entry-level, not just senior engineers",
-                  body: "The AI understands you might not have 5 years of STAR stories. It calibrates question difficulty and story-building expectations for new grads and early-career candidates.",
+                  body: "Questions and story expectations are pitched at new grads and early-career candidates.",
                 },
                 {
                   title: "Honest pricing for students",
-                  body: "Pro is $9.99/mo against $90/mo billed monthly. Students with a .edu email get 1 month of Pro free. Land the job while subscribed, share your story, and that month is on us.",
+                  body: "Pro is $9.99/mo against $90/mo billed monthly, and a .edu email gets 1 month of Pro free.",
                 },
                 {
                   title: "ATS resume scoring included",
-                  body: "Your resume has to get past ATS before you can interview. Most interview-only tools ignore this entirely. Preciprocal's ATS checker scores your resume against the job description and gives you a fix list.",
+                  body: "Your resume has to pass ATS before you can interview. Preciprocal scores it against the job description and gives you a fix list.",
                 },
               ]}
             />
@@ -236,10 +233,7 @@ export default function FinalRoundAIAlternativePage() {
             <CtaPanel
               title="Try Preciprocal free. No card required."
               body={
-                <p>
-                  1 mock interview, 2 resume analyses, and 2 cover letters per month on the free plan.
-                  Students with a .edu email get 1 month of Pro free.
-                </p>
+                <p>1 mock interview, 2 resume analyses and 2 cover letters a month on the free plan.</p>
               }
               action={
                 <Link href={`${APP_URL}/sign-up`} className={BTN_PRIMARY}>
