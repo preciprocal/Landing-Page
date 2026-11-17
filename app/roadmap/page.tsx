@@ -141,11 +141,11 @@ const ITEMS: RoadmapItem[] = [
     tag: "Outreach",
   },
   {
-    title: "Ghost Job Detector",
+    title: "Live Job Checks",
     description:
-      "Before you spend an hour applying, know if the job is real: roles that are likely expired, fake or already filled get flagged.",
-    status: "in-progress",
-    tag: "New Tool",
+      "Jobs come from employers' own boards and are under 30 days old. Talent-pool listings are left out, the role is checked as still open before you apply, and warnings the posting states, such as no sponsorship, are shown.",
+    status: "shipped",
+    tag: "Jobs",
   },
   {
     title: "Market Pay",
