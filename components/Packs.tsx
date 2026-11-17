@@ -9,20 +9,23 @@
  *
  * Layout notes: name and price sit in a fixed-height header above a divider, so
  * the divider and the grant list start on the same baseline in all four cards
- * regardless of how many grants each pack has.
+ * regardless of how many grants each pack has. The Just me / Group of 4
+ * switch swaps in each pack's group name and price.
  *
  * All prices and grants come from `getPacks()` in lib/pricing.ts. Never put a
  * price string in this file.
  */
 
+import { useState } from "react";
 import { Plus } from "lucide-react";
 import { APP_URL } from "@/lib/constants";
-import { PACK_REFUND_LINE, formatUsd, getPacks } from "@/lib/pricing";
+import { GROUP_PACK_REFUND_LINE, PACK_REFUND_LINE, formatUsd, getPacks } from "@/lib/pricing";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 
 import { H2 } from "@/components/page/Layout";
 export default function Packs() {
   const packs = getPacks();
+  const [group, setGroup] = useState(false);
 
   if (packs.length === 0) return null;
 
@@ -40,6 +43,32 @@ export default function Packs() {
             One-time purchases, not a subscription. Buy a pack when a final round lands, and
             it stacks on whatever plan you are already on.
           </p>
+
+          {/* Same switch as the app's pricing page. */}
+          <div role="group" aria-label="Who the pack is for" className="mt-6 inline-flex rounded-xl border border-white/[0.08] bg-white/[0.02] p-1">
+            {[
+              { value: false, label: "Just me" },
+              { value: true, label: "Group of 4" },
+            ].map((opt) => (
+              <button
+                key={opt.label}
+                type="button"
+                aria-pressed={group === opt.value}
+                onClick={() => setGroup(opt.value)}
+                className={`rounded-lg px-4 py-1.5 text-[12px] font-semibold transition-colors ${
+                  group === opt.value ? "bg-white/[0.08] text-white" : "text-slate-500 hover:text-slate-300"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+          {group && (
+            <p className="mt-3 text-[12px] text-slate-500 leading-relaxed max-w-md mx-auto">
+              You get the full pack and an invite link. Up to 3 friends open it, sign in, and each
+              gets their own full set.
+            </p>
+          )}
         </RevealOnScroll>
 
         <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
@@ -52,11 +81,11 @@ export default function Packs() {
                 {/* Fixed-height header keeps every divider on one baseline */}
                 <div className="h-[58px]">
                   <h3 className="text-[13px] font-semibold text-white leading-tight">
-                    {pack.name}
+                    {group ? `Group ${pack.name.replace(/ Pack$/, "")}` : pack.name}
                   </h3>
                   <div className="mt-1.5 flex items-baseline gap-1.5">
                     <span className="text-[26px] font-extrabold text-white tracking-tight leading-none">
-                      {formatUsd(pack.priceUsd)}
+                      {formatUsd(group ? pack.groupPriceUsd : pack.priceUsd)}
                     </span>
                     <span className="text-[11px] text-slate-500">one-time</span>
                   </div>
@@ -86,6 +115,7 @@ export default function Packs() {
             sits with the packs instead of only in the FAQ. */}
         <p className="text-center text-[12px] text-slate-500 leading-relaxed mt-8 max-w-xl mx-auto">
           {PACK_REFUND_LINE}
+          {group && <> {GROUP_PACK_REFUND_LINE}</>}
         </p>
 
         <p className="text-center text-[11px] text-slate-600 mt-3">

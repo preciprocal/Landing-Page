@@ -150,6 +150,12 @@ export type Pack = {
   id: string;
   name: string;
   priceUsd: number;
+  /**
+   * One-time price of the Group version: the buyer gets the full pack plus an
+   * invite link, and up to 3 friends who join each get their own full set.
+   * Matches the Dashboard's lib/config/packs.ts group prices.
+   */
+  groupPriceUsd: number;
   /** One line per grant, already written the way it should render. */
   items: readonly string[];
 };
@@ -176,6 +182,7 @@ const PACKS: readonly Pack[] = [
     id: "starter-pack",
     name: "Starter Pack",
     priceUsd: 4.99,
+    groupPriceUsd: 14.99,
     items: [
       "+1 mock interview",
       "+5 resume analyses",
@@ -189,18 +196,21 @@ const PACKS: readonly Pack[] = [
     id: "job-application-pack",
     name: "Job Application Pack",
     priceUsd: 4.99,
+    groupPriceUsd: 14.99,
     items: ["+5 tailored applications (resume, cover letter and prep for each job)"],
   },
   {
     id: "resume-letter-pack",
     name: "Resume and Letter Pack",
     priceUsd: 4.99,
+    groupPriceUsd: 14.99,
     items: ["+10 resume analyses", "+15 cover letters"],
   },
   {
     id: "networking-pack",
     name: "Networking Pack",
     priceUsd: 4.99,
+    groupPriceUsd: 14.99,
     items: [
       "+15 contact searches",
       "+3 LinkedIn optimisations",
@@ -211,12 +221,14 @@ const PACKS: readonly Pack[] = [
     id: "prep-pack",
     name: "Prep Pack",
     priceUsd: 4.99,
+    groupPriceUsd: 14.99,
     items: ["+3 study plans", "+2 AI analyses of your real interviews"],
   },
   {
     id: "interview-boost",
     name: "Interview Boost",
     priceUsd: 6.49,
+    groupPriceUsd: 22.49,
     items: ["+2 mock interviews"],
   },
 ];
@@ -234,6 +246,10 @@ export function getPacks(): readonly Pack[] {
  * next to the packs themselves rather than left to the FAQ. A reader who only
  * sees the subscription refund copy would reasonably assume it applies here too.
  */
+/** Group packs follow a stricter rule: once a friend has joined, the seats are in use. */
+export const GROUP_PACK_REFUND_LINE =
+  "A group pack can no longer be refunded once someone has joined it.";
+
 export const PACK_REFUND_LINE =
   "Changed your mind? A pack is refundable within 7 days, as long as you have not used any of it, less the card processing fee. Once you use part of a pack it is no longer refundable.";
 
