@@ -87,6 +87,7 @@ const STEPS = [
 ];
 
 const VISA_GUIDES = [
+  { label: "Employer lookup: E-Verify and H-1B records", href: "/opt/employer-lookup" },
   { label: "OPT guides: rules, dates, fees and calculators", href: "/opt" },
   { label: "New OPT rules: what is in force now", href: "/new-opt-rules" },
   { label: "New H-1B rules: what is in force now", href: "/new-h1b-rules" },
@@ -123,6 +124,7 @@ const PLAN = {
       when: "Your first weeks on OPT",
       goal: "Send fewer applications, and make each one count.",
       actions: [
+        "Check each employer's E-Verify and H-1B record before you apply.",
         "Tailor your resume to every posting you apply to.",
         "Reach a person at each company, a recruiter or someone on the team, instead of relying on the portal.",
         "Track every application and follow up after a week.",

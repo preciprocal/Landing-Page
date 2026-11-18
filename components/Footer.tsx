@@ -59,6 +59,7 @@ const FOOTER_COLUMNS = [
       { label: "New H-1B Rules",        href: "/new-h1b-rules" },
       { label: "New OPT Rules",         href: "/new-opt-rules" },
       { label: "OPT Guides",            href: "/opt" },
+      { label: "Employer Lookup",       href: "/opt/employer-lookup" },
       { label: "Resume Tips",           href: "/resume-tips" },
       { label: "Salary Guide",          href: "/salary-guide" },
       { label: "Cover Letter Examples", href: "/cover-letter-examples" },

@@ -60,6 +60,7 @@ const PRACTICE_LINKS: Record<string, { href: string; label: string }[]> = {
     { href: "/salary-guide", label: "Salary guides by role" },
   ],
   "Visa & Immigration": [
+    { href: "/opt/employer-lookup", label: "Check an employer's E-Verify and H-1B record" },
     { href: "/opt", label: "OPT guides and calculators" },
     { href: "/new-h1b-rules", label: "H-1B rule tracker" },
     { href: "/for/international-students", label: "Preciprocal for international students" },

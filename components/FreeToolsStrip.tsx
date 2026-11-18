@@ -75,6 +75,7 @@ const GUIDES = [
   { href: "/interview-prep", label: "Company interview guides" },
   { href: "/salary-guide", label: "Salary guides" },
   { href: "/resume-tips", label: "Resume tips by role" },
+  { href: "/opt/employer-lookup", label: "E-Verify and H-1B employer lookup" },
   { href: "/opt", label: "OPT guides for F-1 students" },
   { href: "/blog", label: "Career prep blog" },
 ];

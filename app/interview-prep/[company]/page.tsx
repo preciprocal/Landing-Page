@@ -21,7 +21,7 @@ import { CompanyPageJsonLd } from "@/components/JsonLd";
 import { ALL_COMPANIES, getCompanyMeta, getCompanyQuestions, COMPANY_META, APP_URL } from "@/lib/constants";
 import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
-import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, FaqSection, H1 } from "@/components/page/Layout";
+import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, FaqSection, H1, H3, SMALL, LABEL, CARD, CARD_HOVER } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export async function generateStaticParams() {
@@ -274,6 +274,26 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 </ul>
               </nav>
             )}
+          </div>
+        </section>
+
+        {/* For F-1 students: the company's public sponsorship record, one click
+            away. The lookup reads ?q= and opens on this company. */}
+        <section aria-label={`${meta.displayName} E-Verify and H-1B record`} className={`pb-12 ${PAD}`}>
+          <div className={INNER}>
+            <Link
+              href={`/opt/employer-lookup?q=${encodeURIComponent(meta.displayName)}`}
+              className={`group flex flex-col gap-3 ${CARD} ${CARD_HOVER} p-6 sm:flex-row sm:items-center sm:justify-between`}
+            >
+              <span className="min-w-0">
+                <span className={`block ${LABEL} text-emerald-300`}>On OPT or STEM OPT?</span>
+                <span className={`mt-2 block ${H3}`}>Can {meta.displayName} hire you? Check its E-Verify and H-1B record</span>
+                <span className={`mt-1 block ${SMALL}`}>E-Verify enrollment for STEM OPT and H-1B approvals by year, from public USCIS records.</span>
+              </span>
+              <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-accent-soft group-hover:text-white">
+                Open employer lookup <Chevron />
+              </span>
+            </Link>
           </div>
         </section>
 

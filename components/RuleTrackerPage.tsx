@@ -29,7 +29,7 @@ import { BreadcrumbJsonLd } from "@/components/JsonLd";
 import { APP_URL, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import Chevron from "@/components/Chevron";
-import { BTN_PRIMARY, CtaPanel, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2, FaqSection } from "@/components/page/Layout";
+import { BTN_PRIMARY, CtaPanel, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2, FaqSection, CARD, CARD_HOVER, H3, LABEL, SMALL } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 
 export type RuleStatus = "in-effect" | "blocked" | "proposed" | "unchanged";
@@ -437,6 +437,25 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                   ))}
                 </ul>
               </nav>
+            </div>
+          </section>
+
+          {/* ── Employer lookup: the practical next step after the rules ── */}
+          <section aria-label="Employer lookup" className={`pb-12 ${PAD}`}>
+            <div className={INNER}>
+              <Link
+                href="/opt/employer-lookup"
+                className={`group flex flex-col gap-3 ${CARD} ${CARD_HOVER} p-6 sm:flex-row sm:items-center sm:justify-between`}
+              >
+                <span className="min-w-0">
+                  <span className={`block ${LABEL} text-emerald-300`}>Before you apply</span>
+                  <span className={`mt-2 block ${H3}`}>Check an employer&apos;s E-Verify and H-1B record</span>
+                  <span className={`mt-1 block ${SMALL}`}>E-Verify enrollment for STEM OPT and H-1B approvals by year, from public USCIS records.</span>
+                </span>
+                <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-accent-soft group-hover:text-white">
+                  Open employer lookup <Chevron />
+                </span>
+              </Link>
             </div>
           </section>
 
