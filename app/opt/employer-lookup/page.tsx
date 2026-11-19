@@ -93,7 +93,7 @@ export default function EmployerLookupPage() {
       h1="Employer lookup"
       h1Accent={"for OPT, STEM OPT and H-⁠1B"}
       intro="Look up any US employer to see its E-Verify enrolment, which STEM OPT requires, and how many H-1B workers USCIS has approved for it each year. Know where you stand before you apply."
-      badge={<span>Public USCIS records</span>}
+      badge={<span>USCIS records</span>}
       disclaimer="Independent reference tool, not affiliated with USCIS or the Department of Homeland Security. For general information, not legal advice."
       sourcesTitle="Data and references"
       hideCheckedDate

@@ -450,7 +450,7 @@ export default function RuleTrackerPage(props: RuleTrackerProps) {
                 <span className="min-w-0">
                   <span className={`block ${LABEL} text-emerald-300`}>Before you apply</span>
                   <span className={`mt-2 block ${H3}`}>Check an employer&apos;s E-Verify and H-1B record</span>
-                  <span className={`mt-1 block ${SMALL}`}>E-Verify enrollment for STEM OPT and H-1B approvals by year, from public USCIS records.</span>
+                  <span className={`mt-1 block ${SMALL}`}>E-Verify enrollment for STEM OPT and H-1B approvals by year, from USCIS records.</span>
                 </span>
                 <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-accent-soft group-hover:text-white">
                   Open employer lookup <Chevron />

@@ -171,7 +171,7 @@ Automated Scoring: To produce the scores, rankings and feedback the Service exis
 
 Aggregated Job Insights: When you track applications, we combine their outcomes (for example, whether and how quickly a company replied) with those of other Preciprocal users to show reply rates for employers. These figures are counts across many people. We only show a company's figures once at least ten different users have applied there, we never show what happened to any one person's application, and we never share your individual applications with employers or anyone else.
 
-Employer Records: To show an employer's E-Verify status and H-1B history next to a job, we match the employer's name against public records published by US Citizenship and Immigration Services. These records describe employers, not you, and matching them uses only the employer's name.
+Employer Records: To show an employer's E-Verify status and H-1B history next to a job, we match the employer's name against records published by US Citizenship and Immigration Services. These records describe employers, not you, and matching them uses only the employer's name.
 
 Forwarded Emails: If you forward emails about your job applications to your Preciprocal address, we read them only to update your job tracker. We keep the subject line and what we found in it, not the email itself. You can change your address at any time, which stops us accepting mail sent to the old one.
 
