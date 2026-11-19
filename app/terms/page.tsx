@@ -95,11 +95,13 @@ The Service is not directed to children under 13. If we become aware that a chil
   },
   {
     title: "Description of service",
-    content: `Preciprocal provides an AI-powered career preparation platform. The Tools include, without limitation: resume analysis and scoring against a specific job posting, resume tailoring, cover letter generation, LinkedIn profile optimization, cold outreach drafting, a recruiter and hiring contact finder, voice-based AI mock interviews with automated scoring and feedback, interview study planning, an interview journal for debriefing interviews you have sat, job application tracking, and a browser extension that saves job postings and fills application forms (collectively, the **Tools**).
+    content: `Preciprocal provides an AI-powered career preparation platform. The Tools include, without limitation: resume analysis and scoring against a specific job posting, resume tailoring, cover letter generation, LinkedIn profile optimization, cold outreach drafting, a recruiter and hiring contact finder, voice-based AI mock interviews with automated scoring and feedback, interview study planning, an interview journal for debriefing interviews you have sat, job application tracking, a feed of job postings with each employer's E-Verify status and H-1B history, adding interviews to a Google or Microsoft Outlook calendar you connect, and a browser extension that shows how a posting fits your resume, saves job postings and fills application forms (collectively, the **Tools**).
 
 Mock interviews are conducted by voice and are recorded and transcribed in order to score them and generate your feedback. By starting a mock interview you consent to that recording. You may delete any session, together with its recording and transcript, from your account.
 
-Browser Extension: the extension operates only on job boards and application pages and only when you act. It reads a posting when you choose to save it and fills forms from the profile you have provided. You remain responsible for reviewing every application before you submit it; the extension does not submit applications for you, and we are not responsible for the accuracy of a form you submit without checking.
+On-Camera Feedback: you may switch on optional on-camera feedback for a mock interview. It runs in your browser; your video is not recorded or uploaded, and only summary numbers are saved with your feedback.
+
+Browser Extension: the extension operates only on LinkedIn job pages, supported job boards and employer application pages. On a LinkedIn job you open, it reads the posting to show how it fits your resume and the employer's records; it fills forms from the profile you have provided when you ask it to, and adds jobs to your tracker when you save them or an application page confirms you submitted. You remain responsible for reviewing every application before you submit it; the extension does not submit applications for you, and we are not responsible for the accuracy of a form you submit without checking.
 
 THE SERVICE IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND. We do not warrant that the Service will be uninterrupted, error-free, secure, or free of viruses or other harmful components. We reserve the right to modify, suspend, or discontinue any aspect of the Service at any time with reasonable notice where practicable.
 
@@ -152,6 +154,12 @@ We reserve the right to investigate and take appropriate legal action against an
 
 Autofill and Applications: Preciprocal fills application forms from the profile you provide. You are responsible for reviewing every application and submitting it yourself; we never submit an application for you. We do not answer demographic, work-authorization, citizenship, criminal-record or certification questions unless you have saved an answer, and you are responsible for making sure every answer you submit is true.
 
+Employer Records and Immigration Information: E-Verify status and H-1B approval figures come from public data published by US Citizenship and Immigration Services and are matched to employers by name. A match can be missing, out of date or matched to a different employer with a similar name. They are information only, not legal or immigration advice, and not a statement by the employer that it will sponsor you or that a role qualifies for any work authorization. Check with the employer, and with your school's international student office or an immigration attorney, before relying on them.
+
+Calendar Connections: If you connect a Google or Microsoft Outlook calendar, you authorize us to create, update and delete the interview events the Service adds to it. We act only on events we created. You can disconnect at any time in Settings; events already on your calendar stay there.
+
+Phone Verification: Free accounts verify a mobile phone number with a one-time code before using their monthly allowance. Use a number you control. Each number can verify one account. Your carrier's standard messaging rates may apply.
+
 Forwarded Emails: If you forward emails to your Preciprocal address, you authorize us to read them in order to update your job tracker. Only forward emails about your own job applications. We keep the subject line and what we found in it, not the email itself. You can change your address at any time, which stops us accepting mail sent to the old one.
 
 Interview Practice: Mock interviews are for preparation before an interview. Do not use Preciprocal to get help during a live interview or assessment where the employer has not allowed it.`,
@@ -175,6 +183,10 @@ Testimonials and Success Stories: If you submit a testimonial, a link to a publi
 Billing: Subscriptions are billed in advance on a monthly basis. We do not currently offer an annual plan. All prices are stated in US dollars and include any sales tax or VAT that applies to your purchase, so the price shown is the amount you pay. Where tax applies, it is shown on your receipt and invoice.
 
 One-Time Packs: We also offer one-time add-on packs that grant additional usage on top of your plan's monthly allowance. Packs are charged once at the time of purchase, do not renew, and do not change the price of your subscription. Pack allowances are added to the billing period in which the pack is purchased and do not carry over into a later billing period. Pack allowance is drawn down only after your plan's own monthly allowance for that item is exhausted. Packs are separate from the refund routes described below and follow a simpler rule: a pack is refundable within 7 days of purchase provided none of its allowance has been used, less the card processing fee charged on that payment. After 7 days, or once any part of the pack allowance has been used, the pack is non-refundable.
+
+Group Packs: A group pack is bought by one person and shared through an invite link. Up to four people in total, including the buyer, each receive their own full set of the pack's credits; anyone joining must sign in to a Preciprocal account. The buyer can see the name of each person who joined. A group pack follows the 7-day pack refund rule above, except that once anyone has joined it, it can no longer be refunded, because its credits have gone to them. Someone who joined a group pack has nothing to refund.
+
+Sending Credits: You may send unused credits from packs (including group pack shares and credits sent to you) to another Preciprocal account by entering its email address. Your plan's monthly allowance cannot be sent. You can send up to five times a day. A transfer moves the credits at once and cannot be reversed, and credits you receive this way are not refundable. You may not sell credits or send them in exchange for payment.
 
 Cancellation: You may cancel your subscription at any time through your account settings. Cancellation takes effect at the end of the current billing period. You will retain access to paid features through the end of the paid period. We do not provide refunds or credits for partial subscription periods, except as stated below or as required by applicable law.
 
@@ -326,7 +338,7 @@ export default function TermsPage() {
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
               </p>
               <p className="mt-4 font-mono text-[13px] text-slate-400">
-                Last updated: November 9, 2026. Effective date: November 9, 2026.
+                Last updated: November 18, 2026. Effective date: November 18, 2026.
               </p>
             </>
           }

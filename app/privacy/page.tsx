@@ -93,9 +93,17 @@ This Policy is incorporated into and forms part of our Terms of Service.`,
 
 Account Information: When you register, we collect your name, email address, and password (stored in hashed form). If you sign in with Google or Facebook instead, we receive your name, email address and profile identifier from that provider rather than a password, and we do not receive your password for that account. After you accept cookies, our website may also show Google's "Sign in with Google" prompt. Google only shares your account details with us if you choose to sign in through it. If you subscribe to a paid plan, our payment processor (Stripe) collects your billing information. We never see or store your full payment card number.
 
+Phone Number: Before a Free account can use its monthly allowance, we ask for a mobile phone number and send a one-time code to it by text message through an SMS delivery provider. We use the number to confirm the account belongs to a real person and so that each number can verify only one account. Paid accounts are not asked. We do not use it for marketing texts and we do not show it to anyone else.
+
 User-Submitted Content: To provide our tools, we collect and process content you voluntarily submit. This includes resume files you upload (PDF and Word, from which we extract the text), job descriptions you paste or import, cover letter and outreach drafts, the text of your LinkedIn profile where you provide it, study plans, interview journal entries describing interviews you have sat, and the applications you track, including employer, role, stage and your own notes.
 
+Application Profile and Work Authorization: To fill application forms for you, we keep the details you choose to save in your profile: contact details, location, links, education, work history, skills, desired pay and start date, your work authorization status, whether you will need visa sponsorship, and your visa or immigration status. You may also choose to save answers to the voluntary equal-opportunity questions employers ask, such as gender, pronouns, race or ethnicity, veteran status and disability status. All of these are optional. We use them only to fill forms you open, so you can check them before you submit, and to show you jobs that suit your work authorization. We do not use your equal-opportunity answers for scoring, ranking or anything else, and we never send them to an employer except in a form you submit yourself.
+
 Voice Recordings and Transcripts: Mock interviews are spoken. When you start one we record your audio for the duration of the session and produce a transcript, then score the session and generate written feedback from it. Recording is what the feature is; if you do not want to be recorded, do not start a mock interview. You can delete a session, and its recording and transcript, from your account at any time. We do not use your voice to identify you, we do not build a voiceprint, and we do not use recordings for any purpose other than producing your feedback.
+
+On-Camera Feedback: If you switch on on-camera feedback for a mock interview, a face-landmark model runs entirely in your browser to work out things like how often you faced the camera and where you were looking. Video frames never leave your device and are not recorded or uploaded. Only a few summary numbers for the session, such as the share of time you faced the camera, are saved with your interview feedback. We do not use this to identify you and we do not create a face template. You can use mock interviews with the camera off.
+
+Calendar Connections: If you connect Google Calendar or Microsoft Outlook, you authorize us to add your scheduled interviews to your calendar and to keep those events up to date. For Google we ask only for permission to see, create, change and delete events on calendars you own, plus your email address to show which account is connected; we read back only the events we created, which carry our own private marker. For Microsoft we ask for permission to read and write your calendar events, plus your basic profile and email address; again we act only on the events we created. The events contain the interview's role, company, time and a link to your job tracker. We store the access tokens encrypted. You can disconnect at any time in Settings, which revokes our access with the provider and deletes the tokens; events already on your calendar stay there.
 
 Usage and Analytics Data: We automatically collect information about how you interact with the Service, including pages and features accessed, session duration, clickstream data, device type and operating system, browser type and version, and IP address.
 
@@ -105,7 +113,15 @@ Page and Section Analytics: We use **Sectira** to measure which pages and which 
 
 Recruiter and Hiring Contact Information: The contact finder returns business contact details for recruiters and hiring managers, such as a name, employer, job title and work email address. That information concerns people who are not our users. We obtain it from commercial business-contact sources, we hold it as business rather than personal-life information, and we make it available to you strictly so you can make a job-related approach. You may not use it for bulk messaging, marketing unrelated to your own application, resale, or any purpose the recipient would not reasonably expect. If you are such a contact and want your details removed, email support@preciprocal.com and we will remove them.
 
-Browser Extension Data: If you install our browser extension, it reads the job posting on the page you are viewing when you choose to save it, and fills application forms from the profile you have already given us. It runs on job boards and application pages, and only when you act. It does not track your general browsing, and it does not read pages you have not asked it to act on.
+Browser Extension Data: Our browser extension runs only on LinkedIn job pages, supported job boards and employer application pages, and on our own sites. It does not run on any other site and does not track your general browsing.
+
+- On a LinkedIn job you open, it reads the posting's title, company, location and description and sends them to us to show how your resume matches, the employer's E-Verify status and H-1B history, and what the posting says about sponsorship. On LinkedIn's job list, it sends the employer names shown on screen to look up the same records.
+- When you choose Auto Apply or Autofill, it fills the form from your saved profile. When you save a job, or an application page confirms you submitted, it adds the job to your tracker.
+- To keep the extension working, it reports technical events to us: a random install identifier created when you install it, the extension version, the site it was used on, which feature ran and whether it succeeded, and counts such as how many fields were filled. These reports never contain text you typed or the contents of the page.
+
+Group Packs and Credit Transfers: If you buy a group pack, anyone who joins through your invite link and signs in receives their own credits, and you can see the name of each person who joined and when. If you send credits to someone, we look up the account for the email address you enter, show you that account's name so you can confirm it, and record the transfer for both of you.
+
+Devices and Sign-Ins: We keep a record of the browsers and devices signed in to your account, with the device type and an approximate location (city and country) worked out from the IP address, so you can review them and sign any of them out in Settings.
 
 Success Refund Submissions: If you claim a Success Refund, we collect the materials you submit in support of that claim: a copy of your offer letter, the address of your public post about the Service, and a written testimonial. Your offer letter is used only to verify the claim. It may contain employment and compensation details, and it is never published.
 
@@ -115,7 +131,7 @@ Cookies and Tracking Technologies: We use cookies and similar technologies as de
 
 Website Usage Measurement: We record how our website itself is used, including pages opened, sections viewed, scroll depth, clicks, and where your visit came from. This is first-party, stays on our own servers, and is described in full in Section 6.
 
-We do not knowingly collect sensitive personal information such as government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data. The one exception is an offer letter you choose to send us for a Success Refund claim, which you control and which may state your compensation; we do not ask you to redact it, but you may do so provided the employer, role and date remain legible.`,
+We do not ask for government identification numbers, financial account details beyond what is required for payment processing, health or medical information, or biometric data. Some information you may choose to give us is sensitive under privacy laws: your immigration or visa status, and, if you save them, your equal-opportunity answers about race or ethnicity, disability, veteran status or gender. We collect these only when you enter them, use them only as described above, and you can change or delete them in your profile at any time. An offer letter you send us for a Success Refund claim may also state your compensation; we do not ask you to redact it, but you may do so provided the employer, role and date remain legible.`,
   },
   {
     title: "Legal bases for processing (GDPR)",
@@ -126,6 +142,8 @@ Performance of a Contract (Article 6(1)(b) GDPR): Processing necessary to provid
 Legitimate Interests (Article 6(1)(f) GDPR): Processing necessary for our legitimate business interests, including improving and securing the Service, preventing fraud, analyzing usage patterns, and communicating with you about your account, provided such interests are not overridden by your rights.
 
 Consent (Article 6(1)(a) GDPR): Where we rely on your consent, such as for optional marketing communications or the use of non-essential cookies. You may withdraw consent at any time without affecting the lawfulness of prior processing.
+
+Explicit Consent for Special Categories (Article 9(2)(a) GDPR): Equal-opportunity answers about race or ethnicity, disability or similar matters are processed only because you choose to save them, which is your explicit consent. You may withdraw it by deleting those answers from your profile.
 
 Legal Obligation (Article 6(1)(c) GDPR): Processing necessary to comply with applicable laws and regulations.
 
@@ -152,6 +170,8 @@ Marketing With Your Permission: To publish approved testimonials and success sto
 Automated Scoring: To produce the scores, rankings and feedback the Service exists to provide, including resume scores against a job description, estimates of how your application compares with a wider applicant pool, and scoring of a mock interview across several dimensions. These are automated and are generated to inform you, not to make a decision about you. We do not use them to decide anything that affects your legal rights, we do not share them with employers, and no employer sees your account. You can ask us to review or explain any score by emailing support@preciprocal.com.
 
 Aggregated Job Insights: When you track applications, we combine their outcomes (for example, whether and how quickly a company replied) with those of other Preciprocal users to show reply rates for employers. These figures are counts across many people. We only show a company's figures once at least ten different users have applied there, we never show what happened to any one person's application, and we never share your individual applications with employers or anyone else.
+
+Employer Records: To show an employer's E-Verify status and H-1B history next to a job, we match the employer's name against public records published by US Citizenship and Immigration Services. These records describe employers, not you, and matching them uses only the employer's name.
 
 Forwarded Emails: If you forward emails about your job applications to your Preciprocal address, we read them only to update your job tracker. We keep the subject line and what we found in it, not the email itself. You can change your address at any time, which stops us accepting mail sent to the old one.
 
@@ -223,12 +243,19 @@ Service Providers: We share information with trusted third-party service provide
 - **Stripe** (payment processing)
 - Hosting and cloud infrastructure providers (serving the Service and storing data, including server logs that contain IP addresses)
 - An email delivery provider (sending the service and marketing emails described in Section 5)
+- An SMS delivery provider (sending the one-time code that verifies your phone number)
+- A business-contact data provider (finding recruiter and hiring contacts when you use the contact finder; we send it the employer's name or web domain, not your details)
+- **Google** and **Microsoft**, only if you connect Google Calendar or Outlook (to create and update your interview events)
 - **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may retain it for a limited period, typically up to 30 days, for abuse and misuse monitoring before deleting it. We have not opted in to any data sharing or model improvement programme offered by these providers. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
 - **Sectira** (page and section-level web analytics, cookieless, runs for every visitor as described in Section 2)
 
 Google Analytics, Microsoft Clarity and Sectira are the only third-party analytics providers we use. Google Analytics and Microsoft Clarity are gated behind your cookie consent choice as described in Section 11; Sectira, which sets no cookies, is not. We also operate our own first-party measurement, which sends nothing to any third party and is described in Section 6.
+
+Google User Data: Our use and transfer to any other app of information received from Google APIs adheres to the Google API Services User Data Policy, including the Limited Use requirements. We use Google Calendar access only to create and update the interview events described in Section 2, we do not use it for advertising, we do not sell it, and no person at Preciprocal reads your calendar data except where you ask us to for support, where it is needed for security, or where the law requires it.
+
+Employers: We do not share your profile, resume, scores or application data with employers. An employer receives only what you submit to it yourself.
 
 Public Publication of Testimonials: If you claim a Success Refund, we may publish the testimonial you provide on our website and in our marketing. What appears is governed by the permissions you choose when you submit it, each of which is independent: you may allow your words to be quoted without your name, allow or withhold your role and employer, and allow or withhold a link to your public post. If you withhold your name, we also suppress the link to your public post, because that post would identify you and publishing it would undo the anonymity you asked for. Your offer letter is never published. You may withdraw permission at any time by contacting support@preciprocal.com.
 
@@ -249,6 +276,10 @@ We use established providers whose published data processing terms commit them t
 Account Data: Retained for the duration of your account and for up to 90 days following account deletion, after which it is permanently deleted or anonymized, except where retention is required by law.
 
 User-Submitted Content: Retained while your account is active. Upon account deletion, your submitted content is deleted within 30 days, except for anonymized aggregates that cannot be linked back to you.
+
+Application Profile: Kept while your account is open so forms can be filled, and deleted with your account. You can delete any saved answer, including your equal-opportunity answers, at any time.
+
+Calendar Connections: Access tokens are deleted when you disconnect the calendar or delete your account.
 
 Payment Records: Retained for 7 years following the transaction to comply with financial record-keeping requirements.
 
@@ -412,7 +443,7 @@ export default function PrivacyPage() {
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
               </p>
               <p className="mt-4 font-mono text-[13px] text-slate-400">
-                Last updated: November 9, 2026. Effective date: November 9, 2026.
+                Last updated: November 18, 2026. Effective date: November 18, 2026.
               </p>
             </>
           }
