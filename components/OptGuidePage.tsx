@@ -36,6 +36,8 @@ export interface OptKeyFact {
 
 export interface OptGuideProps {
   breadcrumbName: string;
+  /** Optional page between "OPT guides" and this one in the breadcrumb. */
+  breadcrumbParent?: { name: string; path: string };
   canonicalPath: string;
   headline: string;
   description: string;
@@ -143,6 +145,7 @@ export default function OptGuidePage(props: OptGuideProps) {
         items={[
           { name: "Home", url: SITE_URL },
           ...(isHub ? [] : [{ name: "OPT guides", url: `${SITE_URL}/opt` }]),
+          ...(props.breadcrumbParent ? [{ name: props.breadcrumbParent.name, url: `${SITE_URL}${props.breadcrumbParent.path}` }] : []),
           { name: props.breadcrumbName, url: pageUrl },
         ]}
       />
@@ -159,7 +162,12 @@ export default function OptGuidePage(props: OptGuideProps) {
             breadcrumb={
               isHub
                 ? [{ label: "Home", href: "/" }, { label: props.breadcrumbName }]
-                : [{ label: "Home", href: "/" }, { label: "OPT guides", href: "/opt" }, { label: props.breadcrumbName }]
+                : [
+                    { label: "Home", href: "/" },
+                    { label: "OPT guides", href: "/opt" },
+                    ...(props.breadcrumbParent ? [{ label: props.breadcrumbParent.name, href: props.breadcrumbParent.path }] : []),
+                    { label: props.breadcrumbName },
+                  ]
             }
             badge={
               props.badge ?? (

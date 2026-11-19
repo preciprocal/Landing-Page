@@ -148,7 +148,13 @@ async function readPointer<T>(sb: SupabaseClient, bucket: string): Promise<T | n
   return value;
 }
 
-async function readShard<T>(sb: SupabaseClient, bucket: string, version: string, shard: string): Promise<Record<string, T>> {
+/**
+ * strict: throw when the download fails instead of treating it as an empty
+ * shard. The sponsor pages use it, so a network error fails the build (or
+ * keeps the last good page) rather than publishing "no record found".
+ * Failed downloads are never cached.
+ */
+async function readShard<T>(sb: SupabaseClient, bucket: string, version: string, shard: string, strict = false): Promise<Record<string, T>> {
   const cacheKey = `${bucket}/${version}/${shard}`;
   if (shardCache.has(cacheKey)) {
     const hit = shardCache.get(cacheKey) as Record<string, T>;
@@ -158,9 +164,12 @@ async function readShard<T>(sb: SupabaseClient, bucket: string, version: string,
     return hit;
   }
   const { data, error } = await sb.storage.from(bucket).download(`v/${version}/${shard}.json.gz`);
-  // A missing shard means no employer name starts with those characters.
-  const value =
-    error || !data ? {} : (JSON.parse(gunzipSync(Buffer.from(await data.arrayBuffer())).toString("utf8")) as Record<string, T>);
+  if (error || !data) {
+    if (strict) throw new Error(`Could not read ${bucket} shard ${shard}: ${error?.message ?? "no data"}`);
+    // A missing shard means no employer name starts with those characters.
+    return {};
+  }
+  const value = JSON.parse(gunzipSync(Buffer.from(await data.arrayBuffer())).toString("utf8")) as Record<string, T>;
   if (shardCache.size >= MAX_CACHED_SHARDS) shardCache.delete(shardCache.keys().next().value as string);
   shardCache.set(cacheKey, value);
   return value;
@@ -286,5 +295,76 @@ export async function searchEmployers(raw: string): Promise<EmployerSearchResult
             }
           : null,
     })),
+  };
+}
+
+// ─── Employer profiles (the /opt/h1b-sponsors pages) ─────────────────────────
+
+export interface EmployerProfile {
+  /** One entry per H-1B filing name that was found, in the order given. */
+  entities: { name: string; years: H1bYear[] }[];
+  /** Filing names that were not found in the current dataset. */
+  missing: string[];
+  /** The E-Verify account found under each name given, if any. */
+  everify: { name: string; state: EverifyState; workforce: string | null }[];
+  years: string[];
+  h1bDataThrough: string | null;
+  everifySourceUpdated: string | null;
+}
+
+/**
+ * Exact lookups by legal name, for the sponsor pages. Unlike searchEmployers
+ * there is no prefix matching: a page shows figures only for the filing names
+ * it lists, which were checked by hand (lib/h1bSponsors.ts), so a company is
+ * never shown with another employer's numbers.
+ */
+export async function getEmployerProfile(h1bNames: readonly string[], everifyNames: readonly string[]): Promise<EmployerProfile | null> {
+  const sb = supabase();
+  if (!sb) return null;
+  const [ePointer, hPointer] = await Promise.all([
+    readPointer<EverifyPointer>(sb, "everify"),
+    readPointer<H1bPointer>(sb, "h1b"),
+  ]);
+  if (!ePointer || !hPointer) return null;
+
+  const years = hPointer.years;
+  const entities: EmployerProfile["entities"] = [];
+  const missing: string[] = [];
+  for (const raw of h1bNames) {
+    const key = normalizeCompany(raw);
+    const rec = key ? (await readShard<H1bRecord>(sb, "h1b", hPointer.version, shardOf(key), true))[key] : undefined;
+    if (!rec) {
+      missing.push(raw);
+      continue;
+    }
+    entities.push({
+      name: rec.n,
+      years: years.map((year) => {
+        const [newEmployment, approvals, denials] = rec.y[year] ?? [0, 0, 0];
+        return { year, newEmployment, approvals, denials };
+      }),
+    });
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  const everify: EmployerProfile["everify"] = [];
+  for (const raw of everifyNames) {
+    const key = normalizeCompany(raw);
+    const recs = key ? (await readShard<EverifyRecord[]>(sb, "everify", ePointer.version, shardOf(key), true))[key] : undefined;
+    if (!recs?.length) continue;
+    // Unrelated employers share names ("Target" is also a 100-person firm), so
+    // take the largest open account, not the most recent one.
+    const live = (r: EverifyRecord) => (stateOf(r, today) === "ended" ? 1 : 0);
+    const [best] = [...recs].sort((a, b) => live(a) - live(b) || workforceRank([b]) - workforceRank([a]));
+    everify.push({ name: best.e, state: stateOf(best, today), workforce: best.w ?? null });
+  }
+
+  return {
+    entities,
+    missing,
+    everify,
+    years,
+    h1bDataThrough: hPointer.dataThrough,
+    everifySourceUpdated: ePointer.sourceUpdated,
   };
 }

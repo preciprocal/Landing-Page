@@ -89,6 +89,7 @@ const RESOURCES_GROUPS = [
     group: "OPT and learning",
     items: [
       { label: "Employer Lookup", href: "/opt/employer-lookup", sub: "E-Verify and H-1B sponsor records" },
+      { label: "H-1B Sponsors",   href: "/opt/h1b-sponsors",    sub: "Companies ranked by H-1B approvals" },
       { label: "OPT Guides",      href: "/opt",                 sub: "Rules, dates and calculators" },
       { label: "Blog", href: "/blog", sub: "Interview and career guides" },
       { label: "FAQ",  href: "/faq",  sub: "Common questions answered" },

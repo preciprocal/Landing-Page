@@ -23,6 +23,7 @@ import { fitTitle, stripBrand } from "@/lib/seoTitle";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, BTN_PRIMARY, BTN_SECONDARY, ACCENT_TEXT, Breadcrumbs, HeroBackdrop, SectionHead, CtaPanel, FaqSection, H1, H3, SMALL, LABEL, CARD, CARD_HOVER } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
+import { getH1bSponsor } from "@/lib/h1bSponsors";
 
 export async function generateStaticParams() {
   return ALL_COMPANIES.map((company) => ({ company }));
@@ -282,7 +283,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
         <section aria-label={`${meta.displayName} E-Verify and H-1B record`} className={`pb-12 ${PAD}`}>
           <div className={INNER}>
             <Link
-              href={`/opt/employer-lookup?q=${encodeURIComponent(meta.displayName)}`}
+              href={getH1bSponsor(company) ? `/opt/h1b-sponsors/${company}` : `/opt/employer-lookup?q=${encodeURIComponent(meta.displayName)}`}
               className={`group flex flex-col gap-3 ${CARD} ${CARD_HOVER} p-6 sm:flex-row sm:items-center sm:justify-between`}
             >
               <span className="min-w-0">
@@ -291,7 +292,7 @@ export default async function CompanyPrepPage({ params }: { params: Promise<{ co
                 <span className={`mt-1 block ${SMALL}`}>E-Verify enrollment for STEM OPT and H-1B approvals by year, from public USCIS records.</span>
               </span>
               <span className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-accent-soft group-hover:text-white">
-                Open employer lookup <Chevron />
+                {getH1bSponsor(company) ? "See its H-1B record" : "Open employer lookup"} <Chevron />
               </span>
             </Link>
           </div>

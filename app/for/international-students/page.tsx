@@ -17,7 +17,7 @@ import ToolPage from "@/components/ToolPage";
 import OptJourneyAd from "@/components/page/visuals/OptJourneyAd";
 
 export const metadata: Metadata = {
-  title: "Job Search for International Students (F-1)",
+  title: "Jobs for International Students in the USA: F-1 and OPT Job Search",
   description:
     "A job search built around the OPT clock: target employers who sponsor, tailor every application, and practice interviews before the unemployment days run out. Free for students to start.",
   keywords: [

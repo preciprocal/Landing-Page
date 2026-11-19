@@ -20,7 +20,7 @@ const DESCRIPTION =
   "The 24-month STEM OPT extension: who qualifies, the E-Verify and Form I-983 requirements, when to file, the 180-day automatic extension, reporting every six months, and the 150-day unemployment limit.";
 
 export const metadata: Metadata = {
-  title: "STEM OPT Extension: Eligibility and Rules",
+  title: "STEM OPT Extension: Requirements, E-Verify and Timeline",
   description: DESCRIPTION,
   keywords: [
     "STEM OPT extension",
