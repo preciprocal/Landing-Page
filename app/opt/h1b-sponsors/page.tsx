@@ -23,7 +23,7 @@ export const revalidate = 86400;
 
 const TITLE = "Companies That Sponsor H-1B Visas: USCIS Approvals by Employer";
 const DESCRIPTION =
-  "Which large US employers sponsor H-1B visas, ranked by USCIS approvals in the latest fiscal year, with new-hire counts and E-Verify status for STEM OPT. Free, from public USCIS data.";
+  "Which large US employers sponsor H-1B visas, ranked by USCIS approvals in the latest fiscal year, with new-hire counts and E-Verify status for STEM OPT. Free, from USCIS data.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -96,7 +96,7 @@ export default async function H1bSponsorsPage() {
       h1="Companies that sponsor"
       h1Accent="H-⁠1B visas"
       intro={`${rows.length} large US employers ranked by H-1B workers approved in ${fy(year)}, with how many were new hires and whether each can hire you on STEM OPT. Open any employer for every year on record.`}
-      badge={<span>Public USCIS records{h1bDate ? `, through ${h1bDate}` : ""}</span>}
+      badge={<span>USCIS records{h1bDate ? `, through ${h1bDate}` : ""}</span>}
       disclaimer="Independent reference, not affiliated with USCIS or the Department of Homeland Security. For general information, not legal advice."
       sourcesTitle="Data and references"
       hideCheckedDate

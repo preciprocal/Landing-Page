@@ -117,7 +117,7 @@ export default async function SponsorPage({ params }: Props) {
       h1={`Does ${name}`}
       h1Accent="sponsor H-⁠1B?"
       intro={`${answer.replace(/^Yes\. /, "")} Below: every year on record and whether ${name} can hire you on STEM OPT.`}
-      badge={<span>Public USCIS records{h1bDate ? `, through ${h1bDate}` : ""}</span>}
+      badge={<span>USCIS records{h1bDate ? `, through ${h1bDate}` : ""}</span>}
       disclaimer="Independent reference, not affiliated with USCIS or the Department of Homeland Security. For general information, not legal advice."
       sourcesTitle="Data and references"
       hideCheckedDate
