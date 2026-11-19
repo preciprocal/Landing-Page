@@ -67,7 +67,7 @@ const FAQS = [
   },
   {
     q: "Is Preciprocal free for international students?",
-    a: "The free plan is free for everyone. If you have a .edu email, you can also verify it for 1 month of Pro free. A card is required to start that trial, nothing is charged for 30 days, and you can cancel any time before it ends.",
+    a: "The free plan is free for everyone. With a .edu email you also get 1 month of Pro free: no card is needed, nothing is ever charged, and after 30 days your account moves to the Free plan.",
   },
 ];
 
@@ -185,7 +185,7 @@ export default function InternationalStudentsPage() {
       ]}
       bottomTitle="Your clock is running. Make every application count."
       bottomBody="Tailored resumes, tracked applications, and interview practice in one place, free to start."
-      bottomMicrocopy="Free plan · .edu email gets 1 month of Pro free · Cancel any time"
+      bottomMicrocopy="Free plan · .edu email gets 1 month of Pro free · No card needed"
       body={
         <>
           <p>

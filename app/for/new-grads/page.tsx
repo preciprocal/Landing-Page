@@ -59,7 +59,7 @@ const FAQS = [
   },
   {
     q: "Is there a student discount?",
-    a: "Yes. Verify your .edu email for 1 month of Pro free; a card is required, nothing is charged for 30 days, and you can cancel any time before it ends.",
+    a: "Yes. Verify a .edu email and Pro is free for 30 days. No card is needed and nothing is ever charged: after 30 days your account moves to the Free plan, and you can upgrade any time. It is once per student email and device.",
   },
 ];
 
@@ -159,7 +159,7 @@ export default function NewGradsPage() {
       ]}
       bottomTitle="Walk into your first interview ready."
       bottomBody="Resume analysis, mock interviews, cover letters and tracking, free to start, with a month of Pro on your .edu email."
-      bottomMicrocopy="Free plan · .edu email gets 1 month of Pro free · Cancel any time"
+      bottomMicrocopy="Free plan · .edu email gets 1 month of Pro free · No card needed"
       body={
         <>
           <p>

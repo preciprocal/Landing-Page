@@ -102,8 +102,8 @@ export default function Pricing() {
 
         <p className="text-center text-[13px] text-slate-600 mt-5">
           University student? Verify your .edu email for{" "}
-          <span className="text-slate-400 font-medium">1 month of Pro free</span>. A card is
-          required; nothing is charged for 30 days and you can cancel any time.
+          <span className="text-slate-400 font-medium">1 month of Pro free</span>. No card needed;
+          after 30 days you move to the Free plan.
         </p>
 
       </div>

@@ -122,7 +122,7 @@ export default function ScrollToast() {
                 <div className="pr-4 flex-1">
                   <p className="text-[13px] font-bold text-white mb-0.5">Student? 1 month free.</p>
                   <p className="text-[11px] text-slate-400 leading-relaxed mb-3">
-                    Verify your .edu email for a free month of Pro. Nothing is charged for 30 days.
+                    Verify your .edu email for a free month of Pro. No card needed.
                   </p>
                   <a
                     href={`${APP_URL}/sign-up`}
