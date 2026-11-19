@@ -23,7 +23,7 @@ const DESCRIPTION =
   "Count your OPT unemployment days (90 on OPT, 150 with STEM OPT) and see the date you would hit the limit. Plus every kind of work SEVP says stops the clock, including unpaid, contract and self-employment.";
 
 export const metadata: Metadata = {
-  title: "OPT Unemployment Calculator: Stop the Clock",
+  title: "OPT Unemployment Days Calculator: 90 and 150 Day Counter",
   description: DESCRIPTION,
   keywords: [
     "OPT unemployment calculator",

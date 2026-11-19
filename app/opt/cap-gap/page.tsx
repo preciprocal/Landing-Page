@@ -19,7 +19,7 @@ const DESCRIPTION =
   "The cap-gap extension keeps F-1 students in status, and working, from OPT to an October H-1B start. Since 2025 it runs to April 1. Who qualifies, when it ends, unemployment, and why not to travel.";
 
 export const metadata: Metadata = {
-  title: "Cap-Gap Extension: OPT to H-1B (April 1)",
+  title: "Cap-Gap Extension: OPT to H-1B Rules (Now to April 1)",
   description: DESCRIPTION,
   keywords: [
     "cap gap extension",

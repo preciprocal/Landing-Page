@@ -32,7 +32,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 import ProductHero from "@/components/ProductHero";
 
 export const metadata: Metadata = {
-  title: "AI Cover Letter Generator: Free, in 60 Seconds",
+  title: "Free AI Cover Letter Generator From Your Resume",
   description:
     "Generate a tailored cover letter in 60 seconds. Our AI researches the company, matches your resume to the job, and writes a letter that sounds like you. Free to start. Built for students and new grads.",
   keywords: [

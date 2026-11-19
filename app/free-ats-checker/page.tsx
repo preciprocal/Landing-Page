@@ -22,7 +22,7 @@ import AtsCheckerVisual from "@/components/page/visuals/AtsCheckerVisual";
 import ResumeAtsChecker from "@/components/ResumeAtsChecker";
 
 export const metadata: Metadata = {
-  title: "Free ATS Resume Checker: Score Your Resume Now",
+  title: "Free ATS Resume Checker With Job Description, No Sign-Up",
   description:
     "Upload your resume and get a free ATS score out of 100, scored across ATS compatibility, content, skills, structure and tone, with your top fixes and rewrites. No sign-up to see your score.",
   keywords: [

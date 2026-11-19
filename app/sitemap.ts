@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { ALL_ROLES, ALL_COMPANIES, BLOG_POSTS, SITE_URL } from "@/lib/constants";
 import { CONTENT_SNAPSHOTS } from "@/lib/contentFreshness";
 import { OPT_GUIDES } from "@/lib/optGuides";
+import { H1B_SPONSORS } from "@/lib/h1bSponsors";
 
 /**
  * sitemap.ts
@@ -328,6 +329,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.78,
   }));
 
+  // "Does <company> sponsor H-1B?" pages, rebuilt daily from USCIS data.
+  const sponsorPages: MetadataRoute.Sitemap = H1B_SPONSORS.map((s) => ({
+    url: `${SITE_URL}/opt/h1b-sponsors/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
   // Programmatic role pages for the three rebuilt sections, 41 roles each.
   // Each hub links to all of its children, so these are crawlable once the
   // hub itself is reachable from the sitemap and the footer.
@@ -407,6 +416,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Tier 2: company and role interview pages. Real hand-written depth.
   const tier2 = [
     ...companyPages,
+    ...sponsorPages,
     ...rolePages,
     ...staticPages.filter((p) =>
       [`${SITE_URL}/interview-prep`, `${SITE_URL}/interview-questions`].includes(String(p.url))

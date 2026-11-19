@@ -23,7 +23,7 @@ import OptGuidePage from "@/components/OptGuidePage";
 import EverifySearch from "@/components/opt/EverifySearch";
 import { SRC } from "@/lib/optSources";
 
-const TITLE = "H-1B Sponsor and E-Verify Employer Lookup for OPT and STEM OPT";
+const TITLE = "H-1B Sponsor Checker and E-Verify Employer Search for OPT";
 const DESCRIPTION =
   "Free employer lookup for F-1 students: see if a company is enrolled in E-Verify for STEM OPT, and how many H-1B workers USCIS approved for it each year.";
 
@@ -139,6 +139,12 @@ export default function EmployerLookupPage() {
             <li>Figures reflect USCIS&apos;s first decision on each petition and exclude petitions still pending.</li>
             <li>Fiscal years run October to September, so FY2026 ended on September 30, 2026.</li>
           </ul>
+
+          <h2>Compare large sponsors</h2>
+          <p>
+            See <Link href="/opt/h1b-sponsors">companies that sponsor H-1B visas</Link>, ranked by approvals, with a page for each
+            employer&apos;s record by year.
+          </p>
 
           <h2>No match found</h2>
           <p>

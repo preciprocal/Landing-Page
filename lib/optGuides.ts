@@ -11,6 +11,7 @@ export const OPT_GUIDES = [
   { href: "/opt/how-to-apply", label: "How to apply for OPT", blurb: "Filing windows, the I-765, and a deadline calculator." },
   { href: "/opt/unemployment-calculator", label: "OPT unemployment calculator", blurb: "Count your 90 or 150 days, and what stops the clock." },
   { href: "/opt/stem-opt-extension", label: "STEM OPT extension", blurb: "Eligibility, E-Verify, the I-983, and reporting." },
+  { href: "/opt/h1b-sponsors", label: "Companies that sponsor H-1B", blurb: "Large employers ranked by USCIS H-1B approvals." },
   { href: "/opt/employer-lookup", label: "Employer lookup: E-Verify and H-1B", blurb: "Can a company hire you on OPT, STEM OPT and H-1B?" },
   { href: "/opt/self-employment", label: "Self-employment on OPT, STEM OPT and H-1B", blurb: "When you can work for your own company." },
   { href: "/opt/cap-gap", label: "Cap-gap extension", blurb: "Staying in status from OPT to H-1B, now to April 1." },
