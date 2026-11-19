@@ -31,7 +31,7 @@ import {
   useReducedMotion,
   type Variants,
 } from "framer-motion";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { trackEvent } from "@/lib/analytics/client";
 import type { ResumeCheckResult } from "@/lib/resumeCheck/analysis";
 import Chevron from "@/components/Chevron";

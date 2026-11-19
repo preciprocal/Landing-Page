@@ -11,7 +11,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { ACCENT_TEXT, BODY, BTN_PRIMARY, GRID_BG, HoverRule, PAD } from "@/components/page/Layout";
 
 export default function NotFound() {

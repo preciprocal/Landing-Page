@@ -10,7 +10,7 @@
 
 import Link from "next/link";
 import { Rocket } from "lucide-react";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ExploreLinks from "@/components/page/ExploreLinks";

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Menu, MenuItem, HoveredLink } from "@/components/ui/Navbarmenu";
 import { usePathname } from "next/navigation";
 import { FloatingNavbar } from "@/components/ui/FloatingNavbar";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { MenuIcon, CloseIcon } from "@/components/Icons";
 import Link from "next/link";
 import Image from "next/image";

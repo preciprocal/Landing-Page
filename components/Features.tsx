@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { HoverEffect } from "@/components/ui/CardHoverEffect";
-import { FEATURES } from "@/lib/constants";
+import { FEATURES } from "@/lib/home-data";
 import { iconMap } from "@/components/Icons";
 
 export default function Features() {

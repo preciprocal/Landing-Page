@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { ChevronRightIcon } from "@/components/Icons";
 import { SpotlightNew } from "@/components/ui/SpotlightNew";
 import { BTN_PRIMARY, BTN_SECONDARY, LABEL, LEAD } from "@/components/page/Layout";

@@ -6,6 +6,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import PreferredSourceBadge from "@/components/PreferredSourceBadge";
 import { useState } from "react";
 import { resetConsent } from "@/lib/consent";
@@ -159,7 +160,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4">
-              <img src="/logo.png" alt="Preciprocal" className="w-8 h-8 rounded-lg" />
+              <Image src="/logo.png" alt="Preciprocal" width={32} height={32} className="w-8 h-8 rounded-lg" />
               <span className="text-lg font-semibold tracking-[-0.02em] text-white">Preciprocal</span>
             </Link>
             <p className="text-[13px] text-slate-500 leading-relaxed max-w-[260px]">

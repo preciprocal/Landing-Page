@@ -33,7 +33,7 @@
  *   }
  */
 
-import { FAQS } from "@/lib/constants";
+import { FAQS } from "@/lib/faqs";
 import { TIERS, tierFeatureLines, tierSchemaPrice } from "@/lib/pricing";
 
 export function OrganizationJsonLd() {

@@ -31,7 +31,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, BTN_PRIMARY, Eyebrow, SectionHead, CtaPanel, Fold, FaqSection, BODY, H3 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";

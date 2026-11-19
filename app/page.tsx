@@ -14,7 +14,7 @@
 
 import type { Metadata } from "next";
 import { WebSiteJsonLd, FAQJsonLd } from "@/components/JsonLd";
-import { LANDING_FAQS } from "@/lib/constants";
+import { LANDING_FAQS } from "@/lib/faqs";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ProblemSection from "@/components/ProblemSection";

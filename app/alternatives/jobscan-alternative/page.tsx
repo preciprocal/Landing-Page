@@ -19,7 +19,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, BTN_PRIMARY, SectionHead, PageHero, CtaPanel, FaqSection } from "@/components/page/Layout";
 import { Reveal } from "@/components/page/Reveal";

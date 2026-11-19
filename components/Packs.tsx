@@ -18,7 +18,7 @@
 
 import { useState } from "react";
 import { Plus } from "lucide-react";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { GROUP_PACK_REFUND_LINE, PACK_REFUND_LINE, formatUsd, getPacks } from "@/lib/pricing";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 

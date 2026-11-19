@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, GraduationCap } from "lucide-react";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import Chevron from "@/components/Chevron";
 
 // ═══════════════════════════════════════════════════════════════════════════════

@@ -20,7 +20,7 @@
  */
 
 import { useEffect } from "react";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { CONSENT_EVENT, hasAnalyticsConsent } from "@/lib/consent";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, GraduationCap, ChevronRight } from "lucide-react";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 
 const STORAGE_KEY = "preciprocal-toast-dismissed";
 

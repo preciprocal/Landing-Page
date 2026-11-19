@@ -26,7 +26,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL, SITE_URL } from "@/lib/constants";
+import { APP_URL, SITE_URL } from "@/lib/site";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import Chevron from "@/components/Chevron";
 import { BTN_PRIMARY, CtaPanel, Fold, INNER, PAD, PageHero, SECTION, SectionHead, pad2, FaqSection, CARD, CARD_HOVER, H3, LABEL, SMALL } from "@/components/page/Layout";

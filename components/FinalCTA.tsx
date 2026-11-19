@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ChevronRightIcon } from "@/components/Icons";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { MagneticHover } from "@/components/LandingAnimations";
 import SmoothGlow from "@/components/ui/SmoothGlow";
 

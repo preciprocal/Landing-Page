@@ -18,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ExploreLinks from "@/components/page/ExploreLinks";
 import Chevron from "@/components/Chevron";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { ACCENT_TEXT, BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, Eyebrow, H2, H3, INNER, LABEL, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { STEPS } from "@/lib/constants";
+import { STEPS } from "@/lib/home-data";
 import { RevealOnScroll, StaggerChildren, StaggerItem, SpotlightCard } from "@/components/LandingAnimations";
 
 import { H2 } from "@/components/page/Layout";

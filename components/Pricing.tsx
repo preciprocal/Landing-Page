@@ -2,7 +2,7 @@
 
 import { CheckIcon } from "@/components/Icons";
 import RefundPolicy from "@/components/RefundPolicy";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import {
   TIERS,
   tierFeatureLines,

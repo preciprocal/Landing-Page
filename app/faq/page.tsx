@@ -14,7 +14,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import Link from "next/link";
-import { FAQS, FAQ_CATEGORIES, type FAQCategory } from "@/lib/constants";
+import { FAQS, FAQ_CATEGORIES, type FAQCategory } from "@/lib/faqs";
 import { FAQJsonLd } from "@/components/JsonLd";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

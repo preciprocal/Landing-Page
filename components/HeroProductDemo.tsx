@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import {
@@ -9,13 +10,29 @@ import {
   DollarSign, Clock, ExternalLink, Bookmark,
 } from "lucide-react";
 
-import { ResumeExamplePreview } from "@/components/examples/ResumePreview";
-import { CoverLetterExamplePreview } from "@/components/examples/CoverLetterPreview";
-import { InterviewExamplePreview } from "@/components/examples/InterviewPreview";
-import { PlannerExamplePreview } from "@/components/examples/PlannerPreview";
-import { CareerToolsExamplePreview } from "@/components/examples/CareerToolsPreview";
-import { DebriefExamplePreview } from "@/components/examples/DebriefPreview";
-import { JobTrackerExamplePreview } from "@/components/examples/JobTrackerPreview";
+// The product previews are about 70 kB of script and only show once the story
+// is playing, so they load on demand instead of with the page. They start
+// downloading when the visitor begins the story (see preloadPreviews).
+const PREVIEW_LOADERS = {
+  ResumeExamplePreview: () => import("@/components/examples/ResumePreview").then((m) => m.ResumeExamplePreview),
+  CoverLetterExamplePreview: () => import("@/components/examples/CoverLetterPreview").then((m) => m.CoverLetterExamplePreview),
+  InterviewExamplePreview: () => import("@/components/examples/InterviewPreview").then((m) => m.InterviewExamplePreview),
+  PlannerExamplePreview: () => import("@/components/examples/PlannerPreview").then((m) => m.PlannerExamplePreview),
+  CareerToolsExamplePreview: () => import("@/components/examples/CareerToolsPreview").then((m) => m.CareerToolsExamplePreview),
+  DebriefExamplePreview: () => import("@/components/examples/DebriefPreview").then((m) => m.DebriefExamplePreview),
+  JobTrackerExamplePreview: () => import("@/components/examples/JobTrackerPreview").then((m) => m.JobTrackerExamplePreview),
+};
+const previewFallback = () => <div className="min-h-[420px]" aria-hidden="true" />;
+const ResumeExamplePreview = dynamic(PREVIEW_LOADERS.ResumeExamplePreview, { loading: previewFallback });
+const CoverLetterExamplePreview = dynamic(PREVIEW_LOADERS.CoverLetterExamplePreview, { loading: previewFallback });
+const InterviewExamplePreview = dynamic(PREVIEW_LOADERS.InterviewExamplePreview, { loading: previewFallback });
+const PlannerExamplePreview = dynamic(PREVIEW_LOADERS.PlannerExamplePreview, { loading: previewFallback });
+const CareerToolsExamplePreview = dynamic(PREVIEW_LOADERS.CareerToolsExamplePreview, { loading: previewFallback });
+const DebriefExamplePreview = dynamic(PREVIEW_LOADERS.DebriefExamplePreview, { loading: previewFallback });
+const JobTrackerExamplePreview = dynamic(PREVIEW_LOADERS.JobTrackerExamplePreview, { loading: previewFallback });
+function preloadPreviews() {
+  for (const load of Object.values(PREVIEW_LOADERS)) void load();
+}
 import { CHAPTER_DATA } from "@/lib/demoChapters";
 
 import { BTN_PRIMARY } from "@/components/page/Layout";
@@ -594,7 +611,7 @@ export default function HeroProductDemo() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [phase, step, totalSteps, activeChapter, chapter]);
 
-  const handleBeginStory = useCallback(() => setPhase("listing"), []);
+  const handleBeginStory = useCallback(() => { preloadPreviews(); setPhase("listing"); }, []);
   const handleApplyFromListing = useCallback(() => { setPhase("narration"); setActiveChapter(0); setStep(0); }, []);
   const handleStartDemo = useCallback(() => { setPhase("demo"); setStep(0); }, []);
 

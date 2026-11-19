@@ -19,7 +19,7 @@ import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import HeroProductDemo from "@/components/HeroProductDemo";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { BODY, BTN_PRIMARY, BTN_SECONDARY, CtaPanel, FaqSection, H3, INNER, PAD, PageHero, SECTION, SectionHead, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { InfiniteMovingCards } from "@/components/ui/InfiniteMovingCards";
-import { TESTIMONIALS } from "@/lib/constants";
+import { TESTIMONIALS } from "@/lib/home-data";
 import { RevealOnScroll } from "@/components/LandingAnimations";
 
 import { H2 } from "@/components/page/Layout";

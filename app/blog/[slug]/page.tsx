@@ -1,7 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { useParams, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import { BLOG_POSTS } from "@/lib/constants";
 import { BlogPostJsonLd } from "@/components/JsonLd";
@@ -299,12 +297,15 @@ function renderMarkdown(content: string) {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function BlogArticlePage() {
-  const params = useParams();
-  const slug = typeof params.slug === "string" ? params.slug : params.slug?.[0];
+/**
+ * A server component: the post is rendered to HTML at build time, so the
+ * browser downloads only the article, not the text of every post.
+ */
+export default async function BlogArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const post = BLOG_POSTS.find((p) => p.slug === slug);
 
-  if (!post) return notFound();
+  if (!post) notFound();
 
   const updatedDate = post.updatedAt
     ? new Date(post.updatedAt).toLocaleDateString("en-US", { month: "long", year: "numeric", timeZone: "UTC" })

@@ -22,7 +22,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { PreferredSourceCallout } from "@/components/PreferredSourceBadge";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL, SITE_URL } from "@/lib/constants";
+import { APP_URL, SITE_URL } from "@/lib/site";
 import { CONTENT_SNAPSHOTS, reportStaleContent } from "@/lib/contentFreshness";
 import { OPT_GUIDES } from "@/lib/optGuides";
 import Chevron from "@/components/Chevron";

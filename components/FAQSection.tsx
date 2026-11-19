@@ -7,7 +7,7 @@
  * same six, so it matches what is shown. The rest live on /faq.
  */
 
-import { LANDING_FAQS } from "@/lib/constants";
+import { LANDING_FAQS } from "@/lib/faqs";
 import { FaqSection } from "@/components/page/Layout";
 
 export default function FAQSection() {

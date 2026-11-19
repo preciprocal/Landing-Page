@@ -25,7 +25,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Chevron from "@/components/Chevron";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { ACCENT_TEXT, BODY, BTN_PRIMARY, CtaPanel, Eyebrow, H2, H3, INNER, PAD, PageHero, pad2 } from "@/components/page/Layout";
 import { Reveal, RevealGroup, RevealItem } from "@/components/page/Reveal";
 

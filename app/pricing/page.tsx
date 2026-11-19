@@ -18,7 +18,7 @@
  */
 
 import { CheckIcon } from "@/components/Icons";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { RevealOnScroll, StaggerChildren, StaggerItem } from "@/components/LandingAnimations";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";

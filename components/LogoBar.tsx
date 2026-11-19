@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { UNIVERSITY_LOGOS } from "@/lib/constants";
+import { UNIVERSITY_LOGOS } from "@/lib/home-data";
 
 export default function LogoBar() {
   const doubled = [...UNIVERSITY_LOGOS, ...UNIVERSITY_LOGOS];

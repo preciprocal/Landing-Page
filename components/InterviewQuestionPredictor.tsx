@@ -23,7 +23,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, MotionConfig, animate, motion, useReducedMotion, type Variants } from "framer-motion";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { SpotlightCard } from "@/components/page/Reveal";
 import { trackEvent } from "@/lib/analytics/client";
 import VoiceAnswerRecorder, { speechSupported } from "@/components/VoiceAnswerRecorder";

@@ -34,7 +34,7 @@
  * a stored identifier is the part that actually engages it.
  */
 
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import { getConsent } from "@/lib/consent";
 import { LIMITS, type CollectPayload, type ConsentLabel, type SessionContext, type TargetKind, type TrackedEvent } from "./types";
 

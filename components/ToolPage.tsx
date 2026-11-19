@@ -22,7 +22,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { BreadcrumbJsonLd } from "@/components/JsonLd";
-import { APP_URL } from "@/lib/constants";
+import { APP_URL } from "@/lib/site";
 import Chevron from "@/components/Chevron";
 import { PAD, INNER, SECTION, ACCENT_TEXT, BTN_PRIMARY, BTN_SECONDARY, BTN_SECONDARY_SM, Eyebrow, PageHero, CtaPanel, type Accent, FaqSection, H2, H3, BODY, SMALL, LABEL, CARD, PANEL } from "@/components/page/Layout";
 
