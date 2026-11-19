@@ -99,7 +99,7 @@ User-Submitted Content: To provide our tools, we collect and process content you
 
 Application Profile and Work Authorization: To fill application forms for you, we keep the details you choose to save in your profile: contact details, location, links, education, work history, skills, desired pay and start date, your work authorization status, whether you will need visa sponsorship, and your visa or immigration status. You may also choose to save answers to the voluntary equal-opportunity questions employers ask, such as gender, pronouns, race or ethnicity, veteran status and disability status. All of these are optional. We use them only to fill forms you open, so you can check them before you submit, and to show you jobs that suit your work authorization. We do not use your equal-opportunity answers for scoring, ranking or anything else, and we never send them to an employer except in a form you submit yourself.
 
-Voice Recordings and Transcripts: Mock interviews are spoken. When you start one we record your audio for the duration of the session and produce a transcript, then score the session and generate written feedback from it. Recording is what the feature is; if you do not want to be recorded, do not start a mock interview. You can delete a session, and its recording and transcript, from your account at any time. We do not use your voice to identify you, we do not build a voiceprint, and we do not use recordings for any purpose other than producing your feedback.
+Voice and Transcripts: Mock interviews are spoken. During a session your voice is processed live by our voice AI provider to run the interview and turn it into a transcript, which we then score to write your feedback. We keep the transcript and the feedback; we do not store audio recordings of your sessions ourselves. We do not use your voice to identify you and we do not build a voiceprint. If you do not want your voice processed, do not start a mock interview. To have a session's transcript and feedback deleted, email support@preciprocal.com.
 
 On-Camera Feedback: If you switch on on-camera feedback for a mock interview, a face-landmark model runs entirely in your browser to work out things like how often you faced the camera and where you were looking. Video frames never leave your device and are not recorded or uploaded. Only a few summary numbers for the session, such as the share of time you faced the camera, are saved with your interview feedback. We do not use this to identify you and we do not create a face template. You can use mock interviews with the camera off.
 
@@ -107,7 +107,7 @@ Calendar Connections: If you connect Google Calendar or Microsoft Outlook, you a
 
 Usage and Analytics Data: We automatically collect information about how you interact with the Service, including pages and features accessed, session duration, clickstream data, device type and operating system, browser type and version, and IP address.
 
-Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft Clarity applies automatic masking to text you type into form fields, and we do not use it to capture the content of your resumes, cover letters or interview responses. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
+Session Recordings and Interaction Analytics: If you consent to analytics cookies, we use **Microsoft Clarity** to record how you interact with our pages. This includes mouse movement, scrolling, clicks, and reconstructed session replays showing your navigation through the Service, together with heatmaps and detection of rage clicks and dead clicks. These recordings are used to diagnose usability problems. Microsoft processes this data as described in the Microsoft Privacy Statement. **If you decline analytics cookies, Microsoft Clarity is not loaded and no session recording takes place.**
 
 Page and Section Analytics: We use **Sectira** to measure which pages and which sections of each page are viewed, where visitors arrive from, and which visits lead to a sign-up. Sectira runs for every visitor, including those who decline analytics cookies, because according to Sectira it sets no cookies by default, stores nothing in your browser, and counts visitors anonymously. It does not record video or session replays. Sectira processes this data to provide our reports and, according to Sectira, does not sell it or use it for advertising. Its script is served from t.preciprocal.com, a subdomain we point to Sectira.
 
@@ -246,7 +246,7 @@ Service Providers: We share information with trusted third-party service provide
 - An SMS delivery provider (sending the one-time code that verifies your phone number)
 - A business-contact data provider (finding recruiter and hiring contacts when you use the contact finder; we send it the employer's name or web domain, not your details)
 - **Google** and **Microsoft**, only if you connect Google Calendar or Outlook (to create and update your interview events)
-- **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may retain it for a limited period, typically up to 30 days, for abuse and misuse monitoring before deleting it. We have not opted in to any data sharing or model improvement programme offered by these providers. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
+- **Third-party AI model providers** (large language model APIs, operated by established US-based providers, which process the content you submit in order to generate your results). Under the commercial API terms that govern our use of these services, the content we send is **not used to train their models**. They may keep it for a limited period under those terms, for example to monitor for abuse. We treat the specific identity of these providers as commercially confidential, but will disclose it to you on request in connection with a data subject access request.
 - **Google Analytics 4** (aggregate usage analytics, loaded only after you consent)
 - **Microsoft Clarity** (session replay and interaction analytics, loaded only after you consent)
 - **Sectira** (page and section-level web analytics, cookieless, runs for every visitor as described in Section 2)
@@ -273,23 +273,21 @@ We use established providers whose published data processing terms commit them t
     title: "Data retention",
     content: `We retain your personal information for as long as necessary to provide the Service and fulfill the purposes described in this Policy, unless a longer retention period is required or permitted by law.
 
-Account Data: Retained for the duration of your account and for up to 90 days following account deletion, after which it is permanently deleted or anonymized, except where retention is required by law.
-
-User-Submitted Content: Retained while your account is active. Upon account deletion, your submitted content is deleted within 30 days, except for anonymized aggregates that cannot be linked back to you.
+Account Data and Your Content: Kept while your account is open. If you ask us to delete your account, we delete your account information and the content you submitted, except figures already combined with other users' that cannot be linked back to you, and anything we must keep for the reasons below.
 
 Application Profile: Kept while your account is open so forms can be filled, and deleted with your account. You can delete any saved answer, including your equal-opportunity answers, at any time.
 
 Calendar Connections: Access tokens are deleted when you disconnect the calendar or delete your account.
 
-Payment Records: Retained for 7 years following the transaction to comply with financial record-keeping requirements.
+Payment Records: Kept for as long as tax and accounting law requires.
 
-Voice Recordings and Transcripts: Retained while your account is active so you can revisit a session, and deleted within 30 days of you deleting the session or your account. You may delete any individual recording sooner.
+Interview Transcripts: Kept while your account is open so you can revisit a session, and deleted on request or with your account.
 
-Recruiter and Hiring Contact Information: Refreshed periodically from source and removed on request from the contact concerned.
+Recruiter and Hiring Contact Information: Removed on request from the contact concerned.
 
-Success Refund Materials: Offer letters are deleted within 90 days of the claim being resolved. A published testimonial is retained for as long as it remains published, and is removed from surfaces we control within 30 days of you withdrawing permission.
+Success Refund Materials: Offer letters are used only to verify the claim and are deleted on request. A published testimonial stays published until you withdraw permission, after which we remove it from the places we control.
 
-Usage Analytics: Website measurement records (Section 6) are retained for 14 months and then deleted automatically. Records tied only to a daily anonymous identifier are already incapable of being linked to a person beyond the day they were collected.
+Usage Analytics: Website measurement records (Section 6) are kept only as long as they are useful for our reporting. Records tied only to a daily anonymous identifier cannot be linked to a person beyond the day they were collected.
 
 Legal Hold: Notwithstanding the above, we may retain certain information for longer periods where necessary to comply with legal obligations, resolve disputes, or enforce our agreements.
 
@@ -301,7 +299,7 @@ You may request deletion of your data at any time as described in Section 10 of 
 
 For transfers of personal data from the EEA, United Kingdom, or Switzerland to the United States, we rely on the following transfer mechanisms:
 
-Standard Contractual Clauses (SCCs): The service providers we use publish data processing agreements that incorporate the European Commission's approved Standard Contractual Clauses for transfers to third countries, and those terms apply to our use of their services. We rely on those clauses rather than on separately negotiated agreements of our own.
+Standard Contractual Clauses (SCCs): Where a service provider's data processing terms include the European Commission's Standard Contractual Clauses for transfers to third countries, we rely on them. We have not negotiated separate agreements of our own.
 
 Adequacy Decisions: Where available, we rely on adequacy decisions issued by the European Commission recognizing the destination country as providing adequate data protection.
 
@@ -361,13 +359,11 @@ For more information about cookies and how to manage them, visit www.allaboutcoo
     title: "Data security",
     content: `We implement and maintain appropriate technical and organizational security measures designed to protect your personal information against unauthorized access, disclosure, alteration, and destruction. These measures include:
 
-Encryption: All data in transit is protected using TLS 1.2 or higher. Data at rest is encrypted using AES-256 encryption.
+Encryption: Data is sent to and from the Service over encrypted HTTPS connections. Calendar access tokens are stored encrypted.
 
 Access Controls: Administrative access to personal data is limited to the smallest number of people necessary to operate and support the Service, and is granted on a need-to-know basis.
 
 Password Security: Passwords are hashed using industry-standard cryptographic algorithms and are never stored in plain text.
-
-Infrastructure Security: Our infrastructure is hosted on cloud providers that maintain SOC 2 Type II certifications and comply with industry security standards.
 
 Incident Response: If we become aware of a breach affecting your personal information, we will investigate promptly and notify you, and where required the applicable regulatory authorities, in accordance with applicable law and within the timeframes it sets.
 
