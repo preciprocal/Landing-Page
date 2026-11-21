@@ -121,7 +121,7 @@ We will not be liable for any loss or damage arising from your failure to mainta
 
 Service Emails: We will send you the emails your account depends on. These include a welcome message and email verification when you sign up, onboarding guidance, password resets and security alerts, payment receipts and renewal reminders, failed payment and plan change notices, notifications about your monthly allowance and when it resets, correspondence about any refund you request, replies to your support requests, and notices of material changes to these Terms or to our Privacy Policy. These are part of the Service rather than marketing, and you may not opt out of them while your account remains open. If you do not wish to receive them, you may close your account at any time.
 
-Marketing Emails: With your consent, or where applicable law otherwise permits, we may also send product announcements, feature updates, job search guidance, and promotional offers. Every such message includes an unsubscribe link, and opting out has no effect on your access to the Service or on the service emails described above.
+Product Update Emails: We also send occasional emails about new features by default. You can switch them off at any time in Settings > Notifications > Product updates or with the link in each of these emails, and doing so has no effect on your access to the Service or on the service emails described above.
 
 Your Email Address: You are responsible for keeping the email address on your account accurate and for ensuring our messages are not blocked or filtered by your mail provider. A notice sent to that address is treated as received when sent, whether or not you open it. We are not responsible for any consequence of a notice you did not receive because the address was out of date or the message was filtered.
 
@@ -338,7 +338,7 @@ export default function TermsPage() {
                 Please read these Terms carefully before using Preciprocal. By using the Service, you agree to be bound by these Terms.
               </p>
               <p className="mt-4 font-mono text-[13px] text-slate-400">
-                Last updated: November 18, 2026. Effective date: November 18, 2026.
+                Last updated: November 20, 2026. Effective date: November 20, 2026.
               </p>
             </>
           }

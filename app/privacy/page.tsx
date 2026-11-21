@@ -139,9 +139,9 @@ We do not ask for government identification numbers, financial account details b
 
 Performance of a Contract (Article 6(1)(b) GDPR): Processing necessary to provide the Service you have requested, including operating your account, processing payments, and delivering AI-powered tools.
 
-Legitimate Interests (Article 6(1)(f) GDPR): Processing necessary for our legitimate business interests, including improving and securing the Service, preventing fraud, analyzing usage patterns, and communicating with you about your account, provided such interests are not overridden by your rights.
+Legitimate Interests (Article 6(1)(f) GDPR): Processing necessary for our legitimate business interests, including improving and securing the Service, preventing fraud, analyzing usage patterns, communicating with you about your account, and sending occasional product update emails, which you can switch off at any time, provided such interests are not overridden by your rights.
 
-Consent (Article 6(1)(a) GDPR): Where we rely on your consent, such as for optional marketing communications or the use of non-essential cookies. You may withdraw consent at any time without affecting the lawfulness of prior processing.
+Consent (Article 6(1)(a) GDPR): Where we rely on your consent, such as for the use of non-essential cookies. You may withdraw consent at any time without affecting the lawfulness of prior processing.
 
 Explicit Consent for Special Categories (Article 9(2)(a) GDPR): Equal-opportunity answers about race or ethnicity, disability or similar matters are processed only because you choose to save them, which is your explicit consent. You may withdraw it by deleting those answers from your profile.
 
@@ -177,7 +177,7 @@ Forwarded Emails: If you forward emails about your job applications to your Prec
 
 Legal Compliance: To comply with applicable laws, regulations, legal processes, and governmental requests.
 
-Communications: To send you the service emails your account depends on, such as sign-up confirmation and email verification, onboarding guidance, password resets, security alerts, payment receipts and renewal reminders, allowance notifications, and correspondence about a refund you have requested, and, with your consent, to send product updates and promotional material. Section 5 sets out in full what we send and what you can opt out of.
+Communications: To send you the service emails your account depends on, such as sign-up confirmation and email verification, onboarding guidance, password resets, security alerts, payment receipts and renewal reminders, allowance notifications, and correspondence about a refund you have requested, and to send occasional product update emails about new features, which you can switch off at any time. Section 5 sets out in full what we send and what you can opt out of.
 
 AI MODEL TRAINING RESTRICTION: Your resume, cover letters, interview recordings, and other personal content submitted to the Service will NOT be used to train, fine-tune, or improve any AI models without your explicit, affirmative opt-in consent. This restriction applies regardless of whether you are a free or paid user.`,
   },
@@ -198,7 +198,7 @@ AI MODEL TRAINING RESTRICTION: Your resume, cover letters, interview recordings,
 
 Service emails are not marketing, and you cannot unsubscribe from them while your account is open, because without them you would not know that a payment had failed, that an allowance had run out, or that your account had been accessed. If you no longer wish to receive them, you can close your account at any time by emailing support@preciprocal.com.
 
-**Marketing Emails.** We send these only where you have given consent, or where applicable law allows us to send them to an existing customer on the basis of our legitimate interests. They include product announcements, new features, job search guidance, and occasional offers. Every marketing email carries an unsubscribe link, and you can opt out from the message itself or by emailing support@preciprocal.com. Opting out takes effect promptly and does not affect your access to the Service or the service emails described above.
+**Product Update Emails.** Every account receives occasional emails about new features by default. You can switch them off at any time in Settings > Notifications > Product updates, with the link in each of these emails, with your email app's unsubscribe button, or by emailing support@preciprocal.com. Unsubscribing from all optional emails in Settings also switches them off. Switching them off takes effect promptly and does not affect your access to the Service or the service emails described above.
 
 **The address we use.** We send to the email address on your account, including an address provided by a sign-in provider if you registered with one. Keeping that address current is your responsibility; if it stops working we may be unable to reach you about billing or security.
 
@@ -439,7 +439,7 @@ export default function PrivacyPage() {
                 This Policy explains how Preciprocal collects, uses, and protects your personal information. Please read it carefully.
               </p>
               <p className="mt-4 font-mono text-[13px] text-slate-400">
-                Last updated: November 18, 2026. Effective date: November 18, 2026.
+                Last updated: November 20, 2026. Effective date: November 20, 2026.
               </p>
             </>
           }
